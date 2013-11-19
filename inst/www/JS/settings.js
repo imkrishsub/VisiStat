@@ -1,8 +1,7 @@
 // Data
-    localStorage.fileName = "store";
-    var fileName = "store";//change this!
-    var wd = "/Users/krishnasubramanian/Documents/Media Informatics/Semester 4/Thesis/Implementation/Possible Datasets/Datasets/";//"http://hci.rwth-aachen.de/~subramanian/datasets/" + localStorage.fileName +".txt";
-    var pathToFile =  wd + "hotdogs.txt";
+    localStorage.fileName = "cars";
+    var wd = "http://hci.rwth-aachen.de/~subramanian/datasets/" + localStorage.fileName +".txt";
+    var pathToFile =  wd;
 
 // Skeleton
     var width = getWidth();
