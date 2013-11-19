@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="style/skeleton.css">
+        <link rel="stylesheet" type="text/css" href="style/visualizations.css">
+        <link rel="stylesheet" type="text/css" href="style/homepage.css">
+        <meta charset="utf-8">
+        
+        <!-- Title - change if possible -->
+        <title>Preprocessing</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+        
+        <script type="text/javascript" src="JS/mouse.js"></script>
+        <script type="text/javascript" src="JS/drawing.js"></script>
+        
+        <!-- Plots -->
+        <script type="text/javascript" src="JS/histogram.js"></script>
+        <script type="text/javascript" src="JS/boxplot.js"></script>
+        <script type="text/javascript" src="JS/scatterplot.js"></script>
+        <script type="text/javascript" src="JS/scatterplot matrix.js"></script>
+        <script type="text/javascript" src="JS/interactionEffect.js"></script>
+        <script type="text/javascript" src="JS/tukeyHSDPlot.js"></script>
+        
+        <script type="text/javascript" src="JS/display-data.js"></script>
+        <script type="text/javascript" src="JS/statistical-tests.js"></script>
+        <script type="text/javascript" src="JS/statistics-helper.js"></script>
+        
+        <script type="text/javascript" src="JS/opencpu-R.js"></script>        
+        <script type="text/javascript" src="JS/significance tests.js"></script>        
+        <script type="text/javascript" src="JS/correlation and regression.js"></script>        
+        
+        <script type="text/javascript" src="JS/helper.js"></script>
+        <script type="text/javascript" src="JS/math.js"></script>
+        <script type="text/javascript" src="JS/settings.js"></script>
+        <script type="text/javascript" src="JS/global variables.js"></script>
+        <script type="text/javascript" src="JS/miscellaneous.js"></script>
+        <script type="text/javascript" src="JS/datasets.js"></script>
+        
+        <script src="opencpu/jquery-1.10.1.min.js"></script>
+        <script src="opencpu/opencpu.js"></script>
+    </head>
+    <body>        
+        <script type="text/javascript">            
+            var height = document.height;
+            var width = document.width;
+        
+            window.onload = function()
+            {  
+
+               d3.select("body").style("font-size", scaleForWindowSize(100)+"%");
+               
+               initVariablesInDatasetTypes();
+               changeDataset();
+            }
+            
+            function changeDataset()
+            {
+                fileName = $("#datasetDropDownList").val();
+                
+                sessionStorage.fileName = fileName;
+                
+                $("#datasetInformation").text(datasetInformation[fileName]);
+                
+                var variableList = variablesInDataset[fileName];
+                var variableListTypes = variablesInDatasetType[fileName];
+                var variableListDataTypes = variablesInDatasetDataType[fileName];
+                var variablesDiv = d3.select("#variablesDiv");
+                
+                removeElementsByClassName("variableList");
+               
+                var table = variablesDiv.append("table")
+                                            .attr("border", "1")
+                                            .attr("class", "variableList")
+                                            .attr("align", "center");
+                                            
+                var tr = table.append("tr");
+                tr.append("th").text("VARIABLE NAME");
+                tr.append("th").text("VARIABLE TYPE");
+                tr.append("th").text("DATA TYPE");
+                
+                for(var i=0; i<variableList.length; i++)
+                {
+                    var tr = table.append("tr");
+                    
+                    tr.append("td")
+                        .text(variableList[i]);
+                        
+                    var select = tr.append("td").append("select").attr("name", "varType").attr("id", variableList[i]).attr("class", "variableTypeDropDown");                    
+                    
+                    var participant = select.append("option").attr("value", "participant").text("Participant/Subject/ID");
+                    var dependent = select.append("option").attr("value", "dependent").text("Dependent Variable");
+                    var independent = select.append("option").attr("value", "independent").text("Independent Variable");
+                    
+                    switch(variableListTypes[i])
+                    {
+                        case "participant":
+                                            participant.attr("selected", "yes");
+                                            break;
+                        
+                        case "dependent":
+                                            dependent.attr("selected", "yes");
+                                            break;
+                        
+                        case "independent":
+                                            independent.attr("selected", "yes");
+                                            break;
+                    }
+                    
+                    tr.append("td")
+                        .text(variableListDataTypes[i]);
+                }
+            }
+            
+            function changeVariableType(variable)
+            {
+                console.log("variable = "  +variable);
+            }
+            
+            function letsGetStarted()
+            {
+                for(var i=0; i<variablesInDataset[fileName].length; i++)
+                {
+                    var option = document.getElementById(variablesInDataset[fileName][i]).value;//d3.select("#" + variablesInDataset[fileName][i] + ".variableTypeDropDown").attr("value");
+                    variablesInDatasetType[fileName][i] = option;                 
+                }   
+                
+                for(var i=0; i<variablesInDatasetType[fileName].length; i++)
+                {
+                    sessionStorage.setItem(variablesInDataset[fileName][i], variablesInDatasetType[fileName][i]);
+                }
+                
+                window.location = "main.html";
+            }
+        </script>
+        
+        <table align="center" id="datasetDisplayTable">
+            <tr>
+                <td id="left">
+                    <label id="dataset" class="labels"><b>Pick a dataset:</b></label>
+                </td>
+                <td id="right">
+                    <select name="dataset" autofocus onchange="changeDataset()" id="datasetDropDownList">                    
+                        <option value="cars">Cars</option>
+                        <option value="weightLoss">Weight loss</option>
+                        <option value="impact">IMPACT</option>
+                        <option value="store">Store-Price</option>
+                        <option value="SAT">SAT score prediction</option>
+                        <option value="hotdogs">Hot Dogs</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <td id="left"> 
+                    <label id="datasetInformationLabel">Dataset information:</label>
+                </td>
+                <td id="right">
+                    <label id="datasetInformation"></label>
+                </td>
+            </tr>
+            
+            <tr>
+                <td id="center" colspan="2">
+                    <div id="variablesDiv"></div>
+                </td>
+            </tr>
+        </table>
+        
+        <br/>
+        <div id="buttonWrapper">
+            <input type="button" onclick="letsGetStarted()" value="START EXPLORING!" id="submitButton"/>
+        </div>
+    </body>
+</html>

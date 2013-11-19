@@ -1,0 +1,55 @@
+.bins
+{
+    stroke: black;
+}
+
+.xAxisGrooves, .yAxisGrooves
+{
+    stroke: black;
+}
+
+.medians
+{
+    stroke: black;
+}
+
+.TOPFringeConnectors,.BOTTOMFringeConnectors
+{
+    stroke: grey;
+}
+
+.TOPFringes, .BOTTOMFringes
+{
+    stroke: darkslategray;
+}
+.means
+{
+    stroke: black;   
+}
+
+.displayDataTable
+{
+    background-color: LemonChiffon;
+    font:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+th
+{
+    background-color: DarkSlateGray;
+    color: white;
+}
+#regressionPredictionTable
+{
+    font:1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;   
+    text-align: center;
+    border: 0;
+}
+input[type=text]
+{
+    color: #979797;
+    font:1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;   
+    padding-left: 5px;
+    text-decoration: none;
+    border: 0;
+}
+

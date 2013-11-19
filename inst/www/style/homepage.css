@@ -1,0 +1,101 @@
+#datasetDropDownList
+{
+    font-size: 30px;
+    margin: 0 auto;    
+    height: 5em;
+    font: 1.2em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color:#08233e;
+    padding:5px;
+    width: 10em;
+    height: 2.2em;
+    background-color:rgba(253,252,253,0.85);
+}
+
+#datasetDisplayTable
+{
+    width: 100%;
+    height: 80%;
+    border-collapse:collapse;
+    background-color: LemonChiffon;
+    font:1.2em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#variablesDiv
+{
+    text-align: center;
+}
+
+.variableList
+{
+    border-collapse: collapse; 
+    padding: 10px;
+    background-color: LemonChiffon;
+    color: black;
+    table-layout: fixed;
+    font:1.0em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+th
+{
+    background-color: DarkSlateGray;
+    font:1.2em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    padding: 15px;
+    color: white;
+}
+
+#left
+{
+    text-align: right;
+    width: 50%;
+    padding-right: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#right
+{
+    text-align: left;
+    width: 50%;
+    padding-left: 35px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    overflow: hidden;
+}
+
+#middle
+{
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#submitButton
+{
+    width: 15em;
+    height: 5em;
+    position: relative;
+    top: 90%;
+    color: LemonChiffon;
+    font:1.7em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
+    padding:14px;
+    background-color:DarkKhaki;
+    border:1px solid #ffee00;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border-bottom:1px solid #9f9f9f;
+    -moz-box-shadow:inset 0 1px 0 DarkKhaki;
+    -webkit-box-shadow:inset 0 1px 0 DarkKhaki;
+    box-shadow:inset 0 1px 0 DarkKhaki;
+    cursor:pointer;
+}
+
+#buttonWrapper
+{
+    width: 100%;
+    text-align: center;
+}
+
+body
+{
+    background-color: LemonChiffon;
+}

@@ -1,0 +1,128 @@
+findTransformForDependentVariables <- function(dataset, numericVariables)
+{
+    D <- as.data.frame(dataset);
+    
+    
+    levels = c(numericVariables);
+    numberOfLevels = length(levels);
+    
+    transformations = c("sqrt", "cube", "reciprocal", "log");
+    
+    for(i in 1:numberOfLevels)
+    {
+        eval(parse(text = paste("level.",levels[i]," = D$",levels[i],sep="")));
+    }
+    
+    type = "none";
+    
+    for(i in 1:length(transformations))
+    {
+    	if(transformations[i] == "sqrt")
+    	{	
+    		for(k in 1:numberOfLevels)
+    		{
+    		    if(is.numeric(eval(parse(text = paste("level.", levels[k],"[1]",sep="")))))
+    		    {
+                    temp = eval(parse(text = paste("sqrt(level.",levels[k],")",sep="")));
+                
+                    result <- shapiro.test(temp);
+                    if(!is.nan(result$p.value))    
+                    {
+                        if(result$p.value > 0.05)
+                        {
+                            type = "sqrt";
+                        }
+                        else
+                        {
+                            type = "none";
+                            break;
+                        }
+                    }
+                }
+    		}
+    		
+    		if(type!="none")
+    		    break;
+    	}
+    	if(transformations[i] == "cube")
+    	{	
+    		for(k in 1:numberOfLevels)
+    		{
+    		    if(is.numeric(eval(parse(text = paste("level.", levels[k],"[1]",sep="")))))
+    		    {
+                    temp = eval(parse(text = paste("level.",levels[k],"^(1/3)",sep="")));
+                
+                    result <- shapiro.test(temp);
+                    if(!is.nan(result$p.value))    
+                    {
+                        if(result$p.value > 0.05)
+                        {
+                            type = "cube";
+                        }
+                        else
+                        {
+                            type = "none";
+                            break;
+                        }
+                    }
+                }
+    		}
+    		if(type!="none")
+    		    break;
+    	}
+    	if(transformations[i] == "reciprocal")
+    	{
+    		for(k in 1:numberOfLevels)
+    		{
+    		    if(is.numeric(eval(parse(text = paste("level.", levels[k],"[1]",sep="")))))
+    		    {    		
+                    temp = eval(parse(text = paste("1/level.",levels[k],sep="")));
+                
+                    result <- shapiro.test(temp);
+                    if(!is.nan(result$p.value))    
+                    {
+                        if(result$p.value > 0.05)
+                        {
+                            type = "reciprocal";
+                        }
+                        else
+                        {
+                            type = "none";
+                            break;
+                        }
+                    }
+                }
+    		}
+    		if(type!="none")
+    		    break;
+    	}
+    	if(transformations[i] == "log")
+    	{
+    		for(k in 1:numberOfLevels)
+    		{
+    		    if(is.numeric(eval(parse(text = paste("level.", levels[k],"[1]",sep="")))))
+    		    {
+                    temp = eval(parse(text = paste("log10(level.",levels[k],")",sep="")));
+                
+                    result <- shapiro.test(temp);
+                    if(!is.nan(result$p.value))    
+                    {
+                        if(result$p.value > 0.05)
+                        {
+                            type = "log";
+                        }
+                        else
+                        {
+                            type = "none";
+                            break;
+                        }
+                    }
+                }
+    		}
+    		if(type!="none")
+    		    break;
+    	}
+    }
+    
+    list(type = type);
+}
