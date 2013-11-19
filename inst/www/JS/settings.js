@@ -1,5 +1,5 @@
 // Data
-    localStorage.fileName = "cars";
+    sessionStorage.fileName = "store";
     var wd = "http://hci.rwth-aachen.de/~subramanian/datasets/" + localStorage.fileName +".txt";
     var pathToFile =  wd;
 
