@@ -1,6 +1,5 @@
 // Data
-    sessionStorage.fileName = "store";
-    var wd = "http://hci.rwth-aachen.de/~subramanian/datasets/" + localStorage.fileName +".txt";
+    var wd = "http://hci.rwth-aachen.de/~subramanian/datasets/" + sessionStorage.fileName +".txt";
     var pathToFile =  wd;
 
 // Skeleton
