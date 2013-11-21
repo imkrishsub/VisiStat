@@ -92,9 +92,11 @@ function testForEvilVariables()
         var uniqueVariableData = variableData.unique();
         console.log("Variable data type=" + variableDataTypes[variable]);
 
-        if(isNaN(variableData[0]))
+        if(isNaN(variableData[0]) || variableTypes[variable]=="participant")
         {
-            if(uniqueVariableData.length > 15)
+            console.log("in");
+            console.log(uniqueVariableData.length);
+            if(uniqueVariableData.length >= 10)
             {
                 console.log("\n\tmaking " + variable + " as an evil variable");
                 setThisVariableEvil(variableNames[i]);

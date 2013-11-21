@@ -46,6 +46,15 @@ function makeScatterplot()
                 }
             }
         }
+        else if(variableList["independent"].length == 2 && variableList["dependent"].length == 1)
+        {
+            if((currentVariableSelection[2] != variableList["independent"][0]) && (currentVariableSelection[2] != variableList["independent"][1]))
+            {
+                var temp = currentVariableSelection[2];
+                currentVariableSelection[2] = currentVariableSelection[1];
+                currentVariableSelection[1] = temp;
+            }
+        }
     }   
 
     // getting data
@@ -252,7 +261,7 @@ function drawScatterPlotLegends(varNames)
                 .attr("y", TOP + histLegendOffsetY + i*yStep + 3)
                 .attr("fill", "black")
                 .attr("font-size", fontSizeTicks + "px")
-                .attr("text-anchor", "middle")
+                .attr("text-anchor", "start")
                 .text(varNames[i])
                 .attr("id", "legend" + i)
                 .attr("class", "text");
@@ -278,8 +287,6 @@ function drawRegressionLine(intercept, slope)
     Y2 = (slope*X2 + intercept) > maxs["Y"] ? maxs["Y"] : (slope*X2 + intercept);
     Y2 = (slope*X2 + intercept) < mins["Y"] ? mins["Y"] : (slope*X2 + intercept);
     
-    console.log("X1=" + X1 + "Y1=" + Y1 + "X2=" + X2 + "Y2=" + Y2);
-        
     if(uniqueDataX.length <= numberOfGrooves)
         x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
     else

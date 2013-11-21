@@ -1,5 +1,7 @@
 // Data
-    var wd = "http://hci.rwth-aachen.de/~subramanian/datasets/" + sessionStorage.fileName +".txt";
+//     localStorage.fileName = "store";
+//     var fileName = "weightLoss";//change this!
+    var wd ="http://hci.rwth-aachen.de/~subramanian/datasets/" + sessionStorage.fileName +".txt"; // "/Users/krishnasubramanian/Documents/Media Informatics/Semester 4/Thesis/Implementation/Possible Datasets/Datasets/";/
     var pathToFile =  wd;
 
 // Skeleton
@@ -21,12 +23,35 @@
         var radius = variableNameHolderPadding + "px";
         var variableNameHolderHeight = scaleForWindowSize(60); // TODO: Find this dynamically based on number of variable names (50 is the maximum), do this for font-size as well
         var variableSelectionButtonWidth = scaleForWindowSize(60);
+        var variableTypeSelectionButtonWidth = scaleForWindowSize(120);
         
         var flagImageSize = scaleForWindowSize(45);
         
         var variablePanelColors = new Object();
             variablePanelColors["active"] = "lightgrey";
             variablePanelColors["disabled"] = "darkgrey";
+        
+        var variableTypeButtonColors = new Object();
+            variableTypeButtonColors["dependent"] = new Object();
+                variableTypeButtonColors["dependent"]["normal"] = "Linen";
+                variableTypeButtonColors["dependent"]["selected"] = "SaddleBrown";
+            
+            variableTypeButtonColors["independent"] = new Object();
+                variableTypeButtonColors["independent"]["normal"] = "Linen";
+                variableTypeButtonColors["independent"]["selected"] = "CornflowerBlue";
+            
+            variableTypeButtonColors["participant"] = "SaddleBrown";
+        
+        var variableTypeTextColors = new Object();
+            variableTypeTextColors["dependent"] = new Object();
+                variableTypeTextColors["dependent"]["normal"] = "black";
+                variableTypeTextColors["dependent"]["selected"] = "white";
+            
+            variableTypeTextColors["independent"] = new Object();
+                variableTypeTextColors["independent"]["normal"] = "black";
+                variableTypeTextColors["independent"]["selected"] = "white";
+            
+            variableTypeTextColors["participant"] = "white";
 
     // Visualization panel
         var visualizationImageSize = scaleForWindowSize(200);  
@@ -112,9 +137,11 @@ var assumptionsText = new Object();
     assumptionsText["homogeneity"] = "Homogeneity of variances";
     
 var assumptions = ["normality", "homogeneity"];
-
-
 var significanceTestResultOffset = scaleForWindowSize(40);
+
+var effectSizeWidth = sideBarWidth*0.8;
+var effectSizeHeight = scaleForWindowSize(30);
+var effectSizeFontSize = scaleForWindowSize(20) + "px";
 
 //transformation
 var normalityPlotWidth = scaleForWindowSize(125);

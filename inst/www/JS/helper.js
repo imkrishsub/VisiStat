@@ -324,10 +324,12 @@ function toggleFillColorsForVisualizations()
         if(visualizations[i].getAttribute("id") == currentVisualizationSelection)
         {
             visualizations[i].setAttribute("fill", panelColors.active);
+            d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "white");
         }
         else
         {
             visualizations[i].setAttribute("fill", panelColors.normal);
+            d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "black");
         }
     }
 }
@@ -345,7 +347,7 @@ function invalidate(list)
     for(var i=0; i<list.length; i++)
     {
         var viz = d3.select("#" + list[i] + ".visualizationHolderFront");
-        viz.attr("fill", "black").attr("opacity", "0.9").attr("class", "invalid");        
+        viz.attr("fill", "grey").attr("opacity", "0.75").attr("class", "invalid");        
     }
 }
 //Strings/numbers processing
@@ -597,15 +599,56 @@ function setVariableTypes()
     {
         if(variableTypes[variableNames[i]] == "independent")
         {
-            var variableSelectionButton = d3.select("#" + variableNames[i] + ".variableSelectionButton");
-            variableSelectionButton.attr("fill", buttonColors["independent"]);
+            var variableSelectionButton = d3.select("#" + variableNames[i] + ".independentVariableButtonBack");
+            variableSelectionButton.attr("fill", variableTypeButtonColors["independent"]["selected"]);
+            
+            var variableSelectionText = d3.select("#" + variableNames[i] + ".independentVariableText");
+            variableSelectionText.attr("fill", variableTypeTextColors["independent"]["selected"]);
+            
             splitTheData(variableNames[i]);
-//             subsetDataByLevelsOfVariable(dataset, variableNames[i]);
+        }
+        else if(variableTypes[variableNames[i]] == "dependent")
+        {
+            var variableSelectionButton = d3.select("#" + variableNames[i] + ".dependentVariableButtonBack");
+            variableSelectionButton.attr("fill", variableTypeButtonColors["dependent"]["selected"]);
+            
+            var variableSelectionText = d3.select("#" + variableNames[i] + ".dependentVariableText");
+            variableSelectionText.attr("fill", variableTypeTextColors["dependent"]["selected"]);
         }
         else if(variableTypes[variableNames[i]] == "participant")
         {
-            var variableSelectionButton = d3.select("#" + variableNames[i] + ".variableSelectionButton");
-            variableSelectionButton.attr("fill", buttonColors["participant"]);
+            d3.select("#" + variableNames[i] + ".dependentVariableButtonFront").remove();
+            d3.select("#" + variableNames[i] + ".dependentVariableButtonBack").remove();
+            d3.select("#" + variableNames[i] + ".dependentVariableText").remove();
+            
+            d3.select("#" + variableNames[i] + ".independentVariableButtonFront").remove();
+            d3.select("#" + variableNames[i] + ".independentVariableButtonBack").remove();
+            d3.select("#" + variableNames[i] + ".independentVariableText").remove();
+            
+            var variablePanelSVG = d3.select("#variablePanelSVG");
+            var variablePanel = d3.select("#variable.panel");                
+            var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
+            var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                     
+            
+            variablePanelSVG.append("rect")
+                            .attr("x", variableNameHolderWidth - variableNameHolderPadding/4 - variableTypeSelectionButtonWidth)
+                            .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
+                            .attr("height", variableNameHolderHeight - 2*scaleForWindowSize(2))
+                            .attr("width", variableTypeSelectionButtonWidth)
+                            .attr("rx", "5px")
+                            .attr("ry", "5px")
+                            .attr("fill", variableTypeButtonColors["participant"])
+                            .attr("id", variableNames[i])
+                            .attr("class", "participantVariableButtonBack");
+                                    
+            variablePanelSVG.append("text")
+                            .attr("x", variableNameHolderWidth - variableNameHolderPadding/4 - variableTypeSelectionButtonWidth/2)
+                            .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/2 + yAxisTickTextOffset/2)                                                   
+                            .attr("text-anchor", "middle")
+                            .attr("fill", variableTypeTextColors["participant"])
+                            .text("SUBJECT")
+                            .attr("id", variableNames[i])
+                            .attr("class", "participantVariableText");
         }
     }
 }
@@ -871,6 +914,20 @@ function populationMeanEntered()
         
         performOneSampleTTest(variableList["dependent"][0]);
     }
+}
+
+function getColour(type, value)
+{
+    var interpretations = effectSizeInterpretations[type];
+    
+    if(value < interpretations[0])
+        return effectSizeColors["small"];
+    else if(value >= interpretations[0] && value < interpretations[1])
+        return effectSizeColors["small-medium"];
+    else if(value >= interpretations[1] && value < interpretations[2])
+        return effectSizeColors["medium-large"];
+    else if(value >= interpretations[2])
+        return effectSizeColors["large"];
 }
         
             

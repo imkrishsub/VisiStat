@@ -31,10 +31,16 @@ function compareMeans()
                     
                     if(variableList["independent"].length == 2)
                     {
-                        var levelsOfIndependentVariableA = variables["independent-levels"][0];
-                        var levelsOfIndependentVariableB = variables["independent-levels"][1];
+                        var levelsA = variableList["independent-levels"][0];
+                        var levelsB = variableList["independent-levels"][1];
                         
-                        sampleSize = colourBoxPlotData[levelsOfIndependentVariableA[0]][levelsOfIndependentVariableB[0]].length;
+                        console.log("colourBoxPlotData=");
+                        console.dir(colourBoxPlotData);
+                        
+                        console.log(levelsA[0]);
+                        console.log(levelsB[0]);
+                        
+                        sampleSize = colourBoxPlotData[levelsA[0]][levelsB[0]].length;
                     }
                     else
                     {
@@ -356,14 +362,15 @@ function displayOneSampleTestResults()
     
     
     //Effect sizes
-    sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight/2 - significanceTestResultOffset)
-            .attr("text-anchor", "middle")
-            .attr("font-size", "24px")
-            .attr("fill", "orange")
-            .text(testResults["effect-size"])
-            .attr("class", "significanceTest");
+    drawEffectSize(parseFloat(testResults["effect-size"]));
+//     sideBar.append("text")
+//             .attr("x", sideBarWidth/2)
+//             .attr("y", canvasHeight/2 - significanceTestResultOffset)
+//             .attr("text-anchor", "middle")
+//             .attr("font-size", "24px")
+//             .attr("fill", "orange")
+//             .text(testResults["effect-size"])
+//             .attr("class", "significanceTest");
 }
   
 function displaySignificanceTestResults()
@@ -412,6 +419,7 @@ function displaySignificanceTestResults()
             cy.splice(i, 1);								
         }	
     }
+
     var cyMax = Math.max.apply(Math, cy);
     var cyMin = Math.min.apply(Math, cy);		   	 
 
@@ -446,14 +454,16 @@ function displaySignificanceTestResults()
             .text(testResults["method"])
             .attr("class", "significanceTest");
     
-    sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight/2 + 2*significanceTestResultOffset)
-            .attr("text-anchor", "middle")
-            .attr("font-size", "22px")
-            .attr("fill", "orange")
-            .text(testResults["statistic"])
-            .attr("class", "significanceTest");
+    drawParameter(parseFloat(testResults["parameter"]));
+    
+    // sideBar.append("text")
+//             .attr("x", sideBarWidth/2)
+//             .attr("y", canvasHeight/2 + 2*significanceTestResultOffset)
+//             .attr("text-anchor", "middle")
+//             .attr("font-size", "22px")
+//             .attr("fill", "orange")
+//             .text(testResults["statistic"])
+//             .attr("class", "significanceTest");
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
@@ -466,14 +476,15 @@ function displaySignificanceTestResults()
     
     
     //Effect sizes
-    sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight/2 - significanceTestResultOffset)
-            .attr("text-anchor", "middle")
-            .attr("font-size", "24px")
-            .attr("fill", "orange")
-            .text(testResults["effect-size"])
-            .attr("class", "significanceTest");
+    drawEffectSize(parseFloat(testResults["effect-size"]));
+//     sideBar.append("text")
+//             .attr("x", sideBarWidth/2)
+//             .attr("y", canvasHeight/2 - significanceTestResultOffset)
+//             .attr("text-anchor", "middle")
+//             .attr("font-size", "24px")
+//             .attr("fill", "orange")
+//             .text(testResults["effect-size"])
+//             .attr("class", "significanceTest");
     
     
 }
@@ -490,8 +501,6 @@ function drawScales(cx, cy)
     var variableList = getSelectedVariables();
     var means = [];
     
-    var meanElements = document.getElementsByClassName("means");
-    
     var levels = variableList["independent-levels"];
     
 //     for(var i=0; i<variableList["dependent"].length; i++)
@@ -502,9 +511,9 @@ function drawScales(cx, cy)
 //         }
 //     }   
 
-    for(var i=0; i<meanElements.length; i++)
+    for(var i=0; i<cy.length; i++)
     {
-        means.push(getActualValue(meanElements[i].getAttribute("cy")));
+        means.push(getActualValue(cy[i]));
     }
     
     means = means.sort(function(a,b){return a-b});
@@ -599,14 +608,15 @@ function displayCorrelationResults()
     
     
     //Effect sizes
-    sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight/2 - significanceTestResultOffset)
-            .attr("text-anchor", "middle")
-            .attr("font-size", "24px")
-            .attr("fill", "orange")
-            .text(testResults["effect-size"])
-            .attr("class", "significanceTest");
+    drawEffectSize(parseFloat(testResults["effect-size"]));
+//     sideBar.append("text")
+//             .attr("x", sideBarWidth/2)
+//             .attr("y", canvasHeight/2 - significanceTestResultOffset)
+//             .attr("text-anchor", "middle")
+//             .attr("font-size", "24px")
+//             .attr("fill", "orange")
+//             .text(testResults["effect-size"])
+//             .attr("class", "significanceTest");
  
 }
 
@@ -624,14 +634,7 @@ function displayBiserialCorrelationResults()
             .attr("class", "significanceTest");
     
     //Effect sizes
-    sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight/2 - significanceTestResultOffset)
-            .attr("text-anchor", "middle")
-            .attr("font-size", "24px")
-            .attr("fill", "orange")
-            .text(testResults["effect-size"])
-            .attr("class", "significanceTest"); 
+    drawEffectSize(parseFloat(testResults["effect-size"])); 
 }
 
 function displaySimpleRegressionResults()
@@ -647,14 +650,7 @@ function displaySimpleRegressionResults()
             .text(testResults["method"])
             .attr("class", "significanceTest");
     //Effect sizes
-    sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight/2 - significanceTestResultOffset)
-            .attr("text-anchor", "middle")
-            .attr("font-size", "24px")
-            .attr("fill", "orange")
-            .text(testResults["effect-size"])
-            .attr("class", "significanceTest");
+    drawEffectSize(parseFloat(testResults["effect-size"]));
  
     var plot = d3.select("#plotCanvas");
     
@@ -706,14 +702,7 @@ function displayMultipleRegressionResults()
             .text(testResults["method"])
             .attr("class", "significanceTest");
     //Effect sizes
-    sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight/2 - significanceTestResultOffset)
-            .attr("text-anchor", "middle")
-            .attr("font-size", "24px")
-            .attr("fill", "orange")
-            .text(testResults["effect-size"])
-            .attr("class", "significanceTest");
+    drawEffectSize(parseFloat(testResults["effect-size"]));
  
     var plot = d3.select("#plotCanvas");
     
@@ -721,7 +710,7 @@ function displayMultipleRegressionResults()
             .attr("x", canvasWidth/2)
             .attr("y", 3*plotHeight/4)
             .attr("text-anchor", "middle")
-            .attr("font-size", "32px")
+            .attr("font-size", "26px")
             .attr("fill", "orange")
             .text(testResults["equation"])
             .attr("class", "significanceTest"); 

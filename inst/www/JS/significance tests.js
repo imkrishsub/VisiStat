@@ -23,11 +23,15 @@ function performOneSampleTTest(variable, level)
                   
                   testResults["type"] = "mean";
                   testResults["df"] = output.df;
-                  testResults["statistic"] = "t(" + testResults["df"] +") = " + output.t;
+                  
+                  testResults["parameter"] = output.t;
+                  testResults["parameter-type"] = "t";
+                  
                   testResults["p"] = output.p; 
                   testResults["method"] = output.method;
                   testResults["estimate"] = output.estimate;
                   testResults["effect-size"] = output.d;
+                  testResults["effect-size-type"] = "d";
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");
@@ -68,11 +72,15 @@ function performOneSampleWilcoxonTest(variable, level)
                   console.log("\t\t\t r = " + output.r);
                   
                   testResults["type"] = "median";
-                  testResults["statistic"] = "V = " + output.V;
+                  
+                  testResults["parameter"] = output.V;
+                  testResults["parameter-type"] = "V";
+                  
                   testResults["p"] = output.p; 
                   testResults["method"] = output.method;
                   testResults["estimate"] = output.estimate;
                   testResults["effect-size"] = output.r;
+                  testResults["effect-size-type"] = "r";
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");
@@ -112,10 +120,14 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                   console.log("\t\t\t d = " + output.d);
                   
                   testResults["df"] = output.DOF;
-                  testResults["statistic"] = "t(" + testResults["df"] +") = " + output.t;
+                  
+                  testResults["parameter"] = output.t;
+                  testResults["parameter-type"] = "t";
+                  
                   testResults["p"] = output.p; 
                   testResults["method"] = output.method;
                   testResults["effect-size"] = output.d;
+                  testResults["effect-size-type"] = "d";
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");
@@ -148,10 +160,13 @@ function performMannWhitneyTest(groupA, groupB)
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t r = " + output.r);
                   
-                  testResults["statistic"] = "U = " + output.U;
+                  testResults["parameter"] = output.U;
+                  testResults["parameter-type"] = "U";
+                  
                   testResults["p"] = output.p;                  
-                  testResults["effect-size"] = "r = " + output.r;
+                  testResults["effect-size"] = output.r;
                   testResults["method"] = "Mann-Whitney U test";
+                  testResults["effect-size-type"] = "r";
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
@@ -184,10 +199,13 @@ function performWilcoxonTest(groupA, groupB)
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t r = " + output.r);
                   
-                  testResults["statistic"] = "V = " + output.V;
+                  testResults["parameter"] = output.V;
+                  testResults["parameter-type"] = "V";
+                  
                   testResults["p"] = output.p;                  
-                  testResults["effect-size"] = "r = " + output.r;
+                  testResults["effect-size"] = output.r;
                   testResults["method"] = "Wilcoxon Signed-rank test";
+                  testResults["effect-size-type"] = "r";
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
@@ -224,10 +242,14 @@ function performANOVA(dependentVariable, independentVariable)
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
                   testResults["df"] = output.DOF;
-                  testResults["statistic"] = "F(" + testResults["df"] + ") = " + output.F;
+                  
+                  testResults["parameter"] = output.F;
+                  testResults["parameter-type"] = "F";
+                  
                   testResults["p"] = output.p;   
                   testResults["method"] = "ANOVA"; //todo
-                  testResults["effect-size"] = "η^2 = " + output.etaSquared;
+                  testResults["effect-size"] = output.etaSquared;
+                  testResults["effect-size-type"] = "eS";
                            
                   
                 //drawing stuff
@@ -269,9 +291,13 @@ function performTwoWayANOVA(dependentVariable, independentVariableA, independent
                   console.log("\t\t\t p-values: " + output.p);
                   
                   testResults["df"] = output.numDF + "/" + output.denomDF;
-                  testResults["statistic"] = "F(" + testResults["df"] + ") = " + output.F;   
+                  
+                  testResults["parameter"] = output.F;
+                  testResults["parameter-type"] = "F";
+                  
                   testResults["method"] = "Two-way ANOVA"; //todo
-                  testResults["effect-size"] = "η^2 = " + output.etaSquared;
+                  testResults["effect-size"] = output.etaSquared;
+                  testResults["effect-size-type"] = "eS";
                            
                   findEffect(dependentVariable, [independentVariableA, independentVariableB]);
                 //drawing stuff
@@ -309,10 +335,14 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
                   testResults["df"] = output.numDF + "/" + output.denomDF;
-                  testResults["statistic"] = "F(" + testResults["df"] + ") = " + output.F;   
+                  
+                  testResults["parameter"] = output.F;
+                  testResults["parameter-type"] = "F";
+                  
                   testResults["method"] = "Repeated Measures ANOVA ANOVA"; //todo
-                  testResults["effect-size"] = "η^2 = " + output.etaSquared;
+                  testResults["effect-size"] = output.etaSquared;
                   testResults["p"] = output.p;
+                  testResults["effect-size-type"] = "eS";
                            
                   
                 //drawing stuff
@@ -351,9 +381,13 @@ function performFriedmanTest(dependentVariable, independentVariable)
                   console.log("\t\t\t p = " + output.p);
                   
                   testResults["df"] = output.df;
-                  testResults["statistic"] = "ChiSquared(" + testResults["df"] + ") = " + output.chiSquared;   
+                  
+                  testResults["parameter"] = output.chiSquared;
+                  testResults["parameter-type"] = "cS";
+                  
                   testResults["method"] = output.method; 
                   testResults["p"] = output.p;
+//                   testResults["effect-size-type"] = "";
                            
                   
                 //drawing stuff
@@ -437,10 +471,14 @@ function performWelchANOVA(dependentVariable, independentVariable)
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
                   testResults["df"] = output.numeratorDF + "/" + output.denominatorDF;
-                  testResults["statistic"] = "F(" + testResults["df"] + ") = " + output.F;
+                  
+                  testResults["parameter"] = output.F;
+                  testResults["parameter-type"] = "F";
+                  
                   testResults["p"] = output.p;
                   testResults["method"] = "Welch's ANOVA"; 
-                  testResults["effect-size"] = "η^2 = " + output.etaSquared;
+                  testResults["effect-size"] = output.etaSquared;
+                  testResults["effect-size-type"] = "eS";
                            
                   
                 //drawing stuff
@@ -481,10 +519,14 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
                   testResults["df"] = output.DF;
-                  testResults["statistic"] = "𝝌^2(" + testResults["df"] + ") = " + output.ChiSquared;
+                  
+                  testResults["parameter"] = output.ChiSquared;
+                  testResults["parameter-type"] = "cS";
+                  
                   testResults["p"] = output.p;                  
                   testResults["method"] = "Kruskal-Wallis Test"; 
-                  testResults["effect-size"] = "η^2 = " + output.etaSquared;         
+                  testResults["effect-size"] = output.etaSquared;         
+                  testResults["effect-size-type"] = "eS";
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");   
