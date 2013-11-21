@@ -2,10 +2,8 @@ Package: StatViz
 Type: OpenCPU Application
 Title: OpenCPU Demo App
 Version: 0.1
-Date: 2013-09-10
-Author: Jeroen Ooms
-Maintainer: Jeroen <jeroenooms@gmail.com>
-Description: This package is an example of an OpenCPU App. It demonstrates
-    basic functionality of the API and Javascript library.
-License: Apache2
-LazyData: true
+Date: 20-11-2013
+Author: Krishna Subramanian
+Maintainer: Krishna <krishna.prasath.subramanian@rwth-aachen.de>
+Description: An application that allows users to statistics without much previous knowledge by showing the statistics
+in the context of visualizations.
