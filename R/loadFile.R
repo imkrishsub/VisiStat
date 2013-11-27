@@ -6,6 +6,8 @@ loadFile <- function(filePath)
         dataset <- read.table(filePath, head=T);
     if(fileType == "csv")
         dataset <- read.csv(filePath, head=T);
+        
+    dataset[is.na(dataset)] = "HillBilly";
     
     variableNames = names(dataset);
     
