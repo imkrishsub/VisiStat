@@ -19,7 +19,10 @@ function loadFile(filePath)
         for(var j=0; j<dataset[variableNames[i]].length; j++)
         {
             if(dataset[variableNames[i]][j] == "null")
+            {
+                console.log("hi");
                 dataset[variableNames[i]].splice(j, 1);
+            }
         }
         console.dir(dataset[variableNames[i]]);
     
