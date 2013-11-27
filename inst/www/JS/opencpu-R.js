@@ -17,6 +17,12 @@ function loadFile(filePath)
     //for each variable, get the data and the IQR
     for(var i=0; i<output.variableNames.length; i++)
     {
+        for(var j=0; j<dataset[variableNames[i]].length; j++)
+        {
+            if(dataset[variableNames[i]][j] == "null")
+                dataset[variableNames[i]][j] == null;
+        }
+    
         variables[output.variableNames[i]] = new Object();
         MIN[output.variableNames[i]] = new Object();
         MAX[output.variableNames[i]] = new Object();
