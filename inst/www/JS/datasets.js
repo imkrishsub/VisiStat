@@ -18,7 +18,7 @@ var variablesInDataset = new Object();
     variablesInDataset["store"] = ["ID", "price", "store", "subject"];
     variablesInDataset["SAT"] = ["participantID", "high_GPA", "math_SAT", "verb_SAT", "comp_GPA", "univ_GPA"];
     variablesInDataset["hotdogs"] = ["Type", "Calories", "Sodium"];
-    variablesInDataset["bankloan"] = ["age", "ed", "employ", "address", "debtinc", "creddebt", "othdebt", "default", "preddef1", "preddef2", "preddef3"];
+    variablesInDataset["bankloan"] = ["age", "ed", "employ", "address", "debtinc", "creddebt", "otherdebt", "preddef1", "preddef2", "preddef3"];
     variablesInDataset["car_sales"] = ["manufact", "model", "sales", "resale", "type", "price", "engine_s", "horsepow", "wheelbas", "width", "length", "curb_wgt", "fuel_cap", "mpg"];
  
 var types = ["participant", "dependent", "independent"];
@@ -32,7 +32,7 @@ var variablesInDatasetDataType = new Object();
     variablesInDatasetDataType["store"] = [dataTypes[0], dataTypes[3], dataTypes[0], dataTypes[0]];
     variablesInDatasetDataType["SAT"] = [dataTypes[0], dataTypes[2], dataTypes[2], dataTypes[2], dataTypes[2], dataTypes[2]];
     variablesInDatasetDataType["hotdogs"] = [dataTypes[0], dataTypes[3], dataTypes[3]];
-    variablesInDatasetDataType["bankloan"] = [dataTypes[3], dataTypes[0], dataTypes[0], dataTypes[2], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
+    variablesInDatasetDataType["bankloan"] = [dataTypes[3], dataTypes[0], dataTypes[0], dataTypes[2], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
     variablesInDatasetDataType["car_sales"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
     
 function initVariablesInDatasetTypes()
@@ -43,6 +43,6 @@ function initVariablesInDatasetTypes()
     variablesInDatasetType["store"] = [types[1], types[1], types[2], types[0]];    
     variablesInDatasetType["SAT"] = [types[0], types[1], types[1], types[1], types[1], types[1]];
     variablesInDatasetType["hotdogs"] = [types[2], types[1], types[1]];
-    variablesInDatasetType["bankloan"] = [types[1], types[2], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
+    variablesInDatasetType["bankloan"] = [types[1], types[2], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
     variablesInDatasetType["car_sales"] = [types[2], types[0], types[1], types[1], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
 }
