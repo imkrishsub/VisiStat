@@ -23,6 +23,11 @@ function loadFile(filePath)
                 console.log("hi");
                 dataset[variableNames[i]].splice(j, 1);
             }
+            if(dataset[variableNames[i]][j] == null)
+            {
+                console.log("hello");
+                dataset[variableNames[i]].splice(j, 1);
+            }
         }
         console.dir(dataset[variableNames[i]]);
     
