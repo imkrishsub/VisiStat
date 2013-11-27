@@ -14,11 +14,14 @@ function loadFile(filePath)
     //for each variable, get the data and the IQR
     for(var i=0; i<output.variableNames.length; i++)
     {
+        console.log("----\n");
+        console.dir(dataset[variableNames[i]]);
         for(var j=0; j<dataset[variableNames[i]].length; j++)
         {
             if(dataset[variableNames[i]][j] == "null")
                 dataset[variableNames[i]].splice(j, 1);
         }
+        console.dir(dataset[variableNames[i]]);
     
         variables[output.variableNames[i]] = new Object();
         MIN[output.variableNames[i]] = new Object();
@@ -30,8 +33,7 @@ function loadFile(filePath)
         getIQR(dataset, output.variableNames[i]);  
     }
     
-    console.log("dataset = ");
-    console.dir(dataset);
+
     
     
      }).fail(function(){
