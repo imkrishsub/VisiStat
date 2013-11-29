@@ -248,7 +248,7 @@ function toggleFillColorsForVariables(array, element)
     {     
         array.splice(array.indexOf(element), 1);
         variable.attr("fill", "url(#buttonFillNormal)");  
-        variable.attr("filter", "url(#buttonFilterNormal)");
+        variable.attr("filter", "url(#shadow)");
         variableText.attr("fill", "black");
         
         dependentVariableText.attr("fill") == "white" ? dependentVariableText.attr("fill", "#627bf4") : independentVariableText.attr("fill", "#627bf4"); 
@@ -337,7 +337,7 @@ function toggleFillColorsForVisualizations()
         else
         {
             visualizations[i].setAttribute("fill", "url(#buttonFillNormal)");
-            visualizations[i].setAttribute("filter", "url(#buttonFilterNormal)");
+            visualizations[i].setAttribute("filter", "url(#shadow)");
             d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "black");
         }
     }
