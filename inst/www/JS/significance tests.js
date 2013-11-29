@@ -367,6 +367,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
 {
     console.log(dependentVariable);
     console.log(independentVariable);
+    console.log(participants);
     var req = opencpu.r_fun_json("performFriedmanTest", {
                     dependentVariable: dependentVariable,
                     independentVariable: independentVariable,
