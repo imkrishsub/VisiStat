@@ -47,6 +47,14 @@
               <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
               <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
             </filter>
+            <linearGradient id="buttonFillNormal" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="1" y2="1">
+                    <stop stop-color="#f8f9f7" offset="0"/>
+                    <stop stop-color="#b6b6b6" offset="1.0"/>
+                </linearGradient>
+            <linearGradient id="buttonFillSelected" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="0" y2="1">
+                    <stop stop-color="#627bf4" offset="0"/>
+                    <stop stop-color="#1d2e3d" offset="1.0"/>
+            </linearGradient>
           </defs>
         </svg>
         <script type="text/javascript">            
@@ -93,7 +101,7 @@
                                                     .attr("width",  variableNameHolderWidth)     
                                                     .attr("rx", radius)
                                                     .attr("ry", radius)
-                                                    .attr("fill", panelColors.normal)
+                                                    .attr("fill", "url(#buttonFillNormal)")
                                                     .attr("filter","url(#shadow)")
                                                     .attr("stroke", "black")
                                                     .attr("id", variableNames[i])
