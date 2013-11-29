@@ -17,6 +17,7 @@ function loadFile(filePath)
         console.dir(dataset);
         console.log(variableNames[i]);
         console.dir(dataset[variableNames[i]]);
+        console.log(dataset[variableNames[i]].length);
         for(var j=0; j<dataset[variableNames[i]].length; j++)
         {
             if(dataset[i][j] == "")
