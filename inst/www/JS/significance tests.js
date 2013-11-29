@@ -372,7 +372,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
                     dependentVariable: dependentVariable,
                     independentVariable: independentVariable,
                     participantVariable: participants,
-                    dataset: dataset
+                    filePath: pathToFile
                   }, function(output) {                                                   
                   
                   console.log("\t\t Friedman's Rank-sum Test for (" + dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable + ")");

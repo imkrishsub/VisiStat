@@ -1,8 +1,13 @@
-performFriedmanTest <- function(dependentVariable, independentVariable, participantVariable, dataset)
+performFriedmanTest <- function(dependentVariable, independentVariable, participantVariable, filePath)
 {
-    table <- as.data.frame(dataset);
+    fileType = substr(filePath, nchar(filePath) - 3 + 1, nchar(filePath));
     
-    result = eval(parse(text = paste("friedman.test(",dependentVariable," ~ ",independentVariable," | ",participantVariable,", data = table)",sep="")));
+    if(fileType == "txt")
+        dataset <- read.table(filePath, head=T);
+    if(fileType == "csv")
+        dataset <- read.csv(filePath, head=T);
+    
+    result = eval(parse(text = paste("friedman.test(",dependentVariable," ~ ",independentVariable," | ",participantVariable,", data = dataset)",sep="")));
     list(chiSquared = result$statistic[["Friedman chi-squared"]], df = result$parameter[["df"]], p = result$p.value, method = result$method)
 }
   
