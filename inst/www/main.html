@@ -55,6 +55,9 @@
               </feSpecularLighting>
               <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
               <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint" />
+              <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
+              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
+              <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
             </filter>
             <filter id="Bevel2" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
               <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"/>
@@ -142,7 +145,7 @@
                                                     .attr("rx", radius)
                                                     .attr("ry", radius)
                                                     .attr("fill", "url(#buttonFillNormal)")
-                                                    .attr("filter","url(#Bevel2)")
+                                                    .attr("filter","url(#Bevel)")
                                                     .attr("stroke", "black")
                                                     .attr("id", variableNames[i])
                                                     .attr("class", "variableNameHolderBack");
