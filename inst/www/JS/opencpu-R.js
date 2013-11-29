@@ -14,13 +14,9 @@ function loadFile(filePath)
     //for each variable, get the data and the IQR
     for(var i=0; i<output.variableNames.length; i++)
     {      
-        console.dir(dataset);
-        console.log(variableNames[i]);
-        console.dir(dataset[variableNames[i]]);
-        console.log(dataset[variableNames[i]].length);
         for(var j=0; j<dataset[variableNames[i]].length; j++)
         {
-            if(dataset[i][j] == "")
+            if(dataset[variableNames[i]][j] == "")
             {
                 console.log("found it");
             }
