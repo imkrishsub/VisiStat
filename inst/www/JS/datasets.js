@@ -36,6 +36,7 @@ var variablesInDatasetDataType = new Object();
     variablesInDatasetDataType["hotdogs"] = [dataTypes[0], dataTypes[3], dataTypes[3]];
     variablesInDatasetDataType["bankloan"] = [dataTypes[3], dataTypes[0], dataTypes[0], dataTypes[2], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
     variablesInDatasetDataType["car_sales"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
+    variablesInDatasetDataType["hp"] = [dataTypes[0], dataTypes[0], dataTypes[0]];
     
 function initVariablesInDatasetTypes()
 {  
@@ -47,4 +48,5 @@ function initVariablesInDatasetTypes()
     variablesInDatasetType["hotdogs"] = [types[2], types[1], types[1]];
     variablesInDatasetType["bankloan"] = [types[1], types[2], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
     variablesInDatasetType["car_sales"] = [types[2], types[0], types[1], types[1], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
+    variablesInDatasetType["hp"] = [types[2], types[2], types[2]];
 }
