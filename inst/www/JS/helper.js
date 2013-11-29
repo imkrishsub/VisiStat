@@ -326,11 +326,13 @@ function toggleFillColorsForVisualizations()
         if(visualizations[i].getAttribute("id") == currentVisualizationSelection)
         {
             visualizations[i].setAttribute("fill", "url(#buttonFillSelected)");
+            visualizations[i].setAttribute("fill", "url(#buttonFilterSelected)");
             d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "white");
         }
         else
         {
             visualizations[i].setAttribute("fill", "url(#buttonFillNormal)");
+            visualizations[i].setAttribute("filter", "url(#buttonFilterNormal)");
             d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "black");
         }
     }
@@ -339,7 +341,7 @@ function toggleFillColorsForVisualizations()
 function validateAll()
 {
     var visualizations = d3.selectAll(".invalid");    
-    visualizations.attr("fill", "url(#buttonFillNormal)").attr("opacity", "0.1").attr("class", "visualizationHolderFront");                     
+    visualizations.attr("fill", "url(#buttonFillNormal)").attr("filter", "url(#buttonFilterNormal)").attr("opacity", "0.1").attr("class", "visualizationHolderFront");                     
 }
 
 function invalidate(list)
