@@ -47,31 +47,26 @@
               <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
               <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
             </filter>
-            
-            
-            <filter id="buttonFilterNormal" filterUnits="objectBoundingBox" x="0" y="0" width="150%" height="150%">
-                <feOffset result="offOut" in="SourceAlpha" dx="10" dy="10" />
+            <filter id="buttonFilterNormal" filterUnits="objectBoundingBox" x="-0.1" y="-0.1" width="1.2" height="1.2">
+                <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
+                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-                <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="alpha_blur"/>
+                <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="alpha_blur"/>
                 <feSpecularLighting in="alpha_blur" surfaceScale="5" specularConstant="1" specularExponent="15" lighting-color="#FFFFFF" result="spec_light">
-                    <fePointLight x="-500" y="75" z="250"/>
+                    <fePointLight x="-400" y="75" z="250"/>
                 </feSpecularLighting>
                 <feComposite in="SourceGraphic" in2="spec_light" operator="out"/>
             </filter>
-            
-            
             <filter id="buttonFilterSelected" filterUnits="objectBoundingBox" x="-0.1" y="-0.1" width="1.2" height="1.2">
                 <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
                 <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-                <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="alpha_blur"/>
+                <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="alpha_blur"/>
                 <feSpecularLighting in="alpha_blur" surfaceScale="5" specularConstant="1" specularExponent="15" lighting-color="#FFFFFF" result="spec_light">
                     <fePointLight x="75" y="+400" z="250"/>
                 </feSpecularLighting>
                 <feComposite in="SourceGraphic" in2="spec_light" operator="out"/>
             </filter>
-            
-            
             <linearGradient id="buttonFillNormal" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="0" y2="1">
                     <stop stop-color="#f8f9f7" offset="0"/>
                     <stop stop-color="#b6b6b6" offset="1.0"/>
@@ -89,8 +84,8 @@
                 initMouseEventHandlers();
                 
                 // Set the width and height of panels
-                d3.select("#variable.panel").attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + height + "px; position: absolute; left: 0px; top: 0px;");    
-                d3.select("#visualization.panel").attr("style", "position: absolute; top: " + canvasHeight + "px; left: " + (width - canvasWidth - sideBarWidth) + "px; width: " + (canvasWidth + sideBarWidth) + "px; height: " + height/4 + "px;");                    
+                d3.select("#variable.panel").attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + height + "px; position: absolute; left: 0px; top: 0px;").attr("fill", "url(#buttonFillNormal)");    
+                d3.select("#visualization.panel").attr("style", "position: absolute; top: " + canvasHeight + "px; left: " + (width - canvasWidth - sideBarWidth) + "px; width: " + (canvasWidth + sideBarWidth) + "px; height: " + height/4 + "px;").attr("fill", "url(#buttonFillNormal)");                        
                 d3.select("#canvas").attr("style", "position: absolute; width: " + canvasWidth + "px; height: " + canvasHeight + "px; top: 0px; left: " + (width - canvasWidth - sideBarWidth) + "px;");    
                 d3.select("#sideBar").attr("style", "position: absolute; width: " + sideBarWidth + "px; height: " + canvasHeight + "px; top: 0px; left: " + (width - sideBarWidth) + "px;");    
                 
