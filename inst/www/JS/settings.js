@@ -111,8 +111,8 @@ var histDistanceBetweenLegendAndText = scaleForWindowSize(15);
     var outlierRadius = 2;
 
     var boxColors = new Object();
-        boxColors["normal"] = "lightgrey";
-        boxColors["notnormal"] = "crimson";
+        boxColors["normal"] = "#fff7e7";
+        boxColors["notnormal"] = "#ff3d00";
 
     var CIFringeLength = scaleForWindowSize(5);
 
