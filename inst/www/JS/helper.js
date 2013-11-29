@@ -634,7 +634,7 @@ function setVariableTypes()
             var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
             
             dependentVariableText.attr("fill", "#627bf4");
-            independentVariableText.attr("fill", "BEC9FC");
+            independentVariableText.attr("fill", "#BEC9FC");
         }
         else if(variableTypes[variableNames[i]] == "participant")
         {
