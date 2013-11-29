@@ -82,7 +82,7 @@
 
 // Buttons
 var buttonColors = new Object();   
-    "url(#buttonFillNormal)" = "LightSkyBlue";
+//     "url(#buttonFillNormal)" = "LightSkyBlue";
     buttonColors["hover"] = "lightgrey";
     buttonColors["click"] = "BlanchedAlmond";
 
