@@ -49,8 +49,8 @@
             </filter>
             
             
-            <filter id="buttonFilterNormal" filterUnits="objectBoundingBox" x="-0.1" y="-0.1" width="150%" height="150%">
-                <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
+            <filter id="buttonFilterNormal" filterUnits="objectBoundingBox" x="-0.1" y="-0.1" width="1.2" height="1.2">
+                <feOffset result="offOut" in="SourceAlpha" dx="10" dy="10" />
                 <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="alpha_blur"/>
