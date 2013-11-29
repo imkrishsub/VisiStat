@@ -606,6 +606,8 @@ function setVariableTypes()
             var toggleButton = d3.select("#" + variableNames[i] + "variableTypeToggleButton");
             toggleButton.attr("xlink:href", "images/toggle_down.png");
             
+            console.log("hola");
+            
             var independentVariableText = d3.select("#" + variableNames[i] + ".independentVariableText");
             var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
 
