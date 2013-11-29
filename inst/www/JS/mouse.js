@@ -42,13 +42,13 @@ function OnMouseDown(e)
         {
             toggleButton.attr("xlink:href","images/toggle_down.png");
             independentVariableText.attr("fill", "#627bf4");
-            dependentVariableText.attr("fill", "#f8f9f7");
+            dependentVariableText.attr("fill", "none");
         }
         else if(toggleButton.attr("xlink:href") == "images/toggle_down.png")
         {
             toggleButton.attr("xlink:href","images/toggle_up.png");
             dependentVariableText.attr("fill", "#627bf4");
-            independentVariableText.attr("fill", "#f8f9f7");
+            independentVariableText.attr("fill", "none");
         }
     }
     
