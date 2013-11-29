@@ -31,6 +31,21 @@ function OnMouseDown(e)
         makePlot();
     }
     
+    else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
+    {
+        setup(e, target);
+        
+        var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
+        if(toggleButton.attr("xlink:href") == "images/toggle_up.png")
+        {
+            toggleButton.attr("xlink:href","images/toggle_down.png");
+        }
+        else if(toggleButton.attr("xlink:href") == "images/toggle_down.png")
+        {
+            toggleButton.attr("xlink:href","images/toggle_up.png");
+        }
+    }
+    
     else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "dependentVariableButtonFront"))
     {
         setup(e, target);
@@ -664,6 +679,14 @@ function OnMouseOver(e)
         visualizationHolder.attr("cursor","pointer");
     }
     
+    else if(target.className.baseVal == "variableTypeToggleButton")
+    {
+        setup(e, target);
+        
+        var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
+        
+        toggleButton.attr("cursor", "pointer");
+    }
     else if(target.className.baseVal == "dependentVariableButtonFront")
     {
         setup(e, target);
