@@ -603,21 +603,21 @@ function setVariableTypes()
     {
         if(variableTypes[variableNames[i]] == "independent")
         {
-            var variableSelectionButton = d3.select("#" + variableNames[i] + ".independentVariableButtonBack");
-            variableSelectionButton.attr("fill", variableTypeButtonColors["independent"]["selected"]);
-            
-            var variableSelectionText = d3.select("#" + variableNames[i] + ".independentVariableText");
-            variableSelectionText.attr("fill", variableTypeTextColors["independent"]["selected"]);
+//             var variableSelectionButton = d3.select("#" + variableNames[i] + ".independentVariableButtonBack");
+//             variableSelectionButton.attr("fill", variableTypeButtonColors["independent"]["selected"]);
+//             
+//             var variableSelectionText = d3.select("#" + variableNames[i] + ".independentVariableText");
+//             variableSelectionText.attr("fill", variableTypeTextColors["independent"]["selected"]);
             
             splitTheData(variableNames[i]);
         }
         else if(variableTypes[variableNames[i]] == "dependent")
         {
-            var variableSelectionButton = d3.select("#" + variableNames[i] + ".dependentVariableButtonBack");
-            variableSelectionButton.attr("fill", variableTypeButtonColors["dependent"]["selected"]);
-            
-            var variableSelectionText = d3.select("#" + variableNames[i] + ".dependentVariableText");
-            variableSelectionText.attr("fill", variableTypeTextColors["dependent"]["selected"]);
+//             var variableSelectionButton = d3.select("#" + variableNames[i] + ".dependentVariableButtonBack");
+//             variableSelectionButton.attr("fill", variableTypeButtonColors["dependent"]["selected"]);
+//             
+//             var variableSelectionText = d3.select("#" + variableNames[i] + ".dependentVariableText");
+//             variableSelectionText.attr("fill", variableTypeTextColors["dependent"]["selected"]);
         }
         else if(variableTypes[variableNames[i]] == "participant")
         {
