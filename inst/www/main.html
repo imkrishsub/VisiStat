@@ -84,8 +84,8 @@
                 initMouseEventHandlers();
                 
                 // Set the width and height of panels
-                d3.select("#variable.panel").attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + height + "px; position: absolute; left: 0px; top: 0px;").attr("fill", "black");    
-                d3.select("#visualization.panel").attr("style", "position: absolute; top: " + canvasHeight + "px; left: " + (width - canvasWidth - sideBarWidth) + "px; width: " + (canvasWidth + sideBarWidth) + "px; height: " + height/4 + "px;").attr("fill", "url(#buttonFillNormal)");                        
+                d3.select("#variable.panel").attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + height + "px; position: absolute; left: 0px; top: 0px;");
+                d3.select("#visualization.panel").attr("style", "position: absolute; top: " + canvasHeight + "px; left: " + (width - canvasWidth - sideBarWidth) + "px; width: " + (canvasWidth + sideBarWidth) + "px; height: " + height/4 + "px;");
                 d3.select("#canvas").attr("style", "position: absolute; width: " + canvasWidth + "px; height: " + canvasHeight + "px; top: 0px; left: " + (width - canvasWidth - sideBarWidth) + "px;");    
                 d3.select("#sideBar").attr("style", "position: absolute; width: " + sideBarWidth + "px; height: " + canvasHeight + "px; top: 0px; left: " + (width - sideBarWidth) + "px;");    
                 
@@ -110,7 +110,8 @@
                                             .attr("height", variablePanel.style("height"))
                                             .attr("width", variablePanel.style("width"))
                                             .attr("left", variablePanel.style("left"))
-                                            .attr("top", variablePanel.style("top"));  
+                                            .attr("top", variablePanel.style("top"))
+                                            .attr("fill", "url(#buttonFillNormal)");      
                 
                 for(var i=0; i<variableNames.length; i++)
                 {                
@@ -260,7 +261,8 @@
                                             .attr("height", visualizationPanelHeight)
                                             .attr("width", visualizationPanelWidth)
                                             .attr("left", visualizationPanel.style("left"))
-                                            .attr("top", visualizationPanel.style("top"));  
+                                            .attr("top", visualizationPanel.style("top"))
+                                            .attr("fill", "url(#buttonFillNormal)");      
                 
                 var visualizations = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot-matrix"];
                 
