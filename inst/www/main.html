@@ -171,9 +171,9 @@
 //                                     .attr("class", "dependentVariableButtonBack");
 //                                     
                     variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - ((variableNameHolderHeight - variableNameHolderPadding/2)/2))
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + variableNameHolderPadding/4)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/4 + yAxisTickTextOffset/2)                                                   
-                                    .attr("text-anchor", "middle")
+                                    .attr("text-anchor", "left")
                                     .attr("font-size", fontSizeTicks/1.5)
                                     .attr("fill", variableTypeTextColors["dependent"]["normal"])
                                     .text("DEPENDENT")
@@ -204,7 +204,7 @@
 //                                     .attr("class", "independentVariableButtonBack");
 //                                     
                     variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - ((variableNameHolderHeight - variableNameHolderPadding/2)/2)/2)
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + variableNameHolderPadding/4)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + 3*(variableNameHolderHeight)/4 + yAxisTickTextOffset)                                                   
                                     .attr("text-anchor", "middle")
                                     .text("INDEPENDENT")
