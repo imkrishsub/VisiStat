@@ -57,6 +57,7 @@ function drawButtonInSideBar(buttonText, className, offset)
             .attr("rx", scaleForWindowSize(10) + "px")
             .attr("ry", scaleForWindowSize(10) + "px")
             .attr("fill", "url(#buttonFillNormal)")
+            .attr("filter", "url(#shadow)")
             .attr("stroke", "black")
             .attr("id", "button")
             .attr("class", className);
