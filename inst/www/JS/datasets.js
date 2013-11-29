@@ -10,6 +10,7 @@ var datasetInformation = new Object();
     datasetInformation["hotdogs"] = "Results of a laboratory analysis of calories and sodium content of major hot dog brands. Researchers for Consumer Reports analyzed three types of hot dog: beef, poultry, and meat (mostly pork and beef, but up to 15% poultry meat).";
     datasetInformation["bankloan"] = "TBD";
     datasetInformation["car_sales"] = "TBD";
+    datasetInformation["hp"] = "TBD";
 
 var variablesInDataset = new Object();
     variablesInDataset["impact"] = ["subject","condition","verbalMemoryPre","visualMemoryPre","visualMotorSpeedPre","reactionTimePre","impulseControlPre","totalSymptomPre","verbalMemoryPost","visualMemoryPost","visualMotorSpeedPost","reactionTimePost","impulseConstrolPost","totalSymptomPost"]
@@ -20,6 +21,7 @@ var variablesInDataset = new Object();
     variablesInDataset["hotdogs"] = ["Type", "Calories", "Sodium"];
     variablesInDataset["bankloan"] = ["age", "ed", "employ", "address", "debtinc", "creddebt", "otherdebt", "preddef1", "preddef2", "preddef3"];
     variablesInDataset["car_sales"] = ["manufact", "model", "sales", "resale", "type", "price", "engine_s", "horsepow", "wheelbas", "width", "length", "curb_wgt", "fuel_cap", "mpg"];
+    variablesInDataset["hp"] = ["name", "house", "pet"];
  
 var types = ["participant", "dependent", "independent"];
 var variablesInDatasetType = new Object();
