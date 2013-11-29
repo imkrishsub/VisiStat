@@ -24,6 +24,7 @@ var variablesInDataset = new Object();
     variablesInDataset["car_sales"] = ["manufact", "model", "sales", "resale", "type", "price", "engine_s", "horsepow", "wheelbas", "width", "length", "curb_wgt", "fuel_cap", "mpg"];
     variablesInDataset["hp"] = ["name", "house", "pet"];
     variablesInDataset["keyboards"] = ["participantID", "keyboardLayout", "gender", "typingSpeed", "errors", "userSatisfaction"];
+    variablesInDataset["foodEffect"] = ["participantID","foodEaten","gender","score_V","score_Q","satisfactionRating"];
  
 var types = ["participant", "dependent", "independent"];
 var variablesInDatasetType = new Object();
@@ -40,6 +41,7 @@ var variablesInDatasetDataType = new Object();
     variablesInDatasetDataType["car_sales"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
     variablesInDatasetDataType["hp"] = [dataTypes[0], dataTypes[0], dataTypes[0]];
     variablesInDatasetDataType["keyboards"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
+    variablesInDatasetDataType["foodEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     
 function initVariablesInDatasetTypes()
 {  
@@ -53,4 +55,5 @@ function initVariablesInDatasetTypes()
     variablesInDatasetType["car_sales"] = [types[2], types[0], types[1], types[1], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
     variablesInDatasetType["hp"] = [types[2], types[2], types[2]];
     variablesInDatasetType["keyboards"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
+    variablesInDatasetType["foodEffect"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
 }
