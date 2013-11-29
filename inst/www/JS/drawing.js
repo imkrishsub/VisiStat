@@ -185,6 +185,9 @@ function drawEffectSize(value)
     var type = testResults["effect-size-type"];
     console.log("type = " + type);
     
+    if(type == "d")
+        value = value > 3.0 ? 3.0 : value;
+    
     var min = parseFloat(effectSizeMins[type]);
     var max = parseFloat(effectSizeMaxs[type]);
     value = parseFloat(value);
