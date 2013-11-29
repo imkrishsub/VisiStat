@@ -111,7 +111,7 @@ function makeScatterplot()
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeLabels + "px")
                 .text(currentVariableSelection[0])
-                .attr("fill", "orange");
+                .attr("fill", "black");
     
     canvas.append("line")
               .attr("x1", LEFT - axesOffset)
@@ -129,7 +129,7 @@ function makeScatterplot()
                 .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
                 .attr("font-size", fontSizeLabels + "px")
                 .text(currentVariableSelection[1])
-                .attr("fill", "orange");
+                .attr("fill", "black");
                                     
     
     //grooves

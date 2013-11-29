@@ -157,7 +157,7 @@ function makeHistogram()
                 .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
                 .attr("font-size", "24px")
                 .text("Frequency")
-                .attr("fill", "orange");
+                .attr("fill", "black");
     
 
                                     
@@ -319,7 +319,7 @@ function makeHistogram()
                 .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
                 .attr("font-size", "24px")
                 .text("Frequency")
-                .attr("fill", "orange");
+                .attr("fill", "black");
         
         canvas.append("line")
                     .attr("x1", LEFT)

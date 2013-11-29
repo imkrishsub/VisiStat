@@ -49,7 +49,7 @@ function makeScatterplotMatrix()
                             .attr("x", LEFT + j*((plotWidth/numberOfVariables) + shortAxesOffset + shortTickTextOffsetYAxis) + ((plotWidth/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetYAxis))/2)
                             .attr("y", TOP + i*((plotHeight/numberOfVariables) + shortAxesOffset + shortTickTextOffsetXAxis) + ((plotHeight/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetXAxis))/2)
                             .attr("text-anchor", "middle")
-                            .attr("fill","orange")
+                            .attr("fill","black")
                             .text(currentVariableSelection[i]);
                 }
             }
@@ -116,7 +116,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
                             .attr("transform", "rotate (-90 " + (LEFT - axesOffset - labelOffset) + " " + ((TOP + BOTTOM)/4) + ")")
                             .attr("font-size", 2*fontSizeLabels/3 + "px")
                             .text(outcomeVariable)
-                            .attr("fill", "orange");
+                            .attr("fill", "black");
                 
                 plotCanvas.append("text")
                             .attr("x", LEFT +  i*((plotWidth/numberOfVariables) + 2*shortAxesOffset + shortTickTextOffsetYAxis) + ((plotWidth/numberOfVariables) - (2*shortAxesOffset + shortTickTextOffsetYAxis))/2)
@@ -124,7 +124,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
                             .attr("text-anchor", "middle")
                             .attr("font-size", 2*fontSizeLabels/3 + "px")
                             .text(explanatoryVariables[i])
-                            .attr("fill", "orange");
+                            .attr("fill", "black");
             }
             else
             {
@@ -134,7 +134,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
                             .attr("text-anchor", "middle")
                             .attr("font-size", 2*fontSizeLabels/3 + "px")
                             .text(explanatoryVariables[i])
-                            .attr("fill", "orange");
+                            .attr("fill", "black");
             }    
         }
     }

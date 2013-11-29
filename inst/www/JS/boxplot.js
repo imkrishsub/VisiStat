@@ -165,7 +165,7 @@ function makeBoxplot()
                 .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
                 .attr("font-size", fontSizeLabels + "px")
                 .text(variableList["dependent"][0])
-                .attr("fill", "orange");
+                .attr("fill", "black");
     }
     
     //grooves
@@ -548,7 +548,7 @@ function redrawBoxPlot()
                 .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
                 .attr("font-size", fontSizeLabels + "px")
                 .text(variableList["dependent"][0])
-                .attr("fill", "orange");
+                .attr("fill", "black");
     }
     
     //grooves
