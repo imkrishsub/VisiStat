@@ -793,6 +793,7 @@ function setOpacityForElementsWithClassNames(classNames, opacity)
 {
     for(var i=0; i<classNames.length; i++)
     {
+        console.log("hola!");
         d3.selectAll("." + classNames[i]).transition().duration(1000).attr("opacity", opacity);
     }
 }
