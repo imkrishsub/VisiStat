@@ -47,26 +47,32 @@
               <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
               <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
             </filter>
-            <filter id="buttonFilterNormal" filterUnits="objectBoundingBox" x="-0.1" y="-0.1" width="1.2" height="1.2">
+            
+            
+            <filter id="buttonFilterNormal" filterUnits="objectBoundingBox" x="-0.1" y="-0.1" width="150%" height="150%">
                 <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
                 <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="alpha_blur"/>
+                <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="alpha_blur"/>
                 <feSpecularLighting in="alpha_blur" surfaceScale="5" specularConstant="1" specularExponent="15" lighting-color="#FFFFFF" result="spec_light">
-                    <fePointLight x="-400" y="75" z="250"/>
+                    <fePointLight x="-500" y="75" z="250"/>
                 </feSpecularLighting>
                 <feComposite in="SourceGraphic" in2="spec_light" operator="out"/>
             </filter>
+            
+            
             <filter id="buttonFilterSelected" filterUnits="objectBoundingBox" x="-0.1" y="-0.1" width="1.2" height="1.2">
                 <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
                 <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="alpha_blur"/>
+                <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="alpha_blur"/>
                 <feSpecularLighting in="alpha_blur" surfaceScale="5" specularConstant="1" specularExponent="15" lighting-color="#FFFFFF" result="spec_light">
                     <fePointLight x="75" y="+400" z="250"/>
                 </feSpecularLighting>
                 <feComposite in="SourceGraphic" in2="spec_light" operator="out"/>
             </filter>
+            
+            
             <linearGradient id="buttonFillNormal" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="0" y2="1">
                     <stop stop-color="#f8f9f7" offset="0"/>
                     <stop stop-color="#b6b6b6" offset="1.0"/>
