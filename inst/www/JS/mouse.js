@@ -342,7 +342,7 @@ function OnMouseDown(e)
                 .attr("height", buttonHeight)
                 .attr("rx", scaleForWindowSize(10) + "px")
                 .attr("ry", scaleForWindowSize(10) + "px")
-                .attr("fill", buttonColors["normal"])
+                .attr("fill", "url(#buttonFillNormal)")
                 .attr("stroke", "black")
                 .attr("id", "button")
                 .attr("class", "compareNow");

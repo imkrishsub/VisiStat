@@ -82,11 +82,9 @@
 
 // Buttons
 var buttonColors = new Object();   
-    buttonColors["normal"] = "LightSkyBlue";
+    "url(#buttonFillNormal)" = "LightSkyBlue";
     buttonColors["hover"] = "lightgrey";
     buttonColors["click"] = "BlanchedAlmond";
-    buttonColors["independent"] = "Peru";
-    buttonColors["subject"] = "Orchid";
 
 //Define colors for histogram bars, color scatterplot
 var colors = ["#E6A960", "#D3E55F", "#5EA9D1", "#664E33", "#C45AD2", "#211F7C", "#479ED6", "#710012", "#F0DE4F", "#A5A5F6"];
