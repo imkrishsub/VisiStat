@@ -1,7 +1,5 @@
 // Data
-//     localStorage.fileName = "store";
-//     var fileName = "weightLoss";//change this!
-    var wd = "/Users/krishnasubramanian/Documents/Media Informatics/Master's Thesis/Implementation/Datasets/hp.csv"; // "http://hci.rwth-aachen.de/~subramanian/datasets/";
+    var wd ="http://hci.rwth-aachen.de/~subramanian/datasets/" + sessionStorage.fileName +".csv"; // "/Users/krishnasubramanian/Documents/Media Informatics/Semester 4/Thesis/Implementation/Possible Datasets/Datasets/";
     var pathToFile =  wd;
 
 // Skeleton

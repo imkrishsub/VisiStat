@@ -14,13 +14,6 @@ function loadFile(filePath)
     //for each variable, get the data and the IQR
     for(var i=0; i<output.variableNames.length; i++)
     {      
-        for(var j=0; j<dataset[variableNames[i]].length; j++)
-        {
-            if(dataset[variableNames[i]][j] == "")
-            {
-                dataset[variableNames[i]].splice(j,1);
-            }
-        }
         variables[output.variableNames[i]] = new Object();
         MIN[output.variableNames[i]] = new Object();
         MAX[output.variableNames[i]] = new Object();
@@ -30,10 +23,6 @@ function loadFile(filePath)
         getData(dataset, output.variableNames[i]);                 
         getIQR(dataset, output.variableNames[i]);  
     }
-    
-
-    
-    
      }).fail(function(){
           alert("Failure: " + req.responseText);
     });
