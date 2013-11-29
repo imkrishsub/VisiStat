@@ -13,7 +13,8 @@ function loadFile(filePath)
         
     //for each variable, get the data and the IQR
     for(var i=0; i<output.variableNames.length; i++)
-    {    
+    {      
+        console.dir(dataset);
         for(var j=0; j<dataset[variableNames[i]].length; j++)
         {
             if(dataset[i][j] == "")
