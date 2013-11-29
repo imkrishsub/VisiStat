@@ -232,6 +232,8 @@ function toggleFillColorsForVariables(array, element)
 {   
     var variable = d3.select("#" + element + ".variableNameHolderBack");
     var variableText = d3.select("#" + element + ".variableNameHolderText");
+    var dependentVariableText = d3.select("#" + element + ".dependentVariableText");
+    var independentVariableText = d3.select("#" + element + ".dependentVariableText");
     
     if(array.indexOf(element) == -1)
     {
@@ -239,14 +241,17 @@ function toggleFillColorsForVariables(array, element)
         variable.attr("fill", "url(#buttonFillSelected)")
         variable.attr("filter", "none");
         variableText.attr("fill", "white");
-    }
-    
+        
+        dependentVariableText.attr("fill") == "#627bf4" ? dependentVariableText.attr("fill", "white") : independentVariableText.attr("fill", "white"); 
+    }    
     else
     {     
         array.splice(array.indexOf(element), 1);
         variable.attr("fill", "url(#buttonFillNormal)");  
         variable.attr("filter", "url(#buttonFilterNormal)");
         variableText.attr("fill", "black");
+        
+        dependentVariableText.attr("fill") == "white" ? dependentVariableText.attr("fill", "#627bf4") : independentVariableText.attr("fill", "#627bf4"); 
     }
 
     return array;
