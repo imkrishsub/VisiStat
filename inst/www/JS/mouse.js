@@ -46,7 +46,8 @@ function OnMouseDown(e)
                 independentVariableText.attr("fill", "#627bf4");
             else
                 independentVariableText.attr("fill", "white");
-            dependentVariableText.attr("fill", "none");
+                
+            dependentVariableText.attr("fill", "#BEC9FC");
         }
         else if(toggleButton.attr("xlink:href") == "images/toggle_down.png")
         {
@@ -56,7 +57,7 @@ function OnMouseDown(e)
                 dependentVariableText.attr("fill", "#627bf4");
             else
                 dependentVariableText.attr("fill", "white");
-            independentVariableText.attr("fill", "none");
+            independentVariableText.attr("fill", "#BEC9FC");
         }
     }
     

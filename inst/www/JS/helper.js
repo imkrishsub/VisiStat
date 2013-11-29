@@ -621,7 +621,7 @@ function setVariableTypes()
             var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
 
             independentVariableText.attr("fill", "#627bf4");
-            dependentVariableText.attr("fill", "#ADB8FC");
+            dependentVariableText.attr("fill", "#BEC9FC");
             
             splitTheData(variableNames[i]);
         }
@@ -634,7 +634,7 @@ function setVariableTypes()
             var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
             
             dependentVariableText.attr("fill", "#627bf4");
-            independentVariableText.attr("fill", "ADB8FC");
+            independentVariableText.attr("fill", "BEC9FC");
         }
         else if(variableTypes[variableNames[i]] == "participant")
         {
