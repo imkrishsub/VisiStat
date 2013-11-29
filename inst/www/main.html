@@ -148,8 +148,13 @@
                                                     .attr("id", variableNames[i])
                                                     .attr("opacity", "0.1")
                                                     .attr("class", "variableNameHolderFront");
-                        
                     
+                    variablePanelSVG.append("image")
+                                        .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth)
+                                        .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
+                                        .attr("height", variableNameHolderHeight - variableNameHolderPadding/2)
+                                        .attr("width", (variableNameHolderHeight - variableNameHolderPadding/2)/2)
+                                        .attr("xlink:href", "images/toggle_up.png");
                    
                    
 //                     variablePanelSVG.append("rect")
