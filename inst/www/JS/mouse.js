@@ -34,20 +34,28 @@ function OnMouseDown(e)
     else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
     {
         setup(e, target);
-        
+        var variableNameHolderBack = d3.select("#" + target.id + ".variableNameHolderBack");
         var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
         var dependentVariableText = d3.select("#" + target.id + ".dependentVariableText");
         var independentVariableText = d3.select("#" + target.id + ".independentVariableText");
         if(toggleButton.attr("xlink:href") == "images/toggle_up.png")
         {
             toggleButton.attr("xlink:href","images/toggle_down.png");
-            independentVariableText.attr("fill", "#627bf4");
+            
+            if(variableNameHolderBack.attr("fill") == "url(#buttonFillNormal)")
+                independentVariableText.attr("fill", "#627bf4");
+            else
+                independentVariableText.attr("fill", "white");
             dependentVariableText.attr("fill", "none");
         }
         else if(toggleButton.attr("xlink:href") == "images/toggle_down.png")
         {
             toggleButton.attr("xlink:href","images/toggle_up.png");
-            dependentVariableText.attr("fill", "#627bf4");
+            
+            if(variableNameHolderBack.attr("fill") == "url(#buttonFillNormal)")
+                dependentVariableText.attr("fill", "#627bf4");
+            else
+                dependentVariableText.attr("fill", "white");
             independentVariableText.attr("fill", "none");
         }
     }
