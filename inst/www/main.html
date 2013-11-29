@@ -53,7 +53,7 @@
                 <feOffset result="offOut" in="SourceAlpha" dx="10" dy="10" />
                 <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-                <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="alpha_blur"/>
+<!--                 <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="alpha_blur"/> -->
                 <feSpecularLighting in="alpha_blur" surfaceScale="5" specularConstant="1" specularExponent="15" lighting-color="#FFFFFF" result="spec_light">
                     <fePointLight x="-500" y="75" z="250"/>
                 </feSpecularLighting>
