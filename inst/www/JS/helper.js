@@ -240,6 +240,7 @@ function toggleFillColorsForVariables(array, element)
         array.push(element);
         variable.attr("fill", "url(#buttonFillSelected)")
         variable.attr("filter", "none");
+        variable.attr("stroke", "none");
         variableText.attr("fill", "white");
         
         dependentVariableText.attr("fill") == "#627bf4" ? dependentVariableText.attr("fill", "white") : independentVariableText.attr("fill", "white"); 
@@ -249,6 +250,7 @@ function toggleFillColorsForVariables(array, element)
         array.splice(array.indexOf(element), 1);
         variable.attr("fill", "url(#buttonFillNormal)");  
         variable.attr("filter", "url(#Bevel)");
+        variable.attr("stroke", "black");
         variableText.attr("fill", "black");
         
         dependentVariableText.attr("fill") == "white" ? dependentVariableText.attr("fill", "#627bf4") : independentVariableText.attr("fill", "#627bf4"); 
@@ -332,12 +334,14 @@ function toggleFillColorsForVisualizations()
         {
             visualizations[i].setAttribute("fill", "url(#buttonFillSelected)");
             visualizations[i].setAttribute("filter", "none");
+            visualizations[i].setAttribute("stroke", "none");
             d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "white");
         }
         else
         {
             visualizations[i].setAttribute("fill", "url(#buttonFillNormal)");
             visualizations[i].setAttribute("filter", "url(#Bevel)");
+            visualizations[i].setAttribute("stroke", "black");
             d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "black");
         }
     }
