@@ -7,9 +7,6 @@ function loadFile(filePath)
                   }, function(output) {                   
     dataset = output.dataset;
     
-    console.log("dataset: ");
-    console.dir(dataset);
-    
     //render the variable names
     renderVariableNames(output.variableNames);
     variableNames = output.variableNames;
@@ -17,6 +14,13 @@ function loadFile(filePath)
     //for each variable, get the data and the IQR
     for(var i=0; i<output.variableNames.length; i++)
     {    
+        for(var j=0; j<dataset[i].length; j++)
+        {
+            if(dataset[i][j] == "")
+            {
+                console.log("found it");
+            }
+        }
         variables[output.variableNames[i]] = new Object();
         MIN[output.variableNames[i]] = new Object();
         MAX[output.variableNames[i]] = new Object();
