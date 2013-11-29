@@ -63,7 +63,7 @@
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="alpha_blur"/>
                 <feSpecularLighting in="alpha_blur" surfaceScale="5" specularConstant="1" specularExponent="15" lighting-color="#FFFFFF" result="spec_light">
-                    <fePointLight x="75" y="+400" z="250"/>
+                    <fePointLight x="75" y="+400" z="50"/>
                 </feSpecularLighting>
                 <feComposite in="SourceGraphic" in2="spec_light" operator="out"/>
             </filter>
@@ -278,6 +278,7 @@
                                                     .attr("rx", radius)
                                                     .attr("ry", radius)
                                                     .attr("id", visualizations[i])
+                                                    .attr("stroke", "black")
                                                     .attr("fill", "url(#buttonFillNormal)")
                                                     .attr("class", "visualizationHolderBack");
                                                     
