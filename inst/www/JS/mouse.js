@@ -36,13 +36,19 @@ function OnMouseDown(e)
         setup(e, target);
         
         var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
+        var dependentVariableText = d3.select("#" + target.id + ".dependentVariableText");
+        var independentVariableText = d3.select("#" + target.id + ".independentVariableText");
         if(toggleButton.attr("xlink:href") == "images/toggle_up.png")
         {
             toggleButton.attr("xlink:href","images/toggle_down.png");
+            independentVariableText.attr("fill", "#627bf4");
+            dependentVariableText.attr("fill", "#f8f9f7");
         }
         else if(toggleButton.attr("xlink:href") == "images/toggle_down.png")
         {
             toggleButton.attr("xlink:href","images/toggle_up.png");
+            dependentVariableText.attr("fill", "#627bf4");
+            independentVariableText.attr("fill", "#f8f9f7");
         }
     }
     

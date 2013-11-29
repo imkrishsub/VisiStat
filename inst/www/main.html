@@ -157,19 +157,7 @@
                                         .attr("xlink:href", "images/toggle_up.png")
                                         .attr("id", variableNames[i])
                                         .attr("class", "variableTypeToggleButton");
-                   
-                   
-//                     variablePanelSVG.append("rect")
-//                                     .attr("x", variableNameHolderWidth - variableNameHolderPadding/4 - variableTypeSelectionButtonWidth)
-//                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
-//                                     .attr("height", variableNameHolderHeight/2 - 2*scaleForWindowSize(2))
-//                                     .attr("width", variableTypeSelectionButtonWidth)
-//                                     .attr("rx", "5px")
-//                                     .attr("ry", "5px")
-//                                     .attr("fill", variableTypeButtonColors["dependent"]["normal"])
-//                                     .attr("id", variableNames[i])
-//                                     .attr("class", "dependentVariableButtonBack");
-//                                     
+ 
                     variablePanelSVG.append("text")
                                     .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/4 + yAxisTickTextOffset/2)                                                   
@@ -179,30 +167,7 @@
                                     .text("DEPENDENT")
                                     .attr("id", variableNames[i])
                                     .attr("class", "dependentVariableText");
-//                     
-//                     variablePanelSVG.append("rect")
-//                                     .attr("x", variableNameHolderWidth - variableNameHolderPadding/4 - variableTypeSelectionButtonWidth)
-//                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
-//                                     .attr("height", variableNameHolderHeight/2 - 2*scaleForWindowSize(2))
-//                                     .attr("width", variableTypeSelectionButtonWidth)
-//                                     .attr("rx", "5px")
-//                                     .attr("ry", "5px")
-//                                     .attr("fill", variableTypeButtonColors["dependent"]["normal"])
-//                                     .attr("opacity", "0.01")
-//                                     .attr("id", variableNames[i])
-//                                     .attr("class", "dependentVariableButtonFront");
-//                                     
-//                     variablePanelSVG.append("rect")
-//                                     .attr("x", variableNameHolderWidth - variableNameHolderPadding/4 - variableTypeSelectionButtonWidth)
-//                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + variableNameHolderHeight/2 + 2*scaleForWindowSize(2))                                                   
-//                                     .attr("height", variableNameHolderHeight/2 - 2*scaleForWindowSize(2))
-//                                     .attr("width", variableTypeSelectionButtonWidth)
-//                                     .attr("rx", "5px")
-//                                     .attr("ry", "5px")
-//                                     .attr("fill", variableTypeButtonColors["independent"]["normal"])
-//                                     .attr("id", variableNames[i])
-//                                     .attr("class", "independentVariableButtonBack");
-//                                     
+
                     variablePanelSVG.append("text")
                                     .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/4)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + 3*(variableNameHolderHeight)/4 + yAxisTickTextOffset)                                                   
@@ -212,17 +177,6 @@
                                     .attr("fill", variableTypeTextColors["independent"]["normal"])
                                     .attr("id", variableNames[i])
                                     .attr("class", "independentVariableText");
-//                     
-//                     variablePanelSVG.append("rect")
-//                                     .attr("x", variableNameHolderWidth - variableNameHolderPadding/4 - variableTypeSelectionButtonWidth)
-//                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + variableNameHolderHeight/2 + 2*scaleForWindowSize(2))                                                   
-//                                     .attr("height", variableNameHolderHeight/2 - 2*scaleForWindowSize(2))
-//                                     .attr("width", variableTypeSelectionButtonWidth)
-//                                     .attr("rx", "5px")
-//                                     .attr("ry", "5px")
-//                                     .attr("fill", "transparent")
-//                                     .attr("id", variableNames[i])
-//                                     .attr("class", "independentVariableButtonFront");
                 }                    
             }
             
