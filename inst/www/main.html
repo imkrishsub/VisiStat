@@ -161,7 +161,7 @@
                                                     .attr("class", "variableNameHolderFront");
                     
                     variablePanelSVG.append("image")
-                                        .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + variableNameHolderPadding)
+                                        .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding)
                                         .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
                                         .attr("height", variableNameHolderHeight - variableNameHolderPadding/2)
                                         .attr("width", (variableNameHolderHeight - variableNameHolderPadding/2)/1.75)
@@ -170,7 +170,7 @@
                                         .attr("class", "variableTypeToggleButton");
  
                     variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4 + variableNameHolderPadding)
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4 + 2*variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/4 + yAxisTickTextOffset/2)                                                   
                                     .attr("text-anchor", "left")
                                     .attr("font-size", fontSizeTicks/1.4)
@@ -180,7 +180,7 @@
                                     .attr("class", "dependentVariableText");
 
                     variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/4 + variableNameHolderPadding)
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/4 + 2*variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + 3*(variableNameHolderHeight)/4 + yAxisTickTextOffset)                                                   
                                     .attr("text-anchor", "left")
                                     .text("INDEPENDENT")
