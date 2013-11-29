@@ -18,7 +18,7 @@ function loadFile(filePath)
         {
             if(dataset[variableNames[i]][j] == "")
             {
-                console.log("found it");
+                dataset[variableNames[i]].splice(j,1);
             }
         }
         variables[output.variableNames[i]] = new Object();
