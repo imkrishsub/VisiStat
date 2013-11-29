@@ -89,7 +89,7 @@ var buttonColors = new Object();
     buttonColors["subject"] = "Orchid";
 
 //Define colors for histogram bars, color scatterplot
-var colors = ["rgba(255,0,0,0.8)","rgba(0,255,0,0.6)","rgba(0,0,255,0.4)", "rgba(255,255,0,0.2)","rgba(0,255,255,0.25)","rgba(255,0,255,0.25)"];
+var colors = ["#E6A960", "#D3E55F", "#5EA9D1", "#664E33", "#C45AD2", "#211F7C", "#479ED6", "#710012", "#F0DE4F", "#A5A5F6"];
 
 var meanColors = new Object(); //Colors for mean, and ?
     meanColors["normal"] = "purple";
