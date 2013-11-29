@@ -123,7 +123,7 @@
                                                     .attr("rx", radius)
                                                     .attr("ry", radius)
                                                     .attr("fill", "url(#buttonFillNormal)")
-                                                    .attr("filter","url(#buttonFilterNormal)")
+                                                    .attr("filter","url(#shadow)")
                                                     .attr("stroke", "black")
                                                     .attr("id", variableNames[i])
                                                     .attr("class", "variableNameHolderBack");
@@ -214,6 +214,7 @@
                                                     .attr("id", visualizations[i])
                                                     .attr("stroke", "black")
                                                     .attr("fill", "url(#buttonFillNormal)")
+                                                    .attr("filter","url(#shadow)")
                                                     .attr("class", "visualizationHolderBack");
                                                     
                     visualizationPanelSVG.append("image")
