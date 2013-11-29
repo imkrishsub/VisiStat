@@ -603,6 +603,9 @@ function setVariableTypes()
     {
         if(variableTypes[variableNames[i]] == "independent")
         {
+            var toggleButton = d3.select("#" + variableNames[i] + "variableTypeToggleButton");
+            toggleButton.attr("xlink:href", "images/toggle_down.png");
+            
             var independentVariableText = d3.select("#" + variableNames[i] + ".independentVariableText");
             var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
 
@@ -613,6 +616,9 @@ function setVariableTypes()
         }
         else if(variableTypes[variableNames[i]] == "dependent")
         {
+            var toggleButton = d3.select("#" + variableNames[i] + "variableTypeToggleButton");
+            toggleButton.attr("xlink:href", "images/toggle_up.png");
+            
             var independentVariableText = d3.select("#" + variableNames[i] + ".independentVariableText");
             var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
             
