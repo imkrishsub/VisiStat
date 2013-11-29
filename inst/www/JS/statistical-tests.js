@@ -27,7 +27,7 @@ function compareMeans()
                     loadAssumptionCheckList();
                     
                     var sampleSize;
-                    var sampleSizesAreEqual = true;
+                    sampleSizesAreEqual = true;
                     
                     if(variableList["independent"].length == 2)
                     {

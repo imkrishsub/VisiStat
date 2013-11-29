@@ -197,7 +197,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                     {
                         d3.select("#homogeneity.crosses").attr("display", "inline");                  
                         
-                        if(experimentalDesign == "between-groups")
+                        if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                         {
                             performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
                         }
@@ -211,7 +211,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                         //equal variances
                         d3.select("#homogeneity.ticks").attr("display","inline");
                     
-                        if(experimentalDesign == "between-groups")
+                        if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                         {
                             performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
                         }
@@ -226,7 +226,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                     if(output.p < 0.05)
                     {
                         d3.select("#homogeneity.crosses").attr("display", "inline");                 
-                        if(experimentalDesign == "between-groups")
+                        if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                         {                        
                             performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
                         }
@@ -241,7 +241,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                         d3.select("#homogeneity.ticks").attr("display","inline");
                     
                     
-                        if(experimentalDesign == "between-groups")
+                        if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                         {                        
                             performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
                         }
@@ -307,7 +307,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                         if(output.p < 0.05)
                         {
                             d3.select("#homogeneity.crosses").attr("display", "inline");                  
-                            if(experimentalDesign == "between-groups")
+                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                             {
                                 performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
                             }
@@ -321,7 +321,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                             //equal variances
                             d3.select("#homogeneity.ticks").attr("display","inline");
                     
-                            if(experimentalDesign == "between-groups")
+                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                             {
                                 performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
                             }
@@ -337,7 +337,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                         {
                             d3.select("#homogeneity.crosses").attr("display", "inline");     
                             
-                            if(experimentalDesign == "between-groups")
+                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                             {
                                 performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
                             }
@@ -351,7 +351,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                             //equal variances
                             d3.select("#homogeneity.ticks").attr("display","inline");
                     
-                            if(experimentalDesign == "between-groups")
+                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                             {
                                 performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
                             }
