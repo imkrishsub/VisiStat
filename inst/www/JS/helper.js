@@ -236,14 +236,16 @@ function toggleFillColorsForVariables(array, element)
     if(array.indexOf(element) == -1)
     {
         array.push(element);
-        variable.attr("fill", "url(#buttonFillSelected)");
+        variable.attr("fill", "url(#buttonFillSelected)")
+        variable.attr("filter", "url(#buttonFilterSelected)");
         variableText.attr("fill", "white");
     }
     
     else
     {     
         array.splice(array.indexOf(element), 1);
-        variable.attr("fill", "url(#buttonFillNormal)");    
+        variable.attr("fill", "url(#buttonFillNormal)");  
+        variable.attr("filter", "url(#buttonFilterNormal)");
         variableText.attr("fill", "black");
     }
 
