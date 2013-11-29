@@ -134,6 +134,7 @@
                                                     .attr("rx", radius)
                                                     .attr("ry", radius)
                                                     .attr("fill", panelColors.normal)
+                                                    .attr("filter","url(#f1)")
                                                     .attr("id", variableNames[i])
                                                     .attr("opacity", "0.1")
                                                     .attr("class", "variableNameHolderFront");
@@ -279,6 +280,15 @@
         <div id="visualization" class="panel"></div>
         <div id="canvas"></div>    
         <div id="sideBar"></div>    
-
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+          <defs>
+            <filter id="f1" x="0" y="0" width="200%" height="200%">
+              <feOffset result="offOut" in="SourceAlpha" dx="20" dy="20" />
+              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+              <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+            </filter>
+          </defs>
+        </svg>
     </body>
 </html>   
