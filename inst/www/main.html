@@ -171,7 +171,7 @@
 //                                     .attr("class", "dependentVariableButtonBack");
 //                                     
                     variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + variableNameHolderPadding/4)
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/4 + yAxisTickTextOffset/2)                                                   
                                     .attr("text-anchor", "left")
                                     .attr("font-size", fontSizeTicks/1.5)
@@ -204,9 +204,9 @@
 //                                     .attr("class", "independentVariableButtonBack");
 //                                     
                     variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + variableNameHolderPadding/4)
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/4)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + 3*(variableNameHolderHeight)/4 + yAxisTickTextOffset)                                                   
-                                    .attr("text-anchor", "middle")
+                                    .attr("text-anchor", "left")
                                     .text("INDEPENDENT")
                                     .attr("font-size", fontSizeTicks/1.5)
                                     .attr("fill", variableTypeTextColors["independent"]["normal"])
