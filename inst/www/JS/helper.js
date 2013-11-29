@@ -233,7 +233,7 @@ function toggleFillColorsForVariables(array, element)
     var variable = d3.select("#" + element + ".variableNameHolderBack");
     var variableText = d3.select("#" + element + ".variableNameHolderText");
     var dependentVariableText = d3.select("#" + element + ".dependentVariableText");
-    var independentVariableText = d3.select("#" + element + ".dependentVariableText");
+    var independentVariableText = d3.select("#" + element + ".independentVariableText");
     
     if(array.indexOf(element) == -1)
     {
