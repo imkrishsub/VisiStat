@@ -55,7 +55,7 @@
               </feSpecularLighting>
               <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
               <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litPaint" />
-              <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
+              <feOffset result="offOut" in="SourceAlpha" dx="2.5" dy="2.5" />
               <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
               <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
             </filter>
