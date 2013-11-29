@@ -7,30 +7,16 @@ function loadFile(filePath)
                   }, function(output) {                   
     dataset = output.dataset;
     
+    console.log("dataset: ");
+    console.dir(dataset);
+    
     //render the variable names
     renderVariableNames(output.variableNames);
     variableNames = output.variableNames;
         
     //for each variable, get the data and the IQR
     for(var i=0; i<output.variableNames.length; i++)
-    {
-        console.log("----\n");
-        console.dir(dataset[variableNames[i]]);
-        for(var j=0; j<dataset[variableNames[i]].length; j++)
-        {
-            if(dataset[variableNames[i]][j] == "null")
-            {
-                console.log("hi");
-                dataset[variableNames[i]].splice(j, 1);
-            }
-            if(dataset[variableNames[i]][j] == null)
-            {
-                console.log("hello");
-                dataset[variableNames[i]].splice(j, 1);
-            }
-        }
-        console.dir(dataset[variableNames[i]]);
-    
+    {    
         variables[output.variableNames[i]] = new Object();
         MIN[output.variableNames[i]] = new Object();
         MAX[output.variableNames[i]] = new Object();
