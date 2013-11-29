@@ -326,7 +326,7 @@ function toggleFillColorsForVisualizations()
         if(visualizations[i].getAttribute("id") == currentVisualizationSelection)
         {
             visualizations[i].setAttribute("fill", "url(#buttonFillSelected)");
-            visualizations[i].setAttribute("fill", "url(#buttonFilterSelected)");
+            visualizations[i].setAttribute("filter", "url(#buttonFilterSelected)");
             d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "white");
         }
         else
