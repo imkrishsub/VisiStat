@@ -248,7 +248,7 @@ function toggleFillColorsForVariables(array, element)
     {     
         array.splice(array.indexOf(element), 1);
         variable.attr("fill", "url(#buttonFillNormal)");  
-        variable.attr("filter", "url(#shadow)");
+        variable.attr("filter", "url(#Bevel)");
         variableText.attr("fill", "black");
         
         dependentVariableText.attr("fill") == "white" ? dependentVariableText.attr("fill", "#627bf4") : independentVariableText.attr("fill", "#627bf4"); 
@@ -337,7 +337,7 @@ function toggleFillColorsForVisualizations()
         else
         {
             visualizations[i].setAttribute("fill", "url(#buttonFillNormal)");
-            visualizations[i].setAttribute("filter", "url(#shadow)");
+            visualizations[i].setAttribute("filter", "url(#Bevel)");
             d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "black");
         }
     }
@@ -346,7 +346,7 @@ function toggleFillColorsForVisualizations()
 function validateAll()
 {
     var visualizations = d3.selectAll(".invalid");    
-    visualizations.attr("fill", "url(#buttonFillNormal)").attr("filter", "url(#buttonFilterNormal)").attr("opacity", "0.1").attr("class", "visualizationHolderFront");                     
+    visualizations.attr("fill", "url(#buttonFillNormal)").attr("filter", "url(#Bevel)").attr("opacity", "0.1").attr("class", "visualizationHolderFront");                     
 }
 
 function invalidate(list)
