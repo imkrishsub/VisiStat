@@ -25,6 +25,8 @@ function drawInteractionEffectPlot()
     var levelsOfIndependentVariableXAxis = independentVariableXAxisData.unique();
     var levelsOfIndependentVariableColor = independentVariableColorData.unique();
     
+    drawInteractionPlotLegends(levelsOfIndependentVariableColor);
+    
     
     //Axes
     var xAxis = canvas.append("line")
@@ -51,7 +53,7 @@ function drawInteractionEffectPlot()
                 .attr("y", (TOP + BOTTOM)/2)
                 .attr("text-anchor", "end")
                 .attr("font-size", "24px")
-                .attr("transform", "rotate(-90 " + (LEFT - axesOffset - labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
+                .attr("transform", "rotate(-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
                 .text(dependentVariable)
                 .attr("fill", "black");
                 
@@ -142,5 +144,36 @@ function drawInteractionEffectPlot()
                         .attr("stroke", colors[i]);
             }
         }        
+    }
+}
+
+function drawInteractionPlotLegends(varNames)
+{
+    var canvas = d3.select("#sideBarCanvas");
+    
+    var yStep = plotHeight/10;
+    
+    for(var i=0; i<varNames.length; i++)
+    {
+        canvas.append("rect")
+                .attr("x", sideBarWidth/4)
+                .attr("y", TOP + histLegendOffsetY + i*yStep - histLegendSize/2)
+                .attr("width", histLegendSize)
+                .attr("height", histLegendSize)
+                .attr("fill", colors[i])
+                .attr("stroke", "black")
+                .attr("id", "legend" + i)
+                .attr("class", "boxplotLegends");
+        
+        canvas.append("text")
+                .attr("x", sideBarWidth/2 + histLegendSize)
+                .attr("y", TOP + histLegendOffsetY + i*yStep + 3)
+                .attr("text-anchor", "start")
+                .attr("fill", "black")
+                .attr("font-size", fontSizeTicks + "px")
+                .text(varNames[i])
+                .attr("id", "legend" + i)
+                .attr("class", "boxplotLegends");
+            
     }
 }
