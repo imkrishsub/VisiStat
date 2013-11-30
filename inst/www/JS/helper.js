@@ -955,10 +955,11 @@ function findEndingLine()
     var START = [];
     var END = [];
     
-    for(var i=0; i<means.length; i++)
+    
+    for(var j=0; j<completeLines.length; j++)
     {
-        for(var j=0; j<completeLines.length; j++)
-        {
+        for(var i=0; i<means.length; i++)
+        {        
             if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
             {
                 END.push(j);
