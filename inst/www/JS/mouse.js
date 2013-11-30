@@ -250,18 +250,7 @@ function OnMouseDown(e)
                                        .attr("class", "completeLines");
                     }
                     var means = document.getElementsByClassName("means");
-        
-        
-        //             for(var i=0; i<means.length; i++)
-        //             {
-        //                 if(means[i].getAttribute("fill") == meanColors["normal"])
-        //                 {
-        //                     console.log("starting animation for mean with id = " + means[i].getAttribute("id"));
-        //                     var thisMean = d3.select("#" + means[i].getAttribute("id") + ".means");
-        //                     startLoopAnimation(thisMean);       
-        //                 }
-        //             }
-                //if we still have means to select, start an incomplete line
+                    
                     if(document.getElementsByClassName("completeLines").length < (document.getElementsByClassName("means").length - 1))
                     {
                         var canvas = d3.select("#plotCanvas");
@@ -357,7 +346,6 @@ function OnMouseDown(e)
                 .attr("class", "compareNow"); 
         
         d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(800).attr("stroke-width", "0").attr("fill", "white");
-//         setOpacityForElementsWithClassNames(["IQRs","medians", "TOPFringes", "BOTTOMFringes", "TOPFringeConnectors", "BOTTOMFringeConnectors", "outliers", "CIs", "CITopFringes", "CIBottomFringes"], 0.1);
         d3.selectAll(".means").attr("r", engorgedMeanRadius);
         
         removeElementsByClassName("compareMean");
@@ -589,19 +577,19 @@ function OnMouseDown(e)
         //the user clicked outside
         removeElementsByClassName("regressionPrediction");
         
-        if(document.getElementsByClassName("incompleteLines").length > 0)
-        {
-            removeElementsByClassName("incompleteLines");
-            
-            if(document.getElementsByClassName("completeLines").length > 0)
-            {
-                compareMeans();
-            }
-            else
-            {
-                _dragElement.setAttribute("fill", meanColors["normal"]);
-            }
-        }   
+        // if(document.getElementsByClassName("incompleteLines").length > 0)
+//         {
+//             removeElementsByClassName("incompleteLines");
+//             
+//             if(document.getElementsByClassName("completeLines").length > 0)
+//             {
+//                 compareMeans();
+//             }
+//             else
+//             {
+//                 _dragElement.setAttribute("fill", meanColors["normal"]);
+//             }
+//         }   
     }
 }
 
