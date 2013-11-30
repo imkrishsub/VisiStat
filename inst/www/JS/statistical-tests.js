@@ -104,7 +104,7 @@ function loadAssumptionCheckList()
                 .attr("class", "assumptions");
             canvas.append("image")
                 .attr("x", 0)
-                .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
+                .attr("y", i*30 + assumptionOffsetTop - assumptionImageSize/2 - 10)
                 .attr("text-anchor", "end")
                 .attr("xlink:href", "images/checkingAssumptions.gif")
                 .attr("height", assumptionImageSize)            
