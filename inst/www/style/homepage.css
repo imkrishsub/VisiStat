@@ -22,7 +22,7 @@
     width: 100%;
     height: 80%;
     border-collapse:collapse;
-    background-color: LemonChiffon;
+    background-color: #f8f9f7;
     font:1.2em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
@@ -35,7 +35,7 @@
 {
     border-collapse: collapse; 
     padding: 10px;
-    background-color: LemonChiffon;
+    background-color: #f8f9f7;
     color: black;
     table-layout: fixed;
     font:1.0em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -88,9 +88,9 @@ th
     -webkit-border-radius:10px;
     border-radius:10px;
     border-bottom:1px solid #9f9f9f;
-    -moz-box-shadow:inset 0 1px 0 DarkKhaki;
-    -webkit-box-shadow:inset 0 1px 0 DarkKhaki;
-    box-shadow:inset 0 1px 0 DarkKhaki;
+    -moz-box-shadow:inset 0 1px 0 #f8f9f7;
+    -webkit-box-shadow:inset 0 1px 0 #f8f9f7;
+    box-shadow:inset 0 1px 0 #f8f9f7;
     cursor:pointer;
 }
 
