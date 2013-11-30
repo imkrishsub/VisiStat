@@ -664,7 +664,7 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
     });
 }
 
-function performPairwiseTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
+function performPairwiseTTest(varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
 {
     var variableList = getSelectedVariables();
     
@@ -673,7 +673,10 @@ function performPairwiseTTest(groupA, groupB, varianceEqual, paired) //groupA, g
                     independentVariable: variables[variableList["independent"][0]]["dataset"],                    
                     dataset: dataset,
                     varianceEqual: varianceEqual,
-                    paired: paired
+                    paired: paired,
+                    independentVariableName: variableList["independent"][0], 
+                    levelA: variableList["independent-levels"][0],
+                    levelB: variableList["independent-levels"][1]
                   }, function(output) {                                                   
                   
 

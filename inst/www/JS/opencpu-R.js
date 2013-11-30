@@ -364,14 +364,14 @@ function performHomoscedasticityTestNormal(dependent, independent)
                                 if(!pairwiseComparisons)
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
                                 else
-                                    performPairwiseTTestperformTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
+                                    performPairwiseTTestperformTTest("FALSE", "TRUE");
                             }
                             else
                             {
                                 if(!pairwiseComparisons)
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
                                 else
-                                    performPairwiseTTestperformTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                                    performPairwiseTTestperformTTest("FALSE", "FALSE");
                             }
                         }
                         else
@@ -387,14 +387,14 @@ function performHomoscedasticityTestNormal(dependent, independent)
                                 if(!pairwiseComparisons)
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
                                 else
-                                    performPairwiseTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+                                    performPairwiseTTest("TRUE", "TRUE");
                             }
                             else
                             {
                                 if(!pairwiseComparisons)
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
                                 else
-                                    performPairwiseTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+                                    performPairwiseTTest("TRUE", "FALSE");
                             }                                        
                         }
                     }
