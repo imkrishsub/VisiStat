@@ -746,7 +746,7 @@ function drawBoxPlotLegends(varNames)
                 .attr("fill", colors[i])
                 .attr("stroke", "black")
                 .attr("id", "legend" + i)
-                .attr("class", "rect");
+                .attr("class", "boxplotLegends");
         
         canvas.append("text")
                 .attr("x", sideBarWidth/2 + histLegendSize)
@@ -756,7 +756,7 @@ function drawBoxPlotLegends(varNames)
                 .attr("font-size", fontSizeTicks + "px")
                 .text(varNames[i])
                 .attr("id", "legend" + i)
-                .attr("class", "text");
+                .attr("class", "boxplotLegends");
             
     }
 }

@@ -245,8 +245,9 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
             
-            d3.select("#homogeneous.ticks").attr("display", "inline"); 
+            d3.select("#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
+            
             drawComputingResultsImage();
             
             performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);

@@ -327,6 +327,8 @@ function OnMouseDown(e)
     {
         d3.selectAll(".compareNow").attr("cursor", "pointer");
         
+        removeElementsByClassName("boxplotLegends");
+        
         //get selected means
         var means = document.getElementsByClassName("means");
         var selectedMeans = []; 
