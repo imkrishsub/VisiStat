@@ -818,18 +818,20 @@ function OnMouseOver(e)
         
                 //change color of the mean circle
                 if(meanCircle.attr("fill") == meanColors["normal"])
+                {
                     meanCircle.attr("fill", meanColors["hover"]);
             
-                // startLoopAnimation(meanCircle);
+                    // startLoopAnimation(meanCircle);
             
-                var incompleteLines = d3.selectAll(".incompleteLines");
+                    var incompleteLines = d3.selectAll(".incompleteLines");
             
-                if(document.getElementsByClassName("incompleteLines").length > 0)
-                {
-                    incompleteLines.attr("x2", meanCircle.attr("cx"))
-                                    .attr("y2", meanCircle.attr("cy"))
-                                    .attr("display", "inline")
-                                    .attr("stroke", meanColors["hover"]);
+                    if(document.getElementsByClassName("incompleteLines").length > 0)
+                    {
+                        incompleteLines.attr("x2", meanCircle.attr("cx"))
+                                        .attr("y2", meanCircle.attr("cy"))
+                                        .attr("display", "inline")
+                                        .attr("stroke", meanColors["hover"]);
+                    }
                 }
             }
         }
