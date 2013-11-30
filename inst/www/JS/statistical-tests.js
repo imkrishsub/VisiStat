@@ -90,6 +90,9 @@ function loadAssumptionCheckList()
     
     title.transition().delay(500).duration(800).attr("y", assumptionOffsetTop - 50);
     
+    //timer for 500 ms
+    window.setTimeout(function(){ }, 500);
+    
     for(var i=0; i<assumptions.length; i++)
     {
         canvas.append("text")
