@@ -82,11 +82,10 @@ th
 
 #submitButton
 {
-    padding-top: 50px;
     width: 15em;
     height: 3em;
     position: relative;
-    top: 100%;
+    top: 150%;
     color: black;
     font:1.7em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     padding:14px;
