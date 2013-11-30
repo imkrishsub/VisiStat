@@ -62,7 +62,7 @@
     var fontSizeLabels = scaleForWindowSize(28);
     var fontSizeTicks = scaleForWindowSize(18);
     var fontSizeAssumptions = scaleForWindowSize(26);
-    var fontSizeVariablePanel = scaleForWindowSize(24);
+    var fontSizeVariablePanel = scaleForWindowSize(18);
     var fontSizeVisualizationPanel = scaleForWindowSize(36);
         
 // Plots (general)
