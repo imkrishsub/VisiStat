@@ -580,7 +580,7 @@ function OnMouseDown(e)
         removeElementsByClassName("crosses");
         removeElementsByClassName("tukey");
         
-        drawBoxPlotLegends();
+        drawBoxPlotLegends(variables[variableList["independent"][1]]["dataset"].unique());
         resetMeans();
         
         var canvas = d3.select("#plotCanvas");
