@@ -12,7 +12,7 @@
     font: 1.2em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     color:#08233e;
     padding:5px;
-    width: 20em;
+    width: 17em;
     height: 2.2em;
     background-color:rgba(253,252,253,0.85);
 }
@@ -22,7 +22,7 @@
     width: 100%;
     height: 80%;
     border-collapse:collapse;
-    background-color: #f8f9f7;
+    background-color: white;
     font:1.2em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
@@ -108,5 +108,5 @@ th
 
 body
 {
-    background-color: #f8f9f7;
+    background-color: white;
 }
