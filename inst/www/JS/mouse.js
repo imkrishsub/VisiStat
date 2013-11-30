@@ -264,7 +264,18 @@ function OnMouseDown(e)
                         incompleteLines.attr("x2", meanCircle.attr("cx"))
                                        .attr("y2", meanCircle.attr("cy"))
                                        .attr("stroke", meanColors["click"])
-                                       .attr("class", "completeLines");                                             
+                                       .attr("class", "completeLines");
+                                       
+                        removeElementsByClassName("indicator");
+                        var canvas = d3.select("#plotCanvas");
+                        
+                        canvas.append("circle")
+                                .attr("cx", meanCircle.attr("cx"))
+                                .attr("cy", meanCircle.attr("cy"))
+                                .attr("r", "5px")
+                                .attr("fill", "blue")
+                                .attr("class", "indicator");
+                                             
                     }
                     var means = document.getElementsByClassName("means");
                     
