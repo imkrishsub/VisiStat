@@ -978,7 +978,11 @@ function findEndingLine()
     {
         if(START.indexOf(i) == -1 && END.indexOf(i) != -1)
         {
-            return completeLines[i];
+            for(var j=0; j<completeLines.length; j++)
+            {
+                if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
+                    return completeLines[j];
+            }
         }
     }
     
