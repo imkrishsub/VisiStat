@@ -45,7 +45,7 @@ function drawFullScreenButton()
 function drawButtonInSideBar(buttonText, className, offset)
 {
     if(offset == undefined)
-        offset = 3.3;
+        offset = 1;
         
     var canvas = d3.select("#sideBarCanvas");
     
