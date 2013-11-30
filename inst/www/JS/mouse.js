@@ -249,6 +249,7 @@ function OnMouseDown(e)
                                        .attr("y2", meanCircle.attr("cy"))
                                        .attr("stroke", meanColors["click"])
                                        .attr("class", "completeLines");
+                        var canvas = d3.select("#plotCanvas");
                         
                         canvas.append("circle")
                                 .attr("cx", meanCircle.attr("cx"))
