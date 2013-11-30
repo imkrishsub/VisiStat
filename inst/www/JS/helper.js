@@ -962,11 +962,11 @@ function findEndingLine()
         {        
             if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
             {
-                END.push(j);
+                END.push(i);
             }
             if(completeLines[j].getAttribute("x1") == means[i].getAttribute("cx"))
             {
-                START.push(j);
+                START.push(i);
             }
         }
     }
@@ -974,7 +974,7 @@ function findEndingLine()
     console.log("START = [" + START + "]");
     console.log("END = [" + END + "]");
     
-    for(var i=0; i<completeLines.length; i++)
+    for(var i=0; i<means.length; i++)
     {
         if(START.indexOf(i) == -1 && END.indexOf(i) != -1)
         {
