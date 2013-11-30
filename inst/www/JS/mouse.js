@@ -238,15 +238,7 @@ function OnMouseDown(e)
                                        .attr("class", "completeLines");
                                        
                         removeElementsByClassName("indicator");
-                        var canvas = d3.select("#plotCanvas");
-                        
-                        canvas.append("circle")
-                                .attr("cx", meanCircle.attr("cx"))
-                                .attr("cy", meanCircle.attr("cy"))
-                                .attr("r", "5px")
-                                .attr("fill", "blue")
-                                .attr("class", "indicator");
-                                             
+                        var canvas = d3.select("#plotCanvas");                                             
                     }
                     var means = document.getElementsByClassName("means");
                     
@@ -281,6 +273,7 @@ function OnMouseDown(e)
         d3.selectAll(".compareNow").attr("cursor", "pointer");
         
         removeElementsByClassName("boxplotLegends");
+        removeElementsByClassName("compareNow");
         
         //get selected means
         var means = document.getElementsByClassName("means");
