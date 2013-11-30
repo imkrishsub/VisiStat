@@ -57,6 +57,7 @@ var interactions = [];
     var tukeyResults = new Object();
     
 var sampleSizesAreEqual = true;
+var pairwiseComparisons = false;
 
 //transformations
 var transformationType;

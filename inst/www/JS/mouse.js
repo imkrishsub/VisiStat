@@ -345,6 +345,8 @@ function OnMouseDown(e)
     {
         setup(e, target);
         
+        pairwiseComparisons = false;
+        
         var canvas = d3.select("#plotCanvas");
         var variableList = getSelectedVariables();
         
@@ -580,6 +582,8 @@ function OnMouseDown(e)
         removeElementsByClassName("crosses");
         removeElementsByClassName("tukey");
         removeElementsByClassName("loading");
+        
+        pairwiseComparisons = true;
         
         var variableList = getSelectedVariables();
         console.dir(variableList);

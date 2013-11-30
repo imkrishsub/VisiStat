@@ -98,8 +98,7 @@ function performOneSampleWilcoxonTest(variable, level)
     req.complete(function(){
         
     });
-}
-    
+}  
 
 function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
 {
@@ -665,20 +664,28 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
     });
 }
 
-// Effect sizes
-
-function getDFromT(n)
+function performPairwiseTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
 {
-    // Get variable names and their data type
-    var req = opencpu.r_fun_json("getDFromT", {
-                    t: testResults["t"],                   
-                    n1: n,
-                    n2: n
+    var variableList = getSelectedVariables();
+    
+    var req = opencpu.r_fun_json("performPairwiseTTest", {
+                    dependentVariable: variables[variableList["dependent"][0]]["dataset"],
+                    independentVariable: variables[variableList["independent"][0]]["dataset"],                    
+                    dataset: dataset,
+                    varianceEqual: varianceEqual,
+                    paired: paired
                   }, function(output) {                                                   
                   
-                  console.log("Cohen's d: " + output.d);
-                  
-                  testResults["effect-size"] = "Cohen's d = " + output.d;
+
+                    console.log("stream of p-values = " + output.p);
+            
+                //drawing stuff
+//                 removeElementsByClassName("completeLines");   
+//                 
+//                 resetSVGCanvas();
+//                 drawTukeyHSDPlot();
+//                 
+//                 displaySignificanceTestResults();
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -692,3 +699,31 @@ function getDFromT(n)
         
     });
 }
+
+// Effect sizes
+
+// function getDFromT(n)
+// {
+//     // Get variable names and their data type
+//     var req = opencpu.r_fun_json("getDFromT", {
+//                     t: testResults["t"],                   
+//                     n1: n,
+//                     n2: n
+//                   }, function(output) {                                                   
+//                   
+//                   console.log("Cohen's d: " + output.d);
+//                   
+//                   testResults["effect-size"] = "Cohen's d = " + output.d;
+//         
+//       }).fail(function(){
+//           alert("Failure: " + req.responseText);
+//     });
+// 
+//     //if R returns an error, alert the error message
+//     req.fail(function(){
+//       alert("Server error: " + req.responseText);
+//     });
+//     req.complete(function(){
+//         
+//     });
+// }

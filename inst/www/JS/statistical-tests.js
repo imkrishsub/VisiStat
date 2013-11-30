@@ -75,6 +75,53 @@ function compareMeans()
     }
 }
 
+function doPairwiseTests()
+{
+    var completeLines = d3.selectAll(".completeLines");
+    var variableList = getSelectedVariables();  
+    
+    console.log("variableList:");
+    console.dir(variableList);    
+    
+    console.log("\t Pairwise comparisons!");
+
+    //homoscedasticity
+    loadAssumptionCheckList();
+    
+    var sampleSize;
+    sampleSizesAreEqual = true;
+    
+    if(variableList["independent"].length == 2)
+    {
+        var levelsA = variableList["independent-levels"][0];
+        var levelsB = variableList["independent-levels"][1];
+        
+        console.log("colourBoxPlotData=");
+        console.dir(colourBoxPlotData);
+        
+        console.log(levelsA[0]);
+        console.log(levelsB[0]);
+        
+        sampleSize = colourBoxPlotData[levelsA[0]][levelsB[0]].length;
+    }
+    else
+    {
+        sampleSize = variables[variableList["dependent"][0]][variableList["independent-levels"][0]].length;
+        
+        sampleSizesAreEqual = variables[variableList["dependent"][0]][variableList["independent-levels"][1]].length == variables[variableList["dependent"][0]][variableList["independent-levels"][0]].length ? true : false;
+    }
+    
+    if(!sampleSizesAreEqual && experimentalDesign=="Between-groups")
+    {
+        alert("Between-groups design was detected but number of samples are different!");
+        return;
+    }                    
+    else
+    {
+        performNormalityTests(); 
+    }                   
+}
+
 function loadAssumptionCheckList()
 {
     var canvas = d3.select("#sideBarCanvas");
