@@ -143,6 +143,7 @@ function OnMouseDown(e)
             
                 for(var i=0; i<completeLines.length; i++)
                 {
+                    console.log("completeLines[" + i + "] : " + completeLines[i]);
                     if(completeLines[i].getAttribute("x1") == meanCircle.attr("cx"))
                     {
                         lineAfter = completeLines[i];
@@ -253,6 +254,8 @@ function OnMouseDown(e)
                         }
                         else
                         {
+                            console.log("the other completion");
+                            
                             incompleteLines.attr("x2", incompleteLines.attr("x1"))
                                            .attr("y2", incompleteLines.attr("y1"))
                                            .attr("x1", meanCircle.attr("cx"))
