@@ -21,7 +21,7 @@
         var radius = variableNameHolderPadding + "px";
         var variableNameHolderHeight = scaleForWindowSize(60); // TODO: Find this dynamically based on number of variable names (50 is the maximum), do this for font-size as well
         var variableSelectionButtonWidth = scaleForWindowSize(60);
-        var variableTypeSelectionButtonWidth = scaleForWindowSize(120);
+        var variableTypeSelectionButtonWidth = scaleForWindowSize(135);
         
         var flagImageSize = scaleForWindowSize(45);
         
@@ -62,8 +62,8 @@
     var fontSizeLabels = scaleForWindowSize(28);
     var fontSizeTicks = scaleForWindowSize(18);
     var fontSizeAssumptions = scaleForWindowSize(26);
-    var fontSizeVariablePanel = scaleForWindowSize(18);
-    var fontSizeVisualizationPanel = scaleForWindowSize(36);
+    var fontSizeVariablePanel = scaleForWindowSize(20);
+    var fontSizeVisualizationPanel = scaleForWindowSize(32);
         
 // Plots (general)
     var axesOffset = scaleForWindowSize(25); //distance from plots to axes (for an R-like appearance)
