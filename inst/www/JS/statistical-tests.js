@@ -389,7 +389,7 @@ function displayOneSampleTestResults()
             .attr("text-anchor", "middle")
             .attr("font-size", "16px")
             .attr("fill", "orange")
-            .text("p = " + testResults["p"])
+            .text(testResults["p"])
             .attr("class", "significanceTest");
     
     
@@ -503,7 +503,7 @@ function displaySignificanceTestResults()
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
             .attr("fill", "#627bf4")
-            .text("p = " + testResults["p"])
+            .text(testResults["p"])
             .attr("class", "significanceTest");
     
     
@@ -635,7 +635,7 @@ function displayCorrelationResults()
             .attr("text-anchor", "middle")
             .attr("font-size", "16px")
             .attr("fill", "orange")
-            .text("p = " + testResults["p"])
+            .text(testResults["p"])
             .attr("class", "significanceTest");
     
     

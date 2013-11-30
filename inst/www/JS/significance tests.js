@@ -27,7 +27,7 @@ function performOneSampleTTest(variable, level)
                   testResults["parameter"] = output.t;
                   testResults["parameter-type"] = "t";
                   
-                  testResults["p"] = output.p; 
+                  testResults["p"] = changePValueNotation(output.p); 
                   testResults["method"] = output.method;
                   testResults["estimate"] = output.estimate;
                   testResults["effect-size"] = output.d;
@@ -76,7 +76,7 @@ function performOneSampleWilcoxonTest(variable, level)
                   testResults["parameter"] = output.V;
                   testResults["parameter-type"] = "V";
                   
-                  testResults["p"] = output.p; 
+                  testResults["p"] = changePValueNotation(output.p); 
                   testResults["method"] = output.method;
                   testResults["estimate"] = output.estimate;
                   testResults["effect-size"] = output.r;
@@ -124,7 +124,7 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                   testResults["parameter"] = output.t;
                   testResults["parameter-type"] = "t";
                   
-                  testResults["p"] = output.p; 
+                  testResults["p"] = changePValueNotation(output.p); 
                   testResults["method"] = output.method;
                   testResults["effect-size"] = output.d;
                   testResults["effect-size-type"] = "d";
@@ -163,7 +163,7 @@ function performMannWhitneyTest(groupA, groupB)
                   testResults["parameter"] = output.U;
                   testResults["parameter-type"] = "U";
                   
-                  testResults["p"] = output.p;                  
+                  testResults["p"] = changePValueNotation(output.p);                  
                   testResults["effect-size"] = output.r;
                   testResults["method"] = "Mann-Whitney U test";
                   testResults["effect-size-type"] = "r";
@@ -202,7 +202,7 @@ function performWilcoxonTest(groupA, groupB)
                   testResults["parameter"] = output.V;
                   testResults["parameter-type"] = "V";
                   
-                  testResults["p"] = output.p;                  
+                  testResults["p"] = changePValueNotation(output.p);                  
                   testResults["effect-size"] = output.r;
                   testResults["method"] = "Wilcoxon Signed-rank test";
                   testResults["effect-size-type"] = "r";
@@ -247,8 +247,6 @@ function performANOVA(dependentVariable, independentVariable)
                   testResults["parameter-type"] = "F";
                   
                   testResults["p"] = changePValueNotation(output.p);   
-                  
-                  console.log("p before: " + output.p + "; converted p =  " + testResults["p"]);
                   testResults["method"] = "ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
@@ -343,7 +341,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                   
                   testResults["method"] = "Repeated Measures ANOVA ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
-                  testResults["p"] = output.p;
+                  testResults["p"] = changePValueNotation(output.p);
                   testResults["effect-size-type"] = "eS";
                            
                   
@@ -389,7 +387,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
                   testResults["parameter-type"] = "cS";
                   
                   testResults["method"] = output.method; 
-                  testResults["p"] = output.p;
+                  testResults["p"] = changePValueNotation(output.p);
 //                   testResults["effect-size-type"] = "";
                            
                   
@@ -478,7 +476,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
-                  testResults["p"] = output.p;
+                  testResults["p"] = changePValueNotation(output.p);
                   testResults["method"] = "Welch's ANOVA"; 
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
@@ -526,7 +524,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                   testResults["parameter"] = output.ChiSquared;
                   testResults["parameter-type"] = "cS";
                   
-                  testResults["p"] = output.p;                  
+                  testResults["p"] = changePValueNotation(output.p);                  
                   testResults["method"] = "Kruskal-Wallis Test"; 
                   testResults["effect-size"] = output.etaSquared;         
                   testResults["effect-size-type"] = "eS";
