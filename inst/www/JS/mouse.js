@@ -61,53 +61,6 @@ function OnMouseDown(e)
         }
     }
     
-    else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "dependentVariableButtonFront"))
-    {
-        setup(e, target);
-        
-        var variableButton = d3.select("#" + target.id + ".dependentVariableButtonBack");
-        var variableText = d3.select("#" + target.id + ".dependentVariableText");
-        
-        var otherVariableButton = d3.select("#" + target.id + ".independentVariableButtonBack");
-        var otherVariableText = d3.select("#" + target.id + ".independentVariableText");
-        
-        //if not selected
-        if(variableButton.attr("fill") != variableTypeButtonColors["dependent"]["selected"])
-        {
-            variableButton.attr("fill", variableTypeButtonColors["dependent"]["selected"]);
-            variableText.attr("fill", variableTypeTextColors["dependent"]["selected"]);
-            
-            otherVariableButton.attr("fill", variableTypeButtonColors["independent"]["normal"]);
-            otherVariableText.attr("fill", variableTypeTextColors["independent"]["normal"]);
-            
-            variableTypes[target.id] = "dependent";
-        }
-    }
-    
-    else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "independentVariableButtonFront"))
-    {
-        setup(e, target);
-        
-        var variableButton = d3.select("#" + target.id + ".independentVariableButtonBack");
-        var variableText = d3.select("#" + target.id + ".independentVariableText");
-        
-        var otherVariableButton = d3.select("#" + target.id + ".dependentVariableButtonBack");
-        var otherVariableText = d3.select("#" + target.id + ".dependentVariableText");
-        
-        //if not selected
-        if(variableButton.attr("fill") != variableTypeButtonColors["independent"]["selected"])
-        {
-            variableButton.attr("fill", variableTypeButtonColors["independent"]["selected"]);
-            variableText.attr("fill", variableTypeTextColors["independent"]["selected"]);
-            
-            otherVariableButton.attr("fill", variableTypeButtonColors["dependent"]["normal"]);
-            otherVariableText.attr("fill", variableTypeTextColors["dependent"]["normal"]);
-            
-            variableTypes[target.id] ="independent";
-            splitTheData(target.id);
-        }
-    }
-    
     else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "disabled"))
     {
         setup(e, target);
@@ -1235,6 +1188,13 @@ function OnMouseOver(e)
         setup(e, target);
         
         d3.selectAll(".interactionEffect").attr("cursor", "pointer");
+    }
+    
+    else if(target.className.baseVal == "tukey")
+    {
+        setup(e, target);
+        
+        d3.selectAll(".tukey").attr("cursor", "pointer");
     }
 }
 
