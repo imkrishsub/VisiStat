@@ -243,11 +243,23 @@ function OnMouseDown(e)
                     if(document.getElementsByClassName("incompleteLines").length > 0)
                     {
                         var incompleteLines = d3.selectAll(".incompleteLines");
-            
-                        incompleteLines.attr("x2", meanCircle.attr("cx"))
-                                       .attr("y2", meanCircle.attr("cy"))
-                                       .attr("stroke", meanColors["click"])
-                                       .attr("class", "completeLines");
+                        
+                        if(meanCircle.attr("cx") > incompleteLines.attr("x1"))
+                        {
+                            incompleteLines.attr("x2", meanCircle.attr("cx"))
+                                           .attr("y2", meanCircle.attr("cy"))
+                                           .attr("stroke", meanColors["click"])
+                                           .attr("class", "completeLines");
+                        }
+                        else
+                        {
+                            incompleteLines.attr("x2", incompleteLines.attr("x1"))
+                                           .attr("y2", incompleteLines.attr("y1"))
+                                           .attr("x1", meanCircle.attr("cx"))
+                                           .attr("y1", meanCircle.attr("cy"))
+                                           .attr("stroke", meanColors["click"])
+                                           .attr("class", "completeLines");
+                        }                        
                     }
                     var means = document.getElementsByClassName("means");
                     
