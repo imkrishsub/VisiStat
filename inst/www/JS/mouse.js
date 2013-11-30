@@ -804,8 +804,8 @@ function OnMouseOver(e)
                         .attr("class", "hover");
             
             plotCanvas.append("text")
-                        .attr("x", mouseX + scaleForWindowSize(35))
-                        .attr("y", mouseY + scaleForWindowSize(50))
+                        .attr("x", mouseX + 10)
+                        .attr("y", mouseY + 15)
                         .attr("text-anchor", "start")
                         .text(format2(getActualValue(meanCircle.attr("cy"))))
                         .attr("fill", meanColors["normal"])
@@ -991,8 +991,8 @@ function OnMouseOver(e)
                 .attr("class", "hover");    
         
         canvas.append("text")
-                .attr("x", mouseX + scaleForWindowSize(35))
-                .attr("y", mouseY + scaleForWindowSize(50))
+                .attr("x", mouseX + 10)
+                .attr("y", mouseY + 15)
                 .attr("text-anchor", "middle")
                 .text(format(getActualValue(outlier.attr("cy"))))
                 .attr("class", "hover");

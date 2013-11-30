@@ -79,6 +79,16 @@ function loadAssumptionCheckList()
 {
     var canvas = d3.select("#sideBarCanvas");
     
+    var title = canvas.append("text")
+            .attr("x", 0)
+            .attr("y", i*30 + assumptionOffsetTop)
+            .attr("font-size", fontSizeAssumptions + "px")
+            .attr("fill", "#627bf4")
+            .text("Checking assumptions")
+            .attr("class", "checkingAssumptions");
+    
+    title.transition().duration(800).attr("y", assumptionOffsetTop);
+    
     for(var i=0; i<assumptions.length; i++)
     {
         canvas.append("text")
