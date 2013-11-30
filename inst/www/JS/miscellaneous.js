@@ -19,6 +19,14 @@ function initiateLoadingDatasetAnimation()
     t.transition().delay(500).duration(500).attr("opacity", "1.0");
 
     t.transition().delay(1000).duration(500).attr("opacity", "0.3");
+    
+    canvas.append("image")
+            .attr("x", canvasWidth/2)
+            .attr("y", canvasHeight/4)
+            .attr("xlink:href", "images/loading.gif")
+            .attr("height", "50")
+            .attr("width", "50")
+            .attr("class", "loadingAnimation");
             
     loadingDataAnimation = setInterval(function()
     {
@@ -42,18 +50,6 @@ function initiateLoadingDatasetAnimation()
         
         var X = canvasWidth/2;
         var Y = canvasHeight/4;
-        
-        for(var i=0; i<15; i++)
-        {
-            canvas.append("line")
-                    .attr("x1", X)
-                    .attr("y1", Y)
-                    .attr("x2", X+5)
-                    .attr("y2", Y)
-                    .attr("stroke-width", "2px")
-                    .attr("stroke", "black")
-                    .attr("transform", "rotate(" + i*(360/15) + " " + X + " " + Y + ")");
-        }
     }, 1500);
             
 }
