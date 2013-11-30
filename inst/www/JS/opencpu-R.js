@@ -98,7 +98,7 @@ function getData(dataset, variableName, level)
             
             testForEvilVariables();
             
-            clearInterval(loadingDataAnimation);
+//             clearInterval(loadingDataAnimation);
             
             removeElementsByClassName("loadingAnimation");
             removeElementById("loadingImage");
