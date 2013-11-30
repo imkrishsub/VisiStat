@@ -659,9 +659,9 @@ function setVariableTypes()
 //                             .attr("class", "participantVariableButtonBack");
                                     
             variablePanelSVG.append("text")
-                            .attr("x", variableNameHolderWidth + 2*variableNameHolderPadding - variableTypeSelectionButtonWidth)
+                            .attr("x", variableNameHolderWidth + 2*variableNameHolderPadding - variableTypeSelectionButtonWidth/2)
                             .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/2 + yAxisTickTextOffset/2)                                                   
-                            .attr("text-anchor", "start")
+                            .attr("text-anchor", "middle")
                             .attr("fill", "#627bf4")
                             .text("SUBJECT")
                             .attr("id", variableNames[i])
