@@ -179,6 +179,7 @@ function makeBoxplot()
             xStep = plotWidth/levelsForXAxis.length;  
             if(i%levelsForXAxis.length)
             {
+                console.log("i=" + i + ", levels=" + levelsForXAxis.length);
                 canvas.append("line")
                         .attr("x1", LEFT + index*xStep + xStep/2)
                         .attr("y1", BOTTOM  + axesOffset)
