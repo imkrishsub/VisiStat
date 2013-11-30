@@ -123,7 +123,7 @@ function loadAssumptionCheckList()
                 .attr("id", assumptions[i])
                 .attr("class", "crosses");
         }    
-    }, 500);
+    }, 1300);
     
     
 }
