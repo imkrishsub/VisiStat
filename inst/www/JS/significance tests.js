@@ -640,7 +640,10 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
                 //drawing stuff
                 removeElementsByClassName("completeLines");   
                 
-//                 displaySignificanceTestResults();
+                resetSVGCanvas();
+                drawTukeyHSDPlot();
+                
+                displaySignificanceTestResults();
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
