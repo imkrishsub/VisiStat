@@ -101,4 +101,12 @@ function testForEvilVariables()
         }
     }
 }
+
+function changePValueNotation(p)
+{
+    if(p<0.001)
+        return "p < 0.001";
+    else
+        return "p = " + p;
+}
         

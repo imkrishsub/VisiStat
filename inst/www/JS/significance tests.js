@@ -246,7 +246,9 @@ function performANOVA(dependentVariable, independentVariable)
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
-                  testResults["p"] = output.p;   
+                  testResults["p"] = changePValueNotation(output.p);   
+                  
+                  console.log("p before: " + output.p + "; converted p =  " + testResults["p"]);
                   testResults["method"] = "ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
