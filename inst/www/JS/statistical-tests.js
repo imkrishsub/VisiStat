@@ -556,7 +556,7 @@ function drawScales(cx, cy)
                 .attr("x", x + scaleForWindowSize(35))
                 .attr("y", (yMin + yMax)/2)
                 .attr("fill", "black")
-                .attr("font-size", scaleForWindowSize(26) + "px")
+                .attr("font-size", scaleForWindowSize(20) + "px")
                 .attr("id", "tickText")
                 .attr("class", "significanceTest")
                 .text(format(means[means.length-1] - means[0]));

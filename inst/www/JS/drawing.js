@@ -324,6 +324,7 @@ function drawParameter(value)
             sideBar.append("text")
                     .attr("x", X)
                     .attr("y", Y)
+                    .attr("font-size", fontSizeSignificanceTestResults + "px")
                     .attr("text-anchor", "middle")
                     .attr("fill", "#627bf4")
                     .text(type + "(" + testResults["df"] + ") = " + testResults["parameter"]);
@@ -334,6 +335,7 @@ function drawParameter(value)
                 .attr("x", X)
                 .attr("y", Y)
                 .attr("text-anchor", "middle")
+                .attr("font-size", fontSizeSignificanceTestResults + "px")
                 .attr("fill", "#627bf4")
                 .text(type + " = " + testResults["parameter"]);
         }
