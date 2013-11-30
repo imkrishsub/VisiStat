@@ -303,8 +303,9 @@ function drawParameter(value)
         var mainText = sideBar.append("text")
                 .attr("x", X)
                 .attr("y", Y)
+                .attr("font-size", fontSizeSignificanceTestResults + "px")
                 .attr("text-anchor", "middle")
-                .attr("fill", "orange");
+                .attr("fill", "#627bf4");
             
         mainText.append("tspan")
                     .text("𝝌");
@@ -324,7 +325,7 @@ function drawParameter(value)
                     .attr("x", X)
                     .attr("y", Y)
                     .attr("text-anchor", "middle")
-                    .attr("fill", "orange")
+                    .attr("fill", "#627bf4")
                     .text(type + "(" + testResults["df"] + ") = " + testResults["parameter"]);
         }
         else
@@ -333,7 +334,7 @@ function drawParameter(value)
                 .attr("x", X)
                 .attr("y", Y)
                 .attr("text-anchor", "middle")
-                .attr("fill", "orange")
+                .attr("fill", "#627bf4")
                 .text(type + " = " + testResults["parameter"]);
         }
     }
