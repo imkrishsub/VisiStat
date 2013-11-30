@@ -156,11 +156,11 @@ function OnMouseDown(e)
                 if(lineBefore == undefined && lineAfter == undefined)
                 {
                     //it was the only mean selected - do nothing
-//                     console.log("no lines before or after");
+                    console.log("no lines before or after");
                 }
                 else if(lineAfter == undefined)
                 {
-//                     console.log("one line before");
+                    console.log("one line before");
                 
                     removeElementsByClassName("incompleteLines");
                     var canvas = d3.select("#plotCanvas");
@@ -179,7 +179,7 @@ function OnMouseDown(e)
                 }
                 else if(lineBefore == undefined)
                 {                
-//                     console.log("one line after");
+                    console.log("one line after");
                 
                     removeElementsByClassName("incompleteLines");
                     var canvas = d3.select("#plotCanvas");
@@ -230,7 +230,7 @@ function OnMouseDown(e)
                             .attr("id", meanCircle.attr("id"))
                             .attr("class", "incompleteLines");
                         
-//                     console.log("lines before and after");
+                    console.log("lines before and after");
                     lineBefore.setAttribute("x2", lineAfter.getAttribute("x2"));
                     lineBefore.setAttribute("y2", lineAfter.getAttribute("y2"));
                     lineAfter.parentNode.removeChild(lineAfter);
