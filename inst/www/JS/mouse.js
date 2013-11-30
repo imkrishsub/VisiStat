@@ -583,7 +583,7 @@ function OnMouseDown(e)
         var variableList = getSelectedVariables();
         console.dir(variableList);
         
-        drawBoxPlotLegends(variables[variableList["independent"][0]]["dataset"].unique());
+//         drawBoxPlotLegends(variables[variableList["independent"][0]]["dataset"].unique());
         resetMeans();
         
         var canvas = d3.select("#plotCanvas");
