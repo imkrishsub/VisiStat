@@ -638,12 +638,8 @@ function setVariableTypes()
         }
         else if(variableTypes[variableNames[i]] == "participant")
         {
-            d3.select("#" + variableNames[i] + ".dependentVariableButtonFront").remove();
-            d3.select("#" + variableNames[i] + ".dependentVariableButtonBack").remove();
+            d3.select("#" + variableNames[i] + ".variableTypeToggleButton").remove();
             d3.select("#" + variableNames[i] + ".dependentVariableText").remove();
-            
-            d3.select("#" + variableNames[i] + ".independentVariableButtonFront").remove();
-            d3.select("#" + variableNames[i] + ".independentVariableButtonBack").remove();
             d3.select("#" + variableNames[i] + ".independentVariableText").remove();
             
             var variablePanelSVG = d3.select("#variablePanelSVG");
@@ -651,22 +647,22 @@ function setVariableTypes()
             var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
             var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                     
             
-            variablePanelSVG.append("rect")
-                            .attr("x", variableNameHolderWidth - variableNameHolderPadding/4 - variableTypeSelectionButtonWidth)
-                            .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
-                            .attr("height", variableNameHolderHeight - 2*scaleForWindowSize(2))
-                            .attr("width", variableTypeSelectionButtonWidth)
-                            .attr("rx", "5px")
-                            .attr("ry", "5px")
-                            .attr("fill", variableTypeButtonColors["participant"])
-                            .attr("id", variableNames[i])
-                            .attr("class", "participantVariableButtonBack");
+//             variablePanelSVG.append("rect")
+//                             .attr("x", variableNameHolderWidth + 2*variableNameHolderPadding - variableTypeSelectionButtonWidth)
+//                             .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
+//                             .attr("height", variableNameHolderHeight - 2*scaleForWindowSize(2))
+//                             .attr("width", variableTypeSelectionButtonWidth)
+//                             .attr("rx", "5px")
+//                             .attr("ry", "5px")
+//                             .attr("fill", variableTypeButtonColors["participant"])
+//                             .attr("id", variableNames[i])
+//                             .attr("class", "participantVariableButtonBack");
                                     
             variablePanelSVG.append("text")
-                            .attr("x", variableNameHolderWidth - variableNameHolderPadding/4 - variableTypeSelectionButtonWidth/2)
+                            .attr("x", variableNameHolderWidth + 2*variableNameHolderPadding - variableTypeSelectionButtonWidth/2)
                             .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/2 + yAxisTickTextOffset/2)                                                   
-                            .attr("text-anchor", "middle")
-                            .attr("fill", variableTypeTextColors["participant"])
+                            .attr("text-anchor", "start")
+                            .attr("fill", "#627bf4")
                             .text("SUBJECT")
                             .attr("id", variableNames[i])
                             .attr("class", "participantVariableText");
