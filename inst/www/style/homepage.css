@@ -1,3 +1,9 @@
+.labels
+{
+    font-size: 30px;
+    color: #627bf4;
+}
+
 #datasetDropDownList
 {
     font-size: 30px;
@@ -71,10 +77,10 @@ th
 #submitButton
 {
     width: 15em;
-    height: 5em;
+    height: 2.5em;
     position: relative;
-    top: 90%;
-    color: LemonChiffon;
+    top: 100%;
+    color: #627bf4;
     font:1.7em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     padding:14px;
     background-color:DarkKhaki;
