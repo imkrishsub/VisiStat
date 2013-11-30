@@ -45,13 +45,13 @@ function drawFullScreenButton()
 function drawButtonInSideBar(buttonText, className, offset)
 {
     if(offset == undefined)
-        offset = 1;
+        offset = 0;
         
     var canvas = d3.select("#sideBarCanvas");
     
     canvas.append("rect")
             .attr("x", scaleForWindowSize(10))
-            .attr("y", canvasHeight - offset*buttonOffset)
+            .attr("y", canvasHeight - buttonOffset + offset*(buttonPadding + buttonHeight))
             .attr("width", sideBarWidth - scaleForWindowSize(10)*2)
             .attr("height", buttonHeight)
             .attr("rx", scaleForWindowSize(10) + "px")
@@ -64,7 +64,7 @@ function drawButtonInSideBar(buttonText, className, offset)
     
     canvas.append("text")
             .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight - offset*buttonOffset + buttonHeight/2 + yAxisTickTextOffset)
+            .attr("y", canvasHeight - buttonOffset + offset*(buttonPadding + buttonHeight) + buttonHeight/2 + yAxisTickTextOffset)
             .attr("text-anchor", "middle")
             .text(buttonText)
             .attr("id", "text")
