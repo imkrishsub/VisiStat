@@ -85,10 +85,9 @@ th
     width: 15em;
     height: 3em;
     position: relative;
-    top: 150%;
     color: black;
     font:1.7em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
-    padding:14px;
+    padding:25px;
     background-color:#f8f9f7;
     -moz-border-radius:25px;
     -webkit-border-radius:25px;
