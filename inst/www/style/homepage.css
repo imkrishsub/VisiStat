@@ -86,7 +86,7 @@ th
     height: 3em;
     position: relative;
     top: 100%;
-    color: #627bf4;
+    color: black;
     font:1.7em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     padding:14px;
     background-color:#f8f9f7;
@@ -94,8 +94,8 @@ th
     -webkit-border-radius:10px;
     border-radius:10px;
     border-bottom:1px solid #9f9f9f;
-    -moz-box-shadow:inset 0 1px 0 #f8f9f7;
-    -webkit-box-shadow:inset 0 1px 0 #f8f9f7;
+    -moz-box-shadow:inset 0 1px 0 black;
+    -webkit-box-shadow:inset 0 2px 0 black;
     box-shadow:inset 0 1px 0 #f8f9f7;
     cursor:pointer;
 }
