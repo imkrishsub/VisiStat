@@ -198,6 +198,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                     if(output.p < 0.05)
                     {
                         d3.select("#homogeneity.crosses").attr("display", "inline");                  
+                        d3.select("#homogeneity.loading").attr("display", "none");                  
                         
                         if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                         {
@@ -212,6 +213,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                     {   
                         //equal variances
                         d3.select("#homogeneity.ticks").attr("display","inline");
+                        d3.select("#homogeneity.loading").attr("display", "none"); 
                     
                         if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                         {
@@ -227,7 +229,9 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                 {  
                     if(output.p < 0.05)
                     {
-                        d3.select("#homogeneity.crosses").attr("display", "inline");                 
+                        d3.select("#homogeneity.crosses").attr("display", "inline"); 
+                        d3.select("#homogeneity.loading").attr("display", "none"); 
+                        
                         if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                         {                        
                             performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
@@ -241,7 +245,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                     {   
                         //equal variances
                         d3.select("#homogeneity.ticks").attr("display","inline");
-                    
+                        d3.select("#homogeneity.loading").attr("display", "none");                     
                     
                         if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                         {                        
@@ -302,13 +306,13 @@ function performHomoscedasticityTestNormal(dependent, independent)
                     variableList = getSelectedVariables();
                     console.log("number of levels: " + variableList["independent-levels"].length);
                 
-            
-                
                     if(variableList["independent-levels"].length > 2)
                     {
                         if(output.p < 0.05)
                         {
-                            d3.select("#homogeneity.crosses").attr("display", "inline");                  
+                            d3.select("#homogeneity.crosses").attr("display", "inline");
+                            d3.select("#homogeneity.loading").attr("display", "none"); 
+                            
                             if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                             {
                                 performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
@@ -322,6 +326,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                         {   
                             //equal variances
                             d3.select("#homogeneity.ticks").attr("display","inline");
+                            d3.select("#homogeneity.loading").attr("display", "none"); 
                     
                             if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                             {
@@ -337,7 +342,8 @@ function performHomoscedasticityTestNormal(dependent, independent)
                     {               
                         if(output.p < 0.05)
                         {
-                            d3.select("#homogeneity.crosses").attr("display", "inline");     
+                            d3.select("#homogeneity.crosses").attr("display", "inline");  
+                            d3.select("#homogeneity.loading").attr("display", "none"); 
                             
                             if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                             {
@@ -352,6 +358,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                         {   
                             //equal variances
                             d3.select("#homogeneity.ticks").attr("display","inline");
+                            d3.select("#homogeneity.loading").attr("display", "none"); 
                     
                             if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                             {
@@ -397,7 +404,8 @@ function performNormalityTest(dist, dependentVariable, level)
                     if(variableList["independent"].length == 0)
                     {
                         //one sample t-test
-                        d3.select("#normality.crosses").attr("display", "inline");                                  
+                        d3.select("#normality.crosses").attr("display", "inline");
+                        d3.select("#normality.loading").attr("display", "none");
                         d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
                 
                         //draw boxplots in red 
@@ -572,6 +580,7 @@ function applyTransform(dependentVariable, level, last)
                     
                     d3.select("#normality.crosses").attr("display", "none");  
                     d3.select("#normality.ticks").attr("display", "inline");  
+                    d3.select("#normality.loading").attr("display", "none");
                     var variableList = sort(currentVariableSelection);                                        
                     
                     d3.select("#plotCanvas").transition().delay(2000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
