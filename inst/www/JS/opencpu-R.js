@@ -364,14 +364,14 @@ function performHomoscedasticityTestNormal(dependent, independent)
                                 if(!pairwiseComparisons)
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
                                 else
-                                    performPairwiseTTestperformTTest("FALSE", "TRUE");
+                                    performPairwiseTTest("FALSE", "TRUE");
                             }
                             else
                             {
                                 if(!pairwiseComparisons)
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
                                 else
-                                    performPairwiseTTestperformTTest("FALSE", "FALSE");
+                                    performPairwiseTTest("FALSE", "FALSE");
                             }
                         }
                         else
