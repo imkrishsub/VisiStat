@@ -982,6 +982,11 @@ function findEndingLine()
     
     return 0;
 }
+
+function resetMeans()
+{
+    var means = d3.selectAll(".means").attr("fill", meanColors["normal"]);
+}
     
         
             

@@ -305,7 +305,8 @@ function drawParameter(value)
                 .attr("y", Y)
                 .attr("font-size", fontSizeSignificanceTestResults + "px")
                 .attr("text-anchor", "middle")
-                .attr("fill", "#627bf4");
+                .attr("fill", "#627bf4")
+                .attr("class", "parameter");
             
         mainText.append("tspan")
                     .text("𝝌");
@@ -327,6 +328,7 @@ function drawParameter(value)
                     .attr("font-size", fontSizeSignificanceTestResults + "px")
                     .attr("text-anchor", "middle")
                     .attr("fill", "#627bf4")
+                    .attr("class", "parameter")
                     .text(type + "(" + testResults["df"] + ") = " + testResults["parameter"]);
         }
         else
@@ -337,6 +339,7 @@ function drawParameter(value)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeSignificanceTestResults + "px")
                 .attr("fill", "#627bf4")
+                .attr("class", "parameter")
                 .text(type + " = " + testResults["parameter"]);
         }
     }

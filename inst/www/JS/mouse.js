@@ -547,10 +547,15 @@ function OnMouseDown(e)
         setup(e, target);
         
         removeElementsByClassName("effectSize");
+        removeElementsByClassName("parameter");
         removeElementsByClassName("significanceTest");
         removeElementsByClassName("differenceInMeans");
         removeElementsByClassName("checkingAssumptions");
         removeElementsByClassName("assumptions");
+        removeElementsByClassName("ticks");
+        removeElementsByClassName("crosses");
+        
+        resetMeans();
         
         var canvas = d3.select("#plotCanvas");
         var variableList = getSelectedVariables();
