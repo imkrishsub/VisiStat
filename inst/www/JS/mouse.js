@@ -394,8 +394,8 @@ function OnMouseDown(e)
                 .attr("id", "text")
                 .attr("class", "compareNow"); 
         
-        d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(1000).style("opacity", "0.25");
-        d3.selectAll(".means").attr("r", engorgedMeanRadius);
+        d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(2000).style("opacity", "0.2");
+        d3.selectAll(".means").transition().duration(800).attr("r", engorgedMeanRadius);
         
         removeElementsByClassName("compareMean");
     }
