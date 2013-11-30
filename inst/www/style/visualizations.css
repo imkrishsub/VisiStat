@@ -54,3 +54,8 @@ input[type=text]
     border: none;
 }
 
+body
+{
+    font: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
