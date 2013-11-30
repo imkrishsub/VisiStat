@@ -52,7 +52,7 @@ function initiateLoadingDatasetAnimation()
                     .attr("y2", Y)
                     .attr("stroke-width", "2px")
                     .attr("stroke", "black")
-                    .attr("transform", "rotate " + i*(360/15) + " " + X + " " + Y);
+                    .attr("transform", "rotate(" + i*(360/15) + " " + X + " " + Y + ")");
         }
     }, 1500);
             
