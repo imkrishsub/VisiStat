@@ -249,6 +249,12 @@ function OnMouseDown(e)
                                        .attr("y2", meanCircle.attr("cy"))
                                        .attr("stroke", meanColors["click"])
                                        .attr("class", "completeLines");
+                        
+                        canvas.append("circle")
+                                .attr("cx", meanCircle.attr("cx"))
+                                .attr("cy", meanCircle.attr("cy"))
+                                .attr("r", "5px")
+                                .attr("fill", "blue");
                                              
                     }
                     var means = document.getElementsByClassName("means");
