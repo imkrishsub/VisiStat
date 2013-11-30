@@ -737,6 +737,7 @@ function OnMouseOver(e)
         
         toggleButton.attr("cursor", "pointer");
     }
+    
     else if(target.className.baseVal == "dependentVariableButtonFront")
     {
         setup(e, target);
@@ -976,6 +977,9 @@ function OnMouseOver(e)
         var canvas = d3.select("#plotCanvas");
         var outlier = d3.select("#" + target.id + ".outliers");
         
+        var mouseX = e.pageX - (width - canvasWidth - sideBarWidth);
+        var mouseY = e.pageY;
+        
         outlier.attr("r", outlierRadius*2).attr("stroke", "yellow").attr("stroke-width", "2px");
         canvas.append("line")       
                 .attr("x1", outlier.attr("cx"))
@@ -987,8 +991,8 @@ function OnMouseOver(e)
                 .attr("class", "hover");    
         
         canvas.append("text")
-                .attr("x", e.pageX - (window-canvasWidth-sideBarWidth) + 9)
-                .attr("y", e.pageY + 9)
+                .attr("x", mouseX + scaleForWindowSize(10))
+                .attr("y", mouseY + scaleForWindowSize(15))
                 .attr("text-anchor", "middle")
                 .text(format(getActualValue(outlier.attr("cy"))))
                 .attr("class", "hover");
