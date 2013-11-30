@@ -21,12 +21,12 @@ function initiateLoadingDatasetAnimation()
     t.transition().delay(1000).duration(500).attr("opacity", "0.3");
     
     canvas.append("image")
-            .attr("x", canvasWidth/2)
+            .attr("x", canvasWidth/2 - loadingImageSize/2)
             .attr("y", canvasHeight/4)
             .attr("xlink:href", "images/loading.gif")
-            .attr("height", "50")
-            .attr("width", "50")
-            .attr("class", "loadingAnimation");
+            .attr("height", loadingImageSize)
+            .attr("width", loadingImageSize)
+            .attr("id", "loadingImage");
             
     loadingDataAnimation = setInterval(function()
     {
@@ -48,8 +48,6 @@ function initiateLoadingDatasetAnimation()
         
         t.transition().delay(1000).duration(500).attr("opacity", "0.3");
         
-        var X = canvasWidth/2;
-        var Y = canvasHeight/4;
     }, 1500);
             
 }

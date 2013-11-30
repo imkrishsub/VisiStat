@@ -99,7 +99,9 @@ function getData(dataset, variableName, level)
             testForEvilVariables();
             
             clearInterval(loadingDataAnimation);
+            
             removeElementsByClassName("loadingAnimation");
+            removeElementById("loadingImage");
             experimentalDesign = findExperimentalDesign();
             
             console.log("\n\tEXPERIMENTAL DESIGN = " + experimentalDesign);
