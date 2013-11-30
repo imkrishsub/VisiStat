@@ -68,6 +68,7 @@
     var fontSizeVariablePanel = scaleForWindowSize(20);
     var fontSizeVisualizationPanel = scaleForWindowSize(32);
     var fontSizeSignificanceTestResults = scaleForWindowSize(22);    
+    
 // Plots (general)
     var axesOffset = scaleForWindowSize(25); //distance from plots to axes (for an R-like appearance)
     var tickTextOffsetXAxis = 25;
@@ -141,6 +142,8 @@ var significanceTestResultOffset = scaleForWindowSize(40);
 var effectSizeWidth = sideBarWidth*0.8;
 var effectSizeHeight = scaleForWindowSize(30);
 var effectSizeFontSize = scaleForWindowSize(20) + "px";
+
+var computingResultsImageSize = scaleForWindowSize(50);
 
 //transformation
 var normalityPlotWidth = scaleForWindowSize(125);
