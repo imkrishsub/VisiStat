@@ -581,6 +581,7 @@ function OnMouseDown(e)
         removeElementsByClassName("tukey");
         
         var variableList = getSelectedVariables();
+        console.dir(variableList);
         
         drawBoxPlotLegends(variables[variableList["independent"][1]]["dataset"].unique());
         resetMeans();
