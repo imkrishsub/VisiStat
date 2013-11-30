@@ -81,7 +81,7 @@ function loadAssumptionCheckList()
     
     var title = canvas.append("text")
             .attr("x", 0)
-            .attr("y", i*30 + assumptionOffsetTop)
+            .attr("y", 30 + assumptionOffsetTop)
             .attr("font-size", fontSizeAssumptions + "px")
             .attr("fill", "#627bf4")
             .text("Checking assumptions")
