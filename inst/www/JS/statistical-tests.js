@@ -186,7 +186,8 @@ function setDistribution(dependentVariable, level, normal)
         {   
             if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
             {
-                d3.select("#normality.crosses").attr("display", "inline");                  
+                d3.select("#normality.crosses").attr("display", "inline"); 
+                d3.select("#normality.loading").attr("display", "none"); 
                 normal = false;
                 
                 d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
@@ -202,6 +203,7 @@ function setDistribution(dependentVariable, level, normal)
             console.log("\n\tall distributions are normal!");
             
             d3.select("#normality.ticks").attr("display", "inline");  
+            d3.select("#normality.loading").attr("display", "none"); 
             
             for(var i=0; i<variableList["independent"].length; i++)
             {
@@ -233,7 +235,8 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         {   
             if(variances[dependentVariable][variableList["independent"][i]] == false)
             {
-                d3.select("#homogeneity.crosses").attr("display", "inline");                  
+                d3.select("#homogeneity.crosses").attr("display", "inline");
+                d3.select("#homogeneity.loading").attr("display", "none"); 
                 homogeneity = false;
             }
         }
@@ -242,7 +245,9 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
             
-            d3.select("#homogeneous.ticks").attr("display", "inline");  
+            d3.select("#homogeneous.ticks").attr("display", "inline"); 
+            d3.select("#homogeneity.loading").attr("display", "none"); 
+            
             performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
         }
         else
