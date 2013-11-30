@@ -726,8 +726,7 @@ function findExperimentalDesign()
 
 function scaleForWindowSize(value)
 {
-    console.log("height = " + height);
-    return value*(height/1105);
+    return value*(height/1004);
 }
 
 
