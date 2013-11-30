@@ -184,16 +184,33 @@ function OnMouseDown(e)
                 
                     removeElementsByClassName("incompleteLines");
                     var canvas = d3.select("#plotCanvas");
-            
-                    canvas.append("line")
-                            .attr("x1", lineAfter.getAttribute("x2"))
-                            .attr("y1", lineAfter.getAttribute("y2"))
-                            .attr("x2", lineAfter.getAttribute("x2"))
-                            .attr("y2", lineAfter.getAttribute("y2"))
-                            .attr("stroke", meanColors["normal"])
-                            .attr("stroke-dasharray", "5,5")
-                            .attr("id", meanCircle.attr("id"))
-                            .attr("class", "incompleteLines");
+                    
+                    if(document.getElementsByClassName("completeLines").length > 0)
+                    {
+                        var endingLine = findEndingLine();
+                        
+                        canvas.append("line")
+                                .attr("x1", endingLine.getAttribute("x2"))
+                                .attr("y1", endingLine.getAttribute("y2"))
+                                .attr("x2", endingLine.getAttribute("x2"))
+                                .attr("y2", endingLine.getAttribute("y2"))
+                                .attr("stroke", meanColors["normal"])
+                                .attr("stroke-dasharray", "5,5")
+                                .attr("id", meanCircle.attr("id"))
+                                .attr("class", "incompleteLines");
+                    }
+                    else
+                    {
+                        canvas.append("line")
+                                .attr("x1", lineAfter.getAttribute("x2"))
+                                .attr("y1", lineAfter.getAttribute("y2"))
+                                .attr("x2", lineAfter.getAttribute("x2"))
+                                .attr("y2", lineAfter.getAttribute("y2"))
+                                .attr("stroke", meanColors["normal"])
+                                .attr("stroke-dasharray", "5,5")
+                                .attr("id", meanCircle.attr("id"))
+                                .attr("class", "incompleteLines");
+                    }
                 
                     lineAfter.parentNode.removeChild(lineAfter);
 

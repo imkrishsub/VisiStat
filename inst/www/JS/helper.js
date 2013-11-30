@@ -946,6 +946,44 @@ function getColour(type, value)
     else if(value >= interpretations[2])
         return effectSizeColors["large"];
 }
+
+function findEndingLine()
+{
+    var completeLines = document.getElementsByClassName("completeLines");
+    var means = document.getElementsByClassName("means");
+    
+    var START = [];
+    var END = [];
+    
+    for(var i=0; i<means.length; i++)
+    {
+        for(var j=0; j<completeLines.length; j++)
+        {
+            if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
+            {
+                END.push(j);
+            }
+            if(completeLines[j].getAttribute("x1") == means[i].getAttribute("cx"))
+            {
+                START.push(j);
+            }
+        }
+    }
+    
+    console.log("START = [" + START + "]");
+    console.log("END = [" + END + "]");
+    
+    for(var i=0; i<completeLines.length; i++)
+    {
+        if(START.indexOf(i) == -1 && END.indexOf(i) != -1)
+        {
+            return completeLines[i];
+        }
+    }
+    
+    return 0;
+}
+    
         
             
 
