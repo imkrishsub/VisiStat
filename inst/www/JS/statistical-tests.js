@@ -482,7 +482,7 @@ function displaySignificanceTestResults()
             .attr("y", canvasHeight/2 + significanceTestResultOffset)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["method"])
             .attr("class", "significanceTest");
     
@@ -502,7 +502,7 @@ function displaySignificanceTestResults()
             .attr("y", canvasHeight/2 + 3*significanceTestResultOffset)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text("p = " + testResults["p"])
             .attr("class", "significanceTest");
     
