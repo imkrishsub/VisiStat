@@ -247,6 +247,7 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             
             d3.select("#homogeneous.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
+            drawComputingResultsImage();
             
             performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
         }
@@ -279,6 +280,7 @@ function displayOneSampleTestResults()
     var cy = [];
 
     removeElementsByClassName("significanceTest");
+    removeElementById(computingResultsImage);
     
     var means = document.getElementsByClassName("means");
     var medians = document.getElementsByClassName("medians");
@@ -411,6 +413,7 @@ function displaySignificanceTestResults()
     var cy = [];
 
     removeElementsByClassName("significanceTest");
+    removeElementById(computingResultsImage);
     
     var means = document.getElementsByClassName("means");
     var meanRefLines = [];
@@ -611,6 +614,8 @@ function displayCorrelationResults()
 { 
     var sideBar = d3.select("#sideBarCanvas");
     
+    removeElementById(computingResultsImage);
+    
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
             .attr("y", canvasHeight/2 + significanceTestResultOffset)
@@ -656,6 +661,8 @@ function displayBiserialCorrelationResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");
     
+    removeElementById(computingResultsImage);
+    
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
             .attr("y", canvasHeight/2 + significanceTestResultOffset)
@@ -672,6 +679,8 @@ function displayBiserialCorrelationResults()
 function displaySimpleRegressionResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");    
+    
+    removeElementById(computingResultsImage);
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
@@ -724,6 +733,8 @@ function displaySimpleRegressionResults()
 function displayMultipleRegressionResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");    
+    
+    removeElementById(computingResultsImage);
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)

@@ -340,5 +340,18 @@ function drawParameter(value)
                 .text(type + " = " + testResults["parameter"]);
         }
     }
-}           
+}    
+
+function drawComputingResultsImage()
+{
+    var sideBar = d3.select("#sideBarCanvas");
+    
+    sideBar.append("image")
+            .attr("x", sideBarWidth/2 - computingResultsImageSize/2)
+            .attr("y", canvasHeight/2 - computingResultsImageSize/2)
+            .attr("xlink:href", "images/checkingAssumptions.gif")
+            .attr("height", computingResultsImageSize)
+            .attr("width", computingResultsImageSize)
+            .attr("id", computingResultsImage);
+}
     
