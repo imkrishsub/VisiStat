@@ -1264,6 +1264,13 @@ function OnMouseOver(e)
         
         d3.selectAll(".tukey").attr("cursor", "pointer");
     }
+    
+    else if(target.className.baseVal == "doPairwiseTest")
+    {
+        setup(e, target);
+        
+        d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
+    }
 }
 
 function OnMouseOut(e)
