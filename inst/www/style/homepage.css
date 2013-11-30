@@ -26,6 +26,12 @@
     font:1.2em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
+#datasetInformation
+{
+    width: 40%;
+    display: inline-block;
+}
+
 #variablesDiv
 {
     text-align: center;
