@@ -29,7 +29,9 @@ export(performMultipleRegression)
 
 export(performTukeyHSDTestOneIndependentVariable)
 export(performTukeyHSDTestTwoIndependentVariables)
+
 export(performPairwiseTTest)
+export(performPairwiseWilcoxonTest)
 
 export(applyTransform)
 

@@ -544,18 +544,47 @@ function OnMouseDown(e)
     
     else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "tukey")
     {
-        var variableList = sort(currentVariableSelection);
-        console.dir(variableList);
-        console.log(variableList["independent"].length);
+        setup(e, target);
         
-        if(variableList["independent"].length == 1)
-        {
-            performTukeyHSDTestOneIndependentVariable(variableList["dependent"][0], variableList["independent"][0]);
-        }
-        else if(variableList["independent"].length == 2)
-        {
-            performTukeyHSDTestTwoIndependentVariables(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-        }
+        var canvas = d3.select("#plotCanvas");
+        var variableList = getSelectedVariables();
+    
+        canvas.append("rect")
+                .attr("x", canvasWidth/2 - buttonWidth/2)
+                .attr("y", 0)
+                .attr("width", buttonWidth)
+                .attr("height", buttonHeight)
+                .attr("rx", scaleForWindowSize(10) + "px")
+                .attr("ry", scaleForWindowSize(10) + "px")
+                .attr("fill", "url(#buttonFillNormal)")
+                .attr("filter", "url(#Bevel)")
+                .attr("stroke", "black")
+                .attr("id", "button")
+                .attr("class", "doPairwiseTest");
+    
+        canvas.append("text")
+                .attr("x", canvasWidth/2)
+                .attr("y", buttonHeight/2 + yAxisTickTextOffset)
+                .attr("text-anchor", "middle")
+                .text("SELECT TWO MEANS TO COMPARE")
+                .attr("id", "text")
+                .attr("class", "doPairwiseTest"); 
+        
+        d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(2000).style("opacity", "0.2");
+        d3.selectAll(".means").transition().delay(2000).duration(800).attr("r", engorgedMeanRadius);
+        
+        removeElementsByClassName("compareMean");
+        
+//         var variableList = sort(currentVariableSelection);
+//         
+//         if(variableList["independent"].length == 1)
+//         {
+//             performTukeyHSDTestOneIndependentVariable(variableList["dependent"][0], variableList["independent"][0]);
+//         }
+//         else if(variableList["independent"].length == 2)
+//         {
+//             performTukeyHSDTestTwoIndependentVariables(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+//         }
     }
     
 //     else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "outliers")
