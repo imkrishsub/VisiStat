@@ -143,7 +143,7 @@ var effectSizeWidth = sideBarWidth*0.8;
 var effectSizeHeight = scaleForWindowSize(30);
 var effectSizeFontSize = scaleForWindowSize(20) + "px";
 
-var computingResultsImageSize = scaleForWindowSize(50);
+var computingResultsImageSize = scaleForWindowSize(100);
 
 //transformation
 var normalityPlotWidth = scaleForWindowSize(125);

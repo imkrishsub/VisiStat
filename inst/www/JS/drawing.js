@@ -352,6 +352,6 @@ function drawComputingResultsImage()
             .attr("xlink:href", "images/checkingAssumptions.gif")
             .attr("height", computingResultsImageSize)
             .attr("width", computingResultsImageSize)
-            .attr("id", computingResultsImage);
+            .attr("id", "computingResultsImage");
 }
     
