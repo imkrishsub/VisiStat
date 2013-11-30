@@ -991,8 +991,8 @@ function OnMouseOver(e)
                 .attr("class", "hover");    
         
         canvas.append("text")
-                .attr("x", mouseX + scaleForWindowSize(10))
-                .attr("y", mouseY + scaleForWindowSize(15))
+                .attr("x", mouseX + scaleForWindowSize(15))
+                .attr("y", mouseY + scaleForWindowSize(25))
                 .attr("text-anchor", "middle")
                 .text(format(getActualValue(outlier.attr("cy"))))
                 .attr("class", "hover");
