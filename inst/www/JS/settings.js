@@ -64,7 +64,7 @@
     var fontSizeLabels = scaleForWindowSize(28);
     var fontSizeTicks = scaleForWindowSize(18);
     var fontSizeAssumptions = scaleForWindowSize(24);
-    var fontSizeAssumptionsTitle = scaleForWindowSize(28);
+    var fontSizeAssumptionsTitle = scaleForWindowSize(26);
     var fontSizeVariablePanel = scaleForWindowSize(20);
     var fontSizeVisualizationPanel = scaleForWindowSize(32);
         
@@ -127,7 +127,7 @@ var labelOffset = scaleForWindowSize(45);
 
 // Significance test
 var significanceTestScaleOffset = scaleForWindowSize(25);
-var assumptionStep = scaleForWindowSize(30);
+var assumptionStep = scaleForWindowSize(35);
 var assumptionOffsetTop = assumptionStep*3;
 var assumptionImageSize = scaleForWindowSize(25);
 
