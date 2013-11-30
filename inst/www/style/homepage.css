@@ -1,6 +1,6 @@
 .labels
 {
-    font-size: 30px;
+    font-size: 24px;
     color: #627bf4;
 }
 
@@ -77,14 +77,13 @@ th
 #submitButton
 {
     width: 15em;
-    height: 2.5em;
+    height: 3em;
     position: relative;
     top: 100%;
     color: #627bf4;
     font:1.7em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     padding:14px;
-    background-color:DarkKhaki;
-    border:1px solid #ffee00;
+    background-color:#f8f9f7;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     border-radius:10px;
@@ -103,5 +102,5 @@ th
 
 body
 {
-    background-color: LemonChiffon;
+    background-color: #f8f9f7;
 }
