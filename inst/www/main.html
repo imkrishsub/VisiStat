@@ -140,7 +140,7 @@
                                                     .attr("class", "variableNameHolderBack");
                                                 
                     variablePanelSVG.append("text")
-                                                    .attr("x", variableNameHolderPadding + variableNameHolderWidth/3)
+                                                    .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
                                                     .attr("y", variableNameHolderPadding + variableNameHolderHeight/2 + i*(variableNameHolderHeight + variableNameHolderPadding) + yAxisTickTextOffset)
                                                     .attr("fill", "black")
                                                     .attr("font-size", fontSizeVariablePanel + "px")
@@ -170,7 +170,7 @@
                                         .attr("class", "variableTypeToggleButton");
  
                     variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/8 + 2*variableNameHolderPadding)
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4 + 2*variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/4 + yAxisTickTextOffset/2)                                                   
                                     .attr("text-anchor", "left")
                                     .attr("font-size", fontSizeTicks/1.4)
@@ -180,7 +180,7 @@
                                     .attr("class", "dependentVariableText");
 
                     variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/8 + 2*variableNameHolderPadding)
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/4 + 2*variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + 3*(variableNameHolderHeight)/4 + yAxisTickTextOffset)                                                   
                                     .attr("text-anchor", "left")
                                     .text("INDEPENDENT")
@@ -234,7 +234,7 @@
                                                     .attr("xlink:href", "images/" + (i+1) + ".png")
                                                     .attr("height", visualizationImageSize)
                                                     .attr("width", visualizationImageSize)
-                                                    .attr("style", "opacity: 0.75;")
+                                                    .attr("style", "opacity: 0.5;")
                                                     .attr("id", visualizations[i])
                                                     .attr("class", "visualizationHolderImage");
                                                 
