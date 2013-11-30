@@ -615,8 +615,6 @@ function setVariableTypes()
             var toggleButton = d3.select("#" + variableNames[i] + ".variableTypeToggleButton");
             toggleButton.attr("xlink:href", "images/toggle_down.png");
             
-            console.log("hola");
-            
             var independentVariableText = d3.select("#" + variableNames[i] + ".independentVariableText");
             var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
 
@@ -955,7 +953,6 @@ function findEndingLine()
     var START = [];
     var END = [];
     
-    
     for(var j=0; j<completeLines.length; j++)
     {
         for(var i=0; i<means.length; i++)
@@ -970,9 +967,6 @@ function findEndingLine()
             }
         }
     }
-    
-    console.log("START = [" + START + "]");
-    console.log("END = [" + END + "]");
     
     for(var i=0; i<means.length; i++)
     {

@@ -90,7 +90,6 @@ function testForEvilVariables()
         var variable = variableNames[i];
         var variableData = variables[variable]["dataset"];
         var uniqueVariableData = variableData.unique();
-        console.log("Variable data type=" + variableDataTypes[variable]);
 
         if(isNaN(variableData[0]) || variableTypes[variable]=="participant")
         {            

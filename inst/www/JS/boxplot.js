@@ -113,13 +113,6 @@ function makeBoxplot()
         means[0] = mean(data[0]);  
     }   
     
-    console.log("data = [" + data + "]");
-    console.log("mins = [" + mins + "]");
-    console.log("maxs = [" + maxs + "]");
-    console.log("medians = [" + medians + "]");
-    console.log("iqrs = [" + iqrs + "]");
-    console.log("cis = [" + CIs + "]");    
-    
     min = Array.min(mins);
     max = Array.max(maxs);
     
