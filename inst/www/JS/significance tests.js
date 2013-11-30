@@ -255,7 +255,8 @@ function performANOVA(dependentVariable, independentVariable)
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
 
-                displaySignificanceTestResults();               
+                displaySignificanceTestResults();      
+                drawButtonInSideBar("POST-HOC TESTS", "tukey");
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -346,9 +347,10 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                            
                   
                 //drawing stuff
-                removeElementsByClassName("completeLines");           
-
+                removeElementsByClassName("completeLines");
+                
                 displaySignificanceTestResults();               
+                drawButtonInSideBar("POST-HOC TESTS", "tukey");
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -487,6 +489,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
                 removeElementsByClassName("completeLines"); 
                 
                 displaySignificanceTestResults();
+                drawButtonInSideBar("POST-HOC TESTS", "tukey");
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -534,6 +537,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                 removeElementsByClassName("completeLines");   
                 
                 displaySignificanceTestResults();
+                drawButtonInSideBar("POST-HOC TESTS", "tukey");
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -605,7 +609,10 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                 //drawing stuff
                 removeElementsByClassName("completeLines");   
                 
-//                 displaySignificanceTestResults();
+                resetSVGCanvas();
+                drawTukeyHSDPlot();
+                
+                displaySignificanceTestResults();
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
