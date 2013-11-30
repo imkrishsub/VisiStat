@@ -80,46 +80,47 @@ function loadAssumptionCheckList()
     var canvas = d3.select("#sideBarCanvas");
     
     var title = canvas.append("text")
-            .attr("x", 0)
+            .attr("x", sideBarWidth/2)
             .attr("y", 30 + assumptionOffsetTop)
-            .attr("font-size", fontSizeAssumptions + "px")
+            .attr("font-size", fontSizeAssumptionsTitle + "px")
+            .attr("text-anchor", "middle")
             .attr("fill", "#627bf4")
-            .text("Checking assumptions")
+            .text("CHECKING ASSUMPTIONS")
             .attr("class", "checkingAssumptions");
     
     title.transition().delay(500).duration(800).attr("y", assumptionOffsetTop - 50);
     
-    // for(var i=0; i<assumptions.length; i++)
-//     {
-//         canvas.append("text")
-//             .attr("x", assumptionImageSize*1.25)
-//             .attr("y", i*30 + assumptionOffsetTop)
-//             .attr("font-size", fontSizeAssumptions + "px")
-//             .attr("fill", meanColors["normal"])
-//             .text(assumptionsText[assumptions[i]])
-//             .attr("id", assumptions[i])
-//             .attr("class", "assumptions");
-//         canvas.append("image")
-//             .attr("x", 0)
-//             .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
-//             .attr("text-anchor", "end")
-//             .attr("xlink:href", "images/tick.png")
-//             .attr("height", assumptionImageSize)            
-//             .attr("width", assumptionImageSize)
-//             .attr("display", "none")
-//             .attr("id", assumptions[i])
-//             .attr("class", "ticks");
-//         canvas.append("image")
-//             .attr("x", 0)
-//             .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
-//             .attr("text-anchor", "end")
-//             .attr("xlink:href", "images/cross.png")
-//             .attr("height", assumptionImageSize)
-//             .attr("width", assumptionImageSize)
-//             .attr("display", "none")
-//             .attr("id", assumptions[i])
-//             .attr("class", "crosses");
-//     }
+    for(var i=0; i<assumptions.length; i++)
+    {
+        canvas.append("text")
+            .attr("x", assumptionImageSize*1.25)
+            .attr("y", i*30 + assumptionOffsetTop)
+            .attr("font-size", fontSizeAssumptions + "px")
+            .attr("fill", meanColors["normal"])
+            .text(assumptionsText[assumptions[i]])
+            .attr("id", assumptions[i])
+            .attr("class", "assumptions");
+        canvas.append("image")
+            .attr("x", 0)
+            .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
+            .attr("text-anchor", "end")
+            .attr("xlink:href", "images/tick.png")
+            .attr("height", assumptionImageSize)            
+            .attr("width", assumptionImageSize)
+            .attr("display", "none")
+            .attr("id", assumptions[i])
+            .attr("class", "ticks");
+        canvas.append("image")
+            .attr("x", 0)
+            .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
+            .attr("text-anchor", "end")
+            .attr("xlink:href", "images/cross.png")
+            .attr("height", assumptionImageSize)
+            .attr("width", assumptionImageSize)
+            .attr("display", "none")
+            .attr("id", assumptions[i])
+            .attr("class", "crosses");
+    }
 }
 
 function performNormalityTests()
