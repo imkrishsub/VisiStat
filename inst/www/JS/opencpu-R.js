@@ -406,6 +406,7 @@ function performNormalityTest(dist, dependentVariable, level)
                         //one sample t-test
                         d3.select("#normality.crosses").attr("display", "inline");
                         d3.select("#normality.loading").attr("display", "none");
+                        
                         d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
                 
                         //draw boxplots in red 
@@ -423,7 +424,9 @@ function performNormalityTest(dist, dependentVariable, level)
                 {   
                     if(variableList["independent"].length == 0)
                     {
-                        d3.select("#normality.ticks").attr("display", "inline");                          
+                        d3.select("#normality.ticks").attr("display", "inline");
+                        d3.select("#normality.loading").attr("display", "none");
+                        
                         drawDialogBoxToGetPopulationMean();
                     }
                     else
