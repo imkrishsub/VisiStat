@@ -50,9 +50,9 @@ function drawButtonInSideBar(buttonText, className, offset)
     var canvas = d3.select("#sideBarCanvas");
     
     canvas.append("rect")
-            .attr("x", 0)
+            .attr("x", scaleForWindowSize(10))
             .attr("y", offset*buttonOffset)
-            .attr("width", sideBarWidth)
+            .attr("width", sideBarWidth - scaleForWindowSize(10)*2)
             .attr("height", buttonHeight)
             .attr("rx", scaleForWindowSize(10) + "px")
             .attr("ry", scaleForWindowSize(10) + "px")
