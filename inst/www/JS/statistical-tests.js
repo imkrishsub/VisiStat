@@ -112,27 +112,27 @@ function loadAssumptionCheckList()
                 .attr("id", assumptions[i])
                 .attr("class", "loading");
                 
-//             canvas.append("image")
-//                 .attr("x", 0)
-//                 .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
-//                 .attr("text-anchor", "end")
-//                 .attr("xlink:href", "images/tick.png")
-//                 .attr("height", assumptionImageSize)            
-//                 .attr("width", assumptionImageSize)
-//                 .attr("display", "none")
-//                 .attr("id", assumptions[i])
-//                 .attr("class", "ticks");
-//                          
-//             canvas.append("image")
-//                 .attr("x", 0)
-//                 .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2)
-//                 .attr("text-anchor", "end")
-//                 .attr("xlink:href", "images/cross.png")
-//                 .attr("height", assumptionImageSize)
-//                 .attr("width", assumptionImageSize)
-//                 .attr("display", "none")
-//                 .attr("id", assumptions[i])
-//                 .attr("class", "crosses");
+            canvas.append("image")
+                .attr("x", 0)
+                .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
+                .attr("text-anchor", "end")
+                .attr("xlink:href", "images/tick.png")
+                .attr("height", assumptionImageSize)            
+                .attr("width", assumptionImageSize)
+                .attr("display", "none")
+                .attr("id", assumptions[i])
+                .attr("class", "ticks");
+                         
+            canvas.append("image")
+                .attr("x", 0)
+                .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2)
+                .attr("text-anchor", "end")
+                .attr("xlink:href", "images/cross.png")
+                .attr("height", assumptionImageSize)
+                .attr("width", assumptionImageSize)
+                .attr("display", "none")
+                .attr("id", assumptions[i])
+                .attr("class", "crosses");
         }    
     }, 1300);
     
