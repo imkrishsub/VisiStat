@@ -54,8 +54,8 @@ input[type=text]
     border: none;
 }
 
-body
+text
 {
-    font: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: impact, georgia, times, serif; font-weight: normal; font-style: normal;
 }
 
