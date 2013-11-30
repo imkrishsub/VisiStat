@@ -579,6 +579,7 @@ function OnMouseDown(e)
         removeElementsByClassName("ticks");
         removeElementsByClassName("crosses");
         removeElementsByClassName("tukey");
+        removeElementsByClassName("loading");
         
         var variableList = getSelectedVariables();
         console.dir(variableList);
