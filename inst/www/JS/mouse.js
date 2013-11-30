@@ -580,11 +580,12 @@ function OnMouseDown(e)
         removeElementsByClassName("crosses");
         removeElementsByClassName("tukey");
         
+        var variableList = getSelectedVariables();
+        
         drawBoxPlotLegends(variables[variableList["independent"][1]]["dataset"].unique());
         resetMeans();
         
         var canvas = d3.select("#plotCanvas");
-        var variableList = getSelectedVariables();
     
         canvas.append("rect")
                 .attr("x", canvasWidth/2 - buttonWidth/2)
