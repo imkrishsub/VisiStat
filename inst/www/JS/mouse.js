@@ -310,6 +310,37 @@ function OnMouseDown(e)
         }
     }
     
+    else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "doPairwiseTest")
+    {
+        d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
+        
+        removeElementsByClassName("doPairwiseTest");
+        removeElementsByClassName("boxplotLegends");
+        
+        //get selected means
+        var means = document.getElementsByClassName("means");
+        var selectedMeans = []; 
+        var variableList = getSelectedVariables();
+        
+        for(var i=0; i<means.length; i++)
+        {
+            if(means[i].getAttribute("fill") == meanColors["click"])
+                selectedMeans.push(means[i]);
+        }
+        
+        console.log("selectedMeans:");
+        console.dir(selectedMeans);
+        
+        if(selectedMeans.length != 2)
+        {
+            alert("select two means then press compare");
+        }
+        else
+        {
+            compareMeans();
+        }
+    }
+    
     else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "compareMean")
     {
         setup(e, target);
@@ -547,7 +578,9 @@ function OnMouseDown(e)
         removeElementsByClassName("assumptions");
         removeElementsByClassName("ticks");
         removeElementsByClassName("crosses");
+        removeElementsByClassName("tukey");
         
+        drawBoxPlotLegends();
         resetMeans();
         
         var canvas = d3.select("#plotCanvas");
