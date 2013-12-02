@@ -191,9 +191,6 @@ function performNormalityTests()
     //normality
     distributions[variableList["dependent"][0]] = {};
     
-    console.log("i");
-    console.dir(variableList);
-    
     if(variableList["independent"].length == 2)
     {
         variableList = sort(currentVariableSelection);
@@ -207,13 +204,10 @@ function performNormalityTests()
     }
     else
     {
-        console.log(variableList["dependent"].length);
         for(i=0; i<variableList["dependent"].length; i++)                        
         {
-            console.log("hi");
             for(j=0; j<variableList["independent-levels"].length; j++)
             {   
-                console.log("hello there");
                 //performNormalityTest(dist, dependentVariable, level)
                 performNormalityTest(variables[variableList["dependent"][i]][variableList["independent-levels"][j]], variableList["dependent"][i], variableList["independent-levels"][j]);
             }
