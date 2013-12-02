@@ -150,7 +150,9 @@ function makeBoxplot()
             .attr("stroke", "black")
             .attr("id", "yAxis")
             .attr("class", "axes");
-
+    
+    console.log("pos1:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
     //axes labels
     if(altBoxPlot)
     {
@@ -251,6 +253,8 @@ function makeBoxplot()
     
     var widthSlice = plotWidth/(nGroovesX);
     
+    console.log("pos2:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
     
     for(var i=0; i<nGroovesX; i++)
     {
