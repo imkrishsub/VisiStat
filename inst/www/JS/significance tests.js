@@ -337,7 +337,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
-                  testResults["method"] = "Repeated Measures ANOVA ANOVA"; //todo
+                  testResults["method"] = "Repeated Measures ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["p"] = changePValueNotation(output.p);
                   testResults["effect-size-type"] = "eS";

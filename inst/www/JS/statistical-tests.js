@@ -328,7 +328,8 @@ function displayOneSampleTestResults()
     var cy = [];
 
     removeElementsByClassName("significanceTest");
-    removeElementById("computingResultsImage");
+    if(document.getElementById("computingResultsImage").length > 0)
+        removeElementById("computingResultsImage");
     
     var means = document.getElementsByClassName("means");
     var medians = document.getElementsByClassName("medians");
@@ -461,7 +462,8 @@ function displaySignificanceTestResults()
     var cy = [];
 
     removeElementsByClassName("significanceTest");
-    removeElementById("computingResultsImage");
+    if(document.getElementById("computingResultsImage").length > 0)
+        removeElementById("computingResultsImage");
     
     var means = document.getElementsByClassName("means");
     var meanRefLines = [];
@@ -662,7 +664,8 @@ function displayCorrelationResults()
 { 
     var sideBar = d3.select("#sideBarCanvas");
     
-    removeElementById("computingResultsImage");
+    if(document.getElementById("computingResultsImage").length > 0)
+        removeElementById("computingResultsImage");
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
@@ -709,7 +712,8 @@ function displayBiserialCorrelationResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");
     
-    removeElementById("computingResultsImage");
+    if(document.getElementById("computingResultsImage").length > 0)
+        removeElementById("computingResultsImage");
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
@@ -728,7 +732,8 @@ function displaySimpleRegressionResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");    
     
-    removeElementById("computingResultsImage");
+    if(document.getElementById("computingResultsImage").length > 0)
+        removeElementById("computingResultsImage");
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
@@ -782,7 +787,8 @@ function displayMultipleRegressionResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");    
     
-    removeElementById("computingResultsImage");
+    if(document.getElementById("computingResultsImage").length > 0)
+        removeElementById("computingResultsImage");
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
