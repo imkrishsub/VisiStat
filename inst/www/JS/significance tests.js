@@ -682,6 +682,8 @@ function performPairwiseTTest(varianceEqual, paired) //groupA, groupB, paired = 
 
                     console.log("p = " + output.p);
                     console.log("t = " + output.t);
+                    console.log("d = " + output.d);
+                    console.log("method = " + output.method);
             
                 //drawing stuff
 //                 removeElementsByClassName("completeLines");   
