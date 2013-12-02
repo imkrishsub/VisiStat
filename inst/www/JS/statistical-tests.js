@@ -287,7 +287,7 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         }
         
         var selectedMeans = getSelectedMeansForColourBoxPlotData();
-        var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData
+        var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
         
         if(homogeneity)
         {         
