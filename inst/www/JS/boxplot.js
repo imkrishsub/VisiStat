@@ -29,6 +29,10 @@ function makeBoxplot()
     var ids = [];
     var widthOfEachBox;
     
+    //for colour boxplot
+    var levelsForColor;
+    var levelsForXAxis;
+    
     //get data
     if(currentVariableSelection.length > 1)
     {
@@ -172,7 +176,7 @@ function makeBoxplot()
     {
         if(variableList["independent"].length == 2)
         {
-            var levelsForXAxis = variableList["independent-levels"][0];
+            levelsForXAxis = variableList["independent-levels"][0];
             xStep = plotWidth/levelsForXAxis.length;  
             if(i<levelsForXAxis.length)
             {
@@ -252,7 +256,7 @@ function makeBoxplot()
         
             if(variableList["independent"].length == 2)
             {
-                var levelsForColor = variableList["independent-levels"][1];
+                levelsForColor = variableList["independent-levels"][1];
                 boxColor = colors[i%levelsForColor.length];
             }
         
@@ -379,7 +383,9 @@ function makeBoxplot()
                         .attr("id", ids[i])
                         .attr("class", "means")
                         .attr("data-indepenentVariableA", dataAttributeForIndependentVariableA)
-                        .attr("data-indepenentVariableB", dataAttributeForIndependentVariableB));
+                        .attr("data-indepenentVariableB", dataAttributeForIndependentVariableB))
+                        .attr("data-levelA", (levels[i].split("-"))[0])
+                        .attr("data-levelB", (levels[i].split("-"))[1]);
         }        
     }
 }
