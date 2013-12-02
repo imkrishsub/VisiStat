@@ -773,18 +773,21 @@ function selectAllMeans()
     
     for(var i=0; i<means.length; i++)
     {
-        means[i].setAttribute("fill", meanColors["click"]);
+        var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
+        mean.transition().duration(800).attr("fill", meanColors["click"]);
         
         if(i != means.length - 1)
         {
-            plotCanvas.append("line")
+            var line = plotCanvas.append("line")
                         .attr("x1", means[i].getAttribute("cx"))
                         .attr("y1", means[i].getAttribute("cy"))
-                        .attr("x2", means[i+1].getAttribute("cx"))
-                        .attr("y2", means[i+1].getAttribute("cy"))
+                        .attr("x2", means[i].getAttribute("cx"))
+                        .attr("y2", means[i].getAttribute("cy"))
                         .attr("stroke", meanColors["click"])
                         .attr("stroke-dasharray", "5,5")
                         .attr("class", "completeLines");
+            
+            line.transition().delay(800).duration(800).attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy");            
         }
     }
 }
