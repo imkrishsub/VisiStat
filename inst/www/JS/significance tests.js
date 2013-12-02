@@ -420,8 +420,8 @@ function findEffect(dependentVariable, independentVariables)
                   }, function(output) {                                                   
                 var variableList = getSelectedVariables();
                 
-                var levelsA = variables[variableList["independent"][0]]["dataset"].unique().sort();
-                var levelsB = variables[variableList["independent"][1]]["dataset"].unique().sort();
+                var levelsA = variables[variableList["independent"][0]]["dataset"].unique().slice().sort();
+                var levelsB = variables[variableList["independent"][1]]["dataset"].unique().slice().sort();
 
                 for(var i=0; i<levelsB.length; i++)
                 {
@@ -565,7 +565,7 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                     //make a data structure to hold all this
                     
                     //get levels of the independent variable
-                    var levels = variables[independentVariable]["dataset"].unique();
+                    var levels = variables[independentVariable]["dataset"].unique().slice();
                     //sort it
                     levels = levels.sort();
                     var index = 0;

@@ -100,7 +100,7 @@ function getLinearModelCoefficients(outcome, explanatory)
                 if(isNaN(variables[explanatory]["dataset"][0]))
                 {
                     //we have a categorical variable
-                    var levels = variables[explanatory]["dataset"].unique().sort();                    
+                    var levels = variables[explanatory]["dataset"].unique().slice().sort();                    
                     var nCoefficients = levels.length - 1;
                     var coefficients = output.coefficients;
                   
