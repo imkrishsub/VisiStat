@@ -15,6 +15,9 @@ function makeBoxplot()
     //initializations
     var variableList = sort(currentVariableSelection);
     
+    console.log("variableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
+    
     var altBoxPlot = false;
     var data = [];
     var mins = [];
