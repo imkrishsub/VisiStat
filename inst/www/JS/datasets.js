@@ -28,7 +28,7 @@ var variablesInDataset = new Object();
     variablesInDataset["hp"] = ["name", "house", "pet"];
     variablesInDataset["keyboards"] = ["participantID", "keyboardLayout", "gender", "typingSpeed", "errors", "userSatisfaction"];
     variablesInDataset["foodEffect"] = ["participantID","foodEaten","gender","score_V","score_Q","satisfactionRating"];
-    variablesInDataset["weight_loss"] = ["participantID","condition","exercise","age","BMI","weightLost"];
+    variablesInDataset["weight_loss"] = ["participantID","condition","exercise","weightLost","BMI","userRating"];
     variablesInDataset["phoneEffect"] = ["participant","OS","stressScore","rating"];
  
 var types = ["participant", "dependent", "independent"];
@@ -47,7 +47,7 @@ var variablesInDatasetDataType = new Object();
     variablesInDatasetDataType["hp"] = [dataTypes[0], dataTypes[0], dataTypes[0]];
     variablesInDatasetDataType["keyboards"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     variablesInDatasetDataType["foodEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
-    variablesInDatasetDataType["weight_loss"] = [dataTypes[0], dataTypes[0], dataTypes[1], dataTypes[3], dataTypes[2], dataTypes[3]];
+    variablesInDatasetDataType["weight_loss"] = [dataTypes[0], dataTypes[0], dataTypes[1], dataTypes[3], dataTypes[2], dataTypes[1]];
     variablesInDatasetDataType["phoneEffect"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[1]];
     
 function initVariablesInDatasetTypes()
