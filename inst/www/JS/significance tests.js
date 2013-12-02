@@ -387,6 +387,8 @@ function performFriedmanTest(dependentVariable, independentVariable)
                   
                   testResults["method"] = output.method; 
                   testResults["p"] = changePValueNotation(output.p);
+                  testResults["effect-size"] = 0;
+                  testResults["effect-size-type"] = "eS";
 //                   testResults["effect-size-type"] = "";
                            
                   
