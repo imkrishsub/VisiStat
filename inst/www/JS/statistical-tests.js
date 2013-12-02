@@ -191,6 +191,8 @@ function performNormalityTests()
     //normality
     distributions[variableList["dependent"][0]] = {};
     
+    console.log("i");
+    
     if(variableList["independent"].length == 2)
     {
         variableList = sort(currentVariableSelection);
