@@ -19,8 +19,11 @@ function mean(values)
 
 function median(values) 
 {
+    console.log("before=[" + values + "]");
     temp = values;
     temp.sort( function(a,b) {return a - b;} );
+    
+    console.log("after=[" + values + "]");
 
     var half = Math.floor(temp.length/2);
 
@@ -28,6 +31,8 @@ function median(values)
         return temp[half];
     else
         return (temp[half-1] + temp[half]) / 2.0;
+    
+
 }
 
 function findNumberOfCombinations(n, y)
