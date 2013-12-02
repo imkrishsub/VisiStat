@@ -317,14 +317,14 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
                 if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
                 {
                     if(!pairwiseComparisons)
-                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[0]], "FALSE", "TRUE");
+                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[1]], "FALSE", "TRUE");
                     else
                         performPairwiseTTest("FALSE", "TRUE");
                 }
                 else
                 {
                     if(!pairwiseComparisons)
-                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[0]], "FALSE", "FALSE");
+                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[1]], "FALSE", "FALSE");
                     else
                         performPairwiseTTest("FALSE", "FALSE");
                 }
