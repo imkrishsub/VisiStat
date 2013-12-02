@@ -996,7 +996,7 @@ Object.prototype.clone = function() {
       newObj[i] = this[i].clone();
     } else newObj[i] = this[i]
   } return newObj;
-};
+}
     
         
             
