@@ -675,6 +675,7 @@ function performPairwiseTTest(varianceEqual, paired) //groupA, groupB, paired = 
                     varianceEqual: varianceEqual,
                     paired: paired,
                     independentVariableName: variableList["independent"][0], 
+                    dependentVariableName: variableList["dependent"][0], 
                     levelA: variableList["independent-levels"][0],
                     levelB: variableList["independent-levels"][1]
                   }, function(output) {                                                   
