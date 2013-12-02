@@ -301,7 +301,7 @@ function performTwoWayANOVA(dependentVariable, independentVariableA, independent
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
 
-                displaySignificanceTestResults();               
+                displaySignificanceTestResults();  
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -393,7 +393,8 @@ function performFriedmanTest(dependentVariable, independentVariable)
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
 
-                displaySignificanceTestResults();               
+                displaySignificanceTestResults();   
+                drawButtonInSideBar("POST-HOC TESTS", "tukey");
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -483,7 +484,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
                 removeElementsByClassName("completeLines"); 
                 
                 displaySignificanceTestResults();
-                drawButtonInSideBar("POST-HOC TESTS", "tukey");
+//                 drawButtonInSideBar("POST-HOC TESTS", "tukey");
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -718,7 +719,7 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
                   
 
                     console.log("p-values = " + output.p);                    
-                    console.log("U = " + output.U);
+                    console.log("statistic = " + output.U);
             
                 //drawing stuff
 //                 removeElementsByClassName("completeLines");   
