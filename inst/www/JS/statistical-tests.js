@@ -303,7 +303,12 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         else
         {
             if(selectedMeans.length > 2)
-                console.log("Friedman's test");
+            {
+                drawComputingResultsImage();
+                selectAllMeans();
+            
+                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+            }                
             else
             {
                 var levelsOfDistributionA = selectedMeanLevels[0];

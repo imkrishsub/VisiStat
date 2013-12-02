@@ -763,3 +763,28 @@ function drawBoxPlotLegends(varNames)
             
     }
 }
+
+function selectAllMeans()
+{
+    var means = document.getElementsByClassName("means");
+    var means_d3 = d3.selectAll(".means");
+    
+    var plotCanvas = d3.select("#plotCanvas");
+    
+    for(var i=0; i<means.length; i++)
+    {
+        means[i].setAttribute("fill", meanColors["click"]);
+        
+        if(i != means.length - 1)
+        {
+            plotCanvas.append("line")
+                        .attr("x1", means[i].getAttribute("cx"))
+                        .attr("y1", means[i].getAttribute("cy"))
+                        .attr("x2", means[i+1].getAttribute("cx"))
+                        .attr("y2", means[i+1].getAttribute("cy"))
+                        .attr("stroke", meanColors["click"])
+                        .attr("stroke-dasharray", "5,5")
+                        .attr("class", "completeLines");
+        }
+    }
+}

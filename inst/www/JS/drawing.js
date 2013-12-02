@@ -357,4 +357,5 @@ function drawComputingResultsImage()
             .attr("width", computingResultsImageSize)
             .attr("id", "computingResultsImage");
 }
+
     
