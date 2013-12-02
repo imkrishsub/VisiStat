@@ -40,6 +40,8 @@ function makeBoxplot()
         {
             case 0:
                     {
+                        console.log("pos1:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+                        console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
                         for(var i=0; i<variableList["dependent"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][i]]["dataset"];      
@@ -50,7 +52,8 @@ function makeBoxplot()
                             iqrs[i] = IQR[variableList["dependent"][i]]["dataset"]; 
                             CIs[i] = CI[variableList["dependent"][i]]["dataset"]; 
                         }
-                        
+                        console.log("pos2:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+                        console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
                         break;                    
                     }
             case 1:
@@ -116,9 +119,6 @@ function makeBoxplot()
         means[0] = mean(data[0]);  
     }   
     
-    console.log("pos1:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
-    
     min = Array.min(mins);
     max = Array.max(maxs);
     
@@ -133,8 +133,6 @@ function makeBoxplot()
     
     ids = getValidIds(labels);
     
-    console.log("pos2:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
     nGroovesY = numberOfGrooves;
     
     // Draw axes        
@@ -155,9 +153,6 @@ function makeBoxplot()
             .attr("stroke", "black")
             .attr("id", "yAxis")
             .attr("class", "axes");
-    
-    console.log("pos3:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
     
     //axes labels
     if(altBoxPlot)
