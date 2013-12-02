@@ -787,7 +787,7 @@ function selectAllMeans()
                         .attr("stroke-dasharray", "5,5")
                         .attr("class", "completeLines");
             
-            line.transition().delay(800).duration(800).attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy");            
+            line.transition().delay(800).duration(800).attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy"));            
         }
     }
 }
