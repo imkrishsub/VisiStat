@@ -67,8 +67,6 @@ function splitThisLevelBy(independentVariableA, independentVariableB, dependentV
         splitData[indexA][indexB].push(dep[i]);
     }
     
-    console.dir(splitData);
-    
     return splitData;
 }
 

@@ -19,12 +19,9 @@ function mean(values)
 
 function median(values) 
 {
-    console.log("before=[" + values + "]");
     temp = values.slice();
     temp.sort( function(a,b) {return a - b;} );
     
-    console.log("after=[" + values + "]");
-
     var half = Math.floor(temp.length/2);
 
     if(temp.length % 2)

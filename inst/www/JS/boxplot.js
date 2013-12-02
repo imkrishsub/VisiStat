@@ -164,8 +164,6 @@ function makeBoxplot()
     
     //x-axis grooves           
     nGroovesX = labels.length;  
-    
-    console.log("number of grooves in X-axis = " + nGroovesX);
     widthOfEachBox = plotWidth/(labels.length*2) > boxWidth ? boxWidth : plotWidth/(labels.length*2);
     
     var xStep = plotWidth/nGroovesX;  
@@ -178,7 +176,6 @@ function makeBoxplot()
             xStep = plotWidth/levelsForXAxis.length;  
             if(i<levelsForXAxis.length)
             {
-                console.log("i=" + i + ", levels=" + levelsForXAxis.length);
                 canvas.append("line")
                         .attr("x1", LEFT + index*xStep + xStep/2)
                         .attr("y1", BOTTOM  + axesOffset)
