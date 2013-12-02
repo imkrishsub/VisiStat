@@ -309,6 +309,9 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
                 var levelsOfDistributionA = selectedMeanLevels[0];
                 var levelsOfDistributionB = selectedMeanLevels[1];
                 
+                console.log(levelsOfDistributionA);
+                console.log(levelsOfDistributionB);
+                
                 drawComputingResultsImage();
                             
                 if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
