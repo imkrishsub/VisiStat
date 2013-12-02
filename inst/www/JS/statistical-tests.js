@@ -192,6 +192,7 @@ function performNormalityTests()
     distributions[variableList["dependent"][0]] = {};
     
     console.log("i");
+    console.dir(variableList);
     
     if(variableList["independent"].length == 2)
     {
