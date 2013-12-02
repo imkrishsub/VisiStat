@@ -390,6 +390,9 @@ function makeBoxplot()
                         .attr("data-indepenentVariableB", dataAttributeForIndependentVariableB));
         }        
     }
+    
+    console.log("variableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
 }
 
 function redrawBoxPlot()
