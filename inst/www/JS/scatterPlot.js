@@ -21,10 +21,7 @@ function makeScatterplot()
 
     TOP = canvasHeight/2 - plotHeight/2 - topOffset;
     BOTTOM = canvasHeight/2 + plotHeight/2 - topOffset;
-    
-    var variableList = sort(currentVariableSelection);
-    console.log("variableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
+
     var canvas = d3.select("#plotCanvas");
     
     if(currentVariableSelection.length == 3)

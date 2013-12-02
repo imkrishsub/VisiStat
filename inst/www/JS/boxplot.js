@@ -15,9 +15,6 @@ function makeBoxplot()
     //initializations
     var variableList = sort(currentVariableSelection);
     
-    console.log("variableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
-    
     var altBoxPlot = false;
     var data = [];
     var mins = [];
@@ -39,9 +36,7 @@ function makeBoxplot()
         switch(variableList["independent"].length)
         {
             case 0:
-                    {
-                        console.log("pos1:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-                        console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
+                    {                        
                         for(var i=0; i<variableList["dependent"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][i]]["dataset"];      
@@ -51,9 +46,7 @@ function makeBoxplot()
                             medians[i] = median(data[i]);
                             iqrs[i] = IQR[variableList["dependent"][i]]["dataset"]; 
                             CIs[i] = CI[variableList["dependent"][i]]["dataset"]; 
-                        }
-                        console.log("pos2:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-                        console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
+                        }                      
                         break;                    
                     }
             case 1:
