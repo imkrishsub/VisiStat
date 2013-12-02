@@ -681,18 +681,24 @@ function performPairwiseTTest(varianceEqual, paired) //groupA, groupB, paired = 
                   }, function(output) {                                                   
                   
 
-                    console.log("p = " + output.p);
-                    console.log("t = " + output.t);
-                    console.log("d = " + output.d);
-                    console.log("method = " + output.method);
-            
+                    console.log("\t\t " + output.method);
+                  console.log("\t\t\t p = " + output.p);
+                  console.log("\t\t\t t = " + output.t);
+                  console.log("\t\t\t d = " + output.d);
+                  
+                  
+                  testResults["parameter"] = output.t;
+                  testResults["parameter-type"] = "t";
+                  
+                  testResults["p"] = changePValueNotation(output.p); 
+                  testResults["method"] = "Pairwise t-test with Bonferroni correction";
+                  testResults["effect-size"] = output.d;
+                  testResults["effect-size-type"] = "d";
+                  
                 //drawing stuff
-//                 removeElementsByClassName("completeLines");   
-//                 
-//                 resetSVGCanvas();
-//                 drawTukeyHSDPlot();
-//                 
-//                 displaySignificanceTestResults();
+                removeElementsByClassName("completeLines");
+                
+                displaySignificanceTestResults();
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -718,21 +724,29 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
                     varianceEqual: varianceEqual,
                     paired: paired,
                     independentVariableName: variableList["independent"][0], 
+                    dependentVariableName: variableList["dependent"][0], 
                     levelA: variableList["independent-levels"][0],
                     levelB: variableList["independent-levels"][1]
                   }, function(output) {                                                   
                   
 
-                    console.log("p-values = " + output.p);                    
-                    console.log("statistic = " + output.U);
-            
+                  console.log("\t\t Pairwise wilcox-test");
+                  console.log("\t\t\t U = " + output.U);
+                  console.log("\t\t\t p = " + output.p);
+                  console.log("\t\t\t r = " + output.r);
+                  
+                  testResults["parameter"] = output.U;
+                  testResults["parameter-type"] = paired == "FALSE" ? "U" : "W";
+                  
+                  testResults["p"] = changePValueNotation(output.p);                  
+                  testResults["effect-size"] = output.r;
+                  testResults["method"] = "Pairwise Wilcox-test";
+                  testResults["effect-size-type"] = "r";
+                  
                 //drawing stuff
-//                 removeElementsByClassName("completeLines");   
-//                 
-//                 resetSVGCanvas();
-//                 drawTukeyHSDPlot();
-//                 
-//                 displaySignificanceTestResults();
+                removeElementsByClassName("completeLines");           
+
+                displaySignificanceTestResults(); 
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
