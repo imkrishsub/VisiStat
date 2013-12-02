@@ -20,7 +20,7 @@ function mean(values)
 function median(values) 
 {
     console.log("before=[" + values + "]");
-    temp = values;
+    temp = values.clone();
     temp.sort( function(a,b) {return a - b;} );
     
     console.log("after=[" + values + "]");
