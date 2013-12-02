@@ -34,21 +34,10 @@ function compareMeans()
                         console.log("colourBoxPlotData=");
                         console.dir(colourBoxPlotData);
                         
-                        var means = document.getElementsByClassName("means");
-                        var selectedMeans = [];
-                        
-                        for(var i=0; i<means.length; i++)
-                        {
-                            if(means[i].getAttribute("fill") == meanColors["click"])
-                            {   
-                                selectedMeans.push(means[i]);
-                            }
-                        }
+                        var selectedMeans = getSelectedMeansForColourBoxPlotData();
                         
                         var levelA = selectedMeans[0].getAttribute("data-levelA");
                         var levelB = selectedMeans[0].getAttribute("data-levelB");
-                        
-                        console.log("levelA = " + levelA + ", levelB = " + levelB);
                         
                         sampleSize = colourBoxPlotData[levelA][levelB].length;
                     }
@@ -281,7 +270,6 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         variances[dependentVariable] = new Object();
     
     variances[dependentVariable][independentVariable] = homogeneous;
-
     
     if(getObjectLength(variances[dependentVariable]) == (currentVariableSelection.length - 1))
     {       
@@ -298,6 +286,9 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             }
         }
         
+        var selectedMeans = getSelectedMeansForColourBoxPlotData();
+        var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData
+        
         if(homogeneity)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
@@ -311,7 +302,30 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         }
         else
         {
-            console.log("Friedman's test");
+            if(selectedMeans.length > 2)
+                console.log("Friedman's test");
+            else
+            {
+                var levelsOfDistributionA = selectedMeanLevels[0];
+                var levelsOfDistributionB = selectedMeanLevels[1];
+                
+                drawComputingResultsImage();
+                            
+                if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                {
+                    if(!pairwiseComparisons)
+                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[0]], "FALSE", "TRUE");
+                    else
+                        performPairwiseTTest("FALSE", "TRUE");
+                }
+                else
+                {
+                    if(!pairwiseComparisons)
+                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[0]], "FALSE", "FALSE");
+                    else
+                        performPairwiseTTest("FALSE", "FALSE");
+                }
+            }                   
         }
     }    
 }

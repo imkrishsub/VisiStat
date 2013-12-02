@@ -109,4 +109,46 @@ function changePValueNotation(p)
     else
         return "p = " + p;
 }
-        
+      
+function getSelectedMeansForColourBoxPlotData()
+{
+    var means = document.getElementsByClassName("means");
+    var selectedMeans = [];
+    
+    for(var i=0; i<means.length; i++)
+    {
+        if(means[i].getAttribute("fill") == meanColors["click"])
+        {   
+            selectedMeans.push(means[i]);
+        }
+    }
+    
+    return selectedMeans;
+}
+
+function getSelectedMeanLevelsForColourBoxPlotData()
+{
+    var means = document.getElementsByClassName("means");
+    var selectedMeans = [];
+    
+    for(var i=0; i<means.length; i++)
+    {
+        if(means[i].getAttribute("fill") == meanColors["click"])
+        {   
+            selectedMeans.push(means[i]);
+        }
+    }
+    
+    var selectedMeanLevels = [];
+    
+    for(var i=0; i<selectedMeans.length; i++)
+    {
+        if(selectedMeanLevels[i] == undefined)
+            selectedMeanLevels[i] = []; 
+            
+        selectedMeanLevels[i].push(selectedMeans[i].getAttribute("data-levelA"));
+        selectedMeanLevels[i].push(selectedMeans[i].getAttribute("data-levelB"));
+    }
+    
+    return selectedMeanLevels;
+}
