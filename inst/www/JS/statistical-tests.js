@@ -207,9 +207,10 @@ function performNormalityTests()
     }
     else
     {
-        for(var i=0; i<variableList["dependent"].length; i++)                        
+        for(i=0; i<variableList["dependent"].length; i++)                        
         {
-            for(var j=0; j<variableList["independent-levels"].length; j++)
+            console.log("hi");
+            for(j=0; j<variableList["independent-levels"].length; j++)
             {   
                 console.log("hello there");
                 //performNormalityTest(dist, dependentVariable, level)
