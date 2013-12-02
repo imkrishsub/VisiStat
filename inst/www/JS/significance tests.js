@@ -270,8 +270,6 @@ function performANOVA(dependentVariable, independentVariable)
     });
 }
 
-
-
 function performTwoWayANOVA(dependentVariable, independentVariableA, independentVariableB)
 {
     // (dataset, dependentVariable, independentVariableA, independentVariableB)
@@ -450,9 +448,6 @@ function findEffect(dependentVariable, independentVariables)
         
     });
 }
-
-
-
 
 function performWelchANOVA(dependentVariable, independentVariable)
 {
@@ -664,11 +659,52 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
     });
 }
 
+
+//POST-HOC TESTS
 function performPairwiseTTest(varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
 {
     var variableList = getSelectedVariables();
     
     var req = opencpu.r_fun_json("performPairwiseTTest", {
+                    dependentVariable: variables[variableList["dependent"][0]]["dataset"],
+                    independentVariable: variables[variableList["independent"][0]]["dataset"],                    
+                    dataset: dataset,
+                    varianceEqual: varianceEqual,
+                    paired: paired,
+                    independentVariableName: variableList["independent"][0], 
+                    levelA: variableList["independent-levels"][0],
+                    levelB: variableList["independent-levels"][1]
+                  }, function(output) {                                                   
+                  
+
+                    console.log("stream of p-values = " + output.p);
+            
+                //drawing stuff
+//                 removeElementsByClassName("completeLines");   
+//                 
+//                 resetSVGCanvas();
+//                 drawTukeyHSDPlot();
+//                 
+//                 displaySignificanceTestResults();
+        
+      }).fail(function(){
+          alert("Failure: " + req.responseText);
+    });
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+      alert("Server error: " + req.responseText);
+    });
+    req.complete(function(){
+        
+    });
+}
+
+function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
+{
+    var variableList = getSelectedVariables();
+    
+    var req = opencpu.r_fun_json("performPairwiseWilcoxTest", {
                     dependentVariable: variables[variableList["dependent"][0]]["dataset"],
                     independentVariable: variables[variableList["independent"][0]]["dataset"],                    
                     dataset: dataset,

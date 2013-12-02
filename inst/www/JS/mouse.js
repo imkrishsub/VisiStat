@@ -310,37 +310,6 @@ function OnMouseDown(e)
         }
     }
     
-    else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "doPairwiseTest")
-    {
-        d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
-        
-        removeElementsByClassName("doPairwiseTest");
-        removeElementsByClassName("boxplotLegends");
-        
-        //get selected means
-        var means = document.getElementsByClassName("means");
-        var selectedMeans = []; 
-        var variableList = getSelectedVariables();
-        
-        for(var i=0; i<means.length; i++)
-        {
-            if(means[i].getAttribute("fill") == meanColors["click"])
-                selectedMeans.push(means[i]);
-        }
-        
-        console.log("selectedMeans:");
-        console.dir(selectedMeans);
-        
-        if(selectedMeans.length != 2)
-        {
-            alert("select two means then press compare");
-        }
-        else
-        {
-            compareMeans();
-        }
-    }
-    
     else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "compareMean")
     {
         setup(e, target);
@@ -373,10 +342,41 @@ function OnMouseDown(e)
                 .attr("id", "text")
                 .attr("class", "compareNow"); 
         
-        d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(2000).style("opacity", "0.2");
-        d3.selectAll(".means").transition().delay(2000).duration(800).attr("r", engorgedMeanRadius);
+        d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(1000).style("opacity", "0.2");
+        d3.selectAll(".means").transition().delay(1000).duration(800).attr("r", engorgedMeanRadius);
         
         removeElementsByClassName("compareMean");
+    }
+    
+    else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "doPairwiseTest")
+    {
+        d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
+        
+        removeElementsByClassName("doPairwiseTest");
+        removeElementsByClassName("boxplotLegends");
+        
+        //get selected means
+        var means = document.getElementsByClassName("means");
+        var selectedMeans = []; 
+        var variableList = getSelectedVariables();
+        
+        for(var i=0; i<means.length; i++)
+        {
+            if(means[i].getAttribute("fill") == meanColors["click"])
+                selectedMeans.push(means[i]);
+        }
+        
+        console.log("selectedMeans:");
+        console.dir(selectedMeans);
+        
+        if(selectedMeans.length != 2)
+        {
+            alert("select two means then press compare");
+        }
+        else
+        {
+            compareMeans();
+        }
     }
     
     else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "transformToNormal")

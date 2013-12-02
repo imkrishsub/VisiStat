@@ -239,12 +239,18 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                         drawComputingResultsImage();
                         
                         if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
-                        {                        
-                            performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                        {   
+                            if(!pairwiseComparisons)
+                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                            else
+                                performPairwiseWilcoxTest("FALSE", "TRUE");
                         }
                         else
                         {
-                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
+                            if(!pairwiseComparisons)
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
+                            else
+                                performPairwiseWilcoxTest("FALSE", "FALSE");
                         }                         
                     }
                     else
@@ -256,12 +262,18 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                         drawComputingResultsImage();
                     
                         if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
-                        {                        
-                            performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                        {      
+                            if(!pairwiseComparisons)
+                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                            else
+                                performPairwiseWilcoxTest("TRUE", "TRUE");
                         }
                         else
                         {
-                            performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                            if(!pairwiseComparisons)
+                                performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                            else
+                                performPairwiseWilcoxTest("TRUE", "FALSE");
                         }                                        
                     }
                 }
@@ -560,6 +572,7 @@ function findTransformForDependentVariables(numericVariables)
         
     });
 }
+
 function applyTransform(dependentVariable, level, last)
 {
     // Get variable names and their data type
