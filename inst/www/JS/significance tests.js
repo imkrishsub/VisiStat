@@ -717,7 +717,8 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
                   }, function(output) {                                                   
                   
 
-                    console.log("stream of p-values = " + output.p);
+                    console.log("p-values = " + output.p);                    
+                    console.log("U = " + output.U);
             
                 //drawing stuff
 //                 removeElementsByClassName("completeLines");   

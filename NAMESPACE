@@ -31,7 +31,12 @@ export(performTukeyHSDTestOneIndependentVariable)
 export(performTukeyHSDTestTwoIndependentVariables)
 
 export(performPairwiseTTest)
+export(pairwise.t.test.with.t)
+export(pairwise.table.t)
+
 export(performPairwiseWilcoxTest)
+export(pairwise.wilcox.test.with.statistic)
+export(pairwise.table.with.statistic)
 
 export(applyTransform)
 
