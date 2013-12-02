@@ -328,7 +328,7 @@ function displayOneSampleTestResults()
     var cy = [];
 
     removeElementsByClassName("significanceTest");
-    if(document.getElementById("computingResultsImage").length > 0)
+    if(document.getElementById("computingResultsImage") != null)
         removeElementById("computingResultsImage");
     
     var means = document.getElementsByClassName("means");
@@ -462,7 +462,7 @@ function displaySignificanceTestResults()
     var cy = [];
 
     removeElementsByClassName("significanceTest");
-    if(document.getElementById("computingResultsImage").length > 0)
+    if(document.getElementById("computingResultsImage") != null)
         removeElementById("computingResultsImage");
     
     var means = document.getElementsByClassName("means");
@@ -664,7 +664,7 @@ function displayCorrelationResults()
 { 
     var sideBar = d3.select("#sideBarCanvas");
     
-    if(document.getElementById("computingResultsImage").length > 0)
+    if(document.getElementById("computingResultsImage") != null)
         removeElementById("computingResultsImage");
     
     sideBar.append("text")
@@ -712,7 +712,7 @@ function displayBiserialCorrelationResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");
     
-    if(document.getElementById("computingResultsImage").length > 0)
+    if(document.getElementById("computingResultsImage") != null)
         removeElementById("computingResultsImage");
     
     sideBar.append("text")
@@ -732,7 +732,7 @@ function displaySimpleRegressionResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");    
     
-    if(document.getElementById("computingResultsImage").length > 0)
+    if(document.getElementById("computingResultsImage") != null)
         removeElementById("computingResultsImage");
     
     sideBar.append("text")
@@ -787,7 +787,7 @@ function displayMultipleRegressionResults()
 {   
     var sideBar = d3.select("#sideBarCanvas");    
     
-    if(document.getElementById("computingResultsImage").length > 0)
+    if(document.getElementById("computingResultsImage") != null)
         removeElementById("computingResultsImage");
     
     sideBar.append("text")
