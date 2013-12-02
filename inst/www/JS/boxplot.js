@@ -116,6 +116,9 @@ function makeBoxplot()
         means[0] = mean(data[0]);  
     }   
     
+    console.log("pos1:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
+    
     min = Array.min(mins);
     max = Array.max(maxs);
     
@@ -129,7 +132,9 @@ function makeBoxplot()
         labels = currentVariableSelection;
     
     ids = getValidIds(labels);
-
+    
+    console.log("pos2:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
     nGroovesY = numberOfGrooves;
     
     // Draw axes        
@@ -151,8 +156,9 @@ function makeBoxplot()
             .attr("id", "yAxis")
             .attr("class", "axes");
     
-    console.log("pos1:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
+    console.log("pos3:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
     console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
+    
     //axes labels
     if(altBoxPlot)
     {
@@ -252,9 +258,6 @@ function makeBoxplot()
     }
     
     var widthSlice = plotWidth/(nGroovesX);
-    
-    console.log("pos2:\nvariableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
     
     for(var i=0; i<nGroovesX; i++)
     {
@@ -394,9 +397,6 @@ function makeBoxplot()
                         .attr("data-indepenentVariableB", dataAttributeForIndependentVariableB));
         }        
     }
-    
-    console.log("variableA = [" + variables[variableList["dependent"][0]]["dataset"] + "]");
-    console.log("variableB = [" + variables[variableList["dependent"][1]]["dataset"] + "]");
 }
 
 function redrawBoxPlot()
