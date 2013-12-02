@@ -14,6 +14,7 @@ var datasetInformation = new Object();
     datasetInformation["keyboards"] = "TBD";
     datasetInformation["foodEffect"] = "TBD";
     datasetInformation["weight_loss"] = "TBD";
+    datasetInformation["phoneEffect"] = "TBD";
 
 var variablesInDataset = new Object();
     variablesInDataset["impact"] = ["subject","condition","verbalMemoryPre","visualMemoryPre","visualMotorSpeedPre","reactionTimePre","impulseControlPre","totalSymptomPre","verbalMemoryPost","visualMemoryPost","visualMotorSpeedPost","reactionTimePost","impulseConstrolPost","totalSymptomPost"]
@@ -28,6 +29,7 @@ var variablesInDataset = new Object();
     variablesInDataset["keyboards"] = ["participantID", "keyboardLayout", "gender", "typingSpeed", "errors", "userSatisfaction"];
     variablesInDataset["foodEffect"] = ["participantID","foodEaten","gender","score_V","score_Q","satisfactionRating"];
     variablesInDataset["weight_loss"] = ["participantID","condition","exercise","age","BMI","weightLost"];
+    variablesInDataset["phoneEffect"] = ["participant","OS","stressScore","rating"];
  
 var types = ["participant", "dependent", "independent"];
 var variablesInDatasetType = new Object();
@@ -46,6 +48,7 @@ var variablesInDatasetDataType = new Object();
     variablesInDatasetDataType["keyboards"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     variablesInDatasetDataType["foodEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     variablesInDatasetDataType["weight_loss"] = [dataTypes[0], dataTypes[0], dataTypes[1], dataTypes[3], dataTypes[2], dataTypes[3]];
+    variablesInDatasetDataType["phoneEffect"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[1]];
     
 function initVariablesInDatasetTypes()
 {  
@@ -61,4 +64,5 @@ function initVariablesInDatasetTypes()
     variablesInDatasetType["keyboards"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
     variablesInDatasetType["foodEffect"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
     variablesInDatasetType["weight_loss"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
+    variablesInDatasetType["phoneEffect"] = [types[0], types[2], types[1], types[1]];
 }
