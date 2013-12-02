@@ -207,6 +207,7 @@ function performNormalityTests()
     }
     else
     {
+        console.log(variableList["dependent"].length);
         for(i=0; i<variableList["dependent"].length; i++)                        
         {
             console.log("hi");
