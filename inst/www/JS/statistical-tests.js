@@ -30,17 +30,27 @@ function compareMeans()
                     sampleSizesAreEqual = true;
                     
                     if(variableList["independent"].length == 2)
-                    {
-                        var levelsA = variableList["independent-levels"][0];
-                        var levelsB = variableList["independent-levels"][1];
-                        
+                    {                        
                         console.log("colourBoxPlotData=");
                         console.dir(colourBoxPlotData);
                         
-                        console.log(levelsA[0]);
-                        console.log(levelsB[0]);
+                        var means = document.getElementsByClassName("means");
+                        var selectedMeans = [];
                         
-                        sampleSize = colourBoxPlotData[levelsA[0]][levelsB[0]].length;
+                        for(var i=0; i<means.length; i++)
+                        {
+                            if(means[i].getAttribute("fill") == meanColors["click"])
+                            {   
+                                selectedMeans.push(means[i]);
+                            }
+                        }
+                        
+                        var levelA = selectedMeans[0].getAttribute("data-levelA");
+                        var levelB = selectedMeans[0].getAttribute("data-levelB");
+                        
+                        console.log("levelA = " + levelA + ", levelB = " + levelB);
+                        
+                        sampleSize = colourBoxPlotData[levelA][levelB].length;
                     }
                     else
                     {
