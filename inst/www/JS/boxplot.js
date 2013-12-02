@@ -385,7 +385,7 @@ function makeBoxplot()
                         .attr("data-indepenentVariableA", dataAttributeForIndependentVariableA)
                         .attr("data-indepenentVariableB", dataAttributeForIndependentVariableB)
                         .attr("data-levelA", temp[0])
-                        .attr("data-levelB", temp[1]);
+                        .attr("data-levelB", temp[1]));
         }        
     }
 }
