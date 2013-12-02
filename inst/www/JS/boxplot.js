@@ -373,7 +373,7 @@ function makeBoxplot()
                 dataAttributeForIndependentVariableB = variableList["independent"][1];
             }   
         
-        
+            var temp = (levels[i].split("-"));
             meanCircles.push(canvas.append("circle")
                         .attr("cx", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("cy", BOTTOM - getFraction(means[i])*plotHeight)
@@ -384,8 +384,8 @@ function makeBoxplot()
                         .attr("class", "means")
                         .attr("data-indepenentVariableA", dataAttributeForIndependentVariableA)
                         .attr("data-indepenentVariableB", dataAttributeForIndependentVariableB))
-                        .attr("data-levelA", (levels[i].split("-"))[0])
-                        .attr("data-levelB", (levels[i].split("-"))[1]);
+                        .attr("data-levelA", temp[0])
+                        .attr("data-levelB", temp[1]);
         }        
     }
 }
