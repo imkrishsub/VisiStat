@@ -162,6 +162,8 @@ function drawDialogBoxToGetPopulationMean()
     console.log("hi");
     var inText = d3.select("#normality.crosses").attr("display") == "inline" ? "POPULATION MEDIAN = " : "POPULATION MEAN = ";
     
+        console.log("hi");
+    
     divElement.append("label")
                 .attr("align", "center")
                 .attr("vertical-align", "middle")

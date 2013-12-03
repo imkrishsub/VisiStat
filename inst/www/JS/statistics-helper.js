@@ -30,7 +30,7 @@ function findCorrelationCoefficient(variableA, variableB)
             }
             else
             {   
-                drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+//                 drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                 console.log("\t\t\tDoing nothing");
                 return null;
             }
@@ -47,7 +47,7 @@ function findCorrelationCoefficient(variableA, variableB)
             }
             else
             {
-                drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+//                 drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                 console.log("\t\t\tDoing nothing");
                 return null;
             }            
@@ -68,7 +68,7 @@ function findCorrelationCoefficient(variableA, variableB)
         else if((variableDataTypes[variableA] == "nominal") || (variableDataTypes[variableB] == "nominal"))
         {
             //do nothing
-            drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+//             drawButtonInSideBar("CONSTRUCT MODEL", "regression");
             console.log("\t\t\tDoing nothing");
             return null;
         }
