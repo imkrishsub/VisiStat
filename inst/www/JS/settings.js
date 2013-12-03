@@ -67,7 +67,7 @@
     var fontSizeAssumptionsTitle = scaleForWindowSize(26);
     var fontSizeVariablePanel = scaleForWindowSize(20);
     var fontSizeVisualizationPanel = scaleForWindowSize(32);
-    var fontSizeSignificanceTestResults = scaleForWindowSize(22);    
+    var fontSizeSignificanceTestResults = scaleForWindowSize(18);    
     
 // Plots (general)
     var axesOffset = scaleForWindowSize(25); //distance from plots to axes (for an R-like appearance)
