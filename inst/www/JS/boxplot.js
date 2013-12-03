@@ -771,10 +771,12 @@ function selectAllMeans()
     
     var plotCanvas = d3.select("#plotCanvas");
     
+    console.log("hi");
+    
     for(var i=0; i<means.length; i++)
     {
         var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
-        mean.transition().duration(800).attr("fill", meanColors["click"]);
+        mean.transition().attr("fill", meanColors["click"]);
         
         if(i != means.length - 1)
         {
@@ -787,7 +789,7 @@ function selectAllMeans()
                         .attr("stroke-dasharray", "5,5")
                         .attr("class", "completeLines");
             
-            line.transition().duration(800).attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy"));            
+            line.transition().attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy"));            
         }
     }
 }
