@@ -525,6 +525,8 @@ function displaySignificanceTestResults()
         removeElementById("computingResultsImage");
     
     var means = document.getElementsByClassName("means");
+    
+    console.log(means.length);
     var meanRefLines = [];
     
     var canvas = d3.select("#plotCanvas");
@@ -532,7 +534,7 @@ function displaySignificanceTestResults()
     for(var i=0; i<means.length; i++)
     {
         if(means[i].getAttribute("fill") == meanColors["click"])
-        {								
+        {
             cx.push(means[i].getAttribute("cx"));
             cy.push(means[i].getAttribute("cy"));
         
@@ -584,8 +586,7 @@ function displaySignificanceTestResults()
                   .attr("fill", "red")
                   .attr("class", "significanceTest");
     
-    drawScales(cx, cy); 
-    
+    drawScales(cx, cy);     
     
     var sideBar = d3.select("#sideBarCanvas");
     
