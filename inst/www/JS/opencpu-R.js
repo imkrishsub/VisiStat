@@ -464,7 +464,9 @@ function performNormalityTest(dist, dependentVariable, level)
                 {   
                     if(variableList["independent"].length == 0)
                     {
+                        console.log("i");
                         d3.select("#normality.ticks").attr("display", "inline");
+                        console.log("j");
                         d3.select("#normality.loading").attr("display", "none");
                         
                         drawDialogBoxToGetPopulationMean();
