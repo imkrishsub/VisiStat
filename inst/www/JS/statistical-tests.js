@@ -296,9 +296,38 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             d3.select("#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
             
-            drawComputingResultsImage();
+            if(selectedMeans.length > 2)
+            {
+                drawComputingResultsImage();
+                selectAllMeans();
             
-            performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+            }                
+            else
+            {
+                var levelsOfDistributionA = selectedMeanLevels[0];
+                var levelsOfDistributionB = selectedMeanLevels[1];
+                
+                console.log(levelsOfDistributionA);
+                console.log(levelsOfDistributionB);
+                
+                drawComputingResultsImage();
+                            
+                if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                {
+                    if(!pairwiseComparisons)
+                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[1]], "FALSE", "TRUE");
+                    else
+                        performPairwiseTTest("FALSE", "TRUE");
+                }
+                else
+                {
+                    if(!pairwiseComparisons)
+                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[1]], "FALSE", "FALSE");
+                    else
+                        performPairwiseTTest("FALSE", "FALSE");
+                }
+            } 
         }
         else
         {
