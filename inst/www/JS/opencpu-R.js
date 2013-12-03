@@ -467,7 +467,7 @@ function performNormalityTest(dist, dependentVariable, level)
                         d3.select("#normality.ticks").attr("display", "inline");
                         d3.select("#normality.loading").attr("display", "none");
                         
-//                         drawDialogBoxToGetPopulationMean();
+                        drawDialogBoxToGetPopulationMean();
                     }
                     else
                     {
