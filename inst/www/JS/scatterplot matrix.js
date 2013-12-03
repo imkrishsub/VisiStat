@@ -58,6 +58,8 @@ function makeScatterplotMatrix()
         
         if(allVariablesAreNumeric())
             drawButtonInSideBar("PERFORM MULTIPLE REGRESSION", "regression");
+        else
+            removeElementsByClassName("regression");
     }
 }
 
