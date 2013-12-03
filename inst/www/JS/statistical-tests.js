@@ -534,7 +534,7 @@ function displaySignificanceTestResults()
     for(var i=0; i<means.length; i++)
     {
         console.log(means[i].getAttribute("fill"));
-        if(means[i].getAttribute("fill") == meanColors["click"])
+        if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "#008000"))
         {
             cx.push(means[i].getAttribute("cx"));
             cy.push(means[i].getAttribute("cy"));
