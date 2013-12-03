@@ -180,7 +180,7 @@ function loadAssumptionCheckList()
                 .attr("id", assumptions[i])
                 .attr("class", "crosses");
         }    
-    }, 800);
+    }, 1200);
     
     
 }
@@ -303,7 +303,7 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
                 
                 setTimeout(function(){
                 performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                }, 800);
+                }, 1500);
             }                
             else
             {
@@ -337,7 +337,7 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             
                 setTimeout(function(){
                 performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                }, 800);
+                }, 1500);
             }                
             else
             {
