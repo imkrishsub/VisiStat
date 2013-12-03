@@ -180,7 +180,7 @@ function loadAssumptionCheckList()
                 .attr("id", assumptions[i])
                 .attr("class", "crosses");
         }    
-    }, 1000);
+    }, 800);
     
     
 }
@@ -300,16 +300,15 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             {
                 drawComputingResultsImage();
                 selectAllMeans();
-            
+                
+                setTimeout(function(){
                 performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                }, 800);
             }                
             else
             {
                 var levelsOfDistributionA = selectedMeanLevels[0];
                 var levelsOfDistributionB = selectedMeanLevels[1];
-                
-                console.log(levelsOfDistributionA);
-                console.log(levelsOfDistributionB);
                 
                 drawComputingResultsImage();
                             
@@ -331,22 +330,19 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         }
         else
         {
-            console.log("i");
             if(selectedMeans.length > 2)
             {
-                console.log("j");
                 drawComputingResultsImage();
                 selectAllMeans();
             
+                setTimeout(function(){
                 performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                }, 800);
             }                
             else
             {
                 var levelsOfDistributionA = selectedMeanLevels[0];
                 var levelsOfDistributionB = selectedMeanLevels[1];
-                
-                console.log(levelsOfDistributionA);
-                console.log(levelsOfDistributionB);
                 
                 drawComputingResultsImage();
                             
