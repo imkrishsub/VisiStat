@@ -273,8 +273,7 @@ function drawRegressionLine(intercept, slope)
 {
     console.log("drawing regression line..."); 
     var canvas = d3.select("#plotCanvas");
-    canvas.attr("viewBox", "0 0 " + canvasWidth + " " + parseFloat(canvasHeight+scaleForWindowSize(400)));
-    
+    canvas.attr("viewBox", "0 0 " + canvasWidth + " " + parseFloat(canvasHeight+scaleForWindowSize(400)));    
     
     var x1, y1, x2, y2;
     

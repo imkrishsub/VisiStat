@@ -24,6 +24,9 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     testResults["effect-size"] = output.cor;
                     testResults["CI"] = [output.CI_min, output.CI_max];
                     testResults["effect-size-type"] = "r";
+                    
+                    if(allVariablesAreNumeric())
+                        drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                 }
                 else if(method == "kendall")
                 {
@@ -41,10 +44,6 @@ function getCorrelationCoefficient(variableA, variableB, method)
                 }
                 
                 displayCorrelationResults();
-                
-                if(allVariablesAreNumeric())
-                    drawButtonInSideBar("CONSTRUCT MODEL", "regression");
-
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -142,7 +141,7 @@ function getLinearModelCoefficients(outcome, explanatory)
                     testResults["intercept"] = output.intercept;
                 
                     console.log("intercept=" + output.intercept + ", coefficients=" + output.coefficients);
-                    
+                    removeElementsByClassName("significanceTest");
                     drawRegressionLine(output.intercept, output.coefficients);                
                 
                     displaySimpleRegressionResults();                    
