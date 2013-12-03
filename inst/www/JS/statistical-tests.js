@@ -137,7 +137,7 @@ function loadAssumptionCheckList()
     title.transition().delay(500).duration(800).attr("y", assumptionOffsetTop - 50);
     
     //timer for 500 ms
-    window.setTimeout(function(){
+    setTimeout(function(){
         for(var i=0; i<assumptions.length; i++)
         {
             canvas.append("text")
@@ -180,7 +180,7 @@ function loadAssumptionCheckList()
                 .attr("id", assumptions[i])
                 .attr("class", "crosses");
         }    
-    }, 1300);
+    }, 1000);
     
     
 }
@@ -302,8 +302,10 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
         }
         else
         {
+            console.log("i");
             if(selectedMeans.length > 2)
             {
+                console.log("j");
                 drawComputingResultsImage();
                 selectAllMeans();
             
