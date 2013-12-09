@@ -32,37 +32,37 @@ var variablesInDataset = new Object();
     variablesInDataset["phoneEffect"] = ["participant","OS","stressScore","happScore","rating"];
  
 var types = ["participant", "dependent", "independent"];
-var variablesInDatasetType = new Object();
+var variablesInDatasetRow = new Object();
 
 var dataTypes = ["nominal", "ordinal", "interval", "ratio"];
-var variablesInDatasetDataType = new Object();
-    variablesInDatasetDataType["impact"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
-    variablesInDatasetDataType["cars"] = [dataTypes[0], dataTypes[3], dataTypes[1], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[0], dataTypes[0]];
-    variablesInDatasetDataType["weightLoss"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3]];
-    variablesInDatasetDataType["store"] = [dataTypes[0], dataTypes[3], dataTypes[0], dataTypes[0]];
-    variablesInDatasetDataType["SAT"] = [dataTypes[0], dataTypes[2], dataTypes[2], dataTypes[2], dataTypes[2], dataTypes[2]];
-    variablesInDatasetDataType["hotdogs"] = [dataTypes[0], dataTypes[3], dataTypes[3]];
-    variablesInDatasetDataType["bankloan"] = [dataTypes[3], dataTypes[0], dataTypes[0], dataTypes[2], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
-    variablesInDatasetDataType["car_sales"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
-    variablesInDatasetDataType["hp"] = [dataTypes[0], dataTypes[0], dataTypes[0]];
-    variablesInDatasetDataType["keyboards"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
-    variablesInDatasetDataType["foodEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
-    variablesInDatasetDataType["weight_loss"] = [dataTypes[0], dataTypes[0], dataTypes[1], dataTypes[3], dataTypes[2], dataTypes[1]];
-    variablesInDatasetDataType["phoneEffect"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
+var variablesInDatasetType = new Object();
+    variablesInDatasetType["impact"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
+    variablesInDatasetType["cars"] = [dataTypes[0], dataTypes[3], dataTypes[1], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[0], dataTypes[0]];
+    variablesInDatasetType["weightLoss"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3]];
+    variablesInDatasetType["store"] = [dataTypes[0], dataTypes[3], dataTypes[0], dataTypes[0]];
+    variablesInDatasetType["SAT"] = [dataTypes[0], dataTypes[2], dataTypes[2], dataTypes[2], dataTypes[2], dataTypes[2]];
+    variablesInDatasetType["hotdogs"] = [dataTypes[0], dataTypes[3], dataTypes[3]];
+    variablesInDatasetType["bankloan"] = [dataTypes[3], dataTypes[0], dataTypes[0], dataTypes[2], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
+    variablesInDatasetType["car_sales"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3], dataTypes[3]];
+    variablesInDatasetType["hp"] = [dataTypes[0], dataTypes[0], dataTypes[0]];
+    variablesInDatasetType["keyboards"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
+    variablesInDatasetType["foodEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
+    variablesInDatasetType["weight_loss"] = [dataTypes[0], dataTypes[0], dataTypes[1], dataTypes[3], dataTypes[2], dataTypes[1]];
+    variablesInDatasetType["phoneEffect"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     
 function initVariablesInDatasetTypes()
 {  
-    variablesInDatasetType["impact"] = [types[0], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
-    variablesInDatasetType["cars"] = [types[0], types[1], types[2], types[1], types[1], types[1], types[1], types[1], types[2]];
-    variablesInDatasetType["weightLoss"] = [types[0], types[2], types[2], types[1]];
-    variablesInDatasetType["store"] = [types[1], types[1], types[2], types[0]];    
-    variablesInDatasetType["SAT"] = [types[0], types[1], types[1], types[1], types[1], types[1]];
-    variablesInDatasetType["hotdogs"] = [types[2], types[1], types[1]];
-    variablesInDatasetType["bankloan"] = [types[1], types[2], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
-    variablesInDatasetType["car_sales"] = [types[2], types[0], types[1], types[1], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
-    variablesInDatasetType["hp"] = [types[2], types[2], types[2]];
-    variablesInDatasetType["keyboards"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
-    variablesInDatasetType["foodEffect"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
-    variablesInDatasetType["weight_loss"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
-    variablesInDatasetType["phoneEffect"] = [types[0], types[2], types[1], types[1], types[1]];
+    variablesInDatasetRow["impact"] = [types[0], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
+    variablesInDatasetRow["cars"] = [types[0], types[1], types[2], types[1], types[1], types[1], types[1], types[1], types[2]];
+    variablesInDatasetRow["weightLoss"] = [types[0], types[2], types[2], types[1]];
+    variablesInDatasetRow["store"] = [types[1], types[1], types[2], types[0]];    
+    variablesInDatasetRow["SAT"] = [types[0], types[1], types[1], types[1], types[1], types[1]];
+    variablesInDatasetRow["hotdogs"] = [types[2], types[1], types[1]];
+    variablesInDatasetRow["bankloan"] = [types[1], types[2], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
+    variablesInDatasetRow["car_sales"] = [types[2], types[0], types[1], types[1], types[2], types[1], types[1], types[1], types[1], types[1], types[1], types[1], types[1]];
+    variablesInDatasetRow["hp"] = [types[2], types[2], types[2]];
+    variablesInDatasetRow["keyboards"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
+    variablesInDatasetRow["foodEffect"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
+    variablesInDatasetRow["weight_loss"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
+    variablesInDatasetRow["phoneEffect"] = [types[0], types[2], types[1], types[1], types[1]];
 }

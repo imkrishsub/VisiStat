@@ -903,7 +903,7 @@ function OnMouseOver(e)
         //Get data, minimums and maximums for each selected variable
         for(var i=0; i<currentVariableSelection.length; i++)
         {   
-            if(variableTypes[currentVariableSelection[i]] == false && currentVariableSelection.length > 1)
+            if(variableRows[currentVariableSelection[i]] == false && currentVariableSelection.length > 1)
             {
                 // Levels are needed when we have a independent variable and one or more dependent variables
                 levels = variables[currentVariableSelection[i]]["dataset"].unique();            
@@ -915,7 +915,7 @@ function OnMouseOver(e)
         {        
             if(altScatterPlot)
             {
-                if(variableTypes[currentVariableSelection[i]] != false)
+                if(variableRows[currentVariableSelection[i]] != false)
                 {
                     //for the dependent variable(s)
                 

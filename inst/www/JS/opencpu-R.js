@@ -7,15 +7,12 @@ function loadFile(filePath)
                   }, function(output) {                   
     dataset = output.dataset;
     
-    console.log("dataset");
-    console.dir(dataset);
-    
     //render the variable names
     renderVariableNames(output.variableNames);
+    
+    //we now have the variable names. let the dogs out!
     variableNames = output.variableNames;
     
-    console.log("variableNames: " + output.variableNames);
-        
     //for each variable, get the data and the IQR
     for(var i=0; i<output.variableNames.length; i++)
     {      
@@ -25,8 +22,7 @@ function loadFile(filePath)
         IQR[output.variableNames[i]] = new Object();
         CI[output.variableNames[i]] = new Object();
         
-        getData(dataset, output.variableNames[i]);                 
-//         getIQR(dataset, output.variableNames[i]);  
+        getDataAndIQR(dataset, output.variableNames[i]);                 
     }
      }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -40,37 +36,7 @@ function loadFile(filePath)
     });
 }
 
-//to get the variable names    
-function getVariables(dataset)
-{   
-    // Get variable names and their data type
-    var req = opencpu.r_fun_json("getVariableNames", {
-                    dataset: dataset
-                  }, function(output) {                   
-    renderVariableNames(output.varNames);
-    
-    variableNames = output.varNames;
-    
-    
-    for(var i=0; i<output.varNames.length; i++)
-    {
-        getData(dataset, output.varNames[i]);                 
-        getIQR(dataset, output.varNames[i]);                    
-    }
-    
-    console.log("\n\n*********************************************************************************\n\n") 
-    
-    }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
-
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });   
-}
-
-function getData(dataset, variableName, level)
+function getDataAndIQR(dataset, variableName, level)
 {
 //     Get variable names and their data type
         var req = opencpu.r_fun_json("getData", {
@@ -90,17 +56,13 @@ function getData(dataset, variableName, level)
         console.log("\n\tvariables[" + variableName + "][" + level + "] = " + variables[variableName][level]);
         console.log("\tMIN[" + variableName + "][" + level + "] = " + MIN[variableName][level]);
         console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
-        
-        if(level === undefined)
-        {   
-            level = "dataset";
-        }         
+    
         IQR[variableName][level] = findIQR(variables[variableName][level]);
         
-        if(++ticker == getObjectLength(variableNames))
+        if(++variableCount == getObjectLength(variableNames))
         {
+            setVariableRow();
             setVariableTypes();
-            setVariableDataTypes();
             
             for(var i=0; i<variableNames.length; i++)
             {

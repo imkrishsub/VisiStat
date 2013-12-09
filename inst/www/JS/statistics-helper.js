@@ -1,12 +1,12 @@
 function findCorrelationCoefficient(variableA, variableB)
 {
     console.log("\nCORRELATION");
-    console.log("\t\ttypeOf(" + variableA + ")=" + variableDataTypes[variableA] + ", typeOf(" + variableB + ")=" + variableDataTypes[variableB]);
+    console.log("\t\ttypeOf(" + variableA + ")=" + variableTypes[variableA] + ", typeOf(" + variableB + ")=" + variableTypes[variableB]);
     
     var isScatterPlotMatrix = currentVisualizationSelection == "Scatterplot-matrix" ? true : false;
     
     
-    if((variableDataTypes[variableA] == "binary") && (variableDataTypes[variableB] == "binary"))
+    if((variableTypes[variableA] == "binary") && (variableTypes[variableB] == "binary"))
     {
         //both are binary 
         
@@ -14,11 +14,11 @@ function findCorrelationCoefficient(variableA, variableB)
         console.log("\t\t\tCramer's V");
         return null;
     }
-    else if(((variableDataTypes[variableA] == "binary") || (variableDataTypes[variableB] == "binary")) && ((variableDataTypes[variableA] != "binary") || (variableDataTypes[variableB] != "binary")))
+    else if(((variableTypes[variableA] == "binary") || (variableTypes[variableB] == "binary")) && ((variableTypes[variableA] != "binary") || (variableTypes[variableB] != "binary")))
     {
         //one is binary
     
-        if(variableDataTypes[variableA] == "binary")
+        if(variableTypes[variableA] == "binary")
         {
             if(!isNaN(variables[variableB]["dataset"][0]))
             {
@@ -57,7 +57,7 @@ function findCorrelationCoefficient(variableA, variableB)
     {
         //both are not binary
         
-        if(((variableDataTypes[variableA] == "ordinal") || (variableDataTypes[variableB] == "ordinal")) && ((variableDataTypes[variableA] != "nominal") && (variableDataTypes[variableB] != "nominal")))
+        if(((variableTypes[variableA] == "ordinal") || (variableTypes[variableB] == "ordinal")) && ((variableTypes[variableA] != "nominal") && (variableTypes[variableB] != "nominal")))
         {
             console.log("\t\t\tKendall's Tau");            
             if(!isScatterPlotMatrix)
@@ -65,7 +65,7 @@ function findCorrelationCoefficient(variableA, variableB)
             else
                 return getPearsonCorrelation(variables[variableA]["dataset"], variables[variableB]["dataset"]);
         }
-        else if((variableDataTypes[variableA] == "nominal") || (variableDataTypes[variableB] == "nominal"))
+        else if((variableTypes[variableA] == "nominal") || (variableTypes[variableB] == "nominal"))
         {
             //do nothing
 //             drawButtonInSideBar("CONSTRUCT MODEL", "regression");
@@ -91,7 +91,7 @@ function testForEvilVariables()
         var variableData = variables[variable]["dataset"];
         var uniqueVariableData = variableData.unique();
 
-        if(isNaN(variableData[0]) || variableTypes[variable]=="participant")
+        if(isNaN(variableData[0]) || variableRows[variable]=="participant")
         {            
             if(uniqueVariableData.length >= 10)
             {

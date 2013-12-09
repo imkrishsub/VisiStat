@@ -496,11 +496,11 @@ function getSelectedVariables()
     //add the dependent variable
     for(var i=0; i<currentVariableSelection.length; i++)
     {        
-        if(variableTypes[currentVariableSelection[i]] == "dependent")
+        if(variableRows[currentVariableSelection[i]] == "dependent")
         {
             variableList["dependent"].push(currentVariableSelection[i]);
         }
-        else if(variableTypes[currentVariableSelection[i]] == "independent")
+        else if(variableRows[currentVariableSelection[i]] == "independent")
         {
             variableList["independent"].push(currentVariableSelection[i]);
         }
@@ -559,7 +559,7 @@ function sort(list)
     
     for(var i=0; i<list.length; i++)
     {
-        if(variableTypes[list[i]] == "independent")
+        if(variableRows[list[i]] == "independent")
         {
             variableList["independent"].push(list[i]);
         }
@@ -599,16 +599,16 @@ function sort(list)
     return variableList;
 }
 
-function setVariableTypes()
+function setVariableRow()
 {    
     for(var i=0; i<variableNames.length; i++)
     {
-        variableTypes[variableNames[i]] = sessionStorage.getItem(variableNames[i]);
+        variableRows[variableNames[i]] = sessionStorage.getItem(variableNames[i]);
     }
     
     for(var i=0; i<variableNames.length; i++)
     {
-        if(variableTypes[variableNames[i]] == "independent")
+        if(variableRows[variableNames[i]] == "independent")
         {
             var toggleButton = d3.select("#" + variableNames[i] + ".variableTypeToggleButton");
             toggleButton.attr("xlink:href", "images/toggle_down.png");
@@ -621,7 +621,7 @@ function setVariableTypes()
             
             splitTheData(variableNames[i]);
         }
-        else if(variableTypes[variableNames[i]] == "dependent")
+        else if(variableRows[variableNames[i]] == "dependent")
         {
             var toggleButton = d3.select("#" + variableNames[i] + ".variableTypeToggleButton");
             toggleButton.attr("xlink:href", "images/toggle_up.png");
@@ -632,7 +632,7 @@ function setVariableTypes()
             dependentVariableText.attr("fill", "#627bf4");
             independentVariableText.attr("fill", "#BEC9FC");
         }
-        else if(variableTypes[variableNames[i]] == "participant")
+        else if(variableRows[variableNames[i]] == "participant")
         {
             d3.select("#" + variableNames[i] + ".variableTypeToggleButton").remove();
             d3.select("#" + variableNames[i] + ".dependentVariableText").remove();
@@ -666,19 +666,19 @@ function setVariableTypes()
     }
 }
 
-function setVariableDataTypes()
+function setVariableTypes()
 {
     for(var i=0; i<variableNames.length; i++)
     {
         if(variables[variableNames[i]]["dataset"].unique().length == 2)
-            variableDataTypes[variableNames[i]] = "binary";
+            variableTypes[variableNames[i]] = "binary";
         else
-            variableDataTypes[variableNames[i]] = variablesInDatasetDataType[sessionStorage.fileName][i];
+            variableTypes[variableNames[i]] = variablesInDatasetDataType[sessionStorage.fileName][i];
     }
     
     for(var i=0; i<variableNames.length; i++)
     {
-        switch(variableDataTypes[variableNames[i]])
+        switch(variableTypes[variableNames[i]])
         {
             case "nominal":
                             //do something
@@ -705,7 +705,7 @@ function findExperimentalDesign()
     
     for(var i=0; i<variableNames.length; i++)
     {
-        if(variableTypes[variableNames[i]] == "participant")
+        if(variableRows[variableNames[i]] == "participant")
         {
             participantData = variables[variableNames[i]]["dataset"];
             participants = variableNames[i];
@@ -772,7 +772,7 @@ function getNumericVariables()
     
     for(var i=0; i<variableNames.length; i++)
     {   
-        if((variableDataTypes[variableNames[i]] != "nominal") && (variableDataTypes[variableNames[i]] != "ordinal"))
+        if((variableTypes[variableNames[i]] != "nominal") && (variableTypes[variableNames[i]] != "ordinal"))
         {
             numericVariables.push(variableNames[i]);
         }
@@ -862,7 +862,7 @@ function allVariablesAreNumeric()
     
     for(var i=0; i<currentVariableSelection.length; i++)
     {
-        if((isNaN(variables[currentVariableSelection[i]]["dataset"][0])) && (variableDataTypes[currentVariableSelection[i]] == "ordinal"))
+        if((isNaN(variables[currentVariableSelection[i]]["dataset"][0])) && (variableTypes[currentVariableSelection[i]] == "ordinal"))
         {
             yeah = false;
         }

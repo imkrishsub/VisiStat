@@ -1,6 +1,6 @@
 var variables = new Object();     
-var variableTypes = new Object(); //dependent, independent, participant
-var variableDataTypes = new Object(); //nominal, ordinal, interval, ratio
+var variableRows = new Object(); //dependent, independent, participant
+var variableTypes = new Object(); //nominal, ordinal, interval, ratio
 
 var IQR = new Object();   
 var MIN = new Object();
@@ -10,7 +10,7 @@ var splitData = new Object();
 var variableNames = new Array();
 var colourBoxPlotData = new Object();
 
-var ticker = 0;
+var variableCount = 0;
 
 var currentVariableSelection = [];    
 var currentVisualizationSelection;

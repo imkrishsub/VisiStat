@@ -64,8 +64,8 @@
                 $("#datasetInformation").text(datasetInformation[fileName]);
                 
                 var variableList = variablesInDataset[fileName];
-                var variableListTypes = variablesInDatasetType[fileName];
-                var variableListDataTypes = variablesInDatasetDataType[fileName];
+                var variableListTypes = VariablesInDatasetRow[fileName];
+                var variableListDataTypes = VariablesInDatasetType[fileName];
                 var variablesDiv = d3.select("#variablesDiv");
                 
                 removeElementsByClassName("variableList");
@@ -123,12 +123,12 @@
                 for(var i=0; i<variablesInDataset[fileName].length; i++)
                 {
                     var option = document.getElementById(variablesInDataset[fileName][i]).value;//d3.select("#" + variablesInDataset[fileName][i] + ".variableTypeDropDown").attr("value");
-                    variablesInDatasetType[fileName][i] = option;                 
+                    VariablesInDatasetRow[fileName][i] = option;                 
                 }   
                 
-                for(var i=0; i<variablesInDatasetType[fileName].length; i++)
+                for(var i=0; i<VariablesInDatasetRow[fileName].length; i++)
                 {
-                    sessionStorage.setItem(variablesInDataset[fileName][i], variablesInDatasetType[fileName][i]);
+                    sessionStorage.setItem(variablesInDataset[fileName][i], VariablesInDatasetRow[fileName][i]);
                 }
                 
                 window.location = "main.html";
