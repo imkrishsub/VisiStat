@@ -58,7 +58,7 @@ function getData(dataset, variableName, level)
         console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
     
         IQR[variableName][level] = findIQR(variables[variableName][level]);
-        CI[variableNames[i]][level] = findCI(variables[variableNames[i]][level]);   
+        CI[variableName][level] = findCI(variables[variableName][level]);   
         
         if(++variableCount == getObjectLength(variableNames))
         {
@@ -86,39 +86,39 @@ function getData(dataset, variableName, level)
     });
 }
 
-function getIQR(dataset, variableName, level)
-{
-    if(level === undefined)
-    {   
-        level = "dataset";
-    }         
-    IQR[variableName][level] = findIQR(variables[variableName][level]);      
-}
-
-function getCI(dataset, variableName, level)
-{
-    if(level == undefined)
-        level = "dataset";
-        
-    var req = opencpu.r_fun_json("getCI", {
-                    dataset: dataset,
-                    variableName: variableName
-                  }, function(output) {                    
-        
-        CI[variableName][level] = new Array();
-        
-        CI[variableName][level][0] = output.min;
-        CI[variableName][level][1] = output.max;
-                
-     }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
-
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-}  
+// function getIQR(dataset, variableName, level)
+// {
+//     if(level === undefined)
+//     {   
+//         level = "dataset";
+//     }         
+//     IQR[variableName][level] = findIQR(variables[variableName][level]);      
+// }
+// 
+// function getCI(dataset, variableName, level)
+// {
+//     if(level == undefined)
+//         level = "dataset";
+//         
+//     var req = opencpu.r_fun_json("getCI", {
+//                     dataset: dataset,
+//                     variableName: variableName
+//                   }, function(output) {                    
+//         
+//         CI[variableName][level] = new Array();
+//         
+//         CI[variableName][level][0] = output.min;
+//         CI[variableName][level][1] = output.max;
+//                 
+//      }).fail(function(){
+//           alert("Failure: " + req.responseText);
+//     });
+// 
+//     //if R returns an error, alert the error message
+//     req.fail(function(){
+//       alert("Server error: " + req.responseText);
+//     });
+// }  
 
 //Assumption-checking
 
