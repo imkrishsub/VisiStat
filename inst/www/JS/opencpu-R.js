@@ -132,7 +132,7 @@ function getIQR(dataset, variableName, level)
     {   
         level = "dataset";
     }         
-    IQR[variableName][level] = findIQR(dataset[variableName]);      
+    IQR[variableName][level] = findIQR(variables[variableName][level]);      
 }
 
 function getCI(dataset, variableName, level)
