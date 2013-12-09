@@ -86,42 +86,7 @@ function getData(dataset, variableName, level)
     });
 }
 
-// function getIQR(dataset, variableName, level)
-// {
-//     if(level === undefined)
-//     {   
-//         level = "dataset";
-//     }         
-//     IQR[variableName][level] = findIQR(variables[variableName][level]);      
-// }
-// 
-// function getCI(dataset, variableName, level)
-// {
-//     if(level == undefined)
-//         level = "dataset";
-//         
-//     var req = opencpu.r_fun_json("getCI", {
-//                     dataset: dataset,
-//                     variableName: variableName
-//                   }, function(output) {                    
-//         
-//         CI[variableName][level] = new Array();
-//         
-//         CI[variableName][level][0] = output.min;
-//         CI[variableName][level][1] = output.max;
-//                 
-//      }).fail(function(){
-//           alert("Failure: " + req.responseText);
-//     });
-// 
-//     //if R returns an error, alert the error message
-//     req.fail(function(){
-//       alert("Server error: " + req.responseText);
-//     });
-// }  
-
 //Assumption-checking
-
 function performHomoscedasticityTestNotNormal(dependent, independent)
 {
     // Get variable names and their data type
@@ -129,10 +94,10 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                     dependentVariable: dependent,
                     independentVariable: independent,
                     dataset: dataset                    
-                  }, function(output) {                                 
+                }, function(output) {                                 
                   
                 console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
-                console.log("\t\t\t p = " + output.p);
+                console.log("\t\t\t p-value = " + output.p);
                 
                 variableList = getSelectedVariables();
                 
@@ -236,7 +201,6 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
 
 function performHomoscedasticityTestNormal(dependent, independent)
 {
-    console.log("dependent = " + dependent + ", independent = " + independent);
     // Get variable names and their data type
     var req = opencpu.r_fun_json("performHomoscedasticityTest", {
                     dependentVariable: dependent,
@@ -247,9 +211,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                 console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
                 console.log("\t\t\t p = " + output.p);
                 
-                
-                
-                variableList = sort(currentVariableSelection);
+                variableList = getSelectedVariables();
                 
                 if(variableList["independent"].length == 2)
                 {
@@ -264,11 +226,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                 }                
                 
                 else
-                {
-                
-                    variableList = getSelectedVariables();
-                    console.log("number of levels: " + variableList["independent-levels"].length);
-                
+                {                                
                     if(variableList["independent-levels"].length > 2)
                     {
                         if(output.p < 0.05)
@@ -368,13 +326,11 @@ function performHomoscedasticityTestNormal(dependent, independent)
     });
 }
 
-function performNormalityTest(dist, dependentVariable, level)
+function performNormalityTest(distribution, dependentVariable, level)
 {
     // Get variable names and their data type
-    
-    
     var req = opencpu.r_fun_json("performShapiroWilkTest", {
-                    distribution: dist                                                           
+                    distribution: distribution                                                           
                   }, function(output) {                                                   
                   
                 console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + level + ")");
@@ -440,27 +396,26 @@ function findTransform(dependentVariable, independentVariable)
                     independentVariable: independentVariable,
                     dataset: dataset
                   }, function(output) {                                                   
-                  
-                console.log("type=" + output.type);
+                
+                var variableList = getSelectedVariables();
                 
                 if(output.type == "none")
                 {
-                    var variableList = getSelectedVariables();
+                    console.log("Transformation to normality is not possible!");
                     performHomoscedasticityTestNotNormal(variableList["dependent"][0], variableList["independent"][0]);
                     d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                 }
                 else
                 {
-                    console.log("type=" + output.type);
+                    console.log("Transformation type = " + output.type);
                     transformationType = output.type;
+                    
                     //offer choice
                     drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
-                }
-                  
+                }                  
       }).fail(function(){
           alert("Failure: " + req.responseText);
-    });
-        
+    });       
 
     //if R returns an error, alert the error message
     req.fail(function(){
@@ -479,25 +434,23 @@ function findTransformForDependentVariables(numericVariables)
                     dataset: dataset,
                     numericVariables: numericVariables
                   }, function(output) {                                                   
-                  
-                console.log("type=" + output.type);
-                
+                                  
                 var variableList = getSelectedVariables();
                 
                 if(output.type == "none")
                 {
-                    d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
-                    
+                    console.log("Transformation to normality is not possible!");
+                    d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);                    
                     setTimeout(
                     function(){
-                    drawDialogBoxToGetPopulationMean();
-                    }, 3800);
+                                  drawDialogBoxToGetPopulationMean();
+                              }, 3800);
                 }
                 else
                 {
-                    console.log("type=" + output.type);
-                    
+                    console.log("Transformation type = " + output.type);                    
                     transformationType = output.type;
+                    
                     //offer choice
                     drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");                         
                 }
@@ -516,59 +469,56 @@ function findTransformForDependentVariables(numericVariables)
     });
 }
 
-function applyTransform(dependentVariable, level, last)
+function applyTransform(dependentVariable, level, finalVariable)
 {
     // Get variable names and their data type
     
     var req = opencpu.r_fun_json("applyTransform", {
                     distribution: variables[dependentVariable][level],
                     type: transformationType
-                  }, function(output) {                                                   
-                
-                console.log("\nvariables[dependentVariable][level]: " + variables[dependentVariable][level]);
-                console.log("output.transformedData: " + output.transformedData);
+                  }, function(output) {                                                                  
                 variables[dependentVariable][level] = output.transformedData;
+                
                 MIN[dependentVariable][level] = Array.min(output.transformedData);
                 MAX[dependentVariable][level] = Array.max(output.transformedData);
                 IQR[dependentVariable][level] = findIQR(output.transformedData);
                 CI[dependentVariable][level] = findCI(output.transformedData);
                 
-                if(last)
+                if(finalVariable)
                 {
+                    //if this is the last variable, then redraw boxplots and display the significance test results
                     redrawBoxPlot();
                     
                     removeElementsByClassName("densityCurve");
                     var variableList = getSelectedVariables();
+                    
+                    var mean = d3.select("#" + variableList["dependent"][0] + ".means");
+                    var centerX = mean.attr("cx");   
                     
                     if(variableList["independent"].length > 0)
                     {
                         for(var i=0; i<variableList["independent-levels"].length; i++)
                         {   
                             if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
-                            {
-                                var mean = d3.select("#" + variableList["independent-levels"][i] + ".means");
-                                var centerX = mean.attr("cx");   
                                 makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;
-                            }
                         }                 
                     }
                     else
                     {
-                        var mean = d3.select("#" + variableList["dependent"][0] + ".means");
-                        var centerX = mean.attr("cx");   
                         makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], "dataset", "normal");
                     }
                     
                     removeElementsByClassName("transformToNormal");
                     removeElementsByClassName("completeLines");
                     
+                    //change the labels to normal color
                     var text = d3.select("#" + level + ".xAxisGrooveText");
                     text.attr("fill", boxColors["normal"]);
                     
+                    //modify the assumptions checklist icons
                     d3.select("#normality.crosses").attr("display", "none");  
                     d3.select("#normality.ticks").attr("display", "inline");  
-                    d3.select("#normality.loading").attr("display", "none");
-                    var variableList = sort(currentVariableSelection);                                        
+                    d3.select("#normality.loading").attr("display", "none");                                        
                     
                     d3.select("#plotCanvas").transition().delay(2000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                     
@@ -579,8 +529,7 @@ function applyTransform(dependentVariable, level, last)
                         else
                             drawDialogBoxToGetPopulationMean();
                     }, 1500);
-                }
-            
+                }            
                   
       }).fail(function(){
           alert("Failure: " + req.responseText);
