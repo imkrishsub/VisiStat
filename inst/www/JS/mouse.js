@@ -10,7 +10,7 @@ function OnMouseDown(e)
         setup(e, target);        
         
         //add to list of variables selected
-        currentVariableSelection = toggleFillColorsForVariables(currentVariableSelection, target.id);
+        currentVariableSelection = setColorsForVariables(currentVariableSelection, target.id);
         
         //display the current variable selection
         console.log("\n\n\ncurrent variable selection: [" + currentVariableSelection + "]\n");
@@ -18,17 +18,17 @@ function OnMouseDown(e)
         removeElementsByClassName("displayDataTable");
         removeElementsByClassName("displayDataText");
               
-        pickOutVisualizations();      
-        makePlot(); //checks which plot is selected and draws that plot
-        toggleFillColorsForVisualizations(); //manages the fill colors of vizualizations (only one at a time)
+        restrictVisualisationSelection();      
+        plotVisualisation(); //checks which plot is selected and draws that plot
+        setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
     }
     
-    else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualizationHolderFront"))
+    else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
     {
         setup(e, target);    
-        currentVisualizationSelection = target.id;        
-        toggleFillColorsForVisualizations();        
-        makePlot();
+        currentVisualisationSelection = target.id;        
+        setColorsForVisualisations();        
+        plotVisualisation();
     }
     
     else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
@@ -420,8 +420,8 @@ function OnMouseDown(e)
             button.attr("xlink:href", "images/fullscreenclick.png");
             d3.select("#variable.panel").attr("style", "width: " + 0 + "px; height: " + height + "px;"); 
             d3.select("#variablePanelSVG").attr("width", 0);            
-            d3.select("#visualization.panel").attr("style", "height: " + 0 + "px;"); 
-            d3.select("#visualizationPanelSVG").attr("height", 0);
+            d3.select("#visualisation.panel").attr("style", "height: " + 0 + "px;"); 
+            d3.select("#visualisationPanelSVG").attr("height", 0);
             d3.select("#canvas").attr("style", "left: 0px; height: " + height + "px;");
             d3.select("#plotCanvas").attr("height", height).attr("width", width-sideBarWidth);
         }
@@ -431,8 +431,8 @@ function OnMouseDown(e)
             button.attr("xlink:href", "images/fullscreennormal.png");
             d3.select("#variable.panel").attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + height + "px;"); 
             d3.select("#variablePanelSVG").attr("width", (width - canvasWidth - sideBarWidth));            
-            d3.select("#visualization.panel").attr("style", "width: " + (canvasWidth + sideBarWidth) + "px; height: " + height/4 + "px; top: " + canvasHeight + "px; left: " + (width - canvasWidth - sideBarWidth) + "px;");                    
-            d3.select("#visualizationPanelSVG").attr("height", height/4);
+            d3.select("#visualisation.panel").attr("style", "width: " + (canvasWidth + sideBarWidth) + "px; height: " + height/4 + "px; top: " + canvasHeight + "px; left: " + (width - canvasWidth - sideBarWidth) + "px;");                    
+            d3.select("#visualisationPanelSVG").attr("height", height/4);
             d3.select("#canvas").attr("style", "position: absolute; width: " + canvasWidth + "px; height: " + canvasHeight + "px; top: 0px; left: " + (width - canvasWidth - sideBarWidth) + "px;");    
             d3.select("#plotCanvas").attr("height", canvasHeight).attr("width", canvasWidth);
         }
@@ -454,7 +454,7 @@ function OnMouseDown(e)
         
         var choice = target.id;
         
-        if(currentVisualizationSelection == "Scatterplot")
+        if(currentVisualisationSelection == "Scatterplot")
         {
             if(choice != currentVariableSelection[1])
             {   
@@ -462,7 +462,7 @@ function OnMouseDown(e)
                 currentVariableSelection[1] = currentVariableSelection[0];
                 currentVariableSelection[0] = temp;
                 
-                makePlot();  
+                plotVisualisation();  
             }
         
             var variableList = sort(currentVariableSelection);
@@ -481,7 +481,7 @@ function OnMouseDown(e)
                 getLinearModelCoefficients(currentVariableSelection[1], currentVariableSelection[0]);
             }, 300);  
         }
-        else if(currentVisualizationSelection == "Scatterplot-matrix")
+        else if(currentVisualisationSelection == "Scatterplot-matrix")
         {
             resetSVGCanvas();
             drawFullScreenButton();
@@ -499,8 +499,8 @@ function OnMouseDown(e)
             if(explanatoryVariables.length == 1)
             {
                 getLinearModelCoefficients(outcomeVariable, explanatoryVariables[0]);
-                currentVisualizationSelection = "Scatterplot";
-                makePlot();
+                currentVisualisationSelection = "Scatterplot";
+                plotVisualisation();
             }
             else
                 performMultipleRegression(outcomeVariable, explanatoryVariables);
@@ -750,12 +750,12 @@ function OnMouseOver(e)
         variableNameHolder.attr("cursor","pointer");
     }
     
-    else if(target.className.baseVal == "visualizationHolderFront")
+    else if(target.className.baseVal == "visualisationHolderFront")
     {		
         setup(e, target);
         
-        var visualizationHolder = d3.selectAll("#" + target.id + ".visualizationHolderFront");
-        visualizationHolder.attr("cursor","pointer");
+        var visualisationHolder = d3.selectAll("#" + target.id + ".visualisationHolderFront");
+        visualisationHolder.attr("cursor","pointer");
     }
     
     else if(target.className.baseVal == "variableTypeToggleButton")
@@ -836,7 +836,7 @@ function OnMouseOver(e)
                         .attr("x", mouseX + 10)
                         .attr("y", mouseY + 15)
                         .attr("text-anchor", "start")
-                        .text(format2(getActualValue(meanCircle.attr("cy"))))
+                        .text(dec22(getActualValue(meanCircle.attr("cy"))))
                         .attr("fill", meanColors["normal"])
                         .attr("class", "hover");
                         
@@ -1023,7 +1023,7 @@ function OnMouseOver(e)
                 .attr("x", mouseX + 10)
                 .attr("y", mouseY + 15)
                 .attr("text-anchor", "middle")
-                .text(format(getActualValue(outlier.attr("cy"))))
+                .text(dec2(getActualValue(outlier.attr("cy"))))
                 .attr("class", "hover");
                 
     }
@@ -1060,14 +1060,14 @@ function OnMouseOver(e)
                 .attr("x", (parseFloat(tFringe.attr("x1")) + parseFloat(tFringe.attr("x2")))/2)
                 .attr("y", parseFloat(tFringe.attr("y1")) - displayOffsetTop)
                 .attr("text-anchor", "middle")
-                .text(format(getActualValue(tFringe.attr("y1"))))
+                .text(dec2(getActualValue(tFringe.attr("y1"))))
                 .attr("class", "hover");
         
         canvas.append("text")
                 .attr("x", (parseFloat(bFringe.attr("x1")) + parseFloat(bFringe.attr("x2")))/2)
                 .attr("y", parseFloat(bFringe.attr("y1")) + displayOffsetBottom)
                 .attr("text-anchor", "middle")
-                .text(format(getActualValue(bFringe.attr("y1"))))
+                .text(dec2(getActualValue(bFringe.attr("y1"))))
                 .attr("class", "hover");
                 
     }
@@ -1102,14 +1102,14 @@ function OnMouseOver(e)
                 .attr("x",parseFloat(topFringe.attr("x1")))
                 .attr("y", parseFloat(topFringe.attr("y1")) - displayOffsetTop)
                 .attr("text-anchor", "middle")
-                .text(format(getActualValue(parseFloat(topFringe.attr("y1")))))
+                .text(dec2(getActualValue(parseFloat(topFringe.attr("y1")))))
                 .attr("class", "hover");
                 
         canvas.append("text")
                 .attr("x",parseFloat(bottomFringe.attr("x1")))
                 .attr("y", parseFloat(bottomFringe.attr("y1")) + displayOffsetBottom)
                 .attr("text-anchor", "middle")
-                .text(format(getActualValue(parseFloat(bottomFringe.attr("y1")))))
+                .text(dec2(getActualValue(parseFloat(bottomFringe.attr("y1")))))
                 .attr("class", "hover");
     }
     
@@ -1287,9 +1287,9 @@ function OnMouseOut(e)
         var variableNameHolder = d3.selectAll("#" + target.id + ".variableNameHolder");
     }
     
-    else if(target.className.baseVal == "visualizationHolder")                
+    else if(target.className.baseVal == "visualisationHolder")                
     {
-        var visualizationHolder = d3.selectAll("#" + target.id + ".visualizationHolder");
+        var visualisationHolder = d3.selectAll("#" + target.id + ".visualisationHolder");
     }
     
     else if(target.className.baseVal == "means")                

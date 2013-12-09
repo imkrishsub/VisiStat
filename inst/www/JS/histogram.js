@@ -346,7 +346,7 @@ function makeHistogram()
             canvas.append("text")
                         .attr("x", LEFT + j*xStep)
                         .attr("y", BOTTOM + tickTextOffsetXAxis + axesOffset)
-                        .text(format(min + j*slice))
+                        .text(dec2(min + j*slice))
                         .attr("text-anchor", "middle")
                         .attr("id", "groove" + j)
                         .attr("class", "xAxisGrooveText");
@@ -517,7 +517,7 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
         canvas.append("text")
                     .attr("x", LEFT + i*xStep)
                     .attr("y", BOTTOM + tickTextOffsetXAxis + shortAxesOffset)                    
-                    .text(format(min + i*(max-min)))
+                    .text(dec2(min + i*(max-min)))
                     .attr("text-anchor", "middle")
                     .attr("id", "groove" + i)
                     .attr("class", "densityCurve");

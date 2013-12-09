@@ -53,8 +53,8 @@
             
             variableTypeTextColors["participant"] = "white";
 
-    // Visualization panel
-        var visualizationImageSize = scaleForWindowSize(200);  
+    // Visualisation panel
+        var visualisationImageSize = scaleForWindowSize(200);  
 
 // Displaying Data
     var displayDataLimit = 20;
@@ -66,7 +66,7 @@
     var fontSizeAssumptions = scaleForWindowSize(24);
     var fontSizeAssumptionsTitle = scaleForWindowSize(26);
     var fontSizeVariablePanel = scaleForWindowSize(20);
-    var fontSizeVisualizationPanel = scaleForWindowSize(32);
+    var fontSizeVisualisationPanel = scaleForWindowSize(32);
     var fontSizeSignificanceTestResults = scaleForWindowSize(18);    
     
 // Plots (general)

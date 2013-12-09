@@ -11,7 +11,7 @@ function displayDataForVariable(variable)
     var canvas = d3.select("#canvas");
     
     canvas.append("p")
-            .text("Unfortunately, this variable has too many levels and does not have a meaningful visualization!")
+            .text("Unfortunately, this variable has too many levels and does not have a meaningful visualisation!")
             .attr("align", "center")
             .attr("style", "font-size: " + fontSizeForDisplayDataTitle + "px")
             .attr("class", "displayDataText");

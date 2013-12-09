@@ -3,7 +3,7 @@ function findCorrelationCoefficient(variableA, variableB)
     console.log("\nCORRELATION");
     console.log("\t\ttypeOf(" + variableA + ")=" + variableTypes[variableA] + ", typeOf(" + variableB + ")=" + variableTypes[variableB]);
     
-    var isScatterPlotMatrix = currentVisualizationSelection == "Scatterplot-matrix" ? true : false;
+    var isScatterPlotMatrix = currentVisualisationSelection == "Scatterplot-matrix" ? true : false;
     
     
     if((variableTypes[variableA] == "binary") && (variableTypes[variableB] == "binary"))

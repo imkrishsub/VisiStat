@@ -1,9 +1,11 @@
-var format = d3.format(".1f");
-var format2 = d3.format(".2f");
-var format3 = d3.format(".3f");
-var format5 = d3.format(".5f");
+//d3 dec2s
+var dec1 = d3.format(".1f");
+var dec2 = d3.format(".2f");
+var dec3 = d3.format(".3f");
+var dec5 = d3.format(".5f");
 
-function splitTheData(independentVariable)
+//Subset the data based on the different levels of the independent variable
+function subsetDataByLevels(independentVariable)
 {        
     for(var j=0; j<variableNames.length; j++)
     {
@@ -40,36 +42,6 @@ function splitTheData(independentVariable)
     }
 }
 
-function splitThisLevelBy(independentVariableA, independentVariableB, dependentVariable)
-{
-    var splitData = new Object();
-    var levelsA = variables[independentVariableA]["dataset"].unique();
-    var levelsB = variables[independentVariableB]["dataset"].unique();
-    
-    var indepA = variables[independentVariableA]["dataset"];
-    var indepB = variables[independentVariableB]["dataset"];
-    var dep = variables[dependentVariable]["dataset"];
-    
-    for(var i=0; i<levelsA.length; i++)
-    {
-        splitData[levelsA[i]] = new Object();
-        for(var j=0; j<levelsB.length; j++)
-        {
-            splitData[levelsA[i]][levelsB[j]] = new Array();
-        }
-    }
-    
-    for(var i=0; i<dep.length; i++)
-    {
-        var indexA = indepA[i];
-        var indexB = indepB[i];
-        
-        splitData[indexA][indexB].push(dep[i]);
-    }
-    
-    return splitData;
-}
-
 //Initialise the mouse event handlers
 function initMouseEventHandlers()
 {
@@ -79,7 +51,8 @@ function initMouseEventHandlers()
     document.onmouseout = OnMouseOut;
 }
 
-function pickOutVisualizations()
+//Restricts the available selection of visualisations based on the variables selected
+function restrictVisualisationSelection()
 {
     var variableList = sort(currentVariableSelection);    
     
@@ -91,17 +64,17 @@ function pickOutVisualizations()
                     {
                         case 1:
                                 {                                
-                                    currentVisualizationSelection = "Histogram";                    
+                                    currentVisualisationSelection = "Histogram";                    
                                     break;
                                 }
                         case 2:
                                 {
-                                    currentVisualizationSelection = "Scatterplot";
+                                    currentVisualisationSelection = "Scatterplot";
                                     break;
                                 }
                         default:
                                 {
-                                    currentVisualizationSelection = "Scatterplot-matrix";
+                                    currentVisualisationSelection = "Scatterplot-matrix";
                                     break;
                                 }
                     }
@@ -113,23 +86,23 @@ function pickOutVisualizations()
                     {
                         case 0:
                                 {                                 
-                                    currentVisualizationSelection = "Histogram";
+                                    currentVisualisationSelection = "Histogram";
                                     break;
                                 }
                         case 1:
                                 {                                 
-                                    currentVisualizationSelection = "Boxplot";
+                                    currentVisualisationSelection = "Boxplot";
                                     break;
                                 }
                         case 2:
                                 {
-                                    currentVisualizationSelection = "Scatterplot";
+                                    currentVisualisationSelection = "Scatterplot";
                                     break;
                                 }
                                     
                         default:
                                 {                                    
-                                    currentVisualizationSelection = "Scatterplot-matrix";
+                                    currentVisualisationSelection = "Scatterplot-matrix";
                                 }
                     }
                     break;
@@ -140,73 +113,23 @@ function pickOutVisualizations()
                     {
                         case 0:
                                 {  
-                                    currentVisualizationSelection = "Scatterplot";
+                                    currentVisualisationSelection = "Scatterplot";
                                     break;
                                 }
                         case 1:
                                 {                                 
-                                    currentVisualizationSelection = "Boxplot";
+                                    currentVisualisationSelection = "Boxplot";
                                     break;
                                 }
                         default:
                                 {                                    
-                                    currentVisualizationSelection = "Scatterplot-matrix";
+                                    currentVisualisationSelection = "Scatterplot-matrix";
                                 }
                     }
                     break;
                 }
     }
 }
-
-//Resets SVG canvas, draws plot based on the visualisation selected
-function makePlot()
-{   
-    resetSVGCanvas();
-    drawFullScreenButton();
-    
-    switch(currentVisualizationSelection)
-    {
-        case "Histogram":
-                                    {
-                                        curveX = [];
-                                        curveY = [];
-                                        makeHistogram();
-                                        break;
-                                    }
-        case "Boxplot":
-                                    { 
-                                        boxes = [];
-                                        meanCircles = [];
-                                        medianLines = [];
-                                        topFringes = [];
-                                        bottomFringes = [];
-                                        topFringeConnectors = [];
-                                        bottomFringeConnectors = [];
-                                        CILines = [];
-                                        CITopLines = [];
-                                        CIBottomLines = [];
-                                        yAxisTexts = [];
-                                        outlierValues = [];
-                                        topFringeValues = [];
-                                        bottomFringeValues = [];
-                                        
-                                        makeBoxplot();
-                                        break;
-                                    }
-        case "Scatterplot":
-                                    {
-                                        makeScatterplot();
-                                        break;
-                                    }
-        case "Scatterplot-matrix":
-                                    {
-                                        makeScatterplotMatrix();
-                                        break;
-                                    }
-    }
-}
-
-//Deletes the current SVG canvas and draws an empty canvas 
 
 //Removes a single element with the given ID
 function removeElementById(id)
@@ -226,42 +149,40 @@ function removeElementsByClassName(className)
 }
 
 //Adds a given element to an array by maintain unique elements
-function toggleFillColorsForVariables(array, element)
+function setColorsForVariables(array, element)
 {   
     var variable = d3.select("#" + element + ".variableNameHolderBack");
-    var variableText = d3.select("#" + element + ".variableNameHolderText");
-    // var dependentVariableText = d3.select("#" + element + ".dependentVariableText");
-//     var independentVariableText = d3.select("#" + element + ".independentVariableText");
+    var variableText = d3.select("#" + element + ".variableNameHolderText");    
     
     if(array.indexOf(element) == -1)
     {
         array.push(element);
+        
         variable.attr("fill", "url(#buttonFillSelected)")
         variable.attr("filter", "none");
         variable.attr("stroke", "none");
-        variableText.attr("fill", "white");
         
-//         dependentVariableText.attr("fill") == "#627bf4" ? dependentVariableText.attr("fill", "white") : independentVariableText.attr("fill", "white"); 
+        variableText.attr("fill", "white");
     }    
     else
     {     
         array.splice(array.indexOf(element), 1);
+        
         variable.attr("fill", "url(#buttonFillNormal)");  
         variable.attr("filter", "url(#Bevel)");
         variable.attr("stroke", "black");
-        variableText.attr("fill", "black");
         
-//         dependentVariableText.attr("fill") == "white" ? dependentVariableText.attr("fill", "#627bf4") : independentVariableText.attr("fill", "#627bf4"); 
+        variableText.attr("fill", "black");
     }
-
     return array;
 }
 
 //Manages the fill colors for visualisation-holders
-function toggleFillColorsForVisualizations()
+function setColorsForVisualisations()
 {
     var variableList = sort(currentVariableSelection);
-    var viz = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot-matrix"];
+    
+    var visualisations = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot-matrix"];
     validateAll();
     
     switch(variableList["independent"].length)
@@ -271,15 +192,15 @@ function toggleFillColorsForVisualizations()
                     switch(variableList["dependent"].length)
                     {
                         case 0: 
-                                invalidate([viz[0], viz[1], viz[2],viz[3]]);
+                                invalidate([visualisations[0], visualisations[1], visualisations[2],visualisations[3]]);
                                 break;
                         case 1:
-                               invalidate([viz[2],viz[3]]);
+                               invalidate([visualisations[2],visualisations[3]]);
                                 break;
                         case 2:
                                 break;
                         default:
-                                invalidate([viz[2]]);
+                                invalidate([visualisations]);
                     }
                     
                     break;
@@ -289,15 +210,15 @@ function toggleFillColorsForVisualizations()
                     switch(variableList["dependent"].length)
                     {
                         case 0: 
-                                invalidate([ viz[1],viz[2],viz[3]]);
+                                invalidate([visualisations[1],visualisations[2],visualisations[3]]);
                                 break;
                         case 1:
                                 break;
                         case 2:
-                                invalidate([viz[0], viz[1]]);
+                                invalidate([visualisations[0], visualisations[1]]);
                                 break;
                         default:
-                                invalidate([viz[0], viz[1], viz[2]]);
+                                invalidate([visualisations[0], visualisations[1], visualisations[2]]);
                                 break;
                     }
                     
@@ -308,13 +229,13 @@ function toggleFillColorsForVisualizations()
                     switch(variableList["dependent"].length)
                     {
                         case 0: 
-                                invalidate([viz[0], viz[1]]);
+                                invalidate([visualisations[0], visualisations[1]]);
                                 break;
                         case 1:
-                                invalidate([viz[0]]);
+                                invalidate([visualisations[0]]);
                                 break;
                         default:
-                                invalidate([viz[0], viz[1], viz[2]]);
+                                invalidate([visualisations[0], visualisations[1], visualisations[2]]);
                                 break;
                     }
                     
@@ -322,25 +243,25 @@ function toggleFillColorsForVisualizations()
                 }
                 
     }
+    var visualisationButtons = document.getElementsByClassName("visualisationHolderBack");
     
-    
-    var visualizations = document.getElementsByClassName("visualizationHolderBack");
-    
-    for(var i=0; i<visualizations.length; i++)
+    for(var i=0; i<visualisationButtons.length; i++)
     {      
-        if(visualizations[i].getAttribute("id") == currentVisualizationSelection)
+        if(visualisationButtons[i].getAttribute("id") == currentVisualisationSelection)
         {
-            visualizations[i].setAttribute("fill", "url(#buttonFillSelected)");
-            visualizations[i].setAttribute("filter", "none");
-            visualizations[i].setAttribute("stroke", "none");
-            d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "white");
+            visualisationButtons[i].setAttribute("fill", "url(#buttonFillSelected)");
+            visualisationButtons[i].setAttribute("filter", "none");
+            visualisationButtons[i].setAttribute("stroke", "none");
+            
+            d3.select("#" + visualisationButtons[i].getAttribute("id") + ".visualisationHolderText").attr("fill", "white");
         }
         else
         {
-            visualizations[i].setAttribute("fill", "url(#buttonFillNormal)");
-            visualizations[i].setAttribute("filter", "url(#Bevel)");
-            visualizations[i].setAttribute("stroke", "black");
-            d3.select("#" + visualizations[i].getAttribute("id") + ".visualizationHolderText").attr("fill", "black");
+            visualisationButtons[i].setAttribute("fill", "url(#buttonFillNormal)");
+            visualisationButtons[i].setAttribute("filter", "url(#Bevel)");
+            visualisationButtons[i].setAttribute("stroke", "black");
+            
+            d3.select("#" + visualisationButtons[i].getAttribute("id") + ".visualisationHolderText").attr("fill", "black");
         }
     }
 }
@@ -348,21 +269,22 @@ function toggleFillColorsForVisualizations()
 function validateAll()
 {
     var visualizations = d3.selectAll(".invalid");    
-    visualizations.attr("fill", "url(#buttonFillNormal)").attr("filter", "url(#Bevel)").attr("opacity", "0.1").attr("class", "visualizationHolderFront");                     
+    visualizations.attr("fill", "url(#buttonFillNormal)").attr("filter", "url(#Bevel)").attr("opacity", "0.1").attr("class", "visualisationHolderFront");                     
 }
 
 function invalidate(list)
 {
-    var visualizations = document.getElementsByClassName("visualizationHolderFront");
+    var visualizations = document.getElementsByClassName("visualisationHolderFront");
     
     for(var i=0; i<list.length; i++)
     {
-        var viz = d3.select("#" + list[i] + ".visualizationHolderFront");
+        var viz = d3.select("#" + list[i] + ".visualisationHolderFront");
         viz.attr("fill", "grey").attr("opacity", "0.75").attr("class", "invalid");        
     }
 }
-//Strings/numbers processing
 
+
+//Strings/numbers processing
 var toString = Object.prototype.toString;
 
 //Checks if a given object is a string
@@ -429,7 +351,6 @@ function getValidId(label)
 {
     var validId = true;
     
-
     if(isString(label) == false)
     {
         validId = false;    
@@ -619,7 +540,7 @@ function setVariableRow()
             independentVariableText.attr("fill", "#627bf4");
             dependentVariableText.attr("fill", "#BEC9FC");
             
-            splitTheData(variableNames[i]);
+            subsetDataByLevels(variableNames[i]);
         }
         else if(variableRows[variableNames[i]] == "dependent")
         {
@@ -727,39 +648,7 @@ function scaleForWindowSize(value)
     return value*(height/1004);
 }
 
-
-function toX(x)
-{
-    return toModifiedViewBoxForRegressionLineXCoordinate(x + (width - canvasWidth))
-}
-
-function toY(y)
-{
-    return toModifiedViewBoxForRegressionLineYCoordinate(canvasHeight - y)
-}
-
-function toModifiedViewBoxForRegressionLineXCoordinate(value)
-{
-    return (value - (width - canvasWidth) + viewBoxXForRegressionLine*(canvasWidth/viewBoxWidthForRegressionLine))*(viewBoxWidthForRegressionLine/canvasWidth);
-}
-
-function toModifiedViewBoxForRegressionLineYCoordinate(value)
-{
-    return (value + viewBoxYForRegressionLine*(canvasHeight/viewBoxHeightForRegressionLine))*(viewBoxHeightForRegressionLine/canvasHeight)
-}
-
-
 //Used to get the normal x,y coordinates from a scaled view box coordinate
-function getNormalXAxisCoordinateFromScaledViewBoxCoordinate(value)
-{
-    return (value*viewBoxWidthForRegressionLine/canvasWidth - viewBoxXForRegressionLine);
-}
-
-function getNormalYAxisCoordinateFromScaledViewBoxCoordinate(value)
-{
-    return viewBoxHeightForRegressionLine - (value*viewBoxHeightForRegressionLine/canvasHeight + viewBoxYForRegressionLine);
-}
-
 function setThisVariableEvil(variable)
 {    
     d3.select("#" + variable + ".variableNameHolderFront").attr("class", "disabled");
@@ -880,7 +769,7 @@ function calculateOutcome()
         
         console.log(outcomeVariable.innerHTML + " = " + testResults["coefficients"] + "*" + predictorVariable.value + " + " + testResults["intercept"]);
         
-        outcomeVariable.innerHTML = format5(testResults["coefficients"]*predictorVariable.value + testResults["intercept"]);
+        outcomeVariable.innerHTML = dec25(testResults["coefficients"]*predictorVariable.value + testResults["intercept"]);
     }
     else
     {
@@ -900,7 +789,7 @@ function calculateOutcome()
             outcomeVariableValue += coefficient*valueEnteredForExplanatoryVariable;
         }
         
-        outcomeVariableLabel.innerHTML = format5(outcomeVariableValue);
+        outcomeVariableLabel.innerHTML = dec25(outcomeVariableValue);
     }
 }
 

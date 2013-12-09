@@ -83,7 +83,7 @@ function drawTukeyHSDPlot()
     
     for(i=0; i<numberOfGroovesInYAxis; i++)
     {  
-        var axisText = format3(min + i*ySlice);
+        var axisText = dec3(min + i*ySlice);
         var textPosition = BOTTOM - i*yStep;                  
         
         canvas.append("line")

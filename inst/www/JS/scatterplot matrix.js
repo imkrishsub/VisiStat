@@ -267,7 +267,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     //x-axis ticks
     for(i=0; i<numberOfGroovesInXAxis; i++)
     {
-        axisText = format(minX + i*xSlice);
+        axisText = dec2(minX + i*xSlice);
         textPosition = x + i*xStep;
         
         var textAnchor = "middle";
@@ -309,7 +309,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     
     for(i=0; i<numberOfGroovesInYAxis; i++)
     {
-        axisText = format(minY + i*ySlice);
+        axisText = dec2(minY + i*ySlice);
         textPosition = y - i*yStep;                  
         var offset = 0;
         

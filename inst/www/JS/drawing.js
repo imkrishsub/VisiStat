@@ -1,26 +1,76 @@
 //drawing
+
+function plotVisualisation()
+{   
+    resetSVGCanvas();
+    drawFullScreenButton();
+    
+    switch(currentVisualisationSelection)
+    {
+        case "Histogram":
+                                    {
+                                        curveX = [];
+                                        curveY = [];
+                                        
+                                        makeHistogram();
+                                        
+                                        break;
+                                    }
+        case "Boxplot":
+                                    { 
+                                        boxes = [];
+                                        meanCircles = [];
+                                        medianLines = [];
+                                        topFringes = [];
+                                        bottomFringes = [];
+                                        topFringeConnectors = [];
+                                        bottomFringeConnectors = [];
+                                        CILines = [];
+                                        CITopLines = [];
+                                        CIBottomLines = [];
+                                        yAxisTexts = [];
+                                        outlierValues = [];
+                                        topFringeValues = [];
+                                        bottomFringeValues = [];
+                                        
+                                        makeBoxplot();
+                                        
+                                        break;
+                                    }
+        case "Scatterplot":
+                                    {
+                                        makeScatterplot();
+                                        
+                                        break;
+                                    }
+        case "Scatterplot-matrix":
+                                    {
+                                        makeScatterplotMatrix();
+                                        
+                                        break;
+                                    }
+    }
+}
+
 function resetSVGCanvas()
 {
     removeElementsByClassName("regressionPredictionDiv");
     
     if(document.getElementById("plotCanvas") != null)
         removeElementById("plotCanvas");
+    if(document.getElementById("sideBarCanvas") != null)
+        removeElementById("sideBarCanvas");
             
-    var plotCanvas = d3.select("#canvas").append("svg");
-        
+    var plotCanvas = d3.select("#canvas").append("svg");        
     plotCanvas.attr("id", "plotCanvas")
               .attr("x", 0)
               .attr("y", 0)
               .attr("height", canvasHeight)
               .attr("width", canvasWidth)
               .attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
-    
-    if(document.getElementById("sideBarCanvas") != null)
-        removeElementById("sideBarCanvas");
             
-    var plotCanvas = d3.select("#sideBar").append("svg");
-        
-    plotCanvas.attr("id", "sideBarCanvas")
+    var sideBarCanvas = d3.select("#sideBar").append("svg");        
+    sideBarCanvas.attr("id", "sideBarCanvas")
               .attr("x", 0)
               .attr("y", 0)
               .attr("height", canvasHeight)

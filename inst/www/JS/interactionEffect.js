@@ -88,7 +88,7 @@ function drawInteractionEffectPlot()
     
     for(i=0; i<numberOfGroovesInYAxis; i++)
     {
-        var axisText = format(min + i*ySlice);
+        var axisText = dec2(min + i*ySlice);
         var textPosition = BOTTOM - i*yStep;                  
         
         canvas.append("line")

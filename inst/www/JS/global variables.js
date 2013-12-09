@@ -13,7 +13,7 @@ var colourBoxPlotData = new Object();
 var variableCount = 0;
 
 var currentVariableSelection = [];    
-var currentVisualizationSelection;
+var currentVisualisationSelection;
 
 var fullScreen = false;
 

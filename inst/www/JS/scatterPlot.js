@@ -151,7 +151,7 @@ function makeScatterplot()
     //grooves
     for(i=0; i<numberOfGroovesInXAxis; i++)
     {
-        axisText = format(mins["X"] + i*xSlice);
+        axisText = dec2(mins["X"] + i*xSlice);
         textPosition = LEFT + i*xStep;
         
         if(uniqueDataX.length <= numberOfGrooves)
@@ -180,7 +180,7 @@ function makeScatterplot()
     
     for(i=0; i<numberOfGroovesInYAxis; i++)
     {
-        axisText = format(mins["Y"] + i*ySlice);
+        axisText = dec2(mins["Y"] + i*ySlice);
         textPosition = BOTTOM - i*yStep;                  
         
         if(uniqueDataY.length <= numberOfGrooves)

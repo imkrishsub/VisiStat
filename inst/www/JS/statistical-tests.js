@@ -673,7 +673,7 @@ function drawScales(cx, cy)
                 .attr("font-size", scaleForWindowSize(20) + "px")
                 .attr("id", "tickText")
                 .attr("class", "significanceTest")
-                .text(format(means[means.length-1] - means[0]));
+                .text(dec2(means[means.length-1] - means[0]));
     
     if(cy.length >= 2)
     {
@@ -686,7 +686,7 @@ function drawScales(cx, cy)
                 .attr("id", "DIM" + i)
                 .attr("class", "differenceInMeansText")
                 .attr("display", "none")
-                .text(format(means[i+1] - means[i]));
+                .text(dec2(means[i+1] - means[i]));
                 
             canvas.append("line")
                 .attr("x1", x-5)
