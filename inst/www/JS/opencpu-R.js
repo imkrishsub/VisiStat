@@ -22,7 +22,7 @@ function loadFile(filePath)
         IQR[output.variableNames[i]] = new Object();
         CI[output.variableNames[i]] = new Object();
         
-        getDataAndIQR(dataset, output.variableNames[i]);                 
+        getData(dataset, output.variableNames[i]);                 
     }
      }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -36,7 +36,7 @@ function loadFile(filePath)
     });
 }
 
-function getDataAndIQR(dataset, variableName, level)
+function getData(dataset, variableName, level)
 {
 //     Get variable names and their data type
         var req = opencpu.r_fun_json("getData", {
@@ -58,28 +58,20 @@ function getDataAndIQR(dataset, variableName, level)
         console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
     
         IQR[variableName][level] = findIQR(variables[variableName][level]);
+        CI[variableNames[i]][level] = findCI(variables[variableNames[i]][level]);   
         
         if(++variableCount == getObjectLength(variableNames))
         {
             setVariableRow();
             setVariableTypes();
             
-            for(var i=0; i<variableNames.length; i++)
-            {
-                CI[variableNames[i]]["dataset"] = findCI(variables[variableNames[i]]["dataset"]);   
-            }
-            
             testForEvilVariables();
             
-//             clearInterval(loadingDataAnimation);
-            
             removeElementsByClassName("loadingAnimation");
-            removeElementById("loadingImage");
-            experimentalDesign = findExperimentalDesign();
             
+            experimentalDesign = findExperimentalDesign();            
             console.log("\n\tEXPERIMENTAL DESIGN = " + experimentalDesign);
-        }
-    
+        }    
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -127,28 +119,6 @@ function getCI(dataset, variableName, level)
       alert("Server error: " + req.responseText);
     });
 }  
-
-//Split data - R based   
-// function subsetDataByLevelsOfVariable(dataset, variableName, level)
-// {   
-//     console.log("dataset=" + dataset + ", variableName=" + variableName);
-//     // Get variable names and their data type
-//     var req = opencpu.r_fun_json("subsetDataByLevelsOfVariable", {
-//                     dataset: dataset,
-//                     variable: variableName,
-//                     level: level
-//                   }, function(output) {                  
-//                 
-//       console.log("split data: \t");
-//       console.dir(output.splitData);
-//       
-// //            getIQR(splitData[value], variableNames[i],value);                
-//       
-//                 
-//      });  
-// }
-
-//Statistics
 
 //Assumption-checking
 
