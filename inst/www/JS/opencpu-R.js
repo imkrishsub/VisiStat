@@ -26,7 +26,7 @@ function loadFile(filePath)
         CI[output.variableNames[i]] = new Object();
         
         getData(dataset, output.variableNames[i]);                 
-        getIQR(dataset, output.variableNames[i]);  
+//         getIQR(dataset, output.variableNames[i]);  
     }
      }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -90,6 +90,12 @@ function getData(dataset, variableName, level)
         console.log("\n\tvariables[" + variableName + "][" + level + "] = " + variables[variableName][level]);
         console.log("\tMIN[" + variableName + "][" + level + "] = " + MIN[variableName][level]);
         console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
+        
+        if(level === undefined)
+        {   
+            level = "dataset";
+        }         
+        IQR[variableName][level] = findIQR(variables[variableName][level]);
         
         if(++ticker == getObjectLength(variableNames))
         {
