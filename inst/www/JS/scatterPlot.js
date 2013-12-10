@@ -294,8 +294,11 @@ function drawRegressionLine(intercept, slope)
     Y2 = ((slope*X2) + intercept); //> maxs["Y"] ? maxs["Y"] : ((slope*X2) + intercept);
 //     Y2 = ((slope*X2) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X2) + intercept);
     
-    console.log("Y1 = " + Y1);
-    console.log("Y2 = " + Y2);
+    console.log("Y1 = " + slope*X1);
+    console.log("Y2 = " + slope*X2);
+    
+    console.log("Y1 = " + (slope*X1 + intercept));
+    console.log("Y2 = " + (slope*X2 + intercept));
     
     console.log("intercept=" + intercept + ", slope=" + slope);
     
