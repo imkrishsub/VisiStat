@@ -67,6 +67,9 @@ function makeScatterplot()
     maxs["X"] = MAX[currentVariableSelection[0]]["dataset"];
     maxs["Y"] = MAX[currentVariableSelection[1]]["dataset"];
     
+    console.log("mins[X]=" + mins["X"] + ", maxs[X]=" + maxs["X"]);
+    console.log("mins[Y]=" + mins["Y"] + ", maxs[Y]=" + maxs["Y"]);
+    
     findCorrelationCoefficient(currentVariableSelection[0], currentVariableSelection[1]);
     
     var colorData;
