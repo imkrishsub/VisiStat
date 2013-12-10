@@ -57,4 +57,9 @@ text
 {
     font-family: "Verdana", sans-serif; font-weight: normal; font-style: normal;
 }
+#oneSampleTestButton
+{
+    position: relative;
+    height: 2.5em;
+}
 
