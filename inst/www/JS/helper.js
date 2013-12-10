@@ -397,6 +397,7 @@ function allVariablesAreNumeric()
             yeah = false;
         }
     }
+    console.log("yeah = " + yeah);
     
     return yeah;
 }
