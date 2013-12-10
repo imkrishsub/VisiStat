@@ -768,14 +768,13 @@ function drawBoxPlotLegends(varNames)
 function selectAllMeans()
 {
     var means = document.getElementsByClassName("means");
-    var means_d3 = d3.selectAll(".means");
     
     var plotCanvas = d3.select("#plotCanvas");
     
     for(var i=0; i<means.length; i++)
     {
         var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
-        mean.transition().attr("fill", meanColors["click"]);
+        mean.transition().delay(i*1000).duration(500).attr("fill", meanColors["click"]);
         
         if(i != means.length - 1)
         {
@@ -788,7 +787,7 @@ function selectAllMeans()
                         .attr("stroke-dasharray", "5,5")
                         .attr("class", "completeLines");
             
-            line.transition().attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy"));            
+            line.transition().delay(i*1000 + 500).duration(500).attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy"));            
         }
     }
 }
