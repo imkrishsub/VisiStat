@@ -309,8 +309,6 @@ function drawRegressionLine(intercept, slope)
         x1 = LEFT + getValue1(X1, mins["X"], maxs["X"])*plotWidth;
         
     if(uniqueDataY.length <= numberOfGrooves)
-        y1 = BOTTOM - uniqueDataY.indexOf(Y1)*yStep - yStep/2;
-    else
         y1 = BOTTOM - getValue1(Y1, mins["Y"], maxs["Y"])*plotHeight;
     
     if(uniqueDataX.length <= numberOfGrooves)
@@ -319,8 +317,6 @@ function drawRegressionLine(intercept, slope)
         x2 = LEFT + getValue1(X2, mins["X"], maxs["X"])*plotWidth;
         
     if(uniqueDataY.length <= numberOfGrooves)
-        y2 = BOTTOM - uniqueDataY.indexOf(Y2)*yStep - yStep/2;
-    else
         y2 = BOTTOM - getValue1(Y2, mins["Y"], maxs["Y"])*plotHeight; 
     
     canvas.append("line")
