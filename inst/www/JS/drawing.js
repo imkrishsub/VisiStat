@@ -457,6 +457,8 @@ function setOpacityForElementsWithClassNames(classNames, opacity)
 //Significance Tests
 function loadAssumptionCheckList()
 {
+    freezeMouseEvents = true;
+    
     var canvas = d3.select("#sideBarCanvas");
     
     var title = canvas.append("text")
