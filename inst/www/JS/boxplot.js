@@ -788,7 +788,7 @@ function selectAllMeans()
         return 0;
     }
     
-    console.log("means = [" + means + "]" );
+    console.log("means = [" + means + "]");
     
     var plotCanvas = d3.select("#plotCanvas");
     
