@@ -236,7 +236,7 @@ function drawDialogBoxToGetPopulationMean()
             .attr("rx", "5px")
             .attr("ry", "5px")
             .attr("fill", "url(#buttonFillSelected)")
-            .attr("filter", "url(#buttonFilterNormal)")
+            .attr("filter", "url(#shadow)")
             .attr("id", "regression")
             .attr("class", "dialogBox");
     
@@ -256,9 +256,10 @@ function drawDialogBoxToGetPopulationMean()
     divElement.append("input")
                 .attr("type", "text")
                 .attr("id", "populationValue");
+                
     divElement.append("br");
     divElement.append("br");
-    divElement.append("br");
+    
     divElement.append("input")
                 .attr("type", "button")
                 .attr("onclick", "populationMeanEntered()")
