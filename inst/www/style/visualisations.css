@@ -57,9 +57,12 @@ text
 {
     font-family: "Verdana", sans-serif; font-weight: normal; font-style: normal;
 }
+
 #oneSampleTestButton
 {
-    position: relative;
+    width: 15em;
     height: 2.5em;
+    position: relative;
+    padding: 25px;
 }
 
