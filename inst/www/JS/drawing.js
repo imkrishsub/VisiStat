@@ -90,6 +90,7 @@ function plotVisualisation()
 function resetSVGCanvas()
 {
     removeElementsByClassName("regressionPredictionDiv");
+    removeElementsByClassName("dialogBox");
     
     if(document.getElementById("plotCanvas") != null)
         removeElementById("plotCanvas");
