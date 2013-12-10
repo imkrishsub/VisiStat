@@ -831,15 +831,13 @@ function unselectAllMeans()
 //         return 0;
 //     });
     
-    var plotCanvas = d3.select("#plotCanvas");    
+    var plotCanvas = d3.select("#plotCanvas");   
+    
     for(var i=0; i<selectedMeans.length; i++)
     {
         var mean = d3.select("#" + selectedMeans[i].getAttribute("id") + ".means");
-        mean.transition().delay(i*1000).duration(500).attr("fill", meanColors["normal"]);
-        
-        if(i != selectedMeans.length)
-        {
-            completeLines[i].parentNode.removeChild();
-        }
+        mean.transition().delay(i*500).duration(500).attr("fill", meanColors["normal"]);
     }
+    
+    removeElementsByClassName("completeLines");
 }
