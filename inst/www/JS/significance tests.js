@@ -140,7 +140,7 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                   testLog["t"].push(testResults);
                   
                   var fs = require('fs');
-                  fs.writeFile("/Users/krishnasubramanian/Documents/Logs/temp", "Yo!");
+                  fs.writeFile("/Users/krishnasubramanian/Documents/Logs/temp.txt", "Yo!");
                   
                   console.log("testLog = ");
                   console.dir(testLog);
