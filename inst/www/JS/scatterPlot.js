@@ -275,6 +275,9 @@ function drawRegressionLine(intercept, slope)
     var canvas = d3.select("#plotCanvas");
     canvas.attr("viewBox", "0 0 " + canvasWidth + " " + parseFloat(canvasHeight+scaleForWindowSize(400)));    
     
+    intercept = parseFloat(intercept);
+    slope = parseFloat(slope);
+    
     var x1, y1, x2, y2;
     
     var X1, X2;
@@ -288,17 +291,15 @@ function drawRegressionLine(intercept, slope)
     console.log("mins[Y]=" + mins["Y"]);
     console.log("maxs[Y]=" + maxs["Y"]);
     
-    Y1 = ((slope*X1) + intercept);// > maxs["Y"] ? maxs["Y"] : ((slope*X1) + intercept);
-//     Y1 = ((slope*X1) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X1) + intercept);
+    Y1 = ((slope*X1) + intercept) > maxs["Y"] ? maxs["Y"] : ((slope*X1) + intercept);
+    Y1 = ((slope*X1) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X1) + intercept);
     
-    Y2 = ((slope*X2) + intercept); //> maxs["Y"] ? maxs["Y"] : ((slope*X2) + intercept);
-//     Y2 = ((slope*X2) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X2) + intercept);
+    Y2 = ((slope*X2) + intercept) > maxs["Y"] ? maxs["Y"] : ((slope*X2) + intercept);
+    Y2 = ((slope*X2) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X2) + intercept);
     
-    console.log("Y1 = " + slope*X1);
-    console.log("Y2 = " + slope*X2);
+    console.log("Y1 = " + Y1);
+    console.log("Y2 = " + Y2);
     
-    console.log("Y1 = " + (slope*X1 + intercept));
-    console.log("Y2 = " + (slope*X2 + intercept));
     
     console.log("intercept=" + intercept + ", slope=" + slope);
     
