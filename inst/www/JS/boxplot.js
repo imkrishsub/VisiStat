@@ -766,31 +766,36 @@ function drawBoxPlotLegends(varNames)
 }
 
 function selectAllMeans()
-{
-    var means = document.getElementsByClassName("means");    
+{    
+    var lastMean = findEndingMean();
     var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
+    
+    var means = new Array();l
+    means.push(lastMean);
+    for(var i=0; i<unSelectedMeans.length; i++)
+        means.push(unSelectedMeans[i]);
     
     console.log("nSelected: " + unSelectedMeans.length);
     
     var plotCanvas = d3.select("#plotCanvas");
     
-    for(var i=0; i<unSelectedMeans.length; i++)
+    for(var i=0; i<means.length; i++)
     {
-        var mean = d3.select("#" + unSelectedMeans[i].getAttribute("id") + ".means");
+        var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
         mean.transition().delay(i*1000).duration(500).attr("fill", meanColors["click"]);
         
-        if(i != unSelectedMeans.length - 1)
+        if(i != means.length - 1)
         {
             var line = plotCanvas.append("line")
-                        .attr("x1", unSelectedMeans[i].getAttribute("cx"))
-                        .attr("y1", unSelectedMeans[i].getAttribute("cy"))
-                        .attr("x2", unSelectedMeans[i].getAttribute("cx"))
-                        .attr("y2", unSelectedMeans[i].getAttribute("cy"))
+                        .attr("x1", means[i].getAttribute("cx"))
+                        .attr("y1", means[i].getAttribute("cy"))
+                        .attr("x2", means[i].getAttribute("cx"))
+                        .attr("y2", means[i].getAttribute("cy"))
                         .attr("stroke", meanColors["click"])
                         .attr("stroke-dasharray", "5,5")
                         .attr("class", "completeLines");
             
-            line.transition().delay(i*1000 + 500).duration(500).attr("x2", unSelectedMeans[i+1].getAttribute("cx")).attr("y2", unSelectedMeans[i+1].getAttribute("cy"));            
+            line.transition().delay(i*1000 + 500).duration(500).attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy"));            
         }
     }
 }

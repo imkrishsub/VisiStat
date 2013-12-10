@@ -208,6 +208,44 @@ function findEndingLine()
     return 0;
 }
 
+function findEndingMean()
+{
+    var completeLines = document.getElementsByClassName("completeLines");
+    var means = document.getElementsByClassName("means");
+    
+    var START = [];
+    var END = [];
+    
+    for(var j=0; j<completeLines.length; j++)
+    {
+        for(var i=0; i<means.length; i++)
+        {        
+            if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
+            {
+                END.push(i);
+            }
+            if(completeLines[j].getAttribute("x1") == means[i].getAttribute("cx"))
+            {
+                START.push(i);
+            }
+        }
+    }
+    
+    for(var i=0; i<means.length; i++)
+    {
+        if(START.indexOf(i) == -1 && END.indexOf(i) != -1)
+        {
+            for(var j=0; j<completeLines.length; j++)
+            {
+                if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
+                    return means[i];
+            }
+        }
+    }
+    
+    return 0;
+}
+
 function resetMeans()
 {
     var means = d3.selectAll(".means").attr("fill", meanColors["normal"]);
