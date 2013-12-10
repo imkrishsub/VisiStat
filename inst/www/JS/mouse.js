@@ -316,7 +316,7 @@ function OnMouseDown(e)
             drawButtonInSideBar(inText, "compareNow");
             
             canvas.append("rect")
-                    .attr("x", plotWidth/4 - selectionButtonWidth/2)
+                    .attr("x", plotWidth/3 - selectionButtonWidth/2)
                     .attr("y", selectionButtonOffset)
                     .attr("height", selectionButtonHeight)
                     .attr("width", selectionButtonWidth)
@@ -324,11 +324,13 @@ function OnMouseDown(e)
                     .attr("ry", scaleForWindowSize(10) + "px")
                     .attr("fill", "url(#buttonFillNormal)")
                     .attr("filter", "url(#Bevel)")
+                    .attr("stroke", "black")
                     .attr("id", "rect")
                     .attr("class", "selectNone");
+                    
             canvas.append("text")
-                    .attr("x", plotWidth/4)
-                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 - yAxisTickTextOffset)
+                    .attr("x", plotWidth/3)
+                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
                     .attr("fill", "black")
                     .attr("text-anchor", "middle")
                     .attr("font-size", fontSizeButtonLabel + "px")
@@ -337,7 +339,7 @@ function OnMouseDown(e)
                     .attr("class", "selectNone");
             
             canvas.append("rect")
-                    .attr("x", 3*plotWidth/4 - selectionButtonWidth/2)
+                    .attr("x", 2*plotWidth/3 - selectionButtonWidth/2)
                     .attr("y", selectionButtonOffset)
                     .attr("height", selectionButtonHeight)
                     .attr("width", selectionButtonWidth)
@@ -345,11 +347,13 @@ function OnMouseDown(e)
                     .attr("ry", scaleForWindowSize(10) + "px")
                     .attr("fill", "url(#buttonFillNormal)")
                     .attr("filter", "url(#Bevel)")
+                    .attr("stroke", "black")
                     .attr("id", "rect")
                     .attr("class", "selectAll");
+                    
             canvas.append("text")
-                    .attr("x", 3*plotWidth/4)
-                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 - yAxisTickTextOffset)
+                    .attr("x", 2*plotWidth/3)
+                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
                     .attr("fill", "black")
                     .attr("text-anchor", "middle")
                     .attr("font-size", fontSizeButtonLabel + "px")
@@ -389,6 +393,50 @@ function OnMouseDown(e)
             }, 1800);
         
             removeElementsByClassName("compareMean");
+        }
+        
+        else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "selectNone")
+        {
+            setup(e, target);
+            
+            var selectNoneText = d3.select("#text.selectNone");
+            var selectNoneButton = d3.select("#rect.selectNone");
+            
+            var selectAllText = d3.select("#text.selectAll");
+            var selectAllButton = d3.select("#rect.selectAll");
+            
+            if(selectNoneButton.attr("fill") == "url(#buttonFillNormal)")
+            {
+                selectNoneButton.attr("fill", "url(#buttonFillSelected)");
+                selectNoneButton.attr("filter", "none");
+                selectNoneButton.attr("stroke", "none");
+                
+                selectNoneText.attr("fill", "white");
+                
+                unselectAllMeans();
+            }
+        }
+        
+        else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "selectAll")
+        {
+            setup(e, target);
+            
+            var selectNoneText = d3.select("#text.selectNone");
+            var selectNoneButton = d3.select("#rect.selectNone");
+            
+            var selectAllText = d3.select("#text.selectAll");
+            var selectAllButton = d3.select("#rect.selectAll");
+            
+            if(selectAllButton.attr("fill") == "url(#buttonFillNormal)")
+            {
+                selectAllButton.attr("fill", "url(#buttonFillSelected)");
+                selectAllButton.attr("filter", "none");
+                selectAllButton.attr("stroke", "none");
+                
+                selectAllText.attr("fill", "white");
+                
+                selectAllMeans();
+            }
         }
     
         else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "doPairwiseTest")

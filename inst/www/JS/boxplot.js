@@ -806,3 +806,39 @@ function selectAllMeans()
         }
     }
 }
+
+function unselectAllMeans()
+{    
+    var selectedMeans = getSelectedMeansForColourBoxPlotData();
+    var completeLines = d3.selectAll(".completeLines");
+        
+    selectedMeans.sort(function(a, b)
+    {
+        if(a.getAttribute("cx") < b.getAttribute("cx"))
+            return -1;
+        if(a.getAttribute("cx") > b.getAttribute("cx"))
+            return 1;
+        return 0;
+    });
+    
+    completeLines.sort(function(a, b)
+    {
+        if(a.getAttribute("x1") < b.getAttribute("x1"))
+            return -1;
+        if(a.getAttribute("x1") > b.getAttribute("x1"))
+            return 1;
+        return 0;
+    });
+    
+    var plotCanvas = d3.select("#plotCanvas");    
+    for(var i=0; i<means.length; i++)
+    {
+        var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
+        mean.transition().delay(i*1000).duration(500).attr("fill", meanColors["normal"]);
+        
+        if(i != means.length)
+        {
+            completeLines[i].parentNode.removeChild();
+        }
+    }
+}
