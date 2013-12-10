@@ -445,7 +445,7 @@ function findTransformForDependentVariables(numericVariables)
                     setTimeout(
                     function(){
                                   drawDialogBoxToGetPopulationMean();
-                              }, 3800);
+                              }, 4000);
                 }
                 else
                 {
@@ -529,7 +529,7 @@ function applyTransform(dependentVariable, level, finalVariable)
                             performHomoscedasticityTestNormal(dependentVariable, variableList["independent"][0]);
                         else
                             drawDialogBoxToGetPopulationMean();
-                    }, 1500);
+                    }, 3000);
                 }            
                   
       }).fail(function(){
