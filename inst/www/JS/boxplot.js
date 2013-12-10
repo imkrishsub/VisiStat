@@ -786,7 +786,7 @@ function selectAllMeans()
         if(a.getAttribute("cx") > b.getAttribute("cx"))
             return -1;
         return 0;
-    }
+    });
     
     console.log("means = [" + means + "]");
     
