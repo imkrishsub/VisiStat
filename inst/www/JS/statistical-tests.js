@@ -77,12 +77,16 @@ function compareMeans()
                     
                     console.log("selected=" + selectedMeans.length + ", total=" + totalNumberOfLevels);
                     
-                    if(selectedMeans.length < totalNumberOfLevels)
+                    if(selectedMeans.length < totalNumberOfLevels && selectedMeans.length != 2)
                     {
-                        selectAllMeans();
+                        var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
+                        setTimeout(function()
+                        {
+                            selectAllMeans();
+                        }, (unSelectedMeans.length+1)*1000);
                     }
                     
-//                     loadAssumptionCheckList();                    
+                    loadAssumptionCheckList();                    
                     performNormalityTests();
         
                     break;
