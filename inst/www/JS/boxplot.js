@@ -811,7 +811,7 @@ function selectAllMeans()
 function unselectAllMeans()
 {    
     var selectedMeans = getSelectedMeansForColourBoxPlotData();
-    var completeLines = d3.selectAll(".completeLines");
+    var completeLines = document.getElementsByClassName("completeLines");
         
     selectedMeans.sort(function(a, b)
     {
