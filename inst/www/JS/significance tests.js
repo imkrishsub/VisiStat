@@ -112,6 +112,8 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                     paired: paired
                   }, function(output) {                                                   
                   
+                  var variableList = getSelectedVariables();
+                  
                   console.log("\t\t " + output.method);
                   console.log("\t\t\t DOF = " + output.DOF);
                   console.log("\t\t\t p = " + output.p);
@@ -127,6 +129,7 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                   testResults["method"] = output.method;
                   testResults["effect-size"] = output.d;
                   testResults["effect-size-type"] = "d";
+                  testResults["formula"] = "formula goes here";
                   
                   //add to log
                   if(testLog["t"] == undefined)
@@ -135,6 +138,9 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                   }
                 
                   testLog["t"].push(testResults);
+                  
+                  var fs = require('fs');
+                  fs.writeFile("/Users/krishnasubramanian/Documents/Logs/temp", "Yo!");
                   
                   console.log("testLog = ");
                   console.dir(testLog);
