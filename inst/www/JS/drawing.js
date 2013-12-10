@@ -208,6 +208,7 @@ function drawDialogBoxToGetOutcomeVariable()
                 .attr("ry", scaleForWindowSize(10) + "px")
                 .attr("fill", "url(#buttonFillNormal)")
                 .attr("filter", "url(#Bevel)")
+                .attr("stroke", "black")
                 .attr("id", currentVariableSelection[i])
                 .attr("class", "outcomeVariable");
         canvas.append("text")
