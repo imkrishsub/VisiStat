@@ -457,8 +457,6 @@ function setOpacityForElementsWithClassNames(classNames, opacity)
 //Significance Tests
 function loadAssumptionCheckList()
 {
-    freezeMouseEvents = true;
-    
     var canvas = d3.select("#sideBarCanvas");
     
     var title = canvas.append("text")
@@ -624,9 +622,7 @@ function drawScales(cx, cy)
 }
 
 function displayOneSampleTestResults()
-{    
-    freezeMouseEvents = false;
-    
+{        
     var cx = [];
     var cy = [];
 
@@ -760,9 +756,7 @@ function displayOneSampleTestResults()
 }
   
 function displaySignificanceTestResults()
-{    
-    freezeMouseEvents = false;
-    
+{        
     var cx = [];
     var cy = [];
 
@@ -863,9 +857,7 @@ function displaySignificanceTestResults()
 }
 
 function displayCorrelationResults()
-{ 
-    freezeMouseEvents = false;
-    
+{     
     var sideBar = d3.select("#sideBarCanvas");
     
     if(document.getElementById("computingResultsImage") != null)
@@ -913,9 +905,7 @@ function displayCorrelationResults()
 }
 
 function displayBiserialCorrelationResults()
-{   
-    freezeMouseEvents = false;
-    
+{       
     var sideBar = d3.select("#sideBarCanvas");
     
     if(document.getElementById("computingResultsImage") != null)
@@ -935,9 +925,7 @@ function displayBiserialCorrelationResults()
 }
 
 function displaySimpleRegressionResults()
-{   
-    freezeMouseEvents = false;
-    
+{       
     var sideBar = d3.select("#sideBarCanvas");    
     
     if(document.getElementById("computingResultsImage") != null)
@@ -992,9 +980,7 @@ function displaySimpleRegressionResults()
 }
 
 function displayMultipleRegressionResults()
-{   
-    freezeMouseEvents = false;
-    
+{       
     var sideBar = d3.select("#sideBarCanvas");    
     
     if(document.getElementById("computingResultsImage") != null)
