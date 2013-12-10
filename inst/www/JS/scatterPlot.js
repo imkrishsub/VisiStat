@@ -297,6 +297,8 @@ function drawRegressionLine(intercept, slope)
     console.log("Y1 = " + Y1);
     console.log("Y2 = " + Y2);
     
+    console.log("intercept=" + intercept + ", slope=" + slope);
+    
     if(uniqueDataX.length <= numberOfGrooves)
         x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
     else
