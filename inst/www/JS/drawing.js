@@ -207,7 +207,7 @@ function drawDialogBoxToGetOutcomeVariable()
                 .attr("rx", scaleForWindowSize(10) + "px")
                 .attr("ry", scaleForWindowSize(10) + "px")
                 .attr("fill", "url(#buttonFillNormal)")
-                .attr("filter", "url(#buttonFilterNormal)")
+                .attr("filter", "url(#Bevel)")
                 .attr("id", currentVariableSelection[i])
                 .attr("class", "outcomeVariable");
         canvas.append("text")
@@ -261,6 +261,7 @@ function drawDialogBoxToGetPopulationMean()
                 .text(inText);
     divElement.append("input")
                 .attr("type", "text")
+                .attr("style", "border-color: #000000")
                 .attr("id", "populationValue");
                 
     divElement.append("br");
@@ -270,6 +271,7 @@ function drawDialogBoxToGetPopulationMean()
                 .attr("type", "button")
                 .attr("onclick", "populationMeanEntered()")
                 .attr("id", "oneSampleTestButton")
+                .attr("style", "fill: url(#buttonFillNormal); filter: url(#Bevel)")
                 .attr("value","TEST AGAINST POPULATION ESTIMATE");
     
 }   
