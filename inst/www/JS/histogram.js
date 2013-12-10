@@ -433,8 +433,11 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
     var max;
     
     if(variableList["independent"].length == 2)
-    {
-        console.log("level = " + level);
+    {        
+        var levels = level.split("-");
+        
+        data = colourBoxPlotData[levels[0]][levels[1]];
+        console.log("data = [" + data + "]");
     }
     else
     {   
