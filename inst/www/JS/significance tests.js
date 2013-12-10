@@ -354,11 +354,11 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                   console.log("\t\t Repeated-measures ANOVA for (" + dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable + ")");
                   console.log("\t\t\t F = " + output.F);
                   console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
-                  console.log("\t\t\t DF = " + output.numDF + "/" + output.denomDF);
+                  console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
-                  testResults["df"] = output.numDF + "/" + output.denomDF;
+                  testResults["df"] = output.numDF + "," + output.denomDF;
                   
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
@@ -498,10 +498,10 @@ function performWelchANOVA(dependentVariable, independentVariable)
                   console.log("\t\t\t F = " + output.F);
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t method used = Welch's ANOVA");
-                  console.log("\t\t\t DF = (" + output.numeratorDF + ", " + output.denominatorDF +")");
+                  console.log("\t\t\t DF = (" + output.numeratorDF + "," + output.denominatorDF +")");
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
-                  testResults["df"] = output.numeratorDF + "/" + output.denominatorDF;
+                  testResults["df"] = output.numeratorDF + "," + output.denominatorDF;
                   
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
