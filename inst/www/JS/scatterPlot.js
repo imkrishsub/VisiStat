@@ -137,8 +137,8 @@ function makeScatterplot()
     
     //grooves
     
-    uniqueDataX = data["X"].unique();
-    uniqueDataY = data["Y"].unique();  
+    uniqueDataX = data["X"].unique().sort();
+    uniqueDataY = data["Y"].unique().sort();  
     
     var numberOfGroovesInXAxis = uniqueDataX.length > numberOfGrooves ? numberOfGrooves : uniqueDataX.length;
     var numberOfGroovesInYAxis = uniqueDataY.length > numberOfGrooves ? numberOfGrooves : uniqueDataY.length;
