@@ -822,14 +822,14 @@ function unselectAllMeans()
         return 0;
     });
     
-    completeLines.sort(function(a, b)
-    {
-        if(a.getAttribute("x1") < b.getAttribute("x1"))
-            return -1;
-        if(a.getAttribute("x1") > b.getAttribute("x1"))
-            return 1;
-        return 0;
-    });
+    // completeLines.sort(function(a, b)
+//     {
+//         if(a.getAttribute("x1") < b.getAttribute("x1"))
+//             return -1;
+//         if(a.getAttribute("x1") > b.getAttribute("x1"))
+//             return 1;
+//         return 0;
+//     });
     
     var plotCanvas = d3.select("#plotCanvas");    
     for(var i=0; i<means.length; i++)
