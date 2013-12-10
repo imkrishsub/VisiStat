@@ -832,12 +832,12 @@ function unselectAllMeans()
 //     });
     
     var plotCanvas = d3.select("#plotCanvas");    
-    for(var i=0; i<means.length; i++)
+    for(var i=0; i<selectedMeans.length; i++)
     {
-        var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
+        var mean = d3.select("#" + selectedMeans[i].getAttribute("id") + ".means");
         mean.transition().delay(i*1000).duration(500).attr("fill", meanColors["normal"]);
         
-        if(i != means.length)
+        if(i != selectedMeans.length)
         {
             completeLines[i].parentNode.removeChild();
         }
