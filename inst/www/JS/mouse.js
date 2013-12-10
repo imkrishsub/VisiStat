@@ -347,7 +347,11 @@ function OnMouseDown(e)
             freezeMouseEvents = true;
             d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(1000).style("opacity", "0.2");
             d3.selectAll(".means").transition().delay(1000).duration(800).attr("r", engorgedMeanRadius);
-            freezeMouseEvents = false;
+            
+            setTimeout(function()
+            {
+                freezeMouseEvents = false;
+            }, 1800);
         
             removeElementsByClassName("compareMean");
         }
