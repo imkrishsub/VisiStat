@@ -414,6 +414,10 @@ function OnMouseDown(e)
                 selectNoneText.attr("fill", "white");
                 
                 unselectAllMeans();
+                
+                selectAllButton.attr("fill", "url(#buttonFillNormal)");
+                selectAllButton.attr("filter", "url(#Bevel)");
+                selectAllButton.attr("stroke", "black");
             }
         }
         
@@ -436,6 +440,10 @@ function OnMouseDown(e)
                 selectAllText.attr("fill", "white");
                 
                 selectAllMeans();
+                
+                selectNoneButton.attr("fill", "url(#buttonFillNormal)");
+                selectNoneButton.attr("filter", "url(#Bevel)");
+                selectNoneButton.attr("stroke", "black");
             }
         }
     
