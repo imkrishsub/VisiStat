@@ -515,7 +515,7 @@ function loadAssumptionCheckList(type)
                          
             canvas.append("image")
                 .attr("x", 0)
-                .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 5)
+                .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
                 .attr("text-anchor", "end")
                 .attr("xlink:href", "images/cross.png")
                 .attr("height", assumptionImageSize)
