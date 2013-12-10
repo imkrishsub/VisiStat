@@ -761,7 +761,9 @@ function displaySignificanceTestResults()
 {        
     var cx = [];
     var cy = [];
-
+    
+    drawButtonInSideBar("COMPARE MEANS", "compareMean");
+    
     removeElementsByClassName("significanceTest");
     if(document.getElementById("computingResultsImage") != null)
         removeElementById("computingResultsImage");
