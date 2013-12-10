@@ -777,18 +777,26 @@ function selectAllMeans()
     for(var i=0; i<unSelectedMeans.length; i++)
         means.push(unSelectedMeans[i]);
     
-    console.log("means = [" + means + "]" );
+    console.log("b4");
+    for(var i=0; i<means.length; i++)
+    {
+        console.log(means[i].getAttribute("cx"));
+    }
         
     means.sort(function(a, b)
     {
         if(a.getAttribute("cx") < b.getAttribute("cx"))
             return -1;
         if(a.getAttribute("cx") > b.getAttribute("cx"))
-            return -1;
+            return 1;
         return 0;
     });
     
-    console.log("means = [" + means + "]");
+    console.log("aft");
+    for(var i=0; i<means.length; i++)
+    {
+        console.log(means[i].getAttribute("cx"));
+    }
     
     var plotCanvas = d3.select("#plotCanvas");
     
