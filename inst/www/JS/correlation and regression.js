@@ -102,7 +102,6 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
 
 function getLinearModelCoefficients(outcome, explanatory)
 {
-    console.log("dist= " + variables[explanatory]["dataset"]);
     var req = opencpu.r_fun_json("getLinearModelCoefficients", {
                     outcome: variables[outcome]["dataset"],
                     explanatory: variables[explanatory]["dataset"]
