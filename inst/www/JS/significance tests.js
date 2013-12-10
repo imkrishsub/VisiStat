@@ -139,7 +139,7 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                 
                   testLog["t"].push(testResults);
                   
-                  sessionStorage["dummy user"] = testLog;
+                  sessionStorage["dummy user"] = JSON.stringify(testLog);
                   
                   console.log("testLog = ");
                   console.dir(testLog);
