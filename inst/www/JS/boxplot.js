@@ -661,6 +661,7 @@ function redrawBoxPlot()
         }        
     }
 }
+
 function drawBoxPlotInRed(level)
 {
     level = getValidId(level);

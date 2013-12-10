@@ -8,6 +8,9 @@ performFriedmanTest <- function(dependentVariable, independentVariable, particip
         dataset <- read.csv(filePath, head=T);
     
     result = eval(parse(text = paste("friedman.test(",dependentVariable," ~ ",independentVariable," | ",participantVariable,", data = dataset)",sep="")));
-    list(chiSquared = result$statistic[["Friedman chi-squared"]], df = result$parameter[["df"]], p = result$p.value, method = result$method)
+    
+    etaSq = result$statistic[["Friedman chi-squared"]]/(length(independentVariable)-1);
+    
+    list(chiSquared = result$statistic[["Friedman chi-squared"]], df = result$parameter[["df"]], p = result$p.value, method = result$method, etaSquared = etaSq);
 }
   

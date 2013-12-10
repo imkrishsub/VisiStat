@@ -51,6 +51,55 @@ function initMouseEventHandlers()
     document.onmouseout = OnMouseOut;
 }
 
+//Removes a single element with the given ID
+function removeElementById(id)
+{
+    var element = document.getElementById(id);
+    element.parentNode.removeChild(element);
+}
+
+//Removes all elements with the given classname
+function removeElementsByClassName(className)
+{
+   elements = document.getElementsByClassName(className);
+   while(elements.length > 0)
+   {
+       elements[0].parentNode.removeChild(elements[0]);
+   }
+}
+
+//Returns the unique elements of the given array
+Array.prototype.unique = function() {
+    var arr = new Array();
+    for(var i = 0; i < this.length; i++) {
+        if(!arr.contains(this[i])) {
+            arr.push(this[i]);
+        }
+    }
+    return arr; 
+}
+
+//Returns true if the given array contains a particular element
+Array.prototype.contains = function(v) {
+   for(var i = 0; i < this.length; i++) {
+       if(this[i] === v) return true;
+   }
+   return false;
+};
+
+//returns the length of an object
+function getObjectLength(obj) {
+    var count = 0;
+
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            ++count;
+    }
+
+    return count;
+}
+
+//VARIABLES AND VISUALISATIONS
 //Restricts the available selection of visualisations based on the variables selected
 function restrictVisualisationSelection()
 {
@@ -129,23 +178,6 @@ function restrictVisualisationSelection()
                     break;
                 }
     }
-}
-
-//Removes a single element with the given ID
-function removeElementById(id)
-{
-    var element = document.getElementById(id);
-    element.parentNode.removeChild(element);
-}
-
-//Removes all elements with the given classname
-function removeElementsByClassName(className)
-{
-   elements = document.getElementsByClassName(className);
-   while(elements.length > 0)
-   {
-       elements[0].parentNode.removeChild(elements[0]);
-   }
 }
 
 //Adds a given element to an array by maintain unique elements
@@ -283,8 +315,7 @@ function invalidate(list)
     }
 }
 
-
-//Strings/numbers processing
+//STRINGS/NUMBERS PROCESSING
 var toString = Object.prototype.toString;
 
 //Checks if a given object is a string
@@ -303,73 +334,6 @@ function removeAlphabetsFromString(string)
 function removeNumbersFromString(string)
 {
     return string.replace(/[0-9]/g, '');
-}
-
-//Returns the unique elements of the given array
-Array.prototype.unique = function() {
-    var arr = new Array();
-    for(var i = 0; i < this.length; i++) {
-        if(!arr.contains(this[i])) {
-            arr.push(this[i]);
-        }
-    }
-    return arr; 
-}
-
-//Returns true if the given array contains a particular element
-Array.prototype.contains = function(v) {
-   for(var i = 0; i < this.length; i++) {
-       if(this[i] === v) return true;
-   }
-   return false;
-};
-
-//Returns a set of valid IDs (non-numeric)
-function getValidIds(labels)
-{
-    var validIds = true;
-    
-    for(var i=0; i<labels.length; i++)
-    {
-        if(isString(labels[i]) == false)
-        {
-            validIds = false;
-            break;
-        }            
-    }    
-    if(!validIds)
-    {
-        return convertIntegersToStrings(labels);        
-    }
-    else
-    {
-        return labels;
-    }
-}
-
-function getValidId(label)
-{
-    var validId = true;
-    
-    if(isString(label) == false)
-    {
-        validId = false;    
-    }       
-    if(!validId)
-    {
-        var string = "";
-        
-        for(var j=0; j<label.toString().length; j++)
-        {            
-            string = string + stringForNumber[label.toString().charAt(j)];
-        }
-        
-        return string;
-    }
-    else
-    {
-        return label;
-    }
 }
 
 //convert numbers to strings
@@ -392,134 +356,22 @@ function convertIntegersToStrings(numbers)
     return strings;
 }
 
-//returns the length of an object
-function getObjectLength(obj) {
-    var count = 0;
-
-    for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            ++count;
-    }
-
-    return count;
-}
-
-//sorts the selected variables and returns the sorted object
-function getSelectedVariables()
+function allVariablesAreNumeric()
 {
-    var means = document.getElementsByClassName("means");
-    var variableList = new Object();
+    var yeah=true;
     
-    variableList["dependent"] = new Array();
-    variableList["independent"] = new Array();
-    variableList["independent-levels"] = new Array();    
-    
-    //add the dependent variable
     for(var i=0; i<currentVariableSelection.length; i++)
-    {        
-        if(variableRows[currentVariableSelection[i]] == "dependent")
-        {
-            variableList["dependent"].push(currentVariableSelection[i]);
-        }
-        else if(variableRows[currentVariableSelection[i]] == "independent")
-        {
-            variableList["independent"].push(currentVariableSelection[i]);
-        }
-    }    
-    
-    
-    
-    //add the levels of the independent variable
-    if(variableList["independent"].length > 0)
     {
-        for(var i=0; i<means.length; i++)
+        if((isNaN(variables[currentVariableSelection[i]]["dataset"][0])) && (variableTypes[currentVariableSelection[i]] == "ordinal"))
         {
-            if(means[i].getAttribute("fill") == meanColors["click"])
-            {
-                if(stringForNumber.indexOf(means[i].getAttribute("id")) != -1)
-                {                
-                    variableList["independent-levels"].push(stringForNumber.indexOf(means[i].getAttribute("id")));
-                }
-                else
-                {
-                    variableList["independent-levels"].push(means[i].getAttribute("id"));
-                }
-            }
-        }   
-    }
-    else
-    {
-        variableList["dependent"] = [];
-        for(var i=0; i<means.length; i++)
-        {
-            if(means[i].getAttribute("fill") == meanColors["click"])
-            {
-                if(stringForNumber.indexOf(means[i].getAttribute("id")) != -1)
-                {                
-                    variableList["dependent"].push(stringForNumber.indexOf(means[i].getAttribute("id")));
-                }
-                else
-                {
-                    variableList["dependent"].push(means[i].getAttribute("id"));
-                }
-            }
-        }    
+            yeah = false;
+        }
     }
     
-    return variableList; 
+    return yeah;
 }
 
-//Just the sorting functionality of the above function
-function sort(list)
-{
-    var variableList = new Object();
-    
-    variableList["dependent"] = new Array();
-    variableList["independent"] = new Array();
-    variableList["independent-levels"] = new Array();
-    
-    for(var i=0; i<list.length; i++)
-    {
-        if(variableRows[list[i]] == "independent")
-        {
-            variableList["independent"].push(list[i]);
-        }
-        else
-        {
-            variableList["dependent"].push(list[i]);
-        }
-    }
-    
-    if(variableList["independent"].length > 0)
-    {
-        if(variableList["independent"].length == 1)
-        {
-            var uniqueData = variables[variableList["independent"][0]]["dataset"].unique();
-        
-            for(var i=0; i<uniqueData.length; i++)
-            {
-                variableList["independent-levels"].push(uniqueData[i]);
-            }
-        }
-        else
-        {
-            for(var i=0; i<variableList["independent"].length; i++)
-            {
-                variableList["independent-levels"][i] = new Array();
-                
-                var uniqueData = variables[variableList["independent"][i]]["dataset"].unique();
-        
-                for(var k=0; k<uniqueData.length; k++)
-                {
-                    variableList["independent-levels"][i].push(uniqueData[k]);
-                }
-            }
-        }
-    }
-    
-    return variableList;
-}
-
+//PROCESSING DATASET
 function setVariableRow()
 {    
     for(var i=0; i<variableNames.length; i++)
@@ -643,12 +495,6 @@ function findExperimentalDesign()
     }
 }
 
-function scaleForWindowSize(value)
-{
-    return value*(height/1004);
-}
-
-//Used to get the normal x,y coordinates from a scaled view box coordinate
 function setThisVariableEvil(variable)
 {    
     d3.select("#" + variable + ".variableNameHolderFront").attr("class", "disabled");
@@ -670,210 +516,161 @@ function getNumericVariables()
     return numericVariables;
 }
 
-function setOpacityForElementsWithClassNames(classNames, opacity)
+//Returns a set of valid IDs (non-numeric)
+function getValidIds(labels)
 {
-    for(var i=0; i<classNames.length; i++)
+    var validIds = true;
+    
+    for(var i=0; i<labels.length; i++)
     {
-        d3.selectAll("." + classNames[i]).transition().duration(1000).delay(500).attr("opacity", opacity);
-    }
+        if(isString(labels[i]) == false)
+        {
+            validIds = false;
+            break;
+        }            
+    }    
+    if(!validIds)
+        return convertIntegersToStrings(labels);        
+    else
+        return labels;
 }
 
-function setCompareNowButtonText()
+function getValidId(label)
 {
-    var compareNowText = d3.select("#text.compareNow");
+    var validId = true;
     
-    var variableList = getSelectedVariables();
-    
-    if(variableList["independent"].length == 0)
-    {  
-        if(variableList["dependent"].length == 0)
-            compareNowText.text("SELECT ONE OR MORE MEANS");    
-        else
-            compareNowText.text("TEST AGAINST POPULATION MEAN");    
+    if(isString(label) == false)
+    {
+        validId = false;    
+    }       
+    if(!validId)
+    {
+        var string = "";
+        
+        for(var j=0; j<label.toString().length; j++)
+        {            
+            string = string + stringForNumber[label.toString().charAt(j)];
+        }
+        
+        return string;
     }
     else
     {
-        switch(variableList["independent-levels"].length)
-        {
-            case 0:
-                    compareNowText.text("SELECT TWO OR MORE MEANS");    
-                    break
-            case 1:
-                    compareNowText.text("SELECT TWO OR MORE MEANS");    
-                    break;
-            
-            default:
-                    compareNowText.text("COMPARE MEANS");
-                    break;
-        }
+        return label;
     }
 }
 
-function getWidth()
+//sorts the selected variables and returns the sorted object
+function getSelectedVariables()
 {
-      var x = 0;
-      if (self.innerHeight)
-      {
-              x = self.innerWidth;
-      }
-      else if (document.documentElement && document.documentElement.clientHeight)
-      {
-              x = document.documentElement.clientWidth;
-      }
-      else if (document.body)
-      {
-              x = document.body.clientWidth;
-      }
-      return x;
-}
-
-function getHeight()
-{
-      var y = 0;
-      if (self.innerHeight)
-      {
-              y = self.innerHeight;
-      }
-      else if (document.documentElement && document.documentElement.clientHeight)
-      {
-              y = document.documentElement.clientHeight;
-      }
-      else if (document.body)
-      {
-              y = document.body.clientHeight;
-      }
-      return y;
-}
-
-function allVariablesAreNumeric()
-{
-    var yeah=true;
-    
-    for(var i=0; i<currentVariableSelection.length; i++)
-    {
-        if((isNaN(variables[currentVariableSelection[i]]["dataset"][0])) && (variableTypes[currentVariableSelection[i]] == "ordinal"))
-        {
-            yeah = false;
-        }
-    }
-    
-    return yeah;
-}
-
-function calculateOutcome()
-{    
-    if(currentVariableSelection.length == 2)
-    {    
-        var outcomeVariable = document.getElementById("value_outcome");
-        var predictorVariable = document.getElementById("value_" + currentVariableSelection[0]);
-        
-        console.log(outcomeVariable.innerHTML + " = " + testResults["coefficients"] + "*" + predictorVariable.value + " + " + testResults["intercept"]);
-        
-        outcomeVariable.innerHTML = dec25(testResults["coefficients"]*predictorVariable.value + testResults["intercept"]);
-    }
-    else
-    {
-        var outcomeVariable = testResults["outcomeVariable"];
-        var explanatoryVariables = testResults["explanatoryVariables"];
-        
-        var outcomeVariableLabel = document.getElementById("value_outcome");
-        
-        var outcomeVariableValue = testResults["intercept"];
-        
-        for(var i=0; i<explanatoryVariables.length; i++)
-        {
-            var valueEnteredForExplanatoryVariable = isNaN(document.getElementById("value_" + explanatoryVariables[i]).value) ? 0 : document.getElementById("value_" + explanatoryVariables[i]).value;
-            var coefficient = testResults["coefficients"][i];
-            
-            console.log(coefficient + "*" + valueEnteredForExplanatoryVariable);
-            outcomeVariableValue += coefficient*valueEnteredForExplanatoryVariable;
-        }
-        
-        outcomeVariableLabel.innerHTML = dec25(outcomeVariableValue);
-    }
-}
-
-function populationMeanEntered()
-{
-    var populationValue = document.getElementById("populationValue").value;
-    var variableList = getSelectedVariables();
-    
-    if(d3.select("#normality.crosses").attr("display") == "inline")
-    {
-        console.log("population median=" + populationValue);
-        sessionStorage.popMedian = parseFloat(populationValue);
-        
-        removeElementsByClassName("dialogBox");
-        
-        performOneSampleWilcoxonTest(variableList["dependent"][0]);
-    }
-    else
-    {
-        console.log("population mean=" + populationValue);
-        sessionStorage.popMean = parseFloat(populationValue);
-        
-        removeElementsByClassName("dialogBox");
-        
-        performOneSampleTTest(variableList["dependent"][0]);
-    }
-}
-
-function getColour(type, value)
-{
-    var interpretations = effectSizeInterpretations[type];
-    
-    if(value < interpretations[0])
-        return effectSizeColors["small"];
-    else if(value >= interpretations[0] && value < interpretations[1])
-        return effectSizeColors["small-medium"];
-    else if(value >= interpretations[1] && value < interpretations[2])
-        return effectSizeColors["medium-large"];
-    else if(value >= interpretations[2])
-        return effectSizeColors["large"];
-}
-
-function findEndingLine()
-{
-    var completeLines = document.getElementsByClassName("completeLines");
     var means = document.getElementsByClassName("means");
+    var variableList = new Object();
     
-    var START = [];
-    var END = [];
+    variableList["dependent"] = new Array();
+    variableList["independent"] = new Array();
+    variableList["independent-levels"] = new Array();    
     
-    for(var j=0; j<completeLines.length; j++)
+    //add the dependent variable
+    for(var i=0; i<currentVariableSelection.length; i++)
+    {        
+        if(variableRows[currentVariableSelection[i]] == "dependent")
+            variableList["dependent"].push(currentVariableSelection[i]);
+        else if(variableRows[currentVariableSelection[i]] == "independent")
+            variableList["independent"].push(currentVariableSelection[i]);
+    }    
+    
+    //add the levels of the independent variable
+    if(variableList["independent"].length > 0)
     {
         for(var i=0; i<means.length; i++)
-        {        
-            if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
-            {
-                END.push(i);
-            }
-            if(completeLines[j].getAttribute("x1") == means[i].getAttribute("cx"))
-            {
-                START.push(i);
-            }
-        }
-    }
-    
-    for(var i=0; i<means.length; i++)
-    {
-        if(START.indexOf(i) == -1 && END.indexOf(i) != -1)
         {
-            for(var j=0; j<completeLines.length; j++)
+            if(means[i].getAttribute("fill") == meanColors["click"])
             {
-                if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
-                    return completeLines[j];
+                if(stringForNumber.indexOf(means[i].getAttribute("id")) != -1)
+                    variableList["independent-levels"].push(stringForNumber.indexOf(means[i].getAttribute("id")));
+                else
+                    variableList["independent-levels"].push(means[i].getAttribute("id"));
             }
-        }
+        }   
+    }
+    else
+    {
+        variableList["dependent"] = [];
+        for(var i=0; i<means.length; i++)
+        {
+            if(means[i].getAttribute("fill") == meanColors["click"])
+            {
+                if(stringForNumber.indexOf(means[i].getAttribute("id")) != -1)
+                {                
+                    variableList["dependent"].push(stringForNumber.indexOf(means[i].getAttribute("id")));
+                }
+                else
+                {
+                    variableList["dependent"].push(means[i].getAttribute("id"));
+                }
+            }
+        }    
     }
     
-    return 0;
+    return variableList; 
 }
 
-function resetMeans()
+//Just the sorting functionality of the above function
+function sort(list)
 {
-    var means = d3.selectAll(".means").attr("fill", meanColors["normal"]);
+    var variableList = new Object();
+    
+    variableList["dependent"] = new Array();
+    variableList["independent"] = new Array();
+    variableList["independent-levels"] = new Array();
+    
+    for(var i=0; i<list.length; i++)
+    {
+        if(variableRows[list[i]] == "independent")
+        {
+            variableList["independent"].push(list[i]);
+        }
+        else
+        {
+            variableList["dependent"].push(list[i]);
+        }
+    }
+    
+    if(variableList["independent"].length > 0)
+    {
+        if(variableList["independent"].length == 1)
+        {
+            var uniqueData = variables[variableList["independent"][0]]["dataset"].unique();
+        
+            for(var i=0; i<uniqueData.length; i++)
+            {
+                variableList["independent-levels"].push(uniqueData[i]);
+            }
+        }
+        else
+        {
+            for(var i=0; i<variableList["independent"].length; i++)
+            {
+                variableList["independent-levels"][i] = new Array();
+                
+                var uniqueData = variables[variableList["independent"][i]]["dataset"].unique();
+        
+                for(var k=0; k<uniqueData.length; k++)
+                {
+                    variableList["independent-levels"][i].push(uniqueData[k]);
+                }
+            }
+        }
+    }
+    
+    return variableList;
 }
+
+function scaleForWindowSize(value)
+{
+    return value*(height/1004);
+}
+
 
     
         

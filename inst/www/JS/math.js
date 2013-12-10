@@ -116,6 +116,7 @@ function getStandardDeviation(values)
     
     return Math.sqrt(SS/values.length);
 }
+
 function sumOf(values)
 {
     var sum = 0;

@@ -379,6 +379,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
                   console.log("\t\t\t method used = " + output.method); //todo
                   console.log("\t\t\t DF = " + output.df);
                   console.log("\t\t\t p = " + output.p);
+                  console.log("\t\t\t eta-squared = " + output.etaSq);
                   
                   testResults["df"] = output.df;
                   
@@ -387,10 +388,8 @@ function performFriedmanTest(dependentVariable, independentVariable)
                   
                   testResults["method"] = output.method; 
                   testResults["p"] = changePValueNotation(output.p);
-                  testResults["effect-size"] = 0;
-                  testResults["effect-size-type"] = "eS";
-//                   testResults["effect-size-type"] = "";
-                           
+                  testResults["effect-size"] = output.etaSq;
+                  testResults["effect-size-type"] = "eS";                           
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");           

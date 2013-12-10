@@ -152,3 +152,110 @@ function getSelectedMeanLevelsForColourBoxPlotData()
     
     return selectedMeanLevels;
 }
+
+function findEndingLine()
+{
+    var completeLines = document.getElementsByClassName("completeLines");
+    var means = document.getElementsByClassName("means");
+    
+    var START = [];
+    var END = [];
+    
+    for(var j=0; j<completeLines.length; j++)
+    {
+        for(var i=0; i<means.length; i++)
+        {        
+            if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
+            {
+                END.push(i);
+            }
+            if(completeLines[j].getAttribute("x1") == means[i].getAttribute("cx"))
+            {
+                START.push(i);
+            }
+        }
+    }
+    
+    for(var i=0; i<means.length; i++)
+    {
+        if(START.indexOf(i) == -1 && END.indexOf(i) != -1)
+        {
+            for(var j=0; j<completeLines.length; j++)
+            {
+                if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
+                    return completeLines[j];
+            }
+        }
+    }
+    
+    return 0;
+}
+
+function resetMeans()
+{
+    var means = d3.selectAll(".means").attr("fill", meanColors["normal"]);
+}
+
+function setCompareNowButtonText()
+{
+    var compareNowText = d3.select("#text.compareNow");
+    
+    var variableList = getSelectedVariables();
+    
+    if(variableList["independent"].length == 0)
+    {  
+        if(variableList["dependent"].length == 0)
+            compareNowText.text("SELECT ONE OR MORE MEANS");    
+        else
+            compareNowText.text("TEST AGAINST POPULATION MEAN");    
+    }
+    else
+    {
+        switch(variableList["independent-levels"].length)
+        {
+            case 0:
+                    compareNowText.text("SELECT TWO OR MORE MEANS");    
+                    break
+            case 1:
+                    compareNowText.text("SELECT TWO OR MORE MEANS");    
+                    break;
+            
+            default:
+                    compareNowText.text("COMPARE MEANS");
+                    break;
+        }
+    }
+}
+
+function calculateOutcome()
+{    
+    if(currentVariableSelection.length == 2)
+    {    
+        var outcomeVariable = document.getElementById("value_outcome");
+        var predictorVariable = document.getElementById("value_" + currentVariableSelection[0]);
+        
+        console.log(outcomeVariable.innerHTML + " = " + testResults["coefficients"] + "*" + predictorVariable.value + " + " + testResults["intercept"]);
+        
+        outcomeVariable.innerHTML = dec25(testResults["coefficients"]*predictorVariable.value + testResults["intercept"]);
+    }
+    else
+    {
+        var outcomeVariable = testResults["outcomeVariable"];
+        var explanatoryVariables = testResults["explanatoryVariables"];
+        
+        var outcomeVariableLabel = document.getElementById("value_outcome");
+        
+        var outcomeVariableValue = testResults["intercept"];
+        
+        for(var i=0; i<explanatoryVariables.length; i++)
+        {
+            var valueEnteredForExplanatoryVariable = isNaN(document.getElementById("value_" + explanatoryVariables[i]).value) ? 0 : document.getElementById("value_" + explanatoryVariables[i]).value;
+            var coefficient = testResults["coefficients"][i];
+            
+            console.log(coefficient + "*" + valueEnteredForExplanatoryVariable);
+            outcomeVariableValue += coefficient*valueEnteredForExplanatoryVariable;
+        }
+        
+        outcomeVariableLabel.innerHTML = dec25(outcomeVariableValue);
+    }
+}
