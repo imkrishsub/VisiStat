@@ -778,7 +778,7 @@ function selectAllMeans()
         var mean = d3.select("#" + selectedMeans[i].getAttribute("id") + ".means");
         mean.transition().delay(i*1000).duration(500).attr("fill", meanColors["click"]);
         
-        if(i != means.length - 1)
+        if(i != selectedMeans.length - 1)
         {
             var line = plotCanvas.append("line")
                         .attr("x1", selectedMeans[i].getAttribute("cx"))
