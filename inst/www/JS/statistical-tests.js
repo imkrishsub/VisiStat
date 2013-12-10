@@ -13,7 +13,7 @@ function compareMeans()
                 //One sample t-test
                 if(variableList["dependent"].length == 1)
                 {
-                    loadAssumptionCheckList();
+                    loadAssumptionCheckList("one-sample tests");
                     performNormalityTest(variables[variableList["dependent"][0]]["dataset"], variableList["dependent"][0], "dataset");                    
                 }
                 
@@ -24,7 +24,7 @@ function compareMeans()
                     console.log("\t Significance test for 2 variables...\n\n");
 
                     //homoscedasticity
-                    loadAssumptionCheckList();
+                    loadAssumptionCheckList("other");
                     
                     var sampleSize;
                     sampleSizesAreEqual = true;
@@ -83,7 +83,7 @@ function compareMeans()
                         selectAllMeans();
                         setTimeout(function()
                         {
-                            loadAssumptionCheckList();                    
+                            loadAssumptionCheckList("other");                    
                             performNormalityTests();
                         }, (unSelectedMeans.length+1)*1000);
                     }

@@ -455,7 +455,7 @@ function setOpacityForElementsWithClassNames(classNames, opacity)
 }
 
 //Significance Tests
-function loadAssumptionCheckList()
+function loadAssumptionCheckList(type)
 {
     var canvas = d3.select("#sideBarCanvas");
     
@@ -472,15 +472,15 @@ function loadAssumptionCheckList()
     
     //timer for 500 ms
     setTimeout(function(){
-        for(var i=0; i<assumptions.length; i++)
+        for(var i=0; i<assumptions[type].length; i++)
         {
             canvas.append("text")
                 .attr("x", assumptionImageSize*1.25)
                 .attr("y", i*assumptionStep + assumptionOffsetTop)
                 .attr("font-size", fontSizeAssumptions + "px")
                 .attr("fill", "black")
-                .text(assumptionsText[assumptions[i]])
-                .attr("id", assumptions[i])
+                .text(assumptionsText[assumptions[type][i]])
+                .attr("id", assumptions[type][i])
                 .attr("class", "assumptions");
             canvas.append("image")
                 .attr("x", 0)
@@ -489,7 +489,7 @@ function loadAssumptionCheckList()
                 .attr("xlink:href", "images/checkingAssumptions.gif")
                 .attr("height", assumptionImageSize)            
                 .attr("width", assumptionImageSize)
-                .attr("id", assumptions[i])
+                .attr("id", assumptions[type][i])
                 .attr("class", "loading");
                 
             canvas.append("image")
@@ -500,7 +500,7 @@ function loadAssumptionCheckList()
                 .attr("height", assumptionImageSize)            
                 .attr("width", assumptionImageSize)
                 .attr("display", "none")
-                .attr("id", assumptions[i])
+                .attr("id", assumptions[type][i])
                 .attr("class", "ticks");
                          
             canvas.append("image")
@@ -511,7 +511,7 @@ function loadAssumptionCheckList()
                 .attr("height", assumptionImageSize)
                 .attr("width", assumptionImageSize)
                 .attr("display", "none")
-                .attr("id", assumptions[i])
+                .attr("id", assumptions[type][i])
                 .attr("class", "crosses");
         }    
     }, 1200);
