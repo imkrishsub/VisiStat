@@ -49,6 +49,9 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     testResults["formula"] = variableA + " : " + variableB;
                     
                     logResult();
+                    
+                    if(allVariablesAreNumeric())
+                        drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                 }
                 
                 displayCorrelationResults();
