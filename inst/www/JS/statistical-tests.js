@@ -69,33 +69,40 @@ function compareMeans()
                 {
                     console.log("\t Significance test for more than 2 variables...\n\n nana");
                     
-                    //check if all means needs to be selected
-                    var selectedMeans = getSelectedMeansForColourBoxPlotData();
-                    var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
-                    
-                    console.log(selectedMeans.length);
-                    
-                    var variableList = getSelectedVariables();                    
-                    var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
-                    
-                    console.log("selected=" + selectedMeans.length + ", total=" + totalNumberOfLevels);
-                    
-                    if(selectedMeans.length < totalNumberOfLevels && selectedMeans.length != 2)
+                    if(variableList["independent"].length == 2)
                     {
-                        var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
-                        selectAllMeans();
-                        setTimeout(function()
+                        //check if all means needs to be selected
+                        var selectedMeans = getSelectedMeansForColourBoxPlotData();
+                        var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
+                    
+                        console.log(selectedMeans.length);
+                    
+                        var variableList = getSelectedVariables();                    
+                        var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
+                    
+                        console.log("selected=" + selectedMeans.length + ", total=" + totalNumberOfLevels);
+                    
+                        if(selectedMeans.length < totalNumberOfLevels && selectedMeans.length != 2)
                         {
-                            loadAssumptionCheckList("other");                    
+                            var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
+                            selectAllMeans();
+                            setTimeout(function()
+                            {
+                                loadAssumptionCheckList("other");                    
+                                performNormalityTests();
+                            }, (unSelectedMeans.length+1)*1000);
+                        }
+                        else
+                        {
+                            loadAssumptionCheckList();                    
                             performNormalityTests();
-                        }, (unSelectedMeans.length+1)*1000);
+                        }
                     }
                     else
                     {
                         loadAssumptionCheckList();                    
                         performNormalityTests();
                     }
-                    
         
                     break;
                 }
