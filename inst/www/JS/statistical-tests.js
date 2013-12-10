@@ -94,13 +94,13 @@ function compareMeans()
                         }
                         else
                         {
-                            loadAssumptionCheckList();                    
+                            loadAssumptionCheckList("other");                    
                             performNormalityTests();
                         }
                     }
                     else
                     {
-                        loadAssumptionCheckList();                    
+                        loadAssumptionCheckList("other");                    
                         performNormalityTests();
                     }
         
