@@ -4,8 +4,6 @@ function OnMouseDown(e)
         e = window.event; 
 
     var target = e.target != null ? e.target : e.srcElement;
-    if(e.button == 1 && window.event != null || e.button == 0)
-        console.log("freezeMouseEvents = " + freezeMouseEvents);
    
     if(!freezeMouseEvents)
     {
@@ -752,8 +750,6 @@ function OnMouseOver(e)
     var target = e.target != null ? e.target : e.srcElement;
     // for IE, left click == 1
     // for Firefox, left click == 0
-    
-    console.log("freezeMouseEvents = " + freezeMouseEvents);
     
     if(!freezeMouseEvents)
     {

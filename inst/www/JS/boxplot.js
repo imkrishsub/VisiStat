@@ -772,8 +772,6 @@ function selectAllMeans()
     
     var plotCanvas = d3.select("#plotCanvas");
     
-    console.log("hi");
-    
     for(var i=0; i<means.length; i++)
     {
         var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
