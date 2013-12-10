@@ -1,5 +1,7 @@
 function compareMeans()
 {
+    freezeMouseEvents = true;
+    
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
     
