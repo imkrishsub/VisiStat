@@ -1,5 +1,7 @@
 function initiateLoadingDatasetAnimation()
 {
+    freezeMouseEvents = true;
+    
     var canvas = d3.select("#plotCanvas");
     
     if(document.getElementsByClassName("loadingAnimation").length > 0)

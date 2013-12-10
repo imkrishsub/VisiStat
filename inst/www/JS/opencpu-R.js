@@ -68,6 +68,7 @@ function getData(dataset, variableName, level)
             testForEvilVariables();
             
             removeElementsByClassName("loadingAnimation");
+            freezeMouseEvents = false;
             
             experimentalDesign = findExperimentalDesign();            
             console.log("\n\tEXPERIMENTAL DESIGN = " + experimentalDesign);
