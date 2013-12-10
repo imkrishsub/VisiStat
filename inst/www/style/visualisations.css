@@ -62,9 +62,9 @@ text
 {
     width: 15em;
     height: 1.5em;
-    position: absolute;
+    position: relative;
     top: 75%;
-    left: 20px;
+    left: -25%;
     color: black;
     font:1.1em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     padding:25px;
