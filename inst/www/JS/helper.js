@@ -42,6 +42,36 @@ function subsetDataByLevels(independentVariable)
     }
 }
 
+function splitThisLevelBy(independentVariableA, independentVariableB, dependentVariable)
+{
+    var splitData = new Object();
+    var levelsA = variables[independentVariableA]["dataset"].unique();
+    var levelsB = variables[independentVariableB]["dataset"].unique();
+    
+    var indepA = variables[independentVariableA]["dataset"];
+    var indepB = variables[independentVariableB]["dataset"];
+    var dep = variables[dependentVariable]["dataset"];
+    
+    for(var i=0; i<levelsA.length; i++)
+    {
+        splitData[levelsA[i]] = new Object();
+        for(var j=0; j<levelsB.length; j++)
+        {
+            splitData[levelsA[i]][levelsB[j]] = new Array();
+        }
+    }
+    
+    for(var i=0; i<dep.length; i++)
+    {
+        var indexA = indepA[i];
+        var indexB = indepB[i];
+        
+        splitData[indexA][indexB].push(dep[i]);
+    }
+    
+    return splitData;
+}
+
 //Initialise the mouse event handlers
 function initMouseEventHandlers()
 {
