@@ -770,8 +770,10 @@ function selectAllMeans()
     var lastMean = findEndingMean();
     var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
     
-    var means = new Array();l
+    var means = new Array();
+    
     means.push(lastMean);
+    
     for(var i=0; i<unSelectedMeans.length; i++)
         means.push(unSelectedMeans[i]);
     
