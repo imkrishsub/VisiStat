@@ -313,7 +313,7 @@ function OnMouseDown(e)
         
             var inText = variableList["independent"].length > 0 ? "SELECT TWO OR ALL THE MEANS" : "SELECT ONE MEAN FOR COMPARISON AGAINST POPULATION MEAN";             
     
-            drawButtonInSidebar(inText, "compareNow");
+            drawButtonInSideBar(inText, "compareNow");
             
             canvas.append("rect")
                     .attr("x", plotWidth/4 - selectionButtonWidth/2)
