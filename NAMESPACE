@@ -57,3 +57,4 @@ export(runThisRCode)
 
 export(getVariableNames)
 export(loadFile)
+export(writeToFile)
