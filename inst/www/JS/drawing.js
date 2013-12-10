@@ -249,7 +249,7 @@ function drawDialogBoxToGetPopulationMean()
     divElement.append("label")
                 .attr("align", "center")
                 .attr("vertical-align", "middle")
-                .attr("style", "font:1.2em \"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif; color: white; padding-top: 10px; padding-left: 10px;")
+                .attr("style", "font:1.2em \"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif; color: white; padding-top: 10px;")
                 .text(inText);
     divElement.append("input")
                 .attr("type", "text")
