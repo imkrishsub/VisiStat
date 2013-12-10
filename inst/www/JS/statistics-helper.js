@@ -128,6 +128,21 @@ function getSelectedMeansForColourBoxPlotData()
     return selectedMeans;
 }
 
+function getUnselectedMeansForColourBoxPlotData()
+{
+    var means = document.getElementsByClassName("means");
+    var selectedMeans = [];
+    
+    for(var i=0; i<means.length; i++)
+    {
+        if(means[i].getAttribute("fill") != meanColors["click"])
+        {   
+            selectedMeans.push(means[i]);
+        }
+    }
+    
+    return selectedMeans;
+}
 function getSelectedMeanLevelsForColourBoxPlotData()
 {
     var means = document.getElementsByClassName("means");
