@@ -785,10 +785,7 @@ function selectAllMeans()
             return 1;
         return 0;
     });
-
-    
-    var plotCanvas = d3.select("#plotCanvas");
-    
+    var plotCanvas = d3.select("#plotCanvas");    
     for(var i=0; i<means.length; i++)
     {
         var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
