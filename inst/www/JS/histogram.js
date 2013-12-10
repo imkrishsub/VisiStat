@@ -422,6 +422,9 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
 {
     var variableList = sort(currentVariableSelection);
     
+    console.log("dependentVariable: " + dependentVariable);
+    console.log("level: " + level);
+    
     var RIGHT = LEFT + histWidth;
     var BOTTOM = TOP + histHeight;
     
