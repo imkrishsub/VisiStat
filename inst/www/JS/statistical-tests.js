@@ -66,6 +66,20 @@ function compareMeans()
                 {
                     console.log("\t Significance test for more than 2 variables...\n\n");
                     
+                    //check if all means needs to be selected
+                    var selectedMeans = getSelectedMeansForColourBoxPlotData();
+                    var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
+                    
+                    var variableList = getSelectedVariables();                    
+                    var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
+                    
+                    console.log("selected=" + selectedMeans.length + ", total=" + totalNumberOfLevels);
+                    
+                    if(selectedMeans.length < totalNumberOfLevels)
+                    {
+                        selectAllMeans();
+                    }
+                    
                     loadAssumptionCheckList();                    
                     performNormalityTests();
         
@@ -260,7 +274,6 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             if(selectedMeans.length > 2)
             {
                 drawComputingResultsImage();
-                selectAllMeans();
                 
                 setTimeout(function(){
                 performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
