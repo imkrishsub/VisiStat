@@ -129,7 +129,7 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                   testResults["method"] = output.method;
                   testResults["effect-size"] = output.d;
                   testResults["effect-size-type"] = "d";
-                  testResults["formula"] = "formula goes here";
+                  testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
                   
                   //add to log
                   logResult();
@@ -160,6 +160,8 @@ function performMannWhitneyTest(groupA, groupB)
                     groupB: groupB
                   }, function(output) {                                                   
                   
+                  var variableList = getSelectedVariables();
+                  
                   console.log("\t\t Mann-Whitney U test");
                   console.log("\t\t\t U = " + output.U);
                   console.log("\t\t\t p = " + output.p);
@@ -172,6 +174,9 @@ function performMannWhitneyTest(groupA, groupB)
                   testResults["effect-size"] = output.r;
                   testResults["method"] = "Mann-Whitney U test";
                   testResults["effect-size-type"] = "r";
+                  testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                  
+                  logResult();
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
@@ -199,6 +204,8 @@ function performWilcoxonTest(groupA, groupB)
                     groupB: groupB
                   }, function(output) {                                                   
                   
+                  var variableList = getSelectedVariables();
+                  
                   console.log("\t\t Wilcoxon Signed-rank Test");
                   console.log("\t\t\t V = " + output.V);
                   console.log("\t\t\t p = " + output.p);
@@ -211,6 +218,9 @@ function performWilcoxonTest(groupA, groupB)
                   testResults["effect-size"] = output.r;
                   testResults["method"] = "Wilcoxon Signed-rank test";
                   testResults["effect-size-type"] = "r";
+                  testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                  
+                  logResult();                  
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
@@ -239,6 +249,8 @@ function performANOVA(dependentVariable, independentVariable)
                     independentVariable: independentVariable                   
                   }, function(output) {                                                   
                   
+                  var variableList = getSelectedVariables();
+                  
                   console.log("\t\t One-way ANOVA for (" + dependentVariable + " ~ " + independentVariable + ")");
                   console.log("\t\t\t F = " + output.F);
                   console.log("\t\t\t p = " + output.p);
@@ -255,6 +267,9 @@ function performANOVA(dependentVariable, independentVariable)
                   testResults["method"] = "ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
+                  testResults["formula"] = variableList["dependent"][0] + " ~ " + variableList["independent"][0] + "(" + variableList["independent-levels"] + ")";
+                  
+                  logResult();
                            
                   
                 //drawing stuff
@@ -287,6 +302,8 @@ function performTwoWayANOVA(dependentVariable, independentVariableA, independent
                     independentVariableB: independentVariableB
                   }, function(output) {                                                   
                   
+                  var variableList = getSelectedVariables();
+                  
                   console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + independentVariableA + " + " + independentVariableB + " " + independentVariableA + "*" + independentVariableB +")");
                   console.log("\t\t\t F = " + output.F);
                   console.log("\t\t\t method used = Two-way ANOVA"); //todo
@@ -302,6 +319,9 @@ function performTwoWayANOVA(dependentVariable, independentVariableA, independent
                   testResults["method"] = "Two-way ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
+                  testResults["formula"] = dependentVariable + " ~ " + independentVariableA + " + " + independentVariableB + " " + independentVariableA + "*" + independentVariableB;
+                  
+                  logResult();
                            
                   findEffect(dependentVariable, [independentVariableA, independentVariableB]);
                 //drawing stuff
@@ -347,7 +367,9 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                   testResults["effect-size"] = output.etaSquared;
                   testResults["p"] = changePValueNotation(output.p);
                   testResults["effect-size-type"] = "eS";
+                  testResults["formula"] = dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable;
                            
+                  logResult();
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");
@@ -395,7 +417,10 @@ function performFriedmanTest(dependentVariable, independentVariable)
                   testResults["method"] = output.method; 
                   testResults["p"] = changePValueNotation(output.p);
                   testResults["effect-size"] = output.etaSquared;
-                  testResults["effect-size-type"] = "eS";                           
+                  testResults["effect-size-type"] = "eS";       
+                  testResults["formula"] = dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable;
+                  
+                  logResult();
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
@@ -485,7 +510,9 @@ function performWelchANOVA(dependentVariable, independentVariable)
                   testResults["method"] = "Welch's ANOVA"; 
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
-                           
+                  testResults["formula"] = dependentVariable + " ~ " + independentVariable;
+                         
+                  logResult();       
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines"); 
@@ -534,7 +561,9 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                   testResults["method"] = "Kruskal-Wallis Test"; 
                   testResults["effect-size"] = output.etaSquared;         
                   testResults["effect-size-type"] = "eS";
+                  testResults["formula"] = dependentVariable + " ~ " + independentVariable;
                   
+                  logResult();
                 //drawing stuff
                 removeElementsByClassName("completeLines");   
                 
@@ -700,6 +729,7 @@ function performPairwiseTTest(varianceEqual, paired) //groupA, groupB, paired = 
                   testResults["effect-size"] = output.d;
                   testResults["effect-size-type"] = "d";
                   
+                  logResult();
                 //drawing stuff
                 removeElementsByClassName("completeLines");
                 
@@ -746,8 +776,9 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
                   testResults["p"] = changePValueNotation(output.p);                  
                   testResults["effect-size"] = output.r;
                   testResults["method"] = "Pairwise Wilcox-test";
-                  testResults["effect-size-type"] = "r";
+                  testResults["effect-size-type"] = "r";                  
                   
+                  logResult();
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
 
