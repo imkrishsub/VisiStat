@@ -291,24 +291,13 @@ function OnMouseDown(e)
             console.log("selectedMeans:");
             console.dir(selectedMeans);
         
-            if(selectedMeans.length == 0)
+            if(selectedMeans.length == 2 || selectedMeans.length == means.length)
             {
-                alert("select one or means and then press compare");
+                compareMeans()
             }
-            else if(variableList["independent"].length == 0)
+            else 
             {
-                if(selectedMeans.length > 1)
-                {
-                    alert("select only one mean to compare against population mean!");
-                }
-                else
-                {
-                    compareMeans();
-                }
-            }
-            else
-            {
-                compareMeans();
+                alert("Please select means of two levels or select means of all the levels!");
             }
         }
     
@@ -321,7 +310,7 @@ function OnMouseDown(e)
             var canvas = d3.select("#plotCanvas");
             var variableList = getSelectedVariables();
         
-            var inText = variableList["independent"].length > 0 ? "SELECT TWO OR MORE MEANS" : "SELECT ONE MEAN";             
+            var inText = variableList["independent"].length > 0 ? "SELECT TWO OR ALL THE MEANS" : "SELECT ONE MEAN FOR COMPARISON AGAINST POPULATION MEAN";             
     
             canvas.append("rect")
                     .attr("x", canvasWidth/2 - buttonWidth/2)
