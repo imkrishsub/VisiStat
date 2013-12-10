@@ -254,7 +254,7 @@ function drawDialogBoxToGetPopulationMean()
     divElement.append("input")
                 .attr("type", "text")
                 .attr("id", "populationValue");
-    <br/>
+    divElement.append("br");
     divElement.append("input")
                 .attr("type", "button")
                 .attr("onclick", "populationMeanEntered()")
