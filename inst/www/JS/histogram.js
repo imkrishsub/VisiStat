@@ -1,5 +1,6 @@
 var LEFT, RIGHT, TOP, BOTTOM, xStep;
 var yDiffForPlots;
+
 function makeHistogram()
 {      
     // TODO: Need to constrain the selection to 3 variables
@@ -421,9 +422,6 @@ function makeHistogram()
 function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, dependentVariable, level, distributionType)
 {
     var variableList = sort(currentVariableSelection);
-    
-    console.log("dependentVariable: " + dependentVariable);
-    console.log("level: " + level);
     
     var RIGHT = LEFT + histWidth;
     var BOTTOM = TOP + histHeight;
