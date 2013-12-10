@@ -777,7 +777,18 @@ function selectAllMeans()
     for(var i=0; i<unSelectedMeans.length; i++)
         means.push(unSelectedMeans[i]);
     
-    console.log("nSelected: " + unSelectedMeans.length);
+    console.log("means = [" + means + "]" );
+        
+    means().sort(function(a, b)
+    {
+        if(a.getAttribute("cx") < b.getAttribute("cx"))
+            return -1;
+        if(a.getAttribute("cx") > b.getAttribute("cx"))
+            return -1;
+        return 0;
+    }
+    
+    console.log("means = [" + means + "]" );
     
     var plotCanvas = d3.select("#plotCanvas");
     
