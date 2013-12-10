@@ -14,7 +14,10 @@ function compareMeans()
                 if(variableList["dependent"].length == 1)
                 {
                     loadAssumptionCheckList("one-sample tests");
-                    performNormalityTest(variables[variableList["dependent"][0]]["dataset"], variableList["dependent"][0], "dataset");                    
+                    
+                    setTimeout(function(){                    
+                        performNormalityTest(variables[variableList["dependent"][0]]["dataset"], variableList["dependent"][0], "dataset");                    
+                    }, 1300);
                 }
                 
                 break;

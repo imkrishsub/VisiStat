@@ -235,7 +235,7 @@ function drawDialogBoxToGetPopulationMean()
             .attr("height", dialogBoxHeight/3)
             .attr("rx", "5px")
             .attr("ry", "5px")
-            .attr("fill", "#3957F1")
+            .attr("fill", "url(#buttonFillSelected)")
             .attr("id", "regression")
             .attr("class", "dialogBox");
     
@@ -244,6 +244,7 @@ function drawDialogBoxToGetPopulationMean()
     
     var divElement = d3.select("body").append("div").attr("style", "position: absolute; left: " + LEFT + "px; top: " + TOP + "px; height: " + dialogBoxHeight + "px; width: " + dialogBoxWidth + "px; text-align: center;").attr("class", "dialogBox");
 
+    var normality = d3.select("#normality.crosses");
     var inText = d3.select("#normality.crosses").attr("display") == "inline" ? "POPULATION MEDIAN = " : "POPULATION MEAN = ";
     
     divElement.append("label")
@@ -510,7 +511,7 @@ function loadAssumptionCheckList(type)
                 .attr("id", assumptions[type][i])
                 .attr("class", "crosses");
         }    
-    }, 1200);
+    }, 1300);
     
     
 }
