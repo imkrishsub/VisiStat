@@ -772,7 +772,8 @@ function selectAllMeans()
     
     var means = new Array();
     
-    means.push(lastMean);
+    if(lastMean != 0)
+        means.push(lastMean);
     
     for(var i=0; i<unSelectedMeans.length; i++)
         means.push(unSelectedMeans[i]);
