@@ -392,7 +392,7 @@ function allVariablesAreNumeric()
     
     for(var i=0; i<currentVariableSelection.length; i++)
     {
-        if((isNaN(variables[currentVariableSelection[i]]["dataset"][0])) && (variableTypes[currentVariableSelection[i]] == "ordinal"))
+        if(isNaN(variables[currentVariableSelection[i]]["dataset"][0]))
         {
             yeah = false;
         }
