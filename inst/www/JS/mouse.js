@@ -4,7 +4,8 @@ function OnMouseDown(e)
         e = window.event; 
 
     var target = e.target != null ? e.target : e.srcElement;
-    console.log("freezeMouseEvents = " + freezeMouseEvents);
+    if(e.button == 1 && window.event != null || e.button == 0)
+        console.log("freezeMouseEvents = " + freezeMouseEvents);
    
     if(!freezeMouseEvents)
     {
