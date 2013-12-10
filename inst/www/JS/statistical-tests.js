@@ -64,7 +64,7 @@ function compareMeans()
         default:
                 //ANOVA
                 {
-                    console.log("\t Significance test for more than 2 variables...\n\nnana");
+                    console.log("\t Significance test for more than 2 variables...\n\n nana");
                     
                     //check if all means needs to be selected
                     var selectedMeans = getSelectedMeansForColourBoxPlotData();
@@ -82,7 +82,7 @@ function compareMeans()
                         selectAllMeans();
                     }
                     
-                    loadAssumptionCheckList();                    
+//                     loadAssumptionCheckList();                    
                     performNormalityTests();
         
                     break;
