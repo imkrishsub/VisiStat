@@ -561,7 +561,7 @@ function redrawBoxPlot()
 
     for(i=0; i<nGroovesY; i++)
     {
-        yAxisTexts[i].transition().duration(boxPlotTransdec2ionDuration)        
+        yAxisTexts[i].transition().duration(boxPlotTransformationDuration)        
                     .attr("x", LEFT - tickTextOffsetYAxis - axesOffset)
                     .attr("y", BOTTOM - i*yStep + yAxisTickTextOffset)                    
                     .text(dec2(min + i*slice))
