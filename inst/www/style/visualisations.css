@@ -60,9 +60,9 @@ text
 
 #oneSampleTestButton
 {
-    width: 25em;
+    width: 15em;
     height: 1.5em;
-    position: relative;
+    position: absolute;
     color: black;
     font:1.1em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     padding:25px;

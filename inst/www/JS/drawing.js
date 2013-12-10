@@ -242,7 +242,7 @@ function drawDialogBoxToGetPopulationMean()
     var LEFT = (width - canvasWidth - sideBarWidth) + centerX - dialogBoxWidth/2;
     var TOP = centerY - dialogBoxHeight/2;
     
-    var divElement = d3.select("body").append("div").attr("style", "position: absolute; left: " + LEFT + "px; top: " + TOP + "px; height: " + dialogBoxHeight + "px; width: " + dialogBoxWidth + "px;").attr("class", "dialogBox");
+    var divElement = d3.select("body").append("div").attr("style", "position: absolute; left: " + LEFT + "px; top: " + TOP + "px; height: " + dialogBoxHeight + "px; width: " + dialogBoxWidth + "px; text-align: center;").attr("class", "dialogBox");
 
     var inText = d3.select("#normality.crosses").attr("display") == "inline" ? "POPULATION MEDIAN = " : "POPULATION MEAN = ";
     
@@ -258,6 +258,7 @@ function drawDialogBoxToGetPopulationMean()
     divElement.append("input")
                 .attr("type", "button")
                 .attr("onclick", "populationMeanEntered()")
+                .attr("align", "center")
                 .attr("id", "oneSampleTestButton")
                 .attr("value","TEST AGAINST POPULATION ESTIMATE");
     
