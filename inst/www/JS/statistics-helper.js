@@ -3,6 +3,8 @@ function findCorrelationCoefficient(variableA, variableB)
     console.log("\nCORRELATION");
     console.log("\t\ttypeOf(" + variableA + ")=" + variableTypes[variableA] + ", typeOf(" + variableB + ")=" + variableTypes[variableB]);
     
+    testResults["formula"] = variableA + " : " + variableB;
+    
     var isScatterPlotMatrix = currentVisualisationSelection == "Scatterplot-matrix" ? true : false;
     
     

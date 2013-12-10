@@ -704,7 +704,7 @@ function scaleForWindowSize(value)
 //log the results of the statistical analysis to an object :)
 function logResult()
 {
-    log.push(testResults["formula"] + ", " + testResults["method"]);
+    log.push(testResults["method"] + ", " + testResults["formula"]);
 }
 
 

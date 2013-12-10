@@ -25,6 +25,10 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     testResults["CI"] = [output.CI_min, output.CI_max];
                     testResults["effect-size-type"] = "r";
                     
+                    testResults["formula"] = variableA + " : " + variableB;
+                    
+                    logResult();
+                    
                     if(allVariablesAreNumeric())
                         drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                 }
@@ -41,6 +45,10 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     testResults["method"] = output.method; 
                     testResults["effect-size"] = output.cor;
                     testResults["effect-size-type"] = "𝜏";
+                    
+                    testResults["formula"] = variableA + " : " + variableB;
+                    
+                    logResult();
                 }
                 
                 displayCorrelationResults();
@@ -72,6 +80,10 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
                 testResults["method"] = "Biserial Correlation-coefficient";
                 testResults["effect-size"] = output.cor;  
                 testResults["effect-size-type"] = "r";
+                
+                testResults["formula"] = continuousVariable + " : " + binaryVariable;
+                    
+                logResult();
                 
                 displayBiserialCorrelationResults();            
         
@@ -109,6 +121,10 @@ function getLinearModelCoefficients(outcome, explanatory)
                     testResults["equation"] = outcome + " = ";
                     testResults["effect-size-type"] = "rS";
                     
+                    testResults["formula"] = explanatory + " => " + outcome;
+                    
+                    logResult();
+                    
                     for(var i=0; i<nCoefficients; i++)
                     {
                         if(i == 0)                        
@@ -139,6 +155,10 @@ function getLinearModelCoefficients(outcome, explanatory)
                     testResults["equation"] = outcome + " = " + coefficients + explanatory + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
                     testResults["coefficients"] = coefficients;
                     testResults["intercept"] = output.intercept;
+                    
+                    testResults["formula"] = explanatory + " => " + outcome;
+                    
+                    logResult();
                 
                     console.log("intercept=" + output.intercept + ", coefficients=" + output.coefficients);
                     removeElementsByClassName("significanceTest");
@@ -184,6 +204,10 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
                 testResults["method"] = "Multiple Regression";
                 testResults["equation"] = outcomeVariable + " = ";
                 testResults["effect-size-type"] = "rS";
+                
+                testResults["formula"] = "[" + explanatoryVariables + "] => " + outcomeVariable;                    
+                logResult();
+                
                 var intercepts = [];
                 
                 for(var i=0; i<explanatoryVariables.length; i++)

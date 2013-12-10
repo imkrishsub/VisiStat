@@ -146,6 +146,10 @@ function getPearsonCorrelation(X, Y)
     var numerator = n*sumOf(XY) - sumOf(X)*sumOf(Y);
     var denominator = Math.sqrt((n*sumOf(XS) - sumOf(X)*sumOf(X))*(n*sumOf(YS) - sumOf(Y)*sumOf(Y)));
     var r = numerator/denominator;
+
+    testResults["method"] = "Pearson's correlation coefficient";
+                    
+    logResult();
     
     return r;
 }
