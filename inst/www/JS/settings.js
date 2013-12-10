@@ -151,6 +151,10 @@ var effectSizeFontSize = scaleForWindowSize(20) + "px";
 
 var computingResultsImageSize = scaleForWindowSize(75);
 
+var selectionButtonWidth = scaleForWindowSize(100);
+var selectionButtonHeight = scaleForWindowSize(50);
+var selectionButtonOffset = scaleForWindowSize(25);
+
 //transformation
 var normalityPlotWidth = scaleForWindowSize(125);
 var normalityPlotHeight = normalityPlotWidth*(3/4);

@@ -274,8 +274,7 @@ function OnMouseDown(e)
         {
             d3.selectAll(".compareNow").attr("cursor", "pointer");
         
-            removeElementsByClassName("boxplotLegends");
-            removeElementsByClassName("compareNow");
+            
         
             //get selected means
             var means = document.getElementsByClassName("means");
@@ -293,11 +292,13 @@ function OnMouseDown(e)
         
             if(selectedMeans.length == 2 || selectedMeans.length == means.length)
             {
-                compareMeans()
+                compareMeans();
+                removeElementsByClassName("boxplotLegends");
+                removeElementsByClassName("compareNow");
             }
             else 
             {
-                alert("Please select means of two levels or select means of all the levels!");
+                alert("Please select means of two levels (or) select means of all the levels!");
             }
         }
     
@@ -312,26 +313,63 @@ function OnMouseDown(e)
         
             var inText = variableList["independent"].length > 0 ? "SELECT TWO OR ALL THE MEANS" : "SELECT ONE MEAN FOR COMPARISON AGAINST POPULATION MEAN";             
     
+            drawButtonInSidebar(inText, "compareNow");
+            
             canvas.append("rect")
-                    .attr("x", canvasWidth/2 - buttonWidth/2)
-                    .attr("y", 0)
-                    .attr("width", buttonWidth)
-                    .attr("height", buttonHeight)
-                    .attr("rx", scaleForWindowSize(10) + "px")
-                    .attr("ry", scaleForWindowSize(10) + "px")
+                    .attr("x", plotWidth/4 - selectionButtonWidth/2)
+                    .attr("y", selectionButtonOffset)
+                    .attr("height", selectionButtonHeight)
+                    .attr("width", selectionButtonWidth)
                     .attr("fill", "url(#buttonFillNormal)")
                     .attr("filter", "url(#Bevel)")
-                    .attr("stroke", "black")
-                    .attr("id", "button")
-                    .attr("class", "compareNow");
-    
+                    .attr("id", "rect")
+                    .attr("class", "selectNone");
             canvas.append("text")
-                    .attr("x", canvasWidth/2)
-                    .attr("y", buttonHeight/2 + yAxisTickTextOffset)
+                    .attr("x", plotWidth/4)
+                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 - yAxisTickTextOffset)
                     .attr("text-anchor", "middle")
-                    .text(inText)
+                    .attr("font-size", fontSizeButtonLabel + "px")
                     .attr("id", "text")
-                    .attr("class", "compareNow"); 
+                    .attr("class", "selectNone");
+            
+            canvas.append("rect")
+                    .attr("x", 3*plotWidth/4 - selectionButtonWidth/2)
+                    .attr("y", selectionButtonOffset)
+                    .attr("height", selectionButtonHeight)
+                    .attr("width", selectionButtonWidth)
+                    .attr("fill", "url(#buttonFillNormal)")
+                    .attr("filter", "url(#Bevel)")
+                    .attr("id", "rect")
+                    .attr("class", "selectAll");
+            canvas.append("text")
+                    .attr("x", 3*plotWidth/4)
+                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 - yAxisTickTextOffset)
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", fontSizeButtonLabel + "px")
+                    .attr("id", "text")
+                    .attr("class", "selectAll");
+                    
+            
+//             canvas.append("rect")
+//                     .attr("x", canvasWidth/2 - buttonWidth/2)
+//                     .attr("y", 0)
+//                     .attr("width", buttonWidth)
+//                     .attr("height", buttonHeight)
+//                     .attr("rx", scaleForWindowSize(10) + "px")
+//                     .attr("ry", scaleForWindowSize(10) + "px")
+//                     .attr("fill", "url(#buttonFillNormal)")
+//                     .attr("filter", "url(#Bevel)")
+//                     .attr("stroke", "black")
+//                     .attr("id", "button")
+//                     .attr("class", "compareNow");
+//     
+//             canvas.append("text")
+//                     .attr("x", canvasWidth/2)
+//                     .attr("y", buttonHeight/2 + yAxisTickTextOffset)
+//                     .attr("text-anchor", "middle")
+//                     .text(inText)
+//                     .attr("id", "text")
+//                     .attr("class", "compareNow"); 
         
             freezeMouseEvents = true;
             d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(1000).style("opacity", "0.2");
