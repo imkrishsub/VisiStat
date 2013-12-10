@@ -288,11 +288,11 @@ function drawRegressionLine(intercept, slope)
     console.log("mins[Y]=" + mins["Y"]);
     console.log("maxs[Y]=" + maxs["Y"]);
     
-    Y1 = (slope*X1 + intercept) > maxs["Y"] ? maxs["Y"] : (slope*X1 + intercept);
-    Y1 = (slope*X1 + intercept) < mins["Y"] ? mins["Y"] : (slope*X1 + intercept);
+    Y1 = ((slope*X1) + intercept) > maxs["Y"] ? maxs["Y"] : ((slope*X1) + intercept);
+    Y1 = ((slope*X1) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X1) + intercept);
     
-    Y2 = (slope*X2 + intercept) > maxs["Y"] ? maxs["Y"] : (slope*X2 + intercept);
-    Y2 = (slope*X2 + intercept) < mins["Y"] ? mins["Y"] : (slope*X2 + intercept);
+    Y2 = ((slope*X2) + intercept) > maxs["Y"] ? maxs["Y"] : ((slope*X2) + intercept);
+    Y2 = ((slope*X2) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X2) + intercept);
     
     console.log("Y1 = " + Y1);
     console.log("Y2 = " + Y2);
