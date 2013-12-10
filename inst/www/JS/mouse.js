@@ -751,6 +751,8 @@ function OnMouseOver(e)
     // for IE, left click == 1
     // for Firefox, left click == 0
     
+    console.log("freezeMouseEvents = " + freezeMouseEvents);
+    
     if(!freezeMouseEvents)
     {
         if(target.className.baseVal == "variableNameHolderFront")
