@@ -259,7 +259,7 @@ function drawDialogBoxToGetPopulationMean()
                 .attr("type", "button")
                 .attr("onclick", "populationMeanEntered()")
                 .attr("align", "center")
-                .attr("style", "left: auto; height: 20px;")
+                .attr("style", "position: relative; height: 5em;")
                 .attr("value","TEST AGAINST POPULATION ESTIMATE");
     
 }   
