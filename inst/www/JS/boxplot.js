@@ -579,7 +579,7 @@ function redrawBoxPlot()
             var rectBottom = (medians[i] - iqrs[i]/2) < min ? min : (medians[i] - iqrs[i]/2);
             var rectTop = (medians[i] + iqrs[i]/2) > max ? max : (medians[i] + iqrs[i]/2);
         
-            boxes[i].transition().duration(boxPlotTransdec2ionDuration)
+            boxes[i].transition().duration(boxPlotTransformationDuration)
                         .attr("x", LEFT + i*widthSlice - widthOfEachBox/2 + xStep/2)
                         .attr("y", BOTTOM - getFraction(rectTop)*plotHeight)
                         .attr("height", getFraction(rectTop)*plotHeight - getFraction(rectBottom)*plotHeight)
@@ -587,7 +587,7 @@ function redrawBoxPlot()
                         .attr("fill", boxColors["normal"]);
                 
             // median
-            medianLines[i].transition().duration(boxPlotTransdec2ionDuration)
+            medianLines[i].transition().duration(boxPlotTransformationDuration)
                         .attr("x1", LEFT + i*widthSlice - widthOfEachBox/2 + xStep/2)
                         .attr("y1", BOTTOM - getFraction(medians[i])*plotHeight)
                         .attr("x2", LEFT + i*widthSlice + widthOfEachBox/2 + xStep/2)
@@ -597,43 +597,43 @@ function redrawBoxPlot()
             BOTTOMFringe = (medians[i] - 1.5*iqrs[i]) < min ? min : (medians[i] - 1.5*iqrs[i]);
             TOPFringe = (medians[i] + 1.5*iqrs[i]) > max ? max : (medians[i] + 1.5*iqrs[i]);
     
-            topFringes[i].transition().duration(boxPlotTransdec2ionDuration)
+            topFringes[i].transition().duration(boxPlotTransformationDuration)
                         .attr("x1", canvasWidth/2 - widthOfEachBox/4 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("y1", BOTTOM - getFraction(TOPFringe)*plotHeight)
                         .attr("x2", canvasWidth/2 + widthOfEachBox/4 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("y2", BOTTOM - getFraction(TOPFringe)*plotHeight);
     
-            topFringeConnectors[i].transition().duration(boxPlotTransdec2ionDuration)
+            topFringeConnectors[i].transition().duration(boxPlotTransformationDuration)
                         .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("y1", BOTTOM - getFraction(TOPFringe)*plotHeight)
                         .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("y2", BOTTOM- getFraction(rectTop)*plotHeight);    
     
-            bottomFringes[i].transition().duration(boxPlotTransdec2ionDuration)
+            bottomFringes[i].transition().duration(boxPlotTransformationDuration)
                         .attr("x1", canvasWidth/2 - widthOfEachBox/4 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("y1", BOTTOM - getFraction(BOTTOMFringe)*plotHeight)
                         .attr("x2", canvasWidth/2 + widthOfEachBox/4 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("y2", BOTTOM - getFraction(BOTTOMFringe)*plotHeight);
                 
-            bottomFringeConnectors[i].transition().duration(boxPlotTransdec2ionDuration)
+            bottomFringeConnectors[i].transition().duration(boxPlotTransformationDuration)
                         .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("y1", BOTTOM - getFraction(BOTTOMFringe)*plotHeight)
                         .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("y2", BOTTOM - getFraction(rectBottom)*plotHeight);
         
-            CILines[i].transition().duration(boxPlotTransdec2ionDuration)
+            CILines[i].transition().duration(boxPlotTransformationDuration)
                     .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
                     .attr("y1", BOTTOM - getFraction(CIs[i][0])*plotHeight)
                     .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
                     .attr("y2", BOTTOM - getFraction(CIs[i][1])*plotHeight);
         
-            CIBottomLines[i].transition().duration(boxPlotTransdec2ionDuration)
+            CIBottomLines[i].transition().duration(boxPlotTransformationDuration)
                     .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2 - CIFringeLength)
                     .attr("y1", BOTTOM - getFraction(CIs[i][0])*plotHeight)
                     .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2 + CIFringeLength)
                     .attr("y2", BOTTOM - getFraction(CIs[i][0])*plotHeight);
         
-            CITopLines[i].transition().duration(boxPlotTransdec2ionDuration)
+            CITopLines[i].transition().duration(boxPlotTransformationDuration)
                     .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2 - CIFringeLength)
                     .attr("y1", BOTTOM - getFraction(CIs[i][1])*plotHeight)
                     .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2 + CIFringeLength)
@@ -655,7 +655,7 @@ function redrawBoxPlot()
                         .attr("class", "outliers");
             }
     
-            meanCircles[i].transition().duration(boxPlotTransdec2ionDuration)
+            meanCircles[i].transition().duration(boxPlotTransformationDuration)
                         .attr("cx", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
                         .attr("cy", BOTTOM - getFraction(means[i])*plotHeight);
         }        
