@@ -544,3 +544,23 @@ function applyTransform(dependentVariable, level, finalVariable)
         
     });
 }
+
+function writeToFile(fileName)
+{
+    //loads the file and returns the dataset and variable names
+    var req = opencpu.r_fun_json("writeToFile", {
+                    object: log,
+                    fileName: fileName
+                  }, function(output) {
+    
+     }).fail(function(){
+          alert("Failure: " + req.responseText);
+    });
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+      alert("Server error: " + req.responseText);
+    });
+    req.complete(function(){
+    });
+}

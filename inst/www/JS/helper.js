@@ -671,6 +671,12 @@ function scaleForWindowSize(value)
     return value*(height/1004);
 }
 
+//log the results of the statistical analysis to an object :)
+function logResults()
+{
+    log.push(testResults);
+}
+
 
     
         

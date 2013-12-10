@@ -132,17 +132,7 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                   testResults["formula"] = "formula goes here";
                   
                   //add to log
-                  if(testLog["t"] == undefined)
-                  {
-                    testLog["t"] = new Array();
-                  }
-                
-                  testLog["t"].push(testResults);
-                  
-                  sessionStorage["dummy user"] = JSON.stringify(testLog);
-                  
-                  console.log("testLog = ");
-                  console.dir(testLog);
+                  logResult();
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");

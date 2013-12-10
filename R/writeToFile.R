@@ -1,0 +1,1 @@
+writeToFile <- function(object, fileName){    write.table(object, paste("Users/krishnasubramanian/Documents/Logs/", fileName, ".txt", sep=""), quote=F);}
