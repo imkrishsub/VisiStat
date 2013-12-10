@@ -80,14 +80,19 @@ function compareMeans()
                     if(selectedMeans.length < totalNumberOfLevels && selectedMeans.length != 2)
                     {
                         var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
+                        selectAllMeans();
                         setTimeout(function()
                         {
-                            selectAllMeans();
+                            loadAssumptionCheckList();                    
+                            performNormalityTests();
                         }, (unSelectedMeans.length+1)*1000);
                     }
+                    else
+                    {
+                        loadAssumptionCheckList();                    
+                        performNormalityTests();
+                    }
                     
-                    loadAssumptionCheckList();                    
-                    performNormalityTests();
         
                     break;
                 }
