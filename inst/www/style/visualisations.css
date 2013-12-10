@@ -60,11 +60,11 @@ text
 
 #oneSampleTestButton
 {
-    width: 15em;
-    height: 3em;
+    width: 10em;
+    height: 2.5em;
     position: relative;
     color: black;
-    font:1.7em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
+    font:1.2em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     padding:25px;
     background-color:#f8f9f7;
     -moz-border-radius:25px;
