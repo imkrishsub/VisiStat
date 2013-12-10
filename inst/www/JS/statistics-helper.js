@@ -290,6 +290,8 @@ function calculateOutcome()
         var predictorVariable = document.getElementById("value_" + currentVariableSelection[0]);
         
         console.log(outcomeVariable.innerHTML + " = " + testResults["coefficients"] + "*" + predictorVariable.value + " + " + testResults["intercept"]);
+        testResults["coefficients"] = parseFloat(testResults["coefficients"]);
+        testResults["intercept"] = parseFloat(testResults["intercept"]);
         
         outcomeVariable.innerHTML = dec5(testResults["coefficients"]*predictorVariable.value + testResults["intercept"]);
     }
