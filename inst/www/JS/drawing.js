@@ -153,6 +153,7 @@ function drawButtonInSideBar(buttonText, className, offset)
             .attr("y", canvasHeight - buttonOffset + offset*(buttonPadding + buttonHeight) + buttonHeight/2 + yAxisTickTextOffset)
             .attr("text-anchor", "middle")
             .text(buttonText)
+            .attr("font-size", fontSizeButtonLabel + "px")
             .attr("id", "text")
             .attr("class", className); 
 }
@@ -762,7 +763,7 @@ function displaySignificanceTestResults()
     var cx = [];
     var cy = [];
     
-    drawButtonInSideBar("COMPARE MEANS", "compareMean");
+    drawButtonInSideBar("RESET MEANS", "resetMeanSelection");
     
     removeElementsByClassName("significanceTest");
     if(document.getElementById("computingResultsImage") != null)
