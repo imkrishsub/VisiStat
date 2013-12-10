@@ -836,7 +836,7 @@ function OnMouseOver(e)
                         .attr("x", mouseX + 10)
                         .attr("y", mouseY + 15)
                         .attr("text-anchor", "start")
-                        .text(dec22(getActualValue(meanCircle.attr("cy"))))
+                        .text(dec2(getActualValue(meanCircle.attr("cy"))))
                         .attr("fill", meanColors["normal"])
                         .attr("class", "hover");
                         
