@@ -285,10 +285,8 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             if(selectedMeans.length > 2)
             {
                 drawComputingResultsImage();
-                
-                setTimeout(function(){
+
                 performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                }, 1500);
             }                
             else
             {
@@ -318,11 +316,9 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             if(selectedMeans.length > 2)
             {
                 drawComputingResultsImage();
-                selectAllMeans();
             
-                setTimeout(function(){
                 performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                }, 1500);
+            
             }                
             else
             {
