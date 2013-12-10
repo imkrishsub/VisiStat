@@ -779,7 +779,7 @@ function selectAllMeans()
     
     console.log("means = [" + means + "]" );
         
-    means().sort(function(a, b)
+    means.sort(function(a, b)
     {
         if(a.getAttribute("cx") < b.getAttribute("cx"))
             return -1;
