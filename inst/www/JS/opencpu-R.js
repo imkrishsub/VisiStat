@@ -548,6 +548,7 @@ function applyTransform(dependentVariable, level, finalVariable)
 function writeToFile(fileName)
 {
     //loads the file and returns the dataset and variable names
+    console.dir(log);
     var req = opencpu.r_fun_json("writeToFile", {
                     object: log,
                     fileName: fileName
