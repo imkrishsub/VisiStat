@@ -236,6 +236,7 @@ function drawDialogBoxToGetPopulationMean()
             .attr("rx", "5px")
             .attr("ry", "5px")
             .attr("fill", "url(#buttonFillSelected)")
+            .attr("fill", "url(#buttonFilterNormal)")
             .attr("id", "regression")
             .attr("class", "dialogBox");
     
