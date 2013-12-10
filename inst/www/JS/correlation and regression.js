@@ -30,7 +30,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     logResult();
                     
 //                     if(allVariablesAreNumeric())
-                        drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+                    drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                 }
                 else if(method == "kendall")
                 {
@@ -51,7 +51,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     logResult();
                     
 //                     if(allVariablesAreNumeric())
-                        drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+                    drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                 }
                 
                 displayCorrelationResults();
