@@ -298,10 +298,7 @@ function drawRegressionLine(intercept, slope)
     Y2 = ((slope*X2) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X2) + intercept);
     
     console.log("Y1 = " + Y1);
-    console.log("Y2 = " + Y2);
-    
-    
-    console.log("intercept=" + intercept + ", slope=" + slope);
+    console.log("Y2 = " + Y2);    
     
     if(uniqueDataX.length <= numberOfGrooves)
         x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
@@ -321,23 +318,14 @@ function drawRegressionLine(intercept, slope)
     if(uniqueDataY.length <= numberOfGrooves)
         y2 = BOTTOM - uniqueDataY.indexOf(Y2)*yStep - yStep/2;
     else
-        y2 = BOTTOM - getValue1(Y2, mins["Y"], maxs["Y"])*plotHeight;
-            
-    
-    canvas.append("circle")
-            .attr("cx", LEFT + getValue1(0, mins["X"], maxs["X"])*plotWidth)
-            .attr("cy", BOTTOM - getValue1(intercept, mins["Y"], maxs["Y"])*plotHeight)
-            .attr("r", "10px")
-            .attr("fill", "red")
-            .attr("id", "interceptCircle")
-            .attr("class", "regressionLines");
+        y2 = BOTTOM - getValue1(Y2, mins["Y"], maxs["Y"])*plotHeight; 
     
     canvas.append("line")
             .attr("x1", x1)
             .attr("y1", y1)
             .attr("x2", x2)
             .attr("y2", y2)
-            .attr("stroke", "magenta")
+            .attr("stroke", panelColors["selected"])
             .attr("stroke-width", "10px")
             .attr("id", "regressionLine");
             
@@ -348,6 +336,5 @@ function drawRegressionLine(intercept, slope)
             .attr("y2", y2)
             .attr("stroke", "transparent")
             .attr("stroke-width", "30px")
-            .attr("id", "regressionLine");
-            
+            .attr("id", "regressionLine");            
 }
