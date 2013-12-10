@@ -128,6 +128,17 @@ function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, p
                   testResults["effect-size"] = output.d;
                   testResults["effect-size-type"] = "d";
                   
+                  //add to log
+                  if(testLog["t"] == undefined)
+                  {
+                    testLog["t"] = new Array();
+                  }
+                
+                  testLog["t"].push(testResults);
+                  
+                  console.log("testLog = ");
+                  console.dir(testLog);
+                  
                 //drawing stuff
                 removeElementsByClassName("completeLines");
                 

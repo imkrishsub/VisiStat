@@ -842,15 +842,6 @@ function displaySignificanceTestResults()
     
     drawParameter(parseFloat(testResults["parameter"]));
     
-    // sideBar.append("text")
-//             .attr("x", sideBarWidth/2)
-//             .attr("y", canvasHeight/2 + 2*significanceTestResultOffset)
-//             .attr("text-anchor", "middle")
-//             .attr("font-size", "22px")
-//             .attr("fill", "orange")
-//             .text(testResults["statistic"])
-//             .attr("class", "significanceTest");
-    
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
             .attr("y", canvasHeight/2 + 3*significanceTestResultOffset)
@@ -863,16 +854,6 @@ function displaySignificanceTestResults()
     
     //Effect sizes
     drawEffectSize(parseFloat(testResults["effect-size"]));
-//     sideBar.append("text")
-//             .attr("x", sideBarWidth/2)
-//             .attr("y", canvasHeight/2 - significanceTestResultOffset)
-//             .attr("text-anchor", "middle")
-//             .attr("font-size", "24px")
-//             .attr("fill", "orange")
-//             .text(testResults["effect-size"])
-//             .attr("class", "significanceTest");
-    
-    
 }
 
 function displayCorrelationResults()

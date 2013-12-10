@@ -59,6 +59,8 @@ var interactions = [];
 var sampleSizesAreEqual = true;
 var pairwiseComparisons = false;
 
+var testLog = new Object();
+
 //transformations
 var transformationType;
 
