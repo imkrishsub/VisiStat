@@ -64,11 +64,13 @@ function compareMeans()
         default:
                 //ANOVA
                 {
-                    console.log("\t Significance test for more than 2 variables...\n\n");
+                    console.log("\t Significance test for more than 2 variables...\n\nnana");
                     
                     //check if all means needs to be selected
                     var selectedMeans = getSelectedMeansForColourBoxPlotData();
                     var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
+                    
+                    console.log(selectedMeans.length);
                     
                     var variableList = getSelectedVariables();                    
                     var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
