@@ -9,7 +9,8 @@ performFriedmanTest <- function(dependentVariable, independentVariable, particip
     
     result = eval(parse(text = paste("friedman.test(",dependentVariable," ~ ",independentVariable," | ",participantVariable,", data = dataset)",sep="")));
     
-    etaSq = result$statistic[["Friedman chi-squared"]]/(length(independentVariable)-1);
+    sampleSize = eval(parse(text = paste("length(dataset$",independentVariable,")", sep="")));
+    etaSq = result$statistic[["Friedman chi-squared"]]/(sampleSize - 1);
     
     list(chiSquared = result$statistic[["Friedman chi-squared"]], df = result$parameter[["df"]], p = result$p.value, method = result$method, etaSquared = etaSq);
 }
