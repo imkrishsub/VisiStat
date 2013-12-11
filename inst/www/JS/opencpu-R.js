@@ -232,19 +232,16 @@ function performHomoscedasticityTestNormal(dependent, independent)
                     {
                         if(output.p < 0.05)
                         {
-                            d3.select("#homogeneity.crosses").attr("display", "inline");
+                            d3.select("#homogeneity.crosses").attr("display", "inline");  
                             d3.select("#homogeneity.loading").attr("display", "none"); 
+                        
+                            d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
                             
-                            drawComputingResultsImage();
-                            
-                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                            {
-                                performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                            }
-                            else
-                            {
-                                performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                            }  
+                            //draw boxplots in red 
+                            drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
+                            console.log("checkpoint 2");
+                
+                            findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
                         }
                         else
                         {   
@@ -443,41 +440,70 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     
                     console.log("normality:" + normal);
                     
-                    if(!normal)
+                    if(variableList["independent-levels"].length == 2)
                     {
-                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                        {   
-                            if(!pairwiseComparisons)
-                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                        if(!normal)
+                        {
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                            {   
+                                if(!pairwiseComparisons)
+                                    performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                else
+                                    performPairwiseWilcoxTest("FALSE", "TRUE");
+                            }
                             else
-                                performPairwiseWilcoxTest("FALSE", "TRUE");
+                            {
+                                if(!pairwiseComparisons)
+                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
+                                else
+                                    performPairwiseWilcoxTest("FALSE", "FALSE");
+                            } 
                         }
                         else
                         {
-                            if(!pairwiseComparisons)
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                            {
+                                if(!pairwiseComparisons)
+                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
+                                else
+                                    performPairwiseTTest("TRUE", "TRUE");
+                            }
                             else
-                                performPairwiseWilcoxTest("FALSE", "FALSE");
+                            {
+                                if(!pairwiseComparisons)
+                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                                else
+                                    performPairwiseTTest("TRUE", "FALSE");
+                            } 
+                        }        
+                    }
+                }
+                else
+                {
+                    if(!normal)
+                    {
+                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                        {
+                            performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
+                        }
+                        else
+                        {
+                            performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
                         } 
                     }
                     else
                     {
                         if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                         {
-                            if(!pairwiseComparisons)
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
-                            else
-                                performPairwiseTTest("TRUE", "TRUE");
+                            performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
                         }
                         else
                         {
-                            if(!pairwiseComparisons)
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
-                            else
-                                performPairwiseTTest("TRUE", "FALSE");
-                        } 
+                            performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                        }
                     }        
                 }
+
                 else
                 {
                     console.log("Transformation type = " + output.type);
