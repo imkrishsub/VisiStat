@@ -441,6 +441,8 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     drawComputingResultsImage();
                     var normal = d3.select("#normality.crosses").attr("display") == "inline" ? false : true;
                     
+                    console.log("normality:" + normal);
+                    
                     if(!normal)
                     {
                         if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
