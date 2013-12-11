@@ -503,6 +503,9 @@ function redrawBoxPlot()
     
     console.log("data=[" + data + "]");
     
+    console.dir(MIN);
+    console.dir(MAX);
+    
     min = Array.min(mins);
     max = Array.max(maxs);
     
