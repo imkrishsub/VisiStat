@@ -341,6 +341,8 @@ function isFactorialANOVA(variableList)
             else
             {
                 curr = variables[variableList["dependent"][0]][levels[j]].length;
+               
+                console.log("level: " + levels[j] + ", prev = " + prev + ", curr = " + curr);
                 
                 if(curr != prev)
                 {
@@ -355,10 +357,10 @@ function isFactorialANOVA(variableList)
                 }                
             }
         }
-        
-        console.log("betweenGroupVariableExists = " + betweenGroupVariableExists);
-        console.log("withinGroupVariableExists = " + withinGroupVariableExists);
     }
+    
+    console.log("betweenGroupVariableExists = " + betweenGroupVariableExists);
+    console.log("withinGroupVariableExists = " + withinGroupVariableExists);
 }
 
 function getWithinGroupVariable(variableList)
