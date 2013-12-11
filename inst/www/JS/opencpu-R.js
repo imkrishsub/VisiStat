@@ -621,12 +621,14 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
 function applyHomogeneityTransform(dependentVariable, level)
 {
     // Get variable names and their data type
-    
+    console.log("transformation type = " + transformationType);
     var req = opencpu.r_fun_json("applyTransform", {
                     distribution: variables[dependentVariable][level],
                     type: transformationType
                   }, function(output) {                                                                  
+                console.log("before: " + variables[dependentVariable][level]);
                 variables[dependentVariable][level] = output.transformedData;
+                console.log("after: " + variables[dependentVariable][level]);
                 
                 MIN[dependentVariable][level] = Array.min(output.transformedData);
                 MAX[dependentVariable][level] = Array.max(output.transformedData);
