@@ -465,14 +465,14 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                         if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                         {
                             if(!pairwiseComparisons)
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
                             else
                                 performPairwiseTTest("TRUE", "TRUE");
                         }
                         else
                         {
                             if(!pairwiseComparisons)
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
                             else
                                 performPairwiseTTest("TRUE", "FALSE");
                         } 
