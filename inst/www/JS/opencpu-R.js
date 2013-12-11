@@ -650,10 +650,6 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                 removeElementsByClassName("homogeneityPlot");
                 var variableList = getSelectedVariables();
             
-                var mean = d3.select("#" + variableList["dependent"][0] + ".means");
-                console.log("CP1");
-                var centerX = mean.attr("cx");   
-            
                 // if(variableList["independent"].length > 0)
 //                 {
 //                     for(var i=0; i<variableList["independent-levels"].length; i++)
