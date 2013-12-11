@@ -319,6 +319,9 @@ function calculateOutcome()
 
 function isFactorialANOVA(variableList)
 {
+    if(experimentalDesign == "between-groups")
+        return false;
+        
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
     
@@ -363,6 +366,9 @@ function isFactorialANOVA(variableList)
     
     console.log("betweenGroupVariableExists = " + betweenGroupVariableExists);
     console.log("withinGroupVariableExists = " + withinGroupVariableExists);
+    
+    if(betweenGroupVariableExists && withinGroupVariableExists)
+        return true;
 }
 
 function getWithinGroupVariable(variableList)

@@ -518,11 +518,11 @@ function findExperimentalDesign()
     
     if(participantData.length > participantData.unique().length)
     {
-        return "between-groups";
+        return "within-groups";
     }
     else
     {
-        return "within-groups";
+        return "between-groups";
     }
 }
 
