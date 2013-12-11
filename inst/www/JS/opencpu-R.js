@@ -634,7 +634,9 @@ function applyHomogeneityTransform(dependentVariable, level)
                 CI[dependentVariable][level] = findCI(output.transformedData);
                 
                 //if this is the last variable, then redraw boxplots and display the significance test results
+                console.log("CP1");
                 redrawBoxPlot();
+                console.log("CP2");
                 
                 removeElementsByClassName("homogeneityPlot");
                 var variableList = getSelectedVariables();
