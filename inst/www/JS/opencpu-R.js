@@ -640,6 +640,8 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                 for(i=0; i<levels.length; i++)
                 {
                     variables[dependentVariable][levels[i]] = [];
+                    MIN[dependentVariable][levels[i]] = 999999;
+                    MAX[dependentVariable][levels[i]] = -999999;
                 }
                     
                 subsetDataByLevels(independentVariable);
