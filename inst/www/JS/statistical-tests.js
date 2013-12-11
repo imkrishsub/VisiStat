@@ -88,7 +88,7 @@ function compareMeans()
                             selectAllMeans();
                             setTimeout(function()
                             {
-                                if(isFactorialANOVA())
+                                if(isFactorialANOVA(variableList))
                                     loadAssumptionCheckList("repeated measures");
                                 else
                                     loadAssumptionCheckList("other");                    
