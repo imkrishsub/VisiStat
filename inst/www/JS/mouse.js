@@ -425,7 +425,10 @@ function OnMouseDown(e)
                 
                 selectAllText.attr("fill", "black");
                 
-                setCompareNowButtonText();
+                setTimeout(function()
+                {
+                    setCompareNowButtonText();
+                }, 500);
             }
         }
         
@@ -455,7 +458,10 @@ function OnMouseDown(e)
                 
                 selectNoneText.attr("fill", "black");
                 
-                setCompareNowButtonText();
+                setTimeout(function()
+                {
+                    setCompareNowButtonText();
+                }, 1000);
             }
         }
     
