@@ -434,7 +434,26 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                 if(output.type == "none")
                 {
                     console.log("Transformation to homogeneity is not possible!");
-                    performHomoscedasticityTestNotNormal(variableList["dependent"][0], variableList["independent"][0]);
+                    
+                    d3.select("#homogeneity.crosses").attr("display", "inline"); 
+                    d3.select("#homogeneity.loading").attr("display", "none"); 
+                    
+                    drawComputingResultsImage();
+                    
+                    if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                    {   
+                        if(!pairwiseComparisons)
+                            performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                        else
+                            performPairwiseWilcoxTest("FALSE", "TRUE");
+                    }
+                    else
+                    {
+                        if(!pairwiseComparisons)
+                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
+                        else
+                            performPairwiseWilcoxTest("FALSE", "FALSE");
+                    } 
                     
                     d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                 }
