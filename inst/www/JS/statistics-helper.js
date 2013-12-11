@@ -376,8 +376,6 @@ function getWithinGroupVariable(variableList)
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
     
-    console.log("participants: " + participants);
-    
     for(i=0; i<variableList["independent"].length; i++)
     {
         //for each independent variable
@@ -415,8 +413,6 @@ function getBetweenGroupVariable(variableList)
 {
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
-    
-    console.log("participants: " + participants);
     
     for(i=0; i<variableList["independent"].length; i++)
     {

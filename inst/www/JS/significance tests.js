@@ -392,6 +392,8 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
 
 function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGroupVariable)
 {
+    console.log("\t\t Factorial ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
+    
     var req = opencpu.r_fun_json("performFactorialANOVA", {
                     dependentVariable: dependentVariable,
                     withinGroupVariable: withinGroupVariable,
