@@ -969,6 +969,8 @@ function OnMouseOver(e)
             {
                 console.log("4");
                 
+                console.log(document.getElementsByClassName("completeLines").length);
+                
                 if((document.getElementsByClassName("completeLines").length+1 < (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
                 {            
                     meanCircle.attr("cursor","pointer");
@@ -1441,6 +1443,7 @@ function OnMouseOut(e)
         
         if(meanCircle.attr("r") == engorgedMeanRadius)
         {
+            console.log(meanCircle.attr("fill"));
             if(meanCircle.attr("fill") != meanColors["click"])
             {
                 console.log("4");
