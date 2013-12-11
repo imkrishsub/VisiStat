@@ -208,6 +208,8 @@ function OnMouseDown(e)
                         lineBefore.setAttribute("y2", lineAfter.getAttribute("y2"));
                         lineAfter.parentNode.removeChild(lineAfter);
                     }
+                    
+                    
                 }
                 else
                 {
@@ -265,7 +267,8 @@ function OnMouseDown(e)
                         }
                     }   
                 }
-        
+                
+                setSelectButtons();
                 setCompareNowButtonText();
             }
         }

@@ -447,3 +447,64 @@ function getWithinGroupVariable(variableList)
         }
     } 
 }
+
+function setSelectButtons()
+{
+    var selectNoneText = d3.select("#text.selectNone");
+    var selectNoneButton = d3.select("#rect.selectNone");
+    
+    var selectAllText = d3.select("#text.selectAll");
+    var selectAllButton = d3.select("#rect.selectAll");
+    
+    var means = document.getElementsByClassName(".means");
+    var selectedMeans = [];
+    
+    for(var i=0; i<means.length; i++)
+    {
+        if(means[i].getAttribute("fill") == meanColors["click"])
+            selectedMeans.push(means[i]);
+    }    
+    
+    if(selectedMeans.length == 0)
+    {    
+        selectNoneButton.attr("fill", "url(#buttonFillSelected)");
+        selectNoneButton.attr("filter", "none");
+        selectNoneButton.attr("stroke", "none");
+        
+        selectNoneText.attr("fill", "white");
+        
+        selectAllButton.attr("fill", "url(#buttonFillNormal)");
+        selectAllButton.attr("filter", "url(#Bevel)");
+        selectAllButton.attr("stroke", "black");
+        
+        selectNoneText.attr("fill", "black");
+    }
+    else if(selectedMeans.length == means.length)
+    {
+        selectAllButton.attr("fill", "url(#buttonFillSelected)");
+        selectAllButton.attr("filter", "none");
+        selectAllButton.attr("stroke", "none");
+        
+        selectAllText.attr("fill", "white");
+        
+        selectNoneButton.attr("fill", "url(#buttonFillNormal)");
+        selectNoneButton.attr("filter", "url(#Bevel)");
+        selectNoneButton.attr("stroke", "black");
+        
+        selectNoneText.attr("fill", "black");
+    }
+    else
+    {
+        selectNoneButton.attr("fill", "url(#buttonFillNormal)");
+        selectNoneButton.attr("filter", "url(#Bevel)");
+        selectNoneButton.attr("stroke", "black");
+        
+        selectNoneText.attr("fill", "black");
+        
+        selectAllButton.attr("fill", "url(#buttonFillNormal)");
+        selectAllButton.attr("filter", "url(#Bevel)");
+        selectAllButton.attr("stroke", "black");
+        
+        selectNoneText.attr("fill", "black");
+    }
+}    
