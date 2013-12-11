@@ -967,6 +967,8 @@ function OnMouseOver(e)
             }   
             else
             {
+                console.log("4");
+                
                 if((document.getElementsByClassName("completeLines").length+1 < (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
                 {            
                     meanCircle.attr("cursor","pointer");
@@ -1441,6 +1443,7 @@ function OnMouseOut(e)
         {
             if(meanCircle.attr("fill") != meanColors["click"])
             {
+                console.log("4");
                 meanCircle.attr("fill", meanColors["normal"]);
                 var incompleteLine = d3.select(".incompleteLines").attr("display", "none");
             }
