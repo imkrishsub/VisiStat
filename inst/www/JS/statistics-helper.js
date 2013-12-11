@@ -456,7 +456,7 @@ function setSelectButtons()
     var selectAllText = d3.select("#text.selectAll");
     var selectAllButton = d3.select("#rect.selectAll");
     
-    var means = document.getElementsByClassName(".means");
+    var means = document.getElementsByClassName("means");
     var selectedMeans = [];
     
     for(var i=0; i<means.length; i++)
