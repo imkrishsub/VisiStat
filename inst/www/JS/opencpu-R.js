@@ -477,33 +477,32 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                             } 
                         }        
                     }
-                }
-                else
-                {
-                    if(!normal)
-                    {
-                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                        {
-                            performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
-                        }
-                        else
-                        {
-                            performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                        } 
-                    }
                     else
                     {
-                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                        if(!normal)
                         {
-                            performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                            {
+                                performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
+                            }
+                            else
+                            {
+                                performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                            } 
                         }
                         else
                         {
-                            performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                        }
-                    }        
-                }
-
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                            {
+                                performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                            }
+                            else
+                            {
+                                performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                            }
+                        }        
+                    }
+                }                
                 else
                 {
                     console.log("Transformation type = " + output.type);
