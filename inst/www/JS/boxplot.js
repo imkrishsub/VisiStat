@@ -811,8 +811,7 @@ function selectAllMeans()
 function unselectAllMeans()
 {    
     var selectedMeans = getSelectedMeansForColourBoxPlotData();
-    var completeLines = document.getElementsByClassName("completeLines");
-        
+    
     selectedMeans.sort(function(a, b)
     {
         if(a.getAttribute("cx") < b.getAttribute("cx"))
@@ -821,17 +820,6 @@ function unselectAllMeans()
             return 1;
         return 0;
     });
-    
-    // completeLines.sort(function(a, b)
-//     {
-//         if(a.getAttribute("x1") < b.getAttribute("x1"))
-//             return -1;
-//         if(a.getAttribute("x1") > b.getAttribute("x1"))
-//             return 1;
-//         return 0;
-//     });
-    
-    var plotCanvas = d3.select("#plotCanvas");   
     
     d3.selectAll(".means").transition().duration(500).attr("fill","purple");
     

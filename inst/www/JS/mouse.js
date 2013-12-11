@@ -422,6 +422,10 @@ function OnMouseDown(e)
                 selectAllButton.attr("fill", "url(#buttonFillNormal)");
                 selectAllButton.attr("filter", "url(#Bevel)");
                 selectAllButton.attr("stroke", "black");
+                
+                selectAllText.attr("fill", "black");
+                
+                setCompareNowButtonText();
             }
         }
         
@@ -448,6 +452,10 @@ function OnMouseDown(e)
                 selectNoneButton.attr("fill", "url(#buttonFillNormal)");
                 selectNoneButton.attr("filter", "url(#Bevel)");
                 selectNoneButton.attr("stroke", "black");
+                
+                selectNoneText.attr("fill", "black");
+                
+                setCompareNowButtonText();
             }
         }
     

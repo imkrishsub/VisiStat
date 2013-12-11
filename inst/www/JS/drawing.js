@@ -1051,4 +1051,65 @@ function displayMultipleRegressionResults()
     tr.append("td").append("label")
                 .attr("id", "value_outcome");
 }
+
+function meanSelectionHelper()
+{
+    // var meanCircle = d3.selectAll("#" + target.id + ".means");    
+// 
+//     if(document.getElementsByClassName("means").length == 1)
+//     {
+//         //if there is only mean (one sample tests)
+//         if(meanCircle.attr("fill") == meanColors["hover"])
+//         {
+//             meanCircle.attr("fill", meanColors["click"]);
+// //                 compareMeans();
+//         }
+//         else
+//         {
+//             meanCircle.attr("fill", meanColors["normal"]);
+//         }
+//     }
+//     else if(document.getElementsByClassName("completeLines").length < (document.getElementsByClassName("means").length - 1))
+//     {
+//         //if there are 2+ means            
+//         meanCircle.attr("fill", meanColors["click"]);
+// 
+//         //check if we are finishing an incomplete line here
+//         if(document.getElementsByClassName("incompleteLines").length > 0)
+//         {
+//             var incompleteLines = d3.selectAll(".incompleteLines");
+// 
+//             incompleteLines.attr("x2", meanCircle.attr("cx"))
+//                            .attr("y2", meanCircle.attr("cy"))
+//                            .attr("stroke", meanColors["click"])
+//                            .attr("class", "completeLines");
+//                        
+//             removeElementsByClassName("indicator");
+//             var canvas = d3.select("#plotCanvas");                                             
+//         }
+//         var means = document.getElementsByClassName("means");
+//     
+//         if(document.getElementsByClassName("completeLines").length < (document.getElementsByClassName("means").length - 1))
+//         {
+//             var canvas = d3.select("#plotCanvas");
+// 
+//             canvas.append("line")
+//                     .attr("x1", meanCircle.attr("cx"))
+//                     .attr("y1", meanCircle.attr("cy"))
+//                     .attr("x2", meanCircle.attr("cx"))
+//                     .attr("y2", meanCircle.attr("cy"))
+//                     .attr("stroke", meanColors["normal"])
+//                     .attr("stroke-dasharray", "5,5")
+//                     .attr("id", meanCircle.attr("id"))
+//                     .attr("class", "incompleteLines");
+//         }
+//         else
+//         {
+//             //we are done
+// //                 compareMeans();
+//         }
+//     }   
+    setCompareNowButtonText();
+}
+
     
