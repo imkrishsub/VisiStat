@@ -498,19 +498,12 @@ function redrawBoxPlot()
         CIs[0] = CI[currentVariableSelection[0]]["dataset"];
         means[0] = mean(data[0]);  
     }   
-    
-    console.log("1");
-    
-    console.log("data=[" + data + "]");
-    
+
     console.dir(MIN);
     console.dir(MAX);
     
     min = Array.min(mins);
     max = Array.max(maxs);
-    
-    console.log("min = " + min);
-    console.log("max = " + max);
     
     if(variableList["independent"].length == 1)    
         levels = variableList["independent-levels"]; //otherwise the arrays are contained into independent-levels
@@ -524,8 +517,6 @@ function redrawBoxPlot()
     ids = getValidIds(labels);
 
     nGroovesY = numberOfGrooves;
-    
-    console.log("2");
     
     // Draw axes        
     canvas.append("line")
@@ -581,8 +572,6 @@ function redrawBoxPlot()
                     .attr("id", "groove" + i)
                     .attr("class", "yAxisGrooveText");
     }
-    
-    console.log("3");
     
     var widthSlice = plotWidth/(nGroovesX);
     
@@ -655,7 +644,6 @@ function redrawBoxPlot()
         
             removeElementsByClassName("outliers");
     
-            console.log("4");
             var outliers = getOutliers(data[i], TOPFringe, BOTTOMFringe);
             
             for(var j=0; j<outliers.length; j++)

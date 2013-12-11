@@ -626,9 +626,7 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                     distribution: variables[dependentVariable][level],
                     type: transformationType
                   }, function(output) {                 
-                variables[dependentVariable][level] = output.transformedData;
-                
-                console.log("variables[" + dependentVariable +"][" + level + "]=" + variables[dependentVariable][level]);
+                variables[dependentVariable][level] = output.transformedData;            
                 
                 MIN[dependentVariable][level] = Array.min(output.transformedData);
                 MAX[dependentVariable][level] = Array.max(output.transformedData);
@@ -646,8 +644,6 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                     
                 subsetDataByLevels(independentVariable);
                 
-                console.dir(variables);
-                
                 //if this is the last variable, then redraw boxplots and display the significance test results
                 redrawBoxPlot();
             
@@ -655,6 +651,7 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                 var variableList = getSelectedVariables();
             
                 var mean = d3.select("#" + variableList["dependent"][0] + ".means");
+                console.log("CP1");
                 var centerX = mean.attr("cx");   
             
                 // if(variableList["independent"].length > 0)
