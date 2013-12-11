@@ -296,7 +296,16 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             {
                 drawComputingResultsImage();
 
-                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                //check if there is a within-groups factor
+                if(isFactorialANOVA(variableList))
+                {
+                    var withinGroupVariable = getWithinGroupVariable(variableList);
+                    var betweenGroupVariable = getBetweenGroupVariable(variableList);
+                    
+                    performFactorialANOVA(variableList["dependent"][0], withinGroupVariable, betweenGroupVariable);
+                }
+                else
+                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
             }                
             else
             {
@@ -327,7 +336,15 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             {
                 drawComputingResultsImage();
             
-                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                if(isFactorialANOVA(variableList))
+                {
+                    var withinGroupVariable = getWithinGroupVariable(variableList);
+                    var betweenGroupVariable = getBetweenGroupVariable(variableList);
+                    
+                    performFactorialANOVA(variableList["dependent"][0], withinGroupVariable, betweenGroupVariable);
+                }
+                else
+                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
             
             }                
             else

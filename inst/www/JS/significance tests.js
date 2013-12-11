@@ -390,6 +390,55 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
     });
 }
 
+function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGroupVariable)
+{
+    var req = opencpu.r_fun_json("performOneWayRepeatedMeasuresANOVA", {
+                    dependentVariable: dependentVariable,
+                    withinGroupVariable: withinGroupVariable,
+                    betweenGroupVariable: betweenGroupVariable,
+                    participantVariable: participants,
+                    dataset: dataset
+                  }, function(output) {                                                   
+                  
+                  console.log("\t\t Factorial ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
+                  console.log("\t\t\t F = " + output.F);
+                  console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
+                  console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
+                  console.log("\t\t\t p = " + output.p);
+                  console.log("\t\t\t Eta-squared: " + output.etaSquared);
+                  
+                  testResults["df"] = output.numDF + "," + output.denomDF;
+                  
+                  testResults["parameter"] = output.F;
+                  testResults["parameter-type"] = "F";
+                  
+                  testResults["method"] = "Factorial ANOVA"; //todo
+                  testResults["effect-size"] = output.etaSquared;
+                  testResults["p"] = changePValueNotation(output.p);
+                  testResults["effect-size-type"] = "eS";
+                  testResults["formula"] = dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable;
+                           
+                  logResult();
+                  
+                //drawing stuff
+                removeElementsByClassName("completeLines");
+                
+                displaySignificanceTestResults();               
+                drawButtonInSideBar("POST-HOC TESTS", "tukey");
+        
+      }).fail(function(){
+          alert("Failure: " + req.responseText);
+    });
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+      alert("Server error: " + req.responseText);
+    });
+    req.complete(function(){
+        
+    });
+}
+
 function performFriedmanTest(dependentVariable, independentVariable)
 {
     console.log(dependentVariable);
