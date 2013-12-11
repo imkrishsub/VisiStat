@@ -640,12 +640,6 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                 for(i=0; i<levels.length; i++)
                 {
                     variables[dependentVariable][levels[i]] = [];
-                    mins[dependentVariable][levels[i]] = undefined;
-                    maxs[dependentVariable][levels[i]] = undefined;
-                    medians[dependentVariable][levels[i]] = undefined;
-                    iqrs[dependentVariable][levels[i]] = undefined;
-                    CIs[dependentVariable][levels[i]] = undefined;
-                    means[dependentVariable][levels[i]] = undefined;
                 }
                     
                 subsetDataByLevels(independentVariable);
