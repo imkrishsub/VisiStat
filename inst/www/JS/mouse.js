@@ -315,7 +315,7 @@ function OnMouseDown(e)
     
             drawButtonInSideBar(inText, "compareNow");
             
-            var availableWidth = canvasWidth - sideBarWidth;
+            var availableWidth = canvasWidth;
             
             console.log("canvasWidth=" + canvasWidth);
             
