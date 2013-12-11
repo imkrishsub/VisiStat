@@ -390,7 +390,7 @@ function performSphericityTest()
                     dataset: dataset
                   }, function(output) {                                                   
                   
-                console.log("\t\t Sphericity Test (" + dependentVariable + ") TODO");
+                console.log("\t\t Sphericity Test (" + variableList["dependent"][0] + ") TODO");
                 console.log("\t\t\t p = " + output.p);
                 
                 
