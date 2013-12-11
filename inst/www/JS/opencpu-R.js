@@ -273,11 +273,8 @@ function performHomoscedasticityTestNormal(dependent, independent)
                         
                             d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
                             
-                            console.log("this probably works");
                             //draw boxplots in red 
-                            drawBoxPlotInRed(variableList["dependent"][0]);
-                            console.log("checkpoint 1");
-                            drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
+                            drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
                             console.log("checkpoint 2");
                 
                             findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
