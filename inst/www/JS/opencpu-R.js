@@ -111,7 +111,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                         
                         drawComputingResultsImage();
                         
-                        if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                         {
                             performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
                         }
@@ -128,7 +128,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                         
                         drawComputingResultsImage();
                     
-                        if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                         {
                             performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
                         }
@@ -147,7 +147,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                         
                         drawComputingResultsImage();
                         
-                        if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                         {   
                             if(!pairwiseComparisons)
                                 performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
@@ -170,7 +170,7 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                         
                         drawComputingResultsImage();
                     
-                        if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                         {      
                             if(!pairwiseComparisons)
                                 performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
@@ -237,7 +237,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                             
                             drawComputingResultsImage();
                             
-                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                             {
                                 performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
                             }
@@ -254,7 +254,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                     
                             drawComputingResultsImage();
                             
-                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                             {
                                 performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
                             }
@@ -289,7 +289,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                     
                             drawComputingResultsImage();
                             
-                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                             {
                                 if(!pairwiseComparisons)
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
@@ -440,7 +440,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     
                     drawComputingResultsImage();
                     
-                    if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                    if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                     {   
                         if(!pairwiseComparisons)
                             performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
@@ -654,7 +654,7 @@ function applyHomogeneityTransform(dependentVariable, level)
                     {
                         if(variableList["independent"].length > 0)
                         {
-                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                             {
                                 if(!pairwiseComparisons)
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
