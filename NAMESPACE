@@ -24,8 +24,11 @@ export(performFriedmanTest)
 export(performKruskalWallisTest)
 export(performWilcoxonTest)
 export(performMannWhitneyTest)
+
 export(performHomoscedasticityTest)
 export(performShapiroWilkTest)
+export(performSphericityTest)
+
 export(performMultipleRegression)
 
 export(performTukeyHSDTestOneIndependentVariable)

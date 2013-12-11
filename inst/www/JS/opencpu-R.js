@@ -377,6 +377,38 @@ function performNormalityTest(distribution, dependentVariable, level)
     });
 }
 
+function performSphericityTest()
+{
+    var variableList = getSelectedVariables();
+    
+    // Get variable names and their data type
+    var req = opencpu.r_fun_json("performSphericityTest", {
+                    dependentVariable: variableList["dependent"][0],
+                    withinGroupVariable: getWithinGroupVariable(variableList),
+                    betweenGroupVariable: getBetweenGroupVariable(variableList),
+                    participantVariable: participants,
+                    dataset: dataset
+                  }, function(output) {                                                   
+                  
+                console.log("\t\t Sphericity Test (" + dependentVariable + ") TODO");
+                console.log("\t\t\t p = " + output.p);
+                
+                
+                  
+      }).fail(function(){
+          alert("Failure: " + req.responseText);
+    });
+        
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+      alert("Server error: " + req.responseText);
+    });
+    req.complete(function(){
+        
+    });
+}
+
 function findTransformForNormality(dependentVariable, independentVariable)
 {
     // Get variable names and their data type

@@ -313,6 +313,7 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
                     var withinGroupVariable = getWithinGroupVariable(variableList);
                     var betweenGroupVariable = getBetweenGroupVariable(variableList);
                     
+                    performSphericityTest();
                     performFactorialANOVA(variableList["dependent"][0], withinGroupVariable, betweenGroupVariable);
                 }
                 else
@@ -352,6 +353,7 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
                     var withinGroupVariable = getWithinGroupVariable(variableList);
                     var betweenGroupVariable = getBetweenGroupVariable(variableList);
                     
+                    performSphericityTest();
                     performFactorialANOVA(variableList["dependent"][0], withinGroupVariable, betweenGroupVariable);
                 }
                 else
