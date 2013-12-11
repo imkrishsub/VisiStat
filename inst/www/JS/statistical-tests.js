@@ -88,22 +88,32 @@ function compareMeans()
                             selectAllMeans();
                             setTimeout(function()
                             {
-                                loadAssumptionCheckList("other");                    
+                                if(isFactorialANOVA())
+                                    loadAssumptionCheckList("repeated measures");
+                                else
+                                    loadAssumptionCheckList("other");                    
                                 performNormalityTests();
                             }, (unSelectedMeans.length+1)*1000);
                         }
                         else
                         {
-                            loadAssumptionCheckList("other");                    
+                            if(isFactorialANOVA())
+                                loadAssumptionCheckList("repeated measures");
+                            else
+                                loadAssumptionCheckList("other"); 
+                                
                             performNormalityTests();
                         }
                     }
                     else
                     {
-                        loadAssumptionCheckList("other");                    
+                        if(getWithinGroupVariable != 0)
+                            loadAssumptionCheckList("repeated measures");                    
+                        else
+                            loadAssumptionCheckList("other");                    
+                            
                         performNormalityTests();
-                    }
-        
+                    }        
                     break;
                 }
     }

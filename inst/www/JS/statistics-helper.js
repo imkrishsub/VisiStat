@@ -446,6 +446,8 @@ function getWithinGroupVariable(variableList)
             }
         }
     } 
+    
+    return 0;
 }
 
 function setSelectButtons()
