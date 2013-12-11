@@ -972,7 +972,7 @@ function OnMouseOver(e)
                 console.log(document.getElementsByClassName("completeLines").length);
                 console.log(document.getElementsByClassName("means").length);
                 
-                if((document.getElementsByClassName("completeLines").length+1 < (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
+                if((document.getElementsByClassName("completeLines").length+1 <= (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
                 {            
                     meanCircle.attr("cursor","pointer");
                     console.log("3");
