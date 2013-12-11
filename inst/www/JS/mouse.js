@@ -315,8 +315,10 @@ function OnMouseDown(e)
     
             drawButtonInSideBar(inText, "compareNow");
             
+            var availableWidth = canvasWidth - sideBarWidth;
+            
             canvas.append("rect")
-                    .attr("x", plotWidth/3 - selectionButtonWidth/2)
+                    .attr("x", availableWidth/3 - selectionButtonWidth/2)
                     .attr("y", selectionButtonOffset)
                     .attr("height", selectionButtonHeight)
                     .attr("width", selectionButtonWidth)
@@ -329,7 +331,7 @@ function OnMouseDown(e)
                     .attr("class", "selectNone");
                     
             canvas.append("text")
-                    .attr("x", plotWidth/3)
+                    .attr("x", availableWidth/3)
                     .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
                     .attr("fill", "black")
                     .attr("text-anchor", "middle")
@@ -339,7 +341,7 @@ function OnMouseDown(e)
                     .attr("class", "selectNone");
             
             canvas.append("rect")
-                    .attr("x", 2*plotWidth/3 - selectionButtonWidth/2)
+                    .attr("x", 2*availableWidth/3 - selectionButtonWidth/2)
                     .attr("y", selectionButtonOffset)
                     .attr("height", selectionButtonHeight)
                     .attr("width", selectionButtonWidth)
@@ -352,7 +354,7 @@ function OnMouseDown(e)
                     .attr("class", "selectAll");
                     
             canvas.append("text")
-                    .attr("x", 2*plotWidth/3)
+                    .attr("x", 2*availableWidth/3)
                     .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
                     .attr("fill", "black")
                     .attr("text-anchor", "middle")
