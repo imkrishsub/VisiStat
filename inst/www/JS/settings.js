@@ -95,9 +95,9 @@ var buttonColors = new Object();
 var colors = ["#E6A960", "#D3E55F", "#5EA9D1", "#664E33", "#C45AD2", "#211F7C", "#479ED6", "#710012", "#F0DE4F", "#A5A5F6"];
 
 var meanColors = new Object(); //Colors for mean, and ?
-    meanColors["normal"] = "purple";
-    meanColors["hover"] = "lightgreen";
-    meanColors["click"] = "green";
+    meanColors["normal"] = "#374593";
+    meanColors["hover"] = "#A9B896";
+    meanColors["click"] = "#729E38";
 
 // Histogram
 var nBins = 10; 
