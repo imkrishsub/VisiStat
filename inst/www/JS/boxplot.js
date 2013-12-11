@@ -506,6 +506,9 @@ function redrawBoxPlot()
     min = Array.min(mins);
     max = Array.max(maxs);
     
+    console.log("min = " + min);
+    console.log("max = " + max);
+    
     if(variableList["independent"].length == 1)    
         levels = variableList["independent-levels"]; //otherwise the arrays are contained into independent-levels
      
