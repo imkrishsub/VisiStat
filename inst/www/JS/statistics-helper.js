@@ -373,10 +373,80 @@ function isFactorialANOVA(variableList)
 
 function getWithinGroupVariable(variableList)
 {
-
+    var withinGroupVariableExists = false;
+    var betweenGroupVariableExists = false;
+    
+    console.log("participants: " + participants);
+    
+    for(i=0; i<variableList["independent"].length; i++)
+    {
+        //for each independent variable
+        var levels = variables[variableList["independent"][i]]["dataset"].unique();
+        
+        var prev = 0, curr = 0;
+        for(j=0; j<levels.length; j++)
+        {
+            //for each level
+            if(j == 0)
+            {
+                prev = variables[variableList["dependent"][0]][levels[j]].length;
+            }
+            
+            else
+            {
+                curr = variables[variableList["dependent"][0]][levels[j]].length;                
+                
+                if(curr != prev)
+                {
+                    return variableList["independent"][i];
+                }
+                else
+                {                    
+                    prev = curr; 
+                    if(j == (levels.length-1))
+                        betweenGroupVariableExists = true;                    
+                }                
+            }
+        }
+    }    
 }
 
 function getBetweenGroupVariable(variableList)
 {
-
+    var withinGroupVariableExists = false;
+    var betweenGroupVariableExists = false;
+    
+    console.log("participants: " + participants);
+    
+    for(i=0; i<variableList["independent"].length; i++)
+    {
+        //for each independent variable
+        var levels = variables[variableList["independent"][i]]["dataset"].unique();
+        
+        var prev = 0, curr = 0;
+        for(j=0; j<levels.length; j++)
+        {
+            //for each level
+            if(j == 0)
+            {
+                prev = variables[variableList["dependent"][0]][levels[j]].length;
+            }
+            
+            else
+            {
+                curr = variables[variableList["dependent"][0]][levels[j]].length;                
+                
+                if(curr != prev)
+                {
+                    withinGroupVariableExists = true;
+                }
+                else
+                {                    
+                    prev = curr; 
+                    if(j == (levels.length-1))
+                        return variableList["independent"][i];
+                }                
+            }
+        }
+    } 
 }

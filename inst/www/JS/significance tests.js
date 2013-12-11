@@ -392,7 +392,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
 
 function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGroupVariable)
 {
-    var req = opencpu.r_fun_json("performOneWayRepeatedMeasuresANOVA", {
+    var req = opencpu.r_fun_json("performFactorialANOVA", {
                     dependentVariable: dependentVariable,
                     withinGroupVariable: withinGroupVariable,
                     betweenGroupVariable: betweenGroupVariable,
