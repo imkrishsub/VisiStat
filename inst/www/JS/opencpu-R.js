@@ -621,6 +621,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
 function applyHomogeneityTransform(dependentVariable, level)
 {
     // Get variable names and their data type
+    console.log("level = " + level);
     var req = opencpu.r_fun_json("applyTransform", {
                     distribution: variables[dependentVariable][level],
                     type: transformationType
