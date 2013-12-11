@@ -336,6 +336,7 @@ function isFactorialANOVA(variableList)
             if(j == 0)
             {
                 prev = variables[variableList["dependent"][0]][levels[j]].length;
+                console.log("level: " + levels[j] + ", prev = " + prev + ", curr = " + curr);
             }
             
             else
