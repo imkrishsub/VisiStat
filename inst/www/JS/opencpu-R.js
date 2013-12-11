@@ -439,7 +439,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                     
                     drawComputingResultsImage();
-                    var normal = //todo;
+                    var normal = d3.select("#normality.crosses").attr("display") == "inline" ? false : true;
                     
                     if(!normal)
                     {
