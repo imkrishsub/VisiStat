@@ -616,7 +616,7 @@ function getSelectedVariables()
         for(var i=0; i<means.length; i++)
         {
             console.log(means[i].getAttribute("fill"));
-            if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "green") || ((means[i].getAttribute("fill") == "#008000"))
+            if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "green") || ((means[i].getAttribute("fill") == "#008000")))
             {
                 if(stringForNumber.indexOf(means[i].getAttribute("id")) != -1)
                     variableList["independent-levels"].push(stringForNumber.indexOf(means[i].getAttribute("id")));
