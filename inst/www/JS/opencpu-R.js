@@ -704,25 +704,72 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
             
                 setTimeout(function()
                 {
-                    if(variableList["independent"].length > 0)
+                    var normal = d3.select("#normality.crosses").attr("display") == "inline" ? false : true;
+                    
+                    console.log("normality:" + normal);
+                    
+                    if(variableList["independent-levels"].length == 2)
                     {
-                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                        if(!normal)
                         {
-                            if(!pairwiseComparisons)
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                            {      
+                                if(!pairwiseComparisons)
+                                    performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                else
+                                    performPairwiseWilcoxTest("TRUE", "TRUE");
+                            }
                             else
-                                performPairwiseTTest("FALSE", "TRUE");
+                            {
+                                if(!pairwiseComparisons)
+                                    performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                else
+                                    performPairwiseWilcoxTest("TRUE", "FALSE");
+                            }  
                         }
                         else
                         {
-                            if(!pairwiseComparisons)
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                            {
+                                if(!pairwiseComparisons)
+                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+                                else
+                                    performPairwiseTTest("TRUE", "TRUE");
+                            }
                             else
-                                performPairwiseTTest("FALSE", "FALSE");
-                        }
+                            {
+                                if(!pairwiseComparisons)
+                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+                                else
+                                    performPairwiseTTest("TRUE", "FALSE");
+                            } 
+                        }        
                     }
                     else
-                        drawDialogBoxToGetPopulationMean();
+                    {
+                        if(!normal)
+                        {
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                            {
+                                performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
+                            }
+                            else
+                            {
+                                performKruskalWallisTest(variableList["dependent"][0], variableList["independent"][0]);
+                            }
+                        }
+                        else
+                        {
+                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                            {
+                                performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                            }
+                            else
+                            {
+                                performANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                            }
+                        }        
+                    }
                 }, 3000);
       }).fail(function(){
           alert("Failure: " + req.responseText);
