@@ -107,7 +107,7 @@ function compareMeans()
                     }
                     else
                     {
-                        if(getWithinGroupVariable != 0)
+                        if(getWithinGroupVariable() != 0)
                             loadAssumptionCheckList("repeated measures");                    
                         else
                             loadAssumptionCheckList("other");                    
