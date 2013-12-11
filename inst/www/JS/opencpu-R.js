@@ -635,6 +635,11 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                 IQR[dependentVariable][level] = findIQR(output.transformedData);
                 CI[dependentVariable][level] = findCI(output.transformedData);
                 
+                var levels = variables[independentVariable]["dataset"].unique();
+                
+                for(i=0; i<levels.length; i++)
+                    variables[dependentVariable][levels[i]] = [];
+                    
                 subsetDataByLevels(independentVariable);
                 
                 console.dir(variables);
