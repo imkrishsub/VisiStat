@@ -278,8 +278,6 @@ function performHomoscedasticityTestNormal(dependent, independent)
                             console.log("checkpoint 2");
                 
                             findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
-                            
-                            drawComputingResultsImage();
                         }
                         else
                         {   
@@ -438,24 +436,45 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     d3.select("#homogeneity.crosses").attr("display", "inline"); 
                     d3.select("#homogeneity.loading").attr("display", "none"); 
                     
-                    drawComputingResultsImage();
+                    d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                     
-                    if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                    {   
-                        if(!pairwiseComparisons)
-                            performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                    drawComputingResultsImage();
+                    var normal = //todo;
+                    
+                    if(!normal)
+                    {
+                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                        {   
+                            if(!pairwiseComparisons)
+                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                            else
+                                performPairwiseWilcoxTest("FALSE", "TRUE");
+                        }
                         else
-                            performPairwiseWilcoxTest("FALSE", "TRUE");
+                        {
+                            if(!pairwiseComparisons)
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
+                            else
+                                performPairwiseWilcoxTest("FALSE", "FALSE");
+                        } 
                     }
                     else
                     {
-                        if(!pairwiseComparisons)
-                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
+                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+                        {
+                            if(!pairwiseComparisons)
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+                            else
+                                performPairwiseTTest("TRUE", "TRUE");
+                        }
                         else
-                            performPairwiseWilcoxTest("FALSE", "FALSE");
-                    } 
-                    
-                    d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                        {
+                            if(!pairwiseComparisons)
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+                            else
+                                performPairwiseTTest("TRUE", "FALSE");
+                        } 
+                    }        
                 }
                 else
                 {
