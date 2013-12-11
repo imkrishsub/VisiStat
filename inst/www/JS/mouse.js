@@ -317,6 +317,8 @@ function OnMouseDown(e)
             
             var availableWidth = canvasWidth - sideBarWidth;
             
+            console.log("canvasWidth=" + canvasWidth);
+            
             canvas.append("rect")
                     .attr("x", availableWidth/3 - selectionButtonWidth/2)
                     .attr("y", selectionButtonOffset)
