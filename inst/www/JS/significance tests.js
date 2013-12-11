@@ -418,7 +418,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                   testResults["effect-size"] = output.etaSquared;
                   testResults["p"] = changePValueNotation(output.p);
                   testResults["effect-size-type"] = "eS";
-                  testResults["formula"] = dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable;
+                  testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable;
                            
                   logResult();
                   
