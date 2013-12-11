@@ -255,7 +255,7 @@ function setDistribution(dependentVariable, level, normal)
         else
         {
             console.log("\n\tchecking if normality transform is possible...");            
-            findTransform(variableList["dependent"][0], variableList["independent"][0]);
+            findTransformForNormality(variableList["dependent"][0], variableList["independent"][0]);
         }
     }    
 }

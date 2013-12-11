@@ -512,10 +512,23 @@ function OnMouseDown(e)
         
             for(var i=0; i<variableList["independent-levels"].length; i++)
             {    
-                applyTransform(variableList["dependent"][0], variableList["independent-levels"][i], false);
+                applyNormalityTransform(variableList["dependent"][0], variableList["independent-levels"][i], false);
             }
         
-            applyTransform(variableList["dependent"][0], "dataset", true);               
+            applyNormalityTransform(variableList["dependent"][0], "dataset", true);               
+        }
+        
+        else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "transformToHomogeneity")
+        {
+            setup(e, target);
+        
+            var button = d3.select("#button." + target.className.baseVal);   
+            var buttonText = d3.select("#text." + target.className.baseVal);        
+        
+            removeElementsByClassName("transformToHomogeneity");
+            
+            var variableList = sort(currentVariableSelection);
+            applyHomogeneityTransform(variableList["dependent"][0], "dataset", true);               
         }
     
         else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "fullscreen")

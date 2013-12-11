@@ -270,23 +270,16 @@ function performHomoscedasticityTestNormal(dependent, independent)
                         {
                             d3.select("#homogeneity.crosses").attr("display", "inline");  
                             d3.select("#homogeneity.loading").attr("display", "none"); 
+                        
+                            d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+                
+                            //draw boxplots in red 
+                            drawBoxPlotInRed(variableList["dependent"][0]);
+                            drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
+                
+                            findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
                             
                             drawComputingResultsImage();
-                            
-                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
-                            {
-                                if(!pairwiseComparisons)
-                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
-                                else
-                                    performPairwiseTTest("FALSE", "TRUE");
-                            }
-                            else
-                            {
-                                if(!pairwiseComparisons)
-                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
-                                else
-                                    performPairwiseTTest("FALSE", "FALSE");
-                            }
                         }
                         else
                         {   
@@ -353,7 +346,7 @@ function performNormalityTest(distribution, dependentVariable, level)
                         drawBoxPlotInRed(variableList["dependent"][0]);
                         drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
                 
-                        findTransformForDependentVariables(getNumericVariables());
+                        findTransformForNormalityForDependentVariables(getNumericVariables());
                     }
                     else
                     {
@@ -389,10 +382,10 @@ function performNormalityTest(distribution, dependentVariable, level)
     });
 }
 
-function findTransform(dependentVariable, independentVariable)
+function findTransformForNormality(dependentVariable, independentVariable)
 {
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("findTransform", {
+    var req = opencpu.r_fun_json("findTransformForNormality", {
                     dependentVariable: dependentVariable,
                     independentVariable: independentVariable,
                     dataset: dataset
@@ -427,11 +420,50 @@ function findTransform(dependentVariable, independentVariable)
     });
 }
 
-function findTransformForDependentVariables(numericVariables)
+function findTransformForHomogeneity(dependentVariable, independentVariable)
+{
+    // Get variable names and their data type
+    var req = opencpu.r_fun_json("findTransformForHomogeneity", {
+                    dependentVariable: dependentVariable,
+                    independentVariable: independentVariable,
+                    dataset: dataset
+                  }, function(output) {                                                   
+                
+                var variableList = getSelectedVariables();
+                
+                if(output.type == "none")
+                {
+                    console.log("Transformation to homogeneity is not possible!");
+                    performHomoscedasticityTestNotNormal(variableList["dependent"][0], variableList["independent"][0]);
+                    
+                    d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                }
+                else
+                {
+                    console.log("Transformation type = " + output.type);
+                    transformationType = output.type;
+                    
+                    //offer choice
+                    drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
+                }                  
+      }).fail(function(){
+          alert("Failure: " + req.responseText);
+    });       
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+      alert("Server error: " + req.responseText);
+    });
+    req.complete(function(){
+        
+    });
+}
+
+function findTransformForNormalityForDependentVariables(numericVariables)
 {
     console.log("numeric variables = [" + numericVariables + "]");
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("findTransformForDependentVariables", {                    
+    var req = opencpu.r_fun_json("findTransformForNormalityForDependentVariables", {                    
                     dataset: dataset,
                     numericVariables: numericVariables
                   }, function(output) {                                                   
@@ -470,7 +502,7 @@ function findTransformForDependentVariables(numericVariables)
     });
 }
 
-function applyTransform(dependentVariable, level, finalVariable)
+function applyNormalityTransform(dependentVariable, level, finalVariable)
 {
     // Get variable names and their data type
     
@@ -527,6 +559,97 @@ function applyTransform(dependentVariable, level, finalVariable)
                     {
                         if(variableList["independent"].length > 0)
                             performHomoscedasticityTestNormal(dependentVariable, variableList["independent"][0]);
+                        else
+                            drawDialogBoxToGetPopulationMean();
+                    }, 3000);
+                }            
+                  
+      }).fail(function(){
+          alert("Failure: " + req.responseText);
+    });
+        
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+      alert("Server error: " + req.responseText);
+    });
+    req.complete(function(){
+        
+    });
+}
+
+function applyHomogeneityTransform(dependentVariable, level)
+{
+    // Get variable names and their data type
+    
+    var req = opencpu.r_fun_json("applyTransform", {
+                    distribution: variables[dependentVariable][level],
+                    type: transformationType
+                  }, function(output) {                                                                  
+                variables[dependentVariable][level] = output.transformedData;
+                
+                MIN[dependentVariable][level] = Array.min(output.transformedData);
+                MAX[dependentVariable][level] = Array.max(output.transformedData);
+                IQR[dependentVariable][level] = findIQR(output.transformedData);
+                CI[dependentVariable][level] = findCI(output.transformedData);
+                
+                if(finalVariable)
+                {
+                    //if this is the last variable, then redraw boxplots and display the significance test results
+                    redrawBoxPlot();
+                    
+                    removeElementsByClassName("homogeneityPlot");
+                    var variableList = getSelectedVariables();
+                    
+                    var mean = d3.select("#" + variableList["dependent"][0] + ".means");
+                    var centerX = mean.attr("cx");   
+                    
+                    if(variableList["independent"].length > 0)
+                    {
+                        for(var i=0; i<variableList["independent-levels"].length; i++)
+                        {   
+                            if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
+                                makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;
+                        }                 
+                    }
+                    else
+                    {
+                        makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], "dataset", "normal");
+                    }
+                    
+                    removeElementsByClassName("transformToHomogeneity");
+                    removeElementsByClassName("completeLines");
+                    
+                    //change the labels to normal color
+                    var text = d3.select("#" + level + ".xAxisGrooveText");
+                    text.attr("fill", boxColors["normal"]);
+                    
+                    //modify the assumptions checklist icons
+                    d3.select("#homogeneity.crosses").attr("display", "none");  
+                    d3.select("#homogeneity.ticks").attr("display", "inline");  
+                    d3.select("#homogeneity.loading").attr("display", "none");                                        
+                    
+                    d3.select("#plotCanvas").transition().delay(2000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                    
+                    setTimeout(function()
+                    {
+                        if(variableList["independent"].length > 0)
+                        {
+                            if((experimentalDesign == "between-groups") && sampleSizesAreEqual)
+                            {
+                                if(!pairwiseComparisons)
+                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
+                                else
+                                    performPairwiseTTest("FALSE", "TRUE");
+                            }
+                            else
+                            {
+                                if(!pairwiseComparisons)
+                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                                else
+                                    performPairwiseTTest("FALSE", "FALSE");
+                            }
+                        }
                         else
                             drawDialogBoxToGetPopulationMean();
                     }, 3000);

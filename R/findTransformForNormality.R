@@ -1,4 +1,4 @@
-findTransform <- function(dependentVariable, independentVariable, dataset)
+findTransformForNormality <- function(dependentVariable, independentVariable, dataset)
 {
     D <- as.data.frame(dataset);
     

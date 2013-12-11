@@ -51,7 +51,8 @@ export(getESFromP)
 export(getESFromRawMeanScores)
 
 export(findTransformForDependentVariables)
-export(findTransform)
+export(findTransformForNormality)
+export(findTransformForHomogeneity)
 export(findEffect)
 
 export(runThisRCode)
