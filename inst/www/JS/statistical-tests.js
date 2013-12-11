@@ -108,7 +108,7 @@ function compareMeans()
                     else
                     {
                         console.log(getWithinGroupVariable(getSelectedVariables()));
-                        if(getWithinGroupVariable(getSelectedVariables()) != 0)
+                        if(getWithinGroupVariable(getSelectedVariables()) != 0 && experimentalDesign == "within-groups")
                             loadAssumptionCheckList("repeated measures");                    
                         else
                             loadAssumptionCheckList("other");                    
