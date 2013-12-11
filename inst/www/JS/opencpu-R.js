@@ -634,9 +634,7 @@ function applyHomogeneityTransform(dependentVariable, level)
                 CI[dependentVariable][level] = findCI(output.transformedData);
                 
                 //if this is the last variable, then redraw boxplots and display the significance test results
-                console.log("CP1");
                 redrawBoxPlot();
-                console.log("CP2");
                 
                 removeElementsByClassName("homogeneityPlot");
                 var variableList = getSelectedVariables();
@@ -644,25 +642,25 @@ function applyHomogeneityTransform(dependentVariable, level)
                 var mean = d3.select("#" + variableList["dependent"][0] + ".means");
                 var centerX = mean.attr("cx");   
                 
-                if(variableList["independent"].length > 0)
-                {
-                    for(var i=0; i<variableList["independent-levels"].length; i++)
-                    {   
-                        if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
-                            makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;
-                    }                 
-                }
-                else
-                {
-                    makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], "dataset", "normal");
-                }
+                // if(variableList["independent"].length > 0)
+//                 {
+//                     for(var i=0; i<variableList["independent-levels"].length; i++)
+//                     {   
+//                         if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
+//                             makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;
+//                     }                 
+//                 }
+//                 else
+//                 {
+//                     makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], "dataset", "normal");
+//                 }
                 
                 removeElementsByClassName("transformToHomogeneity");
                 removeElementsByClassName("completeLines");
                 
                 //change the labels to normal color
-                var text = d3.select("#" + level + ".xAxisGrooveText");
-                text.attr("fill", boxColors["normal"]);
+//                 var text = d3.select("#" + level + ".xAxisGrooveText");
+//                 text.attr("fill", boxColors["normal"]);
                 
                 //modify the assumptions checklist icons
                 d3.select("#homogeneity.crosses").attr("display", "none");  
