@@ -24,6 +24,10 @@ function subsetDataByLevels(independentVariable)
                         MIN[variableNames[j]][uniqueData[k]] = 999999;
                         MAX[variableNames[j]][uniqueData[k]] = -999999;
                     }
+                    else
+                    {   
+                        variables[variableNames[j]][uniqueData[k]] = [];
+                    }
                     
                     variables[variableNames[j]][uniqueData[k]].push(variables[variableNames[j]]["dataset"][m]);                        
                     
