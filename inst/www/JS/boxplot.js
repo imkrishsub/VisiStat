@@ -574,6 +574,8 @@ function redrawBoxPlot()
                     .attr("class", "yAxisGrooveText");
     }
     
+    console.log("3");
+    
     var widthSlice = plotWidth/(nGroovesX);
     
     for(var i=0; i<nGroovesX; i++)
@@ -645,6 +647,7 @@ function redrawBoxPlot()
         
             removeElementsByClassName("outliers");
     
+            console.log("4");
             var outliers = getOutliers(data[i], TOPFringe, BOTTOMFringe);
             
             for(var j=0; j<outliers.length; j++)
