@@ -107,6 +107,7 @@ function compareMeans()
                     }
                     else
                     {
+                        console.log(getWithinGroupVariable(getSelectedVariables()));
                         if(getWithinGroupVariable(getSelectedVariables()) != 0)
                             loadAssumptionCheckList("repeated measures");                    
                         else
