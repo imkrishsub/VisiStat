@@ -153,7 +153,7 @@ var computingResultsImageSize = scaleForWindowSize(75);
 
 var selectionButtonWidth = scaleForWindowSize(200);
 var selectionButtonHeight = scaleForWindowSize(50);
-var selectionButtonOffset = scaleForWindowSize(25);
+var selectionButtonOffset = scaleForWindowSize(15);
 
 //transformation
 var normalityPlotWidth = scaleForWindowSize(125);

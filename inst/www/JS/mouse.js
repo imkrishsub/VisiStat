@@ -987,6 +987,20 @@ function OnMouseOver(e)
             
             d3.selectAll(".compareMean").attr("cursor", "pointer");
         }    
+        
+        else if(target.className.baseVak == "selectAll")
+        {
+            setup(e, target);
+            
+            d3.selectAll(".selectAll").attr("cursor", "pointer");
+        }
+        
+        else if(target.className.baseVak == "selectNone")
+        {
+            setup(e, target);
+            
+            d3.selectAll(".selectNone").attr("cursor", "pointer");
+        }
     
         else if(target.className.baseVal == "bins")
         {		

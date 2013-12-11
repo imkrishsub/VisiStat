@@ -836,7 +836,7 @@ function unselectAllMeans()
     for(var i=0; i<selectedMeans.length; i++)
     {
         var mean = d3.select("#" + selectedMeans[i].getAttribute("id") + ".means");
-        mean.transition().delay(i*500).duration(500).attr("fill", "purple");
+        mean.transition().duration(500).attr("fill", "purple");
     }
     
     removeElementsByClassName("completeLines");
