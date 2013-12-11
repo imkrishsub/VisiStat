@@ -350,7 +350,7 @@ function isFactorialANOVA(variableList)
                 
                 if(curr != prev)
                 {
-                    withinGroupVariableExists = true;
+                    betweenGroupVariableExists = true;
                     break;
                 }
                 else
@@ -358,7 +358,7 @@ function isFactorialANOVA(variableList)
                     console.log("j=" + j + ", levels.length = " + levels.length);
                     prev = curr; 
                     if(j == (levels.length-1))
-                        betweenGroupVariableExists = true;                    
+                        withinGroupVariableExists = true;                    
                 }                
             }
         }
@@ -371,7 +371,7 @@ function isFactorialANOVA(variableList)
         return true;
 }
 
-function getWithinGroupVariable(variableList)
+function getBetweenGroupVariable(variableList)
 {
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
@@ -409,7 +409,7 @@ function getWithinGroupVariable(variableList)
     }    
 }
 
-function getBetweenGroupVariable(variableList)
+function getWithinGroupVariable(variableList)
 {
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
