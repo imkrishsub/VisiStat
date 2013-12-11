@@ -111,12 +111,12 @@ function OnMouseDown(e)
                     if(lineBefore == undefined && lineAfter == undefined)
                     {
                         //it was the only mean selected - just remove the existing incomplete line
-    //                     console.log("no lines before or after");
+                    console.log("no lines before or after");
                             removeElementsByClassName("incompleteLines");
                     }
                     else if(lineAfter == undefined)
                     {
-    //                     console.log("one line before");
+                    console.log("one line before");
                 
                         removeElementsByClassName("incompleteLines");
                         var canvas = d3.select("#plotCanvas");
@@ -135,7 +135,7 @@ function OnMouseDown(e)
                     }
                     else if(lineBefore == undefined)
                     {                
-    //                     console.log("one line after");
+                    console.log("one line after");
                 
                         removeElementsByClassName("incompleteLines");
                         var canvas = d3.select("#plotCanvas");
@@ -932,13 +932,9 @@ function OnMouseOver(e)
             setup(e, target);
         
             var meanCircle = d3.select("#" + target.id + ".means");
-            
-            console.log("1");
         
             if(meanCircle.attr("r") == meanRadius)
-            {
-                console.log("2");
-                
+            {                
                 meanCircle.attr("cursor", "default");
             
                 var plotCanvas = d3.select("#plotCanvas");
@@ -966,21 +962,14 @@ function OnMouseOver(e)
                         
             }   
             else
-            {
-                console.log("4");
-                
-                console.log(document.getElementsByClassName("completeLines").length);
-                console.log(document.getElementsByClassName("means").length);
-                
+            {                
                 if((document.getElementsByClassName("completeLines").length+1 <= (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
                 {            
                     meanCircle.attr("cursor","pointer");
-                    console.log("3");
-        
+                    
                     //change color of the mean circle
                     if(meanCircle.attr("fill") == meanColors["normal"])
                     {
-                        console.log("x");
                         meanCircle.attr("fill", meanColors["hover"]);
             
                         // startLoopAnimation(meanCircle);
@@ -1444,11 +1433,8 @@ function OnMouseOut(e)
         
         if(meanCircle.attr("r") == engorgedMeanRadius)
         {
-            console.log(meanCircle.attr("fill"));
-            console.log(meanColors["click"]);
             if(meanCircle.attr("fill") != meanColors["click"])
             {
-                console.log("4");
                 meanCircle.attr("fill", meanColors["normal"]);
                 var incompleteLine = d3.select(".incompleteLines").attr("display", "none");
             }
