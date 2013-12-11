@@ -482,7 +482,7 @@ function setSelectButtons()
         selectAllButton.attr("filter", "url(#Bevel)");
         selectAllButton.attr("stroke", "black");
         
-        selectNoneText.attr("fill", "black");
+        selectAllText.attr("fill", "black");
     }
     else if(selectedMeans.length == means.length)
     {
