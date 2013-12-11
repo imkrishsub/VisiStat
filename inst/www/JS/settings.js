@@ -96,8 +96,8 @@ var colors = ["#E6A960", "#D3E55F", "#5EA9D1", "#664E33", "#C45AD2", "#211F7C", 
 
 var meanColors = new Object(); //Colors for mean, and ?
     meanColors["normal"] = "#374593";
-    meanColors["hover"] = "#A9B896";
-    meanColors["click"] = "#729E38";
+    meanColors["hover"] = "#e9b896";
+    meanColors["click"] = "#729e38";
 
 // Histogram
 var nBins = 10; 
