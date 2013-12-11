@@ -821,7 +821,7 @@ function unselectAllMeans()
         return 0;
     });
     
-    d3.selectAll(".means").transition().duration(500).attr("fill","purple");
+    d3.selectAll(".means").transition().duration(500).attr("fill",meanColors["normal"]);
     
     removeElementsByClassName("completeLines");
 }
