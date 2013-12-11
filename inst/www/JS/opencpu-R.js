@@ -628,6 +628,8 @@ function applyHomogeneityTransform(dependentVariable, level, finalVariable)
                   }, function(output) {                                                                  
                 variables[dependentVariable][level] = output.transformedData;
                 
+                console.log("variables[" + dependentVariable +"][" + level + "]=" + variables[dependentVariable][level]);
+                
                 MIN[dependentVariable][level] = Array.min(output.transformedData);
                 MAX[dependentVariable][level] = Array.max(output.transformedData);
                 IQR[dependentVariable][level] = findIQR(output.transformedData);
