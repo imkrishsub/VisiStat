@@ -932,9 +932,13 @@ function OnMouseOver(e)
             setup(e, target);
         
             var meanCircle = d3.select("#" + target.id + ".means");
+            
+            console.log("1");
         
             if(meanCircle.attr("r") == meanRadius)
             {
+                console.log("2");
+                
                 meanCircle.attr("cursor", "default");
             
                 var plotCanvas = d3.select("#plotCanvas");
@@ -966,6 +970,7 @@ function OnMouseOver(e)
                 if((document.getElementsByClassName("completeLines").length+1 < (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
                 {            
                     meanCircle.attr("cursor","pointer");
+                    console.log("3");
         
                     //change color of the mean circle
                     if(meanCircle.attr("fill") == meanColors["normal"])
