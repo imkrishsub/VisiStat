@@ -97,7 +97,7 @@ function compareMeans()
                         }
                         else
                         {
-                            if(isFactorialANOVA())
+                            if(isFactorialANOVA(variableList))
                                 loadAssumptionCheckList("repeated measures");
                             else
                                 loadAssumptionCheckList("other"); 
