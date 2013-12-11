@@ -833,11 +833,7 @@ function unselectAllMeans()
     
     var plotCanvas = d3.select("#plotCanvas");   
     
-    for(var i=0; i<selectedMeans.length; i++)
-    {
-        var mean = d3.select("#" + selectedMeans[i].getAttribute("id") + ".means");
-        mean.transition().duration(500).attr("fill", "purple");
-    }
+    d3.selectAll(".means").transition().duration(500).attr("fill","purple");
     
     removeElementsByClassName("completeLines");
 }

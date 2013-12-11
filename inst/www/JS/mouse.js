@@ -988,14 +988,14 @@ function OnMouseOver(e)
             d3.selectAll(".compareMean").attr("cursor", "pointer");
         }    
         
-        else if(target.className.baseVak == "selectAll")
+        else if(target.className.baseVal == "selectAll")
         {
             setup(e, target);
             
             d3.selectAll(".selectAll").attr("cursor", "pointer");
         }
         
-        else if(target.className.baseVak == "selectNone")
+        else if(target.className.baseVal == "selectNone")
         {
             setup(e, target);
             
