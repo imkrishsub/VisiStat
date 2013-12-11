@@ -618,14 +618,16 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
     });
 }
 
-function applyHomogeneityTransform(dependentVariable, level, finalVariable)
+function applyHomogeneityTransform(dependentVariable, independentVariable)
 {
     // Get variable names and their data type
-    console.log("level = " + level);
     var req = opencpu.r_fun_json("applyTransform", {
                     distribution: variables[dependentVariable][level],
                     type: transformationType
-                  }, function(output) {                                                                  
+                  }, function(output) {  
+                
+                level = "dataset";
+                
                 variables[dependentVariable][level] = output.transformedData;
                 
                 console.log("variables[" + dependentVariable +"][" + level + "]=" + variables[dependentVariable][level]);
@@ -635,69 +637,68 @@ function applyHomogeneityTransform(dependentVariable, level, finalVariable)
                 IQR[dependentVariable][level] = findIQR(output.transformedData);
                 CI[dependentVariable][level] = findCI(output.transformedData);
                 
+                subsetDataByLevels(independentVariable);
+                
+                console.dir(variables);
+                
                 //if this is the last variable, then redraw boxplots and display the significance test results
-                if(finalVariable)
+                redrawBoxPlot();
+            
+                removeElementsByClassName("homogeneityPlot");
+                var variableList = getSelectedVariables();
+            
+                var mean = d3.select("#" + variableList["dependent"][0] + ".means");
+                var centerX = mean.attr("cx");   
+            
+                // if(variableList["independent"].length > 0)
+//                 {
+//                     for(var i=0; i<variableList["independent-levels"].length; i++)
+//                     {   
+//                         if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
+//                             makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;
+//                     }                 
+//                 }
+//                 else
+//                 {
+//                     makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], "dataset", "normal");
+//                 }
+            
+                removeElementsByClassName("transformToHomogeneity");
+                removeElementsByClassName("completeLines");
+            
+                //change the labels to normal color
+//                 var text = d3.select("#" + level + ".xAxisGrooveText");
+//                 text.attr("fill", boxColors["normal"]);
+            
+                //modify the assumptions checklist icons
+                d3.select("#homogeneity.crosses").attr("display", "none");  
+                d3.select("#homogeneity.ticks").attr("display", "inline");  
+                d3.select("#homogeneity.loading").attr("display", "none");                                        
+            
+                d3.select("#plotCanvas").transition().delay(2000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+            
+                setTimeout(function()
                 {
-                    redrawBoxPlot();
-                
-                    removeElementsByClassName("homogeneityPlot");
-                    var variableList = getSelectedVariables();
-                
-                    var mean = d3.select("#" + variableList["dependent"][0] + ".means");
-                    var centerX = mean.attr("cx");   
-                
-                    // if(variableList["independent"].length > 0)
-    //                 {
-    //                     for(var i=0; i<variableList["independent-levels"].length; i++)
-    //                     {   
-    //                         if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
-    //                             makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;
-    //                     }                 
-    //                 }
-    //                 else
-    //                 {
-    //                     makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], "dataset", "normal");
-    //                 }
-                
-                    removeElementsByClassName("transformToHomogeneity");
-                    removeElementsByClassName("completeLines");
-                
-                    //change the labels to normal color
-    //                 var text = d3.select("#" + level + ".xAxisGrooveText");
-    //                 text.attr("fill", boxColors["normal"]);
-                
-                    //modify the assumptions checklist icons
-                    d3.select("#homogeneity.crosses").attr("display", "none");  
-                    d3.select("#homogeneity.ticks").attr("display", "inline");  
-                    d3.select("#homogeneity.loading").attr("display", "none");                                        
-                
-                    d3.select("#plotCanvas").transition().delay(2000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
-                
-                    setTimeout(function()
+                    if(variableList["independent"].length > 0)
                     {
-                        if(variableList["independent"].length > 0)
+                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
                         {
-                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                            {
-                                if(!pairwiseComparisons)
-                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
-                                else
-                                    performPairwiseTTest("FALSE", "TRUE");
-                            }
+                            if(!pairwiseComparisons)
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
                             else
-                            {
-                                if(!pairwiseComparisons)
-                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
-                                else
-                                    performPairwiseTTest("FALSE", "FALSE");
-                            }
+                                performPairwiseTTest("FALSE", "TRUE");
                         }
                         else
-                            drawDialogBoxToGetPopulationMean();
-                    }, 3000);
-                }
-                           
-                  
+                        {
+                            if(!pairwiseComparisons)
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                            else
+                                performPairwiseTTest("FALSE", "FALSE");
+                        }
+                    }
+                    else
+                        drawDialogBoxToGetPopulationMean();
+                }, 3000);
       }).fail(function(){
           alert("Failure: " + req.responseText);
     });

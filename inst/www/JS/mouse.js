@@ -529,12 +529,12 @@ function OnMouseDown(e)
             
             var variableList = sort(currentVariableSelection);
             
-            for(var i=0; i<variableList["independent-levels"].length; i++)
-            {    
-                applyHomogeneityTransform(variableList["dependent"][0], variableList["independent-levels"][i], false);
-            }
+//             for(var i=0; i<variableList["independent-levels"].length; i++)
+//             {    
+//                 applyHomogeneityTransform(variableList["dependent"][0], variableList["independent-levels"][i], false);
+//             }
             
-            applyHomogeneityTransform(variableList["dependent"][0], "dataset", true);               
+            applyHomogeneityTransform(variableList["dependent"][0], variableList["independent"][0]);               
         }
     
         else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "fullscreen")
