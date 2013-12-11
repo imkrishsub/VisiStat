@@ -256,6 +256,7 @@ function setCompareNowButtonText()
     var compareNowText = d3.select("#text.compareNow");
     
     var variableList = getSelectedVariables();
+    console.dir(variableList);
     
     if(variableList["independent"].length == 0)
     {  
