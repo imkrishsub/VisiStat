@@ -355,7 +355,7 @@ function isFactorialANOVA(variableList)
                     console.log("j=" + j + ", levels.length = " + levels.length);
                     prev = curr; 
                     if(j == (levels.length-1))
-                        betweenGroupsVariableExists = true;                    
+                        betweenGroupVariableExists = true;                    
                 }                
             }
         }
