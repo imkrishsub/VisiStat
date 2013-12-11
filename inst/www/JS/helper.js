@@ -629,6 +629,7 @@ function getSelectedVariables()
         variableList["dependent"] = [];
         for(var i=0; i<means.length; i++)
         {
+            console.log(means[i].getAttribute("fill"));
             if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "green"))
             {
                 if(stringForNumber.indexOf(means[i].getAttribute("id")) != -1)
