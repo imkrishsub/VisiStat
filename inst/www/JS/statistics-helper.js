@@ -461,6 +461,9 @@ function setSelectButtons()
     
     for(var i=0; i<means.length; i++)
     {
+        console.log("means[i].getAttribute(\"fill\")=" + means[i].getAttribute("fill"));
+        console.log("meanColors[\"click\"]=" + meanColors["click"]);
+        
         if(means[i].getAttribute("fill") == meanColors["click"])
             selectedMeans.push(means[i]);
     }    
