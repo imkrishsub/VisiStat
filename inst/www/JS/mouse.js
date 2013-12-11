@@ -970,6 +970,7 @@ function OnMouseOver(e)
                     //change color of the mean circle
                     if(meanCircle.attr("fill") == meanColors["normal"])
                     {
+                        console.log("x");
                         meanCircle.attr("fill", meanColors["hover"]);
             
                         // startLoopAnimation(meanCircle);
