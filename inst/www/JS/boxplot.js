@@ -499,6 +499,8 @@ function redrawBoxPlot()
         means[0] = mean(data[0]);  
     }   
     
+    console.log("1");
+    
     min = Array.min(mins);
     max = Array.max(maxs);
     
@@ -514,6 +516,8 @@ function redrawBoxPlot()
     ids = getValidIds(labels);
 
     nGroovesY = numberOfGrooves;
+    
+    console.log("2");
     
     // Draw axes        
     canvas.append("line")
