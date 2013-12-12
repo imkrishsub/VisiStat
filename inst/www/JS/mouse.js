@@ -14,9 +14,11 @@ function OnMouseDown(e)
                 setup(e, target);
                 
                 var visualisation = currentVisualisationSelection;
-                var descriptionLabel = d3.select("#descriptionLabel");
+                var helpText = d3.select("#descriptionLabel");
                 
-                descriptionLabel.text(description[visualisation]);                
+                console.log(visualisation);
+                console.log(description[visualisation]);
+                helpText.text(description[visualisation]);                
             }
         }
         else
@@ -956,7 +958,7 @@ function OnMouseOver(e)
             {
                 setup(e, target);
                 
-                d3.select("#" + target.id + "." + target.className.baseVal);
+                d3.select("." + target.className.baseVal);
             }
         }
         else
