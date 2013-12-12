@@ -273,11 +273,6 @@ function setDistribution(dependentVariable, level, normal)
                     }                    
                 }
             }
-            
-            for(var i=0; i<variableList["independent"].length; i++)
-            {
-                performHomoscedasticityTestNormal(variableList["dependent"][0], variableList["independent"][i]);
-            }
         }
         else
         {
