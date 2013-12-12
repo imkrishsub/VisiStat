@@ -33,12 +33,12 @@ function compareMeans()
                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                     {
                         //within-groups design
-                        console.log("within-groups");
+                        performNormalityTests();
                     }
                     else
                     {
                         //between-groups design
-                        console.log("between-groups");
+                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
                     }
                     
                     break;
@@ -87,13 +87,17 @@ function compareMeans()
                     }
                     else
                     {
-                        console.log(getWithinGroupVariable(getSelectedVariables()));
-                        if(getWithinGroupVariable(getSelectedVariables()) != 0 && experimentalDesign == "within-groups")
-                            loadAssumptionCheckList("repeated measures");                    
-                        else
-                            loadAssumptionCheckList("normal");                    
+                        //2+ level selection with just one independent variable
+                        if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
+                        {
+                            //within-groups design
                             
-                        performNormalityTests();
+                        }
+                        else
+                        {
+                            //between-groups design
+                            
+                        }
                     }        
                     break;
                 }
@@ -175,7 +179,8 @@ function doPairwiseTests()
 function performNormalityTests()
 {
     var variableList = getSelectedVariables();    
-    //normality
+    
+    //initialise distributions
     distributions[variableList["dependent"][0]] = {};
     
     if(variableList["independent"].length == 2)
@@ -191,11 +196,11 @@ function performNormalityTests()
     }
     else
     {
+        //for each level corresponding to the dependent variable, perform normality test.
         for(i=0; i<variableList["dependent"].length; i++)                        
         {
             for(j=0; j<variableList["independent-levels"].length; j++)
             {   
-                //performNormalityTest(dist, dependentVariable, level)
                 performNormalityTest(variables[variableList["dependent"][i]][variableList["independent-levels"][j]], variableList["dependent"][i], variableList["independent-levels"][j]);
             }
         }
@@ -208,10 +213,10 @@ function setDistribution(dependentVariable, level, normal)
         distributions[dependentVariable] = new Object();
     
     distributions[dependentVariable][level] = normal;
-
     
     if(getObjectLength(distributions[dependentVariable]) == (document.getElementsByClassName("completeLines").length + 1))
     {       
+        //i.e., when all distributions are tested
         var variableList = getSelectedVariables();
         var normal = true;
         
@@ -221,6 +226,7 @@ function setDistribution(dependentVariable, level, normal)
             {
                 d3.select("#normality.crosses").attr("display", "inline"); 
                 d3.select("#normality.loading").attr("display", "none"); 
+                
                 normal = false;
                 
                 d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
@@ -233,10 +239,47 @@ function setDistribution(dependentVariable, level, normal)
         
         if(normal)
         {         
-            console.log("\n\tall distributions are normal!");
+            console.log("\n\tAll distributions are normal!");
             
             d3.select("#normality.ticks").attr("display", "inline");  
             d3.select("#normality.loading").attr("display", "none"); 
+            
+            if(variableList["independent"].length == 1)
+            {
+                if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                {
+                    //within-group design
+                    performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                    
+                    //do test
+                    if(variableList["independent-levels"].length == 2)
+                    {
+                        //2 variables
+                        performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+                    }
+                    else
+                    {
+                        //> 2 variables
+                        performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                    }
+                }
+                else
+                {
+                    //between-group design
+                    
+                    //homoscedasticity test is already done (and no case is handled)
+                    if(variableList["independent-levels"].length == 2)
+                    {
+                        //2 variables
+                        performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+                    }
+                    else
+                    {
+                        //> 2 variables
+                        performANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                    }                    
+                }
+            }
             
             for(var i=0; i<variableList["independent"].length; i++)
             {
@@ -251,7 +294,7 @@ function setDistribution(dependentVariable, level, normal)
     }    
 }
 
-function setHomogeneityOfVariances(dependentVariable, independentVariable, homogeneous)
+function setHomogeneity(dependentVariable, independentVariable, homogeneous)
 {    
     if(variances[dependentVariable] == undefined)
         variances[dependentVariable] = new Object();
@@ -283,85 +326,29 @@ function setHomogeneityOfVariances(dependentVariable, independentVariable, homog
             d3.select("#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
             
-            if(selectedMeans.length > 2)
+            if(experimentalDesign == "between-groups")
             {
-                drawComputingResultsImage();
-
-                //check if there is a within-groups factor
-                if(isFactorialANOVA(variableList))
-                {
-                    var withinGroupVariable = getWithinGroupVariable(variableList);
-                    var betweenGroupVariable = getBetweenGroupVariable(variableList);
-                    
-                    performSphericityTest();
-                    performFactorialANOVA(variableList["dependent"][0], withinGroupVariable, betweenGroupVariable);
-                }
-                else
-                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-            }                
-            else
-            {
-                var levelsOfDistributionA = selectedMeanLevels[0];
-                var levelsOfDistributionB = selectedMeanLevels[1];
-                
-                drawComputingResultsImage();
-                            
-                if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                {
-                    if(!pairwiseComparisons)
-                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[1]], "FALSE", "TRUE");
-                    else
-                        performPairwiseTTest("FALSE", "TRUE");
-                }
-                else
-                {
-                    if(!pairwiseComparisons)
-                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[1]], "FALSE", "FALSE");
-                    else
-                        performPairwiseTTest("FALSE", "FALSE");
-                }
-            } 
+                //between-groups design
+                performNormalityTests();                
+            }
         }
         else
         {
-            if(selectedMeans.length > 2)
+            if(experimentalDesign == "between-groups")
             {
-                drawComputingResultsImage();
-            
-                if(isFactorialANOVA(variableList))
+                //between-groups design
+                if(variableList["independent-levels"].length == 2)
                 {
-                    var withinGroupVariable = getWithinGroupVariable(variableList);
-                    var betweenGroupVariable = getBetweenGroupVariable(variableList);
-                    
-                    performSphericityTest();
-                    performFactorialANOVA(variableList["dependent"][0], withinGroupVariable, betweenGroupVariable);
+                    //2 variables
+                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
                 }
                 else
-                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-            
-            }                
-            else
-            {
-                var levelsOfDistributionA = selectedMeanLevels[0];
-                var levelsOfDistributionB = selectedMeanLevels[1];
+                {
+                    //> 2 variables
+                    performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                }
                 
-                drawComputingResultsImage();
-                            
-                if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                {
-                    if(!pairwiseComparisons)
-                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[1]], "FALSE", "TRUE");
-                    else
-                        performPairwiseTTest("FALSE", "TRUE");
-                }
-                else
-                {
-                    if(!pairwiseComparisons)
-                        performTTest(colourBoxPlotData[levelsOfDistributionA[0]][levelsOfDistributionA[1]], colourBoxPlotData[levelsOfDistributionB[0]][levelsOfDistributionB[1]], "FALSE", "FALSE");
-                    else
-                        performPairwiseTTest("FALSE", "FALSE");
-                }
-            }                   
+            }                 
         }
     }    
 }

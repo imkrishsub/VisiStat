@@ -319,6 +319,68 @@ function performHomoscedasticityTestNormal(dependent, independent)
     });
 }
 
+function performHomoscedasticityTest(dependent, independent)
+{
+    // Get variable names and their data type
+    var req = opencpu.r_fun_json("performHomoscedasticityTest", {
+                    dependentVariable: dependent,
+                    independentVariable: independent,
+                    dataset: dataset                    
+                  }, function(output) {                                 
+                  
+                var variableList = getSelectedVariables(); 
+                
+                if(output.p < 0.05)
+                {   
+                    //not normal
+                    if(variableList["independent"].length == 0)
+                    {
+                        //one sample t-test
+                        d3.select("#normality.crosses").attr("display", "inline");
+                        d3.select("#normality.loading").attr("display", "none");
+                        
+                        d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+                
+                        //draw boxplots in red 
+                        drawBoxPlotInRed(variableList["dependent"][0]);
+                        drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
+                
+                        findTransformForNormalityForDependentVariables(getNumericVariables());
+                    }
+                    else
+                    {
+                        setHomogeneity(dependent, independent, false);
+                    }
+                }
+                else
+                {   
+                    //normal
+                    if(variableList["independent"].length == 0)
+                    {
+                        d3.select("#normality.ticks").attr("display", "inline");
+                        d3.select("#normality.loading").attr("display", "none");
+                        
+                        drawDialogBoxToGetPopulationMean();
+                    }
+                    else
+                    {
+                        setHomogeneity(dependent, independent, true);
+                    }
+                }
+        
+      }).fail(function(){
+          alert("Failure: " + req.responseText);
+    });
+
+    //if R returns an error, alert the error message
+    req.fail(function(){
+      alert("Server error: " + req.responseText);
+    });
+    req.complete(function(){
+        
+    });
+}
+
 function performNormalityTest(distribution, dependentVariable, level)
 {
     // Get variable names and their data type
@@ -333,6 +395,7 @@ function performNormalityTest(distribution, dependentVariable, level)
                 
                 if(output.p < 0.05)
                 {   
+                    //not normal
                     if(variableList["independent"].length == 0)
                     {
                         //one sample t-test
@@ -354,6 +417,7 @@ function performNormalityTest(distribution, dependentVariable, level)
                 }
                 else
                 {   
+                    //normal
                     if(variableList["independent"].length == 0)
                     {
                         d3.select("#normality.ticks").attr("display", "inline");
