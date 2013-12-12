@@ -526,7 +526,25 @@ function findTransformForNormality(dependentVariable, independentVariable)
                                 performKruskalWallisTest(dependentVariable, independentVariable);
                             }
                         }
-                    }                    
+                    }      
+                    else if(variableList["independent"].length == 2)
+                    {
+                        if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                        {
+                            //within-group design
+                            
+                        }                       
+                        else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                        {
+                            //between-groups design
+                            if(variableList["independent-levels"].length == 2)
+                            {
+                                var groups = getGroupsForColourBoxPlotData();
+                                //Mann-Whitney U test
+                                performMannWhitneyTest(groups[0], groups[1]);
+                            }                            
+                        }
+                    }
                     d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                 }
                 else
@@ -819,14 +837,36 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                                     //only if homogeneous
                                     if(variableList["independent-levels"].length == 2)
                                     {
-                                        //Mann-Whitney U test
-                                        performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                        //2 variables
+                                        performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
                                     }
                                     else
-                                    {   
-                                        //Kruskal-Wallis test
-                                        performKruskalWallisTest(dependentVariable, independentVariable);
+                                    {
+                                        //> 2 variables
+                                        performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
                                     }
+                                }
+                            }
+                        }
+                        else if(variableList["independent"].length == 2)
+                        {
+                            if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                            {
+                                //within-group design
+                                
+                            }
+                            else
+                            {
+                                //between-group design
+                                if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                                {
+                                    //only if homogeneous
+                                    if(variableList["independent-levels"].length == 2)
+                                    {
+                                        var groups = getGroupsForColourBoxPlotData();
+                                        //Mann-Whitney U test
+                                        performTTest(groups[0], groups[1], "TRUE", "TRUE");
+                                    }                                    
                                 }
                             }
                         }
