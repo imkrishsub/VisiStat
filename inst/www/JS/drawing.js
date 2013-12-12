@@ -112,6 +112,8 @@ function resetSVGCanvas()
               .attr("height", canvasHeight)
               .attr("width", sideBarWidth)
               .attr("viewBox", "0 0 " + sideBarWidth + " " + canvasHeight);
+    
+    drawHelpButton();
 }
 
 function drawFullScreenButton()
@@ -126,6 +128,46 @@ function drawFullScreenButton()
 //                 .attr("width", fullScreenButtonSize)
 //                 .attr("style", "opacity: 1.0;")
 //                 .attr("class", "fullscreen");
+}
+
+function drawHelpButton()
+{
+    var sideBar = d3.select("#sideBarCanvas");
+    var helpButtonHeight = scaleForWindowSize(50);
+    var helpButtonWidth = scaleForWindowSize(75);
+    
+    sideBar.append("rect")
+            .attr("x", sideBarWidth - helpButtonWidth)
+            .attr("y", canvasHeight - helpButtonHeight)
+            .attr("rx", "5px")
+            .attr("ry", "5px")
+            .attr("height", helpButtonHeight)
+            .attr("width", helpButtonWidth)
+            .attr("fill", "url(#buttonFillNormal)")
+            .attr("filter", "url(#Bevel)")
+            .attr("stroke", "black")
+            .attr("class", "helpButtonBack");
+    
+    sideBar.append("text")
+            .attr("x", sideBarWidth - helpButtonWidth/2)
+            .attr("y", canvasHeight - helpButtonHeight/3)
+            .attr("font-size", scaleForWindowSize(24))
+            .attr("text-anchor", "middle")
+            .attr("fill", "black")
+            .text("?")
+            .attr("class", "helpButtonText");
+    
+    sideBar.append("rect")
+            .attr("x", sideBarWidth - helpButtonWidth)
+            .attr("y", canvasHeight - helpButtonHeight)
+            .attr("rx", "5px")
+            .attr("ry", "5px")
+            .attr("height", helpButtonHeight)
+            .attr("width", helpButtonWidth)
+            .attr("opacity", "0.1")
+            .attr("class", "helpButtonFront");
+    
+    
 }
 
 function drawButtonInSideBar(buttonText, className, offset)

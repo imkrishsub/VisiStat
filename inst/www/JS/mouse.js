@@ -738,13 +738,10 @@ function OnMouseDown(e)
                                         var dependentVariable = variableList["dependent"][0];
         
                                         for(var i=0; i<variableList["independent"].length; i++)
-                                        {   
-                                            if(variances[dependentVariable][variableList["independent"][i]] == false)
-                                            {                
-                                                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
-            
-                                                drawHomogeneityPlot(dependentVariable, variableList["independent"][i]);
-                                            }
+                                        {                   
+                                            d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+        
+                                            drawHomogeneityPlot(dependentVariable, variableList["independent"][i]);                                           
                                         }
                                         break;
                                     }
@@ -770,13 +767,13 @@ function OnMouseDown(e)
                 {
                     case "normality":
                                     {
-                                        d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                                        d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                                     
                                         break;
                                     }
                     case "homogeneity":
                                     {
-                                        d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                                        d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                                         
                                         break;
                                     }
