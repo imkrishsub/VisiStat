@@ -84,11 +84,13 @@ function compareMeans()
                                 {
                                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                                     {
+                                        loadAssumptionCheckList("repeated measures");
                                         //within-groups design
                                         performNormalityTests();
                                     }
                                     else
                                     {
+                                        loadAssumptionCheckList("normal");
                                         //between-groups design
                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
                                     }            
