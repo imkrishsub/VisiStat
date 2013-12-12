@@ -48,7 +48,10 @@ function compareMeans()
                                     break;    
                                 }
                         case 2:
-                                {
+                                {  
+                                    //get distributions
+                                    console.dir(variableList);
+                                    console.dir(getSelectedMeansForColourBoxPlotData());
                                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                                     {
                                         //within-groups design
