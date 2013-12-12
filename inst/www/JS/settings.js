@@ -140,7 +140,7 @@ var assumptionsText = new Object();
     
 var assumptions = new Object();
 assumptions["one-sample tests"] = ["normality"];
-assumptions["other"] = ["normality", "homogeneity"];
+assumptions["normal"] = ["normality", "homogeneity"];
 assumptions["repeated measures"] = ["normality", "homogeneity", "sphericity"];
 
 var significanceTestResultOffset = scaleForWindowSize(40);

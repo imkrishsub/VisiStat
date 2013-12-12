@@ -106,9 +106,15 @@ function performHomoscedasticityTestNotNormal(dependent, independent)
                 {
                     if(output.p < 0.05)
                     {
-                        d3.select("#homogeneity.crosses").attr("display", "inline");                  
-                        d3.select("#homogeneity.loading").attr("display", "none");                  
+                        d3.select("#homogeneity.crosses").attr("display", "inline");  
+                        d3.select("#homogeneity.loading").attr("display", "none"); 
+                    
+                        d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
                         
+                        //draw boxplots in red 
+                        drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
+            
+                        findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
                         drawComputingResultsImage();
                         
                         if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
@@ -239,7 +245,6 @@ function performHomoscedasticityTestNormal(dependent, independent)
                             
                             //draw boxplots in red 
                             drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
-                            console.log("checkpoint 2");
                 
                             findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
                         }
@@ -272,7 +277,6 @@ function performHomoscedasticityTestNormal(dependent, independent)
                             
                             //draw boxplots in red 
                             drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
-                            console.log("checkpoint 2");
                 
                             findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
                         }

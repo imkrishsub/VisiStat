@@ -24,41 +24,21 @@ function compareMeans()
         case 1:
                 //T-test
                 {
-                    console.log("\t Significance test for 2 variables...\n\n");
+                    console.log("\t Significance test for 2 variables\n\n");
 
                     //homoscedasticity
-                    loadAssumptionCheckList("other");
+                    loadAssumptionCheckList("normal");
+                    console.log("within-groups variable = " + getWithinGroupVariable(variableList));
                     
-                    var sampleSize;
-                    sampleSizesAreEqual = true;
-                    
-                    if(variableList["independent"].length == 2)
-                    {                        
-                        console.log("colourBoxPlotData=");
-                        console.dir(colourBoxPlotData);
-                        
-                        var selectedMeans = getSelectedMeansForColourBoxPlotData();
-                        
-                        var levelA = selectedMeans[0].getAttribute("data-levelA");
-                        var levelB = selectedMeans[0].getAttribute("data-levelB");
-                        
-                        sampleSize = colourBoxPlotData[levelA][levelB].length;
+                    if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
+                    {
+                        //within-groups design
+                        console.log("within-groups");
                     }
                     else
                     {
-                        sampleSize = variables[variableList["dependent"][0]][variableList["independent-levels"][0]].length;
-                        
-                        sampleSizesAreEqual = variables[variableList["dependent"][0]][variableList["independent-levels"][1]].length == variables[variableList["dependent"][0]][variableList["independent-levels"][0]].length ? true : false;
-                    }
-                    
-                    if(!sampleSizesAreEqual && experimentalDesign=="Between-groups")
-                    {
-                        alert("Between-groups design was detected but number of samples are different!");
-                        return;
-                    }                    
-                    else
-                    {
-                        performNormalityTests(); 
+                        //between-groups design
+                        console.log("between-groups");
                     }
                     
                     break;
@@ -67,7 +47,7 @@ function compareMeans()
         default:
                 //ANOVA
                 {
-                    console.log("\t Significance test for more than 2 variables...\n\n nana");
+                    console.log("\t Significance test for more than 2 variables\n\n nana");
                     
                     if(variableList["independent"].length == 2)
                     {
@@ -91,7 +71,7 @@ function compareMeans()
                                 if(isFactorialANOVA(variableList))
                                     loadAssumptionCheckList("repeated measures");
                                 else
-                                    loadAssumptionCheckList("other");                    
+                                    loadAssumptionCheckList("normal");                    
                                 performNormalityTests();
                             }, (unSelectedMeans.length+1)*1000);
                         }
@@ -100,7 +80,7 @@ function compareMeans()
                             if(isFactorialANOVA(variableList))
                                 loadAssumptionCheckList("repeated measures");
                             else
-                                loadAssumptionCheckList("other"); 
+                                loadAssumptionCheckList("normal"); 
                                 
                             performNormalityTests();
                         }
@@ -111,7 +91,7 @@ function compareMeans()
                         if(getWithinGroupVariable(getSelectedVariables()) != 0 && experimentalDesign == "within-groups")
                             loadAssumptionCheckList("repeated measures");                    
                         else
-                            loadAssumptionCheckList("other");                    
+                            loadAssumptionCheckList("normal");                    
                             
                         performNormalityTests();
                     }        

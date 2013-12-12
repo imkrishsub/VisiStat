@@ -1132,6 +1132,12 @@ function OnMouseOver(e)
             setup(e, target);
             d3.selectAll(".transformToNormal").attr("cursor", "pointer");
         }
+        
+        else if(target.className.baseVal == "transformToHomogeneity")
+        {
+            setup(e, target);
+            d3.selectAll(".transformToHomogeneity").attr("cursor", "pointer");
+        }
     
         else if(target.className.baseVal == "fullscreen")
         {
