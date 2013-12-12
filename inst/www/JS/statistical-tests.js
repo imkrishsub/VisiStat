@@ -54,7 +54,8 @@ function compareMeans()
                                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                                     {
                                         //within-groups design
-                                        //needs further processing
+                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][1]);
                                     }
                                     else
                                     {
@@ -326,6 +327,12 @@ function setDistribution(dependentVariable, level, normal)
                 //draw boxplots in red 
                 drawBoxPlotInRed(variableList["independent-levels"][i]);
                 drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "notnormal");
+            }
+            else
+            {
+                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+                 
+                drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "normal");
             }
         }
         
