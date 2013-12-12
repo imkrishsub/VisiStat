@@ -3,6 +3,8 @@ function compareMeans()
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
     
+    console.log(document.getElementsByClassName("completeLines").length);
+    
     switch(document.getElementsByClassName("completeLines").length)
     {
 
