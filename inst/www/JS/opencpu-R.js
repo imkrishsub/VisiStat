@@ -504,7 +504,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             if(variableList["independent-levels"].length == 2)
                             {
                                 //wilcoxon signed-rank
-                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependentVariable"][0]][variableList["independent-levels"][1]]);
+                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
                             }
                             else
                             {   
