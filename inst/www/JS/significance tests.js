@@ -102,6 +102,7 @@ function performOneSampleWilcoxonTest(variable, level)
 
 function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
 {
+    console.log("varianceEqual=" + varianceEqual + ", paired=" + paired);
     // Get variable names and their data type
     var req = opencpu.r_fun_json("performTTest", {
                     groupA: groupA,
