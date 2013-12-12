@@ -26,18 +26,41 @@ function compareMeans()
                     //homoscedasticity
                     loadAssumptionCheckList("normal");
                     
-                    if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
+                    switch(variableList["independent"].length)
                     {
-                        //within-groups design
-                        performNormalityTests();
-                    }
-                    else
-                    {
-                        //between-groups design
-                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
-                    }
-                    
-                    break;
+                        case 0:
+                                {
+                            
+                                    break;
+                                }
+                        case 1:
+                                {
+                                    if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
+                                    {
+                                        //within-groups design
+                                        performNormalityTests();
+                                    }
+                                    else
+                                    {
+                                        //between-groups design
+                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                    }            
+                                    break;    
+                                }
+                        case 2:
+                                {
+                                    if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
+                                    {
+                                        //within-groups design
+                                        //needs further processing
+                                    }
+                                    else
+                                    {
+                                        //between-groups design
+                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                    }
+                                }
+                    }                   
                 }
         
         default:
@@ -45,37 +68,83 @@ function compareMeans()
                 {
                     console.log("\t Significance test for more than 2 variables\n\n");
                     
+                    switch(variableList["independent"].length)
+                    {
+                        case 0:
+                                {
+                            
+                                    break;
+                                }
+                        case 1:
+                                {
+                                    if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
+                                    {
+                                        //within-groups design
+                                        performNormalityTests();
+                                    }
+                                    else
+                                    {
+                                        //between-groups design
+                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                    }            
+                                    break;    
+                                }
+                        case 2:
+                                {
+                                    var selectedMeans = getSelectedMeansForColourBoxPlotData();
+                                    var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
+                
+                                    var variableList = getSelectedVariables();                    
+                                    var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
+                
+                                    if(selectedMeans.length < totalNumberOfLevels && selectedMeans.length != 2)
+                                    {
+                                        var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
+                                        selectAllMeans();
+                                        setTimeout(function()
+                                        {
+                                            performNormalityTests();
+                                            performHomoscedasticityTests();
+                                            
+                                            if(isFactorialANOVA(variableList))
+                                            {
+                                                loadAssumptionCheckList("repeated measures");
+                                                
+                                                performFactorialANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                            }
+                                            else
+                                            {
+                                                loadAssumptionCheckList("normal");                    
+                                                
+                                                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                            }
+                                        }, (unSelectedMeans.length+1)*1000);
+                                    }
+                                    else
+                                    {
+                                        performNormalityTests();
+                                        performHomoscedasticityTests();
+                                        
+                                        if(isFactorialANOVA(variableList))
+                                        {
+                                            loadAssumptionCheckList("repeated measures");
+                                            
+                                            performFactorialANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                        }
+                                        else
+                                        {
+                                            loadAssumptionCheckList("normal");                    
+                                            
+                                            performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                        }
+                                    }
+                                }
+                    }
+                    
                     if(variableList["independent"].length == 2)
                     {
                         //check if all means needs to be selected
-                        var selectedMeans = getSelectedMeansForColourBoxPlotData();
-                        var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
-                    
-                        var variableList = getSelectedVariables();                    
-                        var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
-                    
-                        if(selectedMeans.length < totalNumberOfLevels && selectedMeans.length != 2)
-                        {
-                            var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
-                            selectAllMeans();
-                            setTimeout(function()
-                            {
-                                if(isFactorialANOVA(variableList))
-                                    loadAssumptionCheckList("repeated measures");
-                                else
-                                    loadAssumptionCheckList("normal");                    
-                                performNormalityTests();
-                            }, (unSelectedMeans.length+1)*1000);
-                        }
-                        else
-                        {
-                            if(isFactorialANOVA(variableList))
-                                loadAssumptionCheckList("repeated measures");
-                            else
-                                loadAssumptionCheckList("normal"); 
-                                
-                            performNormalityTests();
-                        }
+                        
                     }
                     else
                     {
@@ -200,6 +269,17 @@ function performNormalityTests()
             }
         }
     }
+}
+
+function performHomoscedasticityTests()
+{
+    var variableList = getSelectedVariables();    
+    
+    //initialise distributions
+    variances[variableList["dependent"][0]] = {};
+    
+    for(i=0; i<variableList["independent"].length; i++)
+        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][i]);
 }
 
 function setDistribution(dependentVariable, level, normal)
