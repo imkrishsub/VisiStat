@@ -3,9 +3,6 @@ function compareMeans()
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
     
-    console.log("variableList:");
-    console.dir(variableList);
-    
     switch(document.getElementsByClassName("completeLines").length)
     {
 
@@ -28,7 +25,6 @@ function compareMeans()
 
                     //homoscedasticity
                     loadAssumptionCheckList("normal");
-                    console.log("within-groups variable = " + getWithinGroupVariable(variableList));
                     
                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                     {
@@ -55,12 +51,8 @@ function compareMeans()
                         var selectedMeans = getSelectedMeansForColourBoxPlotData();
                         var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
                     
-                        console.log(selectedMeans.length);
-                    
                         var variableList = getSelectedVariables();                    
                         var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
-                    
-                        console.log("selected=" + selectedMeans.length + ", total=" + totalNumberOfLevels);
                     
                         if(selectedMeans.length < totalNumberOfLevels && selectedMeans.length != 2)
                         {

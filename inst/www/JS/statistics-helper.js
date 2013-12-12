@@ -256,7 +256,6 @@ function setCompareNowButtonText()
     var compareNowText = d3.select("#text.compareNow");
     
     var variableList = getSelectedVariables();
-    console.dir(variableList);
     
     if(variableList["independent"].length == 0)
     {  
@@ -463,17 +462,12 @@ function setSelectButtons()
     
     for(var i=0; i<means.length; i++)
     {
-        console.log("means[i].getAttribute(\"fill\")=" + means[i].getAttribute("fill"));
-        console.log("meanColors[\"click\"]=" + meanColors["click"]);
-        
         if(means[i].getAttribute("fill") == meanColors["click"])
             selectedMeans.push(means[i]);
     }    
     
     if(selectedMeans.length == 0)
-    {   
-        console.log("no means are selected");
-        
+    {           
         selectNoneButton.attr("fill", "url(#buttonFillSelected)");
         selectNoneButton.attr("filter", "none");
         selectNoneButton.attr("stroke", "none");
@@ -488,8 +482,6 @@ function setSelectButtons()
     }
     else if(selectedMeans.length == means.length)
     {
-        console.log("all means are selected");
-        
         selectAllButton.attr("fill", "url(#buttonFillSelected)");
         selectAllButton.attr("filter", "none");
         selectAllButton.attr("stroke", "none");
@@ -503,9 +495,7 @@ function setSelectButtons()
         selectNoneText.attr("fill", "black");
     }
     else
-    {
-        console.log("in-between");
-        
+    {        
         selectNoneButton.attr("fill", "url(#buttonFillNormal)");
         selectNoneButton.attr("filter", "url(#Bevel)");
         selectNoneButton.attr("stroke", "black");

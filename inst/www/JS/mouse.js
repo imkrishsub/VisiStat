@@ -277,8 +277,6 @@ function OnMouseDown(e)
         {
             d3.selectAll(".compareNow").attr("cursor", "pointer");
         
-            
-        
             //get selected means
             var means = document.getElementsByClassName("means");
             var selectedMeans = []; 
@@ -289,9 +287,6 @@ function OnMouseDown(e)
                 if(means[i].getAttribute("fill") == meanColors["click"])
                     selectedMeans.push(means[i]);
             }
-        
-            console.log("selectedMeans:");
-            console.dir(selectedMeans);
         
             if(selectedMeans.length == 2 || selectedMeans.length == means.length)
             {
@@ -319,8 +314,6 @@ function OnMouseDown(e)
             drawButtonInSideBar(inText, "compareNow");
             
             var availableWidth = canvasWidth;
-            
-            console.log("canvasWidth=" + canvasWidth);
             
             canvas.append("rect")
                     .attr("x", availableWidth/3 - selectionButtonWidth/2)

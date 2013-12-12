@@ -328,6 +328,9 @@ function performHomoscedasticityTest(dependent, independent)
                     dataset: dataset                    
                   }, function(output) {                                 
                   
+                console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
+                console.log("\t\t\t p = " + output.p);
+                
                 var variableList = getSelectedVariables(); 
                 
                 if(output.p < 0.05)

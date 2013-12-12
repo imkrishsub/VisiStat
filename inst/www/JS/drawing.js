@@ -282,7 +282,6 @@ function drawEffectSize(value)
     var sideBar = d3.select("#sideBarCanvas");
     
     var type = testResults["effect-size-type"];
-    console.log("type = " + type);
     
     if(type == "d")
         value = value > 3.0 ? 3.0 : value;
@@ -387,7 +386,6 @@ function drawEffectSize(value)
 
 function drawParameter(value)
 {
-    console.log("drawing...");
     var sideBar = d3.select("#sideBarCanvas");
     
     var type = testResults["parameter-type"];
