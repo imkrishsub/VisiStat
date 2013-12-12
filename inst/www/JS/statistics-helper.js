@@ -111,6 +111,19 @@ function changePValueNotation(p)
     else
         return "p = " + p;
 }
+
+function getGroupsForColourBoxPlotData()
+{
+    var variableList = getSelectedVariables();
+    
+    var meanA = variableList["independent-levels"][0].split("-");
+    var meanB = variableList["independent-levels"][1].split("-");
+
+    var groupA = colourBoxPlotData[meanA[0]][meanA[1]];
+    var groupB = colourBoxPlotData[meanB[0]][meanB[1]];
+    
+    return [groupA, groupB];
+}
       
 function getSelectedMeansForColourBoxPlotData()
 {

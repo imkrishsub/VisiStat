@@ -49,15 +49,7 @@ function compareMeans()
                                 }
                         case 2:
                                 {  
-                                    //get distributions
-                                    var meanA = variableList["independent-levels"][0].split("-");
-                                    var meanB = variableList["independent-levels"][1].split("-");
-                                    
-                                    var groupA = colourBoxPlotData[meanA[0]][meanA[1]];
-                                    var groupB = colourBoxPlotData[meanB[0]][meanB[1]];
-                                    
-                                    console.log(groupA);
-                                    console.log(groupB);                                    
+                                    //get distributions                                                                        
                                     
                                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                                     {
@@ -261,13 +253,24 @@ function performNormalityTests()
     
     if(variableList["independent"].length == 2)
     {
-        variableList = sort(currentVariableSelection);
-        for(var i=0; i<variableList["independent-levels"][0].length; i++)
+        if(variableList["independent-levels"].length != 2)
         {
-            for(var j=0; j<variableList["independent-levels"][1].length; j++)
+            variableList = sort(currentVariableSelection);
+        
+            for(var i=0; i<variableList["independent-levels"][0].length; i++)
             {
-                performNormalityTest(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]], variableList["dependent"][0], (variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]));
+                for(var j=0; j<variableList["independent-levels"][1].length; j++)
+                {
+                    performNormalityTest(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]], variableList["dependent"][0], (variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]));
+                }
             }
+        }
+        else
+        {
+            var groups = getGroupsForColourBoxPlotData();
+            
+            performNormalityTest(groups[0], variableList["dependent"][0], variableList["independent-levels"][0]);
+            performNormalityTest(groups[1], variableList["dependent"][0], variableList["independent-levels"][1]);
         }
     }
     else
