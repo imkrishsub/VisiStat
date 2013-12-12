@@ -542,6 +542,31 @@ function OnMouseDown(e)
                 d3.select("#plotCanvas").attr("height", canvasHeight).attr("width", canvasWidth);
             }
         }
+        
+        else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "helpButtonFront")
+        {
+            setup(e, target);
+            
+            var helpButton = d3.select(".helpButtonFront");
+            var helpButtonText = d3.select(".helpButtonText");
+            
+            if(helpButton.attr("stroke") == "black")
+            {
+                helpButton.attr("fill", "url(#buttonFillSelected)")
+                            .attr("filter", "none")
+                            .attr("stroke", "none");
+                
+                helpButtonText.attr("fill", "white");
+            }
+            else
+            {
+                helpButton.attr("fill", "url(#buttonFillNormal)")
+                            .attr("filter", "url(#Bevel)")
+                            .attr("stroke", "black");
+                
+                helpButtonText.attr("fill", "black");
+            }
+        }
     
         else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "regression")
         {
@@ -1162,7 +1187,7 @@ function OnMouseOver(e)
         {
             setup(e, target);
             
-            var helpButton = d3.select(".helpButtonBack");
+            var helpButton = d3.select(".helpButtonFront");
             var helpButtonText = d3.select(".helpButtonText");
             
             helpButton.attr("cursor", "pointer");
