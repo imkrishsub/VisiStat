@@ -426,7 +426,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         var selectedMeans = getSelectedMeansForColourBoxPlotData();
         var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
         
-        if(homogeneity)
+        if(homogeneous)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
             
