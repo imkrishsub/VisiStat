@@ -84,5 +84,8 @@ text
     left: 0px; 
     top: 0px;  
     background-color: white;
+    font: 1.1em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
+    border-style: solid;
+    border-right: outset #000000; 
 }
 

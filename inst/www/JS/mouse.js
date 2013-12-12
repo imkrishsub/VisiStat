@@ -561,6 +561,10 @@ function OnMouseDown(e)
                 var index = d3.select("body").append("div");                
                 index.attr("id", "indexPanel")
                      .attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + canvasHeight + "px");
+                
+                index.append("H1")
+                        .text("HELP")
+                        .attr("align", "center");
             }
             else
             {
