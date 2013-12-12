@@ -133,12 +133,14 @@ function drawFullScreenButton()
 function drawHelpButton()
 {
     var sideBar = d3.select("#sideBarCanvas");
-    var helpButtonHeight = scaleForWindowSize(50);
-    var helpButtonWidth = scaleForWindowSize(75);
+    var helpButtonHeight = scaleForWindowSize(75);
+    var helpButtonWidth = scaleForWindowSize(50);
+    
+    var helpButtonOffset = scaleForWindowSize(25);
     
     sideBar.append("rect")
-            .attr("x", sideBarWidth - helpButtonWidth)
-            .attr("y", canvasHeight - helpButtonHeight)
+            .attr("x", sideBarWidth - helpButtonWidth - helpButtonOffset)
+            .attr("y", canvasHeight - helpButtonHeight - helpButtonOffset)
             .attr("rx", "5px")
             .attr("ry", "5px")
             .attr("height", helpButtonHeight)
@@ -149,17 +151,17 @@ function drawHelpButton()
             .attr("class", "helpButtonBack");
     
     sideBar.append("text")
-            .attr("x", sideBarWidth - helpButtonWidth/2)
-            .attr("y", canvasHeight - helpButtonHeight/3)
-            .attr("font-size", scaleForWindowSize(24))
+            .attr("x", sideBarWidth - helpButtonWidth/2 - helpButtonOffset)
+            .attr("y", canvasHeight - helpButtonHeight/3 - helpButtonOffset)
+            .attr("font-size", scaleForWindowSize(32))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
             .text("?")
             .attr("class", "helpButtonText");
     
     sideBar.append("rect")
-            .attr("x", sideBarWidth - helpButtonWidth)
-            .attr("y", canvasHeight - helpButtonHeight)
+            .attr("x", sideBarWidth - helpButtonWidth - helpButtonOffset)
+            .attr("y", canvasHeight - helpButtonHeight - helpButtonOffset)
             .attr("rx", "5px")
             .attr("ry", "5px")
             .attr("height", helpButtonHeight)
