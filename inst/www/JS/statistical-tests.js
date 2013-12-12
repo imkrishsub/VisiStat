@@ -80,14 +80,16 @@ function compareMeans()
                     else
                     {
                         //2+ level selection with just one independent variable
-                        loadAssumptionCheckList("repeated measures");
+                        
                         if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                         {
+                            loadAssumptionCheckList("repeated measures");
                             //within-groups design
                             performNormalityTests();   
                         }
                         else
                         {
+                            loadAssumptionCheckList("normal");
                             //between-groups design
                             performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);   
                         }
@@ -277,6 +279,13 @@ function setDistribution(dependentVariable, level, normal)
         else
         {
             console.log("\n\tchecking if normality transform is possible...");            
+            
+            if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+            {
+                //within-group design
+                performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+            }
+            
             findTransformForNormality(variableList["dependent"][0], variableList["independent"][0]);
         }
     }    
@@ -322,21 +331,8 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         }
         else
         {
-            if(experimentalDesign == "between-groups")
-            {
-                //between-groups design
-                if(variableList["independent-levels"].length == 2)
-                {
-                    //2 variables
-                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
-                }
-                else
-                {
-                    //> 2 variables
-                    performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                }
-                
-            }                 
+            //check if transformation is possible
+            findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);                
         }
     }    
 }
