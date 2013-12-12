@@ -263,7 +263,7 @@ function makeHistogram()
     else
     {
         // Should be changeable
-        var numberOfGroovesInXAxis = 10;
+        var numberOfGroovesInXAxis = nBins;
     
         var slice = (max - min)/nBins;    
     
