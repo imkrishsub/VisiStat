@@ -50,8 +50,15 @@ function compareMeans()
                         case 2:
                                 {  
                                     //get distributions
-                                    console.dir(variableList);
-                                    console.dir(getSelectedMeansForColourBoxPlotData());
+                                    var meanA = variableList["independent-levels"][0].split("-");
+                                    var meanB = variableList["independent-levels"][1].split("-");
+                                    
+                                    var groupA = colourBoxPlotData[meanA[0]][meanA[1]];
+                                    var groupB = colourBoxPlotData[meanB[0]][meanB[1]];
+                                    
+                                    console.log(groupA);
+                                    console.log(groupB);                                    
+                                    
                                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                                     {
                                         //within-groups design
@@ -61,6 +68,7 @@ function compareMeans()
                                     {
                                         //between-groups design
                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][1]);
                                     }
                                 }
                     }
