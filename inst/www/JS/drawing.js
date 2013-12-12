@@ -490,11 +490,12 @@ function loadAssumptionCheckList(type)
                     .attr("ry", "5px")
                     .attr("fill", "url(#buttonFillNormal)")
                     .attr("filter", "url(#Bevel)")
+                    .attr("stroke", "black")
                     .attr("id", assumptions[type][i])
                     .attr("class", "assumptionsButtonBack");
             canvas.append("text")
                 .attr("x", assumptionImageSize*1.25)
-                .attr("y", i*assumptionStep + assumptionOffsetTop - 10)
+                .attr("y", i*assumptionStep + assumptionOffsetTop - 5)
                 .attr("font-size", fontSizeAssumptions + "px")
                 .attr("fill", "black")
                 .text(assumptionsText[assumptions[type][i]])
@@ -540,10 +541,8 @@ function loadAssumptionCheckList(type)
                     .attr("rx", "5px")
                     .attr("ry", "5px")
                     .attr("opacity", "0.1")
-                    .attr("fill", "url(#buttonFillNormal)")
-                    .attr("filter", "url(#Bevel)")
                     .attr("id", assumptions[type][i])
-                    .attr("class", "assumptionsButtonBack");
+                    .attr("class", "assumptionsButtonFront");
         }    
     }, 1300);
     

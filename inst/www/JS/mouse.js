@@ -634,54 +634,6 @@ function OnMouseDown(e)
             }
         }
     
-    //     else if((e.button == 1 && window.event != null || e.button == 0) && target.id == "regressionLine")
-    //     {
-    //         //TODO: fade out the datapoints
-    //         setup(e, target);
-    //         
-    //         var canvas = d3.select("#plotCanvas");
-    //         
-    //         var mouseX = toModifiedViewBoxForRegressionLineXCoordinate(e.pageX);
-    //         var mouseY = toModifiedViewBoxForRegressionLineYCoordinate(e.pageY);
-    //         
-    //         canvas.append("circle")
-    //                 .attr("cx", mouseX)
-    //                 .attr("cy", mouseY)
-    //                 .attr("r", "7px")
-    //                 .attr("fill", "steelblue")
-    //                 .attr("class", "regressionPredictionInstance");        
-    //         
-    //         
-    //         if(mouseX < toModifiedViewBoxForRegressionLineXCoordinate(canvasWidth/2 - plotWidth/2 - axesOffset))
-    //         {
-    //             console.log("left of x-axis");
-    //         }
-    //         if(mouseY > toModifiedViewBoxForRegressionLineXCoordinate(canvasHeight/2 + plotHeight/2 + axesOffset))
-    //         {
-    //             console.log("bottom of y-axis");
-    //         }
-    //         
-    //         canvas.append("line")
-    //                 .attr("x1", mouseX)
-    //                 .attr("y1", mouseY)
-    //                 .attr("x2", toModifiedViewBoxForRegressionLineXCoordinate(canvasWidth/2 - plotWidth/2 - axesOffset))
-    //                 .attr("y2", mouseY)
-    //                 .attr("stroke", "purple")
-    //                 .attr("stroke-dasharray", "5,5")
-    //                 .attr("id", "x")
-    //                 .attr("class", "LineToAxisInstance");
-    //                     
-    //         canvas.append("line")
-    //                 .attr("x1", mouseX)
-    //                 .attr("y1", mouseY)
-    //                 .attr("x2", mouseX)
-    //                 .attr("y2", toModifiedViewBoxForRegressionLineYCoordinate(canvasHeight/2 + plotHeight/2 + axesOffset))
-    //                 .attr("stroke", "purple")
-    //                 .attr("stroke-dasharray", "5,5")
-    //                 .attr("id", "y")
-    //                 .attr("class", "LineToAxisInstance");
-    //     }
-    
         else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "interactionEffect")
         {
             setup(e, target);
@@ -757,41 +709,115 @@ function OnMouseDown(e)
     //             performTukeyHSDTestTwoIndependentVariables(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
     //         }
         }
-    
-    //     else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "outliers")
-    //     {
-    //         setup(e, target);
-    //         
-    //         //give two options (remove this outlier, analyse other outliers, cancel)
-    //         var canvas = d3.select("#plotCanvas");
-    //         
-    //         var mouseX = e.pageX - (width - canvasWidth);
-    //         var mouseY = e.pageY;
-    //         
-    //         canvas.append("rect")
-    //                 .attr("x", mouseX)
-    //                 .attr("y", mouseY)
-    //                 .attr("height", 
-    //     }
+        
+        else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "assumptionButtonFront")
+        {
+            setup(e, target);
+        
+            var assumptionText = d3.select("#" + target.id + ".assumptions");
+            var assumptionButton = d3.select("#" + target.id + ".assumptionButtonBack");
+            
+            if(assumptionButton.attr("stroke") == "black")
+            {
+                assumptionButton.attr("fill", "url(#buttonFillSelected)")
+                                .attr("filter", "none")
+                                .attr("stroke", "none");
+            
+                assumptionText.attr("fill", "white");
+            
+                switch(target.id)
+                {
+                    case "normality":
+                                    {
+                                        var variableList = getSelectedVariables();
+                                    
+                                        var dependentVariable = variableList["dependent"][0];
+        
+                                        for(var i=0; i<variableList["independent-levels"].length; i++)
+                                        {   
+                                            if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
+                                            {                                
+                                                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+                
+                                                //draw boxplots in red 
+                                                drawBoxPlotInRed(variableList["independent-levels"][i]);
+                                                drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "notnormal");
+                                            }
+                                            else
+                                            {
+                                                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+                 
+                                                drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "normal");
+                                            }
+                                        }
+                                    
+                                        break;
+                                    }
+                    case "homogeneity":
+                                    {
+                                        var variableList = sort(currentVariableSelection);
+                                    
+                                        var dependentVariable = variableList["dependent"][0];
+        
+                                        for(var i=0; i<variableList["independent"].length; i++)
+                                        {   
+                                            if(variances[dependentVariable][variableList["independent"][i]] == false)
+                                            {                
+                                                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+            
+                                                drawHomogeneityPlot(dependentVariable, variableList["independent"][i]);
+                                            }
+                                        }
+                                        break;
+                                    }
+                    case "sphericity":
+                                    {
+                                        console.log("To be done!");
+                                    
+                                        break;
+                                    }
+                    default: 
+                            alert("this is not supposed to happen!");
+                }
+            }
+            else
+            {
+                assumptionButton.attr("fill", "url(#buttonFillNormal)")
+                                .attr("filter", "url(#Bevel)")
+                                .attr("stroke", "black");
+            
+                assumptionText.attr("fill", "black");
+            
+                switch(target.id)
+                {
+                    case "normality":
+                                    {
+                                        d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                                    
+                                        break;
+                                    }
+                    case "homogeneity":
+                                    {
+                                        d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                                        
+                                        break;
+                                    }
+                    case "sphericity":
+                                    {
+                                        console.log("To be done!");
+                                    
+                                        break;
+                                    }
+                    default: 
+                            alert("this is not supposed to happen!");
+                }
+            }
+        }
     
         else
         {
             //the user clicked outside
-            removeElementsByClassName("regressionPrediction");
-        
-            // if(document.getElementsByClassName("incompleteLines").length > 0)
-    //         {
-    //             removeElementsByClassName("incompleteLines");
-    //             
-    //             if(document.getElementsByClassName("completeLines").length > 0)
-    //             {
-    //                 compareMeans();
-    //             }
-    //             else
-    //             {
-    //                 _dragElement.setAttribute("fill", meanColors["normal"]);
-    //             }
-    //         }   
+            removeElementsByClassName("regressionPrediction");   
         }
     }
 }
@@ -1024,6 +1050,13 @@ function OnMouseOver(e)
             setup(e, target);
             
             d3.selectAll(".selectNone").attr("cursor", "pointer");
+        }
+        
+        else if(target.className.baseVal == "assumptionButtonFront")
+        {
+            setup(e, target);
+            
+            d3.selectAll("#" + target.id + ".assumptionButtonFront").attr("cursor", "pointer");
         }
     
         else if(target.className.baseVal == "bins")
