@@ -86,7 +86,7 @@ text
     background-color: white;
     font: 1.1em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     border-style: solid;
-    border-right: 5px outset #777777; 
+    border: 5px outset #777777; 
 }
 
 #helpTitle
@@ -100,6 +100,6 @@ text
     background-color: white;
     font: 1.1em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     border-style: solid;
-    border-right: 5px outset #777777;
+    border: 5px outset #777777;
 }
 
