@@ -522,11 +522,6 @@ function OnMouseDown(e)
             
             var variableList = sort(currentVariableSelection);
             
-//             for(var i=0; i<variableList["independent-levels"].length; i++)
-//             {    
-//                 applyHomogeneityTransform(variableList["dependent"][0], variableList["independent-levels"][i], false);
-//             }
-            
             applyHomogeneityTransform(variableList["dependent"][0], variableList["independent"][0]);               
         }
     

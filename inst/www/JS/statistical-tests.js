@@ -232,8 +232,6 @@ function setDistribution(dependentVariable, level, normal)
             }
         }
         
-        console.log("normal=" + normal);
-        
         if(normal)
         {         
             console.log("\n\tAll distributions are normal!");
