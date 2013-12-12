@@ -88,6 +88,7 @@ function compareMeans()
                     else
                     {
                         //2+ level selection with just one independent variable
+                        loadAssumptionCheckList("repeated-measures");
                         if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                         {
                             //within-groups design
