@@ -209,8 +209,6 @@ function setDistribution(dependentVariable, level, normal)
     
     distributions[dependentVariable][level] = normal;
     
-    console.log("#distributions = " + getObjectLength(distributions[dependentVariable]));
-    
     if(getObjectLength(distributions[dependentVariable]) == (document.getElementsByClassName("completeLines").length + 1))
     {       
         //i.e., when all distributions are tested
@@ -233,6 +231,8 @@ function setDistribution(dependentVariable, level, normal)
                 drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "notnormal");
             }
         }
+        
+        console.log("normal=" + normal);
         
         if(normal)
         {         
