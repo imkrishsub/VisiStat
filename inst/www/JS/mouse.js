@@ -1157,6 +1157,17 @@ function OnMouseOver(e)
             var button = d3.select(".fullscreen");
             button.attr("cursor", "pointer");
         }
+        
+        else if(target.className.baseVal == "helpButtonFront")
+        {
+            setup(e, target);
+            
+            var helpButton = d3.select(".helpButtonBack");
+            var helpButtonText = d3.select(".helpButtonText");
+            
+            helpButton.attr("cursor", "pointer");
+            helpButtonText.attr("cursor", "pointer");
+        }    
     
         else if(target.className.baseVal == "outliers")
         {
@@ -1275,47 +1286,6 @@ function OnMouseOver(e)
         {
             var regressionElements = d3.selectAll(".regression").attr("cursor", "pointer");
         }
-    
-    //     else if(target.id == "regressionLine")
-    //     {
-    //         var canvas = d3.select("#plotCanvas");
-    //         var mouseX = e.pageX - (width - canvasWidth);
-    //         var mouseY = e.pageY; 
-    //         
-    //         var interceptCircle = d3.select("#interceptCircle");
-    //         var intercept = interceptCircle.attr("cy");
-    //         var slope;
-    //         var regressionLine = d3.select("#regressionLine");
-    //         
-    //         //get intercept and slope
-    //         intercept = getNormalYAxisCoordinateFromScaledViewBoxCoordinate(intercept);
-    //         slope = (getNormalYAxisCoordinateFromScaledViewBoxCoordinate(regressionLine.attr("y2")) - getNormalYAxisCoordinateFromScaledViewBoxCoordinate(regressionLine.attr("y1")))/(getNormalXAxisCoordinateFromScaledViewBoxCoordinate(regressionLine.attr("x2")) - getNormalXAxisCoordinateFromScaledViewBoxCoordinate(regressionLine.attr("x1")));
-    //         
-    //         console.log("m=" + slope + "; intercept=" + intercept);
-    //         
-    //         canvas.append("line")
-    //                 .attr("x1", toX(0))
-    //                 .attr("y1", toY(intercept))
-    //                 .attr("x2", toX(canvasWidth))
-    //                 .attr("y2", toY(slope*canvasWidth + intercept))
-    //                 .attr("stroke", "red");
-    //         
-    // //         mouseY = slope*mouseX + intercept;
-    //         mouseX = (mouseX*viewBoxWidthForRegressionLine/canvasWidth + viewBoxXForRegressionLine);
-    //         mouseY = (mouseY*viewBoxHeightForRegressionLine/canvasHeight + viewBoxYForRegressionLine);
-    //         
-    //         console.log("mouseX=" + mouseX + ", mouseY=" + mouseY);
-    //         console.log("mouseX=" + getNormalXAxisCoordinateFromScaledViewBoxCoordinate(mouseX) + ", mouseY=" + getNormalYAxisCoordinateFromScaledViewBoxCoordinate(mouseY));
-    //         
-    //         
-    //         canvas.append("circle")
-    //                 .attr("cx", toX(mouseX))
-    //                 .attr("cy", canvasHeight - toY(mouseY))
-    //                 .attr("r", "10px")
-    //                 .attr("fill", "green");
-    //                 
-    //     
-    //     }
     
         else if(target.className.baseVal == "outcomeVariable")
         {
