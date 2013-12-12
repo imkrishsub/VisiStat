@@ -265,16 +265,19 @@ function setDistribution(dependentVariable, level, normal)
                     //between-group design
                     
                     //homoscedasticity test is already done (and no case is handled)
-                    if(variableList["independent-levels"].length == 2)
+                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
-                        //2 variables
-                        performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+                        if(variableList["independent-levels"].length == 2)
+                        {
+                            //2 variables
+                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+                        }
+                        else
+                        {
+                            //> 2 variables
+                            performANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                        }                    
                     }
-                    else
-                    {
-                        //> 2 variables
-                        performANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                    }                    
                 }
             }
         }
