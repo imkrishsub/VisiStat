@@ -599,7 +599,7 @@ function OnMouseDown(e)
                                 .attr("ry", "10px")
                                 .attr("fill", "white")
                                 .attr("stroke", "black")
-                                .attr("opacity", "0.5")
+                                .attr("opacity", "0.1")
                                 .attr("class", "plot");            
                 }
                 else
@@ -612,6 +612,8 @@ function OnMouseDown(e)
                 
                     removeElementById("indexPanel");
                     removeElementById("descriptionPanel");
+                    
+                    removeElementsByClassName("plot");
                 }
             }
     
