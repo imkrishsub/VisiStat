@@ -9,6 +9,11 @@ function OnMouseDown(e)
     {
         if(help)
         {
+            if((e.button == 1 && window.event != null || e.button == 0))
+            {
+                console.log(target.className);
+                console.log(target.className.baseVal);
+            }
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "plot"))
             {
                 setup(e, target);
