@@ -16,6 +16,10 @@ function OnMouseDown(e)
                 var visualisation = currentVisualisationSelection;
                 var descriptionLabel = d3.select("#descriptionLabel");
                 
+                console.log("you clicked on plot");
+                
+                console.log("text to be displayed: " + description[visualisation]);
+                
                 descriptionLabel.text(description[visualisation]);                
             }
         }
@@ -591,7 +595,7 @@ function OnMouseDown(e)
                     var plotCanvas = d3.select("#plotCanvas");
                     
                     plotCanvas.append("rect")
-                                .attr("x", (canvasWidth - sideBarWidth)/2 - plotWidth/2)
+                                .attr("x", canvasWidth/2 - plotWidth/2)
                                 .attr("y", canvasHeight/2 - plotHeight/2)
                                 .attr("width", plotWidth)
                                 .attr("height", plotHeight)
