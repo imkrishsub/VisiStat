@@ -952,7 +952,7 @@ function OnMouseOver(e)
     {
         if(help)
         {
-            if(target.className.baseVal == "")
+            if(target.className.baseVal == "plot")
             {
                 setup(e, target);
                 
