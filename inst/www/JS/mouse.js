@@ -20,6 +20,23 @@ function OnMouseDown(e)
                 console.dir(desc);
                 helpText.text(desc[visualisation]);                
             }
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "helpButtonFront"))
+            {
+                var helpButton = d3.select(".helpButtonBack");
+                var helpButtonText = d3.select(".helpButtonText");
+                
+                help = false;
+                helpButton.attr("fill", "url(#buttonFillNormal)")
+                            .attr("filter", "url(#Bevel)")
+                            .attr("stroke", "black");
+            
+                helpButtonText.attr("fill", "black");
+            
+                removeElementById("indexPanel");
+                removeElementById("descriptionPanel");
+                
+                removeElementsByClassName("plot");
+            }
         }
         else
         {
@@ -604,20 +621,6 @@ function OnMouseDown(e)
                                 .attr("stroke", "black")
                                 .attr("opacity", "0.1")
                                 .attr("class", "plot");            
-                }
-                else
-                {
-                    help = false;
-                    helpButton.attr("fill", "url(#buttonFillNormal)")
-                                .attr("filter", "url(#Bevel)")
-                                .attr("stroke", "black");
-                
-                    helpButtonText.attr("fill", "black");
-                
-                    removeElementById("indexPanel");
-                    removeElementById("descriptionPanel");
-                    
-                    removeElementsByClassName("plot");
                 }
             }
     
