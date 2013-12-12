@@ -585,15 +585,16 @@ function OnMouseDown(e)
                          .attr("style", "width: " + width + "px; height: " + (height - canvasHeight) + "px; top: " + canvasHeight + "px;");
                     
                     description.append("label")
-                                .attr("id", "descriptionLabel");
+                                .attr("id", "descriptionLabel")
+                                .text("willy wonka is mad");
                          
                     var plotCanvas = d3.select("#plotCanvas");
                     
                     plotCanvas.append("rect")
-                                .attr("x", 0)
-                                .attr("y", 0)
-                                .attr("width", plotWidth + 4*axesOffset)
-                                .attr("height", plotHeight + 4*axesOffset)
+                                .attr("x", (canvasWidth - sideBarWidth)/2 - plotWidth/2)
+                                .attr("y", canvasHeight/2 - plotHeight/2)
+                                .attr("width", plotWidth)
+                                .attr("height", plotHeight)
                                 .attr("rx", "10px")
                                 .attr("ry", "10px")
                                 .attr("fill", "white")
