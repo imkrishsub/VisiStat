@@ -481,6 +481,17 @@ function loadAssumptionCheckList(type)
     setTimeout(function(){
         for(var i=0; i<assumptions[type].length; i++)
         {
+            canvas.append("rect")
+                    .attr("x", assumptionImageSize*1.25) 
+                    .attr("y", i*assumptionStep + assumptionOffsetTop)
+                    .attr("width", sideBarWidth - assumptionImageSize*1.25)
+                    .attr("height", assumptionImageSize)
+                    .attr("rx", "5px")
+                    .attr("ry", "5px")
+                    .attr("fill", "url(#buttonFillNormal)")
+                    .attr("filter", "url(#Bevel)")
+                    .attr("id", assumptions[type][i])
+                    .attr("class", "assumptionsButtonBack");
             canvas.append("text")
                 .attr("x", assumptionImageSize*1.25)
                 .attr("y", i*assumptionStep + assumptionOffsetTop)
@@ -520,6 +531,19 @@ function loadAssumptionCheckList(type)
                 .attr("display", "none")
                 .attr("id", assumptions[type][i])
                 .attr("class", "crosses");
+                
+            canvas.append("rect")
+                    .attr("x", assumptionImageSize*1.25) 
+                    .attr("y", i*assumptionStep + assumptionOffsetTop)
+                    .attr("width", sideBarWidth - assumptionImageSize*1.25)
+                    .attr("height", assumptionImageSize)
+                    .attr("rx", "5px")
+                    .attr("ry", "5px")
+                    .attr("opacity", "0.1")
+                    .attr("fill", "url(#buttonFillNormal)")
+                    .attr("filter", "url(#Bevel)")
+                    .attr("id", assumptions[type][i])
+                    .attr("class", "assumptionsButtonBack");
         }    
     }, 1300);
     
