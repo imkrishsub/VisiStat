@@ -572,22 +572,42 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     
                     drawComputingResultsImage();
                     
-                    if(experimentalDesign == "between-groups")
+                    if(variableList["independent"].length == 1)
                     {
-                        performNormalityTests();
+                        if(experimentalDesign == "between-groups")
+                        {
+                            performNormalityTests();
                         
-                        //between-groups design
-                        if(variableList["independent-levels"].length == 2)
-                        {
-                            //2 variables
-                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                            //between-groups design
+                            if(variableList["independent-levels"].length == 2)
+                            {
+                                //2 variables
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                            }
+                            else
+                            {
+                                //> 2 variables
+                                performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                            }                
                         }
-                        else
+                    }
+                    else
+                    {
+                        if(experimentalDesign == "between-groups")
                         {
-                            //> 2 variables
-                            performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                        }                
-                    } 
+                            performNormalityTests();
+                                
+                            //between-groups design
+                            if(variableList["independent-levels"].length == 2)
+                            {
+                                //2 variables
+                                var groups = getGroupsForColourBoxPlotData();
+                                
+                                performTTest(groups[0], groups[1], "FALSE", "FALSE");
+                            }
+                                
+                        }
+                    }
                     
 //                     var normal = d3.select("#normality.crosses").attr("display") == "inline" ? false : true;
 //                     
