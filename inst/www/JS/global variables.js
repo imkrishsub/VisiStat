@@ -16,7 +16,7 @@ var currentVariableSelection = [];
 var currentVisualisationSelection;
 
 var fullScreen = false;
-var help = true;
+var help = false;
 
 // Scatterplot
 var outlierValues = [];
