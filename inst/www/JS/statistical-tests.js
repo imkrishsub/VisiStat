@@ -145,29 +145,7 @@ function compareMeans()
                                     }
                                 }
                     }
-                    
-                    if(variableList["independent"].length == 2)
-                    {
-                        //check if all means needs to be selected
                         
-                    }
-                    else
-                    {
-                        //2+ level selection with just one independent variable
-                        
-                        if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
-                        {
-                            loadAssumptionCheckList("repeated measures");
-                            //within-groups design
-                            performNormalityTests();   
-                        }
-                        else
-                        {
-                            loadAssumptionCheckList("normal");
-                            //between-groups design
-                            performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);   
-                        }
-                    }        
                     break;
                 }
     }
