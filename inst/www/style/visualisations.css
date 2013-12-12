@@ -87,14 +87,6 @@ text
     font: 1.1em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     border-style: solid;
     border-right: outset #000000; 
-    
-    border-style: solid;
-    border-width: 1px;
-    display: block;
-    -moz-transition:width 2s, height 2s, background-color 2s, -moz-transform 2s;
-    -webkit-transition:width 2s, height 2s, background-color 2s, -webkit-transform 2s;
-    -o-transition:width 2s, height 2s, background-color 2s, -o-transform 2s;
-    transition:width 2s, height 2s, background-color 2s, transform 2s;
 }
 
 #helpTitle
@@ -104,8 +96,7 @@ text
 #descriptionPanel
 {
     position: absolute; 
-    left: 0px; 
-    top: 0px;  
+    left: 0px;   
     background-color: white;
     font: 1.1em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     border-style: solid;

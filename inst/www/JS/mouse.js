@@ -568,7 +568,7 @@ function OnMouseDown(e)
                 
                 var description = d3.select("body").append("div");                
                 description.attr("id", "descriptionPanel")
-                     .attr("style", "width: " + width + "px; height: " + (height - canvasHeight) + "px");
+                     .attr("style", "width: " + width + "px; height: " + (height - canvasHeight) + "px; top: " + canvasHeight + "px;");
             
             }
             else
