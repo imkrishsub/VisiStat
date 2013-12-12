@@ -422,6 +422,10 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
                 d3.select("#homogeneity.crosses").attr("display", "inline");
                 d3.select("#homogeneity.loading").attr("display", "none"); 
                 homogeneity = false;
+                
+                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+            
+                drawHomogeneityPlot(dependentVariable, variableList["independent"][i]);
             }
         }
         
