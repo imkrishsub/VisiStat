@@ -360,32 +360,10 @@ function OnMouseDown(e)
                     .text("SELECT ALL")
                     .attr("id", "text")
                     .attr("class", "selectAll");
-                    
-            
-//             canvas.append("rect")
-//                     .attr("x", canvasWidth/2 - buttonWidth/2)
-//                     .attr("y", 0)
-//                     .attr("width", buttonWidth)
-//                     .attr("height", buttonHeight)
-//                     .attr("rx", scaleForWindowSize(10) + "px")
-//                     .attr("ry", scaleForWindowSize(10) + "px")
-//                     .attr("fill", "url(#buttonFillNormal)")
-//                     .attr("filter", "url(#Bevel)")
-//                     .attr("stroke", "black")
-//                     .attr("id", "button")
-//                     .attr("class", "compareNow");
-//     
-//             canvas.append("text")
-//                     .attr("x", canvasWidth/2)
-//                     .attr("y", buttonHeight/2 + yAxisTickTextOffset)
-//                     .attr("text-anchor", "middle")
-//                     .text(inText)
-//                     .attr("id", "text")
-//                     .attr("class", "compareNow"); 
         
             freezeMouseEvents = true;
-            d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(1000).style("opacity", "0.2");
-            d3.selectAll(".means").transition().delay(1000).duration(800).attr("r", engorgedMeanRadius);
+            d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
+            d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
             
             setTimeout(function()
             {
