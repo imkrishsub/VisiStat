@@ -304,6 +304,8 @@ function setDistribution(dependentVariable, level, normal)
     
     distributions[dependentVariable][level] = normal;
     
+    console.log(getObjectLength(distributions[dependentVariable]));
+    
     if(getObjectLength(distributions[dependentVariable]) == (document.getElementsByClassName("completeLines").length + 1))
     {       
         //i.e., when all distributions are tested
