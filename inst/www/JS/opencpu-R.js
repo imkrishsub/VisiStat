@@ -560,6 +560,8 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     
                     if(experimentalDesign == "between-groups")
                     {
+                        performNormalityTests();
+                        
                         //between-groups design
                         if(variableList["independent-levels"].length == 2)
                         {
