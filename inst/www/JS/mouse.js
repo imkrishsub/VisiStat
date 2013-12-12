@@ -564,7 +564,12 @@ function OnMouseDown(e)
                 
                 index.append("H1")
                         .text("HELP")
-                        .attr("align", "center");
+                        .attr("id", "helpTitle");
+                
+                var description = d3.select("body").append("div");                
+                description.attr("id", "descriptionPanel")
+                     .attr("style", "width: " + width + "px; height: " + (height - canvasHeight) + "px");
+            
             }
             else
             {
@@ -573,6 +578,9 @@ function OnMouseDown(e)
                             .attr("stroke", "black");
                 
                 helpButtonText.attr("fill", "black");
+                
+                removeElementById("indexPanel");
+                removeElementById("descriptionPanel");
             }
         }
     
