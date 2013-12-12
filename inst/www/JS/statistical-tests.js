@@ -3,8 +3,6 @@ function compareMeans()
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
     
-    console.log(document.getElementsByClassName("completeLines").length);
-    
     switch(document.getElementsByClassName("completeLines").length)
     {
 
@@ -62,7 +60,8 @@ function compareMeans()
                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
                                     }
                                 }
-                    }                   
+                    }
+                    break;
                 }
         
         default:
