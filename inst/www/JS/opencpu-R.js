@@ -512,7 +512,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                                 performFriedmanTest(dependentVariable, independentVariable);
                             }
                         }                       
-                        else
+                        else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                         {
                             //between-groups design
                             if(variableList["independent-levels"].length == 2)
