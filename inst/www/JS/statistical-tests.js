@@ -319,7 +319,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             d3.select("#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
             
-            if(experimentalDesign == "between-groups")
+            if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
             {
                 //between-groups design
                 performNormalityTests();                
