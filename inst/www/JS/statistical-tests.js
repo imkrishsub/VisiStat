@@ -43,7 +43,7 @@ function compareMeans()
         default:
                 //ANOVA
                 {
-                    console.log("\t Significance test for more than 2 variables\n\n nana");
+                    console.log("\t Significance test for more than 2 variables\n\n");
                     
                     if(variableList["independent"].length == 2)
                     {
@@ -208,6 +208,8 @@ function setDistribution(dependentVariable, level, normal)
         distributions[dependentVariable] = new Object();
     
     distributions[dependentVariable][level] = normal;
+    
+    console.log("#distributions = " + getObjectLength(distributions[dependentVariable]));
     
     if(getObjectLength(distributions[dependentVariable]) == (document.getElementsByClassName("completeLines").length + 1))
     {       
