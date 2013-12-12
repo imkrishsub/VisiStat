@@ -391,7 +391,6 @@ function drawParameter(value)
     var sideBar = d3.select("#sideBarCanvas");
     
     var type = testResults["parameter-type"];
-    console.log("type = " + type);
     
     var X = sideBarWidth/2;
     var Y = canvasHeight/2 + 2*significanceTestResultOffset;
@@ -782,15 +781,13 @@ function displaySignificanceTestResults()
         removeElementById("computingResultsImage");
     
     var means = document.getElementsByClassName("means");
-    
-    console.log(means.length);
+
     var meanRefLines = [];
     
     var canvas = d3.select("#plotCanvas");
 
     for(var i=0; i<means.length; i++)
     {
-        console.log(means[i].getAttribute("fill"));
         if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "#008000"))
         {
             cx.push(means[i].getAttribute("cx"));

@@ -91,12 +91,12 @@ function compareMeans()
                         if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                         {
                             //within-groups design
-                            
+                            performNormalityTests();   
                         }
                         else
                         {
                             //between-groups design
-                            
+                            performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);   
                         }
                     }        
                     break;
