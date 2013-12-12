@@ -372,7 +372,30 @@ function setDistribution(dependentVariable, level, normal)
                         }                    
                     }
                 }
-            }
+            }   
+            else if(variableList["independent"].length == 2)
+            {
+                if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                {
+                    //within-group design
+                }
+                else
+                {
+                    //between-group design
+                    
+                    //homoscedasticity test is already done (and no case is handled)
+                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    {
+                        if(variableList["independent-levels"].length == 2)
+                        {
+                            //2 variables
+                            var groups = getGroupsForColourBoxPlotData();
+                            
+                            performTTest(groups[0], groups[1], "TRUE", "FALSE");
+                        }                    
+                    }
+                }
+            }            
         }
         else
         {
