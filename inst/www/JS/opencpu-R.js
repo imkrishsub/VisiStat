@@ -508,8 +508,22 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             }
                             else
                             {   
-                                //friedman's test
+                                //Friedman's test
                                 performFriedmanTest(dependentVariable, independentVariable);
+                            }
+                        }                       
+                        else
+                        {
+                            //between-groups design
+                            if(variableList["independent-levels"].length == 2)
+                            {
+                                //Mann-Whitney U test
+                                performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                            }
+                            else
+                            {   
+                                //Kruskal-Wallis test
+                                performKruskalWallisTest(dependentVariable, independentVariable);
                             }
                         }
                     }                    
