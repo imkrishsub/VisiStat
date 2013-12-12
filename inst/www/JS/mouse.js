@@ -688,12 +688,12 @@ function OnMouseDown(e)
     //         }
         }
         
-        else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "assumptionButtonFront")
+        else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "assumptionsButtonFront")
         {
             setup(e, target);
         
             var assumptionText = d3.select("#" + target.id + ".assumptions");
-            var assumptionButton = d3.select("#" + target.id + ".assumptionButtonBack");
+            var assumptionButton = d3.select("#" + target.id + ".assumptionsButtonBack");
             
             if(assumptionButton.attr("stroke") == "black")
             {
