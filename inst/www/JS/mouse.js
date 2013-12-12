@@ -557,6 +557,10 @@ function OnMouseDown(e)
                             .attr("stroke", "none");
                 
                 helpButtonText.attr("fill", "white");
+                
+                var index = d3.select("body").append("div");                
+                index.attr("id", "indexPanel")
+                     .attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + canvasHeight + "px");
             }
             else
             {

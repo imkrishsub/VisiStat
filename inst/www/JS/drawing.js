@@ -134,7 +134,7 @@ function drawHelpButton()
 {
     var sideBar = d3.select("#sideBarCanvas");
     var helpButtonHeight = scaleForWindowSize(75);
-    var helpButtonWidth = scaleForWindowSize(50);
+    var helpButtonWidth = scaleForWindowSize(60);
     
     var helpButtonOffset = scaleForWindowSize(25);
     
