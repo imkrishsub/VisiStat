@@ -494,7 +494,7 @@ function loadAssumptionCheckList(type)
                     .attr("class", "assumptionsButtonBack");
             canvas.append("text")
                 .attr("x", assumptionImageSize*1.25)
-                .attr("y", i*assumptionStep + assumptionOffsetTop)
+                .attr("y", i*assumptionStep + assumptionOffsetTop - 10)
                 .attr("font-size", fontSizeAssumptions + "px")
                 .attr("fill", "black")
                 .text(assumptionsText[assumptions[type][i]])
