@@ -7,6 +7,11 @@ function OnMouseDown(e)
    
     if(!freezeMouseEvents)
     {
+        if((e.button == 1 && window.event != null || e.button == 0))
+        {
+            console.log("help = " + help);
+        }
+        
         if(help)
         {
             if((e.button == 1 && window.event != null || e.button == 0))
@@ -575,6 +580,7 @@ function OnMouseDown(e)
             
                 if(helpButton.attr("stroke") == "black")
                 {
+                    help = true;
                     helpButton.attr("fill", "url(#buttonFillSelected)")
                                 .attr("filter", "none")
                                 .attr("stroke", "none");
@@ -613,6 +619,7 @@ function OnMouseDown(e)
                 }
                 else
                 {
+                    help = false;
                     helpButton.attr("fill", "url(#buttonFillNormal)")
                                 .attr("filter", "url(#Bevel)")
                                 .attr("stroke", "black");
