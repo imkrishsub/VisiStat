@@ -547,7 +547,7 @@ function OnMouseDown(e)
         {
             setup(e, target);
             
-            var helpButton = d3.select(".helpButtonFront");
+            var helpButton = d3.select(".helpButtonBack");
             var helpButtonText = d3.select(".helpButtonText");
             
             if(helpButton.attr("stroke") == "black")
