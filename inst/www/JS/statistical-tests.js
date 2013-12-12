@@ -421,6 +421,8 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
     
     variances[dependentVariable][independentVariable] = homogeneous;
     
+    console.log(getObjectLength(variances[dependentVariable]));
+    
     if(getObjectLength(variances[dependentVariable]) == (currentVariableSelection.length - 1))
     {       
         var variableList = sort(currentVariableSelection);
