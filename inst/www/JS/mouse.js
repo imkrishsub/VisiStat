@@ -6,29 +6,15 @@ function OnMouseDown(e)
     var target = e.target != null ? e.target : e.srcElement;
    
     if(!freezeMouseEvents)
-    {
-        if((e.button == 1 && window.event != null || e.button == 0))
-        {
-            console.log("help = " + help);
-        }
-        
+    {        
         if(help)
         {
-            if((e.button == 1 && window.event != null || e.button == 0))
-            {
-                console.log(target.className);
-                console.log(target.className.baseVal);
-            }
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "plot"))
             {
                 setup(e, target);
                 
                 var visualisation = currentVisualisationSelection;
                 var descriptionLabel = d3.select("#descriptionLabel");
-                
-                console.log("you clicked on plot");
-                
-                console.log("text to be displayed: " + description[visualisation]);
                 
                 descriptionLabel.text(description[visualisation]);                
             }
