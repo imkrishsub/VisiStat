@@ -9,7 +9,15 @@ function OnMouseDown(e)
     {
         if(help)
         {
-            
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "plot"))
+            {
+                setup(e, target);
+                
+                var visualisation = currentVisualisationSelection;
+                var descriptionLabel = d3.select("#descriptionLabel");
+                
+                descriptionLabel.text(description[visualisation]);                
+            }
         }
         else
         {
@@ -575,7 +583,23 @@ function OnMouseDown(e)
                     var description = d3.select("body").append("div");                
                     description.attr("id", "descriptionPanel")
                          .attr("style", "width: " + width + "px; height: " + (height - canvasHeight) + "px; top: " + canvasHeight + "px;");
-            
+                    
+                    description.append("label")
+                                .attr("id", "descriptionLabel");
+                         
+                    var plotCanvas = d3.select("#plotCanvas");
+                    
+                    plotCanvas.append("rect")
+                                .attr("x", 0)
+                                .attr("y", 0)
+                                .attr("width", plotWidth + 2*axesOffset)
+                                .attr("height", plotHeight + 2*axesOffset)
+                                .attr("rx", "10px")
+                                .attr("ry", "10px")
+                                .attr("fill", "white")
+                                .attr("stroke", "black")
+                                .attr("opacity", "0.5")
+                                .attr("class", "plot");            
                 }
                 else
                 {
@@ -923,7 +947,12 @@ function OnMouseOver(e)
     {
         if(help)
         {
-            d3.select("body").attr("cursor", "help");
+            if(target.className.baseVal == "")
+            {
+                setup(e, target);
+                
+                d3.select("#" + target.id + "." + target.className.baseVal);
+            }
         }
         else
         {
