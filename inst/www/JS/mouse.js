@@ -17,8 +17,8 @@ function OnMouseDown(e)
                 var helpText = d3.select("#descriptionLabel");
                 
                 console.log(visualisation);
-                console.dir(description);
-                helpText.text(description[visualisation]);                
+                console.dir(desc);
+                helpText.text(desc[visualisation]);                
             }
         }
         else
