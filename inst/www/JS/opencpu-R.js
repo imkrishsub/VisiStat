@@ -263,7 +263,7 @@ function performHomoscedasticityTestNormal(dependent, independent)
                             }
                             else
                             {
-                                performANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                                performOneWayANOVA(variableList["dependent"][0], variableList["independent"][0]);
                             }                                        
                         }
                     }

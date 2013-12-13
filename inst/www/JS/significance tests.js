@@ -238,13 +238,14 @@ function performWilcoxonTest(groupA, groupB)
     });
 }
 
-function performANOVA(dependentVariable, independentVariable)
+function performOneWayANOVA(dependentVariable, independentVariable)
 {
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performANOVA", {
-                    dataset: dataset,
+    var req = opencpu.r_fun_json("performOneWayANOVA", {                    
                     dependentVariable: dependentVariable,
-                    independentVariable: independentVariable                   
+                    independentVariable: independentVariable,
+                    participantVariable: participants,
+                    dataset: dataset,
                   }, function(output) {                                                   
                   
                   var variableList = getSelectedVariables();
@@ -252,7 +253,7 @@ function performANOVA(dependentVariable, independentVariable)
                   console.log("\t\t One-way ANOVA for (" + dependentVariable + " ~ " + independentVariable + ")");
                   console.log("\t\t\t F = " + output.F);
                   console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t method used = One-way ANOVA"); //todo
+                  console.log("\t\t\t method used = One-way ANOVA"); 
                   console.log("\t\t\t DF = " + output.DOF);
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   

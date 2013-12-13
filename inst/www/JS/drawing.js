@@ -1015,7 +1015,7 @@ function displayANOVAResults()
    
     var tabWidth = sideBarWidth/(levels.length);    
     var tabHeight = scaleForWindowSize(25);
-    var fontSizeTabText = scaleForWindowSize(14);
+    var fontSizeTabText = scaleForWindowSize(12);
     
     var currentX = 0;
     

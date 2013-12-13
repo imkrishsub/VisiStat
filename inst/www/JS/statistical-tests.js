@@ -357,7 +357,7 @@ function setDistribution(dependentVariable, level, normal)
                         else
                         {
                             //> 2 variables
-                            performANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                            performOneWayANOVA(variableList["dependent"][0], variableList["independent"][0]);
                         }                    
                     }
                 }

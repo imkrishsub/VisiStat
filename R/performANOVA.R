@@ -1,17 +1,13 @@
-performANOVA <- function(dependentVariable = "", independentVariable = "", dataset = "")
+performOneWayANOVA <- function(dependentVariable, independentVariable, participantVariable, dataset)
 {       
     table <- as.data.frame(dataset);
     
-    model <- eval(parse(text = paste("lm(formula = ", dependentVariable, " ~ ", independentVariable, ", data = table)", sep="")));
-  
-    result <- anova(model);
+    install.packages("ez");
+    library(ez);
     
-    install.packages("MBESS");
-    library(MBESS);
+    result = eval(parse(text = paste("ezANOVA(table, dv = ", dependentVariable,", wid = ", participantVariable, ", between = ", independentVariable, ")", sep="")));
     
-    n = eval(parse(text = paste("length(table$",dependentVariable,")")));
+    result = result$ANOVA;
     
-    es = ci.pvaf(result[["F value"]][1], result[["Df"]][1], result[["Df"]][2], n);
-  
-    list(F = result[["F value"]][1], DOF = result[["Df"]][1], p = result[["Pr(>F)"]][1], etaSquared = es[["Upper.Limit.Proportion.of.Variance.Accounted.for"]]);
+    list(numDF = result$DFn, denomDF = result$DFd, F = result$F, p = result$p, etaSquared = result$ges);
 }
