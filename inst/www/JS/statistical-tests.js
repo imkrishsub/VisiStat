@@ -308,16 +308,12 @@ function setDistribution(dependentVariable, level, normal)
                 drawBoxPlotInRed(variableList["independent-levels"][i]);
                 drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "notnormal");
             }
-            else
-            {
-                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
-                 
-                drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "normal");
-            }
         }
         
         if(normal)
-        {         
+        {   
+            d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+            
             console.log("\n\tAll distributions are normal!");
             
             d3.select("#normality.ticks").attr("display", "inline");  

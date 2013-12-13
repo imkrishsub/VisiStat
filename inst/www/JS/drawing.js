@@ -553,7 +553,7 @@ function loadAssumptionCheckList(type)
     
     var title = canvas.append("text")
             .attr("x", sideBarWidth/2)
-            .attr("y", scaleForWindowSize(30))
+            .attr("y", assumptionOffsetTop)
             .attr("font-size", fontSizeAssumptionsTitle + "px")
             .attr("text-anchor", "middle")
             .attr("opacity", "0.2")
@@ -581,7 +581,7 @@ function loadAssumptionCheckList(type)
                     .attr("class", "assumptionsButtonBack");
                     
             canvas.append("text")
-                .attr("x", assumptionImageSize*1.25)
+                .attr("x", assumptionImageSize*1.25 + assumptionImageSize/2)
                 .attr("y", i*assumptionStep + assumptionOffsetTop - 5)
                 .attr("font-size", fontSizeAssumptions + "px")
                 .attr("fill", "black")
