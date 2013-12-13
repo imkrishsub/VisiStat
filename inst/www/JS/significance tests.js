@@ -317,6 +317,8 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                     testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
                   }
                   
+                  console.dir(testResults["df"]);
+                  
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
