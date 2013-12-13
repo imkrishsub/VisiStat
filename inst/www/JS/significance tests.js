@@ -289,27 +289,31 @@ function performANOVA(dependentVariable, independentVariable)
     });
 }
 
-function performTwoWayANOVA(dependentVariable, independentVariableA, independentVariableB)
+function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGroupVariableB)
 {
     // (dataset, dependentVariable, independentVariableA, independentVariableB)
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performTwoWayANOVA", {
-                    dataset: dataset,
+    var req = opencpu.r_fun_json("performTwoWayANOVA", {   
+                    dataset: dataset, 
                     dependentVariable: dependentVariable,
-                    independentVariableA: independentVariableA,
-                    independentVariableB: independentVariableB
+                    participantVariable: participants,
+                    betweenGroupVariableA: betweenGroupVariableA,
+                    betweenGroupVariableB: betweenGroupVariableB
                   }, function(output) {                                                   
                   
                   var variableList = getSelectedVariables();
                   
-                  console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + independentVariableA + " + " + independentVariableB + " " + independentVariableA + "*" + independentVariableB +")");
-                  console.log("\t\t\t F = " + output.F);
+                  console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
+                  console.log("\t\t\t F values= [" + output.F + "]");
                   console.log("\t\t\t method used = Two-way ANOVA"); //todo
-                  console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
-                  console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                  console.log("\t\t\t p-values: " + output.p);
+                  console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
+                  console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
+                  console.log("\t\t\t p-values: [" + output.p + "]");
                   
-                  testResults["df"] = output.numDF + "," + output.denomDF;
+                  for(var i=0; i<(output.numDF).length; i++)
+                  {
+                    testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
+                  }
                   
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
@@ -317,7 +321,7 @@ function performTwoWayANOVA(dependentVariable, independentVariableA, independent
                   testResults["method"] = "Two-way ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
-                  testResults["formula"] = dependentVariable + " ~ " + independentVariableA + " + " + independentVariableB + " " + independentVariableA + "*" + independentVariableB;
+                  testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
                   
                   logResult();
                            
