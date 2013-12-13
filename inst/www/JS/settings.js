@@ -1,5 +1,5 @@
 // Data
-    var wd ="http://hci.rwth-aachen.de/~subramanian/datasets/" + sessionStorage.fileName +".csv"; // "/Users/krishnasubramanian/Documents/Media Informatics/Semester 4/Thesis/Implementation/Possible Datasets/Datasets/";
+    var wd = "/Users/krishnasubramanian/Documents/Media Informatics/Semester 4/Thesis/Implementation/Datasets/" + sessionStorage.fileName +".csv"; //"http://hci.rwth-aachen.de/~subramanian/datasets/" + sessionStorage.fileName +".csv";
     var pathToFile =  wd;
 
 // Skeleton
