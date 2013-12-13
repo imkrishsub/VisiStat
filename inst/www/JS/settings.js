@@ -61,8 +61,8 @@
     var rangeToFade = 3*displayDataLimit/5;
     var fontSizeForDisplayDataTitle = scaleForWindowSize(36);
     var fontSizeForDisplayDataTableElements = scaleForWindowSize(20);
-    var fontSizeLabels = scaleForWindowSize(24);
-    var fontSizeTicks = scaleForWindowSize(18);
+    var fontSizeLabels = scaleForWindowSize(20);
+    var fontSizeTicks = scaleForWindowSize(16);
     var fontSizeAssumptions = scaleForWindowSize(20);
     var fontSizeAssumptionsTitle = scaleForWindowSize(26);
     var fontSizeVariablePanel = scaleForWindowSize(20);
