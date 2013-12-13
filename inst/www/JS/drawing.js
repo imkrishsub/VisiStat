@@ -917,7 +917,7 @@ function displaySignificanceTestResults()
             .text(testResults["method"])
             .attr("class", "significanceTest");
     
-    drawParameter(parseFloat(testResults["df"]), parseFloat(testResults["parameter"]));
+    drawParameter(testResults["df"], parseFloat(testResults["parameter"]));
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
@@ -1011,7 +1011,7 @@ function displayANOVAResults()
    
     var variableList = getSelectedVariables();
     
-    var levels = [variableList["independent"][0], variableList["independent"][1], variableList["independent"][0] + ":" + variableList["independent"][1]];
+    var levels = [variableList["independent"][0], variableList["independent"][1], variableList["independent"][0] + "-" + variableList["independent"][1]];
    
     var tabWidth = sideBarWidth/(levels.length);    
     var tabHeight = scaleForWindowSize(25);
@@ -1052,6 +1052,7 @@ function displayANOVAResults()
                 .attr("opacity", "0.1")
                 .attr("fill", "url(#buttonFillNormal)")
                 .attr("id", levels[i])
+                .attr("data-index", i);
                 .attr("class", "effectButtonFront");
                       
         currentX += tabWidth;
@@ -1067,16 +1068,17 @@ function displayANOVAResults()
         }
     }   
     
-//     sideBar.append("rect")
-//                     .attr("x", 0)
-//                     .attr("y", canvasHeight/2 - 3*significanceTestResultOffset)
-//                     .attr("height", 6*significanceTestResultOffset)
-//                     .attr("width", sideBarWidth)
-//                     .attr("rx", "5px")
-//                     .attr("ry", "5px")
-//                     .attr("stroke", "grey")
-//                     .attr("fill", "none")
-//                     .attr("id", "border");
+    sideBar.append("rect")
+                    .attr("x", 0)
+                    .attr("y", canvasHeight/2 - 3*significanceTestResultOffset)
+                    .attr("height", 6*significanceTestResultOffset)
+                    .attr("width", sideBarWidth - scaleForWindowSize(10)*2)
+                    .attr("rx", "5px")
+                    .attr("ry", "5px")
+                    .attr("stroke", "grey")
+                    .attr("stroke-dasharray", "5,5")
+                    .attr("fill", "none")
+                    .attr("id", "border");
     
     //drawing
     sideBar.append("text")
@@ -1091,7 +1093,7 @@ function displayANOVAResults()
     
     
     //things that change for each effect
-    drawParameter(parseFloat(testResults["df"][0]), parseFloat(testResults["parameter"][0]));
+    drawParameter(testResults["df"][0], parseFloat(testResults["parameter"][0]));
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)

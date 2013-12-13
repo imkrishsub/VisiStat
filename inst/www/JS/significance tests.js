@@ -311,18 +311,19 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                   console.log("\t\t\t p-values: [" + output.p + "]");
                   
                   testResults["df"] = [];
+                  testResults["p"] = output.p;   
                   
                   for(var i=0; i<(output.numDF).length; i++)
                   {
                     testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
+                    testResults["p"][i] = changePValueNotation(testResults["p"][i]);
                   }
                   
                   console.dir(testResults["df"]);
                   
                   testResults["parameter"] = output.F;
-                  testResults["parameter-type"] = "F";
-                  
-                  testResults["p"] = output.p;                  
+                  testResults["parameter-type"] = "F";                 
+                                 
                   testResults["method"] = "Two-way ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
