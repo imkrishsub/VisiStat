@@ -1052,7 +1052,7 @@ function displayANOVAResults()
                 .attr("opacity", "0.1")
                 .attr("fill", "url(#buttonFillNormal)")
                 .attr("id", levels[i])
-                .attr("data-index", i);
+                .attr("data-index", i)
                 .attr("class", "effectButtonFront");
                       
         currentX += tabWidth;
