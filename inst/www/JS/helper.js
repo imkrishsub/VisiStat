@@ -239,6 +239,32 @@ function setColorsForVariables(array, element)
     return array;
 }
 
+function setColorsForVariablesWithArray(array)
+{ 
+    for(var i=0; i<variableNames.length; i++)
+    {
+        var variable = d3.select("#" + array[i] + ".variableNameHolderBack");
+        var variableText = d3.select("#" + array[i] + ".variableNameHolderText");    
+        
+        variable.attr("fill", "url(#buttonFillNormal)");  
+        variable.attr("filter", "url(#Bevel)");
+        variable.attr("stroke", "black");
+        
+        variableText.attr("fill", "black");
+    }
+    for(var i=0; i<array.length; i++)
+    {
+        var variable = d3.select("#" + array[i] + ".variableNameHolderBack");
+        var variableText = d3.select("#" + array[i] + ".variableNameHolderText");    
+        
+        variable.attr("fill", "url(#buttonFillSelected)")
+        variable.attr("filter", "none");
+        variable.attr("stroke", "none");
+        
+        variableText.attr("fill", "white");
+    } 
+}
+
 //Manages the fill colors for visualisation-holders
 function setColorsForVisualisations()
 {
