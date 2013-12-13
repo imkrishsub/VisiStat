@@ -114,6 +114,7 @@ function resetSVGCanvas()
               .attr("viewBox", "0 0 " + sideBarWidth + " " + canvasHeight);
     
     drawHelpButton();
+    drawBackButton();
 }
 
 function drawFullScreenButton()
