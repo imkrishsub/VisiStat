@@ -417,14 +417,21 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
-                  testResults["df"] = output.numDF + "," + output.denomDF;
+                  testResults["df"] = [];
+                  testResults["p"] = output.p;
+                  
+                  for(var i=0; i<(output.numDF).length; i++)
+                  {
+                    testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
+                    testResults["p"][i] = changePValueNotation(testResults["p"][i]);
+                  }
                   
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
                   testResults["method"] = "Factorial ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
-                  testResults["p"] = changePValueNotation(output.p);
+                  
                   testResults["effect-size-type"] = "eS";
                   testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable;
                            
@@ -434,8 +441,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                 removeElementsByClassName("completeLines");
                 
                 displayANOVAResults();               
-                drawButtonInSideBar("POST-HOC TESTS", "tukey");
-        
+                drawButtonInSideBar("POST-HOC TESTS", "tukey");        
       }).fail(function(){
           alert("Failure: " + req.responseText);
     });

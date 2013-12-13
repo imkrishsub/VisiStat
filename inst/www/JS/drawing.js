@@ -1022,7 +1022,7 @@ function displayANOVAResults()
     //construct the tabs
     for(var i=0; i<levels.length; i++)
     {
-        tabWidth = levels[i].length*fontSizeTabText/1.67;
+        tabWidth = levels[i].length*fontSizeTabText/1.8;
         sideBar.append("rect")
                 .attr("x", currentX)
                 .attr("y", canvasHeight/2 - 3*significanceTestResultOffset - tabHeight)
@@ -1071,7 +1071,7 @@ function displayANOVAResults()
     sideBar.append("rect")
                     .attr("x", 0)
                     .attr("y", canvasHeight/2 - 3*significanceTestResultOffset)
-                    .attr("height", 6*significanceTestResultOffset)
+                    .attr("height", 7*significanceTestResultOffset)
                     .attr("width", sideBarWidth - scaleForWindowSize(10)*2)
                     .attr("rx", "5px")
                     .attr("ry", "5px")
