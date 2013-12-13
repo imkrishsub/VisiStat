@@ -266,6 +266,7 @@ function resetMeans()
 
 function setCompareNowButtonText()
 {
+    console.log(document.getElementById("#text.doPairwiseTest"));
     var compareNowText = d3.select("#text.compareNow");
     
     var variableList = getSelectedVariables();

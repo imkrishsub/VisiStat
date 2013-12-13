@@ -275,7 +275,7 @@ function performOneWayANOVA(dependentVariable, independentVariable)
                 removeElementsByClassName("completeLines");           
 
                 displaySignificanceTestResults();      
-                drawButtonInSideBar("POST-HOC TESTS", "tukey");
+                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -384,7 +384,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                 removeElementsByClassName("completeLines");
                 
                 displaySignificanceTestResults();               
-                drawButtonInSideBar("POST-HOC TESTS", "tukey");
+                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -442,7 +442,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                 removeElementsByClassName("completeLines");
                 
                 displayANOVAResults();               
-                drawButtonInSideBar("POST-HOC TESTS", "tukey");        
+                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
       }).fail(function(){
           alert("Failure: " + req.responseText);
     });
