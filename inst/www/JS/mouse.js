@@ -651,7 +651,7 @@ function OnMouseDown(e)
                     currentVariableSelection = state.variables;
                     currentVisualisationSelection = state.visualisation;
                     
-                    setColorsForVariablesWithArray(currentVisualisationSelection);
+                    setColorsForVariablesWithArray(currentVariableSelection);
         
                     //display the current variable selection
                     console.log("\n\n\ncurrent variable selection: [" + currentVariableSelection + "]\n");
