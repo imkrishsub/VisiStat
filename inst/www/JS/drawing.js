@@ -1025,7 +1025,7 @@ function displayANOVAResults()
         tabWidth = levels[i].length*fontSizeTabText/1.67;
         sideBar.append("rect")
                 .attr("x", currentX)
-                .attr("y", canvasHeight/2 - 2*significanceTestResultOffset - tabHeight)
+                .attr("y", canvasHeight/2 - 3*significanceTestResultOffset - tabHeight)
                 .attr("width", tabWidth)
                 .attr("height", tabHeight)
                 .attr("stroke","black")
@@ -1035,7 +1035,7 @@ function displayANOVAResults()
         
         sideBar.append("text")
                 .attr("x", currentX + tabWidth/2)
-                .attr("y", canvasHeight/2 - 2*significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
+                .attr("y", canvasHeight/2 - 3*significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeTabText + "px")
                 .attr("fill", "black")
@@ -1058,8 +1058,8 @@ function displayANOVAResults()
     
     sideBar.append("rect")
                     .attr("x", 0)
-                    .attr("y", canvasHeight/2 - 2*significanceTestResultOffset)
-                    .attr("height", 5*significanceTestResultOffset)
+                    .attr("y", canvasHeight/2 - 3*significanceTestResultOffset)
+                    .attr("height", 6*significanceTestResultOffset)
                     .attr("width", sideBarWidth)
                     .attr("rx", "5px")
                     .attr("ry", "5px")
@@ -1074,7 +1074,7 @@ function displayANOVAResults()
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
             .attr("fill", "#627bf4")
-            .text(testResults["method"])
+            .text(testResults["method"][0])
             .attr("class", "significanceTest");
 
     
@@ -1086,12 +1086,12 @@ function displayANOVAResults()
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
             .attr("fill", "#627bf4")
-            .text(testResults["p"])
+            .text(testResults["p"][0])
             .attr("class", "significanceTest");
     
     
     //Effect sizes
-    drawEffectSize(parseFloat(testResults["effect-size"]));
+    drawEffectSize(parseFloat(testResults["effect-size"][0]));
 }
 
 function displayCorrelationResults()
