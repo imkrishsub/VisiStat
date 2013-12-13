@@ -504,7 +504,10 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             if(variableList["independent-levels"].length == 2)
                             {
                                 //wilcoxon signed-rank
-                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                if(pairwiseComparisons)
+                                    performPairwiseWilcoxTests("TRUE", "TRUE");
+                                else
+                                    performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
                             }
                             else
                             {   
@@ -518,7 +521,10 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             if(variableList["independent-levels"].length == 2)
                             {
                                 //Mann-Whitney U test
-                                performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                if(pairwiseComparisons)
+                                    performPairwiseWilcoxTests("TRUE", "FALSE");
+                                else
+                                    performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
                             }
                             else
                             {   
@@ -600,7 +606,10 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                             if(variableList["independent-levels"].length == 2)
                             {
                                 //2 variables
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                                if(pairwiseComparisons)
+                                    performPairwiseTTest("FALSE", "FALSE");
+                                else
+                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
                             }
                             else
                             {

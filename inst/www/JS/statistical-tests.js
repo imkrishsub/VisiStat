@@ -334,7 +334,10 @@ function setDistribution(dependentVariable, level, normal)
                     if(variableList["independent-levels"].length == 2)
                     {
                         //2 variables
-                        performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+                        if(pairwiseComparisons)
+                            performPairwiseTTest("TRUE", "TRUE");
+                        else
+                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
                     }
                     else
                     {
@@ -352,7 +355,10 @@ function setDistribution(dependentVariable, level, normal)
                         if(variableList["independent-levels"].length == 2)
                         {
                             //2 variables
-                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+                            if(pairwiseComparisons)
+                                performPairwiseTTest("TRUE", "FALSE");
+                            else
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
                         }
                         else
                         {
