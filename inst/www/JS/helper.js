@@ -738,6 +738,23 @@ function logResult()
     log.push(testResults["method"] + ", " + testResults["formula"]);
 }
 
+function getNumberOfSelectedMeans()
+{
+    var means = document.getElementsByClassName("means");
+    
+    var count = 0;
+    
+    for(var i=0; i<means.length; i++)
+    {
+        if(means[i].getAttribute("fill") == meanColors["click"])
+        {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
 
     
         

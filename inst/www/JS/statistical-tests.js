@@ -283,11 +283,11 @@ function setDistribution(dependentVariable, level, normal)
     if(distributions[dependentVariable] == undefined)
         distributions[dependentVariable] = new Object();
     
-    distributions[dependentVariable][level] = normal;
-    
+    distributions[dependentVariable][level] = normal;    
     console.log(getObjectLength(distributions[dependentVariable]));
+    console.log(getNumberOfSelectedMeans());
     
-    if(getObjectLength(distributions[dependentVariable]) == (document.getElementsByClassName("completeLines").length + 1))
+    if(getObjectLength(distributions[dependentVariable]) == getNumberOfSelectedMeans())
     {       
         //i.e., when all distributions are tested
         var variableList = getSelectedVariables();

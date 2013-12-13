@@ -556,7 +556,7 @@ function loadAssumptionCheckList(type)
             .attr("y", assumptionOffsetTop)
             .attr("font-size", fontSizeAssumptionsTitle + "px")
             .attr("text-anchor", "middle")
-            .attr("opacity", "0.2")
+            .attr("opacity", "0")
             .attr("fill", "#627bf4")
             .text("CHECKING ASSUMPTIONS")
             .attr("class", "checkingAssumptions");

@@ -585,7 +585,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
                 removeElementsByClassName("completeLines"); 
                 
                 displaySignificanceTestResults();
-//                 drawButtonInSideBar("POST-HOC TESTS", "tukey");
+                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
