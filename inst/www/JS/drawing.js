@@ -933,6 +933,136 @@ function displaySignificanceTestResults()
     drawEffectSize(parseFloat(testResults["effect-size"]));
 }
 
+function displayANOVAResults()
+{        
+    var cx = [];
+    var cy = [];
+    
+    drawButtonInSideBar("RESET MEANS", "resetMeanSelection");
+    
+    removeElementsByClassName("significanceTest");
+    if(document.getElementById("computingResultsImage") != null)
+        removeElementById("computingResultsImage");
+    
+    var means = document.getElementsByClassName("means");
+
+    var meanRefLines = [];
+    
+    var canvas = d3.select("#plotCanvas");
+
+    for(var i=0; i<means.length; i++)
+    {
+        if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "#008000"))
+        {
+            cx.push(means[i].getAttribute("cx"));
+            cy.push(means[i].getAttribute("cy"));
+        
+            meanRefLines[i] = canvas.append("line")
+                                 .attr("x1", means[i].getAttribute("cx"))
+                                 .attr("y1", means[i].getAttribute("cy"))
+                                 .attr("x2", canvasWidth/2 + plotWidth/2)
+                                 .attr("y2", means[i].getAttribute("cy"))
+                                 .attr("stroke", "black")
+                                 .attr("stroke-dasharray","5,5")
+                                 .attr("id", "meanrefLine")
+                                 .attr("class", "significanceTest");
+                                 
+                            canvas.append("line")
+                                 .attr("x1", means[i].getAttribute("cx"))
+                                 .attr("y1", means[i].getAttribute("cy"))
+                                 .attr("x2", canvasWidth/2 - plotWidth/2 - axesOffset)
+                                 .attr("y2", means[i].getAttribute("cy"))
+                                 .attr("stroke", "black")
+                                 .attr("opacity", "0.25")
+                                 .attr("stroke-dasharray","5,5")
+                                 .attr("id", "meanrefLine")
+                                 .attr("class", "significanceTest");
+        }
+        else
+        {									
+            cx.splice(i, 1);
+            cy.splice(i, 1);								
+        }	
+    }
+
+    var cyMax = Math.max.apply(Math, cy);
+    var cyMin = Math.min.apply(Math, cy);		   	 
+
+    var differenceLine = canvas.append("line")
+                            .attr("x1", canvasWidth/2 + plotWidth/2)
+                            .attr("y1", cyMin)
+                            .attr("x2", canvasWidth/2 + plotWidth/2)
+                            .attr("y2", cyMax)
+                            .attr("stroke", "red")
+                            .attr("stroke-width", "2px")
+                            .attr("class", "significanceTest");
+
+    var x = canvasWidth/2 + plotWidth/2;
+    var y = cyMin;			 
+    var head = canvas.append("path")
+                  .attr("d", "M " + x + " " + y + " L " + (x-5)+ " " + (y+5) + " L " + (x+5) + " " + (y+5) + " z")
+                  .attr("stroke", "red")
+                  .attr("fill", "red")
+                  .attr("class", "significanceTest");
+    
+    drawScales(cx, cy);     
+    
+    var sideBar = d3.select("#sideBarCanvas");
+    
+//     sideBar.append("text")
+//             .attr("x", sideBarWidth/2)
+//             .attr("y", canvasHeight/2 + significanceTestResultOffset)
+//             .attr("text-anchor", "middle")
+//             .attr("font-size", fontSizeSignificanceTestResults + "px")
+//             .attr("fill", "#627bf4")
+//             .text(testResults["method"])
+//             .attr("class", "significanceTest");
+//     
+//     drawParameter(parseFloat(testResults["parameter"]));
+    
+    var variableList = getSelectedVariables();
+    
+    var levels = [variableList["independent"][0], variableList["independent"][1], variableList["independent"][0] + ":" + variableList["independent"][1]];
+    var tabWidth = sideBarWidth/(levels.length - 1);    
+    var tabHeight = scaleForWindowSize(25);
+    
+    //construct the tabs
+    for(var i=0; i<levels.length; i++)
+    {
+        sideBar.append("rect")
+                .attr("x", 0 + i*tabWidth)
+                .attr("y", canvasHeight/2 + significanceTestResultOffset - tabHeight)
+                .attr("width", tabWidth)
+                .attr("height", tabHeight)
+                .attr("stroke","black")
+                .attr("id", levels[i])
+                .attr("class", "rect");
+        
+        sideBar.append("text")
+                .attr("x", tabWidth/2 + i*tabWidth)
+                .attr("y", canvasHeight/2 + significanceTestResultOffset)
+                .attr("text-anchor", "middle")
+                .attr("font-size", fontSizeTabText + "px")
+                .attr("fill", "black")
+                .attr("id", levels[i])
+                .text(levels[i])
+                .attr("class", "text");                
+    }    
+    
+    sideBar.append("text")
+            .attr("x", sideBarWidth/2)
+            .attr("y", canvasHeight/2 + 3*significanceTestResultOffset)
+            .attr("text-anchor", "middle")
+            .attr("font-size", fontSizeSignificanceTestResults + "px")
+            .attr("fill", "#627bf4")
+            .text(testResults["p"])
+            .attr("class", "significanceTest");
+    
+    
+    //Effect sizes
+//     drawEffectSize(parseFloat(testResults["effect-size"]));
+}
+
 function displayCorrelationResults()
 {     
     var sideBar = d3.select("#sideBarCanvas");

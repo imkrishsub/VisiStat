@@ -100,7 +100,7 @@ function performOneSampleWilcoxonTest(variable, level)
     });
 }  
 
-function performTTest(groupA, groupB, varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
+function performTTest(groupA, groupB, varianceEqual, paired) 
 {
     // Get variable names and their data type
     var req = opencpu.r_fun_json("performTTest", {
@@ -325,7 +325,7 @@ function performTwoWayANOVA(dependentVariable, independentVariableA, independent
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
 
-                displaySignificanceTestResults();  
+                displayANOVAResults();  
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -423,7 +423,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                 //drawing stuff
                 removeElementsByClassName("completeLines");
                 
-                displaySignificanceTestResults();               
+                displayANOVAResults();               
                 drawButtonInSideBar("POST-HOC TESTS", "tukey");
         
       }).fail(function(){
