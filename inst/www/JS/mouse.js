@@ -641,6 +641,10 @@ function OnMouseDown(e)
                     
                     var state = states.pop();
                     
+                    console.log("state: " + state);
+                    
+                    console.dir(states);
+                    
                     currentVariableSelection = state.variables;
                     currentVisualisationSelection = state.visualisation;
                     
