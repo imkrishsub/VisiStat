@@ -893,29 +893,31 @@ function OnMouseDown(e)
                     removeElementsByClassName("significanceTest");
                     removeElementsByClassName("effectSize");
                     
-                     sideBar.append("text")
-                            .attr("x", sideBarWidth/2)
-                            .attr("y", canvasHeight/2 + significanceTestResultOffset)
-                            .attr("text-anchor", "middle")
-                            .attr("font-size", fontSizeSignificanceTestResults + "px")
-                            .attr("fill", "#627bf4")
-                            .text(testResults["method"])
-                            .attr("class", "significanceTest");
+                    console.log("index = " + index);
                     
-                    drawParameter(testResults["df"][index], parseFloat(testResults["parameter"][index]));
-    
-                    sideBar.append("text")
-                            .attr("x", sideBarWidth/2)
-                            .attr("y", canvasHeight/2 + 3*significanceTestResultOffset)
-                            .attr("text-anchor", "middle")
-                            .attr("font-size", fontSizeSignificanceTestResults + "px")
-                            .attr("fill", "#627bf4")
-                            .text(testResults["p"][index])
-                            .attr("class", "significanceTest");
-    
-    
-                    //Effect sizes
-                    drawEffectSize(parseFloat(testResults["effect-size"][index]));
+//                     sideBar.append("text")
+//                             .attr("x", sideBarWidth/2)
+//                             .attr("y", canvasHeight/2 + significanceTestResultOffset)
+//                             .attr("text-anchor", "middle")
+//                             .attr("font-size", fontSizeSignificanceTestResults + "px")
+//                             .attr("fill", "#627bf4")
+//                             .text(testResults["method"])
+//                             .attr("class", "significanceTest");
+//                     
+//                     drawParameter(testResults["df"][index], parseFloat(testResults["parameter"][index]));
+//     
+//                     sideBar.append("text")
+//                             .attr("x", sideBarWidth/2)
+//                             .attr("y", canvasHeight/2 + 3*significanceTestResultOffset)
+//                             .attr("text-anchor", "middle")
+//                             .attr("font-size", fontSizeSignificanceTestResults + "px")
+//                             .attr("fill", "#627bf4")
+//                             .text(testResults["p"][index])
+//                             .attr("class", "significanceTest");
+//     
+//     
+//                     //Effect sizes
+//                     drawEffectSize(parseFloat(testResults["effect-size"][index]));
                 }
             }
     

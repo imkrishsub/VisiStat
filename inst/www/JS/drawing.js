@@ -1059,11 +1059,11 @@ function displayANOVAResults()
         
         if(i == 0)
         {
-            d3.select("#" + levels[i] + ".rect")
+            d3.select("#" + levels[i] + ".effectButtonBack")
                 .attr("stroke", "none")
                 .attr("fill", "url(#buttonFillSelected)");
             
-            d3.select("#" + levels[i] + ".text")
+            d3.select("#" + levels[i] + ".effectButtonText")
                 .attr("fill", "white");
         }
     }   
