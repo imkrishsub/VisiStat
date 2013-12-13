@@ -883,8 +883,6 @@ function displaySignificanceTestResults()
     var cx = [];
     var cy = [];
     
-    drawButtonInSideBar("RESET MEANS", "resetMeanSelection");
-    
     removeElementsByClassName("significanceTest");
     if(document.getElementById("computingResultsImage") != null)
         removeElementById("computingResultsImage");
@@ -983,8 +981,6 @@ function displayANOVAResults()
 {        
     var cx = [];
     var cy = [];
-    
-    drawButtonInSideBar("RESET MEANS", "resetMeanSelection");
     
     removeElementsByClassName("significanceTest");
     if(document.getElementById("computingResultsImage") != null)
