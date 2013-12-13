@@ -367,7 +367,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
-                  testResults["df"] = output.numDF + "," + output.denomDF;
+                  testResults["df"] = output.numDF + ", " + output.denomDF;
                   
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";

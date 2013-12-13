@@ -170,6 +170,48 @@ function drawHelpButton()
             .attr("class", "helpButtonFront");
 }
 
+function drawBackButton()
+{
+    var sideBar = d3.select("#sideBarCanvas");
+    var helpButtonHeight = scaleForWindowSize(75);
+    var helpButtonWidth = scaleForWindowSize(60);
+    
+    var helpButtonOffset = scaleForWindowSize(25);
+    
+    var offset = 2;
+    
+    sideBar.append("rect")
+            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
+            .attr("y", canvasHeight - helpButtonHeight - helpButtonOffset)
+            .attr("rx", "15px")
+            .attr("ry", "15px")
+            .attr("height", helpButtonHeight)
+            .attr("width", helpButtonWidth)
+            .attr("fill", "url(#buttonFillNormal)")
+            .attr("filter", "url(#Bevel)")
+            .attr("stroke", "black")
+            .attr("class", "backButtonBack");
+    
+    sideBar.append("text")
+            .attr("x", sideBarWidth - offset*(helpButtonWidth/2 + helpButtonOffset))
+            .attr("y", canvasHeight - helpButtonHeight/3 - helpButtonOffset)
+            .attr("font-size", scaleForWindowSize(48))
+            .attr("text-anchor", "middle")
+            .attr("fill", "black")
+            .text("<")
+            .attr("class", "backButtonText");
+    
+    sideBar.append("rect")
+            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
+            .attr("y", canvasHeight - helpButtonHeight - helpButtonOffset)
+            .attr("rx", "15px")
+            .attr("ry", "15px")
+            .attr("height", helpButtonHeight)
+            .attr("width", helpButtonWidth)
+            .attr("opacity", "0.1")
+            .attr("class", "backButtonFront");
+}
+
 function drawButtonInSideBar(buttonText, className, offset)
 {
     if(offset == undefined)

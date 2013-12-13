@@ -10,6 +10,8 @@ var splitData = new Object();
 var variableNames = new Array();
 var colourBoxPlotData = new Object();
 
+var states = new Array();
+
 var variableCount = 0;
 
 var currentVariableSelection = [];    

@@ -56,6 +56,8 @@ function OnMouseDown(e)
                 restrictVisualisationSelection();      
                 plotVisualisation(); //checks which plot is selected and draws that plot
                 setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
+                
+                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection});
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
@@ -64,6 +66,8 @@ function OnMouseDown(e)
                 currentVisualisationSelection = target.id;        
                 setColorsForVisualisations();        
                 plotVisualisation();
+                
+                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection});
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
@@ -621,6 +625,36 @@ function OnMouseDown(e)
                                 .attr("stroke", "black")
                                 .attr("opacity", "0.1")
                                 .attr("class", "plot");            
+                }
+            }
+            
+            else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "backButtonFront")
+            {
+                setup(e, target);
+            
+                var backButton = d3.select(".backButtonBack");
+                var backButtonText = d3.select(".backButtonText");
+            
+                if(backButton.attr("stroke") == "black")
+                {
+                    console.log(states.pop());
+                    
+                    var state = states.pop();
+                    
+                    currentVariableSelection = state.variables;
+                    currentVisualisationSelection = state.visualisation;
+                    
+                    // currentVariableSelection = setColorsForVariables(currentVariableSelection, target.id);
+        
+                    //display the current variable selection
+                    console.log("\n\n\ncurrent variable selection: [" + currentVariableSelection + "]\n");
+        
+                    removeElementsByClassName("displayDataTable");
+                    removeElementsByClassName("displayDataText");
+                    
+                    restrictVisualisationSelection();      
+                    plotVisualisation(); //checks which plot is selected and draws that plot
+                    setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
                 }
             }
     
@@ -1312,7 +1346,18 @@ function OnMouseOver(e)
             
                 helpButton.attr("cursor", "pointer");
                 helpButtonText.attr("cursor", "pointer");
-            }    
+            } 
+            
+            else if(target.className.baseVal == "backButtonFront")
+            {
+                setup(e, target);
+            
+                var backButton = d3.select(".backButtonFront");
+                var backButtonText = d3.select(".backButtonText");
+            
+                backButton.attr("cursor", "pointer");
+                backButtonText.attr("cursor", "pointer");
+            } 
     
             else if(target.className.baseVal == "outliers")
             {
