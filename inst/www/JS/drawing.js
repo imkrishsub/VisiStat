@@ -1037,6 +1037,7 @@ function displayANOVAResults()
                 .attr("width", tabWidth)
                 .attr("height", tabHeight)
                 .attr("stroke","black")
+                .attr("fill", "none")
                 .attr("id", levels[i])
                 .attr("class", "rect");
         
