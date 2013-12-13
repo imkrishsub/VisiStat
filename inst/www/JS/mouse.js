@@ -643,7 +643,7 @@ function OnMouseDown(e)
                 {
                     console.log(states.pop());
                     
-                    var state = states.pop();
+                    var state = states[states.length - 1];
                     
                     console.dir(state);                    
                     console.dir(states);
