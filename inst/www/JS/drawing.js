@@ -1028,13 +1028,14 @@ function displayANOVAResults()
     var tabHeight = scaleForWindowSize(25);
     var fontSizeTabText = scaleForWindowSize(14);
     
+    var currentX = 0;
+    
     //construct the tabs
     for(var i=0; i<levels.length-2; i++)
     {
-        tabWidth = levels[i].length*fontSizeTabText/1.5;
-        
+        tabWidth = levels[i].length*fontSizeTabText/1.67;
         sideBar.append("rect")
-                .attr("x", 0 + i*tabWidth)
+                .attr("x", currentX + tabWidth)
                 .attr("y", canvasHeight/2 + significanceTestResultOffset - tabHeight)
                 .attr("width", tabWidth)
                 .attr("height", tabHeight)
@@ -1044,14 +1045,16 @@ function displayANOVAResults()
                 .attr("class", "rect");
         
         sideBar.append("text")
-                .attr("x", tabWidth/2 + i*tabWidth)
+                .attr("x", currentX + tabWidth/2 + tabWidth)
                 .attr("y", canvasHeight/2 + significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeTabText + "px")
                 .attr("fill", "black")
                 .attr("id", levels[i])
                 .text(levels[i])
-                .attr("class", "text");                
+                .attr("class", "text");      
+                
+        currentX += tabWidth;
     }    
     
     sideBar.append("text")
