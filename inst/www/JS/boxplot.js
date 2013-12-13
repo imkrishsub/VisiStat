@@ -800,13 +800,14 @@ function selectAllMeans()
             var line = plotCanvas.append("line")
                         .attr("x1", means[i].getAttribute("cx"))
                         .attr("y1", means[i].getAttribute("cy"))
-                        .attr("x2", means[i].getAttribute("cx"))
-                        .attr("y2", means[i].getAttribute("cy"))
+                        .attr("x2", means[i+1].getAttribute("cx"))
+                        .attr("y2", means[i+1].getAttribute("cy"))
                         .attr("stroke", meanColors["click"])
+                        .attr("opacity", "0.1")
                         .attr("stroke-dasharray", "5,5")
                         .attr("class", "completeLines");
             
-            line.transition().delay(500).duration(500).attr("x2", means[i+1].getAttribute("cx")).attr("y2", means[i+1].getAttribute("cy"));            
+            line.transition().delay(500).duration(500).attr("opacity", "1.0");
         }
     }
 }

@@ -761,7 +761,7 @@ function OnMouseDown(e)
                 removeElementsByClassName("assumptionsButtonBack");
                 removeElementsByClassName("ticks");
                 removeElementsByClassName("crosses");
-                removeElementsByClassName("tukey");
+                removeElementsByClassName("pairwisePostHoc");
                 removeElementsByClassName("loading");
                 removeElementsByClassName("selectNone");
                 removeElementsByClassName("selectAll");
