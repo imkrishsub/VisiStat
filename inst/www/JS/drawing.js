@@ -194,7 +194,7 @@ function drawBackButton()
             .attr("class", "backButtonBack");
     
     sideBar.append("text")
-            .attr("x", sideBarWidth - offset*(helpButtonWidth/2 + helpButtonOffset))
+            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset) + helpButtonWidth/2)
             .attr("y", canvasHeight - helpButtonHeight/3 - helpButtonOffset)
             .attr("font-size", scaleForWindowSize(48))
             .attr("text-anchor", "middle")
