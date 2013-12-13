@@ -556,11 +556,12 @@ function loadAssumptionCheckList(type)
             .attr("y", 30 + assumptionOffsetTop)
             .attr("font-size", fontSizeAssumptionsTitle + "px")
             .attr("text-anchor", "middle")
+            .attr("opacity", "0.2")
             .attr("fill", "#627bf4")
             .text("CHECKING ASSUMPTIONS")
             .attr("class", "checkingAssumptions");
     
-    title.transition().delay(500).duration(800).attr("y", assumptionOffsetTop - 50);
+    title.transition().delay(500).duration(700).attr("opacity", "1.0").attr("y", assumptionOffsetTop - 50);
     
     //timer for 500 ms
     setTimeout(function(){
