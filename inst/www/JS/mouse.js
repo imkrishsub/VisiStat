@@ -763,6 +763,8 @@ function OnMouseDown(e)
                 removeElementsByClassName("crosses");
                 removeElementsByClassName("tukey");
                 removeElementsByClassName("loading");
+                removeElementsByClassName("selectNone");
+                removeElementsByClassName("selectAll");
         
                 pairwiseComparisons = true;
         
