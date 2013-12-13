@@ -58,6 +58,8 @@ function OnMouseDown(e)
                 setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
                 
                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection});
+                
+                console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
@@ -68,6 +70,8 @@ function OnMouseDown(e)
                 plotVisualisation();
                 
                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection});
+                
+                console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
