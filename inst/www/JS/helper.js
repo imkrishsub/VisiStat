@@ -254,6 +254,8 @@ function setColorsForVariablesWithArray(array)
         
         variableText.attr("fill", "black");
     }
+    
+    console.dir(array);
     for(var i=0; i<array.length; i++)
     {
         var variable = d3.select("#" + array[i] + ".variableNameHolderBack");
