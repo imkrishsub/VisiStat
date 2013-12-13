@@ -254,16 +254,16 @@ function performOneWayANOVA(dependentVariable, independentVariable)
                   console.log("\t\t\t F = " + output.F);
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t method used = One-way ANOVA"); 
-                  console.log("\t\t\t DF = " + output.DOF);
+                  console.log("\t\t\t DF = " + output.numDF + ", " + output.denomDF);
                   console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
-                  testResults["df"] = output.DOF;
+                  testResults["df"] = output.numDF + ", " + output.denomDF;
                   
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
                   testResults["p"] = changePValueNotation(output.p);   
-                  testResults["method"] = "ANOVA"; //todo
+                  testResults["method"] = "One-way ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";
                   testResults["formula"] = variableList["dependent"][0] + " ~ " + variableList["independent"][0] + "(" + variableList["independent-levels"] + ")";
