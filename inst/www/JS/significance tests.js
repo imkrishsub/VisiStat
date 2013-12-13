@@ -764,7 +764,7 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
 
 
 //POST-HOC TESTS
-function performPairwiseTTest(varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
+function performPairwiseTTest(varianceEqual, paired) 
 {
     var variableList = getSelectedVariables();
     
@@ -778,20 +778,18 @@ function performPairwiseTTest(varianceEqual, paired) //groupA, groupB, paired = 
                     dependentVariableName: variableList["dependent"][0], 
                     levelA: variableList["independent-levels"][0],
                     levelB: variableList["independent-levels"][1]
-                  }, function(output) {                                                   
-                  
-
-                    console.log("\t\t " + output.method);
+                  }, function(output) {     
+  
+                  console.log("\t\t " + output.method);
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t t = " + output.t);
-                  console.log("\t\t\t d = " + output.d);
-                  
+                  console.log("\t\t\t d = " + output.d);                  
                   
                   testResults["parameter"] = output.t;
                   testResults["parameter-type"] = "t";
                   
                   testResults["p"] = changePValueNotation(output.p); 
-                  testResults["method"] = "Pairwise t-test with Bonferroni correction";
+                  testResults["method"] = "Pairwise t-test";
                   testResults["effect-size"] = output.d;
                   testResults["effect-size-type"] = "d";
                   
@@ -841,7 +839,7 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
                   
                   testResults["p"] = changePValueNotation(output.p);                  
                   testResults["effect-size"] = output.r;
-                  testResults["method"] = "Pairwise Wilcox-test";
+                  testResults["method"] = "Pairwise Wilcoxon-test";
                   testResults["effect-size-type"] = "r";                  
                   
                   logResult();
