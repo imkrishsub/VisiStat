@@ -335,7 +335,8 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                   findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
-
+                
+                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
                 displayANOVAResults();  
         
       }).fail(function(){
@@ -492,7 +493,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
                 removeElementsByClassName("completeLines");           
 
                 displaySignificanceTestResults();   
-                drawButtonInSideBar("POST-HOC TESTS", "tukey");
+                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -528,8 +529,8 @@ function findEffect(dependentVariable, independentVariables)
                 }
                 interactions = output.fit;
                 
-                drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");
-                drawButtonInSideBar("POST-HOC TESTS", "tukey", 1);
+//                 drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");
+//                 drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc", 1);
                 //drawing stuff
 //                 removeElementsByClassName("completeLines");           
 // 
@@ -634,7 +635,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                 removeElementsByClassName("completeLines");   
                 
                 displaySignificanceTestResults();
-                drawButtonInSideBar("POST-HOC TESTS", "tukey");
+                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
         
       }).fail(function(){
           alert("Failure: " + req.responseText);

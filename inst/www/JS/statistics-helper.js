@@ -266,20 +266,41 @@ function resetMeans()
 
 function setCompareNowButtonText()
 {
-    console.log(document.getElementById("#text.doPairwiseTest"));
-    var compareNowText = d3.select("#text.compareNow");
+    if(document.getElementById("#text.doPairwiseTest") == null)
+    {
+        var compareNowText = d3.select("#text.compareNow");
     
-    var variableList = getSelectedVariables();
+        var variableList = getSelectedVariables();
     
-    if(variableList["independent"].length == 0)
-    {  
-        if(variableList["dependent"].length == 0)
-            compareNowText.text("SELECT ONE OR MORE MEANS");    
+        if(variableList["independent"].length == 0)
+        {  
+            if(variableList["dependent"].length == 0)
+                compareNowText.text("SELECT ONE OR MORE MEANS");    
+            else
+                compareNowText.text("TEST AGAINST POPULATION MEAN");    
+        }
         else
-            compareNowText.text("TEST AGAINST POPULATION MEAN");    
+        {
+            switch(variableList["independent-levels"].length)
+            {
+                case 0:
+                        compareNowText.text("SELECT TWO OR MORE MEANS");    
+                        break
+                case 1:
+                        compareNowText.text("SELECT TWO OR MORE MEANS");    
+                        break;
+            
+                default:
+                        compareNowText.text("COMPARE MEANS");
+                        break;
+            }
+        }
     }
     else
     {
+        var compareNowText = d3.select("#text.doPairwiseTest");    
+        var variableList = getSelectedVariables();    
+
         switch(variableList["independent-levels"].length)
         {
             case 0:
@@ -288,7 +309,7 @@ function setCompareNowButtonText()
             case 1:
                     compareNowText.text("SELECT TWO OR MORE MEANS");    
                     break;
-            
+        
             default:
                     compareNowText.text("COMPARE MEANS");
                     break;
