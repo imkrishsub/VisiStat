@@ -1031,7 +1031,7 @@ function displayANOVAResults()
                 .attr("stroke","black")
                 .attr("fill", "url(#buttonFillNormal)")
                 .attr("id", levels[i])
-                .attr("class", "rect");
+                .attr("class", "effectButtonBack");
         
         sideBar.append("text")
                 .attr("x", currentX + tabWidth/2)
@@ -1041,7 +1041,18 @@ function displayANOVAResults()
                 .attr("fill", "black")
                 .attr("id", levels[i])
                 .text(levels[i])
-                .attr("class", "text");  
+                .attr("class", "effectButtonText");  
+        
+        sideBar.append("rect")
+                .attr("x", currentX)
+                .attr("y", canvasHeight/2 - 3*significanceTestResultOffset - tabHeight)
+                .attr("width", tabWidth)
+                .attr("height", tabHeight)
+                .attr("stroke","black")
+                .attr("opacity", "0.1")
+                .attr("fill", "url(#buttonFillNormal)")
+                .attr("id", levels[i])
+                .attr("class", "effectButtonFront");
                       
         currentX += tabWidth;
         
@@ -1056,16 +1067,16 @@ function displayANOVAResults()
         }
     }   
     
-    sideBar.append("rect")
-                    .attr("x", 0)
-                    .attr("y", canvasHeight/2 - 3*significanceTestResultOffset)
-                    .attr("height", 6*significanceTestResultOffset)
-                    .attr("width", sideBarWidth)
-                    .attr("rx", "5px")
-                    .attr("ry", "5px")
-                    .attr("stroke", "grey")
-                    .attr("fill", "none")
-                    .attr("id", "border");
+//     sideBar.append("rect")
+//                     .attr("x", 0)
+//                     .attr("y", canvasHeight/2 - 3*significanceTestResultOffset)
+//                     .attr("height", 6*significanceTestResultOffset)
+//                     .attr("width", sideBarWidth)
+//                     .attr("rx", "5px")
+//                     .attr("ry", "5px")
+//                     .attr("stroke", "grey")
+//                     .attr("fill", "none")
+//                     .attr("id", "border");
     
     //drawing
     sideBar.append("text")

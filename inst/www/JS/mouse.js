@@ -869,6 +869,25 @@ function OnMouseDown(e)
                     }
                 }
             }
+            
+            else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "effectButtonFront")
+            {
+                setup(e, target);
+                
+                var effectButton = d3.select("#" + target.id + ".effectButtonBack");
+                var effectButtonText = d3.select("#" + target.id + ".effectButtonText");
+                
+                if(effectButton.attr("stroke") == "black")
+                {
+                    d3.selectAll(".effectButtonBack").attr("fill", "url(#buttonFillNormal)").attr("stroke", "black");
+                    d3.selectAll(".effectButtonText").attr("fill", "black");
+                    
+                    effectButton.attr("fill", "url(#buttonFillSelected)")
+                                .attr("stroke", "none");
+                    
+                    effectButtonText.attr("fill", "white");
+                }
+            }
     
             else
             {
@@ -1496,6 +1515,16 @@ function OnMouseOver(e)
                 setup(e, target);
         
                 d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
+            }
+            
+            else if(target.className.baseVal == "effectButtonFront")
+            {
+                setup(e, target);
+                
+                var effectButton = d3.select("#" + target.id + ".effectButtonFront");
+                
+                if(d3.select("#" + target.id + ".effectButtonBack").attr("stroke") == "black")
+                    effectButton.attr("cursor", "pointer");
             }
         }
     }
