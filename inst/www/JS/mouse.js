@@ -1386,12 +1386,11 @@ function OnMouseOver(e)
                         .attr("class", "hover");    
         
                 canvas.append("text")
-                        .attr("x", mouseX + 10)
-                        .attr("y", mouseY + 15)
+                        .attr("x", mouseX + scaleForWindowSize(25))
+                        .attr("y", mouseY + scaleForWindowSize(25))
                         .attr("text-anchor", "middle")
                         .text(dec2(getActualValue(outlier.attr("cy"))))
-                        .attr("class", "hover");
-                
+                        .attr("class", "hover");                
             }
     
             else if((target.className.baseVal == "TOPFringes") || (target.className.baseVal == "BOTTOMFringes"))
