@@ -426,7 +426,7 @@ function drawEffectSize(value)
     }       
 }
 
-function drawParameter(value)
+function drawParameter(DF, parameter)
 {
     var sideBar = d3.select("#sideBarCanvas");
     
@@ -453,7 +453,7 @@ function drawParameter(value)
                     .text("2");
         
         mainText.append("tspan")
-                    .text("(" + testResults["df"] + ") = " + testResults["parameter"]);
+                    .text("(" + DF + ") = " + parameter);
     }
     else
     {
@@ -466,7 +466,7 @@ function drawParameter(value)
                     .attr("text-anchor", "middle")
                     .attr("fill", "#627bf4")
                     .attr("class", "parameter")
-                    .text(type + "(" + testResults["df"] + ") = " + testResults["parameter"]);
+                    .text(type + "(" + DF + ") = " + parameter);
         }
         else
         {
@@ -477,7 +477,7 @@ function drawParameter(value)
                 .attr("font-size", fontSizeSignificanceTestResults + "px")
                 .attr("fill", "#627bf4")
                 .attr("class", "parameter")
-                .text(type + " = " + testResults["parameter"]);
+                .text(type + " = " + parameter);
         }
     }
 }    
@@ -917,7 +917,7 @@ function displaySignificanceTestResults()
             .text(testResults["method"])
             .attr("class", "significanceTest");
     
-    drawParameter(parseFloat(testResults["parameter"]));
+    drawParameter(parseFloat(testResults["df"]), parseFloat(testResults["parameter"]));
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
@@ -1080,7 +1080,7 @@ function displayANOVAResults()
     
     
     //things that change for each effect
-    drawParameter(parseFloat(testResults["parameter"][0]));
+    drawParameter(parseFloat(testResults["df"][0]), parseFloat(testResults["parameter"][0]));
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
