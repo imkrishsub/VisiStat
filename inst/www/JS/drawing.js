@@ -1031,11 +1031,11 @@ function displayANOVAResults()
     var currentX = 0;
     
     //construct the tabs
-    for(var i=0; i<levels.length-2; i++)
+    for(var i=0; i<levels.length; i++)
     {
         tabWidth = levels[i].length*fontSizeTabText/1.67;
         sideBar.append("rect")
-                .attr("x", currentX + tabWidth)
+                .attr("x", currentX)
                 .attr("y", canvasHeight/2 + significanceTestResultOffset - tabHeight)
                 .attr("width", tabWidth)
                 .attr("height", tabHeight)
@@ -1045,7 +1045,7 @@ function displayANOVAResults()
                 .attr("class", "rect");
         
         sideBar.append("text")
-                .attr("x", currentX + tabWidth/2 + tabWidth)
+                .attr("x", currentX + tabWidth/2)
                 .attr("y", canvasHeight/2 + significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeTabText + "px")
