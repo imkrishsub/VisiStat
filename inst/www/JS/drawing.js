@@ -1024,7 +1024,7 @@ function displayANOVAResults()
     
     var levels = [variableList["independent"][0], variableList["independent"][1], variableList["independent"][0] + ":" + variableList["independent"][1]];
    
-    var tabWidth = sideBarWidth/(levels.length - 1);    
+    var tabWidth = sideBarWidth/(levels.length);    
     var tabHeight = scaleForWindowSize(25);
     var fontSizeTabText = scaleForWindowSize(14);
     
@@ -1043,7 +1043,7 @@ function displayANOVAResults()
         
         sideBar.append("text")
                 .attr("x", tabWidth/2 + i*tabWidth)
-                .attr("y", canvasHeight/2 + significanceTestResultOffset)
+                .attr("y", canvasHeight/2 + significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeTabText + "px")
                 .attr("fill", "black")
