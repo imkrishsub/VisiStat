@@ -401,7 +401,7 @@ function OnMouseDown(e)
                 setTimeout(function()
                 {
                     freezeMouseEvents = false;
-                }, 1800);
+                }, 500);
         
                 removeElementsByClassName("compareMean");
             }

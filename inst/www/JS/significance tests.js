@@ -310,6 +310,8 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                   console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
                   console.log("\t\t\t p-values: [" + output.p + "]");
                   
+                  testResults["df"] = [];
+                  
                   for(var i=0; i<(output.numDF).length; i++)
                   {
                     testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
