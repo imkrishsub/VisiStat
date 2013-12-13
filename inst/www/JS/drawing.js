@@ -1036,7 +1036,7 @@ function displayANOVAResults()
         tabWidth = levels[i].length*fontSizeTabText/1.67;
         sideBar.append("rect")
                 .attr("x", currentX)
-                .attr("y", canvasHeight/2 + significanceTestResultOffset - tabHeight)
+                .attr("y", canvasHeight/2 - significanceTestResultOffset - tabHeight)
                 .attr("width", tabWidth)
                 .attr("height", tabHeight)
                 .attr("stroke","black")
@@ -1046,16 +1046,26 @@ function displayANOVAResults()
         
         sideBar.append("text")
                 .attr("x", currentX + tabWidth/2)
-                .attr("y", canvasHeight/2 + significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
+                .attr("y", canvasHeight/2 - significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeTabText + "px")
                 .attr("fill", "black")
                 .attr("id", levels[i])
                 .text(levels[i])
-                .attr("class", "text");      
-                
+                .attr("class", "text");  
+                      
         currentX += tabWidth;
-    }    
+    }   
+    
+    sideBar.append("rect")
+                    .attr("x", 0)
+                    .attr("y", canvasHeight/2 - significanceTestResultOffset)
+                    .attr("height", 4*significanceTestResultOffset)
+                    .attr("width", sideBarWidth)
+                    .attr("rx", "5px")
+                    .attr("ry", "5px")
+                    .attr("stroke", "grey")
+                    .attr("id", "border");
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
