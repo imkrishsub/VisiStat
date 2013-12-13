@@ -1023,8 +1023,10 @@ function displayANOVAResults()
     var variableList = getSelectedVariables();
     
     var levels = [variableList["independent"][0], variableList["independent"][1], variableList["independent"][0] + ":" + variableList["independent"][1]];
+   
     var tabWidth = sideBarWidth/(levels.length - 1);    
     var tabHeight = scaleForWindowSize(25);
+    var fontSizeTabText = scaleForWindowSize(14);
     
     //construct the tabs
     for(var i=0; i<levels.length; i++)
