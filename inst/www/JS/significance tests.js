@@ -320,6 +320,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
+                  testResults["p"] = output.p;                  
                   testResults["method"] = "Two-way ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["effect-size-type"] = "eS";

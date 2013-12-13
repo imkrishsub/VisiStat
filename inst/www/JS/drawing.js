@@ -1074,11 +1074,13 @@ function displayANOVAResults()
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
             .attr("fill", "#627bf4")
-            .text(testResults["method"][0])
+            .text(testResults["method"])
             .attr("class", "significanceTest");
 
     
-    drawParameter(parseFloat(testResults["parameter"]));
+    
+    //things that change for each effect
+    drawParameter(parseFloat(testResults["parameter"][0]));
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
