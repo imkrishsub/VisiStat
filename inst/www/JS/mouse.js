@@ -1730,8 +1730,6 @@ function OnMouseOut(e)
     }
 }	
 
-
-
 function setup(e, target)
 {
     // grab the mouse position
