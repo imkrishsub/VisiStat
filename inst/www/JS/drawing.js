@@ -1025,17 +1025,17 @@ function displayANOVAResults()
         tabWidth = levels[i].length*fontSizeTabText/1.67;
         sideBar.append("rect")
                 .attr("x", currentX)
-                .attr("y", canvasHeight/2 - significanceTestResultOffset - tabHeight)
+                .attr("y", canvasHeight/2 - 2*significanceTestResultOffset - tabHeight)
                 .attr("width", tabWidth)
                 .attr("height", tabHeight)
                 .attr("stroke","black")
-                .attr("fill", "none")
+                .attr("fill", "url(#buttonFillNormal)")
                 .attr("id", levels[i])
                 .attr("class", "rect");
         
         sideBar.append("text")
                 .attr("x", currentX + tabWidth/2)
-                .attr("y", canvasHeight/2 - significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
+                .attr("y", canvasHeight/2 - 2*significanceTestResultOffset - tabHeight/2 + yAxisTickTextOffset)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeTabText + "px")
                 .attr("fill", "black")
@@ -1044,12 +1044,22 @@ function displayANOVAResults()
                 .attr("class", "text");  
                       
         currentX += tabWidth;
+        
+        if(i == 0)
+        {
+            d3.select("#" + levels[i] + ".rect")
+                .attr("stroke", "none")
+                .attr("fill", "url(#buttonFillSelected)");
+            
+            d3.select("#" + levels[i] + ".text")
+                .attr("fill", "white");
+        }
     }   
     
     sideBar.append("rect")
                     .attr("x", 0)
-                    .attr("y", canvasHeight/2 - significanceTestResultOffset)
-                    .attr("height", 4*significanceTestResultOffset)
+                    .attr("y", canvasHeight/2 - 2*significanceTestResultOffset)
+                    .attr("height", 5*significanceTestResultOffset)
                     .attr("width", sideBarWidth)
                     .attr("rx", "5px")
                     .attr("ry", "5px")
