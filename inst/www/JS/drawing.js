@@ -1031,7 +1031,7 @@ function displayANOVAResults()
     //construct the tabs
     for(var i=0; i<levels.length; i++)
     {
-        tabWidth = levels[i].length;
+        tabWidth = levels[i].length*fontSizeTabText/2;;
         
         sideBar.append("rect")
                 .attr("x", 0 + i*tabWidth)
