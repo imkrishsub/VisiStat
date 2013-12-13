@@ -1008,18 +1008,7 @@ function displayANOVAResults()
     drawScales(cx, cy);     
     
     var sideBar = d3.select("#sideBarCanvas");
-    
-//     sideBar.append("text")
-//             .attr("x", sideBarWidth/2)
-//             .attr("y", canvasHeight/2 + significanceTestResultOffset)
-//             .attr("text-anchor", "middle")
-//             .attr("font-size", fontSizeSignificanceTestResults + "px")
-//             .attr("fill", "#627bf4")
-//             .text(testResults["method"])
-//             .attr("class", "significanceTest");
-//     
-//     drawParameter(parseFloat(testResults["parameter"]));
-    
+   
     var variableList = getSelectedVariables();
     
     var levels = [variableList["independent"][0], variableList["independent"][1], variableList["independent"][0] + ":" + variableList["independent"][1]];
@@ -1065,7 +1054,21 @@ function displayANOVAResults()
                     .attr("rx", "5px")
                     .attr("ry", "5px")
                     .attr("stroke", "grey")
+                    .attr("fill", "none")
                     .attr("id", "border");
+    
+    //drawing
+    sideBar.append("text")
+            .attr("x", sideBarWidth/2)
+            .attr("y", canvasHeight/2 + significanceTestResultOffset)
+            .attr("text-anchor", "middle")
+            .attr("font-size", fontSizeSignificanceTestResults + "px")
+            .attr("fill", "#627bf4")
+            .text(testResults["method"])
+            .attr("class", "significanceTest");
+
+    
+    drawParameter(parseFloat(testResults["parameter"]));
     
     sideBar.append("text")
             .attr("x", sideBarWidth/2)
@@ -1078,7 +1081,7 @@ function displayANOVAResults()
     
     
     //Effect sizes
-//     drawEffectSize(parseFloat(testResults["effect-size"]));
+    drawEffectSize(parseFloat(testResults["effect-size"]));
 }
 
 function displayCorrelationResults()
