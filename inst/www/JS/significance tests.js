@@ -325,7 +325,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                   
                   logResult();
                            
-                  findEffect(dependentVariable, [independentVariableA, independentVariableB]);
+                  findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
 
