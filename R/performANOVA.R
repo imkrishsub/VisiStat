@@ -2,9 +2,6 @@ performOneWayANOVA <- function(dependentVariable, independentVariable, participa
 {       
     table <- as.data.frame(dataset);
     
-    install.packages("ez");
-    library(ez);
-    
     result = eval(parse(text = paste("ezANOVA(table, dv = ", dependentVariable,", wid = ", participantVariable, ", between = ", independentVariable, ")", sep="")));
     
     result = result$ANOVA;
