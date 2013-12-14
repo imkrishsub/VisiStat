@@ -2,6 +2,8 @@
 function loadFile(filePath)
 {
     //loads the file and returns the dataset and variable names
+    
+    console.log("CP2");
     var req = opencpu.r_fun_json("loadFile", {
                     filePath: filePath
                   }, function(output) {                   
@@ -126,237 +128,237 @@ function getData(dataset, variableName, level)
 }
 
 //Assumption-checking
-function performHomoscedasticityTestNotNormal(dependent, independent)
-{
-    // Get variable names and their data type
-    var req = opencpu.r_fun_json("performHomoscedasticityTest", {
-                    dependentVariable: dependent,
-                    independentVariable: independent,
-                    dataset: dataset                    
-                }, function(output) {                                 
-                  
-                console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
-                console.log("\t\t\t p-value = " + output.p);
-                
-                variableList = getSelectedVariables();
-                
-                if(variableList["independent-levels"].length > 2)
-                {
-                    if(output.p < 0.05)
-                    {
-                        d3.select("#homogeneity.crosses").attr("display", "inline");  
-                        d3.select("#homogeneity.loading").attr("display", "none"); 
-                    
-                        d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
-                        
-                        //draw boxplots in red 
-                        drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
-            
-                        findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
-                        drawComputingResultsImage();
-                        
-                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                        {
-                            performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
-                        }
-                        else
-                        {
-                            performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                        }                      
-                    }
-                    else
-                    {   
-                        //equal variances
-                        d3.select("#homogeneity.ticks").attr("display","inline");
-                        d3.select("#homogeneity.loading").attr("display", "none"); 
-                        
-                        drawComputingResultsImage();
-                    
-                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                        {
-                            performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
-                        }
-                        else
-                        {
-                            performKruskalWallisTest(variableList["dependent"][0], variableList["independent"][0]);
-                        }                                        
-                    }
-                }
-                else
-                {  
-                    if(output.p < 0.05)
-                    {
-                        d3.select("#homogeneity.crosses").attr("display", "inline"); 
-                        d3.select("#homogeneity.loading").attr("display", "none"); 
-                        
-                        drawComputingResultsImage();
-                        
-                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                        {   
-                            if(!pairwiseComparisons)
-                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
-                            else
-                                performPairwiseWilcoxTest("FALSE", "TRUE");
-                        }
-                        else
-                        {
-                            if(!pairwiseComparisons)
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
-                            else
-                                performPairwiseWilcoxTest("FALSE", "FALSE");
-                        }                         
-                    }
-                    else
-                    {   
-                        //equal variances
-                        d3.select("#homogeneity.ticks").attr("display","inline");
-                        d3.select("#homogeneity.loading").attr("display", "none");                     
-                        
-                        drawComputingResultsImage();
-                    
-                        if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                        {      
-                            if(!pairwiseComparisons)
-                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
-                            else
-                                performPairwiseWilcoxTest("TRUE", "TRUE");
-                        }
-                        else
-                        {
-                            if(!pairwiseComparisons)
-                                performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
-                            else
-                                performPairwiseWilcoxTest("TRUE", "FALSE");
-                        }                                        
-                    }
-                }
-        
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
-
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
-        
-    });
-}
-
-function performHomoscedasticityTestNormal(dependent, independent)
-{
-    console.log("hi there dorkhead");
-    // Get variable names and their data type
-    var req = opencpu.r_fun_json("performHomoscedasticityTest", {
-                    dependentVariable: dependent,
-                    independentVariable: independent,
-                    dataset: dataset                    
-                  }, function(output) {                                 
-                  
-                console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
-                console.log("\t\t\t p = " + output.p);
-                
-                variableList = getSelectedVariables();
-                
-                if(variableList["independent"].length == 2)
-                {
-                    if(output.p < 0.05)
-                    {        
-                        setHomogeneityOfVariances(dependent, independent, false);
-                    }
-                    else
-                    {   
-                        setHomogeneityOfVariances(dependent, independent, true);
-                    }
-                }                
-                
-                else
-                {                                
-                    if(variableList["independent-levels"].length > 2)
-                    {
-                        if(output.p < 0.05)
-                        {
-                            d3.select("#homogeneity.crosses").attr("display", "inline");  
-                            d3.select("#homogeneity.loading").attr("display", "none"); 
-                        
-                            d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
-                            
-                            //draw boxplots in red 
-                            drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
-                
-                            findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
-                        }
-                        else
-                        {   
-                            //equal variances
-                            d3.select("#homogeneity.ticks").attr("display","inline");
-                            d3.select("#homogeneity.loading").attr("display", "none"); 
-                    
-                            drawComputingResultsImage();
-                            
-                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                            {
-                                performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                            }
-                            else
-                            {
-                                performOneWayANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                            }                                        
-                        }
-                    }
-                    else
-                    {               
-                        if(output.p < 0.05)
-                        {
-                            d3.select("#homogeneity.crosses").attr("display", "inline");  
-                            d3.select("#homogeneity.loading").attr("display", "none"); 
-                        
-                            d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
-                            
-                            //draw boxplots in red 
-                            drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
-                
-                            findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
-                        }
-                        else
-                        {   
-                            //equal variances
-                            d3.select("#homogeneity.ticks").attr("display","inline");
-                            d3.select("#homogeneity.loading").attr("display", "none"); 
-                    
-                            drawComputingResultsImage();
-                            
-                            if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-                            {
-                                if(!pairwiseComparisons)
-                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
-                                else
-                                    performPairwiseTTest("TRUE", "TRUE");
-                            }
-                            else
-                            {
-                                if(!pairwiseComparisons)
-                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
-                                else
-                                    performPairwiseTTest("TRUE", "FALSE");
-                            }                                        
-                        }
-                    }
-                }
-        
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
-
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
-        
-    });
-}
+// function performHomoscedasticityTestNotNormal(dependent, independent)
+// {
+//     // Get variable names and their data type
+//     var req = opencpu.r_fun_json("performHomoscedasticityTest", {
+//                     dependentVariable: dependent,
+//                     independentVariable: independent,
+//                     dataset: dataset                    
+//                 }, function(output) {                                 
+//                   
+//                 console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
+//                 console.log("\t\t\t p-value = " + output.p);
+//                 
+//                 variableList = getSelectedVariables();
+//                 
+//                 if(variableList["independent-levels"].length > 2)
+//                 {
+//                     if(output.p < 0.05)
+//                     {
+//                         d3.select("#homogeneity.crosses").attr("display", "inline");  
+//                         d3.select("#homogeneity.loading").attr("display", "none"); 
+//                     
+//                         d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+//                         
+//                         //draw boxplots in red 
+//                         drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
+//             
+//                         findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
+//                         drawComputingResultsImage();
+//                         
+//                         if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+//                         {
+//                             performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
+//                         }
+//                         else
+//                         {
+//                             performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+//                         }                      
+//                     }
+//                     else
+//                     {   
+//                         //equal variances
+//                         d3.select("#homogeneity.ticks").attr("display","inline");
+//                         d3.select("#homogeneity.loading").attr("display", "none"); 
+//                         
+//                         drawComputingResultsImage();
+//                     
+//                         if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+//                         {
+//                             performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
+//                         }
+//                         else
+//                         {
+//                             performKruskalWallisTest(variableList["dependent"][0], variableList["independent"][0]);
+//                         }                                        
+//                     }
+//                 }
+//                 else
+//                 {  
+//                     if(output.p < 0.05)
+//                     {
+//                         d3.select("#homogeneity.crosses").attr("display", "inline"); 
+//                         d3.select("#homogeneity.loading").attr("display", "none"); 
+//                         
+//                         drawComputingResultsImage();
+//                         
+//                         if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+//                         {   
+//                             if(!pairwiseComparisons)
+//                                 performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+//                             else
+//                                 performPairwiseWilcoxTest("FALSE", "TRUE");
+//                         }
+//                         else
+//                         {
+//                             if(!pairwiseComparisons)
+//                                 performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
+//                             else
+//                                 performPairwiseWilcoxTest("FALSE", "FALSE");
+//                         }                         
+//                     }
+//                     else
+//                     {   
+//                         //equal variances
+//                         d3.select("#homogeneity.ticks").attr("display","inline");
+//                         d3.select("#homogeneity.loading").attr("display", "none");                     
+//                         
+//                         drawComputingResultsImage();
+//                     
+//                         if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+//                         {      
+//                             if(!pairwiseComparisons)
+//                                 performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+//                             else
+//                                 performPairwiseWilcoxTest("TRUE", "TRUE");
+//                         }
+//                         else
+//                         {
+//                             if(!pairwiseComparisons)
+//                                 performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+//                             else
+//                                 performPairwiseWilcoxTest("TRUE", "FALSE");
+//                         }                                        
+//                     }
+//                 }
+//         
+//       }).fail(function(){
+//           alert("Failure: " + req.responseText);
+//     });
+// 
+//     //if R returns an error, alert the error message
+//     req.fail(function(){
+//       alert("Server error: " + req.responseText);
+//     });
+//     req.complete(function(){
+//         
+//     });
+// }
+// 
+// function performHomoscedasticityTestNormal(dependent, independent)
+// {
+//     console.log("hi there dorkhead");
+//     // Get variable names and their data type
+//     var req = opencpu.r_fun_json("performHomoscedasticityTest", {
+//                     dependentVariable: dependent,
+//                     independentVariable: independent,
+//                     dataset: dataset                    
+//                   }, function(output) {                                 
+//                   
+//                 console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
+//                 console.log("\t\t\t p = " + output.p);
+//                 
+//                 variableList = getSelectedVariables();
+//                 
+//                 if(variableList["independent"].length == 2)
+//                 {
+//                     if(output.p < 0.05)
+//                     {        
+//                         setHomogeneityOfVariances(dependent, independent, false);
+//                     }
+//                     else
+//                     {   
+//                         setHomogeneityOfVariances(dependent, independent, true);
+//                     }
+//                 }                
+//                 
+//                 else
+//                 {                                
+//                     if(variableList["independent-levels"].length > 2)
+//                     {
+//                         if(output.p < 0.05)
+//                         {
+//                             d3.select("#homogeneity.crosses").attr("display", "inline");  
+//                             d3.select("#homogeneity.loading").attr("display", "none"); 
+//                         
+//                             d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+//                             
+//                             //draw boxplots in red 
+//                             drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
+//                 
+//                             findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
+//                         }
+//                         else
+//                         {   
+//                             //equal variances
+//                             d3.select("#homogeneity.ticks").attr("display","inline");
+//                             d3.select("#homogeneity.loading").attr("display", "none"); 
+//                     
+//                             drawComputingResultsImage();
+//                             
+//                             if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+//                             {
+//                                 performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
+//                             }
+//                             else
+//                             {
+//                                 performOneWayANOVA(variableList["dependent"][0], variableList["independent"][0]);
+//                             }                                        
+//                         }
+//                     }
+//                     else
+//                     {               
+//                         if(output.p < 0.05)
+//                         {
+//                             d3.select("#homogeneity.crosses").attr("display", "inline");  
+//                             d3.select("#homogeneity.loading").attr("display", "none"); 
+//                         
+//                             d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+//                             
+//                             //draw boxplots in red 
+//                             drawHomogeneityPlot(variableList["dependent"][0], "dataset", "notnormal");
+//                 
+//                             findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);
+//                         }
+//                         else
+//                         {   
+//                             //equal variances
+//                             d3.select("#homogeneity.ticks").attr("display","inline");
+//                             d3.select("#homogeneity.loading").attr("display", "none"); 
+//                     
+//                             drawComputingResultsImage();
+//                             
+//                             if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
+//                             {
+//                                 if(!pairwiseComparisons)
+//                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+//                                 else
+//                                     performPairwiseTTest("TRUE", "TRUE");
+//                             }
+//                             else
+//                             {
+//                                 if(!pairwiseComparisons)
+//                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
+//                                 else
+//                                     performPairwiseTTest("TRUE", "FALSE");
+//                             }                                        
+//                         }
+//                     }
+//                 }
+//         
+//       }).fail(function(){
+//           alert("Failure: " + req.responseText);
+//     });
+// 
+//     //if R returns an error, alert the error message
+//     req.fail(function(){
+//       alert("Server error: " + req.responseText);
+//     });
+//     req.complete(function(){
+//         
+//     });
+// }
 
 function performHomoscedasticityTest(dependent, independent)
 {
