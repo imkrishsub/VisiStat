@@ -244,6 +244,10 @@ function performNormalityTest(distribution, dependentVariable, level)
 function performNormalityTestForMultipleDistributions(distributions)
 {
     // Get variable names and their data type
+    
+    console.dir(distributions);
+    
+    
     var req = ocpu.rpc("performShapiroWilkTestForMultipleDistributions", {
                     distributions: distributions
                   }, function(output) {                                                   
