@@ -308,7 +308,7 @@ function performNormalityTests()
 //         }
 //         
 //         performNormalityTestForMultipleDistributions(dists, numberOfElements);
-    }
+//     }
 }
 
 function performHomoscedasticityTests()
