@@ -27,6 +27,7 @@ export(performMannWhitneyTest)
 
 export(performHomoscedasticityTest)
 export(performShapiroWilkTest)
+export(performShapiroWilkTestForMultipleDistributions)
 export(performSphericityTest)
 
 export(performMultipleRegression)

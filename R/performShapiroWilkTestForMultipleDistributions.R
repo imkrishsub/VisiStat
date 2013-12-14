@@ -1,0 +1,1 @@
+performShapiroWilkTestForMultipleDistributions <- function(distributions){    dist <- c(distributions);     print(dist);    for(i in 1:length(dist))  result <- eval(parse(text = paste("shapiro.test(dist)")));    list(testStatistic = result$statistic[["W"]], p = result$p.value, method = result$method);}
