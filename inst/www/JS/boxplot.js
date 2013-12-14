@@ -834,7 +834,7 @@ function drawHomogeneityPlot()
     canvas.transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
     
     var variancePlotWidth = plotWidth/2;
-    var variancePlotHeight = scaleForWindowSize(150);
+    var variancePlotHeight = scaleForWindowSize(250);
     
     //make a small variance comparison plot
     var l = canvasWidth/2 - variancePlotWidth/2;
@@ -859,14 +859,20 @@ function drawHomogeneityPlot()
     xStep = variancePlotWidth/nGroovesX; 
     
     for(var i=0; i<nGroovesX; i++)
-    {        
+    {    
+        canvas.append("text")
+                .attr("x", l + i*widthSlice + xStep/2)
+                .attr("y", b + yAxisTickTextOffset)
+                .attr("text-anchor", "middle")
+                .attr("font-anchor", scaleForWindowSize(12) + "px")
+                .text(levels[i]);
+                
         variances[i].transition().delay(800).duration(800)
                         .attr("x1", l + i*widthSlice + xStep/2)
                         .attr("x2", l + i*widthSlice + xStep/2)
                         .attr("y1", b - getFractionForVariancePlot(varianceMin, varianceMin, varianceMax)*variancePlotHeight)
                         .attr("y2", b - getFractionForVariancePlot(varianceMin + (maxs[i] - mins[i]), varianceMin, varianceMax)*variancePlotHeight)
-                        .attr("stroke-width", "7px");
-                        
+                        .attr("stroke-width", "7px");                        
     }
     
 }
