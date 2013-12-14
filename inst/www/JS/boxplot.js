@@ -863,7 +863,8 @@ function drawHomogeneityPlot()
                     .attr("y1", BOTTOM - getFraction(mins[i])*plotHeight)
                     .attr("x2", LEFT + i*widthSlice - widthOfEachBox/2 + xStep/2)
                     .attr("y2", BOTTOM - getFraction(maxs[i])*plotHeight)
-                    .attr("fill", "black");
+                    .attr("stroke-width", "3px")
+                    .attr("stroke", "black");
                     
             // var rectBottom = (medians[i] - iqrs[i]/2) < min ? min : (medians[i] - iqrs[i]/2);
 //             var rectTop = (medians[i] + iqrs[i]/2) > max ? max : (medians[i] + iqrs[i]/2);
