@@ -248,6 +248,7 @@ function performNormalityTestForMultipleDistributions(distributions)
                     distributions: distributions
                   }, function(output) {                                                   
                   
+                  console.log(output.len);
 //                 console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + level + ")");
 //                 console.log("\t\t\t p = " + output.p);
                 
