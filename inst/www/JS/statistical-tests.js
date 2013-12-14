@@ -269,7 +269,7 @@ function performNormalityTests()
     var variableList = getSelectedVariables();    
     
     //initialise distributions
-    distributions[variableList["dependent"][0]] = {};
+//     distributions[variableList["dependent"][0]] = {};
     
     if(variableList["independent"].length == 2)
     {
@@ -295,17 +295,17 @@ function performNormalityTests()
     }
     else
     {
-        var distributions = [];
+        var dists = [];
         //for each level corresponding to the dependent variable, perform normality test.
         for(i=0; i<variableList["dependent"].length; i++)                        
         {
             for(j=0; j<variableList["independent-levels"].length; j++)
             {   
-                distributions.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]]);
+                dists.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]]);
             }
         }
         
-        performNormalityTestForMultipleDistributions(distributions);
+        performNormalityTestForMultipleDistributions(dists);
     }
 }
 
