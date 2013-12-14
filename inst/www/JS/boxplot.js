@@ -862,7 +862,7 @@ function drawHomogeneityPlot()
     {    
         canvas.append("text")
                 .attr("x", l + i*widthSlice + xStep/2)
-                .attr("y", b + yAxisTickTextOffset)
+                .attr("y", b + 3*yAxisTickTextOffset)
                 .attr("text-anchor", "middle")
                 .attr("font-anchor", scaleForWindowSize(12) + "px")
                 .text(levels[i]);
