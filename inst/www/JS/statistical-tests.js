@@ -282,6 +282,9 @@ function performNormalityTests()
         {
             for(var j=0; j<variableList["independent-levels"][1].length; j++)
             {
+                console.log(variableList["independent-levels"][0]);
+                console.log(variableList["independent-levels"][1]);
+                
                 for(var k=0; k<colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]].length; k++)
                 {
                     allDistributions.push(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]][k]);
