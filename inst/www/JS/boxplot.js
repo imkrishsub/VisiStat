@@ -806,10 +806,19 @@ function drawHomogeneityPlot()
     var widthSlice = plotWidth/(nGroovesX);
     var variances = [];
     
+    var varianceMin = 999999;
+    var varianceMax =-999999;
+    
     for(var i=0; i<nGroovesX; i++)
     {
         if(data[i].length > 0)
         {
+            if(mins[i] < varianceMin)
+                varianceMin = mins[i];
+            
+            if(maxs[i] > varianceMax)
+                varianceMax = maxs[i];
+                
             variances.push(canvas.append("line")
                     .attr("x1", LEFT + i*widthSlice + xStep/2)
                     .attr("y1", BOTTOM - getFraction(mins[i])*plotHeight)
@@ -848,10 +857,14 @@ function drawHomogeneityPlot()
     xStep = variancePlotWidth/nGroovesX; 
     
     for(var i=0; i<nGroovesX; i++)
-    {
+    {        
         variances[i].transition().delay(800).duration(800)
-                        .attr("x1", i*widthSlice + xStep/2)
-                        .attr("x2", i*widthSlice + xStep/2)
+                        .attr("x1", l + i*widthSlice + xStep/2)
+                        .attr("x2", l + i*widthSlice + xStep/2)
+                        .attr("y1", b - getFractionForVariancePlot(mins[i], varianceMin, varianceMax)*variancePlotHeight)
+                        .attr("y2", b - getFractionForVariancePlot(maxs[i], varianceMin, varianceMax)*variancePlotHeight)
+                        .attr("stroke-width", "7px");
+                        
     }
     
 }
@@ -868,6 +881,11 @@ function drawBoxPlotInRed(level)
 }
 
 function getFraction(number)
+{
+    return (number - min)/(max - min);
+}
+
+function getFractionForVariancePlot(number, min, max)
 {
     return (number - min)/(max - min);
 }
