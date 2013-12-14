@@ -813,6 +813,8 @@ function drawHomogeneityPlot()
     {
         if(data[i].length > 0)
         {
+            console.log(mins[i]);
+            console.log(maxs[i]);
             if(mins[i] < varianceMin)
                 varianceMin = mins[i];
             
