@@ -1516,7 +1516,6 @@ function OnMouseOver(e)
                         .attr("stroke-dasharray", "5,5")
                         .attr("class", "hover");
         
-                console.log(mean.attr("data-index1"));
                 canvas.append("text")
                         .attr("x", e.pageX - (width - canvasWidth - sideBarWidth) + 9)
                         .attr("y", e.pageY + 9)
@@ -1528,7 +1527,6 @@ function OnMouseOver(e)
             else if((target.className.baseVal == "tukeyCI") || (target.className.baseVal == "tukeyCITop") || (target.className.baseVal == "tukeyCIBottom"))
             {
                 setup(e, target);
-                console.log("'ola");
         
                 var tCI = d3.select("#" + target.id + ".tukeyCI");
                 var tCITop = d3.select("#" + target.id + ".tukeyCITop");
@@ -1560,6 +1558,8 @@ function OnMouseOver(e)
                         .attr("fill", "black")
                         .text(tukeyResults[tCITop.attr("data-index1")][tCITop.attr("data-index2")]["upper"])
                         .attr("class", "hover");
+                        
+                console.log(tukeyResults[tCIBottom.attr("data-index1")][tCIBottom.attr("data-index2")]["lower"]);
         
                 canvas.append("text")
                         .attr("x", tCIBottom.attr("x1"))
