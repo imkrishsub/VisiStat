@@ -301,8 +301,12 @@ function performNormalityTests()
         for(i=0; i<variableList["dependent"].length; i++)                        
         {
             for(j=0; j<variableList["independent-levels"].length; j++)
-            {                    
-                dists.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]]);
+            {               
+                for(k=0; k<variables[variableList["dependent"][i]][variableList["independent-levels"][j]].length; k++)
+                {
+                    dists.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]][k]);
+                }
+                
                 numberOfElements.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]].length);
             }
         }
