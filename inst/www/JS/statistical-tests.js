@@ -300,7 +300,10 @@ function performNormalityTests()
         for(i=0; i<variableList["dependent"].length; i++)                        
         {
             for(j=0; j<variableList["independent-levels"].length; j++)
-            {   
+            { 
+                if(dists[j] == undefined)
+                    dists[j] = new Array();
+                    
                 dists[j].push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]]);
             }
         }
