@@ -227,49 +227,10 @@ function doPairwiseTests()
 
 function performNormalityTests()
 {
-    var variableList = getSelectedVariables();    
-    
-    //initialise distributions
-    distributions[variableList["dependent"][0]] = {};
-    
-    if(variableList["independent"].length == 2)
-    {
-        if(variableList["independent-levels"].length != 2)
-        {
-            variableList = sort(currentVariableSelection);
-        
-            for(var i=0; i<variableList["independent-levels"][0].length; i++)
-            {
-                for(var j=0; j<variableList["independent-levels"][1].length; j++)
-                {
-                    performNormalityTest(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]], variableList["dependent"][0], (variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]));
-                }
-            }
-        }
-        else
-        {
-            var groups = getGroupsForColourBoxPlotData();
-            
-            performNormalityTest(groups[0], variableList["dependent"][0], variableList["independent-levels"][0]);
-            performNormalityTest(groups[1], variableList["dependent"][0], variableList["independent-levels"][1]);
-        }
-    }
-    else
-    {
-        //for each level corresponding to the dependent variable, perform normality test.
-        for(i=0; i<variableList["dependent"].length; i++)                        
-        {
-            for(j=0; j<variableList["independent-levels"].length; j++)
-            {   
-                performNormalityTest(variables[variableList["dependent"][i]][variableList["independent-levels"][j]], variableList["dependent"][i], variableList["independent-levels"][j]);
-            }
-        }
-    }
-
 //     var variableList = getSelectedVariables();    
 //     
 //     //initialise distributions
-// //     distributions[variableList["dependent"][0]] = {};
+//     distributions[variableList["dependent"][0]] = {};
 //     
 //     if(variableList["independent"].length == 2)
 //     {
@@ -295,20 +256,59 @@ function performNormalityTests()
 //     }
 //     else
 //     {
-//         var dists = new Array();
-//         var numberOfElements = new Array();
 //         //for each level corresponding to the dependent variable, perform normality test.
 //         for(i=0; i<variableList["dependent"].length; i++)                        
 //         {
 //             for(j=0; j<variableList["independent-levels"].length; j++)
-//             {                    
-//                 dists.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]]);
-//                 numberOfElements.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]].length);
+//             {   
+//                 performNormalityTest(variables[variableList["dependent"][i]][variableList["independent-levels"][j]], variableList["dependent"][i], variableList["independent-levels"][j]);
 //             }
 //         }
-//         
-//         performNormalityTestForMultipleDistributions(dists, numberOfElements);
 //     }
+
+    var variableList = getSelectedVariables();    
+    
+    //initialise distributions
+//     distributions[variableList["dependent"][0]] = {};
+    
+    if(variableList["independent"].length == 2)
+    {
+        if(variableList["independent-levels"].length != 2)
+        {
+            variableList = sort(currentVariableSelection);
+        
+            for(var i=0; i<variableList["independent-levels"][0].length; i++)
+            {
+                for(var j=0; j<variableList["independent-levels"][1].length; j++)
+                {
+                    performNormalityTest(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]], variableList["dependent"][0], (variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]));
+                }
+            }
+        }
+        else
+        {
+            var groups = getGroupsForColourBoxPlotData();
+            
+            performNormalityTest(groups[0], variableList["dependent"][0], variableList["independent-levels"][0]);
+            performNormalityTest(groups[1], variableList["dependent"][0], variableList["independent-levels"][1]);
+        }
+    }
+    else
+    {
+        var dists = new Array();
+        var numberOfElements = new Array();
+        //for each level corresponding to the dependent variable, perform normality test.
+        for(i=0; i<variableList["dependent"].length; i++)                        
+        {
+            for(j=0; j<variableList["independent-levels"].length; j++)
+            {                    
+                dists.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]]);
+                numberOfElements.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]].length);
+            }
+        }
+        
+        performNormalityTestForMultipleDistributions(dists, numberOfElements);
+    }
 }
 
 function performHomoscedasticityTests()
