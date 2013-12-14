@@ -282,12 +282,12 @@ function performNormalityTests()
         for(var i=0; i<groups.length; i++)
         {  
             console.log(groups[i].length);
-            for(var j=0; j<groups[i].length; i++)
+            numberOfElements.push(groups[i].length);            
+            
+            for(var j=0; j<groups[i].length; j++)
             {
                 allDistributions.push(groups[i][j]);
             }
-            
-            numberOfElements.push(groups[i].length);            
         }
         
         performNormalityTestForMultipleDistributions(allDistributions, numberOfElements);       
