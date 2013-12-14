@@ -20,6 +20,25 @@ function OnMouseDown(e)
                 console.dir(desc);
                 helpText.text(desc[visualisation]);                
             }
+            
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "pValue"))
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                helpText.text(desc["p-value"]);                
+            }
+            
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "testStatistic"))
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                console.log(testResults["parameter-type"]);
+                
+                helpText.text(desc["p-value"]);                
+            }
+            
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "helpButtonFront"))
             {
                 var helpButton = d3.select(".helpButtonBack");
@@ -658,6 +677,18 @@ function OnMouseDown(e)
                                     .attr("opacity", "0.1")
                                     .attr("fill", "none")
                                     .attr("class", "testStatistic");
+                                    
+                        sideBar.append("rect")
+                                    .attr("x", scaleForWindowSize(10))
+                                    .attr("y", canvasHeight/2 + 2*significanceTestResultOffset - significanceTestResultOffset/2)
+                                    .attr("height", significanceTestResultOffset)
+                                    .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
+                                    .attr("rx", "3px")
+                                    .attr("ry", "3px")
+                                    .attr("stroke", "black")
+                                    .attr("opacity", "0.1")
+                                    .attr("fill", "none")
+                                    .attr("class", "method");
                     }
                 }
             }
