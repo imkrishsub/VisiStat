@@ -241,18 +241,19 @@ function performNormalityTest(distribution, dependentVariable, level)
     });
 }
 
-function performNormalityTestForMultipleDistributions(distributions)
+function performNormalityTestForMultipleDistributions(distributions, n)
 {
-    // Get variable names and their data type
-    
-    console.dir(distributions);
-    console.log(distributions);
-    
+    // Get variable names and their data type    
     var req = ocpu.rpc("performShapiroWilkTestForMultipleDistributions", {
-                    distributions: distributions
+                    distributions: distributions,
+                    n: n
                   }, function(output) {                                                   
                   
                   console.log(output.len);
+                  
+                  console.log("\t\t\t p = " + output.p);
+                  console.log("\t\t\t statistic = " + output.testStatistic);
+                  console.log("\t\t\t method = " + output.method);
 //                 console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + level + ")");
 //                 console.log("\t\t\t p = " + output.p);
                 

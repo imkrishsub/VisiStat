@@ -295,20 +295,19 @@ function performNormalityTests()
     }
     else
     {
-        var dists = new Object();
+        var dists = new Array();
+        var numberOfElements = new Array();
         //for each level corresponding to the dependent variable, perform normality test.
         for(i=0; i<variableList["dependent"].length; i++)                        
         {
             for(j=0; j<variableList["independent-levels"].length; j++)
-            { 
-                if(dists[j] == undefined)
-                    dists[j] = new Array();
-                    
-                dists[j].push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]]);
+            {                    
+                dists.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]]);
+                numberOfElements.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]].length);
             }
         }
         
-        performNormalityTestForMultipleDistributions(dists);
+        performNormalityTestForMultipleDistributions(dists, numberOfElements);
     }
 }
 
