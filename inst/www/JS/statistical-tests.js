@@ -276,22 +276,17 @@ function performNormalityTests()
         var allDistributions = new Array();
         var numberOfElements = new Array();
         
-        console.dir(colourBoxPlotData);
+        var groups = getGroupsForColourBoxPlotData();        
+        console.dir(groups);
         
-        for(var i=0; i<variableList["independent-levels"][0].length; i++)
-        {
-            for(var j=0; j<variableList["independent-levels"][1].length; j++)
+        for(var i=0; i<groups.length; i++)
+        {  
+            for(var j=0; j<groups[i].length; i++)
             {
-                console.log(variableList["independent-levels"][0]);
-                console.log(variableList["independent-levels"][1]);
-                
-                for(var k=0; k<colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]].length; k++)
-                {
-                    allDistributions.push(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]][k]);
-                }
-                
-                numberOfElements.push(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]].length);                    
+                allDistributions.push(groups[i][j]);
             }
+            
+            numberOfElements.push(groups[i].length);            
         }
         
         performNormalityTestForMultipleDistributions(allDistributions, numberOfElements);       

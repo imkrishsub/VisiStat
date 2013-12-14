@@ -116,13 +116,16 @@ function getGroupsForColourBoxPlotData()
 {
     var variableList = getSelectedVariables();
     
-    var meanA = variableList["independent-levels"][0].split("-");
-    var meanB = variableList["independent-levels"][1].split("-");
-
-    var groupA = colourBoxPlotData[meanA[0]][meanA[1]];
-    var groupB = colourBoxPlotData[meanB[0]][meanB[1]];
+    var groups = [];
+    for(var i=0; i<variableList["independent-levels"].length; i++)
+    {
+        var meanOfDist = variableList["independent-levels"][i].split("-");
+        var groupOfDist = colourBoxPlotData[meanOfDist[0]][meanOfDist[1]];
+        
+        groups.push(groupOfDist);
+    }
     
-    return [groupA, groupB];
+    return groups;
 }
       
 function getSelectedMeansForColourBoxPlotData()
