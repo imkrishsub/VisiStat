@@ -615,7 +615,9 @@ function OnMouseDown(e)
                     description.append("label")
                                 .attr("id", "descriptionLabel")
                                 .text("willy wonka is mad");
-                         
+                    
+                    
+                    //plotCanvas
                     var plotCanvas = d3.select("#plotCanvas");
                     
                     plotCanvas.append("rect")
@@ -628,7 +630,22 @@ function OnMouseDown(e)
                                 .attr("fill", "white")
                                 .attr("stroke", "black")
                                 .attr("opacity", "0.1")
-                                .attr("class", "plot");            
+                                .attr("class", "plot");   
+                    
+                    if(document.getElementsByClassName("significanceTest") > 0)
+                    {
+                        plotCanvas.append("rect")
+                                    .attr("x", 0)
+                                    .attr("y", canvasHeight/2 + 3*significanceTestResultOffset - significanceTestResultOffset/2)
+                                    .attr("height", significanceTestResultOffset)
+                                    .attr("width", sideBarWidth)
+                                    .attr("rx", "3px")
+                                    .attr("ry", "3px")
+                                    .attr("stroke", "black")
+                                    .attr("opacity", "0.1")
+                                    .attr("fill", "none")
+                                    .attr("class", "pValue");
+                    }
                 }
             }
             
