@@ -619,6 +619,7 @@ function OnMouseDown(e)
                     
                     //plotCanvas
                     var plotCanvas = d3.select("#plotCanvas");
+                    var sideBar = d3.select("#sideBarCanvas");
                     
                     plotCanvas.append("rect")
                                 .attr("x", canvasWidth/2 - plotWidth/2)
@@ -634,17 +635,28 @@ function OnMouseDown(e)
                     
                     if(document.getElementsByClassName("significanceTest") > 0)
                     {
-                        plotCanvas.append("rect")
-                                    .attr("x", 0)
+                        sideBar.append("rect")
+                                    .attr("x", scaleForWindowSize(10))
                                     .attr("y", canvasHeight/2 + 3*significanceTestResultOffset - significanceTestResultOffset/2)
                                     .attr("height", significanceTestResultOffset)
-                                    .attr("width", sideBarWidth)
+                                    .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
                                     .attr("stroke", "black")
                                     .attr("opacity", "0.1")
                                     .attr("fill", "none")
                                     .attr("class", "pValue");
+                        sideBar.append("rect")
+                                    .attr("x", scaleForWindowSize(10))
+                                    .attr("y", canvasHeight/2 + 2*significanceTestResultOffset - significanceTestResultOffset/2)
+                                    .attr("height", significanceTestResultOffset)
+                                    .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
+                                    .attr("rx", "3px")
+                                    .attr("ry", "3px")
+                                    .attr("stroke", "black")
+                                    .attr("opacity", "0.1")
+                                    .attr("fill", "none")
+                                    .attr("class", "testStatistic");
                     }
                 }
             }
