@@ -800,17 +800,21 @@ function OnMouseDown(e)
                 d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
         
                 removeElementsByClassName("compareMean");
+            }
+            
+            else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "tukeyHSD")
+            {
+                setup(e, target);        
+                var variableList = sort(currentVariableSelection);
         
-        //         var variableList = sort(currentVariableSelection);
-        //         
-        //         if(variableList["independent"].length == 1)
-        //         {
-        //             performTukeyHSDTestOneIndependentVariable(variableList["dependent"][0], variableList["independent"][0]);
-        //         }
-        //         else if(variableList["independent"].length == 2)
-        //         {
-        //             performTukeyHSDTestTwoIndependentVariables(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-        //         }
+                if(variableList["independent"].length == 1)
+                {
+                    performTukeyHSDTestOneIndependentVariable(variableList["dependent"][0], variableList["independent"][0]);
+                }
+                else if(variableList["independent"].length == 2)
+                {
+                    performTukeyHSDTestTwoIndependentVariables(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                }
             }
         
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "assumptionsButtonFront")
@@ -1595,6 +1599,13 @@ function OnMouseOver(e)
                 setup(e, target);
         
                 d3.selectAll(".pairwisePostHoc").attr("cursor", "pointer");
+            }
+            
+            else if(target.className.baseVal == "tukeyHSD")
+            {
+                setup(e, target);
+        
+                d3.selectAll(".tukeyHSD").attr("cursor", "pointer");
             }
     
             else if(target.className.baseVal == "doPairwiseTest")

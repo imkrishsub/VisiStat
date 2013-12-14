@@ -276,6 +276,7 @@ function performOneWayANOVA(dependentVariable, independentVariable)
 
                 displaySignificanceTestResults();      
                 drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+                drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -337,6 +338,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                 removeElementsByClassName("completeLines");           
                 
                 drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+                drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
                 displayANOVAResults();  
         
       }).fail(function(){
@@ -635,7 +637,8 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                 removeElementsByClassName("completeLines");   
                 
                 displaySignificanceTestResults();
-                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+                drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
         
       }).fail(function(){
           alert("Failure: " + req.responseText);

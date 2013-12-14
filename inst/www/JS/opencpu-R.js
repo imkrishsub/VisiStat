@@ -505,7 +505,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             {
                                 //wilcoxon signed-rank
                                 if(pairwiseComparisons)
-                                    performPairwiseWilcoxTests("TRUE", "TRUE");
+                                    performPairwiseWilcoxTest("TRUE", "TRUE");
                                 else
                                     performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
                             }
@@ -522,7 +522,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             {
                                 //Mann-Whitney U test
                                 if(pairwiseComparisons)
-                                    performPairwiseWilcoxTests("TRUE", "FALSE");
+                                    performPairwiseWilcoxTest("TRUE", "FALSE");
                                 else
                                     performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
                             }
