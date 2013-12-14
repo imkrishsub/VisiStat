@@ -45,6 +45,8 @@ function getData(dataset, variableName, level)
         level = "dataset";
     }
     
+    variables[variableName][level] = [];
+    
     for(var i=0; i<dataset.length; i++)
     {
         variables[variableName][level].push(dataset[i][variableName]);  
