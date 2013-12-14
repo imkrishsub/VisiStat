@@ -3,6 +3,9 @@ function compareMeans()
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
     
+    removeElementsByClassName("selectAll");
+    removeElementsByClassName("selectNone");
+    
     switch(document.getElementsByClassName("completeLines").length)
     {
 
@@ -227,45 +230,6 @@ function doPairwiseTests()
 
 function performNormalityTests()
 {
-//     var variableList = getSelectedVariables();    
-//     
-//     //initialise distributions
-//     distributions[variableList["dependent"][0]] = {};
-//     
-//     if(variableList["independent"].length == 2)
-//     {
-//         if(variableList["independent-levels"].length != 2)
-//         {
-//             variableList = sort(currentVariableSelection);
-//         
-//             for(var i=0; i<variableList["independent-levels"][0].length; i++)
-//             {
-//                 for(var j=0; j<variableList["independent-levels"][1].length; j++)
-//                 {
-//                     performNormalityTest(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]], variableList["dependent"][0], (variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]));
-//                 }
-//             }
-//         }
-//         else
-//         {
-//             var groups = getGroupsForColourBoxPlotData();
-//             
-//             performNormalityTest(groups[0], variableList["dependent"][0], variableList["independent-levels"][0]);
-//             performNormalityTest(groups[1], variableList["dependent"][0], variableList["independent-levels"][1]);
-//         }
-//     }
-//     else
-//     {
-//         //for each level corresponding to the dependent variable, perform normality test.
-//         for(i=0; i<variableList["dependent"].length; i++)                        
-//         {
-//             for(j=0; j<variableList["independent-levels"].length; j++)
-//             {   
-//                 performNormalityTest(variables[variableList["dependent"][i]][variableList["independent-levels"][j]], variableList["dependent"][i], variableList["independent-levels"][j]);
-//             }
-//         }
-//     }
-
     var variableList = getSelectedVariables();    
     
     //initialise distributions
@@ -277,11 +241,9 @@ function performNormalityTests()
         var numberOfElements = new Array();
         
         var groups = getGroupsForColourBoxPlotData();        
-        console.dir(groups);
         
         for(var i=0; i<groups.length; i++)
         {  
-            console.log(groups[i].length);
             numberOfElements.push(groups[i].length);            
             
             for(var j=0; j<groups[i].length; j++)
@@ -475,8 +437,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
                 d3.select("#homogeneity.loading").attr("display", "none"); 
                 homogeneity = false;
                 
-                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
-            
                 drawHomogeneityPlot(dependentVariable, variableList["independent"][i]);
             }
         }

@@ -653,11 +653,6 @@ function drawNormalityPlot(dependentVariable, level, type)
     makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, dependentVariable, level, type);//left, top, histWidth, histHeight, dependentVariable, level;
 }
 
-function drawHomogeneityPlot(dependentVariable, level, type)
-{
-    console.log("TBD");
-}
-
 function drawScales(cx, cy)
 {
     //get number of means
