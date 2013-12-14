@@ -1,7 +1,7 @@
 // Correlation & Regression
 function getCorrelationCoefficient(variableA, variableB, method)
 {
-    var req = opencpu.r_fun_json("getCorrelationCoefficient", {
+    var req = ocpu.rpc("getCorrelationCoefficient", {
                     distributionX: variables[variableA]["dataset"],                    
                     distributionY: variables[variableB]["dataset"],
                     method: method
@@ -73,7 +73,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
 
 function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
 {
-    var req = opencpu.r_fun_json("getBiserialCorrelationCoefficient", {
+    var req = ocpu.rpc("getBiserialCorrelationCoefficient", {
                     continuousVariable: variables[continuousVariable]["dataset"],
                     binaryVariable: variables[binaryVariable]["dataset"]
                   }, function(output) {                                                   
@@ -107,7 +107,7 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
 
 function getLinearModelCoefficients(outcome, explanatory)
 {
-    var req = opencpu.r_fun_json("getLinearModelCoefficients", {
+    var req = ocpu.rpc("getLinearModelCoefficients", {
                     outcome: variables[outcome]["dataset"],
                     explanatory: variables[explanatory]["dataset"]
                   }, function(output) {          
@@ -190,7 +190,7 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
 {
     console.log("outcome=" + outcomeVariable + ", explanatory=[" + explanatoryVariables);
     
-    var req = opencpu.r_fun_json("performMultipleRegression", {
+    var req = ocpu.rpc("performMultipleRegression", {
                     outcomeVariable: outcomeVariable,
                     explanatoryVariables: explanatoryVariables,
                     dataset: pathToFile                

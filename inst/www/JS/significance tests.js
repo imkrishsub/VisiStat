@@ -9,7 +9,7 @@ function performOneSampleTTest(variable, level)
     if(expectedMean == undefined)
         expectedMean = "0";
     
-    var req = opencpu.r_fun_json("performOneSampleTTest", {
+    var req = ocpu.rpc("performOneSampleTTest", {
                     distribution: variables[variable][level],
                     trueMean: expectedMean
                   }, function(output) {                                                   
@@ -60,7 +60,7 @@ function performOneSampleWilcoxonTest(variable, level)
     if(expectedMean == undefined)
         expectedMean = "0";
     
-    var req = opencpu.r_fun_json("performOneSampleWilcoxonTest", {
+    var req = ocpu.rpc("performOneSampleWilcoxonTest", {
                     distribution: variables[variable][level],
                     trueMean: expectedMean
                   }, function(output) {                                                   
@@ -103,7 +103,7 @@ function performOneSampleWilcoxonTest(variable, level)
 function performTTest(groupA, groupB, varianceEqual, paired) 
 {
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performTTest", {
+    var req = ocpu.rpc("performTTest", {
                     groupA: groupA,
                     groupB: groupB,
                     variance: varianceEqual,
@@ -153,7 +153,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
 function performMannWhitneyTest(groupA, groupB)
 {
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performMannWhitneyTest", {
+    var req = ocpu.rpc("performMannWhitneyTest", {
                     groupA: groupA,
                     groupB: groupB
                   }, function(output) {                                                   
@@ -197,7 +197,7 @@ function performMannWhitneyTest(groupA, groupB)
 function performWilcoxonTest(groupA, groupB)
 {
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performWilcoxonTest", {
+    var req = ocpu.rpc("performWilcoxonTest", {
                     groupA: groupA,
                     groupB: groupB
                   }, function(output) {                                                   
@@ -241,7 +241,7 @@ function performWilcoxonTest(groupA, groupB)
 function performOneWayANOVA(dependentVariable, independentVariable)
 {
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performOneWayANOVA", {                    
+    var req = ocpu.rpc("performOneWayANOVA", {                    
                     dependentVariable: dependentVariable,
                     independentVariable: independentVariable,
                     participantVariable: participants,
@@ -295,7 +295,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
 {
     // (dataset, dependentVariable, independentVariableA, independentVariableB)
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performTwoWayANOVA", {   
+    var req = ocpu.rpc("performTwoWayANOVA", {   
                     dataset: dataset, 
                     dependentVariable: dependentVariable,
                     participantVariable: participants,
@@ -356,7 +356,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
 
 function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariable)
 {
-    var req = opencpu.r_fun_json("performOneWayRepeatedMeasuresANOVA", {
+    var req = ocpu.rpc("performOneWayRepeatedMeasuresANOVA", {
                     dependentVariable: dependentVariable,
                     independentVariable: independentVariable,
                     participantVariable: participants,
@@ -406,7 +406,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
 {
     console.log("\t\t Factorial ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
     
-    var req = opencpu.r_fun_json("performFactorialANOVA", {
+    var req = ocpu.rpc("performFactorialANOVA", {
                     dependentVariable: dependentVariable,
                     withinGroupVariable: withinGroupVariable,
                     betweenGroupVariable: betweenGroupVariable,
@@ -464,7 +464,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
     console.log(dependentVariable);
     console.log(independentVariable);
     console.log(participants);
-    var req = opencpu.r_fun_json("performFriedmanTest", {
+    var req = ocpu.rpc("performFriedmanTest", {
                     dependentVariable: dependentVariable,
                     independentVariable: independentVariable,
                     participantVariable: participants,
@@ -512,7 +512,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
 
 function findEffect(dependentVariable, independentVariables)
 {
-    var req = opencpu.r_fun_json("findEffect", {
+    var req = ocpu.rpc("findEffect", {
                     dependentVariable: dependentVariable,
                     independentVariables: independentVariables,                    
                     dataset: dataset
@@ -558,7 +558,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
     independentVariableData = variables[independentVariable]["dataset"];
     
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performWelchANOVA", {
+    var req = ocpu.rpc("performWelchANOVA", {
                     dependentVariable: dependentVariableData,
                     independentVariable: independentVariableData                   
                   }, function(output) {                                                   
@@ -609,7 +609,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
     independentVariableData = variables[independentVariable]["dataset"];
     
     // Get variable names and their data type
-    var req = opencpu.r_fun_json("performKruskalWallisTest", {
+    var req = ocpu.rpc("performKruskalWallisTest", {
                     dependentVariable: dependentVariableData,
                     independentVariable: independentVariableData                   
                   }, function(output) {                                                   
@@ -655,7 +655,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
 
 function performTukeyHSDTestOneIndependentVariable(dependentVariable, independentVariable)
 { 
-    var req = opencpu.r_fun_json("performTukeyHSDTestOneIndependentVariable", {
+    var req = ocpu.rpc("performTukeyHSDTestOneIndependentVariable", {
                     dependentVariable: dependentVariable,
                     independentVariable: independentVariable,
                     dataset: dataset
@@ -730,7 +730,7 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
 
 function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independentVariableA, independentVariableB)
 { 
-    var req = opencpu.r_fun_json("performTukeyHSDTestTwoIndependentVariables", {
+    var req = ocpu.rpc("performTukeyHSDTestTwoIndependentVariables", {
                     dependentVariable: dependentVariable,
                     independentVariableA: independentVariableA,
                     independentVariableB: independentVariableB,
@@ -772,7 +772,7 @@ function performPairwiseTTest(varianceEqual, paired)
 {
     var variableList = getSelectedVariables();
     
-    var req = opencpu.r_fun_json("performPairwiseTTest", {
+    var req = ocpu.rpc("performPairwiseTTest", {
                     dependentVariable: variables[variableList["dependent"][0]]["dataset"],
                     independentVariable: variables[variableList["independent"][0]]["dataset"],                    
                     dataset: dataset,
@@ -820,7 +820,7 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
 {
     var variableList = getSelectedVariables();
     
-    var req = opencpu.r_fun_json("performPairwiseWilcoxTest", {
+    var req = ocpu.rpc("performPairwiseWilcoxTest", {
                     dependentVariable: variables[variableList["dependent"][0]]["dataset"],
                     independentVariable: variables[variableList["independent"][0]]["dataset"],                    
                     dataset: dataset,
@@ -870,7 +870,7 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
 // function getDFromT(n)
 // {
 //     // Get variable names and their data type
-//     var req = opencpu.r_fun_json("getDFromT", {
+//     var req = ocpu.rpc("getDFromT", {
 //                     t: testResults["t"],                   
 //                     n1: n,
 //                     n2: n
