@@ -269,29 +269,27 @@ function performNormalityTests()
     var variableList = getSelectedVariables();    
     
     //initialise distributions
-//     distributions[variableList["dependent"][0]] = {};
+    distributions[variableList["dependent"][0]] = {};
     
     if(variableList["independent"].length == 2)
     {
-        if(variableList["independent-levels"].length != 2)
-        {
-            variableList = sort(currentVariableSelection);
+        var allDistributions = new Array();
+        var numberOfElements = new Array();
         
-            for(var i=0; i<variableList["independent-levels"][0].length; i++)
+        for(var i=0; i<variableList["independent-levels"][0].length; i++)
+        {
+            for(var j=0; j<variableList["independent-levels"][1].length; j++)
             {
-                for(var j=0; j<variableList["independent-levels"][1].length; j++)
+                for(var k=0; k<colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]].length; k++)
                 {
-                    performNormalityTest(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]], variableList["dependent"][0], (variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]));
+                    allDistributions.push(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]][k]);
                 }
+                
+                numberOfElements.push(colourBoxPlotData[variableList["independent-levels"][0][i]][variableList["independent-levels"][1][j]].length);                    
             }
         }
-        else
-        {
-            var groups = getGroupsForColourBoxPlotData();
-            
-            performNormalityTest(groups[0], variableList["dependent"][0], variableList["independent-levels"][0]);
-            performNormalityTest(groups[1], variableList["dependent"][0], variableList["independent-levels"][1]);
-        }
+        
+        performNormalityTestForMultipleDistributions(allDistributions, numberOfElements);       
     }
     else
     {
