@@ -1533,24 +1533,7 @@ function OnMouseOver(e)
                 var tCIBottom = d3.select("#" + target.id + ".tukeyCIBottom");
         
                 var canvas = d3.select("#plotCanvas");
-        
-                canvas.append("line")
-                        .attr("x1", tCITop.attr("x1"))
-                        .attr("y1", tCITop.attr("y1"))
-                        .attr("x2", canvasWidth/2 - plotWidth/2 - axesOffset)
-                        .attr("y2", tCITop.attr("y1"))
-                        .attr("stroke", tCITop.attr("stroke"))
-                        .attr("stroke-dasharray", "5,5")
-                        .attr("class", "hover");
-                canvas.append("line")
-                        .attr("x1", tCIBottom.attr("x1"))
-                        .attr("y1", tCIBottom.attr("y1"))
-                        .attr("x2", canvasWidth/2 - plotWidth/2 - axesOffset)
-                        .attr("y2", tCIBottom.attr("y1"))
-                        .attr("stroke", tCIBottom.attr("stroke"))
-                        .attr("stroke-dasharray", "5,5")
-                        .attr("class", "hover");
-        
+                
                 canvas.append("text")
                         .attr("x", tCITop.attr("x1"))
                         .attr("y", tCITop.attr("y1") - displayOffsetTop)
@@ -1567,6 +1550,23 @@ function OnMouseOver(e)
                         .attr("text-anchor", "middle")
                         .attr("fill", "black")
                         .text(tukeyResults[tCIBottom.attr("data-index1")][tCIBottom.attr("data-index2")]["lower"])
+                        .attr("class", "hover");
+        
+                canvas.append("line")
+                        .attr("x1", tCITop.attr("x1"))
+                        .attr("y1", tCITop.attr("y1"))
+                        .attr("x2", canvasWidth/2 - plotWidth/2 - axesOffset)
+                        .attr("y2", tCITop.attr("y1"))
+                        .attr("stroke", tCITop.attr("stroke"))
+                        .attr("stroke-dasharray", "5,5")
+                        .attr("class", "hover");
+                canvas.append("line")
+                        .attr("x1", tCIBottom.attr("x1"))
+                        .attr("y1", tCIBottom.attr("y1"))
+                        .attr("x2", canvasWidth/2 - plotWidth/2 - axesOffset)
+                        .attr("y2", tCIBottom.attr("y1"))
+                        .attr("stroke", tCIBottom.attr("stroke"))
+                        .attr("stroke-dasharray", "5,5")
                         .attr("class", "hover");
             }
     
