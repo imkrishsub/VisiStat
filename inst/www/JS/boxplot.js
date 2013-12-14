@@ -864,7 +864,7 @@ function drawHomogeneityPlot()
                         .attr("x1", l + i*widthSlice + xStep/2)
                         .attr("x2", l + i*widthSlice + xStep/2)
                         .attr("y1", b - getFractionForVariancePlot(varianceMin, varianceMin, varianceMax)*variancePlotHeight)
-                        .attr("y2", b - getFractionForVariancePlot((maxs[i] - mins[i]), varianceMin, varianceMax)*variancePlotHeight)
+                        .attr("y2", b - getFractionForVariancePlot(varianceMin + (maxs[i] - mins[i]), varianceMin, varianceMax)*variancePlotHeight)
                         .attr("stroke-width", "7px");
                         
     }
