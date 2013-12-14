@@ -4,7 +4,7 @@ function loadFile(filePath)
     //loads the file and returns the dataset and variable names
     
     console.log("CP2");
-    var req = opencpu.r_fun_json("loadFile", {
+    var req = ocpu.rpc("loadFile", {
                     filePath: filePath
                   }, function(output) {                   
     dataset = output.dataset;
@@ -28,16 +28,16 @@ function loadFile(filePath)
         
         getData(dataset, output.variableNames[i]);                 
     }
-     }).fail(function(){
-          alert("Failure: " + req.responseText);
+     // }).fail(function(){
+//           alert("Failure: " + req.responseText);
     });
 
     //if R returns an error, alert the error message
     req.fail(function(){
       alert("Server error: " + req.responseText);
     });
-    req.complete(function(){
-    });
+//     req.complete(function(){
+//     });
 }
 
 function getData(dataset, variableName, level)
