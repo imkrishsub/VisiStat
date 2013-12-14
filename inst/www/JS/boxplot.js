@@ -774,9 +774,6 @@ function drawHomogeneityPlot()
         CIs[0] = CI[currentVariableSelection[0]]["dataset"];
         means[0] = mean(data[0]);  
     }   
-
-    console.dir(MIN);
-    console.dir(MAX);
     
     min = Array.min(mins);
     max = Array.max(maxs);
@@ -794,38 +791,6 @@ function drawHomogeneityPlot()
 
     nGroovesY = numberOfGrooves;
     
-    // Draw axes        
-    // canvas.append("line")
-//             .attr("x1", LEFT)
-//             .attr("y1", BOTTOM + axesOffset)
-//             .attr("x2", RIGHT)
-//             .attr("y2", BOTTOM + axesOffset) 
-//             .attr("stroke", "black")
-//             .attr("id", "xAxis")
-//             .attr("class", "axes");
-//     
-//     canvas.append("line")
-//             .attr("x1", LEFT - axesOffset)
-//             .attr("y1", TOP)
-//             .attr("x2", LEFT - axesOffset)
-//             .attr("y2", BOTTOM)
-//             .attr("stroke", "black")
-//             .attr("id", "yAxis")
-//             .attr("class", "axes");
-// 
-//     //axes labels
-//     if(altBoxPlot)
-//     {
-//         canvas.append("text")
-//                 .attr("x", canvasWidth/2 - plotWidth/2 - 1.5*labelOffset)
-//                 .attr("y", (TOP + BOTTOM)/2)
-//                 .attr("text-anchor", "middle")
-//                 .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
-//                 .attr("font-size", fontSizeLabels + "px")
-//                 .text(variableList["dependent"][0])
-//                 .attr("fill", "black");
-//     }
-    
     //grooves
     
     //x-axis grooves           
@@ -836,121 +801,47 @@ function drawHomogeneityPlot()
     
     //y-axis grooves
     var yStep = plotHeight/(nGroovesY-1);
-    var slice = (max - min)/(nGroovesY-1);    
-
-    // for(i=0; i<nGroovesY; i++)
-//     {
-//         yAxisTexts[i].transition().duration(boxPlotTransformationDuration)        
-//                     .attr("x", LEFT - tickTextOffsetYAxis - axesOffset)
-//                     .attr("y", BOTTOM - i*yStep + yAxisTickTextOffset)                    
-//                     .text(dec2(min + i*slice))
-//                     .attr("text-anchor", "end")
-//                     .attr("id", "groove" + i)
-//                     .attr("class", "yAxisGrooveText");
-//     }
+    var slice = (max - min)/(nGroovesY-1);   
     
     var widthSlice = plotWidth/(nGroovesX);
-    
-    console.log(nGroovesX);
+    var variances = [];
     
     for(var i=0; i<nGroovesX; i++)
     {
-        console.log(data[i].length);
         if(data[i].length > 0)
         {
-            canvas.append("line")
-                    .attr("x1", LEFT + i*widthSlice - widthOfEachBox/2 + xStep/2)
+            variances.push(canvas.append("line")
+                    .attr("x1", LEFT + i*widthSlice + xStep/2)
                     .attr("y1", BOTTOM - getFraction(mins[i])*plotHeight)
-                    .attr("x2", LEFT + i*widthSlice - widthOfEachBox/2 + xStep/2)
+                    .attr("x2", LEFT + i*widthSlice + xStep/2)
                     .attr("y2", BOTTOM - getFraction(maxs[i])*plotHeight)
                     .attr("stroke-width", "3px")
-                    .attr("stroke", "black");
-                    
-            // var rectBottom = (medians[i] - iqrs[i]/2) < min ? min : (medians[i] - iqrs[i]/2);
-//             var rectTop = (medians[i] + iqrs[i]/2) > max ? max : (medians[i] + iqrs[i]/2);
-//         
-//             boxes[i].transition().duration(boxPlotTransformationDuration)
-//                         .attr("x", LEFT + i*widthSlice - widthOfEachBox/2 + xStep/2)
-//                         .attr("y", BOTTOM - getFraction(rectTop)*plotHeight)
-//                         .attr("height", getFraction(rectTop)*plotHeight - getFraction(rectBottom)*plotHeight)
-//                         .attr("width", widthOfEachBox)
-//                         .attr("fill", boxColors["normal"]);
-//                 
-//             // median
-//             medianLines[i].transition().duration(boxPlotTransformationDuration)
-//                         .attr("x1", LEFT + i*widthSlice - widthOfEachBox/2 + xStep/2)
-//                         .attr("y1", BOTTOM - getFraction(medians[i])*plotHeight)
-//                         .attr("x2", LEFT + i*widthSlice + widthOfEachBox/2 + xStep/2)
-//                         .attr("y2", BOTTOM - getFraction(medians[i])*plotHeight);
-//     
-//             //end fringes
-//             BOTTOMFringe = (medians[i] - 1.5*iqrs[i]) < min ? min : (medians[i] - 1.5*iqrs[i]);
-//             TOPFringe = (medians[i] + 1.5*iqrs[i]) > max ? max : (medians[i] + 1.5*iqrs[i]);
-//     
-//             topFringes[i].transition().duration(boxPlotTransformationDuration)
-//                         .attr("x1", canvasWidth/2 - widthOfEachBox/4 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("y1", BOTTOM - getFraction(TOPFringe)*plotHeight)
-//                         .attr("x2", canvasWidth/2 + widthOfEachBox/4 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("y2", BOTTOM - getFraction(TOPFringe)*plotHeight);
-//     
-//             topFringeConnectors[i].transition().duration(boxPlotTransformationDuration)
-//                         .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("y1", BOTTOM - getFraction(TOPFringe)*plotHeight)
-//                         .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("y2", BOTTOM- getFraction(rectTop)*plotHeight);    
-//     
-//             bottomFringes[i].transition().duration(boxPlotTransformationDuration)
-//                         .attr("x1", canvasWidth/2 - widthOfEachBox/4 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("y1", BOTTOM - getFraction(BOTTOMFringe)*plotHeight)
-//                         .attr("x2", canvasWidth/2 + widthOfEachBox/4 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("y2", BOTTOM - getFraction(BOTTOMFringe)*plotHeight);
-//                 
-//             bottomFringeConnectors[i].transition().duration(boxPlotTransformationDuration)
-//                         .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("y1", BOTTOM - getFraction(BOTTOMFringe)*plotHeight)
-//                         .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("y2", BOTTOM - getFraction(rectBottom)*plotHeight);
-//         
-//             CILines[i].transition().duration(boxPlotTransformationDuration)
-//                     .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
-//                     .attr("y1", BOTTOM - getFraction(CIs[i][0])*plotHeight)
-//                     .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
-//                     .attr("y2", BOTTOM - getFraction(CIs[i][1])*plotHeight);
-//         
-//             CIBottomLines[i].transition().duration(boxPlotTransformationDuration)
-//                     .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2 - CIFringeLength)
-//                     .attr("y1", BOTTOM - getFraction(CIs[i][0])*plotHeight)
-//                     .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2 + CIFringeLength)
-//                     .attr("y2", BOTTOM - getFraction(CIs[i][0])*plotHeight);
-//         
-//             CITopLines[i].transition().duration(boxPlotTransformationDuration)
-//                     .attr("x1", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2 - CIFringeLength)
-//                     .attr("y1", BOTTOM - getFraction(CIs[i][1])*plotHeight)
-//                     .attr("x2", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2 + CIFringeLength)
-//                     .attr("y2", BOTTOM - getFraction(CIs[i][1])*plotHeight);
-//         
-//             removeElementsByClassName("outliers");
-//     
-//             var outliers = getOutliers(data[i], TOPFringe, BOTTOMFringe);
-//             
-//             for(var j=0; j<outliers.length; j++)
-//             {
-//                 canvas.append("circle")
-//                         .attr("cx", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("cy", BOTTOM - getFraction(outliers[j])*plotHeight)
-//                         .attr("r", outlierRadius)
-//                         .attr("fill", "red")
-//                         .attr("stroke", "none")
-//                         .attr("id", ids[i] + j)
-//                         .attr("class", "outliers");
-//             }
-//     
-//             meanCircles[i].transition().duration(boxPlotTransformationDuration)
-//                         .attr("cx", canvasWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
-//                         .attr("cy", BOTTOM - getFraction(means[i])*plotHeight);
+                    .attr("stroke", "black"));
         }        
     }
     
+    canvas.transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+    
+    var variancePlotWidth = plotWidth/2;
+    var variancePlotHeight = scaleForWindowSize(150);
+    
+    //make a small variance comparison plot
+    var l = canvasWidth/2 - variancePlotWidth/2;
+    var b = canvasHeight/2 + plotHeight/2 + 2*axesOffset + variancePlotHeight;
+    
+    canvas.append("line")
+            .attr("x1", l)
+            .attr("y1", b)
+            .attr("x2", l)
+            .attr("y2", b - variancePlotHeight)
+            .attr("stroke", "black");
+    
+    
+    for(var i=0; i<nGroovesX; i++)
+    {
+//         variances[i].transition().duration(800)
+//                         .attr(
+    }
     
 }
 
