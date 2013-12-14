@@ -702,8 +702,6 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                         }
                     }
                     
-                    console.dir(tukeyResults);
-                    
                     resetSVGCanvas();
                     drawFullScreenButton();
         

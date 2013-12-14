@@ -1563,7 +1563,7 @@ function OnMouseOver(e)
         
                 canvas.append("text")
                         .attr("x", tCIBottom.attr("x1"))
-                        .attr("y", tCIBottom.attr("y2") + displayOffsetBottom)
+                        .attr("y", tCIBottom.attr("y1") + displayOffsetBottom)
                         .attr("text-anchor", "middle")
                         .attr("fill", "black")
                         .text(tukeyResults[tCIBottom.attr("data-index1")][tCIBottom.attr("data-index2")]["lower"])
