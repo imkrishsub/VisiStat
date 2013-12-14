@@ -1,1 +1,1 @@
-performShapiroWilkTestForMultipleDistributions <- function(distributions){    dist <- c(distributions);    list(len = length(dist));}
+performShapiroWilkTestForMultipleDistributions <- function(distributions){    dist <- as.data.frame(distributions);    list(len = nrow(dist));}
