@@ -122,7 +122,8 @@ function getGroupsForColourBoxPlotData()
         var meanOfDist = variableList["independent-levels"][i].split("-");
         var groupOfDist = colourBoxPlotData[meanOfDist[0]][meanOfDist[1]];
         
-        groups.push(groupOfDist);
+        groups[i] = [];
+        groups[i] = groupOfDist;
     }
     
     return groups;
