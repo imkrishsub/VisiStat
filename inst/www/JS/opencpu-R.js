@@ -257,6 +257,9 @@ function performNormalityTestForMultipleDistributions(distributions, n)
                   console.log("\t\t\t p = " + output.p);
                   console.log("\t\t\t statistic = " + output.testStatistic);
                   console.log("\t\t\t method = " + output.method);
+                  
+                  console.log("val: " + val);
+                  
 //                 console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + level + ")");
 //                 console.log("\t\t\t p = " + output.p);
                 
