@@ -337,8 +337,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
                 
-                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
-                drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
+                drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
                 displayANOVAResults();  
         
       }).fail(function(){
@@ -444,8 +443,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                 //drawing stuff
                 removeElementsByClassName("completeLines");
                 
-                displayANOVAResults();               
-                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+                displayANOVAResults();                 
       }).fail(function(){
           alert("Failure: " + req.responseText);
     });
@@ -749,7 +747,7 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
                 removeElementsByClassName("completeLines");   
                 
                 resetSVGCanvas();
-                drawTukeyHSDPlot();
+//                 drawTukeyHSDPlot();
                 
                 displaySignificanceTestResults();
         
