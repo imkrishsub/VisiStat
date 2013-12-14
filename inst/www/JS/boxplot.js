@@ -665,7 +665,7 @@ function redrawBoxPlot()
     }
 }
 
-function drawHomogeneityPlot(dependentVariable, level, type)
+function drawHomogeneityPlot()
 {
     var LEFT = canvasWidth/2 - plotWidth/2;
     var RIGHT = canvasWidth/2 + plotWidth/2;
@@ -851,8 +851,11 @@ function drawHomogeneityPlot(dependentVariable, level, type)
     
     var widthSlice = plotWidth/(nGroovesX);
     
+    console.log(nGroovesX);
+    
     for(var i=0; i<nGroovesX; i++)
     {
+        console.log(data[i].length);
         if(data[i].length > 0)
         {
             canvas.append("line")
