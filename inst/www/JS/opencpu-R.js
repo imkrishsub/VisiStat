@@ -40,53 +40,87 @@ function loadFile(filePath)
 
 function getData(dataset, variableName, level)
 {
-//     Get variable names and their data type
-        var req = opencpu.r_fun_json("getData", {
-                    dataset: dataset,
-                    columnName: variableName
-                  }, function(output) {    
-        
-        if(level === undefined)
-        {   
-            level = "dataset";
-        } 
-        
-        variables[variableName][level] = output.data;
-        MIN[variableName][level] = Array.min(variables[variableName][level]);
-        MAX[variableName][level] = Array.max(variables[variableName][level]);
-        
-        console.log("\n\tvariables[" + variableName + "][" + level + "] = " + variables[variableName][level]);
-        console.log("\tMIN[" + variableName + "][" + level + "] = " + MIN[variableName][level]);
-        console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
+    if(level === undefined)
+    {   
+        level = "dataset";
+    }
     
-        IQR[variableName][level] = findIQR(variables[variableName][level]);
-        CI[variableName][level] = findCI(variables[variableName][level]);   
-        
-        if(++variableCount == getObjectLength(variableNames))
-        {
-            setVariableRow();
-            setVariableTypes();
-            
-            testForEvilVariables();
-            
-            removeElementsByClassName("loadingAnimation");
-            freezeMouseEvents = false;
-            
-            experimentalDesign = findExperimentalDesign();            
-            console.log("\n\tEXPERIMENTAL DESIGN = " + experimentalDesign);
-        }    
-        
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+    for(var i=0; i<dataset.length; i++)
+    {
+        variables[variableName][level].push(dataset[i][variableName]);  
+    }
+    
+    MIN[variableName][level] = Array.min(variables[variableName][level]);
+    MAX[variableName][level] = Array.max(variables[variableName][level]);
+    
+    console.log("\n\tvariables[" + variableName + "][" + level + "] = " + variables[variableName][level]);
+    console.log("\tMIN[" + variableName + "][" + level + "] = " + MIN[variableName][level]);
+    console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+    IQR[variableName][level] = findIQR(variables[variableName][level]);
+    CI[variableName][level] = findCI(variables[variableName][level]);   
+    
+    if(++variableCount == getObjectLength(variableNames))
+    {
+        setVariableRow();
+        setVariableTypes();
         
-    });
+        testForEvilVariables();
+        
+        removeElementsByClassName("loadingAnimation");
+        freezeMouseEvents = false;
+        
+        experimentalDesign = findExperimentalDesign();            
+        console.log("\n\tEXPERIMENTAL DESIGN = " + experimentalDesign);
+    }
+    
+//     // Get variable names and their data type
+//         var req = opencpu.r_fun_json("getData", {
+//                     dataset: dataset,
+//                     columnName: variableName
+//                   }, function(output) {    
+//         
+//         if(level === undefined)
+//         {   
+//             level = "dataset";
+//         } 
+//         
+//         variables[variableName][level] = output.data;
+//         MIN[variableName][level] = Array.min(variables[variableName][level]);
+//         MAX[variableName][level] = Array.max(variables[variableName][level]);
+//         
+//         console.log("\n\tvariables[" + variableName + "][" + level + "] = " + variables[variableName][level]);
+//         console.log("\tMIN[" + variableName + "][" + level + "] = " + MIN[variableName][level]);
+//         console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
+//     
+//         IQR[variableName][level] = findIQR(variables[variableName][level]);
+//         CI[variableName][level] = findCI(variables[variableName][level]);   
+//         
+//         if(++variableCount == getObjectLength(variableNames))
+//         {
+//             setVariableRow();
+//             setVariableTypes();
+//             
+//             testForEvilVariables();
+//             
+//             removeElementsByClassName("loadingAnimation");
+//             freezeMouseEvents = false;
+//             
+//             experimentalDesign = findExperimentalDesign();            
+//             console.log("\n\tEXPERIMENTAL DESIGN = " + experimentalDesign);
+//         }    
+//         
+//       }).fail(function(){
+//           alert("Failure: " + req.responseText);
+//     });
+// 
+//     //if R returns an error, alert the error message
+//     req.fail(function(){
+//       alert("Server error: " + req.responseText);
+//     });
+//     req.complete(function(){
+//         
+//     });
 }
 
 //Assumption-checking
