@@ -382,7 +382,10 @@ function setDistribution(dependentVariable, level, normal)
                             //2 variables
                             var groups = getGroupsForColourBoxPlotData();
                             
-                            performTTest(groups[0], groups[1], "TRUE", "FALSE");
+                            if(pairwiseComparisons)
+                                performPairwiseTTest("TRUE", "FALSE");
+                            else
+                                performTTest(groups[0], groups[1], "TRUE", "FALSE");
                         }                    
                     }
                 }

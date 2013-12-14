@@ -339,7 +339,10 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             {
                                 var groups = getGroupsForColourBoxPlotData();
                                 //Mann-Whitney U test
-                                performMannWhitneyTest(groups[0], groups[1]);
+                                if(pairwiseComparisons)
+                                    performPairwiseWilcoxTest("TRUE", "FALSE");
+                                else
+                                    performMannWhitneyTest(groups[0], groups[1]);
                             }                            
                         }
                     }
@@ -422,7 +425,10 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                                 //2 variables
                                 var groups = getGroupsForColourBoxPlotData();
                                 
-                                performTTest(groups[0], groups[1], "FALSE", "FALSE");
+                                if(pairwiseComparisons)
+                                    performPairwiseTTest("FALSE", "FALSE");
+                                else
+                                    performTTest(groups[0], groups[1], "FALSE", "FALSE");
                             }
                                 
                         }
@@ -665,8 +671,12 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                                     if(variableList["independent-levels"].length == 2)
                                     {
                                         var groups = getGroupsForColourBoxPlotData();
-                                        //Mann-Whitney U test
-                                        performTTest(groups[0], groups[1], "TRUE", "TRUE");
+                                        //Unpaired T-test 
+                                        
+                                        if(pairwiseComparisons)
+                                            performPairwiseTTest("TRUE", "FALSE");
+                                        else
+                                            performTTest(groups[0], groups[1], "TRUE", "FALSE");
                                     }                                    
                                 }
                             }
