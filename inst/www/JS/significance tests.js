@@ -333,7 +333,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                   
                   logResult();
                            
-                  findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
+//                   findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
                 
@@ -733,9 +733,7 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
                     independentVariableA: independentVariableA,
                     independentVariableB: independentVariableB,
                     dataset: dataset
-                  }, function(output) {                                                   
-                  
-
+                  }, function(output) {   
                     console.log("TukeyHSD test for " + dependentVariable + " ~ " + independentVariableA + " + " + independentVariableB);
                     
                     console.log(output.difference);
@@ -749,7 +747,7 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
                 resetSVGCanvas();
 //                 drawTukeyHSDPlot();
                 
-                displaySignificanceTestResults();
+//                 displaySignificanceTestResults();
         
       }).fail(function(){
           alert("Failure: " + req.responseText);
