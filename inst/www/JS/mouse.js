@@ -633,6 +633,7 @@ function OnMouseDown(e)
                                 .attr("opacity", "0.1")
                                 .attr("class", "plot");   
                     
+                    console.log(document.getElementsByClassName("significanceTest"));
                     if(document.getElementsByClassName("significanceTest") > 0)
                     {
                         sideBar.append("rect")
