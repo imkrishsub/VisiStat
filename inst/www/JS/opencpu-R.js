@@ -246,7 +246,7 @@ function performNormalityTestForMultipleDistributions(distributions)
     // Get variable names and their data type
     
     console.dir(distributions);
-    
+    console.log(distributions);
     
     var req = ocpu.rpc("performShapiroWilkTestForMultipleDistributions", {
                     distributions: distributions
