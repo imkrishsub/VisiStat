@@ -337,7 +337,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                 //drawing stuff
                 removeElementsByClassName("completeLines");           
                 
-                drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
+//                 drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
                 displayANOVAResults();  
         
       }).fail(function(){
@@ -707,17 +707,7 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                     resetSVGCanvas();
                     drawFullScreenButton();
         
-                    drawTukeyHSDPlot();
-                    
-            
-                //drawing stuff
-                removeElementsByClassName("completeLines");   
-                
-                resetSVGCanvas();
-                drawTukeyHSDPlot();
-                
-                displaySignificanceTestResults();
-        
+                    drawTukeyHSDPlot();        
       }).fail(function(){
           alert("Failure: " + req.responseText);
     });
