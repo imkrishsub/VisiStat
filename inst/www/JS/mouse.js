@@ -664,8 +664,9 @@ function OnMouseDown(e)
                                     .attr("ry", "3px")
                                     .attr("stroke", "black")
                                     .attr("opacity", "0.1")
-                                    .attr("fill", "none")
+                                    .attr("fill", "white")
                                     .attr("class", "pValue");
+                                    
                         sideBar.append("rect")
                                     .attr("x", scaleForWindowSize(10))
                                     .attr("y", canvasHeight/2 + 2*significanceTestResultOffset - significanceTestResultOffset/2)
@@ -675,7 +676,7 @@ function OnMouseDown(e)
                                     .attr("ry", "3px")
                                     .attr("stroke", "black")
                                     .attr("opacity", "0.1")
-                                    .attr("fill", "none")
+                                    .attr("fill", "white")
                                     .attr("class", "testStatistic");
                                     
                         sideBar.append("rect")
@@ -687,7 +688,7 @@ function OnMouseDown(e)
                                     .attr("ry", "3px")
                                     .attr("stroke", "black")
                                     .attr("opacity", "0.1")
-                                    .attr("fill", "none")
+                                    .attr("fill", "white")
                                     .attr("class", "method");
                     }
                 }
