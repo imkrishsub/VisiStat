@@ -863,8 +863,8 @@ function drawHomogeneityPlot()
         variances[i].transition().delay(800).duration(800)
                         .attr("x1", l + i*widthSlice + xStep/2)
                         .attr("x2", l + i*widthSlice + xStep/2)
-                        .attr("y1", b - getFractionForVariancePlot(mins[i], varianceMin, varianceMax)*variancePlotHeight)
-                        .attr("y2", b - getFractionForVariancePlot(maxs[i], varianceMin, varianceMax)*variancePlotHeight)
+                        .attr("y1", b - getFractionForVariancePlot(varianceMin, varianceMin, varianceMax)*variancePlotHeight)
+                        .attr("y2", b - getFractionForVariancePlot((maxs[i] - mins[i]), varianceMin, varianceMax)*variancePlotHeight)
                         .attr("stroke-width", "7px");
                         
     }
