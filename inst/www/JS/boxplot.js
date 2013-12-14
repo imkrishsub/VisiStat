@@ -827,7 +827,7 @@ function drawHomogeneityPlot()
     
     //make a small variance comparison plot
     var l = canvasWidth/2 - variancePlotWidth/2;
-    var b = canvasHeight/2 + plotHeight/2 + 2*axesOffset + variancePlotHeight;
+    var b = canvasHeight/2 + plotHeight/2 + 3*axesOffset + variancePlotHeight;
     
     canvas.append("line")
             .attr("x1", l)
@@ -836,11 +836,22 @@ function drawHomogeneityPlot()
             .attr("y2", b - variancePlotHeight)
             .attr("stroke", "black");
     
+    canvas.append("line")
+            .attr("x1", l)
+            .attr("y1", b)
+            .attr("x2", l + variancePlotWidth)
+            .attr("y2", b)
+            .attr("stroke", "black");
+    
+    
+    widthSlice = variancePlotWidth/(nGroovesX);
+    xStep = variancePlotWidth/nGroovesX; 
     
     for(var i=0; i<nGroovesX; i++)
     {
-//         variances[i].transition().duration(800)
-//                         .attr(
+        variances[i].transition().delay(800).duration(800)
+                        .attr("x1", i*widthSlice + xStep/2)
+                        .attr("x2", i*widthSlice + xStep/2)
     }
     
 }
