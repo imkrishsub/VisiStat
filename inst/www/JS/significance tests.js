@@ -664,6 +664,11 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                     sessionStorage.tukeyResultsMin = Array.min(output.lower);
                     sessionStorage.tukeyResultsMax = Array.max(output.upper);
                     
+                    console.log(output.difference);
+                    console.log(output.lower);
+                    console.log(output.upper);
+                    console.log(output.adjustedP);
+                    
                     //make a data structure to hold all this
                     
                     //get levels of the independent variable
