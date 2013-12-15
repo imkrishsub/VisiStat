@@ -194,7 +194,9 @@ function performHomoscedasticityTest(dependent, independent)
         });
     }
     else
-    {        
+    {  
+        setTimeout(function(){ 
+        }, 1000);
         if(homogeneityTestResults[dependent][independent] < 0.05)
         {   
             //not normal
@@ -389,6 +391,9 @@ function performNormalityTestForMultipleDistributions(distributions, n)
     }
     else
     {
+        setTimeout(function(){ 
+        }, 1000);
+        
         var pValues = [];
         for(var i=0; i<levels.length; i++)
         {
