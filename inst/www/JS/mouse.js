@@ -1105,6 +1105,14 @@ function OnMouseDown(e)
                     {
                         case "normality":
                                         {
+                                            var homogeneityText = d3.select("#homogeneity.assumptions");
+                                            var homogeneityButton = d3.select("#homogeneity.assumptionsButtonBack");
+                                            
+                                            homogeneityText.attr("fill", "black");
+                                            homogeneityButton.attr("fill", "url(#buttonFillNormal)")
+                                                                .attr("filter", "url(#Bevel)")
+                                                                .attr("stroke", "black");
+                                                                
                                             var variableList = getSelectedVariables();
                                     
                                             var dependentVariable = variableList["dependent"][0];
@@ -1131,6 +1139,14 @@ function OnMouseDown(e)
                                         }
                         case "homogeneity":
                                         {
+                                            var normalityText = d3.select("#normality.assumptions");
+                                            var normalityButton = d3.select("#normality.assumptionsButtonBack");
+                                            
+                                            normalityText.attr("fill", "black");
+                                            normalityButton.attr("fill", "url(#buttonFillNormal)")
+                                                                .attr("filter", "url(#Bevel)")
+                                                                .attr("stroke", "black");
+                                                                
                                             var variableList = sort(currentVariableSelection);
                                     
                                             var dependentVariable = variableList["dependent"][0];

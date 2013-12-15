@@ -525,6 +525,7 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
                     .attr("y", BOTTOM + tickTextOffsetXAxis + shortAxesOffset)                    
                     .text(dec2(min + i*(max-min)))
                     .attr("text-anchor", textAnchor)
+                    .attr("font-size", scaleForWindowSize(12) + "px")
                     .attr("id", "groove" + i)
                     .attr("class", "densityCurve");
     }
