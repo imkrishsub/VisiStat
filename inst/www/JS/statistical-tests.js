@@ -321,12 +321,14 @@ function setDistribution(dependentVariable, level, normal)
         
         if(normal)
         {   
-            d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+            // d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
             
             console.log("\n\tAll distributions are normal!");
             
 //             d3.select("#normality.ticks").attr("display", "inline");  
 //             d3.select("#normality.loading").attr("display", "none"); 
+            
+            console.dir(variableList);
             
             if(variableList["independent"].length == 1)
             {
