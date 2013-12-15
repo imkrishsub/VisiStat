@@ -829,8 +829,8 @@ function drawHomogeneityPlot()
                     .attr("x2", LEFT + i*widthSlice + xStep/2)
                     .attr("y2", BOTTOM - getFraction(maxs[i])*plotHeight)
                     .attr("stroke-width", "3px")
-                    .attr("stroke", "black"))
-                    .attr("class", "homogeneityPlot");
+                    .attr("stroke", "black")
+                    .attr("class", "homogeneityPlot"));
         }        
     }
     
