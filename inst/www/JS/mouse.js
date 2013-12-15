@@ -441,7 +441,9 @@ function OnMouseDown(e)
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "compareNow")
             {
                 d3.selectAll(".compareNow").attr("cursor", "pointer");
-        
+                    
+                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: "significanceTest"});
+                
                 //get selected means
                 var means = document.getElementsByClassName("means");
                 var selectedMeans = []; 
@@ -820,16 +822,36 @@ function OnMouseDown(e)
                     currentVariableSelection = state.variables;
                     currentVisualisationSelection = state.visualisation;
                     
-                    if(state.visualisation == "Boxplot" && state.substate == "base")
-                    {
-                        console.log("confirmation");
+                    if(state.visualisation == "Boxplot")
+                    {   
+                        if(state.substate == "base")
+                        {
+                            console.log("confirmation");
                         
-                        removeElementsByClassName("compareNow");
-                        removeElementsByClassName("selectAll");
-                        removeElementsByClassName("selectNone");
+                            removeElementsByClassName("compareNow");
+                            removeElementsByClassName("selectAll");
+                            removeElementsByClassName("selectNone");
                         
-                        d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "1.0");
-                        d3.selectAll(".means").transition().duration(500).attr("r", meanRadius);
+                            d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "1.0");
+                            d3.selectAll(".means").transition().duration(500).attr("r", meanRadius);
+                        }
+                        else if(state.substate == "meanSelection")
+                        {
+                            console.log("hohoho!");
+                            
+                            removeElementsByClassName("significanceTest");
+                            removeElementsByClassName("assumptions");
+                            removeElementsByClassName("pairwisePostHoc");
+                            removeElementsByClassName("tukeyHSD");
+                            removeElementsByClassName("effectSize");
+                            removeElementsByClassName("parameter");
+                            removeElementsByClassName("crosses");
+                            removeElementsByClassName("ticks");
+                            removeElementsByClassName("checkingAssumptions");
+                            removeElementsByClassName("differenceInMeans");
+                            
+                            unselectAllMeans();
+                        }
                     }                   
                     
                     setColorsForVariablesWithArray(currentVariableSelection);
