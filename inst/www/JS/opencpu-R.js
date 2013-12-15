@@ -235,7 +235,7 @@ function performHomoscedasticityTest(dependent, independent)
                 }
             }
         
-        }, 1000);        
+        }, 2000);        
     }   
 }
 
