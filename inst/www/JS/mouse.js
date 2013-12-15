@@ -1272,7 +1272,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".effectSizeHelp").attr("fill", "none").attr("opacity","1");
+                d3.select(".effectSizeHelp").attr("opacity","0.3");
                 
                 helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
             }
