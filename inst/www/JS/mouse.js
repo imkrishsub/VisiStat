@@ -708,6 +708,8 @@ function OnMouseDown(e)
                     currentVariableSelection = state.variables;
                     currentVisualisationSelection = state.visualisation;
                     
+                    console.log("currentVisualisation : " + currentVisualisationSelection);
+                    
                     if(state.visualisation == "Boxplot")
                     {   
                         if(state.substate == "base")
