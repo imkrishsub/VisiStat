@@ -19,6 +19,10 @@ function getCorrelationCoefficient(variableA, variableB, method)
 
                     testResults["df"] = output.df;
                     testResults["statistic"] = "t(" + output.df + ") = " + output.statistic;
+                    
+                    testResults["parameter"] = output.statistic;
+                    testResults["parameter-type"] = "t";
+                    
                     testResults["p"] = output.p;                  
                     testResults["method"] = output.method; 
                     testResults["effect-size"] = output.cor;
@@ -42,6 +46,10 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     console.log("\t\t\t\t 𝜏 = " + output.cor);
 
                     testResults["statistic"] = "z = " + output.statistic;
+                    
+                    testResults["parameter"] = output.statistic;
+                    testResults["parameter-type"] = "z";
+                  
                     testResults["p"] = output.p;                  
                     testResults["method"] = output.method; 
                     testResults["effect-size"] = output.cor;

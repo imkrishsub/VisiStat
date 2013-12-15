@@ -110,27 +110,40 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                     paired: paired
                   }, function(output) {                                                   
                   
-                  var variableList = getSelectedVariables();
+                    var variableList = getSelectedVariables();
                   
-                  console.log("\t\t " + output.method);
-                  console.log("\t\t\t DOF = " + output.DOF);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t t = " + output.t);
-                  console.log("\t\t\t d = " + output.d);
+                    console.log("\t\t " + output.method);
+                    console.log("\t\t\t DOF = " + output.DOF);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t t = " + output.t);
+                    console.log("\t\t\t d = " + output.d);
                   
-                  testResults["df"] = output.DOF;
+                    testResults["df"] = output.DOF;
                   
-                  testResults["parameter"] = output.t;
-                  testResults["parameter-type"] = "t";
+                    testResults["parameter"] = output.t;
+                    testResults["parameter-type"] = "t";
                   
-                  testResults["p"] = changePValueNotation(output.p); 
-                  testResults["method"] = output.method;
-                  testResults["effect-size"] = output.d;
-                  testResults["effect-size-type"] = "d";
-                  testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                    if(varianceEqual == "FALSE")
+                    {
+                        testResults["test-type"] = "WT";
+                    }
+                    else
+                    {
+                        if(paired == "TRUE")
+                            testResults["test-type"] = "pT";
+                        else
+                            testResults["test-type"] = "upT";
+                    }
+                    
                   
-                  //add to log
-                  logResult();
+                    testResults["p"] = changePValueNotation(output.p); 
+                    testResults["method"] = output.method;
+                    testResults["effect-size"] = output.d;
+                    testResults["effect-size-type"] = "d";
+                    testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                  
+                    //add to log
+                    logResult();
                   
                 //drawing stuff
                 removeElementsByClassName("completeLines");
@@ -167,6 +180,8 @@ function performMannWhitneyTest(groupA, groupB)
                   
                   testResults["parameter"] = output.U;
                   testResults["parameter-type"] = "U";
+                  
+                  testResults["test-type"] = "mwT";
                   
                   testResults["p"] = changePValueNotation(output.p);                  
                   testResults["effect-size"] = output.r;
@@ -211,6 +226,8 @@ function performWilcoxonTest(groupA, groupB)
                   
                   testResults["parameter"] = output.V;
                   testResults["parameter-type"] = "V";
+                  
+                  testResults["test-type"] = "wT";
                   
                   testResults["p"] = changePValueNotation(output.p);                  
                   testResults["effect-size"] = output.r;
@@ -259,6 +276,8 @@ function performOneWayANOVA(dependentVariable, independentVariable)
                   
                   testResults["df"] = output.numDF + ", " + output.denomDF;
                   
+                  testResults["test-type"] = "owA";
+                  
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
@@ -303,35 +322,37 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                     betweenGroupVariableB: betweenGroupVariableB
                   }, function(output) {                                                   
                   
-                  var variableList = getSelectedVariables();
+                    var variableList = getSelectedVariables();
                   
-                  console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
-                  console.log("\t\t\t F values= [" + output.F + "]");
-                  console.log("\t\t\t method used = Two-way ANOVA"); //todo
-                  console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
-                  console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
-                  console.log("\t\t\t p-values: [" + output.p + "]");
+                    console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
+                    console.log("\t\t\t F values= [" + output.F + "]");
+                    console.log("\t\t\t method used = Two-way ANOVA"); //todo
+                    console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
+                    console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
+                    console.log("\t\t\t p-values: [" + output.p + "]");
                   
-                  testResults["df"] = [];
-                  testResults["p"] = output.p;   
+                    testResults["df"] = [];
+                    testResults["p"] = output.p;   
                   
-                  for(var i=0; i<(output.numDF).length; i++)
-                  {
-                    testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
-                    testResults["p"][i] = changePValueNotation(testResults["p"][i]);
-                  }
+                    for(var i=0; i<(output.numDF).length; i++)
+                    {
+                      testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
+                      testResults["p"][i] = changePValueNotation(testResults["p"][i]);
+                    }
                   
-                  console.dir(testResults["df"]);
+                    console.dir(testResults["df"]);
                   
-                  testResults["parameter"] = output.F;
-                  testResults["parameter-type"] = "F";                 
+                    testResults["parameter"] = output.F;
+                    testResults["parameter-type"] = "F";                 
                                  
-                  testResults["method"] = "Two-way ANOVA"; //todo
-                  testResults["effect-size"] = output.etaSquared;
-                  testResults["effect-size-type"] = "eS";
-                  testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
+                    testResults["test-type"] = "twA";
+                    
+                    testResults["method"] = "Two-way ANOVA"; //todo
+                    testResults["effect-size"] = output.etaSquared;
+                    testResults["effect-size-type"] = "eS";
+                    testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
                   
-                  logResult();
+                    logResult();
                            
 //                   findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
                 //drawing stuff
@@ -374,6 +395,8 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
+                  testResults["test-type"] = "owrA";
+                  
                   testResults["method"] = "Repeated Measures ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   testResults["p"] = changePValueNotation(output.p);
@@ -413,7 +436,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                     dataset: dataset
                   }, function(output) {                                                   
                   
-                  console.log("\t\t Factorial ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
+                  console.log("\t\t Mixed-design ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
                   console.log("\t\t\t F = " + output.F);
                   console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
                   console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
@@ -432,7 +455,9 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
                   
-                  testResults["method"] = "Factorial ANOVA"; //todo
+                  testResults["test-type"] = "fA";
+                  
+                  testResults["method"] = "Mixed-design ANOVA"; //todo
                   testResults["effect-size"] = output.etaSquared;
                   
                   testResults["effect-size-type"] = "eS";
@@ -480,6 +505,8 @@ function performFriedmanTest(dependentVariable, independentVariable)
                   
                   testResults["parameter"] = output.chiSquared;
                   testResults["parameter-type"] = "cS";
+                  
+                  testResults["test-type"] = "fT";
                   
                   testResults["method"] = output.method; 
                   testResults["p"] = changePValueNotation(output.p);
@@ -572,6 +599,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
                   
                   testResults["parameter"] = output.F;
                   testResults["parameter-type"] = "F";
+                  testResults["test-type"] = "WA";
                   
                   testResults["p"] = changePValueNotation(output.p);
                   testResults["method"] = "Welch's ANOVA"; 
@@ -623,6 +651,8 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                   
                   testResults["parameter"] = output.ChiSquared;
                   testResults["parameter-type"] = "cS";
+                  
+                  testResults["test-type"] = "kwT";
                   
                   testResults["p"] = changePValueNotation(output.p);                  
                   testResults["method"] = "Kruskal-Wallis Test"; 

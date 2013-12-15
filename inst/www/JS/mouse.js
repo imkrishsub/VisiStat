@@ -67,6 +67,78 @@ function OnMouseDown(e)
                 }
             }
             
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "method"))
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                console.log(testResults["test-type"]);
+                
+                switch(testResults["test-type"])
+                {
+                    case "WT":
+                            {
+                                helpText.text(desc["test"]["WT"]);
+                                break;                                
+                            }                    
+                    case "pT":
+                            {
+                                helpText.text(desc["test"]["pT"]);
+                                break;                                
+                            }
+                    case "upT":
+                            {
+                                helpText.text(desc["test"]["upT"]);
+                                break;                                
+                            }
+                    case "mwT":
+                            {
+                                helpText.text(desc["test"]["mwT"]);
+                                break;                                
+                            }
+                    case "wT":
+                            {
+                                helpText.text(desc["test"]["wT"]);
+                                break;                                
+                            }
+                    case "owA":
+                            {
+                                helpText.text(desc["test"]["owA"]);
+                                break;                                
+                            }
+                    case "twA":
+                            {
+                                helpText.text(desc["test"]["twA"]);
+                                break;                                
+                            }
+                    case "owrA":
+                            {
+                                helpText.text(desc["test"]["owrA"]);
+                                break;                                
+                            }
+                    case "fA":
+                            {
+                                helpText.text(desc["test"]["fA"]);
+                                break;                                
+                            }
+                    case "fT":
+                            {
+                                helpText.text(desc["test"]["fT"]);
+                                break;                                
+                            }
+                    case "WA":
+                            {
+                                helpText.text(desc["test"]["WA"]);
+                                break;                                
+                            }
+                    case "kwT":
+                            {
+                                helpText.text(desc["test"]["kwT"]);
+                                break;                                
+                            }
+                }
+            }
+            
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "helpButtonFront"))
             {
                 var helpButton = d3.select(".helpButtonBack");
