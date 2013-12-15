@@ -114,12 +114,10 @@ function resetSVGCanvas()
               .attr("viewBox", "0 0 " + sideBarWidth + " " + canvasHeight);
               
     sideBarCanvas.append("image")
-                    .attr("x", sideBarWidth - 2.5*(helpButtonWidth + helpButtonOffset))
+                    .attr("x", sideBarWidth - 3*(helpButtonWidth + helpButtonOffset))
                     .attr("y", helpButtonOffset/4)
                     .attr("width", sideBarWidth)
-                    .attr("height", helpButtonHeight + helpButtonOffset)
-                    .attr("rx", "5px")
-                    .attr("ry", "5px")
+                    .attr("height", helpButtonHeight)
                     .attr("xlink:href", "images/leather.png");
     
     drawHelpButton();
