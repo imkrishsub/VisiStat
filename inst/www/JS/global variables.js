@@ -111,6 +111,8 @@ desc["parameter"]["U"] = "TBD";
 desc["parameter"]["V"] = "TBD";
 desc["parameter"]["z"] = "TBD";
 
+desc["test"] = new Object();
+
 desc["test"]["WT"] = "Welch's t test is an adaptation of Student's t-test intended for use with two samples having possibly unequal variances";
 desc["test"]["pT"] = "Paired samples t-tests typically consist of a sample of matched pairs of similar units, or one group of units that has been tested twice";
 desc["test"]["upT"] = "The independent samples t-test is used when two separate sets of independent and identically distributed samples are obtained, one from each of the two populations being compared.";
