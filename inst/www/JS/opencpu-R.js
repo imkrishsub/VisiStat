@@ -242,70 +242,136 @@ function performNormalityTest(distribution, dependentVariable, level)
 function performNormalityTestForMultipleDistributions(distributions, n)
 {
     // Get variable names and their data type        
-    var req = ocpu.rpc("performShapiroWilkTestForMultipleDistributions", {
-                    distributions: distributions,
-                    n: n
-                  }, function(output) {                                                                     
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t statistic = " + output.testStatistic);
-                    console.log("\t\t\t method = " + output.method);
-          
-                    var pValues = output.p;
+    var variableList = getSelectedVariables();
+    var dependentVariable = variableList["dependent"][0];
+    var levels = variableList["independent-levels"];
                     
-                    var variableList = getSelectedVariables();
-                    var dependentVariable = variableList["dependent"][0];
-                    var levels = variableList["independent-levels"];
+    var gotIt = true;
+    
+    for(var i=0; i<levels.length; i++)
+    {
+        if(normalityTestResults[dependentVariable][levels[i]] == undefined)
+        {
+            gotIt = false;
+        }
+    }
+    
+    if(!gotIt)
+    {
+        var req = ocpu.rpc("performShapiroWilkTestForMultipleDistributions", {
+                        distributions: distributions,
+                        n: n
+                      }, function(output) {                                                                     
+                        console.log("\t\t\t p = " + output.p);
+                        console.log("\t\t\t statistic = " + output.testStatistic);
+                        console.log("\t\t\t method = " + output.method);
           
-                    for(var i=0; i<pValues.length; i++)
-                    {
-                        console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + levels[i] + ")");
-                        console.log("\t\t\t p = " + pValues[i]);          
+                        var pValues = output.p;
                     
-                        if(output.p < 0.05)
-                        {   
-                            //not normal
-                            if(variableList["independent"].length == 0)
-                            {
-                                //one sample t-test
-                                d3.select("#normality.crosses").attr("display", "inline");
-                                d3.select("#normality.loading").attr("display", "none");
+                    
+                    
+          
+                        for(var i=0; i<pValues.length; i++)
+                        {
+                            console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + levels[i] + ")");
+                            console.log("\t\t\t p = " + pValues[i]);   
                         
-                                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+                            if(normalityTestResults[dependentVariable] == undefined)
+                                normalityTestResults[dependentVariable] = new Object();
+                            
+                            normalityTestResults[dependentVariable][levels[i]] = pValues[i];
+                    
+                            if(pValues[i] < 0.05)
+                            {   
+                                //not normal
+                                if(variableList["independent"].length == 0)
+                                {
+                                    //one sample t-test
+                                    d3.select("#normality.crosses").attr("display", "inline");
+                                    d3.select("#normality.loading").attr("display", "none");
+                        
+                                    d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
                 
-                                //draw boxplots in red 
-                                drawBoxPlotInRed(variableList["dependent"][0]);
-                                drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
+                                    //draw boxplots in red 
+                                    drawBoxPlotInRed(variableList["dependent"][0]);
+                                    drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
                 
-                                findTransformForNormalityForDependentVariables(getNumericVariables());
+                                    findTransformForNormalityForDependentVariables(getNumericVariables());
+                                }
+                                else
+                                {
+                                    setDistribution(dependentVariable, levels[i], false);
+                                }
                             }
                             else
-                            {
-                                setDistribution(dependentVariable, levels[i], false);
-                            }
-                        }
-                        else
-                        {   
-                            //normal
-                            if(variableList["independent"].length == 0)
-                            {
-                                d3.select("#normality.ticks").attr("display", "inline");
-                                d3.select("#normality.loading").attr("display", "none");
+                            {   
+                                //normal
+                                if(variableList["independent"].length == 0)
+                                {
+                                    d3.select("#normality.ticks").attr("display", "inline");
+                                    d3.select("#normality.loading").attr("display", "none");
                         
-                                drawDialogBoxToGetPopulationMean();
-                            }
-                            else
-                            {
-                                setDistribution(dependentVariable, levels[i], true);
+                                    drawDialogBoxToGetPopulationMean();
+                                }
+                                else
+                                {
+                                    setDistribution(dependentVariable, levels[i], true);
+                                }
                             }
                         }
-                    }
-    });
+        });
         
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+    }
+    else
+    {
+        for(var i=0; i<levels[i].length; i++)
+        {
+            pValues[i] = normalityTestResults[dependentVariable][levels[i]];
+                    
+            if(pValues[i] < 0.05)
+            {   
+                //not normal
+                if(variableList["independent"].length == 0)
+                {
+                    //one sample t-test
+                    d3.select("#normality.crosses").attr("display", "inline");
+                    d3.select("#normality.loading").attr("display", "none");
+    
+                    d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+
+                    //draw boxplots in red 
+                    drawBoxPlotInRed(variableList["dependent"][0]);
+                    drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
+
+                    findTransformForNormalityForDependentVariables(getNumericVariables());
+                }
+                else
+                {
+                    setDistribution(dependentVariable, levels[i], false);
+                }
+            }
+            else
+            {   
+                //normal
+                if(variableList["independent"].length == 0)
+                {
+                    d3.select("#normality.ticks").attr("display", "inline");
+                    d3.select("#normality.loading").attr("display", "none");
+    
+                    drawDialogBoxToGetPopulationMean();
+                }
+                else
+                {
+                    setDistribution(dependentVariable, levels[i], true);
+                }
+            }
+        }
+    }
 }
 
 function performSphericityTest()
