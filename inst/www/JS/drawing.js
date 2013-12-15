@@ -113,14 +113,14 @@ function resetSVGCanvas()
               .attr("width", sideBarWidth)
               .attr("viewBox", "0 0 " + sideBarWidth + " " + canvasHeight);
               
-//     sideBarCanvas.append("rect")
-//                     .attr("x", 0)
-//                     .attr("y", 0)
-//                     .attr("width", sideBarWidth)
-//                     .attr("height", helpButtonOffset + helpButtonHeight)
-//                     .attr("fill", "url(#bannerFill)")
-//                     .attr("filter", "url(#Shadow)")
-//                     .attr("stroke", "none");
+    sideBarCanvas.append("image")
+                    .attr("x", sideBarWidth - 2.5*(helpButtonWidth + helpButtonOffset))
+                    .attr("y", helpButtonOffset/4)
+                    .attr("width", sideBarWidth)
+                    .attr("height", helpButtonHeight + helpButtonOffset)
+                    .attr("rx", "5px")
+                    .attr("ry", "5px")
+                    .attr("xlink:href", "images/leather.png");
     
     drawHelpButton();
     drawBackButton();
