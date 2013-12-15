@@ -250,7 +250,11 @@ function performNormalityTestForMultipleDistributions(distributions, n)
     
     for(var i=0; i<levels.length; i++)
     {
-        if(normalityTestResults[dependentVariable][levels[i]] == undefined)
+        if(normalityTestResults[dependentVariable] == undefined)
+        {
+            gotIt = false;
+        }
+        else if(normalityTestResults[dependentVariable][levels[i]] == undefined)
         {
             gotIt = false;
         }
