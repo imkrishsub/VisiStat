@@ -325,8 +325,8 @@ function setDistribution(dependentVariable, level, normal)
             
             console.log("\n\tAll distributions are normal!");
             
-            d3.select("#normality.ticks").attr("display", "inline");  
-            d3.select("#normality.loading").attr("display", "none"); 
+//             d3.select("#normality.ticks").attr("display", "inline");  
+//             d3.select("#normality.loading").attr("display", "none"); 
             
             if(variableList["independent"].length == 1)
             {
