@@ -137,7 +137,7 @@ function drawHelpButton()
     var helpButtonHeight = scaleForWindowSize(50);
     var helpButtonWidth = scaleForWindowSize(50);
     
-    var helpButtonOffset = scaleForWindowSize(10);
+    var helpButtonOffset = assumptionImageSize;
     
     sideBar.append("rect")
             .attr("x", sideBarWidth - helpButtonWidth - helpButtonOffset)
@@ -177,7 +177,7 @@ function drawBackButton()
     var helpButtonHeight = scaleForWindowSize(50);
     var helpButtonWidth = scaleForWindowSize(50);
     
-    var helpButtonOffset = scaleForWindowSize(10);
+    var helpButtonOffset = assumptionImageSize;
     
     var offset = 2;
     
@@ -221,9 +221,9 @@ function drawButtonInSideBar(buttonText, className, offset)
     var canvas = d3.select("#sideBarCanvas");
     
     canvas.append("rect")
-            .attr("x", scaleForWindowSize(10))
+            .attr("x", assumptionImageSize)
             .attr("y", canvasHeight - buttonOffset + offset*(buttonPadding + buttonHeight))
-            .attr("width", sideBarWidth - scaleForWindowSize(10)*2)
+            .attr("width", sideBarWidth - assumptionImageSize*2)
             .attr("height", buttonHeight)
             .attr("rx", scaleForWindowSize(10) + "px")
             .attr("ry", scaleForWindowSize(10) + "px")
