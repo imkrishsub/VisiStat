@@ -137,7 +137,7 @@ function drawHelpButton()
     var helpButtonHeight = scaleForWindowSize(50);
     var helpButtonWidth = scaleForWindowSize(50);
     
-    var helpButtonOffset = scaleForWindowSize(25);
+    var helpButtonOffset = scaleForWindowSize(10);
     
     sideBar.append("rect")
             .attr("x", sideBarWidth - helpButtonWidth - helpButtonOffset)
@@ -153,7 +153,7 @@ function drawHelpButton()
     
     sideBar.append("text")
             .attr("x", sideBarWidth - helpButtonWidth/2 - helpButtonOffset)
-            .attr("y", helpButtonOffset + helpButtonHeight/2)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
+            .attr("y", helpButtonOffset + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
             .attr("font-size", scaleForWindowSize(48))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
@@ -177,7 +177,7 @@ function drawBackButton()
     var helpButtonHeight = scaleForWindowSize(50);
     var helpButtonWidth = scaleForWindowSize(50);
     
-    var helpButtonOffset = scaleForWindowSize(25);
+    var helpButtonOffset = scaleForWindowSize(10);
     
     var offset = 2;
     
@@ -195,7 +195,7 @@ function drawBackButton()
     
     sideBar.append("text")
             .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset) + helpButtonWidth/2)
-            .attr("y", helpButtonOffset + helpButtonHeight/2)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
+            .attr("y", helpButtonOffset + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
             .attr("font-size", scaleForWindowSize(48))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
