@@ -2,8 +2,6 @@
 function loadFile(filePath)
 {
     //loads the file and returns the dataset and variable names
-    
-    console.log("CP2");
     var req = ocpu.rpc("loadFile", {
                     filePath: filePath
                   }, function(output) {                   

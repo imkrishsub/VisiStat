@@ -681,7 +681,7 @@ function OnMouseDown(e)
                                     
                         sideBar.append("rect")
                                     .attr("x", scaleForWindowSize(10))
-                                    .attr("y", canvasHeight/2 + 2*significanceTestResultOffset - significanceTestResultOffset/2)
+                                    .attr("y", canvasHeight/2 + significanceTestResultOffset - significanceTestResultOffset/2)
                                     .attr("height", significanceTestResultOffset)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
