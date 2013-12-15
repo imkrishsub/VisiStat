@@ -25,6 +25,9 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     
                     testResults["p"] = output.p;                  
                     testResults["method"] = output.method; 
+                    
+                    testResults["test-type"] = "pC";
+                    
                     testResults["effect-size"] = output.cor;
                     testResults["CI"] = [output.CI_min, output.CI_max];
                     testResults["effect-size-type"] = "r";
@@ -54,6 +57,8 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     testResults["method"] = output.method; 
                     testResults["effect-size"] = output.cor;
                     testResults["effect-size-type"] = "𝜏";
+                    
+                    testResults["test-type"] = "kC";
                     
                     testResults["formula"] = variableA + " : " + variableB;
                     
@@ -93,6 +98,8 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
                 testResults["method"] = "Biserial Correlation-coefficient";
                 testResults["effect-size"] = output.cor;  
                 testResults["effect-size-type"] = "r";
+                
+                testResults["test-type"] = "bC";
                 
                 testResults["formula"] = continuousVariable + " : " + binaryVariable;
                     
