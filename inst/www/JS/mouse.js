@@ -712,8 +712,6 @@ function OnMouseDown(e)
                     {   
                         if(state.substate == "base")
                         {
-                            states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: "base"});
-                        
                             removeElementsByClassName("compareNow");
                             removeElementsByClassName("selectAll");
                             removeElementsByClassName("selectNone");
@@ -740,9 +738,6 @@ function OnMouseDown(e)
                             removeElementsByClassName("assumptionsButtonBack");
                             
                             unselectAllMeans();
-                            
-                            states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: "meanSelection"});
-        
                             var canvas = d3.select("#plotCanvas");
                             var variableList = getSelectedVariables();
         
