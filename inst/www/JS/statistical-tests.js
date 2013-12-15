@@ -333,6 +333,7 @@ function setDistribution(dependentVariable, level, normal)
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                 {
                     //within-group design
+                    console.log("hi");
                     performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
                     
                     //do test
