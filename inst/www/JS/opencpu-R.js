@@ -256,6 +256,8 @@ function performNormalityTestForMultipleDistributions(distributions, n)
         }
     }
     
+    console.log(gotIt);
+    
     if(!gotIt)
     {
         var req = ocpu.rpc("performShapiroWilkTestForMultipleDistributions", {
