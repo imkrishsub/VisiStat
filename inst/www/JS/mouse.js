@@ -852,6 +852,7 @@ function OnMouseDown(e)
                             removeElementsByClassName("crosses");
                             removeElementsByClassName("ticks");
                             removeElementsByClassName("checkingAssumptions");
+                            removeElementsByClassName("loading");
                             removeElementsByClassName("differenceInMeans");
                             removeElementsByClassName("assumptionsButtonFront");
                             removeElementsByClassName("assumptionsButtonBack");
