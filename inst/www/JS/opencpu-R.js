@@ -125,7 +125,7 @@ function performHomoscedasticityTest(dependent, independent)
 {   
     var gotIt = true;
     
-    if(homogeneityTestResults[dependendent] == undefined)
+    if(homogeneityTestResults[dependent] == undefined)
         gotIt = false;
     else if(homogeneityTestResults[dependent][independent] == undefined)
         gotIt = false;
