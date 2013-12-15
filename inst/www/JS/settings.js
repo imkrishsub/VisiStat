@@ -131,7 +131,7 @@ var labelOffset = scaleForWindowSize(45);
 var significanceTestScaleOffset = scaleForWindowSize(25);
 
 var assumptionStep = scaleForWindowSize(55);
-var assumptionOffsetTop = assumptionStep*2;
+var assumptionOffsetTop = assumptionStep*3;
 var assumptionImageSize = scaleForWindowSize(35);
 
 var assumptionsText = new Object();
@@ -142,7 +142,7 @@ var assumptionsText = new Object();
 var assumptions = new Object();
 assumptions["one-sample tests"] = ["normality"];
 assumptions["normal"] = ["normality", "homogeneity"];
-assumptions["repeated measures"] = ["normality", "homogeneity", "sphericity"];
+assumptions["repeated measures"] = ["normality", "homogeneity"];//["normality", "homogeneity", "sphericity"];
 
 var significanceTestResultOffset = scaleForWindowSize(40);
 
