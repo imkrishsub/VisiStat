@@ -143,10 +143,6 @@ function drawFullScreenButton()
 function drawHelpButton()
 {
     var sideBar = d3.select("#sideBarCanvas");
-    var helpButtonHeight = scaleForWindowSize(50);
-    var helpButtonWidth = scaleForWindowSize(50);
-    
-    var helpButtonOffset = assumptionImageSize;
     
     sideBar.append("rect")
             .attr("x", sideBarWidth - helpButtonWidth - helpButtonOffset)
