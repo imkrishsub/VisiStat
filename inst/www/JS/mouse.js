@@ -640,7 +640,7 @@ function OnMouseDown(e)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "orange")
+                                    .attr("stroke", "none")
                                     .attr("opacity", "0.01")
                                     .attr("fill", "white")
                                     .attr("class", "pValueHelp");
@@ -652,7 +652,7 @@ function OnMouseDown(e)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "orange")
+                                    .attr("stroke", "none")
                                     .attr("opacity", "0.01")
                                     .attr("fill", "white")
                                     .attr("class", "testStatisticHelp");
@@ -664,7 +664,7 @@ function OnMouseDown(e)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "orange")
+                                    .attr("stroke", "none")
                                     .attr("opacity", "0.01")
                                     .attr("fill", "white")
                                     .attr("class", "methodHelp");
@@ -676,7 +676,7 @@ function OnMouseDown(e)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "orange")
+                                    .attr("stroke", "none")
                                     .attr("opacity", "0.01")
                                     .attr("fill", "white")
                                     .attr("class", "effectSizeHelp");
@@ -1232,7 +1232,7 @@ function OnMouseOver(e)
                 var visualisation = currentVisualisationSelection;
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".plotHelp").attr("fill", "none").attr("opacity","1");
+                d3.select(".plotHelp").attr("opacity","0.3").attr("cursor", "help");
 
                 helpText.text(desc[visualisation]);                
             }
@@ -1242,7 +1242,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".pValueHelp").attr("fill", "none").attr("opacity","1");
+                d3.select(".pValueHelp").attr("opacity","0.3").attr("cursor", "help");
                 
                 helpText.text(desc["p-value"]);                
             }
@@ -1252,7 +1252,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".testStatisticHelp").attr("fill", "none").attr("opacity","1");
+                d3.select(".testStatisticHelp").attr("opacity","0.3").attr("cursor", "help");
                 
                 helpText.text(desc["parameter"][testResults["parameter-type"]]);                
             }
@@ -1262,7 +1262,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".methodHelp").attr("fill", "none").attr("opacity","1");
+                d3.select(".methodHelp").attr("opacity","0.3").attr("cursor", "help");
                 
                 helpText.text(desc["method"][testResults["test-type"]]);
             }
@@ -1272,7 +1272,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".effectSizeHelp").attr("opacity","0.3");
+                d3.select(".effectSizeHelp").attr("opacity","0.3").attr("cursor", "help");
                 
                 helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
             }
@@ -1284,7 +1284,7 @@ function OnMouseOver(e)
                 
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select("#" + assumptionType + ".assumptionsButtonFront").attr("stroke-width","2px");
+                d3.select("#" + assumptionType + ".assumptionsButtonBack").attr("stroke-width","2px").attr("cursor", "help");
                 
                 helpText.text(desc["assumptions"][assumptionType]);
             }
