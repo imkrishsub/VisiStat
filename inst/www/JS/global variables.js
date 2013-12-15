@@ -138,3 +138,8 @@ desc["effect-size"]["r"] = "Pearson's correlation coefficient r is the measure o
 desc["effect-size"]["eS"] = "Eta squared value describes the amount of variance accounted for in the sample.";
 desc["effect-size"]["𝜏"] = "It is a measure of rank correlation, i.e., the similarity of the orderings of the data when ranked by each of the quantities. It is named after Maurice Kendall, who developed it in 1938.";
 desc["effect-size"]["RS"] = "R squared values describes the amount of variance accounted for in the sample. In case of simple linear regression, it is the square of the pearson's correlation coefficient r.";
+
+desc["assumptions"] = new Object();
+
+desc["assumptions"]["normality"] = "This assumption checks if the distributions of the group are normal distributions (i.e., if they follow a Gaussian distribution characteristic of a bell-curve).";
+desc["assumptions"]["homogeneity"] = "Homogeneity of variances means that the variances of the distributions are roughly the same.";

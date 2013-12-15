@@ -437,7 +437,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
                 d3.select("#homogeneity.loading").attr("display", "none"); 
                 homogeneity = false;
             
-                drawHomogeneityPlot(dependentVariable, variableList["independent"][i]);
+                drawHomogeneityPlot("false");
             }
         }
         

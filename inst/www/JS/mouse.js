@@ -1031,12 +1031,14 @@ function OnMouseDown(e)
                                             var variableList = sort(currentVariableSelection);
                                     
                                             var dependentVariable = variableList["dependent"][0];
+                                            
+                                            var homogeneity = d3.select("#homogeneity.ticks").attr("display") == "inline" ? true : false;
         
                                             for(var i=0; i<variableList["independent"].length; i++)
                                             {                   
                                                 d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
         
-                                                drawHomogeneityPlot(dependentVariable, variableList["independent"][i]);                                           
+                                                drawHomogeneityPlot(homogeneity);                                           
                                             }
                                             break;
                                         }
@@ -1230,7 +1232,7 @@ function OnMouseOver(e)
                 var visualisation = currentVisualisationSelection;
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".plotHelp").attr("opacity","1");
+                d3.select(".plotHelp").attr("fill", "none").attr("opacity","1");
 
                 helpText.text(desc[visualisation]);                
             }
@@ -1240,7 +1242,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".pValueHelp").attr("opacity","1");
+                d3.select(".pValueHelp").attr("fill", "none").attr("opacity","1");
                 
                 helpText.text(desc["p-value"]);                
             }
@@ -1250,7 +1252,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".testStatisticHelp").attr("opacity","1");
+                d3.select(".testStatisticHelp").attr("fill", "none").attr("opacity","1");
                 
                 helpText.text(desc["parameter"][testResults["parameter-type"]]);                
             }
@@ -1260,7 +1262,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".methodHelp").attr("opacity","1");
+                d3.select(".methodHelp").attr("fill", "none").attr("opacity","1");
                 
                 helpText.text(desc["method"][testResults["test-type"]]);
             }
@@ -1270,7 +1272,7 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".effectSizeHelp").attr("opacity","1");
+                d3.select(".effectSizeHelp").attr("fill", "none").attr("opacity","1");
                 
                 helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
             }
@@ -1859,27 +1861,27 @@ function OnMouseOut(e)
     {
         if(target.className.baseVal == "plotHelp")
         {
-            d3.select(".plotHelp").attr("opacity","0.01");        
+            d3.select(".plotHelp").attr("fill", "white").attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "pValueHelp")
         {
-            d3.select(".pValueHelp").attr("opacity","0.01");        
+            d3.select(".pValueHelp").attr("fill", "white")attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "testStatisticHelp")
         {
-            d3.select(".testStatisticHelp").attr("opacity","0.01");        
+            d3.select(".testStatisticHelp").attr("fill", "white")attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "methodHelp")
         {
-            d3.select(".methodHelp").attr("opacity","0.01");        
+            d3.select(".methodHelp").attr("fill", "white")attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "effectSizeHelp")
         {
-            d3.select(".effectSizeHelp").attr("opacity","0.01");        
+            d3.select(".effectSizeHelp").attr("fill", "white")attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "assumptionsButtonFront")

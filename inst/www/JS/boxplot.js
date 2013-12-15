@@ -665,8 +665,15 @@ function redrawBoxPlot()
     }
 }
 
-function drawHomogeneityPlot()
+function drawHomogeneityPlot(homogeneity)
 {
+    var color = "";
+    
+    if(homogeneity)
+        color = "green";
+    else
+        color = "red";
+        
     removeElementsByClassName("densityCurve");
     
     var LEFT = canvasWidth/2 - plotWidth/2;
@@ -880,6 +887,7 @@ function drawHomogeneityPlot()
                         .attr("y1", b - getFractionForVariancePlot(varianceMin, varianceMin, varianceMax)*variancePlotHeight)
                         .attr("y2", b - getFractionForVariancePlot(varianceMin + (maxs[i] - mins[i]), varianceMin, varianceMax)*variancePlotHeight)
                         .attr("stroke-width", "7px")
+                        .attr("stroke", color)
                         .attr("class", "homogeneityPlot");                        
     }
     
