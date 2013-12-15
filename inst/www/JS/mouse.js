@@ -707,7 +707,7 @@ function OnMouseDown(e)
                     
                     console.log("variables = " + state.variables);
                     
-                    currentVariableSelection = state.variables;
+                    currentVariableSelection = (state.variables).slice();
                     currentVisualisationSelection = state.visualisation;
                     
                     console.log("currentVisualisation : " + currentVisualisationSelection);
