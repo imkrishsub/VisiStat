@@ -123,6 +123,7 @@ function getData(dataset, variableName, level)
 
 function performHomoscedasticityTest(dependent, independent)
 {   
+    var variableList = getSelectedVariables(); 
     var gotIt = true;
     
     if(homogeneityTestResults[dependent] == undefined)
@@ -141,8 +142,6 @@ function performHomoscedasticityTest(dependent, independent)
                   
                     console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
                     console.log("\t\t\t p = " + output.p);
-                
-                    var variableList = getSelectedVariables(); 
                 
                     if(homogeneityTestResults[dependent] == undefined)
                         homogeneityTestResults[dependent] = new Object();
