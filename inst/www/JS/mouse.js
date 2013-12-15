@@ -705,6 +705,8 @@ function OnMouseDown(e)
                     console.log("current stack:");
                     console.dir(states);
                     
+                    console.log("variables = " + state.variables);
+                    
                     currentVariableSelection = state.variables;
                     currentVisualisationSelection = state.visualisation;
                     

@@ -40,6 +40,8 @@ function plotVisualisation()
     resetSVGCanvas();
     drawFullScreenButton();
     
+    console.log(currentVisualisationSelection);
+    
     switch(currentVisualisationSelection)
     {
         case "Histogram":
