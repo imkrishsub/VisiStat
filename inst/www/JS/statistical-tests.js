@@ -456,7 +456,14 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
             {
                 //between-groups design
-                performNormalityTests();                
+                if(pairwiseComparisons)
+                {
+                    setTimeout(function(){
+                        performNormalityTests()
+                    }, 1500);
+                }
+                else
+                    performNormalityTests();                
             }
         }
         else
