@@ -353,6 +353,7 @@ function setDistribution(dependentVariable, level, normal)
                 else
                 {
                     //between-group design
+                    console.log(d3.select("#homogeneity.ticks").attr("display"));
                     
                     //homoscedasticity test is already done (and no case is handled)
                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
