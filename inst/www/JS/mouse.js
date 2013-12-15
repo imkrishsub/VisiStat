@@ -176,7 +176,12 @@ function OnMouseDown(e)
                 plotVisualisation(); //checks which plot is selected and draws that plot
                 setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
                 
-                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});
+                var subState = null;
+                
+                if(currentVisualisationSelection == "Boxplot")
+                    subState = "base";
+                
+                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice(), substate: subState});
                 
                 console.dir(states);
             }
@@ -465,6 +470,8 @@ function OnMouseDown(e)
                 setup(e, target);
         
                 pairwiseComparisons = false;
+                
+                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: meanSelection});
         
                 var canvas = d3.select("#plotCanvas");
                 var variableList = getSelectedVariables();
@@ -812,6 +819,18 @@ function OnMouseDown(e)
                     
                     currentVariableSelection = state.variables;
                     currentVisualisationSelection = state.visualisation;
+                    
+                    if(state.visualisation == "Boxplot" && state.substate == "base")
+                    {
+                        console.log("confirmation");
+                        
+                        removeElementsByClassName("compareNow");
+                        removeElementsByClassName("selectAll");
+                        removeElementsByClassName("selectNone");
+                        
+                        d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "1.0");
+                        d3.selectAll(".means").transition().duration(500).attr("r", meanRadius);
+                    }                   
                     
                     setColorsForVariablesWithArray(currentVariableSelection);
         
