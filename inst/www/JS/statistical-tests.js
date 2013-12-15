@@ -353,11 +353,11 @@ function setDistribution(dependentVariable, level, normal)
                 else
                 {
                     //between-group design
-                    console.log("hi");
                     
                     //homoscedasticity test is already done (and no case is handled)
                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
+                        console.log("hi again");
                         if(variableList["independent-levels"].length == 2)
                         {
                             //2 variables
