@@ -112,6 +112,15 @@ function resetSVGCanvas()
               .attr("height", canvasHeight)
               .attr("width", sideBarWidth)
               .attr("viewBox", "0 0 " + sideBarWidth + " " + canvasHeight);
+              
+    sideBarCanvas.append("rect")
+                    .attr("x", 0)
+                    .attr("y", 0)
+                    .attr("width", sideBarWidth)
+                    .attr("height", helpButtonOffset + helpButtonHeight)
+                    .attr("fill", "url(#bannerFill)")
+                    .attr("filter", "url(#Shadow)")
+                    .attr("stroke", "none");
     
     drawHelpButton();
     drawBackButton();
@@ -154,7 +163,7 @@ function drawHelpButton()
     sideBar.append("text")
             .attr("x", sideBarWidth - helpButtonWidth/2 - helpButtonOffset)
             .attr("y", helpButtonOffset + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
-            .attr("font-size", scaleForWindowSize(48))
+            .attr("font-size", scaleForWindowSize(32))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
             .text("?")
@@ -196,7 +205,7 @@ function drawBackButton()
     sideBar.append("text")
             .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset) + helpButtonWidth/2)
             .attr("y", helpButtonOffset + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
-            .attr("font-size", scaleForWindowSize(48))
+            .attr("font-size", scaleForWindowSize(32))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
             .text("<")
