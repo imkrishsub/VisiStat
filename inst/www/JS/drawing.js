@@ -219,7 +219,7 @@ function drawBackButton()
 function drawButtonInSideBar(buttonText, className, offset)
 {
     if(offset == undefined)
-        offset = 2;
+        offset = 1;
         
     var canvas = d3.select("#sideBarCanvas");
     
