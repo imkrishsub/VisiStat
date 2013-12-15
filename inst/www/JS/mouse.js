@@ -53,6 +53,7 @@ function OnMouseDown(e)
                 
                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice(), substate: subState});
                 
+                console.log("current stack: ");
                 console.dir(states);
             }
     
@@ -65,6 +66,7 @@ function OnMouseDown(e)
                 
                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});
                 
+                console.log("current stack: ");
                 console.dir(states);
             }
     
@@ -697,7 +699,10 @@ function OnMouseDown(e)
                     
                     var state = states[states.length - 1];
                     
-                    console.dir(state);                    
+                    console.log("state:");
+                    console.dir(state);   
+                    
+                    console.log("current stack:");
                     console.dir(states);
                     
                     currentVariableSelection = state.variables;
@@ -707,8 +712,6 @@ function OnMouseDown(e)
                     {   
                         if(state.substate == "base")
                         {
-                            console.log("confirmation");
-                            
                             states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: "base"});
                         
                             removeElementsByClassName("compareNow");
@@ -721,9 +724,7 @@ function OnMouseDown(e)
                             return;
                         }
                         else if(state.substate == "meanSelection")
-                        {
-                            console.log("hohoho!");
-                            
+                        {            
                             removeElementsByClassName("significanceTest");
                             removeElementsByClassName("assumptions");
                             removeElementsByClassName("pairwisePostHoc");
@@ -1284,7 +1285,8 @@ function OnMouseOver(e)
                 
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select("#" + assumptionType + ".assumptionsButtonBack").attr("stroke-width","2px").attr("cursor", "help");
+                d3.select("#" + assumptionType + ".assumptionsButtonBack").attr("stroke-width","2px");
+                d3.select("#" + assumptionType + ".assumptionsButtonFront").attr("cursor", "help");
                 
                 helpText.text(desc["assumptions"][assumptionType]);
             }
@@ -1886,7 +1888,7 @@ function OnMouseOut(e)
         
         if(target.className.baseVal == "assumptionsButtonFront")
         {
-            d3.select("#" + target.id + ".assumptionsButtonFront").attr("stroke-width", "1px");
+            d3.select("#" + target.id + ".assumptionsButtonBack").attr("stroke-width", "1px");
         }
     }
     else
