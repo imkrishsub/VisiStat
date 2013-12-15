@@ -390,7 +390,7 @@ function performNormalityTestForMultipleDistributions(distributions, n)
     else
     {
         var pValues = [];
-        for(var i=0; i<levels[i].length; i++)
+        for(var i=0; i<levels.length; i++)
         {
             pValues[i] = normalityTestResults[dependentVariable][levels[i]];
                     
