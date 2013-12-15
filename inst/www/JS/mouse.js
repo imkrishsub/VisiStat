@@ -36,35 +36,7 @@ function OnMouseDown(e)
                 
                 console.log(testResults["parameter-type"]);
                 
-                switch(testResults["parameter-type"])
-                {
-                    case "t":
-                            {
-                                helpText.text(desc["parameter"]["t"]);
-                                break;                                
-                            }                    
-                    case "F":
-                            {
-                                helpText.text(desc["parameter"]["F"]);
-                                break;                                
-                            }
-                    case "cS":
-                            {
-                                helpText.text(desc["parameter"]["cS"]);
-                                break;                                
-                            }
-                    case "U":
-                            {
-                                helpText.text(desc["parameter"]["U"]);
-                                break;                                
-                            }
-                    case "V":
-                            {
-                                helpText.text(desc["parameter"]["V"]);
-                                break;                                
-                            }
-                            
-                }
+                helpText.text(desc["parameter"][testResults["parameter-type"]]);                
             }
             
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "methodHelp"))
@@ -74,7 +46,7 @@ function OnMouseDown(e)
                 
                 console.log(testResults["test-type"]);
                 
-                helpText.text(desc["test"][testResults["test-type"]]);
+                helpText.text(desc["method"][testResults["test-type"]]);
             }
             
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "effectSizeHelp"))
@@ -84,7 +56,7 @@ function OnMouseDown(e)
                 
                 console.log(testResults["effect-size-type"]);
                 
-                helpText.text(desc["test"][testResults["effect-size-type"]]);
+                helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
             }
             
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "helpButtonFront"))
