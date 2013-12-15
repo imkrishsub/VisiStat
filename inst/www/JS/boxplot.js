@@ -870,7 +870,7 @@ function drawHomogeneityPlot()
                 .attr("y", b + 3*yAxisTickTextOffset)
                 .attr("text-anchor", "end")
                 .attr("font-anchor", scaleForWindowSize(12) + "px")
-                .attr("transform", "rotate (-75 " + (l + i*widthSlice + xStep/2)) + " " + (b + 3*yAxisTickTextOffset) + ")")
+                .attr("transform", "rotate (-75 " + (l + i*widthSlice + xStep/2) + " " + (b + 3*yAxisTickTextOffset) + ")")
                 .text(levels[i])
                 .attr("class", "homogeneityPlot");
                 
