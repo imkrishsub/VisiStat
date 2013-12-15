@@ -9,7 +9,7 @@ function OnMouseDown(e)
     {        
         if(help)
         {
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "plot"))
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "plotHelp"))
             {
                 setup(e, target);
                 
@@ -21,7 +21,7 @@ function OnMouseDown(e)
                 helpText.text(desc[visualisation]);                
             }
             
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "pValue"))
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "pValueHelp"))
             {
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
@@ -29,7 +29,7 @@ function OnMouseDown(e)
                 helpText.text(desc["p-value"]);                
             }
             
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "testStatistic"))
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "testStatisticHelp"))
             {
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
@@ -67,76 +67,24 @@ function OnMouseDown(e)
                 }
             }
             
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "method"))
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "methodHelp"))
             {
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
                 console.log(testResults["test-type"]);
                 
-                switch(testResults["test-type"])
-                {
-                    case "WT":
-                            {
-                                helpText.text(desc["test"]["WT"]);
-                                break;                                
-                            }                    
-                    case "pT":
-                            {
-                                helpText.text(desc["test"]["pT"]);
-                                break;                                
-                            }
-                    case "upT":
-                            {
-                                helpText.text(desc["test"]["upT"]);
-                                break;                                
-                            }
-                    case "mwT":
-                            {
-                                helpText.text(desc["test"]["mwT"]);
-                                break;                                
-                            }
-                    case "wT":
-                            {
-                                helpText.text(desc["test"]["wT"]);
-                                break;                                
-                            }
-                    case "owA":
-                            {
-                                helpText.text(desc["test"]["owA"]);
-                                break;                                
-                            }
-                    case "twA":
-                            {
-                                helpText.text(desc["test"]["twA"]);
-                                break;                                
-                            }
-                    case "owrA":
-                            {
-                                helpText.text(desc["test"]["owrA"]);
-                                break;                                
-                            }
-                    case "fA":
-                            {
-                                helpText.text(desc["test"]["fA"]);
-                                break;                                
-                            }
-                    case "fT":
-                            {
-                                helpText.text(desc["test"]["fT"]);
-                                break;                                
-                            }
-                    case "WA":
-                            {
-                                helpText.text(desc["test"]["WA"]);
-                                break;                                
-                            }
-                    case "kwT":
-                            {
-                                helpText.text(desc["test"]["kwT"]);
-                                break;                                
-                            }
-                }
+                helpText.text(desc["test"][testResults["test-type"]]);
+            }
+            
+            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "effectSizeHelp"))
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                console.log(testResults["effect-size-type"]);
+                
+                helpText.text(desc["test"][testResults["effect-size-type"]]);
             }
             
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "helpButtonFront"))
@@ -759,7 +707,7 @@ function OnMouseDown(e)
                                 .attr("fill", "white")
                                 .attr("stroke", "black")
                                 .attr("opacity", "0.1")
-                                .attr("class", "plot");   
+                                .attr("class", "plotHelp");   
                     
                     console.log(document.getElementsByClassName("significanceTest").length);
                     if(document.getElementsByClassName("significanceTest").length > 0)
@@ -774,7 +722,7 @@ function OnMouseDown(e)
                                     .attr("stroke", "black")
                                     .attr("opacity", "0.1")
                                     .attr("fill", "white")
-                                    .attr("class", "pValue");
+                                    .attr("class", "pValueHelp");
                                     
                         sideBar.append("rect")
                                     .attr("x", scaleForWindowSize(10))
@@ -786,7 +734,7 @@ function OnMouseDown(e)
                                     .attr("stroke", "black")
                                     .attr("opacity", "0.1")
                                     .attr("fill", "white")
-                                    .attr("class", "testStatistic");
+                                    .attr("class", "testStatisticHelp");
                                     
                         sideBar.append("rect")
                                     .attr("x", scaleForWindowSize(10))
@@ -798,7 +746,19 @@ function OnMouseDown(e)
                                     .attr("stroke", "black")
                                     .attr("opacity", "0.1")
                                     .attr("fill", "white")
-                                    .attr("class", "method");
+                                    .attr("class", "methodHelp");
+                        
+                        sideBar.append("rect")
+                                    .attr("x", scaleForWindowSize(10))
+                                    .attr("y", canvasHeight/2 - significanceTestResultOffset - effectSizeHeight/2 - yAxisTickTextOffset)
+                                    .attr("height", effectSizeHeight + yAxisTickTextOffset*2)
+                                    .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
+                                    .attr("rx", "3px")
+                                    .attr("ry", "3px")
+                                    .attr("stroke", "black")
+                                    .attr("opacity", "0.1")
+                                    .attr("fill", "white")
+                                    .attr("class", "effectSizeHelp");
                     }
                 }
             }

@@ -398,7 +398,7 @@ function drawEffectSize(value)
     
     var effectSize = sideBar.append("rect")
                                 .attr("x", L + scale(0))
-                                .attr("y", canvasHeight/2 - significanceTestResultOffset - effectSizeHeight/2)
+                                .attr("y", T)
                                 .attr("width", scale(min + (value - 0)))
                                 .attr("height", effectSizeHeight)
                                 .attr("fill", color)
