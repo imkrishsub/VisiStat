@@ -170,7 +170,7 @@ var boxPlotTransformationDuration = 700;
 var sampleSizeCutoff = 20;
 
 //buttons
-var buttonOffset = assumptionOffsetTop + 2*assumptionStep;
+var buttonOffset = scaleForWindowSize(25);//assumptionOffsetTop + 2*assumptionStep;
 var buttonHeight = scaleForWindowSize(50);
 var buttonWidth = sideBarWidth;
 var buttonPadding = assumptionStep;
