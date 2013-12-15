@@ -827,6 +827,8 @@ function OnMouseDown(e)
                         if(state.substate == "base")
                         {
                             console.log("confirmation");
+                            
+                            states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: "base"});
                         
                             removeElementsByClassName("compareNow");
                             removeElementsByClassName("selectAll");
@@ -851,8 +853,67 @@ function OnMouseDown(e)
                             removeElementsByClassName("ticks");
                             removeElementsByClassName("checkingAssumptions");
                             removeElementsByClassName("differenceInMeans");
+                            removeElementsByClassName("assumptionsButtonFront");
+                            removeElementsByClassName("assumptionsButtonBack");
                             
                             unselectAllMeans();
+                            
+                            states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: "meanSelection"});
+        
+                            var canvas = d3.select("#plotCanvas");
+                            var variableList = getSelectedVariables();
+        
+                            var inText = variableList["independent"].length > 0 ? "SELECT TWO OR ALL THE MEANS" : "SELECT ONE MEAN FOR COMPARISON AGAINST POPULATION MEAN";             
+    
+                            drawButtonInSideBar(inText, "compareNow");
+            
+                            var availableWidth = canvasWidth;
+            
+                            canvas.append("rect")
+                                    .attr("x", availableWidth/3 - selectionButtonWidth/2)
+                                    .attr("y", selectionButtonOffset)
+                                    .attr("height", selectionButtonHeight)
+                                    .attr("width", selectionButtonWidth)
+                                    .attr("rx", scaleForWindowSize(10) + "px")
+                                    .attr("ry", scaleForWindowSize(10) + "px")
+                                    .attr("fill", "url(#buttonFillSelected)")
+                                    .attr("filter", "none")
+                                    .attr("stroke", "none")
+                                    .attr("id", "rect")
+                                    .attr("class", "selectNone");
+                    
+                            canvas.append("text")
+                                    .attr("x", availableWidth/3)
+                                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
+                                    .attr("fill", "white")
+                                    .attr("text-anchor", "middle")
+                                    .attr("font-size", fontSizeButtonLabel + "px")
+                                    .text("SELECT NONE")
+                                    .attr("id", "text")
+                                    .attr("class", "selectNone");
+            
+                            canvas.append("rect")
+                                    .attr("x", 2*availableWidth/3 - selectionButtonWidth/2)
+                                    .attr("y", selectionButtonOffset)
+                                    .attr("height", selectionButtonHeight)
+                                    .attr("width", selectionButtonWidth)
+                                    .attr("rx", scaleForWindowSize(10) + "px")
+                                    .attr("ry", scaleForWindowSize(10) + "px")
+                                    .attr("fill", "url(#buttonFillNormal)")
+                                    .attr("filter", "url(#Bevel)")
+                                    .attr("stroke", "black")
+                                    .attr("id", "rect")
+                                    .attr("class", "selectAll");
+                    
+                            canvas.append("text")
+                                    .attr("x", 2*availableWidth/3)
+                                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
+                                    .attr("fill", "black")
+                                    .attr("text-anchor", "middle")
+                                    .attr("font-size", fontSizeButtonLabel + "px")
+                                    .text("SELECT ALL")
+                                    .attr("id", "text")
+                                    .attr("class", "selectAll");
                             
                             return;
                         }
