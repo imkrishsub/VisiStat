@@ -1866,22 +1866,22 @@ function OnMouseOut(e)
         
         if(target.className.baseVal == "pValueHelp")
         {
-            d3.select(".pValueHelp").attr("fill", "white")attr("opacity","0.01");        
+            d3.select(".pValueHelp").attr("fill", "white").attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "testStatisticHelp")
         {
-            d3.select(".testStatisticHelp").attr("fill", "white")attr("opacity","0.01");        
+            d3.select(".testStatisticHelp").attr("fill", "white").attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "methodHelp")
         {
-            d3.select(".methodHelp").attr("fill", "white")attr("opacity","0.01");        
+            d3.select(".methodHelp").attr("fill", "white").attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "effectSizeHelp")
         {
-            d3.select(".effectSizeHelp").attr("fill", "white")attr("opacity","0.01");        
+            d3.select(".effectSizeHelp").attr("fill", "white").attr("opacity","0.01");        
         }
         
         if(target.className.baseVal == "assumptionsButtonFront")
