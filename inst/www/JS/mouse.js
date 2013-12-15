@@ -8,57 +8,7 @@ function OnMouseDown(e)
     if(!freezeMouseEvents)
     {        
         if(help)
-        {
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "plotHelp"))
-            {
-                setup(e, target);
-                
-                var visualisation = currentVisualisationSelection;
-                var helpText = d3.select("#descriptionLabel");
-                
-                console.log(visualisation);
-                console.dir(desc);
-                helpText.text(desc[visualisation]);                
-            }
-            
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "pValueHelp"))
-            {
-                setup(e, target);
-                var helpText = d3.select("#descriptionLabel");
-                
-                helpText.text(desc["p-value"]);                
-            }
-            
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "testStatisticHelp"))
-            {
-                setup(e, target);
-                var helpText = d3.select("#descriptionLabel");
-                
-                console.log(testResults["parameter-type"]);
-                
-                helpText.text(desc["parameter"][testResults["parameter-type"]]);                
-            }
-            
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "methodHelp"))
-            {
-                setup(e, target);
-                var helpText = d3.select("#descriptionLabel");
-                
-                console.log(testResults["test-type"]);
-                
-                helpText.text(desc["method"][testResults["test-type"]]);
-            }
-            
-            if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "effectSizeHelp"))
-            {
-                setup(e, target);
-                var helpText = d3.select("#descriptionLabel");
-                
-                console.log(testResults["effect-size-type"]);
-                
-                helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
-            }
-            
+        {            
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "helpButtonFront"))
             {
                 var helpButton = d3.select(".helpButtonBack");
@@ -677,11 +627,10 @@ function OnMouseDown(e)
                                 .attr("rx", "10px")
                                 .attr("ry", "10px")
                                 .attr("fill", "white")
-                                .attr("stroke", "black")
-                                .attr("opacity", "0.1")
+                                .attr("stroke", "orange")
+                                .attr("opacity", "0.01")
                                 .attr("class", "plotHelp");   
                     
-                    console.log(document.getElementsByClassName("significanceTest").length);
                     if(document.getElementsByClassName("significanceTest").length > 0)
                     {
                         sideBar.append("rect")
@@ -691,8 +640,8 @@ function OnMouseDown(e)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "black")
-                                    .attr("opacity", "0.1")
+                                    .attr("stroke", "orange")
+                                    .attr("opacity", "0.01")
                                     .attr("fill", "white")
                                     .attr("class", "pValueHelp");
                                     
@@ -703,8 +652,8 @@ function OnMouseDown(e)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "black")
-                                    .attr("opacity", "0.1")
+                                    .attr("stroke", "orange")
+                                    .attr("opacity", "0.01")
                                     .attr("fill", "white")
                                     .attr("class", "testStatisticHelp");
                                     
@@ -715,8 +664,8 @@ function OnMouseDown(e)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "black")
-                                    .attr("opacity", "0.1")
+                                    .attr("stroke", "orange")
+                                    .attr("opacity", "0.01")
                                     .attr("fill", "white")
                                     .attr("class", "methodHelp");
                         
@@ -727,8 +676,8 @@ function OnMouseDown(e)
                                     .attr("width", sideBarWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "black")
-                                    .attr("opacity", "0.1")
+                                    .attr("stroke", "orange")
+                                    .attr("opacity", "0.01")
                                     .attr("fill", "white")
                                     .attr("class", "effectSizeHelp");
                     }
@@ -1274,11 +1223,68 @@ function OnMouseOver(e)
     {
         if(help)
         {
-            if(target.className.baseVal == "plot")
+            if(target.className.baseVal == "plotHelp")
             {
                 setup(e, target);
                 
-                d3.select("." + target.className.baseVal);
+                var visualisation = currentVisualisationSelection;
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select(".plotHelp").attr("opacity","1");
+
+                helpText.text(desc[visualisation]);                
+            }
+            
+            if(target.className.baseVal == "pValueHelp")
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select(".pValueHelp").attr("opacity","1");
+                
+                helpText.text(desc["p-value"]);                
+            }
+            
+            if(target.className.baseVal == "testStatisticHelp")
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select(".testStatisticHelp").attr("opacity","1");
+                
+                helpText.text(desc["parameter"][testResults["parameter-type"]]);                
+            }
+            
+            if(target.className.baseVal == "methodHelp")
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select(".methodHelp").attr("opacity","1");
+                
+                helpText.text(desc["method"][testResults["test-type"]]);
+            }
+            
+            if(target.className.baseVal == "effectSizeHelp")
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select(".effectSizeHelp").attr("opacity","1");
+                
+                helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
+            }
+            
+            if(target.className.baseVal == "assumptionsButtonFront")
+            {
+                setup(e, target);
+                var assumptionType = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#" + assumptionType + ".assumptionsButtonFront").attr("stroke-width","2px");
+                
+                helpText.text(desc["assumptions"][assumptionType]);
             }
         }
         else
@@ -1848,113 +1854,148 @@ function OnMouseOver(e)
 function OnMouseOut(e)
 {    
     var target = e.target != null ? e.target : e.srcElement;
-                
-    if(target.className.baseVal == "variableNameHolder")                
-    {
-        var variableNameHolder = d3.selectAll("#" + target.id + ".variableNameHolder");
-    }
     
-    else if(target.className.baseVal == "visualisationHolder")                
+    if(help)
     {
-        var visualisationHolder = d3.selectAll("#" + target.id + ".visualisationHolder");
-    }
-    
-    else if(target.className.baseVal == "means")                
-    {
-        var meanCircle = d3.selectAll("#" + target.id + ".means");
-        
-        if(meanCircle.attr("r") == engorgedMeanRadius)
+        if(target.className.baseVal == "plotHelp")
         {
-            if(meanCircle.attr("fill") != meanColors["click"])
-            {
-                meanCircle.attr("fill", meanColors["normal"]);
-                var incompleteLine = d3.select(".incompleteLines").attr("display", "none");
-            }
+            d3.select(".plotHelp").attr("opacity","0.01");        
         }
-        else
+        
+        if(target.className.baseVal == "pValueHelp")
+        {
+            d3.select(".pValueHelp").attr("opacity","0.01");        
+        }
+        
+        if(target.className.baseVal == "testStatisticHelp")
+        {
+            d3.select(".testStatisticHelp").attr("opacity","0.01");        
+        }
+        
+        if(target.className.baseVal == "methodHelp")
+        {
+            d3.select(".methodHelp").attr("opacity","0.01");        
+        }
+        
+        if(target.className.baseVal == "effectSizeHelp")
+        {
+            d3.select(".effectSizeHelp").attr("opacity","0.01");        
+        }
+        
+        if(target.className.baseVal == "assumptionsButtonFront")
+        {
+            d3.select("#" + target.id + ".assumptionsButtonFront").attr("stroke-width", "1px");
+        }
+    }
+    else
+    {                
+        if(target.className.baseVal == "variableNameHolder")                
+        {
+            var variableNameHolder = d3.selectAll("#" + target.id + ".variableNameHolder");
+        }
+    
+        else if(target.className.baseVal == "visualisationHolder")                
+        {
+            var visualisationHolder = d3.selectAll("#" + target.id + ".visualisationHolder");
+        }
+    
+        else if(target.className.baseVal == "means")                
+        {
+            var meanCircle = d3.selectAll("#" + target.id + ".means");
+        
+            if(meanCircle.attr("r") == engorgedMeanRadius)
+            {
+                if(meanCircle.attr("fill") != meanColors["click"])
+                {
+                    meanCircle.attr("fill", meanColors["normal"]);
+                    var incompleteLine = d3.select(".incompleteLines").attr("display", "none");
+                }
+            }
+            else
+            {
+                removeElementsByClassName("hover");
+            }
+        
+    //         removeElementsByClassName("loops");
+        
+        
+    //         clearInterval(intervals[meanCircle.attr("id")]);
+        
+    //         var incompleteLines = d3.selectAll(".incompleteLines");
+    //             
+    //         if(document.getElementsByClassName("incompleteLines").length > 0)
+    //         {
+    //             incompleteLines.attr("stroke", meanColors["normal"]);
+    //         }   
+        }
+    
+        else if(target.className.baseVal == "bins")                
+        {
+            var bins = d3.selectAll(".bins");
+        
+            unhighlightBins();
+        }
+    
+        else if(target.className.baseVal == "datapoints")                
+        {
+            var datapoint = d3.select("#" + target.id + ".datapoints");
+        
+            datapoint.transition().duration(300).attr("r", datapointRadius);
+            removeElementsByClassName("hoverText");
+        }
+    
+        else if(target.className.baseVal == "outliers")
+        {
+            var canvas = d3.select("#plotCanvas");
+            var outlier = d3.select("#" + target.id + ".outliers");
+        
+            outlier.attr("r", outlierRadius).attr("stroke", "none");
+            removeElementsByClassName("hover");
+        }
+    
+        else if((target.className.baseVal == "TOPFringes") || (target.className.baseVal == "BOTTOMFringes"))
+        {
+            var canvas = d3.select("#plotCanvas");
+        
+            var tFringe = d3.select("#" + target.id + ".TOPFringes");
+            var bFringe = d3.select("#" + target.id + ".BOTTOMFringes");
+        
+            tFringe.attr("stroke-width", 2);
+            bFringe.attr("stroke-width", 2);
+        
+            removeElementsByClassName("hover");
+        }
+    
+        else if((target.className.baseVal == "CIs") || (target.className.baseVal == "CITopFringes") || (target.className.baseVal == "CIBottomFringes"))
         {
             removeElementsByClassName("hover");
         }
-        
-//         removeElementsByClassName("loops");
-        
-        
-//         clearInterval(intervals[meanCircle.attr("id")]);
-        
-//         var incompleteLines = d3.selectAll(".incompleteLines");
-//             
-//         if(document.getElementsByClassName("incompleteLines").length > 0)
-//         {
-//             incompleteLines.attr("stroke", meanColors["normal"]);
-//         }   
-    }
     
-    else if(target.className.baseVal == "bins")                
-    {
-        var bins = d3.selectAll(".bins");
-        
-        unhighlightBins();
-    }
-    
-    else if(target.className.baseVal == "datapoints")                
-    {
-        var datapoint = d3.select("#" + target.id + ".datapoints");
-        
-        datapoint.transition().duration(300).attr("r", datapointRadius);
-        removeElementsByClassName("hoverText");
-    }
-    
-    else if(target.className.baseVal == "outliers")
-    {
-        var canvas = d3.select("#plotCanvas");
-        var outlier = d3.select("#" + target.id + ".outliers");
-        
-        outlier.attr("r", outlierRadius).attr("stroke", "none");
-        removeElementsByClassName("hover");
-    }
-    
-    else if((target.className.baseVal == "TOPFringes") || (target.className.baseVal == "BOTTOMFringes"))
-    {
-        var canvas = d3.select("#plotCanvas");
-        
-        var tFringe = d3.select("#" + target.id + ".TOPFringes");
-        var bFringe = d3.select("#" + target.id + ".BOTTOMFringes");
-        
-        tFringe.attr("stroke-width", 2);
-        bFringe.attr("stroke-width", 2);
-        
-        removeElementsByClassName("hover");
-    }
-    
-    else if((target.className.baseVal == "CIs") || (target.className.baseVal == "CITopFringes") || (target.className.baseVal == "CIBottomFringes"))
-    {
-        removeElementsByClassName("hover");
-    }
-    
-    else if((target.id == "regressionLine"))
-    {
-//         removeElementsByClassName("regressionPrediction");
-//         removeElementsByClassName("lineToAxis")
-    }
-    
-    else if((target.className.baseVal == "tukeyMean") || (target.className.baseVal == "tukeyCI") || (target.className.baseVal == "tukeyCITop") || (target.className.baseVal == "tukeyCIBottom"))
-    {
-        removeElementsByClassName("hover");
-    }
-    
-    else if(target.className.baseVal == "differenceInMeans")
-    {
-        var differenceInMeansText = d3.select("#" + target.id + ".differenceInMeansText");
-        
-        differenceInMeansText.attr("display", "none");
-        
-        var differenceInMeansLines = document.getElementsByClassName("differenceInMeans");
-        
-        for(var i=0; i<differenceInMeansLines.length; i++)
+        else if((target.id == "regressionLine"))
         {
-            if(differenceInMeansLines[i].getAttribute("id") != target.id)
+    //         removeElementsByClassName("regressionPrediction");
+    //         removeElementsByClassName("lineToAxis")
+        }
+    
+        else if((target.className.baseVal == "tukeyMean") || (target.className.baseVal == "tukeyCI") || (target.className.baseVal == "tukeyCITop") || (target.className.baseVal == "tukeyCIBottom"))
+        {
+            removeElementsByClassName("hover");
+        }
+    
+        else if(target.className.baseVal == "differenceInMeans")
+        {
+            var differenceInMeansText = d3.select("#" + target.id + ".differenceInMeansText");
+        
+            differenceInMeansText.attr("display", "none");
+        
+            var differenceInMeansLines = document.getElementsByClassName("differenceInMeans");
+        
+            for(var i=0; i<differenceInMeansLines.length; i++)
             {
-                differenceInMeansLines[i].setAttribute("opacity", "1.0");
+                if(differenceInMeansLines[i].getAttribute("id") != target.id)
+                {
+                    differenceInMeansLines[i].setAttribute("opacity", "1.0");
+                }
             }
         }
     }
