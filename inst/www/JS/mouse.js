@@ -797,6 +797,8 @@ function OnMouseDown(e)
                         }
                     }                   
                     
+                    console.log("hi");
+                    
                     setColorsForVariablesWithArray(currentVariableSelection);
         
                     //display the current variable selection

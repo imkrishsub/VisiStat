@@ -241,6 +241,8 @@ function setColorsForVariables(array, element)
 
 function setColorsForVariablesWithArray(array)
 {     
+    console.log(array);
+    
     for(var i=0; i<variableNames.length; i++)
     {
         var variable = d3.select("#" + variableNames[i] + ".variableNameHolderBack");
