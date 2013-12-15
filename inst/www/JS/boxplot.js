@@ -667,6 +667,8 @@ function redrawBoxPlot()
 
 function drawHomogeneityPlot()
 {
+    removeElementsByClassName("densityCurve");
+    
     var LEFT = canvasWidth/2 - plotWidth/2;
     var RIGHT = canvasWidth/2 + plotWidth/2;
     
@@ -827,7 +829,8 @@ function drawHomogeneityPlot()
                     .attr("x2", LEFT + i*widthSlice + xStep/2)
                     .attr("y2", BOTTOM - getFraction(maxs[i])*plotHeight)
                     .attr("stroke-width", "3px")
-                    .attr("stroke", "black"));
+                    .attr("stroke", "black"))
+                    .attr("class", "homogeneityPlot");
         }        
     }
     
@@ -845,14 +848,16 @@ function drawHomogeneityPlot()
             .attr("y1", b)
             .attr("x2", l)
             .attr("y2", b - variancePlotHeight)
-            .attr("stroke", "black");
+            .attr("stroke", "black")
+            .attr("class", "homogeneityPlot");
     
     canvas.append("line")
             .attr("x1", l)
             .attr("y1", b)
             .attr("x2", l + variancePlotWidth)
             .attr("y2", b)
-            .attr("stroke", "black");
+            .attr("stroke", "black")
+            .attr("class", "homogeneityPlot");
     
     
     widthSlice = variancePlotWidth/(nGroovesX);
@@ -863,16 +868,19 @@ function drawHomogeneityPlot()
         canvas.append("text")
                 .attr("x", l + i*widthSlice + xStep/2)
                 .attr("y", b + 3*yAxisTickTextOffset)
-                .attr("text-anchor", "middle")
+                .attr("text-anchor", "end")
                 .attr("font-anchor", scaleForWindowSize(12) + "px")
-                .text(levels[i]);
+                .attr("transform", "rotate (-75 " + (l + i*widthSlice + xStep/2)) + " " + (b + 3*yAxisTickTextOffset) + ")")
+                .text(levels[i])
+                .attr("class", "homogeneityPlot");
                 
         variances[i].transition().delay(800).duration(800)
                         .attr("x1", l + i*widthSlice + xStep/2)
                         .attr("x2", l + i*widthSlice + xStep/2)
                         .attr("y1", b - getFractionForVariancePlot(varianceMin, varianceMin, varianceMax)*variancePlotHeight)
                         .attr("y2", b - getFractionForVariancePlot(varianceMin + (maxs[i] - mins[i]), varianceMin, varianceMax)*variancePlotHeight)
-                        .attr("stroke-width", "7px");                        
+                        .attr("stroke-width", "7px")
+                        .attr("class", "homogeneityPlot");                        
     }
     
 }

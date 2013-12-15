@@ -435,7 +435,6 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
         var levels = level.split("-");
         
         data = colourBoxPlotData[levels[0]][levels[1]];
-        console.log("data = [" + data + "]");
     }
     else
     {   
@@ -457,7 +456,6 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
     
     curveX = [];
     curveY = [];
-            
 
     // Set all bin count to zero
     for(var i=0; i<nBins; i++)
@@ -517,12 +515,16 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
                     .attr("y2", BOTTOM + 10 + shortAxesOffset)
                     .attr("id", "groove" + i)
                     .attr("class", "densityCurve");
-    
+        
+        var textAnchor = "end";
+        if(i == 0)
+            textAnchor = "start";
+        
         canvas.append("text")
                     .attr("x", LEFT + i*xStep)
                     .attr("y", BOTTOM + tickTextOffsetXAxis + shortAxesOffset)                    
                     .text(dec2(min + i*(max-min)))
-                    .attr("text-anchor", "middle")
+                    .attr("text-anchor", textAnchor)
                     .attr("id", "groove" + i)
                     .attr("class", "densityCurve");
     }
