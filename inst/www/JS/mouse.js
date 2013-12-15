@@ -798,8 +798,6 @@ function OnMouseDown(e)
                     setColorsForVariablesWithArray(currentVariableSelection);
         
                     //display the current variable selection
-                    console.log("\n\n\ncurrent variable selection: [" + currentVariableSelection + "]\n");
-        
                     removeElementsByClassName("displayDataTable");
                     removeElementsByClassName("displayDataText");
                     
