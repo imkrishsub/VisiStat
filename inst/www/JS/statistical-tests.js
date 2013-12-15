@@ -328,14 +328,11 @@ function setDistribution(dependentVariable, level, normal)
 //             d3.select("#normality.ticks").attr("display", "inline");  
 //             d3.select("#normality.loading").attr("display", "none"); 
             
-            console.dir(variableList);
-            
             if(variableList["independent"].length == 1)
             {
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                 {
                     //within-group design
-                    console.log("hi");
                     performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
                     
                     //do test
@@ -356,6 +353,7 @@ function setDistribution(dependentVariable, level, normal)
                 else
                 {
                     //between-group design
+                    console.log("hi");
                     
                     //homoscedasticity test is already done (and no case is handled)
                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
