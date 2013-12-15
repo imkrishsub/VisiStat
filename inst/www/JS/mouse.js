@@ -36,7 +36,35 @@ function OnMouseDown(e)
                 
                 console.log(testResults["parameter-type"]);
                 
-                helpText.text(desc["p-value"]);                
+                switch(testResults["parameter-type"])
+                {
+                    case "t":
+                            {
+                                helpText.text(desc["parameter"]["t"]);
+                                break;                                
+                            }                    
+                    case "F":
+                            {
+                                helpText.text(desc["parameter"]["F"]);
+                                break;                                
+                            }
+                    case "cS":
+                            {
+                                helpText.text(desc["parameter"]["cS"]);
+                                break;                                
+                            }
+                    case "U":
+                            {
+                                helpText.text(desc["parameter"]["U"]);
+                                break;                                
+                            }
+                    case "V":
+                            {
+                                helpText.text(desc["parameter"]["V"]);
+                                break;                                
+                            }
+                            
+                }
             }
             
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "helpButtonFront"))
