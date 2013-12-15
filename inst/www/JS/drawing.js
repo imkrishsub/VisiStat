@@ -113,14 +113,14 @@ function resetSVGCanvas()
               .attr("width", sideBarWidth)
               .attr("viewBox", "0 0 " + sideBarWidth + " " + canvasHeight);
               
-    sideBarCanvas.append("rect")
-                    .attr("x", 0)
-                    .attr("y", 0)
-                    .attr("width", sideBarWidth)
-                    .attr("height", helpButtonOffset + helpButtonHeight)
-                    .attr("fill", "url(#bannerFill)")
-                    .attr("filter", "url(#Shadow)")
-                    .attr("stroke", "none");
+//     sideBarCanvas.append("rect")
+//                     .attr("x", 0)
+//                     .attr("y", 0)
+//                     .attr("width", sideBarWidth)
+//                     .attr("height", helpButtonOffset + helpButtonHeight)
+//                     .attr("fill", "url(#bannerFill)")
+//                     .attr("filter", "url(#Shadow)")
+//                     .attr("stroke", "none");
     
     drawHelpButton();
     drawBackButton();
@@ -151,7 +151,7 @@ function drawHelpButton()
             .attr("ry", "15px")
             .attr("height", helpButtonHeight)
             .attr("width", helpButtonWidth)
-            .attr("fill", "url(#buttonFillNormal)")
+            .attr("fill", "url(#bannerFill)")
             .attr("filter", "url(#Bevel)")
             .attr("stroke", "black")
             .attr("class", "helpButtonBack");
@@ -193,7 +193,7 @@ function drawBackButton()
             .attr("ry", "15px")
             .attr("height", helpButtonHeight)
             .attr("width", helpButtonWidth)
-            .attr("fill", "url(#buttonFillNormal)")
+            .attr("fill", "url(#bannerFill)")
             .attr("filter", "url(#Bevel)")
             .attr("stroke", "black")
             .attr("class", "backButtonBack");
