@@ -102,6 +102,9 @@ function performOneSampleWilcoxonTest(variable, level)
 
 function performTTest(groupA, groupB, varianceEqual, paired) 
 {
+    var label = "tT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
+    
+    console.log(sessionStorage.getObject(label));
     // Get variable names and their data type
     var req = ocpu.rpc("performTTest", {
                     groupA: groupA,
@@ -111,7 +114,11 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                   }, function(output) {                                                   
                   
                     var variableList = getSelectedVariables();
-                  
+                    
+                    
+                    
+                    console.log("LABEL=" + label);
+                                      
                     console.log("\t\t " + output.method);
                     console.log("\t\t\t DOF = " + output.DOF);
                     console.log("\t\t\t p = " + output.p);
@@ -141,6 +148,8 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                     testResults["effect-size"] = output.d;
                     testResults["effect-size-type"] = "d";
                     testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                    
+                    sessionStorage.setObject(label, testResults);
                   
                     //add to log
                     logResult();
