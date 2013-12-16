@@ -318,7 +318,7 @@ function performNormalityTestForMultipleDistributions(distributions, n)
                             console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + levels[i] + ")");
                             console.log("\t\t\t p = " + pValues[i]);   
                         
-                            localStoraget.setObject(value, pValues[i]);
+                            localStorage.setObject(value, pValues[i]);
                     
                             if(pValues[i] < 0.05)
                             {   
