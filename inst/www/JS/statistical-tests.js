@@ -439,7 +439,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
                 d3.select("#homogeneity.loading").attr("display", "none"); 
                 homogeneity = false;
             
-                drawHomogeneityPlot("false");
+                drawHomogeneityPlot(homogeneity);
             }
         }
         
@@ -460,9 +460,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
                 //between-groups design
                 if(pairwiseComparisons)
                 {
-                    setTimeout(function(){
-                        performNormalityTests()
-                    }, 1500);
+                    performNormalityTests();                    
                 }
                 else
                     performNormalityTests();                

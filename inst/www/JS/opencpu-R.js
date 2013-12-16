@@ -235,7 +235,7 @@ function performHomoscedasticityTest(dependent, independent)
                 }
             }
         
-        }, 2000);        
+        }, 1500);        
     }   
 }
 
@@ -438,7 +438,7 @@ function performNormalityTestForMultipleDistributions(distributions, n)
                 }
             }
         
-        }, 1000);
+        }, 1500);
         
         
     }
