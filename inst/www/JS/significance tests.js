@@ -105,72 +105,87 @@ function performTTest(groupA, groupB, varianceEqual, paired)
     var variableList = getSelectedVariables();
     var label = "tT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
     
-    console.log(sessionStorage.getObject(label));
-    // Get variable names and their data type
-    var req = ocpu.rpc("performTTest", {
-                    groupA: groupA,
-                    groupB: groupB,
-                    variance: varianceEqual,
-                    paired: paired
-                  }, function(output) {                                                   
+    if(sessionStorage.getObject(label) == null)
+    {
+        // Get variable names and their data type
+        var req = ocpu.rpc("performTTest", {
+                        groupA: groupA,
+                        groupB: groupB,
+                        variance: varianceEqual,
+                        paired: paired
+                      }, function(output) {                                                   
                   
                     
                     
                     
                     
-                    console.log("LABEL=" + label);
+                        console.log("LABEL=" + label);
                                       
-                    console.log("\t\t " + output.method);
-                    console.log("\t\t\t DOF = " + output.DOF);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t t = " + output.t);
-                    console.log("\t\t\t d = " + output.d);
+                        console.log("\t\t " + output.method);
+                        console.log("\t\t\t DOF = " + output.DOF);
+                        console.log("\t\t\t p = " + output.p);
+                        console.log("\t\t\t t = " + output.t);
+                        console.log("\t\t\t d = " + output.d);
                   
-                    testResults["df"] = output.DOF;
+                        testResults["df"] = output.DOF;
                   
-                    testResults["parameter"] = output.t;
-                    testResults["parameter-type"] = "t";
+                        testResults["parameter"] = output.t;
+                        testResults["parameter-type"] = "t";
                   
-                    if(varianceEqual == "FALSE")
-                    {
-                        testResults["test-type"] = "WT";
-                    }
-                    else
-                    {
-                        if(paired == "TRUE")
-                            testResults["test-type"] = "pT";
+                        if(varianceEqual == "FALSE")
+                        {
+                            testResults["test-type"] = "WT";
+                        }
                         else
-                            testResults["test-type"] = "upT";
-                    }
+                        {
+                            if(paired == "TRUE")
+                                testResults["test-type"] = "pT";
+                            else
+                                testResults["test-type"] = "upT";
+                        }
                     
                   
-                    testResults["p"] = changePValueNotation(output.p); 
-                    testResults["method"] = output.method;
-                    testResults["effect-size"] = output.d;
-                    testResults["effect-size-type"] = "d";
-                    testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                        testResults["p"] = changePValueNotation(output.p); 
+                        testResults["method"] = output.method;
+                        testResults["effect-size"] = output.d;
+                        testResults["effect-size-type"] = "d";
+                        testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
                     
-                    sessionStorage.setObject(label, testResults);
+                        sessionStorage.setObject(label, testResults);
                   
-                    //add to log
-                    logResult();
+                        //add to log
+                        logResult();
                   
-                //drawing stuff
-                removeElementsByClassName("completeLines");
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");
                 
-                displaySignificanceTestResults();
+                    displaySignificanceTestResults();
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        console.log("using cached value :)");
+        testResults = sessionStorage.getObject(label);
+
+        //add to log
+        logResult();
+  
+        //drawing stuff
+        removeElementsByClassName("completeLines");
+
+        displaySignificanceTestResults();            
+    }
 }
 
 function performMannWhitneyTest(groupA, groupB)
