@@ -102,6 +102,7 @@ function performOneSampleWilcoxonTest(variable, level)
 
 function performTTest(groupA, groupB, varianceEqual, paired) 
 {
+    var variableList = getSelectedVariables();
     var label = "tT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
     
     console.log(sessionStorage.getObject(label));
@@ -113,7 +114,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                     paired: paired
                   }, function(output) {                                                   
                   
-                    var variableList = getSelectedVariables();
+                    
                     
                     
                     
