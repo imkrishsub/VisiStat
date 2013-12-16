@@ -126,7 +126,7 @@ function performHomoscedasticityTest(dependent, independent)
     var variableList = getSelectedVariables(); 
     var label = "homo" + dependent + "~" + independent;
         
-    if(localStorage.getValue(label) == null)
+    if(localStorage.getItem(label) == null)
     {
         // Get variable names and their data type
         var req = ocpu.rpc("performHomoscedasticityTest", {
@@ -138,7 +138,7 @@ function performHomoscedasticityTest(dependent, independent)
                     console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
                     console.log("\t\t\t p = " + output.p);
                 
-                    localStorage.setValue(label, output.p);
+                    localStorage.setItem(label, output.p);
                 
                     if(output.p < 0.05)
                     {   
@@ -189,7 +189,7 @@ function performHomoscedasticityTest(dependent, independent)
     {  
         setTimeout(function()
         {
-            if(localStorage.getValue(label) < 0.05)
+            if(localStorage.getItem(label) < 0.05)
             {   
                 //not normal
                 if(variableList["independent"].length == 0)
