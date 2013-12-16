@@ -124,14 +124,9 @@ function getData(dataset, variableName, level)
 function performHomoscedasticityTest(dependent, independent)
 {   
     var variableList = getSelectedVariables(); 
-    var gotIt = true;
-    
-    if(homogeneityTestResults[dependent] == undefined)
-        gotIt = false;
-    else if(homogeneityTestResults[dependent][independent] == undefined)
-        gotIt = false;
+    var label = "homo" + dependent + "~" + independent;
         
-    if(!gotIt)
+    if(localStorage.getValue(label) == null)
     {
         // Get variable names and their data type
         var req = ocpu.rpc("performHomoscedasticityTest", {
@@ -143,10 +138,7 @@ function performHomoscedasticityTest(dependent, independent)
                     console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
                     console.log("\t\t\t p = " + output.p);
                 
-                    if(homogeneityTestResults[dependent] == undefined)
-                        homogeneityTestResults[dependent] = new Object();
-                    
-                    homogeneityTestResults[dependent][independent] = output.p;
+                    localStorage.setValue(label, output.p);
                 
                     if(output.p < 0.05)
                     {   
@@ -197,7 +189,7 @@ function performHomoscedasticityTest(dependent, independent)
     {  
         setTimeout(function()
         {
-            if(homogeneityTestResults[dependent][independent] < 0.05)
+            if(localStorage.getValue(label) < 0.05)
             {   
                 //not normal
                 if(variableList["independent"].length == 0)
@@ -303,24 +295,10 @@ function performNormalityTestForMultipleDistributions(distributions, n)
     var variableList = getSelectedVariables();
     var dependentVariable = variableList["dependent"][0];
     var levels = variableList["independent-levels"];
-                    
-    var gotIt = true;
     
-    for(var i=0; i<levels.length; i++)
-    {
-        if(normalityTestResults[dependentVariable] == undefined)
-        {
-            gotIt = false;
-        }
-        else if(normalityTestResults[dependentVariable][levels[i]] == undefined)
-        {
-            gotIt = false;
-        }
-    }
+    var label = "norm" + dependentVariable + "~" + findIQR(distributions) + "~" + mean(n);
     
-    console.log(gotIt);
-    
-    if(!gotIt)
+    if(localStorage.getObject(label) == null)
     {
         var req = ocpu.rpc("performShapiroWilkTestForMultipleDistributions", {
                         distributions: distributions,
@@ -340,10 +318,7 @@ function performNormalityTestForMultipleDistributions(distributions, n)
                             console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + levels[i] + ")");
                             console.log("\t\t\t p = " + pValues[i]);   
                         
-                            if(normalityTestResults[dependentVariable] == undefined)
-                                normalityTestResults[dependentVariable] = new Object();
-                            
-                            normalityTestResults[dependentVariable][levels[i]] = pValues[i];
+                            localStoraget.setObject(value, pValues[i]);
                     
                             if(pValues[i] < 0.05)
                             {   
@@ -397,7 +372,7 @@ function performNormalityTestForMultipleDistributions(distributions, n)
             var pValues = [];
             for(var i=0; i<levels.length; i++)
             {
-                pValues[i] = normalityTestResults[dependentVariable][levels[i]];
+                pValues[i] = localStorage.getObject(label);
                     
                 if(pValues[i] < 0.05)
                 {   

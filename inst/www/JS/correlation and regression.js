@@ -1,6 +1,6 @@
 // Correlation & Regression
 function getCorrelationCoefficient(variableA, variableB, method)
-{
+{   
     var req = ocpu.rpc("getCorrelationCoefficient", {
                     distributionX: variables[variableA]["dataset"],                    
                     distributionY: variables[variableB]["dataset"],

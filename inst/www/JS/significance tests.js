@@ -2,7 +2,7 @@
 //0 IV, 1 DV
 function performOneSampleTTest(variable, level)
 {
-    expectedMean = sessionStorage.popMean;
+    expectedMean = localStorage.popMean;
     
     if(level == undefined)
         level = "dataset"
@@ -53,7 +53,7 @@ function performOneSampleTTest(variable, level)
 
 function performOneSampleWilcoxonTest(variable, level)
 {
-    expectedMean = sessionStorage.popMedian;
+    expectedMean = localStorage.popMedian;
     
     if(level == undefined)
         level = "dataset";
@@ -105,7 +105,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
     var variableList = getSelectedVariables();
     var label = "tT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
     
-    if(sessionStorage.getObject(label) == null)
+    if(localStorage.getObject(label) == null)
     {
         // Get variable names and their data type
         var req = ocpu.rpc("performTTest", {
@@ -151,7 +151,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                         testResults["effect-size-type"] = "d";
                         testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
                     
-                        sessionStorage.setObject(label, testResults);
+                        localStorage.setObject(label, testResults);
                   
                         //add to log
                         logResult();
@@ -176,7 +176,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
     else
     {
         console.log("using cached value :)");
-        testResults = sessionStorage.getObject(label);
+        testResults = localStorage.getObject(label);
 
         //add to log
         logResult();
@@ -190,13 +190,18 @@ function performTTest(groupA, groupB, varianceEqual, paired)
 
 function performMannWhitneyTest(groupA, groupB)
 {
+    var variableList = getSelectedVariables();
+    var label = "mwT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
     // Get variable names and their data type
-    var req = ocpu.rpc("performMannWhitneyTest", {
+    
+    if(localStorage.getObject(label) == null)
+    {
+        var req = ocpu.rpc("performMannWhitneyTest", {
                     groupA: groupA,
                     groupB: groupB
                   }, function(output) {                                                   
                   
-                  var variableList = getSelectedVariables();
+                  
                   
                   console.log("\t\t Mann-Whitney U test");
                   console.log("\t\t\t U = " + output.U);
@@ -214,6 +219,7 @@ function performMannWhitneyTest(groupA, groupB)
                   testResults["effect-size-type"] = "r";
                   testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
                   
+                  sessionObject.setObject(label, testResults);
                   logResult();
                   
                 //drawing stuff
@@ -221,343 +227,460 @@ function performMannWhitneyTest(groupA, groupB)
 
                 displaySignificanceTestResults();              
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
+                  
+        //drawing stuff
+        removeElementsByClassName("completeLines");           
+
+        displaySignificanceTestResults(); 
+    }
 }
 
 function performWilcoxonTest(groupA, groupB)
 {
-    // Get variable names and their data type
-    var req = ocpu.rpc("performWilcoxonTest", {
-                    groupA: groupA,
-                    groupB: groupB
-                  }, function(output) {                                                   
+    var variableList = getSelectedVariables();
+    var label = "wT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
+    
+    if(localStorage.getObject(label))
+    {
+        // Get variable names and their data type
+        var req = ocpu.rpc("performWilcoxonTest", {
+                        groupA: groupA,
+                        groupB: groupB
+                      }, function(output) {    
+                    console.log("\t\t Wilcoxon Signed-rank Test");
+                    console.log("\t\t\t V = " + output.V);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t r = " + output.r);
+                
+                    testResults["parameter"] = output.V;
+                    testResults["parameter-type"] = "V";
+                
+                    testResults["test-type"] = "wT";
+                
+                    testResults["p"] = changePValueNotation(output.p);                  
+                    testResults["effect-size"] = output.r;
+                    testResults["method"] = "Wilcoxon Signed-rank test";
+                    testResults["effect-size-type"] = "r";
+                    testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                    
+                    localStorage.setObject(value, testResults);
+                      
+                    logResult();                  
                   
-                  var variableList = getSelectedVariables();
-                  
-                  console.log("\t\t Wilcoxon Signed-rank Test");
-                  console.log("\t\t\t V = " + output.V);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t r = " + output.r);
-                  
-                  testResults["parameter"] = output.V;
-                  testResults["parameter-type"] = "V";
-                  
-                  testResults["test-type"] = "wT";
-                  
-                  testResults["p"] = changePValueNotation(output.p);                  
-                  testResults["effect-size"] = output.r;
-                  testResults["method"] = "Wilcoxon Signed-rank test";
-                  testResults["effect-size-type"] = "r";
-                  testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
-                  
-                  logResult();                  
-                  
-                //drawing stuff
-                removeElementsByClassName("completeLines");           
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");           
 
-                displaySignificanceTestResults();             
+                    displaySignificanceTestResults();             
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();                  
+                  
+        //drawing stuff
+        removeElementsByClassName("completeLines");           
+
+        displaySignificanceTestResults();
+    }
 }
 
 function performOneWayANOVA(dependentVariable, independentVariable)
 {
-    // Get variable names and their data type
-    var req = ocpu.rpc("performOneWayANOVA", {                    
-                    dependentVariable: dependentVariable,
-                    independentVariable: independentVariable,
-                    participantVariable: participants,
-                    dataset: dataset,
-                  }, function(output) {                                                   
+    var variableList = getSelectedVariables();    
+    var label = "owA" + dependentVariable + "~" + independentVariable;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        // Get variable names and their data type
+        var req = ocpu.rpc("performOneWayANOVA", {                    
+                        dependentVariable: dependentVariable,
+                        independentVariable: independentVariable,
+                        participantVariable: participants,
+                        dataset: dataset,
+                      }, function(output) {                                                   
                   
-                  var variableList = getSelectedVariables();
-                  
-                  console.log("\t\t One-way ANOVA for (" + dependentVariable + " ~ " + independentVariable + ")");
-                  console.log("\t\t\t F = " + output.F);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t method used = One-way ANOVA"); 
-                  console.log("\t\t\t DF = " + output.numDF + ", " + output.denomDF);
-                  console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                  
-                  testResults["df"] = output.numDF + ", " + output.denomDF;
-                  
-                  testResults["test-type"] = "owA";
-                  
-                  testResults["parameter"] = output.F;
-                  testResults["parameter-type"] = "F";
-                  
-                  testResults["p"] = changePValueNotation(output.p);   
-                  testResults["method"] = "One-way ANOVA"; //todo
-                  testResults["effect-size"] = output.etaSquared;
-                  testResults["effect-size-type"] = "eS";
-                  testResults["formula"] = variableList["dependent"][0] + " ~ " + variableList["independent"][0] + "(" + variableList["independent-levels"] + ")";
-                  
-                  logResult();
-                           
-                  
-                //drawing stuff
-                removeElementsByClassName("completeLines");           
+                    console.log("\t\t One-way ANOVA for (" + dependentVariable + " ~ " + independentVariable + ")");
+                    console.log("\t\t\t F = " + output.F);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t method used = One-way ANOVA"); 
+                    console.log("\t\t\t DF = " + output.numDF + ", " + output.denomDF);
+                    console.log("\t\t\t Eta-squared: " + output.etaSquared);
+                
+                    testResults["df"] = output.numDF + ", " + output.denomDF;
+                
+                    testResults["test-type"] = "owA";
+                
+                    testResults["parameter"] = output.F;
+                    testResults["parameter-type"] = "F";
+                
+                    testResults["p"] = changePValueNotation(output.p);   
+                    testResults["method"] = "One-way ANOVA"; //todo
+                    testResults["effect-size"] = output.etaSquared;
+                    testResults["effect-size-type"] = "eS";
+                    testResults["formula"] = variableList["dependent"][0] + " ~ " + variableList["independent"][0] + "(" + variableList["independent-levels"] + ")";
+                    
+                    localStorage.setObject(label, testResults);
+                
+                    logResult();                           
+                    
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");           
 
-                displaySignificanceTestResults();      
-                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
-                drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
+                    displaySignificanceTestResults();      
+                    drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+                    drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);        
+        logResult();                           
+                    
+        //drawing stuff
+        removeElementsByClassName("completeLines");           
+
+        displaySignificanceTestResults();      
+        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+        drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
+        
+    }
 }
 
 function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGroupVariableB)
 {
-    // (dataset, dependentVariable, independentVariableA, independentVariableB)
-    // Get variable names and their data type
-    var req = ocpu.rpc("performTwoWayANOVA", {   
-                    dataset: dataset, 
-                    dependentVariable: dependentVariable,
-                    participantVariable: participants,
-                    betweenGroupVariableA: betweenGroupVariableA,
-                    betweenGroupVariableB: betweenGroupVariableB
-                  }, function(output) {                                                   
+    var variableList = getSelectedVariables();
+    var label = "twA" + dependentVariable + "~" + betweenGroupVariableA + "+" + betweenGroupVariableB;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        // (dataset, dependentVariable, independentVariableA, independentVariableB)
+        // Get variable names and their data type
+        var req = ocpu.rpc("performTwoWayANOVA", {   
+                        dataset: dataset, 
+                        dependentVariable: dependentVariable,
+                        participantVariable: participants,
+                        betweenGroupVariableA: betweenGroupVariableA,
+                        betweenGroupVariableB: betweenGroupVariableB
+                      }, function(output) {                                                   
                   
-                    var variableList = getSelectedVariables();
+                        console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
+                        console.log("\t\t\t F values= [" + output.F + "]");
+                        console.log("\t\t\t method used = Two-way ANOVA"); //todo
+                        console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
+                        console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
+                        console.log("\t\t\t p-values: [" + output.p + "]");
                   
-                    console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
-                    console.log("\t\t\t F values= [" + output.F + "]");
-                    console.log("\t\t\t method used = Two-way ANOVA"); //todo
-                    console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
-                    console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
-                    console.log("\t\t\t p-values: [" + output.p + "]");
+                        testResults["df"] = [];
+                        testResults["p"] = output.p;   
                   
-                    testResults["df"] = [];
-                    testResults["p"] = output.p;   
+                        for(var i=0; i<(output.numDF).length; i++)
+                        {
+                          testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
+                          testResults["p"][i] = changePValueNotation(testResults["p"][i]);
+                        }
                   
-                    for(var i=0; i<(output.numDF).length; i++)
-                    {
-                      testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
-                      testResults["p"][i] = changePValueNotation(testResults["p"][i]);
-                    }
+                        console.dir(testResults["df"]);
                   
-                    console.dir(testResults["df"]);
-                  
-                    testResults["parameter"] = output.F;
-                    testResults["parameter-type"] = "F";                 
+                        testResults["parameter"] = output.F;
+                        testResults["parameter-type"] = "F";                 
                                  
-                    testResults["test-type"] = "twA";
+                        testResults["test-type"] = "twA";
                     
-                    testResults["method"] = "Two-way ANOVA"; //todo
-                    testResults["effect-size"] = output.etaSquared;
-                    testResults["effect-size-type"] = "eS";
-                    testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
+                        testResults["method"] = "Two-way ANOVA"; //todo
+                        testResults["effect-size"] = output.etaSquared;
+                        testResults["effect-size-type"] = "eS";
+                        testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
                   
-                    logResult();
+                        localStorage.setObject(value, testResults);
+                        logResult();
+                           
+    //                   findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");           
+                
+    //                 drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
+                    displayANOVAResults();  
+        
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
+
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
+        
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
                            
 //                   findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
-                //drawing stuff
-                removeElementsByClassName("completeLines");           
-                
+        //drawing stuff
+        removeElementsByClassName("completeLines");           
+    
 //                 drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
-                displayANOVAResults();  
-        
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
-
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
-        
-    });
+        displayANOVAResults();
+    }
 }
 
 function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariable)
 {
-    var req = ocpu.rpc("performOneWayRepeatedMeasuresANOVA", {
-                    dependentVariable: dependentVariable,
-                    independentVariable: independentVariable,
-                    participantVariable: participants,
-                    dataset: dataset
-                  }, function(output) {                                                   
+    var variableList = getSelectedVariables();
+    var label = "owrA" + dependentVariable + "~" + independentVariable;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        var req = ocpu.rpc("performOneWayRepeatedMeasuresANOVA", {
+                        dependentVariable: dependentVariable,
+                        independentVariable: independentVariable,
+                        participantVariable: participants,
+                        dataset: dataset
+                      }, function(output) {                                                   
                   
-                  console.log("\t\t Repeated-measures ANOVA for (" + dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable + ")");
-                  console.log("\t\t\t F = " + output.F);
-                  console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
-                  console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                  
-                  testResults["df"] = output.numDF + ", " + output.denomDF;
-                  
-                  testResults["parameter"] = output.F;
-                  testResults["parameter-type"] = "F";
-                  
-                  testResults["test-type"] = "owrA";
-                  
-                  testResults["method"] = "Repeated Measures ANOVA"; //todo
-                  testResults["effect-size"] = output.etaSquared;
-                  testResults["p"] = changePValueNotation(output.p);
-                  testResults["effect-size-type"] = "eS";
-                  testResults["formula"] = dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable;
-                           
-                  logResult();
-                  
-                //drawing stuff
-                removeElementsByClassName("completeLines");
+                    console.log("\t\t Repeated-measures ANOVA for (" + dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable + ")");
+                    console.log("\t\t\t F = " + output.F);
+                    console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
+                    console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t Eta-squared: " + output.etaSquared);
                 
-                displaySignificanceTestResults();               
-                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+                    testResults["df"] = output.numDF + ", " + output.denomDF;
+                
+                    testResults["parameter"] = output.F;
+                    testResults["parameter-type"] = "F";
+                
+                    testResults["test-type"] = "owrA";
+                
+                    testResults["method"] = "Repeated Measures ANOVA"; //todo
+                    testResults["effect-size"] = output.etaSquared;
+                    testResults["p"] = changePValueNotation(output.p);
+                    testResults["effect-size-type"] = "eS";
+                    testResults["formula"] = dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable;
+                         
+                    localStorage.setObject(label, testResults);
+                    
+                    logResult();
+                  
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");
+                
+                    displaySignificanceTestResults();               
+                    drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
+                  
+        //drawing stuff
+        removeElementsByClassName("completeLines");
+    
+        displaySignificanceTestResults();               
+        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+    }
 }
 
 function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGroupVariable)
 {
     console.log("\t\t Factorial ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
     
-    var req = ocpu.rpc("performFactorialANOVA", {
-                    dependentVariable: dependentVariable,
-                    withinGroupVariable: withinGroupVariable,
-                    betweenGroupVariable: betweenGroupVariable,
-                    participantVariable: participants,
-                    dataset: dataset
-                  }, function(output) {                                                   
+    var label = "fA" + dependentVariable + "~" + betweenGroupVariable + "~" + participants + "~" + withinGroupVariable;
+    
+    if(localStorage.getObject(label) == null)
+    {
+    
+        var req = ocpu.rpc("performFactorialANOVA", {
+                        dependentVariable: dependentVariable,
+                        withinGroupVariable: withinGroupVariable,
+                        betweenGroupVariable: betweenGroupVariable,
+                        participantVariable: participants,
+                        dataset: dataset
+                      }, function(output) {                                                   
                   
-                  console.log("\t\t Mixed-design ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
-                  console.log("\t\t\t F = " + output.F);
-                  console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
-                  console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t Eta-squared: " + output.etaSquared);
+                      console.log("\t\t Mixed-design ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
+                      console.log("\t\t\t F = " + output.F);
+                      console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
+                      console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
+                      console.log("\t\t\t p = " + output.p);
+                      console.log("\t\t\t Eta-squared: " + output.etaSquared);
                   
-                  testResults["df"] = [];
-                  testResults["p"] = output.p;
+                      testResults["df"] = [];
+                      testResults["p"] = output.p;
                   
-                  for(var i=0; i<(output.numDF).length; i++)
-                  {
-                    testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
-                    testResults["p"][i] = changePValueNotation(testResults["p"][i]);
-                  }
+                      for(var i=0; i<(output.numDF).length; i++)
+                      {
+                        testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
+                        testResults["p"][i] = changePValueNotation(testResults["p"][i]);
+                      }
                   
-                  testResults["parameter"] = output.F;
-                  testResults["parameter-type"] = "F";
+                      testResults["parameter"] = output.F;
+                      testResults["parameter-type"] = "F";
                   
-                  testResults["test-type"] = "fA";
+                      testResults["test-type"] = "fA";
                   
-                  testResults["method"] = "Mixed-design ANOVA"; //todo
-                  testResults["effect-size"] = output.etaSquared;
+                      testResults["method"] = "Mixed-design ANOVA"; //todo
+                      testResults["effect-size"] = output.etaSquared;
                   
-                  testResults["effect-size-type"] = "eS";
-                  testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable;
+                      testResults["effect-size-type"] = "eS";
+                      testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable;
                            
-                  logResult();
+                      localStorage.setObject(label, testResults);
+                      
+                      logResult();
                   
-                //drawing stuff
-                removeElementsByClassName("completeLines");
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");
                 
-                displayANOVAResults();                 
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+                    displayANOVAResults();                 
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        logResult();
+                  
+        //drawing stuff
+        removeElementsByClassName("completeLines");
+    
+        displayANOVAResults();  
+    }        
 }
 
 function performFriedmanTest(dependentVariable, independentVariable)
 {
-    console.log(dependentVariable);
-    console.log(independentVariable);
-    console.log(participants);
-    var req = ocpu.rpc("performFriedmanTest", {
-                    dependentVariable: dependentVariable,
-                    independentVariable: independentVariable,
-                    participantVariable: participants,
-                    filePath: pathToFile
-                  }, function(output) {                                                   
+    var label = "fT" + dependentVariable + "~" + independentVariable;
+    
+    if(localStoraget.getObject(label) == null)
+    {
+        var req = ocpu.rpc("performFriedmanTest", {
+                        dependentVariable: dependentVariable,
+                        independentVariable: independentVariable,
+                        participantVariable: participants,
+                        filePath: pathToFile
+                      }, function(output) {                                                   
                   
-                  console.log("\t\t Friedman's Rank-sum Test for (" + dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable + ")");
-                  console.log("\t\t\t ChiSquared = " + output.chiSquared);
-                  console.log("\t\t\t method used = " + output.method); //todo
-                  console.log("\t\t\t DF = " + output.df);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t eta-squared = " + output.etaSquared);
+                    console.log("\t\t Friedman's Rank-sum Test for (" + dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable + ")");
+                    console.log("\t\t\t ChiSquared = " + output.chiSquared);
+                    console.log("\t\t\t method used = " + output.method); //todo
+                    console.log("\t\t\t DF = " + output.df);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t eta-squared = " + output.etaSquared);
+                
+                    testResults["df"] = output.df;
+                
+                    testResults["parameter"] = output.chiSquared;
+                    testResults["parameter-type"] = "cS";
+                
+                    testResults["test-type"] = "fT";
+                
+                    testResults["method"] = output.method; 
+                    testResults["p"] = changePValueNotation(output.p);
+                    testResults["effect-size"] = output.etaSquared;
+                    testResults["effect-size-type"] = "eS";       
+                    testResults["formula"] = dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable;
                   
-                  testResults["df"] = output.df;
+                    localStorage.setObject(label, testResults);
+                    logResult();
                   
-                  testResults["parameter"] = output.chiSquared;
-                  testResults["parameter-type"] = "cS";
-                  
-                  testResults["test-type"] = "fT";
-                  
-                  testResults["method"] = output.method; 
-                  testResults["p"] = changePValueNotation(output.p);
-                  testResults["effect-size"] = output.etaSquared;
-                  testResults["effect-size-type"] = "eS";       
-                  testResults["formula"] = dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable;
-                  
-                  logResult();
-                  
-                //drawing stuff
-                removeElementsByClassName("completeLines");           
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");           
 
-                displaySignificanceTestResults();   
-                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+                    displaySignificanceTestResults();   
+                    drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
+                  
+        //drawing stuff
+        removeElementsByClassName("completeLines");           
+
+        displaySignificanceTestResults();   
+        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+    }
 }
 
 function findEffect(dependentVariable, independentVariables)
@@ -603,175 +726,227 @@ function findEffect(dependentVariable, independentVariables)
 
 function performWelchANOVA(dependentVariable, independentVariable)
 {
-    //get data from variable names
-    dependentVariableData = variables[dependentVariable]["dataset"];
-    independentVariableData = variables[independentVariable]["dataset"];
+    var label = "WA" + dependentVariable + "~" + independentVariable;
     
-    // Get variable names and their data type
-    var req = ocpu.rpc("performWelchANOVA", {
-                    dependentVariable: dependentVariableData,
-                    independentVariable: independentVariableData                   
-                  }, function(output) {                                                   
+    if(localStorage.getObject(label) == null)
+    {
+        //get data from variable names
+        dependentVariableData = variables[dependentVariable]["dataset"];
+        independentVariableData = variables[independentVariable]["dataset"];
+    
+        // Get variable names and their data type
+        var req = ocpu.rpc("performWelchANOVA", {
+                        dependentVariable: dependentVariableData,
+                        independentVariable: independentVariableData                   
+                      }, function(output) {                                                   
                   
-                  console.log("\t\t Welch's ANOVA for (" + dependentVariable + " ~ " + independentVariable + ")");
-                  console.log("\t\t\t F = " + output.F);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t method used = Welch's ANOVA");
-                  console.log("\t\t\t DF = (" + output.numeratorDF + "," + output.denominatorDF +")");
-                  console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                  
-                  testResults["df"] = output.numeratorDF + "," + output.denominatorDF;
-                  
-                  testResults["parameter"] = output.F;
-                  testResults["parameter-type"] = "F";
-                  testResults["test-type"] = "WA";
-                  
-                  testResults["p"] = changePValueNotation(output.p);
-                  testResults["method"] = "Welch's ANOVA"; 
-                  testResults["effect-size"] = output.etaSquared;
-                  testResults["effect-size-type"] = "eS";
-                  testResults["formula"] = dependentVariable + " ~ " + independentVariable;
-                         
-                  logResult();       
-                  
-                //drawing stuff
-                removeElementsByClassName("completeLines"); 
+                    console.log("\t\t Welch's ANOVA for (" + dependentVariable + " ~ " + independentVariable + ")");
+                    console.log("\t\t\t F = " + output.F);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t method used = Welch's ANOVA");
+                    console.log("\t\t\t DF = (" + output.numeratorDF + "," + output.denominatorDF +")");
+                    console.log("\t\t\t Eta-squared: " + output.etaSquared);
                 
-                displaySignificanceTestResults();
-                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+                    testResults["df"] = output.numeratorDF + "," + output.denominatorDF;
+                
+                    testResults["parameter"] = output.F;
+                    testResults["parameter-type"] = "F";
+                    testResults["test-type"] = "WA";
+                
+                    testResults["p"] = changePValueNotation(output.p);
+                    testResults["method"] = "Welch's ANOVA"; 
+                    testResults["effect-size"] = output.etaSquared;
+                    testResults["effect-size-type"] = "eS";
+                    testResults["formula"] = dependentVariable + " ~ " + independentVariable;
+                    
+                    localStorage.setObject(label, testResults);
+                    
+                    logResult();       
+                  
+                    //drawing stuff
+                    removeElementsByClassName("completeLines"); 
+                
+                    displaySignificanceTestResults();
+                    drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject;
+        logResult();       
+                  
+        //drawing stuff
+        removeElementsByClassName("completeLines"); 
+    
+        displaySignificanceTestResults();
+        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");     
+    }
 }
 
 function performKruskalWallisTest(dependentVariable, independentVariable)
 {
+    var label = "kwT" + dependentVariable + "~" + independentVariable;
     //get data from variable names
     dependentVariableData = variables[dependentVariable]["dataset"];
     independentVariableData = variables[independentVariable]["dataset"];
     
-    // Get variable names and their data type
-    var req = ocpu.rpc("performKruskalWallisTest", {
-                    dependentVariable: dependentVariableData,
-                    independentVariable: independentVariableData                   
-                  }, function(output) {                                                   
+    if(localStorage.getObject(label) == null)
+    {
+        // Get variable names and their data type
+        var req = ocpu.rpc("performKruskalWallisTest", {
+                        dependentVariable: dependentVariableData,
+                        independentVariable: independentVariableData                   
+                      }, function(output) {                                                   
                   
-                  console.log("\t\t Kruskal-Wallis test for (" + dependentVariable + " ~ " + independentVariable + ")");
-                  console.log("\t\t\t Chi-squared = " + output.ChiSquared);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t method used = Kruskal-Wallis Test ANOVA");
-                  console.log("\t\t\t DF = " + output.DF);
-                  console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                  
-                  testResults["df"] = output.DF;
-                  
-                  testResults["parameter"] = output.ChiSquared;
-                  testResults["parameter-type"] = "cS";
-                  
-                  testResults["test-type"] = "kwT";
-                  
-                  testResults["p"] = changePValueNotation(output.p);                  
-                  testResults["method"] = "Kruskal-Wallis Test"; 
-                  testResults["effect-size"] = output.etaSquared;         
-                  testResults["effect-size-type"] = "eS";
-                  testResults["formula"] = dependentVariable + " ~ " + independentVariable;
-                  
-                  logResult();
-                //drawing stuff
-                removeElementsByClassName("completeLines");   
+                    console.log("\t\t Kruskal-Wallis test for (" + dependentVariable + " ~ " + independentVariable + ")");
+                    console.log("\t\t\t Chi-squared = " + output.ChiSquared);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t method used = Kruskal-Wallis Test ANOVA");
+                    console.log("\t\t\t DF = " + output.DF);
+                    console.log("\t\t\t Eta-squared: " + output.etaSquared);
                 
-                displaySignificanceTestResults();
-                drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
-                drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
+                    testResults["df"] = output.DF;
+                
+                    testResults["parameter"] = output.ChiSquared;
+                    testResults["parameter-type"] = "cS";
+                
+                    testResults["test-type"] = "kwT";
+                
+                    testResults["p"] = changePValueNotation(output.p);                  
+                    testResults["method"] = "Kruskal-Wallis Test"; 
+                    testResults["effect-size"] = output.etaSquared;         
+                    testResults["effect-size-type"] = "eS";
+                    testResults["formula"] = dependentVariable + " ~ " + independentVariable;
+                    
+                    localStorage.setObject(label, testResults);
+                
+                    logResult();
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");   
+                
+                    displaySignificanceTestResults();
+                    drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+                    drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
+        //drawing stuff
+        removeElementsByClassName("completeLines");   
+    
+        displaySignificanceTestResults();
+        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+        drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);        
+    }
 }
 
 function performTukeyHSDTestOneIndependentVariable(dependentVariable, independentVariable)
 { 
-    var req = ocpu.rpc("performTukeyHSDTestOneIndependentVariable", {
-                    dependentVariable: dependentVariable,
-                    independentVariable: independentVariable,
-                    dataset: dataset
-                  }, function(output) {                                                   
+    var label = "tuk" + dependentVariable + "~" + independentVariable;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        var req = ocpu.rpc("performTukeyHSDTestOneIndependentVariable", {
+                        dependentVariable: dependentVariable,
+                        independentVariable: independentVariable,
+                        dataset: dataset
+                      }, function(output) {                                                   
                   
 
-                    console.log("TukeyHSD test for " + dependentVariable + " ~ " + independentVariable);
-                    sessionStorage.tukeyResultsMin = Array.min(output.lower);
-                    sessionStorage.tukeyResultsMax = Array.max(output.upper);
+                        console.log("TukeyHSD test for " + dependentVariable + " ~ " + independentVariable);
+                        localStorage.tukeyResultsMin = Array.min(output.lower);
+                        localStorage.tukeyResultsMax = Array.max(output.upper);
                     
-                    console.log(output.difference);
-                    console.log(output.lower);
-                    console.log(output.upper);
-                    console.log(output.adjustedP);
+                        console.log(output.difference);
+                        console.log(output.lower);
+                        console.log(output.upper);
+                        console.log(output.adjustedP);
                     
-                    //make a data structure to hold all this
+                        //make a data structure to hold all this
                     
-                    //get levels of the independent variable
-                    var levels = variables[independentVariable]["dataset"].unique().slice();
-                    //sort it
-                    levels = levels.sort();
-                    var index = 0;
+                        //get levels of the independent variable
+                        var levels = variables[independentVariable]["dataset"].unique().slice();
+                        //sort it
+                        levels = levels.sort();
+                        var index = 0;
                     
-                    for(i=0; i<levels.length; i++)
-                    {
-                        tukeyResults[levels[i]] = new Object();
-                        for(j=i+1; j<levels.length; j++)
+                        for(i=0; i<levels.length; i++)
                         {
-                            if(tukeyResults[levels[j]] == undefined)
-                                tukeyResults[levels[j]] = new Object();
-                            if(i != j)
+                            tukeyResults[levels[i]] = new Object();
+                            for(j=i+1; j<levels.length; j++)
                             {
-                                tukeyResults[levels[i]][levels[j]] = new Object();                                
-                                tukeyResults[levels[j]][levels[i]] = new Object();
+                                if(tukeyResults[levels[j]] == undefined)
+                                    tukeyResults[levels[j]] = new Object();
+                                if(i != j)
+                                {
+                                    tukeyResults[levels[i]][levels[j]] = new Object();                                
+                                    tukeyResults[levels[j]][levels[i]] = new Object();
                                 
-                                tukeyResults[levels[j]][levels[i]]["difference"] = output.difference[index];
-                                tukeyResults[levels[j]][levels[i]]["lower"] = output.lower[index];
-                                tukeyResults[levels[j]][levels[i]]["upper"] = output.upper[index];
-                                tukeyResults[levels[j]][levels[i]]["p"] = output.adjustedP[index];
+                                    tukeyResults[levels[j]][levels[i]]["difference"] = output.difference[index];
+                                    tukeyResults[levels[j]][levels[i]]["lower"] = output.lower[index];
+                                    tukeyResults[levels[j]][levels[i]]["upper"] = output.upper[index];
+                                    tukeyResults[levels[j]][levels[i]]["p"] = output.adjustedP[index];
                                 
-                                tukeyResults[levels[i]][levels[j]]["difference"] = output.difference[index];
-                                tukeyResults[levels[i]][levels[j]]["lower"] = output.lower[index];
-                                tukeyResults[levels[i]][levels[j]]["upper"] = output.upper[index];
-                                tukeyResults[levels[i]][levels[j]]["p"] = output.adjustedP[index++];
+                                    tukeyResults[levels[i]][levels[j]]["difference"] = output.difference[index];
+                                    tukeyResults[levels[i]][levels[j]]["lower"] = output.lower[index];
+                                    tukeyResults[levels[i]][levels[j]]["upper"] = output.upper[index];
+                                    tukeyResults[levels[i]][levels[j]]["p"] = output.adjustedP[index++];
+                                }
                             }
                         }
-                    }
+                        
+                        localStorage.setObject(label, tukeyResults);
                     
-                    resetSVGCanvas();
-                    drawFullScreenButton();
+                        resetSVGCanvas();
+                        drawFullScreenButton();
         
-                    drawTukeyHSDPlot();        
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+                        drawTukeyHSDPlot();        
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        tukeyResults = localStorage.getObject(label);
+        
+        resetSVGCanvas();
+        drawFullScreenButton();
+
+        drawTukeyHSDPlot();  
+    }
 }
 
 function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independentVariableA, independentVariableB)
@@ -813,100 +988,132 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
 
 //POST-HOC TESTS
 function performPairwiseTTest(varianceEqual, paired) 
-{
+{    
     var variableList = getSelectedVariables();
+    var label = "pTT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "~" + variableList["independent-levels"][1] + "~" + varianceEqual + "~" + paired;
     
-    var req = ocpu.rpc("performPairwiseTTest", {
-                    dependentVariable: variables[variableList["dependent"][0]]["dataset"],
-                    independentVariable: variables[variableList["independent"][0]]["dataset"],                    
-                    dataset: dataset,
-                    varianceEqual: varianceEqual,
-                    paired: paired,
-                    independentVariableName: variableList["independent"][0], 
-                    dependentVariableName: variableList["dependent"][0], 
-                    levelA: variableList["independent-levels"][0],
-                    levelB: variableList["independent-levels"][1]
-                  }, function(output) {     
+    if(localStorage.getObject(label) == null)
+    {    
+        var req = ocpu.rpc("performPairwiseTTest", {
+                        dependentVariable: variables[variableList["dependent"][0]]["dataset"],
+                        independentVariable: variables[variableList["independent"][0]]["dataset"],                    
+                        dataset: dataset,
+                        varianceEqual: varianceEqual,
+                        paired: paired,
+                        independentVariableName: variableList["independent"][0], 
+                        dependentVariableName: variableList["dependent"][0], 
+                        levelA: variableList["independent-levels"][0],
+                        levelB: variableList["independent-levels"][1]
+                      }, function(output) {     
   
-                  console.log("\t\t " + output.method);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t t = " + output.t);
-                  console.log("\t\t\t d = " + output.d);                  
-                  
-                  testResults["parameter"] = output.t;
-                  testResults["parameter-type"] = "t";
-                  
-                  testResults["p"] = changePValueNotation(output.p); 
-                  testResults["method"] = "Pairwise t-test";
-                  testResults["effect-size"] = output.d;
-                  testResults["effect-size-type"] = "d";
-                  
-                  logResult();
-                //drawing stuff
-                removeElementsByClassName("completeLines");
+                    console.log("\t\t " + output.method);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t t = " + output.t);
+                    console.log("\t\t\t d = " + output.d);                  
                 
-                displaySignificanceTestResults();
+                    testResults["parameter"] = output.t;
+                    testResults["parameter-type"] = "t";
+                
+                    testResults["p"] = changePValueNotation(output.p); 
+                    testResults["method"] = "Pairwise t-test";
+                    testResults["effect-size"] = output.d;
+                    testResults["effect-size-type"] = "d";
+                    
+                    localStorage.setObject(label, testResults);
+                
+                    logResult();
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");
+                
+                    displaySignificanceTestResults();
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
+        //drawing stuff
+        removeElementsByClassName("completeLines");
+    
+        displaySignificanceTestResults();        
+    }
 }
 
 function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
 {
     var variableList = getSelectedVariables();
+    var label = "pWT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "~" + variableList["independent-levels"][1] + "~" + varianceEqual + "~" + paired;
     
-    var req = ocpu.rpc("performPairwiseWilcoxTest", {
-                    dependentVariable: variables[variableList["dependent"][0]]["dataset"],
-                    independentVariable: variables[variableList["independent"][0]]["dataset"],                    
-                    dataset: dataset,
-                    varianceEqual: varianceEqual,
-                    paired: paired,
-                    independentVariableName: variableList["independent"][0], 
-                    dependentVariableName: variableList["dependent"][0], 
-                    levelA: variableList["independent-levels"][0],
-                    levelB: variableList["independent-levels"][1]
-                  }, function(output) {                                                   
+    if(localStorage.getObject(label) == null)
+    {   
+        var req = ocpu.rpc("performPairwiseWilcoxTest", {
+                        dependentVariable: variables[variableList["dependent"][0]]["dataset"],
+                        independentVariable: variables[variableList["independent"][0]]["dataset"],                    
+                        dataset: dataset,
+                        varianceEqual: varianceEqual,
+                        paired: paired,
+                        independentVariableName: variableList["independent"][0], 
+                        dependentVariableName: variableList["dependent"][0], 
+                        levelA: variableList["independent-levels"][0],
+                        levelB: variableList["independent-levels"][1]
+                      }, function(output) {                                                   
                   
 
-                  console.log("\t\t Pairwise wilcox-test");
-                  console.log("\t\t\t U = " + output.U);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t r = " + output.r);
-                  
-                  testResults["parameter"] = output.U;
-                  testResults["parameter-type"] = paired == "FALSE" ? "U" : "W";
-                  
-                  testResults["p"] = changePValueNotation(output.p);                  
-                  testResults["effect-size"] = output.r;
-                  testResults["method"] = "Pairwise Wilcoxon-test";
-                  testResults["effect-size-type"] = "r";                  
-                  
-                  logResult();
-                //drawing stuff
-                removeElementsByClassName("completeLines");           
+                    console.log("\t\t Pairwise wilcox-test");
+                    console.log("\t\t\t U = " + output.U);
+                    console.log("\t\t\t p = " + output.p);
+                    console.log("\t\t\t r = " + output.r);
+                
+                    testResults["parameter"] = output.U;
+                    testResults["parameter-type"] = paired == "FALSE" ? "U" : "W";
+                
+                    testResults["p"] = changePValueNotation(output.p);                  
+                    testResults["effect-size"] = output.r;
+                    testResults["method"] = "Pairwise Wilcoxon-test";
+                    testResults["effect-size-type"] = "r";                  
+                    
+                    localStorage.setObject(label, testResults);
+                
+                    logResult();
+                    //drawing stuff
+                    removeElementsByClassName("completeLines");           
 
-                displaySignificanceTestResults(); 
+                    displaySignificanceTestResults(); 
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
+        //drawing stuff
+        removeElementsByClassName("completeLines");
+    
+        displaySignificanceTestResults();        
+    }
 }
 
 // Effect sizes
