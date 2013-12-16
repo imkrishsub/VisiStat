@@ -1,20 +1,57 @@
 //to load a file on local disk
 function loadFile(filePath)
 {
-    //loads the file and returns the dataset and variable names
-    var req = ocpu.rpc("loadFile", {
-                    filePath: filePath
-                  }, function(output) {                   
+    label = "load" + filePath;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        //loads the file and returns the dataset and variable names
+        var req = ocpu.rpc("loadFile", {
+                        filePath: filePath
+                      }, function(output) {                   
+            localStorage.setObject(label, output);          
+            
+            dataset = output.dataset;
+    
+            //render the variable names
+            renderVariableNames(output.variableNames);
+
+            console.dir(dataset);
+    
+            //we now have the variable names. let the dogs out!
+            variableNames = output.variableNames;
+    
+            //for each variable, get the data and the IQR
+            for(var i=0; i<output.variableNames.length; i++)
+            {      
+                variables[output.variableNames[i]] = new Object();
+                MIN[output.variableNames[i]] = new Object();
+                MAX[output.variableNames[i]] = new Object();
+                IQR[output.variableNames[i]] = new Object();
+                CI[output.variableNames[i]] = new Object();
+        
+                getData(dataset, output.variableNames[i]);                 
+            }
+        });
+
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+    }
+    else
+    {
+        var output = localStorage.getObject(label);
         dataset = output.dataset;
     
         //render the variable names
         renderVariableNames(output.variableNames);
 
         console.dir(dataset);
-    
+
         //we now have the variable names. let the dogs out!
         variableNames = output.variableNames;
-    
+
         //for each variable, get the data and the IQR
         for(var i=0; i<output.variableNames.length; i++)
         {      
@@ -23,15 +60,10 @@ function loadFile(filePath)
             MAX[output.variableNames[i]] = new Object();
             IQR[output.variableNames[i]] = new Object();
             CI[output.variableNames[i]] = new Object();
-        
+    
             getData(dataset, output.variableNames[i]);                 
         }
-    });
-
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
+    }
 }
 
 function getData(dataset, variableName, level)
@@ -71,54 +103,6 @@ function getData(dataset, variableName, level)
         experimentalDesign = findExperimentalDesign();            
         console.log("\n\tEXPERIMENTAL DESIGN = " + experimentalDesign);
     }
-    
-//     // Get variable names and their data type
-//         var req = ocpu.rpc("getData", {
-//                     dataset: dataset,
-//                     columnName: variableName
-//                   }, function(output) {    
-//         
-//         if(level === undefined)
-//         {   
-//             level = "dataset";
-//         } 
-//         
-//         variables[variableName][level] = output.data;
-//         MIN[variableName][level] = Array.min(variables[variableName][level]);
-//         MAX[variableName][level] = Array.max(variables[variableName][level]);
-//         
-//         console.log("\n\tvariables[" + variableName + "][" + level + "] = " + variables[variableName][level]);
-//         console.log("\tMIN[" + variableName + "][" + level + "] = " + MIN[variableName][level]);
-//         console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
-//     
-//         IQR[variableName][level] = findIQR(variables[variableName][level]);
-//         CI[variableName][level] = findCI(variables[variableName][level]);   
-//         
-//         if(++variableCount == getObjectLength(variableNames))
-//         {
-//             setVariableRow();
-//             setVariableTypes();
-//             
-//             testForEvilVariables();
-//             
-//             removeElementsByClassName("loadingAnimation");
-//             freezeMouseEvents = false;
-//             
-//             experimentalDesign = findExperimentalDesign();            
-//             console.log("\n\tEXPERIMENTAL DESIGN = " + experimentalDesign);
-//         }    
-//         
-//       }).fail(function(){
-//           alert("Failure: " + req.responseText);
-//     });
-// 
-//     //if R returns an error, alert the error message
-//     req.fail(function(){
-//       alert("Server error: " + req.responseText);
-//     });
-//     req.complete(function(){
-//         
-//     });
 }
 
 function performHomoscedasticityTest(dependent, independent)
@@ -434,8 +418,6 @@ function performSphericityTest()
                   
                 console.log("\t\t Sphericity Test (" + variableList["dependent"][0] + ") TODO");
                 console.log("\t\t\t p = " + output.p);
-                
-                
                   
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -453,251 +435,343 @@ function performSphericityTest()
 
 function findTransformForNormality(dependentVariable, independentVariable)
 {
-    // Get variable names and their data type
-    var req = ocpu.rpc("findTransformForNormality", {
-                    dependentVariable: dependentVariable,
-                    independentVariable: independentVariable,
-                    dataset: dataset
-                  }, function(output) {                                                   
+    var label = "findTNorm" + dependentVariable + "~" + independentVariable;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        // Get variable names and their data type
+        var req = ocpu.rpc("findTransformForNormality", {
+                        dependentVariable: dependentVariable,
+                        independentVariable: independentVariable,
+                        dataset: dataset
+                      }, function(output) {                                                   
+                    localStorage.getObject(label, output);
+                    var variableList = getSelectedVariables();
                 
-                var variableList = getSelectedVariables();
-                
-                if(output.type == "none")
-                {
-                    console.log("Transformation to normality is not possible!");
+                    if(output.type == "none")
+                    {
+                        console.log("Transformation to normality is not possible!");
  
-                    if(variableList["independent"].length == 1)
-                    {
-                        if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                        if(variableList["independent"].length == 1)
                         {
-                            //within-group design
-                            if(variableList["independent-levels"].length == 2)
+                            if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                             {
-                                //wilcoxon signed-rank
-                                if(pairwiseComparisons)
-                                    performPairwiseWilcoxTest("TRUE", "TRUE");
+                                //within-group design
+                                if(variableList["independent-levels"].length == 2)
+                                {
+                                    //wilcoxon signed-rank
+                                    if(pairwiseComparisons)
+                                        performPairwiseWilcoxTest("TRUE", "TRUE");
+                                    else
+                                        performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                }
                                 else
-                                    performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
-                            }
-                            else
-                            {   
-                                //Friedman's test
-                                performFriedmanTest(dependentVariable, independentVariable);
-                            }
-                        }                       
-                        else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
-                        {
-                            //between-groups design
-                            if(variableList["independent-levels"].length == 2)
+                                {   
+                                    //Friedman's test
+                                    performFriedmanTest(dependentVariable, independentVariable);
+                                }
+                            }                       
+                            else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                             {
-                                //Mann-Whitney U test
-                                if(pairwiseComparisons)
-                                    performPairwiseWilcoxTest("TRUE", "FALSE");
+                                //between-groups design
+                                if(variableList["independent-levels"].length == 2)
+                                {
+                                    //Mann-Whitney U test
+                                    if(pairwiseComparisons)
+                                        performPairwiseWilcoxTest("TRUE", "FALSE");
+                                    else
+                                        performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                }
                                 else
-                                    performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                                {   
+                                    //Kruskal-Wallis test
+                                    performKruskalWallisTest(dependentVariable, independentVariable);
+                                }
                             }
-                            else
-                            {   
-                                //Kruskal-Wallis test
-                                performKruskalWallisTest(dependentVariable, independentVariable);
-                            }
-                        }
-                    }      
-                    else if(variableList["independent"].length == 2)
-                    {
-                        if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                        }      
+                        else if(variableList["independent"].length == 2)
                         {
-                            //within-group design
+                            if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                            {
+                                //within-group design
                             
-                        }                       
-                        else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
-                        {
-                            //between-groups design
-                            if(variableList["independent-levels"].length == 2)
+                            }                       
+                            else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                             {
-                                var groups = getGroupsForColourBoxPlotData();
-                                //Mann-Whitney U test
-                                if(pairwiseComparisons)
-                                    performPairwiseWilcoxTest("TRUE", "FALSE");
-                                else
-                                    performMannWhitneyTest(groups[0], groups[1]);
-                            }                            
+                                //between-groups design
+                                if(variableList["independent-levels"].length == 2)
+                                {
+                                    var groups = getGroupsForColourBoxPlotData();
+                                    //Mann-Whitney U test
+                                    if(pairwiseComparisons)
+                                        performPairwiseWilcoxTest("TRUE", "FALSE");
+                                    else
+                                        performMannWhitneyTest(groups[0], groups[1]);
+                                }                            
+                            }
                         }
+                        d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                     }
-                    d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
-                }
-                else
-                {
-                    console.log("Transformation type = " + output.type);
-                    transformationType = output.type;
+                    else
+                    {
+                        console.log("Transformation type = " + output.type);
+                        transformationType = output.type;
                     
-                    //offer choice
-                    drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
-                }                  
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });       
+                        //offer choice
+                        drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
+                    }                  
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });       
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        var output = localStorage.getObject(label);
+        
+        var variableList = getSelectedVariables();
+                
+        if(output.type == "none")
+        {
+            console.log("Transformation to normality is not possible!");
+
+            if(variableList["independent"].length == 1)
+            {
+                if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                {
+                    //within-group design
+                    if(variableList["independent-levels"].length == 2)
+                    {
+                        //wilcoxon signed-rank
+                        if(pairwiseComparisons)
+                            performPairwiseWilcoxTest("TRUE", "TRUE");
+                        else
+                            performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                    }
+                    else
+                    {   
+                        //Friedman's test
+                        performFriedmanTest(dependentVariable, independentVariable);
+                    }
+                }                       
+                else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                {
+                    //between-groups design
+                    if(variableList["independent-levels"].length == 2)
+                    {
+                        //Mann-Whitney U test
+                        if(pairwiseComparisons)
+                            performPairwiseWilcoxTest("TRUE", "FALSE");
+                        else
+                            performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                    }
+                    else
+                    {   
+                        //Kruskal-Wallis test
+                        performKruskalWallisTest(dependentVariable, independentVariable);
+                    }
+                }
+            }      
+            else if(variableList["independent"].length == 2)
+            {
+                if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                {
+                    //within-group design
+                
+                }                       
+                else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                {
+                    //between-groups design
+                    if(variableList["independent-levels"].length == 2)
+                    {
+                        var groups = getGroupsForColourBoxPlotData();
+                        //Mann-Whitney U test
+                        if(pairwiseComparisons)
+                            performPairwiseWilcoxTest("TRUE", "FALSE");
+                        else
+                            performMannWhitneyTest(groups[0], groups[1]);
+                    }                            
+                }
+            }
+            d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+        }
+        else
+        {
+            console.log("Transformation type = " + output.type);
+            transformationType = output.type;
+        
+            //offer choice
+            drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
+        }
+    }
 }
 
 function findTransformForHomogeneity(dependentVariable, independentVariable)
 {
-    // Get variable names and their data type
-    var req = ocpu.rpc("findTransformForHomogeneity", {
-                    dependentVariable: dependentVariable,
-                    independentVariable: independentVariable,
-                    dataset: dataset
-                  }, function(output) {                                                   
+    var label = "findTHomo" + dependentVariable + "~" + independentVariable;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        // Get variable names and their data type
+        var req = ocpu.rpc("findTransformForHomogeneity", {
+                        dependentVariable: dependentVariable,
+                        independentVariable: independentVariable,
+                        dataset: dataset
+                      }, function(output) {                                                   
+                    localStorage.setObject(label, output);
+                    
+                    var variableList = getSelectedVariables();
                 
-                var variableList = getSelectedVariables();
-                
-                if(output.type == "none")
-                {
-                    console.log("Transformation to homogeneity is not possible!");
-                    
-                    d3.select("#homogeneity.crosses").attr("display", "inline"); 
-                    d3.select("#homogeneity.loading").attr("display", "none"); 
-                    
-                    d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
-                    
-                    drawComputingResultsImage();
-                    
-                    if(variableList["independent"].length == 1)
+                    if(output.type == "none")
                     {
-                        if(experimentalDesign == "between-groups")
+                        console.log("Transformation to homogeneity is not possible!");
+                    
+                        d3.select("#homogeneity.crosses").attr("display", "inline"); 
+                        d3.select("#homogeneity.loading").attr("display", "none"); 
+                    
+                        d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                    
+                        drawComputingResultsImage();
+                    
+                        if(variableList["independent"].length == 1)
                         {
-                            performNormalityTests();
+                            if(experimentalDesign == "between-groups")
+                            {
+                                performNormalityTests();
                         
-                            //between-groups design
-                            if(variableList["independent-levels"].length == 2)
-                            {
-                                //2 variables
-                                if(pairwiseComparisons)
-                                    performPairwiseTTest("FALSE", "FALSE");
+                                //between-groups design
+                                if(variableList["independent-levels"].length == 2)
+                                {
+                                    //2 variables
+                                    if(pairwiseComparisons)
+                                        performPairwiseTTest("FALSE", "FALSE");
+                                    else
+                                        performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                                }
                                 else
-                                    performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                                {
+                                    //> 2 variables
+                                    performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                                }                
                             }
-                            else
-                            {
-                                //> 2 variables
-                                performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                            }                
                         }
+                        else
+                        {
+                            if(experimentalDesign == "between-groups")
+                            {
+                                performNormalityTests();
+                                
+                                //between-groups design
+                                if(variableList["independent-levels"].length == 2)
+                                {
+                                    //2 variables
+                                    var groups = getGroupsForColourBoxPlotData();
+                                
+                                    if(pairwiseComparisons)
+                                        performPairwiseTTest("FALSE", "FALSE");
+                                    else
+                                        performTTest(groups[0], groups[1], "FALSE", "FALSE");
+                                }
+                                
+                            }
+                        }
+                    }                
+                    else
+                    {
+                        console.log("Transformation type = " + output.type);
+                        transformationType = output.type;
+                    
+                        //offer choice
+                        drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
+                    }                  
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });       
+
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
+        
+        });
+    }
+    else
+    {
+        var output = localStorage.getObject(label);
+        
+        var variableList = getSelectedVariables();
+                
+        if(output.type == "none")
+        {
+            console.log("Transformation to homogeneity is not possible!");
+        
+            d3.select("#homogeneity.crosses").attr("display", "inline"); 
+            d3.select("#homogeneity.loading").attr("display", "none"); 
+        
+            d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+        
+            drawComputingResultsImage();
+        
+            if(variableList["independent"].length == 1)
+            {
+                if(experimentalDesign == "between-groups")
+                {
+                    performNormalityTests();
+            
+                    //between-groups design
+                    if(variableList["independent-levels"].length == 2)
+                    {
+                        //2 variables
+                        if(pairwiseComparisons)
+                            performPairwiseTTest("FALSE", "FALSE");
+                        else
+                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
                     }
                     else
                     {
-                        if(experimentalDesign == "between-groups")
-                        {
-                            performNormalityTests();
-                                
-                            //between-groups design
-                            if(variableList["independent-levels"].length == 2)
-                            {
-                                //2 variables
-                                var groups = getGroupsForColourBoxPlotData();
-                                
-                                if(pairwiseComparisons)
-                                    performPairwiseTTest("FALSE", "FALSE");
-                                else
-                                    performTTest(groups[0], groups[1], "FALSE", "FALSE");
-                            }
-                                
-                        }
+                        //> 2 variables
+                        performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                    }                
+                }
+            }
+            else
+            {
+                if(experimentalDesign == "between-groups")
+                {
+                    performNormalityTests();
+                    
+                    //between-groups design
+                    if(variableList["independent-levels"].length == 2)
+                    {
+                        //2 variables
+                        var groups = getGroupsForColourBoxPlotData();
+                    
+                        if(pairwiseComparisons)
+                            performPairwiseTTest("FALSE", "FALSE");
+                        else
+                            performTTest(groups[0], groups[1], "FALSE", "FALSE");
                     }
                     
-//                     var normal = d3.select("#normality.crosses").attr("display") == "inline" ? false : true;
-//                     
-//                     console.log("normality:" + normal);
-//                     
-//                     if(variableList["independent-levels"].length == 2)
-//                     {
-//                         if(!normal)
-//                         {
-//                             if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-//                             {   
-//                                 if(!pairwiseComparisons)
-//                                     performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
-//                                 else
-//                                     performPairwiseWilcoxTest("FALSE", "TRUE");
-//                             }
-//                             else
-//                             {
-//                                 if(!pairwiseComparisons)
-//                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE");
-//                                 else
-//                                     performPairwiseWilcoxTest("FALSE", "FALSE");
-//                             } 
-//                         }
-//                         else
-//                         {
-//                             if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-//                             {
-//                                 if(!pairwiseComparisons)
-//                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "TRUE");
-//                                 else
-//                                     performPairwiseTTest("TRUE", "TRUE");
-//                             }
-//                             else
-//                             {
-//                                 if(!pairwiseComparisons)
-//                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
-//                                 else
-//                                     performPairwiseTTest("TRUE", "FALSE");
-//                             } 
-//                         }        
-//                     }
-//                     else
-//                     {
-//                         if(!normal)
-//                         {
-//                             if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-//                             {
-//                                 performFriedmanTest(variableList["dependent"][0], variableList["independent"][0]);
-//                             }
-//                             else
-//                             {
-//                                 performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-//                             } 
-//                         }
-//                         else
-//                         {
-//                             if((experimentalDesign == "within-groups") && sampleSizesAreEqual)
-//                             {
-//                                 performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
-//                             }
-//                             else
-//                             {
-//                                 performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
-//                             }
-//                         }        
-//                     }
-                }                
-                else
-                {
-                    console.log("Transformation type = " + output.type);
-                    transformationType = output.type;
-                    
-                    //offer choice
-                    drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
-                }                  
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });       
-
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+                }
+            }
+        }                
+        else
+        {
+            console.log("Transformation type = " + output.type);
+            transformationType = output.type;
         
-    });
+            //offer choice
+            drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
+        }
+    }
 }
 
 function findTransformForNormalityForDependentVariables(numericVariables)
