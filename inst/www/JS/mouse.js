@@ -743,6 +743,8 @@ function OnMouseDown(e)
                             removeElementsByClassName("checkingAssumptions");
                             removeElementsByClassName("loading");
                             removeElementsByClassName("differenceInMeans");
+                            removeElementsByClassName("differenceInMeansText");
+                            removeElementsByClassName("differenceInMeansMain");
                             removeElementsByClassName("assumptionsButtonFront");
                             removeElementsByClassName("assumptionsButtonBack");
                             removeElementById("border");
@@ -817,6 +819,8 @@ function OnMouseDown(e)
                             removeElementsByClassName("checkingAssumptions");
                             removeElementsByClassName("loading");
                             removeElementsByClassName("differenceInMeans");
+                            removeElementsByClassName("differenceInMeansText");
+                            removeElementsByClassName("differenceInMeansMain");
                             removeElementsByClassName("assumptionsButtonFront");
                             removeElementsByClassName("assumptionsButtonBack");
                             removeElementById("border");
