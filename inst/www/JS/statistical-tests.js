@@ -465,6 +465,9 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             d3.select("#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
             
+            console.log(variableList["independent"].length);
+            console.log(document.getElementsByClassName("means").length);
+            
             if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
             {
                 //between-groups design
