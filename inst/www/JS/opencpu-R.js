@@ -321,7 +321,7 @@ function performNormalityTest(distribution, dependentVariable, level)
                     setDistribution(dependentVariable, level, true);
                 }
             }
-        }, 1200);
+        }, 1500);
     }
 }
 

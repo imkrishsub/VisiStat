@@ -196,7 +196,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
             removeElementsByClassName("completeLines");
 
             displaySignificanceTestResults();            
-        }, 1500);
+        }, 1800);
     }
 }
 
@@ -260,7 +260,7 @@ function performMannWhitneyTest(groupA, groupB)
             removeElementsByClassName("completeLines");           
 
             displaySignificanceTestResults(); 
-        }, 1500);
+        }, 1800);
     }
 }
 
@@ -325,7 +325,7 @@ function performWilcoxonTest(groupA, groupB)
             removeElementsByClassName("completeLines");           
 
             displaySignificanceTestResults();
-        }, 1500);
+        }, 1800);
     }
 }
 
@@ -400,7 +400,7 @@ function performOneWayANOVA(dependentVariable, independentVariable)
             displaySignificanceTestResults();      
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
             drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
-        }, 1500);        
+        }, 1800);        
     }
 }
 
@@ -481,7 +481,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
             
             removeElementsByClassName("completeLines");    
             displayANOVAResults();
-        }, 1500);
+        }, 1800);
     }
 }
 
@@ -554,7 +554,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
     
             displaySignificanceTestResults();               
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
-        }, 1500);
+        }, 1800);
     }
 }
 
@@ -633,7 +633,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
             removeElementsByClassName("completeLines");
     
             displayANOVAResults();  
-        }, 1500);
+        }, 1800);
     }        
 }
 
@@ -704,7 +704,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
 
             displaySignificanceTestResults();   
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
-        }, 1500);
+        }, 1800);
     }
 }
 
@@ -833,7 +833,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
     
             displaySignificanceTestResults();
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");     
-        }, 1500);
+        }, 1800);
     }
 }
 
@@ -908,7 +908,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
             displaySignificanceTestResults();
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
             drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);        
-        }, 1500);
+        }, 1800);
     }
 }
 
@@ -1100,7 +1100,7 @@ function performPairwiseTTest(varianceEqual, paired)
             removeElementsByClassName("completeLines");
     
             displaySignificanceTestResults();       
-        }, 1500);        
+        }, 1800);        
     }
 }
 
@@ -1170,6 +1170,6 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
             removeElementsByClassName("completeLines");
     
             displaySignificanceTestResults();        
-        }, 1500);
+        }, 1800);
     }
 }
