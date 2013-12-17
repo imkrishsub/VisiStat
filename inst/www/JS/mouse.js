@@ -755,6 +755,7 @@ function OnMouseDown(e)
                             removeElementsByClassName("differenceInMeansMain");
                             removeElementsByClassName("assumptionsButtonFront");
                             removeElementsByClassName("assumptionsButtonBack");
+                            removeElementsByClassName("effectSizeInterpretationIndicators");
                             if(document.getElementById("border") != null)                            
                                 removeElementById("border");
 
@@ -833,6 +834,7 @@ function OnMouseDown(e)
                             removeElementsByClassName("differenceInMeansMain");
                             removeElementsByClassName("assumptionsButtonFront");
                             removeElementsByClassName("assumptionsButtonBack");
+                            removeElementsByClassName("effectSizeInterpretationIndicators");
                             if(document.getElementById("border") != null)                            
                                 removeElementById("border");
 
