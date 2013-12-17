@@ -803,7 +803,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
     }
     else
     {
-        testResults = localStorage.getObject;
+        testResults = localStorage.getObject(label);
         logResult();       
         
         setTimeout(function()
