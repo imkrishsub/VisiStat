@@ -934,11 +934,10 @@ function OnMouseDown(e)
         
                 var button = d3.select("#button.interactionEffect");
                 removeElementsByClassName("interactionEffect");
-        
-                resetSVGCanvas();
-                drawFullScreenButton();
-        
-                drawInteractionEffectPlot();
+                
+                var variableList = getSelectedVariables();
+                
+                findEffect(variableList["dependent"][0], variableList["independent"]);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "pairwisePostHoc")
@@ -1956,7 +1955,7 @@ function OnMouseOver(e)
             {
                 setup(e, target);
                 
-                d3.selectAll("#labelMin, #labelMax, #labelMid, #effectSizeText, #effectSizeValue").attr("display", "none");
+                d3.selectAll("#effectSizeText, #effectSizeValue").attr("display", "none");
                 d3.selectAll(".effectSizeInterpretationIndicators").attr("display", "inline");
             } 
         }
@@ -2149,7 +2148,7 @@ function OnMouseOut(e)
         
         else if(target.id == "effectSizeFront")
         {
-            d3.selectAll("#labelMin, #labelMax, #labelMid, #effectSizeText, #effectSizeValue").attr("display", "inline");
+            d3.selectAll("#effectSizeText, #effectSizeValue").attr("display", "inline");
             d3.selectAll(".effectSizeInterpretationIndicators").attr("display", "none");
         }
     }

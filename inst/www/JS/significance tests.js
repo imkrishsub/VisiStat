@@ -413,38 +413,38 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                         betweenGroupVariableB: betweenGroupVariableB
                       }, function(output) {                                                   
                   
-                        console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
-                        console.log("\t\t\t F values= [" + output.F + "]");
-                        console.log("\t\t\t method used = Two-way ANOVA"); //todo
-                        console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
-                        console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
-                        console.log("\t\t\t p-values: [" + output.p + "]");
-                  
-                        testResults["df"] = [];
-                        testResults["p"] = output.p;   
-                  
-                        for(var i=0; i<(output.numDF).length; i++)
-                        {
-                          testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
-                          testResults["p"][i] = changePValueNotation(testResults["p"][i]);
-                        }
-                  
-                        console.dir(testResults["df"]);
-                  
-                        testResults["parameter"] = output.F;
-                        testResults["parameter-type"] = "F";                 
-                                 
-                        testResults["test-type"] = "twA";
-                    
-                        testResults["method"] = "Two-way ANOVA"; //todo
-                        testResults["effect-size"] = output.etaSquared;
-                        testResults["effect-size-type"] = "eS";
-                        testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
-                  
-                        localStorage.setObject(value, testResults);
-                        logResult();
-                           
-    //                   findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
+                    console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
+                    console.log("\t\t\t F values= [" + output.F + "]");
+                    console.log("\t\t\t method used = Two-way ANOVA"); //todo
+                    console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
+                    console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
+                    console.log("\t\t\t p-values: [" + output.p + "]");
+              
+                    testResults["df"] = [];
+                    testResults["p"] = output.p;   
+              
+                    for(var i=0; i<(output.numDF).length; i++)
+                    {
+                      testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
+                      testResults["p"][i] = changePValueNotation(testResults["p"][i]);
+                    }
+              
+                    console.dir(testResults["df"]);
+              
+                    testResults["parameter"] = output.F;
+                    testResults["parameter-type"] = "F";                 
+                             
+                    testResults["test-type"] = "twA";
+                
+                    testResults["method"] = "Two-way ANOVA"; //todo
+                    testResults["effect-size"] = output.etaSquared;
+                    testResults["effect-size-type"] = "eS";
+                    testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
+              
+                    localStorage.setObject(value, testResults);
+                    logResult();
+                       
+                    drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");               
                     removeElementsByClassName("completeLines");           
                 
                     displayANOVAResults();  
@@ -469,10 +469,9 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
         
         setTimeout(function()
         {
-//             findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
-            removeElementsByClassName("completeLines");           
-    
-//             drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
+            drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");               
+            
+            removeElementsByClassName("completeLines");    
             displayANOVAResults();
         }, 1200);
     }
@@ -702,44 +701,57 @@ function performFriedmanTest(dependentVariable, independentVariable)
 }
 
 function findEffect(dependentVariable, independentVariables)
-{
-    var req = ocpu.rpc("findEffect", {
-                    dependentVariable: dependentVariable,
-                    independentVariables: independentVariables,                    
-                    dataset: dataset
-                  }, function(output) {                                                   
-                var variableList = getSelectedVariables();
+{   
+    var label = "interactionEffect(" + dependentVariable + "~" + independentVariables + ")";
+    
+    if(localStorage.getObject(label) == null)
+    {
+        var req = ocpu.rpc("findEffect", {
+                        dependentVariable: dependentVariable,
+                        independentVariables: independentVariables,                    
+                        dataset: dataset
+                      }, function(output) {                                                   
+                    var variableList = getSelectedVariables();
                 
-                var levelsA = variables[variableList["independent"][0]]["dataset"].unique().slice().sort();
-                var levelsB = variables[variableList["independent"][1]]["dataset"].unique().slice().sort();
+                    var levelsA = variables[variableList["independent"][0]]["dataset"].unique().slice().sort();
+                    var levelsB = variables[variableList["independent"][1]]["dataset"].unique().slice().sort();
 
-                for(var i=0; i<levelsB.length; i++)
-                {
-                    for(var j=0; j<levelsA.length; j++)
+                    for(var i=0; i<levelsB.length; i++)
                     {
-                        console.log(levelsA[j] + ":" + levelsB[i] + " = " + output.fit[i*levelsA.length + j]);
+                        for(var j=0; j<levelsA.length; j++)
+                        {
+                            console.log(levelsA[j] + ":" + levelsB[i] + " = " + output.fit[i*levelsA.length + j]);
+                        }
                     }
-                }
-                interactions = output.fit;
-                
-//                 drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");
-//                 drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc", 1);
-                //drawing stuff
-//                 removeElementsByClassName("completeLines");           
-// 
-//                 displaySignificanceTestResults();               
-        
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+                    interactions = output.fit;
+                    localStorage.setObject(label, interactions);
+                    
+                    resetSVGCanvas();
+                    drawFullScreenButton();
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+                    drawInteractionEffectPlot();
+                    
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
+
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        interactions = localStorage.getObject(label);
+
+        resetSVGCanvas();
+        drawFullScreenButton();
+
+        drawInteractionEffectPlot();
+    }    
 }
 
 function performWelchANOVA(dependentVariable, independentVariable)
@@ -1011,7 +1023,6 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
         
     });
 }
-
 
 //POST-HOC TESTS
 function performPairwiseTTest(varianceEqual, paired) 
