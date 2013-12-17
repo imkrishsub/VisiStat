@@ -203,10 +203,10 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     
         X1 = minX;
         X2 = maxX;
-        Y1 = (slope*X1 + intercept) > maxY ? maxY : (slope*X1 + intercept);
-        Y1 = (slope*X1 + intercept) < minY ? minY : (slope*X1 + intercept);
-        Y2 = (slope*X2 + intercept) > maxY ? maxY : (slope*X2 + intercept);
-        Y2 = (slope*X2 + intercept) < minY ? minY : (slope*X2 + intercept);
+        Y1 = (slope*X1 + intercept) > maxY ? maxY : (parseFloat(slope*X1) + parseFloat(intercept));
+        Y1 = (slope*X1 + intercept) < minY ? minY : (parseFloat(slope*X1) + parseFloat(intercept));
+        Y2 = (slope*X2 + intercept) > maxY ? maxY : (parseFloat(slope*X2) + parseFloat(intercept));
+        Y2 = (slope*X2 + intercept) < minY ? minY : (parseFloat(slope*X2) + parseFloat(intercept));
         
 //         if(uniqueDataX.length <= shortNumberOfGrooves)
 //             x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
