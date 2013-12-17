@@ -188,7 +188,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
             removeElementsByClassName("completeLines");
 
             displaySignificanceTestResults();            
-        }, 1200);
+        }, 1500);
     }
 }
 
@@ -252,7 +252,7 @@ function performMannWhitneyTest(groupA, groupB)
             removeElementsByClassName("completeLines");           
 
             displaySignificanceTestResults(); 
-        }, 1200);
+        }, 1500);
     }
 }
 
@@ -317,7 +317,7 @@ function performWilcoxonTest(groupA, groupB)
             removeElementsByClassName("completeLines");           
 
             displaySignificanceTestResults();
-        }, 1200);
+        }, 1500);
     }
 }
 
@@ -392,7 +392,7 @@ function performOneWayANOVA(dependentVariable, independentVariable)
             displaySignificanceTestResults();      
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
             drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
-        }, 1200);        
+        }, 1500);        
     }
 }
 
@@ -473,7 +473,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
             
             removeElementsByClassName("completeLines");    
             displayANOVAResults();
-        }, 1200);
+        }, 1500);
     }
 }
 
@@ -546,7 +546,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
     
             displaySignificanceTestResults();               
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
-        }, 1200);
+        }, 1500);
     }
 }
 
@@ -625,7 +625,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
             removeElementsByClassName("completeLines");
     
             displayANOVAResults();  
-        }, 1200);
+        }, 1500);
     }        
 }
 
@@ -696,7 +696,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
 
             displaySignificanceTestResults();   
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
-        }, 1200);
+        }, 1500);
     }
 }
 
@@ -711,18 +711,20 @@ function findEffect(dependentVariable, independentVariables)
                         independentVariables: independentVariables,                    
                         dataset: dataset
                       }, function(output) {                                                   
+                    
                     var variableList = getSelectedVariables();
                 
                     var levelsA = variables[variableList["independent"][0]]["dataset"].unique().slice().sort();
                     var levelsB = variables[variableList["independent"][1]]["dataset"].unique().slice().sort();
 
-                    for(var i=0; i<levelsB.length; i++)
-                    {
-                        for(var j=0; j<levelsA.length; j++)
-                        {
-                            console.log(levelsA[j] + ":" + levelsB[i] + " = " + output.fit[i*levelsA.length + j]);
-                        }
-                    }
+//                     for(var i=0; i<levelsB.length; i++)
+//                     {
+//                         for(var j=0; j<levelsA.length; j++)
+//                         {
+//                             console.log(levelsA[j] + ":" + levelsB[i] + " = " + output.fit[i*levelsA.length + j]);
+//                         }
+//                     }
+
                     interactions = output.fit;
                     localStorage.setObject(label, interactions);
                     
@@ -898,7 +900,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
             displaySignificanceTestResults();
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
             drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);        
-        }, 1200);
+        }, 1500);
     }
 }
 
@@ -1089,7 +1091,7 @@ function performPairwiseTTest(varianceEqual, paired)
             removeElementsByClassName("completeLines");
     
             displaySignificanceTestResults();       
-        }, 1200);        
+        }, 1500);        
     }
 }
 
@@ -1158,6 +1160,6 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
             removeElementsByClassName("completeLines");
     
             displaySignificanceTestResults();        
-        }, 1200);
+        }, 1500);
     }
 }
