@@ -683,6 +683,12 @@ function OnMouseDown(e)
                                     .attr("fill", "white")
                                     .attr("class", "effectSizeHelp");
                     }
+                    
+                    if(d3.select("#homogeneity.assumptionsButtonFront").attr("display") == "inline")
+                    {
+//                         plotCanvas.append("rect")canvasWidth/2 - variancePlotWidth/2;
+                    }
+                    
                 }
             }
             
