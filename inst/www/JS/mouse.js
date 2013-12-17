@@ -594,7 +594,7 @@ function OnMouseDown(e)
                 if(helpButton.attr("stroke") == "black")
                 {
                     help = true;
-                    helpButton.attr("fill", "url(#buttonFillSelected)")
+                    helpButton.attr("fill", "url(#bannerFillSelected)")
                                 .attr("filter", "none")
                                 .attr("stroke", "none");
                 
@@ -717,6 +717,14 @@ function OnMouseDown(e)
                                     .attr("opacity", "0.01")
                                     .attr("class", "normalityPlotHelp");
                     }                   
+                }
+                else
+                {
+                    helpButton.attr("fill", "url(#bannerFillNormal)")
+                                .attr("stroke", "black")
+                                .attr("filter", "url(#Bevel)");
+                    
+                    helpButtonText.attr("black");
                 }
             }
             

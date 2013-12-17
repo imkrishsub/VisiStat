@@ -113,12 +113,8 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                         groupB: groupB,
                         variance: varianceEqual,
                         paired: paired
-                      }, function(output) {                                                   
-                  
-                    
-                    
-                    
-                    
+                      }, function(output) {
+                      
                         console.log("LABEL=" + label);
                                       
                         console.log("\t\t " + output.method);
@@ -146,7 +142,19 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                     
                   
                         testResults["p"] = changePValueNotation(output.p); 
-                        testResults["method"] = output.method;
+                        
+                        if(paired)
+                        {
+                            testResults["method"] = "Paired 2-sample t-test";
+                        }
+                        else
+                        {
+                            if(varianceEqual)
+                                testResults["method"] = "Unpaired 2-sample t-test";
+                            else
+                                testResults["method"] = "Welch's t-test";
+                        }
+                        
                         testResults["effect-size"] = output.d;
                         testResults["effect-size-type"] = "d";
                         testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
@@ -351,7 +359,7 @@ function performOneWayANOVA(dependentVariable, independentVariable)
                     testResults["parameter-type"] = "F";
                 
                     testResults["p"] = changePValueNotation(output.p);   
-                    testResults["method"] = "One-way ANOVA"; //todo
+                    testResults["method"] = "1-way ANOVA"; //todo
                     testResults["effect-size"] = output.etaSquared;
                     testResults["effect-size-type"] = "eS";
                     testResults["formula"] = variableList["dependent"][0] + " ~ " + variableList["independent"][0] + "(" + variableList["independent-levels"] + ")";
@@ -415,7 +423,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                   
                     console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
                     console.log("\t\t\t F values= [" + output.F + "]");
-                    console.log("\t\t\t method used = Two-way ANOVA"); //todo
+                    console.log("\t\t\t method used = 2-way ANOVA"); //todo
                     console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
                     console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
                     console.log("\t\t\t p-values: [" + output.p + "]");
@@ -436,7 +444,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                              
                     testResults["test-type"] = "twA";
                 
-                    testResults["method"] = "Two-way ANOVA"; //todo
+                    testResults["method"] = "2-way ANOVA"; //todo
                     testResults["effect-size"] = output.etaSquared;
                     testResults["effect-size-type"] = "eS";
                     testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
@@ -505,7 +513,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                 
                     testResults["test-type"] = "owrA";
                 
-                    testResults["method"] = "Repeated Measures ANOVA"; //todo
+                    testResults["method"] = "1-way repeated-measures ANOVA"; //todo
                     testResults["effect-size"] = output.etaSquared;
                     testResults["p"] = changePValueNotation(output.p);
                     testResults["effect-size-type"] = "eS";
@@ -656,7 +664,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
                 
                     testResults["test-type"] = "fT";
                 
-                    testResults["method"] = output.method; 
+                    testResults["method"] = "Friedman's Analysis";
                     testResults["p"] = changePValueNotation(output.p);
                     testResults["effect-size"] = output.etaSquared;
                     testResults["effect-size-type"] = "eS";       
@@ -859,7 +867,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                     testResults["test-type"] = "kwT";
                 
                     testResults["p"] = changePValueNotation(output.p);                  
-                    testResults["method"] = "Kruskal-Wallis Test"; 
+                    testResults["method"] = "Kruskal-Wallis test"; 
                     testResults["effect-size"] = output.etaSquared;         
                     testResults["effect-size-type"] = "eS";
                     testResults["formula"] = dependentVariable + " ~ " + independentVariable;
@@ -1055,9 +1063,10 @@ function performPairwiseTTest(varianceEqual, paired)
                     testResults["parameter-type"] = "t";
                 
                     testResults["p"] = changePValueNotation(output.p); 
-                    testResults["method"] = "Pairwise t-test";
+                    testResults["method"] = "Pairwise t-test (Bonf.)";
                     testResults["effect-size"] = output.d;
                     testResults["effect-size-type"] = "d";
+                    testResults["test-type"] = "ptT";
                     
                     localStorage.setObject(label, testResults);
                 
@@ -1125,7 +1134,8 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
                 
                     testResults["p"] = changePValueNotation(output.p);                  
                     testResults["effect-size"] = output.r;
-                    testResults["method"] = "Pairwise Wilcoxon-test";
+                    testResults["method"] = "Pairwise Wilcoxon-test (Bonf.)";
+                    testResults["test-type"] = "pwT";
                     testResults["effect-size-type"] = "r";                  
                     
                     localStorage.setObject(label, testResults);
