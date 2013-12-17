@@ -1395,6 +1395,8 @@ function OnMouseOver(e)
             {
                 setup(e, target);
                 
+                d3.select("#labelMin.effectSize").attr("display", "none");
+                
                 d3.selectAll("#labelMin, #labelMax, #labelMid, #effectSizeText, #effectSizeValue").attr("display", "none");
                 d3.selectAll(".effectSizeInterpretationIndicators").attr("display", "inline");
             }            
