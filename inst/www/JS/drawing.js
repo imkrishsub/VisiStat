@@ -410,7 +410,6 @@ function drawEffectSize(value)
     }
     else
     {
-        console.log("negative effect size value");
         var effectSize = sideBar.append("rect")
                                     .attr("x", L + scale(0) + scale(min + (value - 0)))
                                     .attr("y", T)
@@ -429,6 +428,7 @@ function drawEffectSize(value)
                 .attr("font-size", effectSizeFontSize)
                 .attr("fill", "white")
                 .text(value)
+                .attr("id", "effectSizeValue")
                 .attr("class", "effectSize");
     }
     else
@@ -440,6 +440,7 @@ function drawEffectSize(value)
                 .attr("font-size", effectSizeFontSize)
                 .attr("fill", "black")
                 .text(value)
+                .attr("id", "effectSizeValue")
                 .attr("class", "effectSize");
     }
     
@@ -473,15 +474,17 @@ function drawEffectSize(value)
                 .attr("x2", L + scale(effectSizeInterpretations[type][i]))
                 .attr("y2", T + effectSizeHeight)
                 .attr("stroke", "black")
+                .attr("display", "none")
                 .attr("class", "effectSizeInterpretationIndicators");
         sideBar.append("text")
                 .attr("x", L + scale(effectSizeInterpretations[type][i]))
                 .attr("y", T - yAxisTickTextOffset)
-                .attr("transform", "rotate (-45" + (L + scale(effectSizeInterpretations[type][i])) + " " + (T - yAxisTickTextOffset) + ")")
+                .attr("transform", "rotate (-45 " + (L + scale(effectSizeInterpretations[type][i])) + " " + (T - yAxisTickTextOffset) + ")")
                 .attr("text-anchor", "start")
                 .attr("font-size", scaleForWindowSize(14) + "px")
                 .text(effectSizeInterpretationIndicators[i])
                 .attr("fill", getColour(type, effectSizeInterpretations[type][i]))
+                .attr("display", "none")
                 .attr("class", "effectSizeInterpretationIndicators");
     }
     
@@ -506,6 +509,7 @@ function drawEffectSize(value)
             .attr("text-anchor", "middle")
             .attr("font-size", effectSizeFontSize)
             .attr("fill", "black")
+            .attr("id", "effectSizeText")
             .attr("class", "effectSize");
             
         mainText.append("tspan")
@@ -521,6 +525,7 @@ function drawEffectSize(value)
             .attr("y", canvasHeight/2 - significanceTestResultOffset - effectSizeHeight/2 - yAxisTickTextOffset)
             .attr("text-anchor", "middle")
             .attr("font-size", effectSizeFontSize)
+            .attr("id", "effectSizeText")
             .attr("fill", "black")
             .attr("class", "effectSize");
             
@@ -537,10 +542,20 @@ function drawEffectSize(value)
             .attr("y", canvasHeight/2 - significanceTestResultOffset - effectSizeHeight/2 - yAxisTickTextOffset)
             .attr("text-anchor", "middle")
             .attr("font-size", effectSizeFontSize)
+            .attr("id", "effectSizeText")
             .attr("fill", "black")
             .text(type)
             .attr("class", "effectSize");
-    }       
+    } 
+    
+    sideBar.append("rect")
+            .attr("x", 0)
+            .attr("y", T - effectSizeHeight/2)
+            .attr("width", sideBarWidth)
+            .attr("height", effectSizeHeight*2)
+            .attr("stroke", "black")
+            .attr("opacity", "0.3")
+            .attr("id", "effectSizeFront");        
 }
 
 function drawParameter(DF, parameter)

@@ -1390,6 +1390,14 @@ function OnMouseOver(e)
                 
                 helpText.text(desc["tukeyHSD"]);   
             }
+            
+            if(target.id == "effectSizeFront")
+            {
+                setup(e, target);
+                
+                d3.selectAll("#labelMin, #labelMax, #labelMid, #effectSizeText, #effectSizeValue").attr("display", "none");
+                d3.selectAll(".effectSizeInterpretationIndicators").attr("display", "inline");
+            }            
         }
         else
         {
@@ -2137,6 +2145,12 @@ function OnMouseOut(e)
                     differenceInMeansLines[i].setAttribute("opacity", "1.0");
                 }
             }
+        }
+        
+        else if(target.id == "effectSizeFront")
+        {
+            d3.selectAll("#labelMin, #labelMax, #labelMid, #effectSizeText, #effectSizeValue").attr("display", "inline");
+            d3.selectAll(".effectSizeInterpretationIndicators").attr("display", "none");
         }
     }
 }	
