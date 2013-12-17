@@ -153,7 +153,7 @@ var significanceTestResultOffset = scaleForWindowSize(40);
 
 var effectSizeWidth = sideBarWidth*0.8;
 var effectSizeHeight = scaleForWindowSize(30);
-var effectSizeFontSize = scaleForWindowSize(20) + "px";
+var effectSizeFontSize = scaleForWindowSize(16) + "px";
 
 var computingResultsImageSize = scaleForWindowSize(75);
 
