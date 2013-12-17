@@ -1300,7 +1300,7 @@ function OnMouseOver(e)
                 
                 d3.select(".variancePlotHelp").attr("opacity","0.3").attr("cursor", "help");
                 
-                helpText.text(desc["variancePlot"]]);
+                helpText.text(desc["variancePlot"]);
             }
             
             if(target.className.baseVal == "assumptionsButtonFront")
