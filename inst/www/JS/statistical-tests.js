@@ -354,6 +354,8 @@ function setDistribution(dependentVariable, level, normal)
             d3.select("#normality.ticks").attr("display", "inline");  
             d3.select("#normality.loading").attr("display", "none"); 
             
+            console.log("->" + d3.select("#normality.loading").attr("display"));
+            
             if(variableList["independent"].length == 1)
             {
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
