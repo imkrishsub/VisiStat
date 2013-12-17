@@ -1,7 +1,14 @@
 // Correlation & Regression
 function getCorrelationCoefficient(variableA, variableB, method)
 {   
-    var label = method + "~" + variableA + "~" + variableB;
+    if(variableB < variableA)
+    {
+        var temp = variableA;
+        variableA = variableB;
+        variableB = temp;
+    }    
+    
+    var label = method + "(~" + variableA + "~" + variableB + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -101,7 +108,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
 
 function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
 {
-    var label = "biserial" + "~" + continuousVariable + "~" + binaryVariable;
+    var label = "biserial(" + "~" + continuousVariable + "~" + binaryVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -149,7 +156,7 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
 
 function getLinearModelCoefficients(outcome, explanatory)
 {
-    var label = "linearR" + "~" + outcome + "~" + explanatory;
+    var label = "linearRegression(" + outcome + "~" + explanatory + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -252,7 +259,8 @@ function getLinearModelCoefficients(outcome, explanatory)
 
 function performMultipleRegression(outcomeVariable, explanatoryVariables)
 {
-    var label = "multipleR" + "~" + outcomeVariable + "~[" + explanatoryVariables + "]";
+    explanatoryVariables = explanatoryVariables.sort();
+    var label = "multipleRegression(" + outcomeVariable + "~[" + explanatoryVariables + "])";
     
     if(localStorage.getObject(label) == null)
     {

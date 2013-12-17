@@ -1,7 +1,7 @@
 //to load a file on local disk
 function loadFile(filePath)
 {
-    label = "load" + filePath;
+    label = "file:" + sessionStorage.fileName;
     
     if(localStorage.getObject(label) == null)
     {
@@ -108,7 +108,7 @@ function getData(dataset, variableName, level)
 function performHomoscedasticityTest(dependent, independent)
 {   
     var variableList = getSelectedVariables(); 
-    var label = "homo" + dependent + "~" + independent;
+    var label = "levene(" + dependent + "~" + independent + ")";
         
     if(localStorage.getItem(label) == null)
     {
@@ -217,7 +217,7 @@ function performHomoscedasticityTest(dependent, independent)
 
 function performNormalityTest(distribution, dependentVariable, level)
 {
-    var label = "normalityTest" + "(" + dependentVariable + "~" + level + ")";
+    var label = "shapiroWilk(" + dependentVariable + "~" + level + ")";
     
     if(localStorage.getItem(label) == null)
     {
@@ -487,7 +487,7 @@ function performSphericityTest()
 
 function findTransformForNormality(dependentVariable, independentVariable)
 {
-    var label = "findTNorm" + dependentVariable + "~" + independentVariable;
+    var label = "findTNorm(" + dependentVariable + "~" + independentVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -667,7 +667,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
 
 function findTransformForHomogeneity(dependentVariable, independentVariable)
 {
-    var label = "findTHomo" + dependentVariable + "~" + independentVariable;
+    var label = "findTHomo(" + dependentVariable + "~" + independentVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {

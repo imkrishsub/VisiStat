@@ -102,8 +102,10 @@ function performOneSampleWilcoxonTest(variable, level)
 
 function performTTest(groupA, groupB, varianceEqual, paired) 
 {
-    var variableList = getSelectedVariables();
-    var label = "tT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
+    var variableList = getSelectedVariables();    
+    variableList["independent-levels"] = variableList["independent-levels"].sort();
+    
+    var label = "t-test(" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1] + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -203,7 +205,9 @@ function performTTest(groupA, groupB, varianceEqual, paired)
 function performMannWhitneyTest(groupA, groupB)
 {
     var variableList = getSelectedVariables();
-    var label = "mwT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
+    variableList["independent-levels"] = variableList["independent-levels"].sort();
+    
+    var label = "mann-whitney(" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1] + ")";
     // Get variable names and their data type
     
     if(localStorage.getObject(label) == null)
@@ -267,7 +271,9 @@ function performMannWhitneyTest(groupA, groupB)
 function performWilcoxonTest(groupA, groupB)
 {
     var variableList = getSelectedVariables();
-    var label = "wT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1];
+    variableList["independent-levels"] = variableList["independent-levels"].sort();
+    
+    var label = "wilcoxon(" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1] + ")";
     
     if(localStorage.getObject(label))
     {
@@ -331,8 +337,9 @@ function performWilcoxonTest(groupA, groupB)
 
 function performOneWayANOVA(dependentVariable, independentVariable)
 {
-    var variableList = getSelectedVariables();    
-    var label = "owA" + dependentVariable + "~" + independentVariable;
+    var variableList = getSelectedVariables();  
+    
+    var label = "onewayANOVA(" + dependentVariable + "~" + independentVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -407,7 +414,14 @@ function performOneWayANOVA(dependentVariable, independentVariable)
 function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGroupVariableB)
 {
     var variableList = getSelectedVariables();
-    var label = "twA" + dependentVariable + "~" + betweenGroupVariableA + "+" + betweenGroupVariableB;
+    if(betweenGroupVariableB < betweenGroupVariableA)
+    {
+        var temp = betweenGroupVariableB;
+        betweenGroupVariableB = betweenGroupVariableA;
+        betweenGroupVariableA = temp;
+    }
+    
+    var label = "twowayANOVA(" + dependentVariable + "~" + betweenGroupVariableA + "+" + betweenGroupVariableB + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -488,7 +502,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
 function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariable)
 {
     var variableList = getSelectedVariables();
-    var label = "owrA" + dependentVariable + "~" + independentVariable;
+    var label = "repeatedANOVA(" + dependentVariable + "~" + independentVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -561,8 +575,8 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
 function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGroupVariable)
 {
     console.log("\t\t Factorial ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
-    
-    var label = "fA" + dependentVariable + "~" + betweenGroupVariable + "~" + participants + "~" + withinGroupVariable;
+     
+    var label = "multiANOVA(" + dependentVariable + "~" + betweenGroupVariable + "~" + participants + "~" + withinGroupVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -639,7 +653,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
 
 function performFriedmanTest(dependentVariable, independentVariable)
 {
-    var label = "fT" + dependentVariable + "~" + independentVariable;
+    var label = "friedman(" + dependentVariable + "~" + independentVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -710,6 +724,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
 
 function findEffect(dependentVariable, independentVariables)
 {   
+    independentVariables = independentVariables.sort();
     var label = "interactionEffect(" + dependentVariable + "~" + independentVariables + ")";
     
     if(localStorage.getObject(label) == null)
@@ -766,7 +781,7 @@ function findEffect(dependentVariable, independentVariables)
 
 function performWelchANOVA(dependentVariable, independentVariable)
 {
-    var label = "WA" + dependentVariable + "~" + independentVariable;
+    var label = "welchANOVA(" + dependentVariable + "~" + independentVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -839,7 +854,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
 
 function performKruskalWallisTest(dependentVariable, independentVariable)
 {
-    var label = "kwT" + dependentVariable + "~" + independentVariable;
+    var label = "kruskal(" + dependentVariable + "~" + independentVariable + ")";
     //get data from variable names
     dependentVariableData = variables[dependentVariable]["dataset"];
     independentVariableData = variables[independentVariable]["dataset"];
@@ -1038,7 +1053,9 @@ function performTukeyHSDTestTwoIndependentVariables(dependentVariable, independe
 function performPairwiseTTest(varianceEqual, paired) 
 {    
     var variableList = getSelectedVariables();
-    var label = "pTT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "~" + variableList["independent-levels"][1] + "~" + varianceEqual + "~" + paired;
+    
+    variableList["independent-levels"] = variableList["independent-levels"].sort();
+    var label = "pairwiseT(" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "~" + variableList["independent-levels"][1] + "~" + varianceEqual + "~" + paired + ")";
     
     if(localStorage.getObject(label) == null)
     {    
@@ -1107,7 +1124,8 @@ function performPairwiseTTest(varianceEqual, paired)
 function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, paired = "FALSE", alternative = "two.sided", alpha = 0.95, var = "FALSE"
 {
     var variableList = getSelectedVariables();
-    var label = "pWT" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "~" + variableList["independent-levels"][1] + "~" + varianceEqual + "~" + paired;
+    variableList["independent-levels"] = variableList["independent-levels"].sort();
+    var label = "pairwiseW(" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "~" + variableList["independent-levels"][1] + "~" + varianceEqual + "~" + paired + ")";
     
     if(localStorage.getObject(label) == null)
     {   
