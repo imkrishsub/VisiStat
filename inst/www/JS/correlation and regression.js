@@ -1,270 +1,335 @@
 // Correlation & Regression
 function getCorrelationCoefficient(variableA, variableB, method)
 {   
-    var req = ocpu.rpc("getCorrelationCoefficient", {
-                    distributionX: variables[variableA]["dataset"],                    
-                    distributionY: variables[variableB]["dataset"],
-                    method: method
-                  }, function(output) {                                                   
+    var label = method + "~" + variableA + "~" + variableB;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        var req = ocpu.rpc("getCorrelationCoefficient", {
+                        distributionX: variables[variableA]["dataset"],                    
+                        distributionY: variables[variableB]["dataset"],
+                        method: method
+                      }, function(output) {                                                   
                 
-                if(method == "pearson")
-                {
-                    console.log("\t\t\t Pearson's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
-                    console.log("\t\t\t\t t = " + output.statistic);
-                    console.log("\t\t\t\t p = " + output.p);
-                    console.log("\t\t\t\t method used = " + output.method);
-                    console.log("\t\t\t\t DF = " + output.df);
-                    console.log("\t\t\t\t r = " + output.cor);
-                    console.log("\t\t\t\t CI = [" + output.CI_min + ", " + output.CI_max + "]");
+                    if(method == "pearson")
+                    {
+                        console.log("\t\t\t Pearson's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
+                        console.log("\t\t\t\t t = " + output.statistic);
+                        console.log("\t\t\t\t p = " + output.p);
+                        console.log("\t\t\t\t method used = " + output.method);
+                        console.log("\t\t\t\t DF = " + output.df);
+                        console.log("\t\t\t\t r = " + output.cor);
+                        console.log("\t\t\t\t CI = [" + output.CI_min + ", " + output.CI_max + "]");
 
-                    testResults["df"] = output.df;
-                    testResults["statistic"] = "t(" + output.df + ") = " + output.statistic;
+                        testResults["df"] = output.df;
+                        testResults["statistic"] = "t(" + output.df + ") = " + output.statistic;
                     
-                    testResults["parameter"] = output.statistic;
-                    testResults["parameter-type"] = "t";
+                        testResults["parameter"] = output.statistic;
+                        testResults["parameter-type"] = "t";
                     
-                    testResults["p"] = output.p;                  
-                    testResults["method"] = output.method; 
+                        testResults["p"] = output.p;                  
+                        testResults["method"] = output.method; 
                     
-                    testResults["test-type"] = "pC";
+                        testResults["test-type"] = "pC";
                     
-                    testResults["effect-size"] = output.cor;
-                    testResults["CI"] = [output.CI_min, output.CI_max];
-                    testResults["effect-size-type"] = "r";
+                        testResults["effect-size"] = output.cor;
+                        testResults["CI"] = [output.CI_min, output.CI_max];
+                        testResults["effect-size-type"] = "r";
                     
-                    testResults["formula"] = variableA + " : " + variableB;
+                        testResults["formula"] = variableA + " : " + variableB;
+                        
+                        localStorage.setObject(label, testResults);
+                        logResult();
                     
-                    logResult();
-                    
-//                     if(allVariablesAreNumeric())
-                    console.log("yo");
-                    drawButtonInSideBar("CONSTRUCT MODEL", "regression");
-                }
-                else if(method == "kendall")
-                {
-                    console.log("\t\t\t Kendall's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
-                    console.log("\t\t\t\t z = " + output.statistic);
-                    console.log("\t\t\t\t p = " + output.p);
-                    console.log("\t\t\t\t method used = " + output.method);
-                    console.log("\t\t\t\t 𝜏 = " + output.cor);
+    //                     if(allVariablesAreNumeric())
+                        console.log("yo");
+                        drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+                    }
+                    else if(method == "kendall")
+                    {
+                        console.log("\t\t\t Kendall's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
+                        console.log("\t\t\t\t z = " + output.statistic);
+                        console.log("\t\t\t\t p = " + output.p);
+                        console.log("\t\t\t\t method used = " + output.method);
+                        console.log("\t\t\t\t 𝜏 = " + output.cor);
 
-                    testResults["statistic"] = "z = " + output.statistic;
+                        testResults["statistic"] = "z = " + output.statistic;
                     
-                    testResults["parameter"] = output.statistic;
-                    testResults["parameter-type"] = "z";
+                        testResults["parameter"] = output.statistic;
+                        testResults["parameter-type"] = "z";
                   
-                    testResults["p"] = output.p;                  
-                    testResults["method"] = output.method; 
-                    testResults["effect-size"] = output.cor;
-                    testResults["effect-size-type"] = "𝜏";
+                        testResults["p"] = output.p;                  
+                        testResults["method"] = output.method; 
+                        testResults["effect-size"] = output.cor;
+                        testResults["effect-size-type"] = "𝜏";
                     
-                    testResults["test-type"] = "kC";
+                        testResults["test-type"] = "kC";
                     
-                    testResults["formula"] = variableA + " : " + variableB;
+                        testResults["formula"] = variableA + " : " + variableB;
+                        
+                        localStorage.setObject(label, testResults);
+                        logResult();
                     
-                    logResult();
-                    
-//                     if(allVariablesAreNumeric())
-                    console.log("yo");
-                    drawButtonInSideBar("CONSTRUCT MODEL", "regression");
-                }
+    //                     if(allVariablesAreNumeric())
+                        console.log("yo");
+                        drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+                    }
                 
-                displayCorrelationResults();
+                    displayCorrelationResults();
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
+        drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+        displayCorrelationResults();
+    }
 }
 
 function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
 {
-    var req = ocpu.rpc("getBiserialCorrelationCoefficient", {
-                    continuousVariable: variables[continuousVariable]["dataset"],
-                    binaryVariable: variables[binaryVariable]["dataset"]
-                  }, function(output) {                                                   
+    var label = "biserial" + "~" + continuousVariable + "~" + binaryVariable;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        var req = ocpu.rpc("getBiserialCorrelationCoefficient", {
+                        continuousVariable: variables[continuousVariable]["dataset"],
+                        binaryVariable: variables[binaryVariable]["dataset"]
+                      }, function(output) {                                                   
               
-                console.log("\t\t Biserial Correlation-coefficient for (" + continuousVariable + " , " + binaryVariable + ")");                
-                console.log("\t\t\t method used = " + "Biserial Correlation-coefficient");
-                console.log("\t\t\t r = " + output.cor);
+                    console.log("\t\t Biserial Correlation-coefficient for (" + continuousVariable + " , " + binaryVariable + ")");                
+                    console.log("\t\t\t method used = " + "Biserial Correlation-coefficient");
+                    console.log("\t\t\t r = " + output.cor);
 
-                testResults["method"] = "Biserial Correlation-coefficient";
-                testResults["effect-size"] = output.cor;  
-                testResults["effect-size-type"] = "r";
-                
-                testResults["test-type"] = "bC";
-                
-                testResults["formula"] = continuousVariable + " : " + binaryVariable;
+                    testResults["method"] = "Biserial Correlation-coefficient";
+                    testResults["effect-size"] = output.cor;  
+                    testResults["effect-size-type"] = "r";                
+                    testResults["test-type"] = "bC";                
+                    testResults["formula"] = continuousVariable + " : " + binaryVariable;
                     
-                logResult();
+                    localStorage.setObject(label, testResults);
+                    
+                    logResult();
                 
-                displayBiserialCorrelationResults();            
+                    displayBiserialCorrelationResults();            
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();                
+        displayBiserialCorrelationResults(); 
+    }
 }
 
 function getLinearModelCoefficients(outcome, explanatory)
 {
-    var req = ocpu.rpc("getLinearModelCoefficients", {
-                    outcome: variables[outcome]["dataset"],
-                    explanatory: variables[explanatory]["dataset"]
-                  }, function(output) {          
+    var label = "linearR" + "~" + outcome + "~" + explanatory;
+    
+    if(localStorage.getObject(label) == null)
+    {
+        var req = ocpu.rpc("getLinearModelCoefficients", {
+                        outcome: variables[outcome]["dataset"],
+                        explanatory: variables[explanatory]["dataset"]
+                      }, function(output) {          
                   
-                if(isNaN(variables[explanatory]["dataset"][0]))
-                {
-                    //we have a categorical variable
-                    var levels = variables[explanatory]["dataset"].unique().slice().sort();                    
-                    var nCoefficients = levels.length - 1;
-                    var coefficients = output.coefficients;
-                  
-                    
-                    testResults["effect-size"] = output.rSquared;
-                    testResults["method"] = "Linear Regression Model";
-                    testResults["equation"] = outcome + " = ";
-                    testResults["effect-size-type"] = "rS";
-                    
-                    testResults["formula"] = explanatory + " => " + outcome;
-                    
-                    logResult();
-                    
-                    for(var i=0; i<nCoefficients; i++)
+                    if(isNaN(variables[explanatory]["dataset"][0]))
                     {
-                        if(i == 0)                        
-                            testResults["equation"] = testResults["equation"] + coefficients[i] + levels[i+1];
-                        else
-                            testResults["equation"] = testResults["equation"] + (coefficients[i] < 0 ? coefficients[i] : "+" + coefficients[i]) + levels[i+1];
-                    }
-                    testResults["equation"] = testResults["equation"] + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
-                    
-                    testResults["coefficients"] = new Object();
-                    
-                    for(var i=0; i<levels.length; i++)
-                    {
-                        testResults["coefficients"][levels[i]] = coefficients[i];
-                    }
-                    
-                    testResults["intercept"] = output.intercept;
-                
-                    console.log("intercept=" + output.intercept + ", coefficients=" + output.coefficients);
-                }
-                else
-                {  
-                    var coefficients = output.coefficients;
+                        //we have a categorical variable
+                        var levels = variables[explanatory]["dataset"].unique().slice().sort();                    
+                        var nCoefficients = levels.length - 1;
+                        var coefficients = output.coefficients;
                   
-                    testResults["effect-size"] = output.rSquared;
-                    testResults["effect-size-type"] = "rS";
-                    testResults["method"] = "Linear Regression Model";
-                    testResults["equation"] = outcome + " = " + coefficients + explanatory + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
-                    testResults["coefficients"] = coefficients;
-                    testResults["intercept"] = output.intercept;
                     
-                    testResults["formula"] = explanatory + " => " + outcome;
+                        testResults["effect-size"] = output.rSquared;
+                        testResults["method"] = "Linear Regression Model";
+                        testResults["equation"] = outcome + " = ";
+                        testResults["effect-size-type"] = "rS";
                     
-                    logResult();
+                        testResults["formula"] = explanatory + " => " + outcome;
+                    
+                        logResult();
+                    
+                        for(var i=0; i<nCoefficients; i++)
+                        {
+                            if(i == 0)                        
+                                testResults["equation"] = testResults["equation"] + coefficients[i] + levels[i+1];
+                            else
+                                testResults["equation"] = testResults["equation"] + (coefficients[i] < 0 ? coefficients[i] : "+" + coefficients[i]) + levels[i+1];
+                        }
+                        testResults["equation"] = testResults["equation"] + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
+                    
+                        testResults["coefficients"] = new Object();
+                    
+                        for(var i=0; i<levels.length; i++)
+                        {
+                            testResults["coefficients"][levels[i]] = coefficients[i];
+                        }
+                    
+                        testResults["intercept"] = output.intercept;
+                        
+                        localStorage.setObject(label, testResults);
+                    }
+                    else
+                    {  
+                        var coefficients = output.coefficients;
+                  
+                        testResults["effect-size"] = output.rSquared;
+                        testResults["effect-size-type"] = "rS";
+                        testResults["method"] = "Linear Regression Model";
+                        testResults["equation"] = outcome + " = " + coefficients + explanatory + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
+                        testResults["coefficients"] = coefficients;
+                        testResults["intercept"] = output.intercept;
+                        testResults["formula"] = explanatory + " => " + outcome;
+                        
+                        localStorage.setObject(label, testResults);
+                    
+                        logResult();
                 
-                    console.log("intercept=" + output.intercept + ", coefficients=" + output.coefficients);
-                    removeElementsByClassName("significanceTest");
-                    drawRegressionLine(output.intercept, output.coefficients);                
+                        console.log("intercept=" + output.intercept + ", coefficients=" + output.coefficients);
+                        removeElementsByClassName("significanceTest");
+                        drawRegressionLine(output.intercept, output.coefficients);                
                 
-                    displaySimpleRegressionResults();                    
-                }
+                        displaySimpleRegressionResults();                    
+                    }
                 
                 
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        if(isNaN(variables[explanatory]["dataset"][0]))
+        {
+            logResult();
+        }
+        {
+            logResult();
+            
+            console.log("intercept=" + output.intercept + ", coefficients=" + output.coefficients);
+            removeElementsByClassName("significanceTest");
+            drawRegressionLine(output.intercept, output.coefficients);                
+    
+            displaySimpleRegressionResults();
+        }        
+    }    
 }
 
 function performMultipleRegression(outcomeVariable, explanatoryVariables)
 {
-    console.log("outcome=" + outcomeVariable + ", explanatory=[" + explanatoryVariables);
+    var label = "multipleR" + "~" + outcomeVariable + "~[" + explanatoryVariables + "]";
     
-    var req = ocpu.rpc("performMultipleRegression", {
-                    outcomeVariable: outcomeVariable,
-                    explanatoryVariables: explanatoryVariables,
-                    dataset: pathToFile                
-                  }, function(output) {                                                   
+    if(localStorage.getObject(label) == null)
+    {
+        console.log("outcome=" + outcomeVariable + ", explanatory=[" + explanatoryVariables);
+    
+        var req = ocpu.rpc("performMultipleRegression", {
+                        outcomeVariable: outcomeVariable,
+                        explanatoryVariables: explanatoryVariables,
+                        dataset: pathToFile                
+                      }, function(output) {                                                   
                   
-                console.log("Performing Multiple Regression for " + outcomeVariable + " ~ [" + explanatoryVariables + "]");
-                console.log("Intercept = " + output.intercept + ", coefficients = " + output.coefficients);
-                console.log("Length = " + output.len);
+                    console.log("Performing Multiple Regression for " + outcomeVariable + " ~ [" + explanatoryVariables + "]");
+                    console.log("Intercept = " + output.intercept + ", coefficients = " + output.coefficients);
+                    console.log("Length = " + output.len);
                 
                 
-                testResults["outcomeVariable"] = outcomeVariable;
-                testResults["explanatoryVariables"] = explanatoryVariables;
+                    testResults["outcomeVariable"] = outcomeVariable;
+                    testResults["explanatoryVariables"] = explanatoryVariables;
                 
-                testResults["effect-size"] = output.rSquared;
-                testResults["method"] = "Multiple Regression";
-                testResults["equation"] = outcomeVariable + " = ";
-                testResults["effect-size-type"] = "rS";
+                    testResults["effect-size"] = output.rSquared;
+                    testResults["method"] = "Multiple Regression";
+                    testResults["equation"] = outcomeVariable + " = ";
+                    testResults["effect-size-type"] = "rS";
                 
-                testResults["formula"] = "[" + explanatoryVariables + "] => " + outcomeVariable;                    
-                logResult();
+                    testResults["formula"] = "[" + explanatoryVariables + "] => " + outcomeVariable;                    
+                    logResult();
                 
-                var intercepts = [];
+                    var intercepts = [];
                 
-                for(var i=0; i<explanatoryVariables.length; i++)
-                {
-                    if(i == 0)
-                        testResults["equation"] = testResults["equation"] + output.coefficients[i] + explanatoryVariables[i];
-                    else
-                        testResults["equation"] = testResults["equation"] + (output.coefficients[i] < 0 ? output.coefficients[i] : "+" + output.coefficients[i]) + explanatoryVariables[i];
-                        
-                    var sum=output.intercept;
-                    for(var j=0; j<explanatoryVariables.length; j++)
+                    for(var i=0; i<explanatoryVariables.length; i++)
                     {
-                        if(i != j)
+                        if(i == 0)
+                            testResults["equation"] = testResults["equation"] + output.coefficients[i] + explanatoryVariables[i];
+                        else
+                            testResults["equation"] = testResults["equation"] + (output.coefficients[i] < 0 ? output.coefficients[i] : "+" + output.coefficients[i]) + explanatoryVariables[i];
+                        
+                        var sum=output.intercept;
+                        for(var j=0; j<explanatoryVariables.length; j++)
                         {
-                            sum += mean(variables[explanatoryVariables[j]]["dataset"])*output.coefficients[j];
+                            if(i != j)
+                            {
+                                sum += mean(variables[explanatoryVariables[j]]["dataset"])*output.coefficients[j];
+                            }
                         }
-                    }
                     
-                    intercepts.push(sum);
-                }
-                testResults["equation"] = testResults["equation"] + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
+                        intercepts.push(sum);
+                    }
+                    testResults["equation"] = testResults["equation"] + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
                 
-                testResults["coefficients"] = output.coefficients;                
-                testResults["intercept"] = output.intercept;
-                testResults["intercepts"] = intercepts;
-                
-                makeScatterplotMatrixForMultipleRegression(outcomeVariable);
-                displayMultipleRegressionResults();
+                    testResults["coefficients"] = output.coefficients;                
+                    testResults["intercept"] = output.intercept;
+                    testResults["intercepts"] = intercepts;
+                    
+                    localStorage.setObject(label, testResults);
+                    
+                    makeScatterplotMatrixForMultipleRegression(outcomeVariable);
+                    displayMultipleRegressionResults();
         
-      }).fail(function(){
-          alert("Failure: " + req.responseText);
-    });
+          }).fail(function(){
+              alert("Failure: " + req.responseText);
+        });
 
-    //if R returns an error, alert the error message
-    req.fail(function(){
-      alert("Server error: " + req.responseText);
-    });
-    req.complete(function(){
+        //if R returns an error, alert the error message
+        req.fail(function(){
+          alert("Server error: " + req.responseText);
+        });
+        req.complete(function(){
         
-    });
+        });
+    }
+    else
+    {
+        testResults = localStorage.getObject(label);
+        
+        logResult();
+        makeScatterplotMatrixForMultipleRegression(outcomeVariable);
+        displayMultipleRegressionResults();
+    }
 }
