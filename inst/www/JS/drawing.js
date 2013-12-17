@@ -465,7 +465,7 @@ function drawEffectSize(value)
             .text(max);
     
     var effectSizeInterpretationIndicators = ["small", "medium", "large"];
-            
+        
     for(i=0; i<effectSizeInterpretations[type].length; i++)
     {
         sideBar.append("line")
@@ -488,8 +488,31 @@ function drawEffectSize(value)
                 .attr("class", "effectSizeInterpretationIndicators");
     }
     
+    
     if(min < 0)
     {
+        for(i=0; i<effectSizeInterpretations[type].length; i++)
+        {
+            sideBar.append("line")
+                    .attr("x1", L - scale(effectSizeInterpretations[type][i]))
+                    .attr("y1", T)
+                    .attr("x2", L - scale(effectSizeInterpretations[type][i]))
+                    .attr("y2", T + effectSizeHeight)
+                    .attr("stroke", "black")
+                    .attr("display", "none")
+                    .attr("class", "effectSizeInterpretationIndicators");
+            sideBar.append("text")
+                    .attr("x", L - scale(effectSizeInterpretations[type][i]))
+                    .attr("y", T - yAxisTickTextOffset)
+                    .attr("transform", "rotate (-45 " + (L - scale(effectSizeInterpretations[type][i])) + " " + (T - yAxisTickTextOffset) + ")")
+                    .attr("text-anchor", "start")
+                    .attr("font-size", scaleForWindowSize(14) + "px")
+                    .text(effectSizeInterpretationIndicators[i])
+                    .attr("fill", getColour(type, effectSizeInterpretations[type][i]))
+                    .attr("display", "none")
+                    .attr("class", "effectSizeInterpretationIndicators");
+        }
+    
         sideBar.append("text")
             .attr("x", L + scale(0))
             .attr("y", T + 3*effectSizeHeight/2)
@@ -554,7 +577,7 @@ function drawEffectSize(value)
             .attr("width", sideBarWidth)
             .attr("height", effectSizeHeight*2)
             .attr("stroke", "black")
-            .attr("opacity", "0.3")
+            .attr("opacity", "0.001")
             .attr("id", "effectSizeFront");        
 }
 
