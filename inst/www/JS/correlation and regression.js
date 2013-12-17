@@ -242,9 +242,8 @@ function getLinearModelCoefficients(outcome, explanatory)
         {
             logResult();
             
-            console.log("intercept=" + output.intercept + ", coefficients=" + output.coefficients);
             removeElementsByClassName("significanceTest");
-            drawRegressionLine(output.intercept, output.coefficients);                
+            drawRegressionLine(testResults["intercept"], testResults["coefficients"]);                
     
             displaySimpleRegressionResults();
         }        
