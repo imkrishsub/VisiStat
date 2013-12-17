@@ -841,7 +841,7 @@ function OnMouseDown(e)
                             var canvas = d3.select("#plotCanvas");
                             var variableList = getSelectedVariables();
                             
-                            drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+                            drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");
                             
                             return;
                         }
