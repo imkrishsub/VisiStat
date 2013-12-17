@@ -671,15 +671,7 @@ function drawScales(cx, cy)
     var variableList = getSelectedVariables();
     var means = [];
     
-    var levels = variableList["independent-levels"];
-    
-//     for(var i=0; i<variableList["dependent"].length; i++)
-//     {
-//         for(var j=0; j<levels.length; j++)
-//         {
-//             means.push(mean(variables[variableList["dependent"][i]][levels[j]]));
-//         }
-//     }   
+    var levels = variableList["independent-levels"]; 
 
     for(var i=0; i<cy.length; i++)
     {
@@ -689,12 +681,11 @@ function drawScales(cx, cy)
     means = means.sort(function(a,b){return a-b});
     cy = cy.sort(function(a,b){return b-a});
     
-    
     canvas.append("text")
                 .attr("x", x + scaleForWindowSize(35))
                 .attr("y", (yMin + yMax)/2)
                 .attr("fill", "black")
-                .attr("font-size", scaleForWindowSize(20) + "px")
+                .attr("font-size", scaleForWindowSize(16) + "px")
                 .attr("id", "tickText")
                 .attr("class", "significanceTest")
                 .text(dec2(means[means.length-1] - means[0]));
@@ -703,14 +694,17 @@ function drawScales(cx, cy)
     {
         for(var i=0; i<cy.length-1; i++)
         {  
-            canvas.append("text")
-                .attr("x", x + scaleForWindowSize(5))
-                .attr("y", (parseFloat(cy[i]) + parseFloat(cy[i+1]))/2 + yAxisTickTextOffset)
-                .attr("fill", "black")
-                .attr("id", "DIM" + i)
-                .attr("class", "differenceInMeansText")
-                .attr("display", "none")
-                .text(dec2(means[i+1] - means[i]));
+            if(cy.length > 2)
+            {
+                canvas.append("text")
+                    .attr("x", x + scaleForWindowSize(5))
+                    .attr("y", (parseFloat(cy[i]) + parseFloat(cy[i+1]))/2 + yAxisTickTextOffset)
+                    .attr("fill", "black")
+                    .attr("id", "DIM" + i)
+                    .attr("class", "differenceInMeansText")
+                    .attr("display", "none")
+                    .text(dec2(means[i+1] - means[i]));
+            }
                 
             canvas.append("line")
                 .attr("x1", x-5)
