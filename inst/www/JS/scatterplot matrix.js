@@ -150,8 +150,6 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     
     y = y + shortHeight;
     
-    console.log("y=" + y);
-
     var dataX = variables[variableX]["dataset"];
     var dataY = variables[variableY]["dataset"];
     
@@ -395,5 +393,6 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
 
 function getValue(number, min, max)
 {
+    console.log(number - min);
     return (number - min)/(max - min);
 }
