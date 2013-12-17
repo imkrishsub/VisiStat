@@ -395,20 +395,16 @@ function setDistribution(dependentVariable, level, normal)
                 }
                 else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
                 {
+                    console.log("hi");
                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
-                        if(variableList["independent-levels"].length == 2)
-                        {
-                            //2 variables
-                            var groups = getGroupsForColourBoxPlotData();
-                            
-                            console.log("hi");
-                            
-                            if(pairwiseComparisons)
-                                performPairwiseTTest("TRUE", "FALSE");
-                            else
-                                performTTest(groups[0], groups[1], "TRUE", "FALSE");
-                        }                    
+                        //2 variables
+                        var groups = getGroupsForColourBoxPlotData();
+                        
+                        if(pairwiseComparisons)
+                            performPairwiseTTest("TRUE", "FALSE");
+                        else
+                            performTTest(groups[0], groups[1], "TRUE", "FALSE");
                     }   
                 }
                 else
