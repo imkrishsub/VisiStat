@@ -462,6 +462,8 @@ function drawEffectSize(value)
             .attr("id", "labelMax")
             .attr("class", "effectSize")
             .text(max);
+    
+    var effectSizeInterpretationIndicators = ["small", "medium", "large"];
             
     for(i=0; i<effectSizeInterpretations[type].length; i++)
     {
@@ -471,6 +473,15 @@ function drawEffectSize(value)
                 .attr("x2", L + scale(effectSizeInterpretations[type][i]))
                 .attr("y2", T + effectSizeHeight)
                 .attr("stroke", "black")
+                .attr("class", "effectSizeInterpretationIndicators");
+        sideBar.append("text")
+                .attr("x", L + scale(effectSizeInterpretations[type][i])
+                .attr("y", T - yAxisTickTextOffset)
+                .attr("transform", "rotate (-45" + (L + scale(effectSizeInterpretations[type][i])) + " " + (T - yAxisTickTextOffset) + ")")
+                .attr("text-anchor", "start")
+                .attr("font-size", scaleForWindowSize(14) + "px");
+                .text(effectSizeInterpretationIndicators[i])
+                .attr("fill", getColor(type, effectSizeInterpretations[type][i]))
                 .attr("class", "effectSizeInterpretationIndicators");
     }
     
