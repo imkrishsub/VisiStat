@@ -211,31 +211,31 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
 //         if(uniqueDataX.length <= shortNumberOfGrooves)
 //             x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
 //         else
-//             x1 = x + getValue(X1, minX, maxX)*shortWidth;
+//             x1 = x + convertToRange(X1, minX, maxX)*shortWidth;
 //         
 //         if(uniqueDataY.length <= shortNumberOfGrooves)
 //             y1 = y - uniqueDataY.indexOf(Y1)*yStep - yStep/2;
 //         else
-//             y1 = y - getValue(Y1, minY, maxY)*shortHeight;
+//             y1 = y - convertToRange(Y1, minY, maxY)*shortHeight;
 //     
 //         if(uniqueDataX.length <= shortNumberOfGrooves)
 //             x2 = x + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
 //         else
-//             x2 = x + getValue(X2, minX, maxX)*shortWidth;
+//             x2 = x + convertToRange(X2, minX, maxX)*shortWidth;
 //         
 //         if(uniqueDataY.length <= shortNumberOfGrooves)
 //             y2 = y - uniqueDataY.indexOf(Y2)*yStep - yStep/2;
 //         else
-//             y2 = y - getValue(Y2, minY, maxY)*shortHeight;
+//             y2 = y - convertToRange(Y2, minY, maxY)*shortHeight;
 
         
-        x1 = x + getValue(X1, minX, maxX)*shortWidth;
-        y1 = y - getValue(Y1, minY, maxY)*shortHeight;
+        x1 = x + convertToRange(X1, minX, maxX)*shortWidth;
+        y1 = y - convertToRange(Y1, minY, maxY)*shortHeight;
     
-        x2 = x + getValue(X2, minX, maxX)*shortWidth;
-        y2 = y - getValue(Y2, minY, maxY)*shortHeight;    
+        x2 = x + convertToRange(X2, minX, maxX)*shortWidth;
+        y2 = y - convertToRange(Y2, minY, maxY)*shortHeight;    
         
-        console.log(getValue(Y1, minY, maxY));
+        console.log(convertToRange(Y1, minY, maxY));
         
         console.log("x1=" + x1 + ", x2=" + x2);
         console.log("y1=" + y1 + ", y2=" + y2);
@@ -373,12 +373,12 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         if(isNaN(dataX[0]))
             X = x + uniqueDataX.indexOf(dataX[i])*xStep + xStep/2;    
         else
-            X = x + getValue(dataX[i], minX, maxX)*shortWidth;
+            X = x + convertToRange(dataX[i], minX, maxX)*shortWidth;
             
         if(isNaN(dataY[0]))
             Y = y - uniqueDataY.indexOf(dataY[i])*yStep - yStep/2;
         else
-            Y = y - getValue(dataY[i], minY, maxY)*shortHeight;
+            Y = y - convertToRange(dataY[i], minY, maxY)*shortHeight;
             
         var color = "black";
         
@@ -391,7 +391,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     }
 }
 
-function getValue(number, min, max)
+function convertToRange(number, min, max)
 {
     console.log(number - min);
     return (number - min)/(max - min);
