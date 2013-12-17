@@ -1390,18 +1390,6 @@ function OnMouseOver(e)
                 
                 helpText.text(desc["tukeyHSD"]);   
             }
-            
-            if(target.id == "effectSizeFront")
-            {
-                console.log("hover over effectSizeFront detected!");
-                
-                setup(e, target);
-                
-                d3.select("#labelMin.effectSize").attr("display", "none");
-                
-                d3.selectAll("#labelMin, #labelMax, #labelMid, #effectSizeText, #effectSizeValue").attr("display", "none");
-                d3.selectAll(".effectSizeInterpretationIndicators").attr("display", "inline");
-            }            
         }
         else
         {
@@ -1963,6 +1951,14 @@ function OnMouseOver(e)
                 if(d3.select("#" + target.id + ".effectButtonBack").attr("stroke") == "black")
                     effectButton.attr("cursor", "pointer");
             }
+            
+            else if(target.id == "effectSizeFront")
+            {
+                setup(e, target);
+                
+                d3.selectAll("#labelMin, #labelMax, #labelMid, #effectSizeText, #effectSizeValue").attr("display", "none");
+                d3.selectAll(".effectSizeInterpretationIndicators").attr("display", "inline");
+            } 
         }
     }
 }
