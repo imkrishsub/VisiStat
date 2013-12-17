@@ -498,10 +498,7 @@ function OnMouseDown(e)
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "transformToNormal")
             {
                 setup(e, target);
-        
-                var button = d3.select("#button." + target.className.baseVal);   
-                var buttonText = d3.select("#text." + target.className.baseVal);        
-        
+                
                 removeElementsByClassName("transformToNormal");
             
                 var variableList = sort(currentVariableSelection);
