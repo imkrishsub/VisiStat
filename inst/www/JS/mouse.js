@@ -350,7 +350,7 @@ function OnMouseDown(e)
                 var canvas = d3.select("#plotCanvas");
                 var variableList = getSelectedVariables();
         
-                var inText = variableList["independent"].length > 0 ? "SELECT TWO OR ALL THE MEANS" : "SELECT ONE MEAN FOR COMPARISON AGAINST POPULATION MEAN";             
+                var inText = "COMPARE NOW";
     
                 drawButtonInSideBar(inText, "compareNow");
             
@@ -716,10 +716,7 @@ function OnMouseDown(e)
                                     .attr("stroke", "orange")
                                     .attr("opacity", "0.01")
                                     .attr("class", "normalityPlotHelp");
-                    }
-                    
-                    
-                    
+                    }                   
                 }
             }
             
@@ -1348,6 +1345,58 @@ function OnMouseOver(e)
                 
                 helpText.text(desc["assumptions"][assumptionType]);
             }
+            
+            if(target.className.baseVal == "compareMean")
+            {
+                setup(e, target);
+                var assumptionType = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#button.compareMean").attr("stroke-width","2px").attr("cursor", "help");
+                d3.select("#text.compareMean").attr("cursor", "help");
+                
+                helpText.text(desc["compareMean"]);   
+            }
+            
+            if(target.className.baseVal == "compareNow")
+            {
+                setup(e, target);
+                var assumptionType = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#button.compareNow").attr("stroke-width","2px").attr("cursor", "help");
+                d3.select("#text.compareNow").attr("cursor", "help");
+                
+                helpText.text(desc["compareNow"]);   
+            }
+            
+            if(target.className.baseVal == "pairwisePostHoc")
+            {
+                setup(e, target);
+                var assumptionType = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#button.pairwisePostHoc").attr("stroke-width","2px").attr("cursor", "help");
+                d3.select("#text.pairwisePostHoc").attr("cursor", "help");
+                
+                helpText.text(desc["pairwisePostHoc"]);   
+            }
+            
+            if(target.className.baseVal == "tukeyHSD")
+            {
+                setup(e, target);
+                var assumptionType = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#button.tukeyHSD").attr("stroke-width","2px").attr("cursor", "help");
+                d3.select("#text.tukeyHSD").attr("cursor", "help");
+                
+                helpText.text(desc["tukeyHSD"]);   
+            }
         }
         else
         {
@@ -1959,6 +2008,31 @@ function OnMouseOut(e)
             d3.select("#" + target.id + ".assumptionsButtonBack").attr("stroke-width", "1px");
             d3.select("#" + target.id + ".assumptionsButtonFront").attr("cursor", "pointer");
         }
+        
+        if(target.className.baseVal == "compareMean")
+        {
+            d3.select("#button.compareMean").attr("stroke-width", "1px").attr("cursor", "pointer");
+            d3.select("#text.compareMean").attr("cursor", "pointer");
+        }
+        
+        if(target.className.baseVal == "compareNow")
+        {
+            d3.select("#button.compareNow").attr("stroke-width", "1px").attr("cursor", "pointer");
+            d3.select("#text.compareNow").attr("cursor", "pointer");
+        }
+        
+        if(target.className.baseVal == "pairwisePostHoc")
+        {
+            d3.select("#button.pairwisePostHoc").attr("stroke-width", "1px").attr("cursor", "pointer");
+            d3.select("#text.pairwisePostHoc").attr("cursor", "pointer");
+        }
+        
+        if(target.className.baseVal == "tukeyHSD")
+        {
+            d3.select("#button.tukeyHSD").attr("stroke-width", "1px").attr("cursor", "pointer");
+            d3.select("#text.tukeyHSD").attr("cursor", "pointer");
+        }
+        
     }
     else
     {                
