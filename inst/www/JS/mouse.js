@@ -944,6 +944,8 @@ function OnMouseDown(e)
                 removeElementsByClassName("selectNone");
                 removeElementsByClassName("selectAll");
                 removeElementsByClassName("effectSizeInterpretationIndicators");
+                removeElementsByClassName("differenceInMeans");
+                removeElementsByClassName("differenceInMeansText");
                 removeElementById("border");
         
                 pairwiseComparisons = true;
