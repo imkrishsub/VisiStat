@@ -217,7 +217,7 @@ function performHomoscedasticityTest(dependent, independent)
 
 function performNormalityTest(distribution, dependentVariable, level)
 {
-    var label = "normalityTest" + "(" + dependentVariable + "~" + label + ")";
+    var label = "normalityTest" + "(" + dependentVariable + "~" + level + ")";
     
     if(localStorage.getItem(label) == null)
     {

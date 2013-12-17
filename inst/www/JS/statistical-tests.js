@@ -230,7 +230,8 @@ function doPairwiseTests()
 
 function performNormalityTests()
 {
-     var variableList = getSelectedVariables();    
+    var variableList = getSelectedVariables();  
+    
     //normality
     distributions[variableList["dependent"][0]] = {};
     
@@ -250,8 +251,7 @@ function performNormalityTests()
         for(i=0; i<variableList["dependent"].length; i++)                        
         {
             for(j=0; j<variableList["independent-levels"].length; j++)
-            {   
-                //performNormalityTest(dist, dependentVariable, level)
+            {                   
                 performNormalityTest(variables[variableList["dependent"][i]][variableList["independent-levels"][j]], variableList["dependent"][i], variableList["independent-levels"][j]);
             }
         }
