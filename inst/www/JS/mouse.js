@@ -684,6 +684,7 @@ function OnMouseDown(e)
                                     .attr("class", "effectSizeHelp");
                     }
                     
+                    console.log("stroke=" + d3.select("#homogeneity.assumptionsButtonFront").attr("stroke"));
                     if(d3.select("#homogeneity.assumptionsButtonFront").attr("stroke") == "none")
                     {
                         var variancePlotWidth = plotWidth/2;
