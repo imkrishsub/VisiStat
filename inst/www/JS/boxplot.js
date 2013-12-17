@@ -666,7 +666,7 @@ function redrawBoxPlot()
 }
 
 function drawHomogeneityPlot(homogeneity)
-{
+{    
     var color = "";
     
     if(homogeneity)
@@ -675,6 +675,7 @@ function drawHomogeneityPlot(homogeneity)
         color = "red";
         
     removeElementsByClassName("densityCurve");
+    removeElementsByClassName("homogeneityPlot");
     
     var LEFT = canvasWidth/2 - plotWidth/2;
     var RIGHT = canvasWidth/2 + plotWidth/2;
@@ -871,6 +872,7 @@ function drawHomogeneityPlot(homogeneity)
             .attr("y", b - variancePlotHeight/2)
             .attr("text-anchor", "middle")
             .attr("fill", "black")
+            .text("VARIANCE")
             .attr("font-size", scaleForWindowSize(12) + "px")
             .attr("transform", "rotate (-90" + (l - axesOffset) + " " + (b - variancePlotHeight/2) + ")")
             .attr("class", "homogeneityPlot");    

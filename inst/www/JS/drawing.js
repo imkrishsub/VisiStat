@@ -646,6 +646,7 @@ function drawNormalityPlot(dependentVariable, level, type)
 {
     //make histogram with these variables in a separate svg
     removeElementsByClassName("homogeneityPlot");
+    removeElementsByClassName("densityCurve");
     
     var mean;
     if(level == "dataset")
