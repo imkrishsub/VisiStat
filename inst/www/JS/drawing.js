@@ -443,6 +443,26 @@ function drawEffectSize(value)
                 .attr("class", "effectSize");
     }
     
+    sideBar.append("text")
+            .attr("x", L + scale(min))
+            .attr("y", T + effectSizeHeight + yAxisTickTextOffset)
+            .attr("text-anchor", "middle")
+            .attr("font-size", effectSizeFontSize)
+            .attr("fill", "darkgrey")
+            .attr("id", "labelMin")
+            .attr("class", "effectSize")
+            .text(min);
+    
+    sideBar.append("text")
+            .attr("x", L + scale(max))
+            .attr("y", T + effectSizeHeight + yAxisTickTextOffset)
+            .attr("text-anchor", "middle")
+            .attr("font-size", effectSizeFontSize)
+            .attr("fill", "darkgrey")
+            .attr("id", "labelMax")
+            .attr("class", "effectSize")
+            .text(min);
+    
     if(type == "eS")
     {    
         var mainText = sideBar.append("text")
