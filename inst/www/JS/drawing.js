@@ -475,7 +475,7 @@ function drawEffectSize(value)
                 .attr("stroke", "black")
                 .attr("class", "effectSizeInterpretationIndicators");
         sideBar.append("text")
-                .attr("x", L + scale(effectSizeInterpretations[type][i])
+                .attr("x", L + scale(effectSizeInterpretations[type][i]))
                 .attr("y", T - yAxisTickTextOffset)
                 .attr("transform", "rotate (-45" + (L + scale(effectSizeInterpretations[type][i])) + " " + (T - yAxisTickTextOffset) + ")")
                 .attr("text-anchor", "start")
