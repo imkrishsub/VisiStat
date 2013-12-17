@@ -588,6 +588,8 @@ function drawParameter(DF, parameter)
     
     var type = testResults["parameter-type"];
     
+
+    
     var X = sideBarWidth/2;
     var Y = significanceTestResultOffsetTop + 2*significanceTestResultStep;
     
@@ -613,7 +615,7 @@ function drawParameter(DF, parameter)
     }
     else
     {
-        if(hasDF[type])
+        if(hasDF[type] && !pairwiseComparisons)
         {
             sideBar.append("text")
                     .attr("x", X)
