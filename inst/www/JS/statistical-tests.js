@@ -465,9 +465,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             d3.select("#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
             
-            console.log(variableList["independent"].length);
-            console.log(document.getElementsByClassName("means").length);
-            
             if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
             {
                 //between-groups design
@@ -478,7 +475,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
                 else
                     performNormalityTests();                
             }
-            else if(variableList["independent"].length == 2 && document.getElementsByClassName("means").length == 2)
+            else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
             {
                 performNormalityTests();
             }
