@@ -14,10 +14,7 @@ function loadFile(filePath)
             dataset = output.dataset;
     
             //render the variable names
-            renderVariableNames(output.variableNames);
-
-            console.dir(dataset);
-    
+            renderVariableNames(output.variableNames);    
             //we now have the variable names. let the dogs out!
             variableNames = output.variableNames;
     
@@ -46,8 +43,6 @@ function loadFile(filePath)
     
         //render the variable names
         renderVariableNames(output.variableNames);
-
-        console.dir(dataset);
 
         //we now have the variable names. let the dogs out!
         variableNames = output.variableNames;

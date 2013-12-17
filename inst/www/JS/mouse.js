@@ -1120,7 +1120,7 @@ function OnMouseDown(e)
                     
                     effectButtonText.attr("fill", "white");
                     
-                    removeElementsByClassName("significanceTest");
+//                     removeElementsByClassName("significanceTest");
                     removeElementsByClassName("effectSize");
                     removeElementsByClassName("parameter");
                     
