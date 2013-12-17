@@ -813,7 +813,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
     
             displaySignificanceTestResults();
             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");     
-        }, 1200);
+        }, 1500);
     }
 }
 

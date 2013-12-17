@@ -29,6 +29,8 @@ var effectSizeColors = new Object();
 
 function getColour(type, value)
 {
+    console.log(type);
+    
     var interpretations = effectSizeInterpretations[type];
     
     if(value < interpretations[0])
