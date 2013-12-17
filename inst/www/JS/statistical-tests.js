@@ -393,20 +393,6 @@ function setDistribution(dependentVariable, level, normal)
                 {
                     //within-group design
                 }
-                else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
-                {
-                    console.log("hi");
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
-                    {
-                        //2 variables
-                        var groups = getGroupsForColourBoxPlotData();
-                        
-                        if(pairwiseComparisons)
-                            performPairwiseTTest("TRUE", "FALSE");
-                        else
-                            performTTest(groups[0], groups[1], "TRUE", "FALSE");
-                    }   
-                }
                 else
                 {
                     //between-group design
@@ -426,6 +412,21 @@ function setDistribution(dependentVariable, level, normal)
                         }                    
                     }
                 }
+                
+                if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
+                {
+                    console.log("hi");
+                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    {
+                        //2 variables
+                        var groups = getGroupsForColourBoxPlotData();
+                        
+                        if(pairwiseComparisons)
+                            performPairwiseTTest("TRUE", "FALSE");
+                        else
+                            performTTest(groups[0], groups[1], "TRUE", "FALSE");
+                    }   
+                }                
             }            
         }
         else
