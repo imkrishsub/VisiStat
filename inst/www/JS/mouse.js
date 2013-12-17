@@ -943,6 +943,7 @@ function OnMouseDown(e)
                 removeElementsByClassName("loading");
                 removeElementsByClassName("selectNone");
                 removeElementsByClassName("selectAll");
+                removeElementsByClassName("effectSizeInterpretationIndicators");
                 removeElementById("border");
         
                 pairwiseComparisons = true;
