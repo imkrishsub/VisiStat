@@ -15,7 +15,7 @@ function OnMouseDown(e)
                 var helpButtonText = d3.select(".helpButtonText");
                 
                 help = false;
-                helpButton.attr("fill", "url(#buttonFillNormal)")
+                helpButton.attr("fill", "url(#bannerFillNormal)")
                             .attr("filter", "url(#Bevel)")
                             .attr("stroke", "black");
             
@@ -717,15 +717,7 @@ function OnMouseDown(e)
                                     .attr("opacity", "0.01")
                                     .attr("class", "normalityPlotHelp");
                     }                   
-                }
-                else
-                {
-                    helpButton.attr("fill", "url(#bannerFillNormal)")
-                                .attr("stroke", "black")
-                                .attr("filter", "url(#Bevel)");
-                    
-                    helpButtonText.attr("black");
-                }
+                }                
             }
             
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "backButtonFront")
