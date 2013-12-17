@@ -323,7 +323,7 @@ function OnMouseDown(e)
                 }
                 else 
                 {
-                    alert("Please select means of two levels (or) select means of all the levels!");
+                    alert("Please select means of two levels (or) select means of all the levels!");                    
                 }
             }
     
@@ -472,9 +472,6 @@ function OnMouseDown(e)
             {
                 d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
         
-                removeElementsByClassName("doPairwiseTest");
-                removeElementsByClassName("boxplotLegends");
-        
                 //get selected means
                 var means = document.getElementsByClassName("means");
                 var selectedMeans = []; 
@@ -492,6 +489,8 @@ function OnMouseDown(e)
                 }
                 else
                 {
+                    removeElementsByClassName("doPairwiseTest");
+                    removeElementsByClassName("boxplotLegends");
                     compareMeans();
                 }
             }
@@ -941,6 +940,7 @@ function OnMouseDown(e)
                 removeElementsByClassName("loading");
                 removeElementsByClassName("selectNone");
                 removeElementsByClassName("selectAll");
+                removeElementById("border");
         
                 pairwiseComparisons = true;
                 
