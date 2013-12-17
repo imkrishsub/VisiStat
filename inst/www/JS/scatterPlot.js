@@ -319,6 +319,9 @@ function drawRegressionLine(intercept, slope)
     if(uniqueDataY.length <= numberOfGrooves)
         y2 = BOTTOM - getValue1(Y2, mins["Y"], maxs["Y"])*plotHeight; 
     
+    console.log("x1=" + x1 + ", y1=" + y1);
+    console.log("x2=" + x2 + ", y2=" + y2);
+    
     canvas.append("line")
             .attr("x1", x1)
             .attr("y1", y1)
