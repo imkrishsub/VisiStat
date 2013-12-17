@@ -475,6 +475,10 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
                 else
                     performNormalityTests();                
             }
+            else if(variableList["independent"].length == 2 && document.getElementsByClassName("means").length == 2)
+            {
+                performNormalityTests();
+            }
         }
         else
         {
