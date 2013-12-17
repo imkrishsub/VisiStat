@@ -445,8 +445,8 @@ function drawEffectSize(value)
     
     sideBar.append("text")
             .attr("x", L + scale(min))
-            .attr("y", T + effectSizeHeight + yAxisTickTextOffset)
-            .attr("text-anchor", "middle")
+            .attr("y", T + 2*effectSizeHeight/3)
+            .attr("text-anchor", "start")
             .attr("font-size", effectSizeFontSize)
             .attr("fill", "darkgrey")
             .attr("id", "labelMin")
@@ -455,13 +455,26 @@ function drawEffectSize(value)
     
     sideBar.append("text")
             .attr("x", L + scale(max))
-            .attr("y", T + effectSizeHeight + yAxisTickTextOffset)
-            .attr("text-anchor", "middle")
+            .attr("y", T + 2*effectSizeHeight/3)
+            .attr("text-anchor", "end")
             .attr("font-size", effectSizeFontSize)
             .attr("fill", "darkgrey")
             .attr("id", "labelMax")
             .attr("class", "effectSize")
-            .text(min);
+            .text(max);
+    
+    if(min < 0)
+    {
+        sideBar.append("text")
+            .attr("x", L + scale(0))
+            .attr("y", T + 2*effectSizeHeight/3)
+            .attr("text-anchor", "middle")
+            .attr("font-size", effectSizeFontSize)
+            .attr("fill", "darkgrey")
+            .attr("id", "labelMid")
+            .attr("class", "effectSize")
+            .text(0);
+    }
     
     if(type == "eS")
     {    
