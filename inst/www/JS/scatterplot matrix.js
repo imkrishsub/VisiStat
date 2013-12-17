@@ -208,26 +208,32 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         Y2 = (slope*X2 + intercept) > maxY ? maxY : (slope*X2 + intercept);
         Y2 = (slope*X2 + intercept) < minY ? minY : (slope*X2 + intercept);
         
-        if(uniqueDataX.length <= shortNumberOfGrooves)
-            x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
-        else
-            x1 = x + getValue(X1, minX, maxX)*shortWidth;
+//         if(uniqueDataX.length <= shortNumberOfGrooves)
+//             x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
+//         else
+//             x1 = x + getValue(X1, minX, maxX)*shortWidth;
+//         
+//         if(uniqueDataY.length <= shortNumberOfGrooves)
+//             y1 = y - uniqueDataY.indexOf(Y1)*yStep - yStep/2;
+//         else
+//             y1 = y - getValue(Y1, minY, maxY)*shortHeight;
+//     
+//         if(uniqueDataX.length <= shortNumberOfGrooves)
+//             x2 = x + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
+//         else
+//             x2 = x + getValue(X2, minX, maxX)*shortWidth;
+//         
+//         if(uniqueDataY.length <= shortNumberOfGrooves)
+//             y2 = y - uniqueDataY.indexOf(Y2)*yStep - yStep/2;
+//         else
+//             y2 = y - getValue(Y2, minY, maxY)*shortHeight;
+
         
-        if(uniqueDataY.length <= shortNumberOfGrooves)
-            y1 = y - uniqueDataY.indexOf(Y1)*yStep - yStep/2;
-        else
-            y1 = y - getValue(Y1, minY, maxY)*shortHeight;
+        x1 = x + getValue(X1, minX, maxX)*shortWidth;
+        y1 = y - getValue(Y1, minY, maxY)*shortHeight;
     
-        if(uniqueDataX.length <= shortNumberOfGrooves)
-            x2 = x + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
-        else
-            x2 = x + getValue(X2, minX, maxX)*shortWidth;
-        
-        if(uniqueDataY.length <= shortNumberOfGrooves)
-            y2 = y - uniqueDataY.indexOf(Y2)*yStep - yStep/2;
-        else
-            y2 = y - getValue(Y2, minY, maxY)*shortHeight;
-            
+        x2 = x + getValue(X2, minX, maxX)*shortWidth;
+        y2 = y - getValue(Y2, minY, maxY)*shortHeight;            
     
         canvas.append("line")
                 .attr("x1", x1)
