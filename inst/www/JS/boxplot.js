@@ -866,6 +866,13 @@ function drawHomogeneityPlot(homogeneity)
             .attr("stroke", "black")
             .attr("class", "homogeneityPlot");
     
+    canvas.append("text")
+            .attr("x", l - axesOffset)
+            .attr("y", b - variancePlotHeight/2)
+            .attr("text-anchor", "middle")
+            .attr("font-size", scaleForWindowSize(12) + "px")
+            .attr("transform", "rotate (-90" + (l - axesOffset) + " " + (b - variancePlotHeight/2) + ")")
+            .attr("class", "homogeneityPlot");    
     
     widthSlice = variancePlotWidth/(nGroovesX);
     xStep = variancePlotWidth/nGroovesX; 
@@ -876,7 +883,7 @@ function drawHomogeneityPlot(homogeneity)
                 .attr("x", l + i*widthSlice + xStep/2)
                 .attr("y", b + 3*yAxisTickTextOffset)
                 .attr("text-anchor", "end")
-                .attr("font-anchor", scaleForWindowSize(12) + "px")
+                .attr("font-size", scaleForWindowSize(12) + "px")
                 .attr("transform", "rotate (-75 " + (l + i*widthSlice + xStep/2) + " " + (b + 3*yAxisTickTextOffset) + ")")
                 .text(levels[i])
                 .attr("class", "homogeneityPlot");

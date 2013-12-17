@@ -1304,7 +1304,7 @@ function OnMouseOver(e)
                 
                 d3.select(".variancePlotHelp").attr("opacity","0.3").attr("cursor", "help");
 
-                helpText.text(desc[visualisation]);                
+                helpText.text(desc["variancePlot"]);                
             }
             
             if(target.className.baseVal == "assumptionsButtonFront")
@@ -1922,7 +1922,8 @@ function OnMouseOut(e)
         
         if(target.className.baseVal == "assumptionsButtonFront")
         {
-            d3.select("#" + target.id + ".assumptionsButtonBack").attr("stroke-width", "1px").attr("cursor", "pointer");
+            d3.select("#" + target.id + ".assumptionsButtonBack").attr("stroke-width", "1px");
+            d3.select("#" + target.id + ".assumptionsButtonFront").attr("cursor", "pointer");
         }
     }
     else
