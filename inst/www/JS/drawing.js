@@ -481,7 +481,7 @@ function drawEffectSize(value)
                 .attr("text-anchor", "start")
                 .attr("font-size", scaleForWindowSize(14) + "px")
                 .text(effectSizeInterpretationIndicators[i])
-                .attr("fill", getColor(type, effectSizeInterpretations[type][i]))
+                .attr("fill", getColour(type, effectSizeInterpretations[type][i]))
                 .attr("class", "effectSizeInterpretationIndicators");
     }
     
