@@ -21,12 +21,6 @@ function getCorrelationCoefficient(variableA, variableB, method)
                     if(method == "pearson")
                     {
                         console.log("\t\t\t Pearson's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
-                        console.log("\t\t\t\t t = " + output.statistic);
-                        console.log("\t\t\t\t p = " + output.p);
-                        console.log("\t\t\t\t method used = " + output.method);
-                        console.log("\t\t\t\t DF = " + output.df);
-                        console.log("\t\t\t\t r = " + output.cor);
-                        console.log("\t\t\t\t CI = [" + output.CI_min + ", " + output.CI_max + "]");
 
                         testResults["df"] = output.df;
                         testResults["statistic"] = "t(" + output.df + ") = " + output.statistic;
@@ -34,7 +28,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
                         testResults["parameter"] = output.statistic;
                         testResults["parameter-type"] = "t";
                     
-                        testResults["p"] = output.p;                  
+                        testResults["p"] = changePValueNotation(output.p);                  
                         testResults["method"] = output.method; 
                     
                         testResults["test-type"] = "pC";
@@ -47,25 +41,19 @@ function getCorrelationCoefficient(variableA, variableB, method)
                         
                         localStorage.setObject(label, testResults);
                         logResult();
-                    
-    //                     if(allVariablesAreNumeric())
-                        console.log("yo");
+                
                         drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                     }
                     else if(method == "kendall")
                     {
                         console.log("\t\t\t Kendall's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
-                        console.log("\t\t\t\t z = " + output.statistic);
-                        console.log("\t\t\t\t p = " + output.p);
-                        console.log("\t\t\t\t method used = " + output.method);
-                        console.log("\t\t\t\t 𝜏 = " + output.cor);
-
+                        
                         testResults["statistic"] = "z = " + output.statistic;
                     
                         testResults["parameter"] = output.statistic;
                         testResults["parameter-type"] = "z";
                   
-                        testResults["p"] = output.p;                  
+                        testResults["p"] = changePValueNotation(output.p);
                         testResults["method"] = output.method; 
                         testResults["effect-size"] = output.cor;
                         testResults["effect-size-type"] = "𝜏";
@@ -77,8 +65,6 @@ function getCorrelationCoefficient(variableA, variableB, method)
                         localStorage.setObject(label, testResults);
                         logResult();
                     
-    //                     if(allVariablesAreNumeric())
-                        console.log("yo");
                         drawButtonInSideBar("CONSTRUCT MODEL", "regression");
                     }
                 
@@ -118,9 +104,7 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
                       }, function(output) {                                                   
               
                     console.log("\t\t Biserial Correlation-coefficient for (" + continuousVariable + " , " + binaryVariable + ")");                
-                    console.log("\t\t\t method used = " + "Biserial Correlation-coefficient");
-                    console.log("\t\t\t r = " + output.cor);
-
+                    
                     testResults["method"] = "Biserial Correlation-coefficient";
                     testResults["effect-size"] = output.cor;  
                     testResults["effect-size-type"] = "r";                
@@ -170,8 +154,7 @@ function getLinearModelCoefficients(outcome, explanatory)
                         //we have a categorical variable
                         var levels = variables[explanatory]["dataset"].unique().slice().sort();                    
                         var nCoefficients = levels.length - 1;
-                        var coefficients = output.coefficients;
-                  
+                        var coefficients = output.coefficients;                  
                     
                         testResults["effect-size"] = output.rSquared;
                         testResults["method"] = "Linear Regression Model";
@@ -217,8 +200,7 @@ function getLinearModelCoefficients(outcome, explanatory)
                         localStorage.setObject(label, testResults);
                     
                         logResult();
-                
-                        console.log("intercept=" + output.intercept + ", coefficients=" + output.coefficients);
+                        
                         removeElementsByClassName("significanceTest");
                         drawRegressionLine(output.intercept, output.coefficients);                
                 
@@ -263,9 +245,7 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
     var label = "multipleRegression(" + outcomeVariable + "~[" + explanatoryVariables + "])";
     
     if(localStorage.getObject(label) == null)
-    {
-        console.log("outcome=" + outcomeVariable + ", explanatory=[" + explanatoryVariables);
-    
+    {    
         var req = ocpu.rpc("performMultipleRegression", {
                         outcomeVariable: outcomeVariable,
                         explanatoryVariables: explanatoryVariables,
@@ -273,10 +253,7 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
                       }, function(output) {                                                   
                   
                     console.log("Performing Multiple Regression for " + outcomeVariable + " ~ [" + explanatoryVariables + "]");
-                    console.log("Intercept = " + output.intercept + ", coefficients = " + output.coefficients);
-                    console.log("Length = " + output.len);
-                
-                
+                  
                     testResults["outcomeVariable"] = outcomeVariable;
                     testResults["explanatoryVariables"] = explanatoryVariables;
                 

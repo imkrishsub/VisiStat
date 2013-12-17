@@ -83,10 +83,6 @@ function getData(dataset, variableName, level)
     MIN[variableName][level] = Array.min(variables[variableName][level]);
     MAX[variableName][level] = Array.max(variables[variableName][level]);
     
-    console.log("\n\tvariables[" + variableName + "][" + level + "] = " + variables[variableName][level]);
-    console.log("\tMIN[" + variableName + "][" + level + "] = " + MIN[variableName][level]);
-    console.log("\tMAX[" + variableName + "][" + level + "] = " + MAX[variableName][level]);   
-
     IQR[variableName][level] = findIQR(variables[variableName][level]);
     CI[variableName][level] = findCI(variables[variableName][level]);   
     
@@ -119,9 +115,6 @@ function performHomoscedasticityTest(dependent, independent)
                         dataset: dataset                    
                       }, function(output) {                                 
                   
-                    console.log("\t\t Levene's test for (" + dependent + " ~ " + independent + ")");
-                    console.log("\t\t\t p = " + output.p);
-                
                     localStorage.setItem(label, output.p);
                 
                     if(output.p < 0.05)
@@ -225,9 +218,6 @@ function performNormalityTest(distribution, dependentVariable, level)
         var req = ocpu.rpc("performShapiroWilkTest", {
                         distribution: distribution                                                           
                       }, function(output) {                                                   
-                  
-                    console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + level + ")");
-                    console.log("\t\t\t p = " + output.p);
                     
                     localStorage.setItem(label, output.p);
                 
@@ -340,20 +330,10 @@ function performNormalityTestForMultipleDistributions(distributions, n)
                         distributions: distributions,
                         n: n
                       }, function(output) {                                                                     
-                        console.log("\t\t\t p = " + output.p);
-                        console.log("\t\t\t statistic = " + output.testStatistic);
-                        console.log("\t\t\t method = " + output.method);
-          
                         var pValues = output.p;
-                    
-                    
-                    
           
                         for(var i=0; i<pValues.length; i++)
                         {
-                            console.log("\t\t Shapiro-wilk test for (" + dependentVariable + "." + levels[i] + ")");
-                            console.log("\t\t\t p = " + pValues[i]);   
-                        
                             localStorage.setObject(label, pValues[i]);
                     
                             if(pValues[i] < 0.05)
@@ -467,9 +447,6 @@ function performSphericityTest()
                     participantVariable: participants,
                     dataset: dataset
                   }, function(output) {                                                   
-                  
-                console.log("\t\t Sphericity Test (" + variableList["dependent"][0] + ") TODO");
-                console.log("\t\t\t p = " + output.p);
                   
       }).fail(function(){
           alert("Failure: " + req.responseText);
@@ -828,7 +805,6 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
 
 function findTransformForNormalityForDependentVariables(numericVariables)
 {
-    console.log("numeric variables = [" + numericVariables + "]");
     // Get variable names and their data type
     var req = ocpu.rpc("findTransformForNormalityForDependentVariables", {                    
                     dataset: dataset,

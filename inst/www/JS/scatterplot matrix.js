@@ -234,8 +234,6 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     
         x2 = x + convertToRange(X2, minX, maxX)*shortWidth;
         y2 = y - convertToRange(Y2, minY, maxY)*shortHeight;    
-        
-        console.log(convertToRange(Y1, minY, maxY));
     
         canvas.append("line")
                 .attr("x1", x1)
@@ -387,10 +385,5 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
 
 function convertToRange(number, min, max)
 {
-    if(isNaN(number-min))
-    {
-        console.log(number);
-        console.log(min);
-    }
     return (number - min)/(max - min);
 }

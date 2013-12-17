@@ -1,8 +1,5 @@
 function findCorrelationCoefficient(variableA, variableB)
-{
-    console.log("\nCORRELATION");
-    console.log("\t\ttypeOf(" + variableA + ")=" + variableTypes[variableA] + ", typeOf(" + variableB + ")=" + variableTypes[variableB]);
-    
+{    
     testResults["formula"] = variableA + " : " + variableB;
     
     var isScatterPlotMatrix = currentVisualisationSelection == "Scatterplot-matrix" ? true : false;
@@ -97,7 +94,7 @@ function testForEvilVariables()
         {            
             if(uniqueVariableData.length >= 10)
             {
-                console.log("\n\tmaking " + variable + " as an evil variable");
+                console.log("\n\tMaking " + variable + " as an evil variable");
                 setThisVariableEvil(variableNames[i]);
             }
         }
@@ -328,7 +325,6 @@ function calculateOutcome()
         var outcomeVariable = document.getElementById("value_outcome");
         var predictorVariable = document.getElementById("value_" + currentVariableSelection[0]);
         
-        console.log(outcomeVariable.innerHTML + " = " + testResults["coefficients"] + "*" + predictorVariable.value + " + " + testResults["intercept"]);
         testResults["coefficients"] = parseFloat(testResults["coefficients"]);
         testResults["intercept"] = parseFloat(testResults["intercept"]);
         
@@ -348,7 +344,6 @@ function calculateOutcome()
             var valueEnteredForExplanatoryVariable = isNaN(document.getElementById("value_" + explanatoryVariables[i]).value) ? 0 : document.getElementById("value_" + explanatoryVariables[i]).value;
             var coefficient = testResults["coefficients"][i];
             
-            console.log(coefficient + "*" + valueEnteredForExplanatoryVariable);
             outcomeVariableValue += coefficient*valueEnteredForExplanatoryVariable;
         }
         
@@ -363,9 +358,7 @@ function isFactorialANOVA(variableList)
         
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
-    
-    console.log("participants: " + participants);
-    
+        
     for(i=0; i<variableList["independent"].length; i++)
     {
         //for each independent variable
@@ -377,16 +370,13 @@ function isFactorialANOVA(variableList)
             //for each level
             if(j == 0)
             {
-                prev = variables[variableList["dependent"][0]][levels[j]].length;
-                console.log("level: " + levels[j] + ", prev = " + prev + ", curr = " + curr);
+                prev = variables[variableList["dependent"][0]][levels[j]].length;               
             }
             
             else
             {
                 curr = variables[variableList["dependent"][0]][levels[j]].length;
                
-                console.log("level: " + levels[j] + ", prev = " + prev + ", curr = " + curr);
-                
                 if(curr != prev)
                 {
                     betweenGroupVariableExists = true;
@@ -394,17 +384,13 @@ function isFactorialANOVA(variableList)
                 }
                 else
                 {
-                    console.log("j=" + j + ", levels.length = " + levels.length);
                     prev = curr; 
                     if(j == (levels.length-1))
                         withinGroupVariableExists = true;                    
                 }                
             }
         }
-    }
-    
-    console.log("betweenGroupVariableExists = " + betweenGroupVariableExists);
-    console.log("withinGroupVariableExists = " + withinGroupVariableExists);
+    }    
     
     if(betweenGroupVariableExists && withinGroupVariableExists)
         return true;

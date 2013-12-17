@@ -39,9 +39,7 @@ function plotVisualisation()
 {   
     resetSVGCanvas();
     drawFullScreenButton();
-    
-    console.log(currentVisualisationSelection);
-    
+   
     switch(currentVisualisationSelection)
     {
         case "Histogram":
@@ -493,7 +491,6 @@ function drawEffectSize(value)
     {
         for(i=0; i<effectSizeInterpretations[type].length; i++)
         {
-            console.log("adding extra indicators");
             sideBar.append("line")
                     .attr("x1", L + scale(-effectSizeInterpretations[type][i]))
                     .attr("y1", T)
@@ -673,7 +670,7 @@ function loadAssumptionCheckList(type)
             .attr("text-anchor", "middle")
             .attr("opacity", "0")
             .attr("fill", "#627bf4")
-            .text("CHECKING ASSUMPTIONS")
+            .text("ASSUMPTIONS")
             .attr("class", "checkingAssumptions");
     
     title.transition().delay(500).duration(700).attr("opacity", "1.0").attr("y", assumptionOffsetTop - 50);
@@ -892,10 +889,6 @@ function displayOneSampleTestResults()
     }
     else
     {
-        console.log("BOTTOM=" + BOTTOM);
-        console.log("median=" + sessionStorage.popMedian);
-        console.log("plotHeight=" + plotHeight);
-    
         canvas.append("line")
                 .attr("x1", RIGHT)
                 .attr("y1", BOTTOM - getFraction(testResults["estimate"])*plotHeight)
@@ -1080,6 +1073,18 @@ function displaySignificanceTestResults()
     
     //Effect sizes
     drawEffectSize(parseFloat(testResults["effect-size"]));
+    
+    sideBar.append("rect")
+                    .attr("x", scaleForWindowSize(10))
+                    .attr("y", significanceTestResultOffsetTop - 3.0*significanceTestResultStep)
+                    .attr("height", 6.5*significanceTestResultStep)
+                    .attr("width", sideBarWidth - scaleForWindowSize(10)*2)
+                    .attr("rx", "5px")
+                    .attr("ry", "5px")
+                    .attr("stroke", "grey")
+                    .attr("stroke-dasharray", "5,5")
+                    .attr("fill", "none")
+                    .attr("id", "border");
 }
 
 function displayANOVAResults()

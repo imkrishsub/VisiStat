@@ -117,54 +117,48 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                         paired: paired
                       }, function(output) {
                       
-                        console.log("LABEL=" + label);
-                                      
-                        console.log("\t\t " + output.method);
-                        console.log("\t\t\t DOF = " + output.DOF);
-                        console.log("\t\t\t p = " + output.p);
-                        console.log("\t\t\t t = " + output.t);
-                        console.log("\t\t\t d = " + output.d);
-                  
-                        testResults["df"] = output.DOF;
-                  
-                        testResults["parameter"] = output.t;
-                        testResults["parameter-type"] = "t";
-                  
-                        if(varianceEqual == "FALSE")
-                        {
-                            testResults["test-type"] = "WT";
-                        }
+                    console.log("t-test");
+                      
+                    testResults["df"] = output.DOF;
+              
+                    testResults["parameter"] = output.t;
+                    testResults["parameter-type"] = "t";
+              
+                    if(varianceEqual == "FALSE")
+                    {
+                        testResults["test-type"] = "WT";
+                    }
+                    else
+                    {
+                        if(paired == "TRUE")
+                            testResults["test-type"] = "pT";
                         else
-                        {
-                            if(paired == "TRUE")
-                                testResults["test-type"] = "pT";
-                            else
-                                testResults["test-type"] = "upT";
-                        }
+                            testResults["test-type"] = "upT";
+                    }
+                
+              
+                    testResults["p"] = changePValueNotation(output.p); 
                     
-                  
-                        testResults["p"] = changePValueNotation(output.p); 
-                        
-                        if(paired)
-                        {
-                            testResults["method"] = "Paired 2-sample t-test";
-                        }
+                    if(paired)
+                    {
+                        testResults["method"] = "Paired 2-sample t-test";
+                    }
+                    else
+                    {
+                        if(varianceEqual)
+                            testResults["method"] = "Unpaired 2-sample t-test";
                         else
-                        {
-                            if(varianceEqual)
-                                testResults["method"] = "Unpaired 2-sample t-test";
-                            else
-                                testResults["method"] = "Welch's t-test";
-                        }
-                        
-                        testResults["effect-size"] = output.d;
-                        testResults["effect-size-type"] = "d";
-                        testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                            testResults["method"] = "Welch's t-test";
+                    }
                     
-                        localStorage.setObject(label, testResults);
-                  
-                        //add to log
-                        logResult();
+                    testResults["effect-size"] = output.d;
+                    testResults["effect-size-type"] = "d";
+                    testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
+                
+                    localStorage.setObject(label, testResults);
+              
+                    //add to log
+                    logResult();
                   
                     //drawing stuff
                     removeElementsByClassName("completeLines");
@@ -184,9 +178,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
         });
     }
     else
-    {
-        console.log("using cached value :)");
-        
+    {        
         testResults = localStorage.getObject(label);
 
         //add to log
@@ -218,9 +210,6 @@ function performMannWhitneyTest(groupA, groupB)
                   }, function(output) {                                                   
                   
                   console.log("\t\t Mann-Whitney U test");
-                  console.log("\t\t\t U = " + output.U);
-                  console.log("\t\t\t p = " + output.p);
-                  console.log("\t\t\t r = " + output.r);
                   
                   testResults["parameter"] = output.U;
                   testResults["parameter-type"] = "U";
@@ -283,10 +272,7 @@ function performWilcoxonTest(groupA, groupB)
                         groupB: groupB
                       }, function(output) {    
                     console.log("\t\t Wilcoxon Signed-rank Test");
-                    console.log("\t\t\t V = " + output.V);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t r = " + output.r);
-                
+                    
                     testResults["parameter"] = output.V;
                     testResults["parameter-type"] = "V";
                 
@@ -352,12 +338,7 @@ function performOneWayANOVA(dependentVariable, independentVariable)
                       }, function(output) {                                                   
                   
                     console.log("\t\t One-way ANOVA for (" + dependentVariable + " ~ " + independentVariable + ")");
-                    console.log("\t\t\t F = " + output.F);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t method used = One-way ANOVA"); 
-                    console.log("\t\t\t DF = " + output.numDF + ", " + output.denomDF);
-                    console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                
+                   
                     testResults["df"] = output.numDF + ", " + output.denomDF;
                 
                     testResults["test-type"] = "owA";
@@ -436,12 +417,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                       }, function(output) {                                                   
                   
                     console.log("\t\t Two-way ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB +")");
-                    console.log("\t\t\t F values= [" + output.F + "]");
-                    console.log("\t\t\t method used = 2-way ANOVA"); //todo
-                    console.log("\t\t\t DF values = [" + output.numDF + "] , [" + output.denomDF + "]");
-                    console.log("\t\t\t Eta-squared values: [" + output.etaSquared + "]");
-                    console.log("\t\t\t p-values: [" + output.p + "]");
-              
+                    
                     testResults["df"] = [];
                     testResults["p"] = output.p;   
               
@@ -450,8 +426,6 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                       testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
                       testResults["p"][i] = changePValueNotation(testResults["p"][i]);
                     }
-              
-                    console.dir(testResults["df"]);
               
                     testResults["parameter"] = output.F;
                     testResults["parameter-type"] = "F";                 
@@ -514,12 +488,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                       }, function(output) {                                                   
                   
                     console.log("\t\t Repeated-measures ANOVA for (" + dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable + ")");
-                    console.log("\t\t\t F = " + output.F);
-                    console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
-                    console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                
+                  
                     testResults["df"] = output.numDF + ", " + output.denomDF;
                 
                     testResults["parameter"] = output.F;
@@ -590,12 +559,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                       }, function(output) {                                                   
                   
                       console.log("\t\t Mixed-design ANOVA for (" + dependentVariable + " ~ " + betweenGroupVariable + " + Error(" + participants + "/" + withinGroupVariable + ")");
-                      console.log("\t\t\t F = " + output.F);
-                      console.log("\t\t\t method used = Repeated-measures ANOVA"); //todo
-                      console.log("\t\t\t DF = " + output.numDF + "," + output.denomDF);
-                      console.log("\t\t\t p = " + output.p);
-                      console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                  
+                
                       testResults["df"] = [];
                       testResults["p"] = output.p;
                   
@@ -665,12 +629,6 @@ function performFriedmanTest(dependentVariable, independentVariable)
                       }, function(output) {                                                   
                   
                     console.log("\t\t Friedman's Rank-sum Test for (" + dependentVariable + " ~ " + independentVariable + " + Error(" + participants + "/" + independentVariable + ")");
-                    console.log("\t\t\t ChiSquared = " + output.chiSquared);
-                    console.log("\t\t\t method used = " + output.method); //todo
-                    console.log("\t\t\t DF = " + output.df);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t eta-squared = " + output.etaSquared);
-                
                     testResults["df"] = output.df;
                 
                     testResults["parameter"] = output.chiSquared;
@@ -740,14 +698,6 @@ function findEffect(dependentVariable, independentVariables)
                     var levelsA = variables[variableList["independent"][0]]["dataset"].unique().slice().sort();
                     var levelsB = variables[variableList["independent"][1]]["dataset"].unique().slice().sort();
 
-//                     for(var i=0; i<levelsB.length; i++)
-//                     {
-//                         for(var j=0; j<levelsA.length; j++)
-//                         {
-//                             console.log(levelsA[j] + ":" + levelsB[i] + " = " + output.fit[i*levelsA.length + j]);
-//                         }
-//                     }
-
                     interactions = output.fit;
                     localStorage.setObject(label, interactions);
                     
@@ -796,12 +746,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
                       }, function(output) {                                                   
                   
                     console.log("\t\t Welch's ANOVA for (" + dependentVariable + " ~ " + independentVariable + ")");
-                    console.log("\t\t\t F = " + output.F);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t method used = Welch's ANOVA");
-                    console.log("\t\t\t DF = (" + output.numeratorDF + "," + output.denominatorDF +")");
-                    console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                
+                    
                     testResults["df"] = output.numeratorDF + "," + output.denominatorDF;
                 
                     testResults["parameter"] = output.F;
@@ -868,12 +813,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
                       }, function(output) {                                                   
                   
                     console.log("\t\t Kruskal-Wallis test for (" + dependentVariable + " ~ " + independentVariable + ")");
-                    console.log("\t\t\t Chi-squared = " + output.ChiSquared);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t method used = Kruskal-Wallis Test ANOVA");
-                    console.log("\t\t\t DF = " + output.DF);
-                    console.log("\t\t\t Eta-squared: " + output.etaSquared);
-                
+                    
                     testResults["df"] = output.DF;
                 
                     testResults["parameter"] = output.ChiSquared;
@@ -944,15 +884,7 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                         
                         localStorage.tukeyResultsMin = Array.min(output.lower);
                         localStorage.tukeyResultsMax = Array.max(output.upper);
-                    
-                        console.log(output.difference);
-                        console.log(output.lower);
-                        console.log(output.upper);
-                        console.log(output.adjustedP);
-                    
-                        //make a data structure to hold all this
-                    
-                        //get levels of the independent variable
+                           //get levels of the independent variable
                         var levels = variables[independentVariable]["dataset"].unique().slice();
                         //sort it
                         levels = levels.sort();
@@ -1003,7 +935,6 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
     }
     else
     {
-        console.dir(tukeyResults);
         tukeyResults = localStorage.getObject(label);
         
         resetSVGCanvas();
@@ -1070,12 +1001,9 @@ function performPairwiseTTest(varianceEqual, paired)
                         levelA: variableList["independent-levels"][0],
                         levelB: variableList["independent-levels"][1]
                       }, function(output) {     
-  
-                    console.log("\t\t " + output.method);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t t = " + output.t);
-                    console.log("\t\t\t d = " + output.d);                  
-                
+                    
+                    console.log("pairwise t-test");
+                        
                     testResults["parameter"] = output.t;
                     testResults["parameter-type"] = "t";
                 
@@ -1139,14 +1067,10 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
                         dependentVariableName: variableList["dependent"][0], 
                         levelA: variableList["independent-levels"][0],
                         levelB: variableList["independent-levels"][1]
-                      }, function(output) {                                                   
-                  
+                      }, function(output) {         
 
                     console.log("\t\t Pairwise wilcox-test");
-                    console.log("\t\t\t U = " + output.U);
-                    console.log("\t\t\t p = " + output.p);
-                    console.log("\t\t\t r = " + output.r);
-                
+                    
                     testResults["parameter"] = output.U;
                     testResults["parameter-type"] = paired == "FALSE" ? "U" : "W";
                 

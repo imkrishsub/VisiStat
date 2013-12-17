@@ -67,9 +67,6 @@ function makeScatterplot()
     maxs["X"] = MAX[currentVariableSelection[0]]["dataset"];
     maxs["Y"] = MAX[currentVariableSelection[1]]["dataset"];
     
-    console.log("mins[X]=" + mins["X"] + ", maxs[X]=" + maxs["X"]);
-    console.log("mins[Y]=" + mins["Y"] + ", maxs[Y]=" + maxs["Y"]);
-    
     findCorrelationCoefficient(currentVariableSelection[0], currentVariableSelection[1]);
     
     var colorData;
@@ -274,7 +271,6 @@ function drawScatterPlotLegends(varNames)
 
 function drawRegressionLine(intercept, slope)
 {
-    console.log("drawing regression line..."); 
     var canvas = d3.select("#plotCanvas");
     canvas.attr("viewBox", "0 0 " + canvasWidth + " " + parseFloat(canvasHeight+scaleForWindowSize(400)));    
     
@@ -288,20 +284,11 @@ function drawRegressionLine(intercept, slope)
     X1 = mins["X"];
     X2 = maxs["X"];
     
-    console.log("X1 = " + X1);
-    console.log("X2 = " + X2);
-    
-    console.log("mins[Y]=" + mins["Y"]);
-    console.log("maxs[Y]=" + maxs["Y"]);
-    
     Y1 = ((slope*X1) + intercept) > maxs["Y"] ? maxs["Y"] : ((slope*X1) + intercept);
     Y1 = ((slope*X1) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X1) + intercept);
     
     Y2 = ((slope*X2) + intercept) > maxs["Y"] ? maxs["Y"] : ((slope*X2) + intercept);
     Y2 = ((slope*X2) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X2) + intercept);
-    
-    console.log("Y1 = " + Y1);
-    console.log("Y2 = " + Y2);    
     
     if(uniqueDataX.length <= numberOfGrooves)
         x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
@@ -316,9 +303,6 @@ function drawRegressionLine(intercept, slope)
         x2 = LEFT + getValue1(X2, mins["X"], maxs["X"])*plotWidth;
         
     y2 = BOTTOM - getValue1(Y2, mins["Y"], maxs["Y"])*plotHeight; 
-    
-    console.log("x1=" + x1 + ", y1=" + y1);
-    console.log("x2=" + x2 + ", y2=" + y2);
     
     canvas.append("line")
             .attr("x1", x1)

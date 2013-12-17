@@ -52,9 +52,6 @@ function OnMouseDown(e)
                     subState = "base";
                 
                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice(), substate: subState});
-                
-                console.log("current stack: ");
-                console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
@@ -64,10 +61,7 @@ function OnMouseDown(e)
                 setColorsForVisualisations();        
                 plotVisualisation();
                 
-                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});
-                
-                console.log("current stack: ");
-                console.dir(states);
+                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});               
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
@@ -147,14 +141,11 @@ function OnMouseDown(e)
             
                         if(lineBefore == undefined && lineAfter == undefined)
                         {
-                            //it was the only mean selected - just remove the existing incomplete line
-                        console.log("no lines before or after");
-                                removeElementsByClassName("incompleteLines");
+                            //it was the only mean selected - just remove the existing incomplete line                    
+                            removeElementsByClassName("incompleteLines");
                         }
                         else if(lineAfter == undefined)
-                        {
-                        console.log("one line before");
-                
+                        {                
                             removeElementsByClassName("incompleteLines");
                             var canvas = d3.select("#plotCanvas");
             
@@ -171,9 +162,7 @@ function OnMouseDown(e)
                             lineBefore.parentNode.removeChild(lineBefore);
                         }
                         else if(lineBefore == undefined)
-                        {                
-                        console.log("one line after");
-                
+                        {                                
                             removeElementsByClassName("incompleteLines");
                             var canvas = d3.select("#plotCanvas");
                     
@@ -240,7 +229,6 @@ function OnMouseDown(e)
                                         .attr("class", "incompleteLines");
                             }
                         
-        //                     console.log("lines before and after");
                             lineBefore.setAttribute("x2", lineAfter.getAttribute("x2"));
                             lineBefore.setAttribute("y2", lineAfter.getAttribute("y2"));
                             lineAfter.parentNode.removeChild(lineAfter);
@@ -498,9 +486,6 @@ function OnMouseDown(e)
                         selectedMeans.push(means[i]);
                 }
         
-                console.log("selectedMeans:");
-                console.dir(selectedMeans);
-        
                 if(selectedMeans.length != 2)
                 {
                     alert("select two means then press compare");
@@ -735,9 +720,7 @@ function OnMouseDown(e)
                     currentVisualisationSelection = state.visualisation;
                     
                     if(state.visualisation == "Boxplot")
-                    {   
-                        console.log("substate: " + state.substate);
-                        
+                    {                           
                         if(state.substate == "base")
                         {
                             removeElementsByClassName("compareNow");
@@ -1068,9 +1051,7 @@ function OnMouseDown(e)
                                             break;
                                         }
                         case "sphericity":
-                                        {
-                                            console.log("To be done!");
-                                    
+                                        {                                    
                                             break;
                                         }
                         default: 
@@ -1134,8 +1115,6 @@ function OnMouseDown(e)
                     removeElementsByClassName("significanceTest");
                     removeElementsByClassName("effectSize");
                     removeElementsByClassName("parameter");
-                    
-                    console.log("index = " + index);
                     
                     sideBar.append("text")
                             .attr("x", sideBarWidth/2)
@@ -1868,8 +1847,6 @@ function OnMouseOver(e)
                         .attr("fill", "black")
                         .text(tukeyResults[tCITop.attr("data-index1")][tCITop.attr("data-index2")]["upper"])
                         .attr("class", "hover");
-                        
-                console.log(tukeyResults[tCIBottom.attr("data-index1")][tCIBottom.attr("data-index2")]["lower"]);
         
                 canvas.append("text")
                         .attr("x", tCIBottom.attr("x1"))

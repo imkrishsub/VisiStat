@@ -162,8 +162,7 @@ function populationMeanEntered()
     var variableList = getSelectedVariables();
     
     if(d3.select("#normality.crosses").attr("display") == "inline")
-    {
-        console.log("population median=" + populationValue);
+    {    
         sessionStorage.popMedian = parseFloat(populationValue);
         
         removeElementsByClassName("dialogBox");
@@ -172,7 +171,6 @@ function populationMeanEntered()
     }
     else
     {
-        console.log("population mean=" + populationValue);
         sessionStorage.popMean = parseFloat(populationValue);
         
         removeElementsByClassName("dialogBox");
@@ -186,11 +184,6 @@ function doPairwiseTests()
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
     
-    console.log("variableList:");
-    console.dir(variableList);    
-    
-    console.log("\t Pairwise comparisons!");
-
     //homoscedasticity
     loadAssumptionCheckList();
     
@@ -201,12 +194,6 @@ function doPairwiseTests()
     {
         var levelsA = variableList["independent-levels"][0];
         var levelsB = variableList["independent-levels"][1];
-        
-        console.log("colourBoxPlotData=");
-        console.dir(colourBoxPlotData);
-        
-        console.log(levelsA[0]);
-        console.log(levelsB[0]);
         
         sampleSize = colourBoxPlotData[levelsA[0]][levelsB[0]].length;
     }
@@ -319,8 +306,6 @@ function setDistribution(dependentVariable, level, normal)
         distributions[dependentVariable] = new Object();
     
     distributions[dependentVariable][level] = normal;    
-    console.log(getObjectLength(distributions[dependentVariable]));
-    console.log(getNumberOfSelectedMeans());
     
     if(getObjectLength(distributions[dependentVariable]) == getNumberOfSelectedMeans())
     {       
@@ -354,8 +339,6 @@ function setDistribution(dependentVariable, level, normal)
             d3.select("#normality.ticks").attr("display", "inline");  
             d3.select("#normality.loading").attr("display", "none"); 
             
-            console.log("->" + d3.select("#normality.loading").attr("display"));
-            
             if(variableList["independent"].length == 1)
             {
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
@@ -381,12 +364,10 @@ function setDistribution(dependentVariable, level, normal)
                 else
                 {
                     //between-group design
-                    console.log(d3.select("#homogeneity.ticks").attr("display"));
                     
                     //homoscedasticity test is already done (and no case is handled)
                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
-                        console.log("hi again");
                         if(variableList["independent-levels"].length == 2)
                         {
                             //2 variables
@@ -454,8 +435,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
     
     variances[dependentVariable][independentVariable] = homogeneous;
     
-    console.log(getObjectLength(variances[dependentVariable]));
-    
     if(getObjectLength(variances[dependentVariable]) == (currentVariableSelection.length - 1))
     {       
         var variableList = sort(currentVariableSelection);
@@ -479,8 +458,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         if(homogeneity)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
-            
-            console.log(d3.select("#homogeneity.ticks").attr("display"));
             
             d3.select("#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
