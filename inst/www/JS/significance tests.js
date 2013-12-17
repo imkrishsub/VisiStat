@@ -441,7 +441,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                     testResults["effect-size-type"] = "eS";
                     testResults["formula"] = dependentVariable + " ~ " + betweenGroupVariableA + " + " + betweenGroupVariableB + " +  " + betweenGroupVariableA + "*" + betweenGroupVariableB;
               
-                    localStorage.setObject(value, testResults);
+                    localStorage.setObject(label, testResults);
                     logResult();
                        
                     drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");               
