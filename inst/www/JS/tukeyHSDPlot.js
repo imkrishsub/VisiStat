@@ -13,8 +13,8 @@ function drawTukeyHSDPlot()
     var variableList = sort(currentVariableSelection);    
     var levels = variables[variableList["independent"][0]]["dataset"].unique().sort();    
     
-    var min = parseFloat(sessionStorage.tukeyResultsMin);
-    var max = parseFloat(sessionStorage.tukeyResultsMax);
+    var min = parseFloat(localStorage.tukeyResultsMin);
+    var max = parseFloat(localStorage.tukeyResultsMax);
     
     //Axes
     var xAxis = canvas.append("line")

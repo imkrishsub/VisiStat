@@ -904,6 +904,7 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                   
 
                         console.log("TukeyHSD test for " + dependentVariable + " ~ " + independentVariable);
+                        
                         localStorage.tukeyResultsMin = Array.min(output.lower);
                         localStorage.tukeyResultsMax = Array.max(output.upper);
                     
