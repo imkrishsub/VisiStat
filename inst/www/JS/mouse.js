@@ -977,11 +977,7 @@ function OnMouseDown(e)
                 
                 resetMeans();
     
-                drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");
-        
-                d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
-                d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
-        
+                drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");        
                 removeElementsByClassName("compareMean");
             }
             
