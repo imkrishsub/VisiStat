@@ -874,7 +874,7 @@ function drawHomogeneityPlot(homogeneity)
             .attr("fill", "black")
             .text("VARIANCE")
             .attr("font-size", scaleForWindowSize(12) + "px")
-            .attr("transform", "rotate (-90" + (l - axesOffset) + " " + (b - variancePlotHeight/2) + ")")
+            .attr("transform", "rotate (-90 " + (l - axesOffset) + " " + (b - variancePlotHeight/2) + ")")
             .attr("class", "homogeneityPlot");    
     
     widthSlice = variancePlotWidth/(nGroovesX);
