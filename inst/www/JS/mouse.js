@@ -697,7 +697,8 @@ function OnMouseDown(e)
                                     .attr("width", variancePlotWidth + 2*scaleForWindowSize(10))
                                     .attr("rx", "5px")
                                     .attr("ry", "5px")
-                                    .attr("stroke", "none")
+                                    .attr("fill", "white")
+                                    .attr("stroke", "orange")
                                     .attr("opacity", "0.01")
                                     .attr("class", "variancePlotHelp");
                     }
@@ -1297,11 +1298,13 @@ function OnMouseOver(e)
             if(target.className.baseVal == "variancePlotHelp")
             {
                 setup(e, target);
+                
+                var visualisation = currentVisualisationSelection;
                 var helpText = d3.select("#descriptionLabel");
                 
                 d3.select(".variancePlotHelp").attr("opacity","0.3").attr("cursor", "help");
-                
-                helpText.text(desc["variancePlot"]);
+
+                helpText.text(desc[visualisation]);                
             }
             
             if(target.className.baseVal == "assumptionsButtonFront")
@@ -1889,32 +1892,37 @@ function OnMouseOut(e)
     {
         if(target.className.baseVal == "plotHelp")
         {
-            d3.select(".plotHelp").attr("fill", "white").attr("opacity","0.01");        
+            d3.select(".plotHelp").attr("fill", "white").attr("opacity","0.01").attr("cursor", "default");        
+        }
+        
+        if(target.className.baseVal == "variancePlotHelp")
+        {
+            d3.select(".variancePlotHelp").attr("fill", "white").attr("opacity","0.01").attr("cursor", "default");        
         }
         
         if(target.className.baseVal == "pValueHelp")
         {
-            d3.select(".pValueHelp").attr("fill", "white").attr("opacity","0.01");        
+            d3.select(".pValueHelp").attr("fill", "white").attr("opacity","0.01").attr("cursor", "default");        
         }
         
         if(target.className.baseVal == "testStatisticHelp")
         {
-            d3.select(".testStatisticHelp").attr("fill", "white").attr("opacity","0.01");        
+            d3.select(".testStatisticHelp").attr("fill", "white").attr("opacity","0.01").attr("cursor", "default");        
         }
         
         if(target.className.baseVal == "methodHelp")
         {
-            d3.select(".methodHelp").attr("fill", "white").attr("opacity","0.01");        
+            d3.select(".methodHelp").attr("fill", "white").attr("opacity","0.01").attr("cursor", "default");        
         }
         
         if(target.className.baseVal == "effectSizeHelp")
         {
-            d3.select(".effectSizeHelp").attr("fill", "white").attr("opacity","0.01");        
+            d3.select(".effectSizeHelp").attr("fill", "white").attr("opacity","0.01").attr("cursor", "default");        
         }
         
         if(target.className.baseVal == "assumptionsButtonFront")
         {
-            d3.select("#" + target.id + ".assumptionsButtonBack").attr("stroke-width", "1px");
+            d3.select("#" + target.id + ".assumptionsButtonBack").attr("stroke-width", "1px").attr("cursor", "pointer");
         }
     }
     else
