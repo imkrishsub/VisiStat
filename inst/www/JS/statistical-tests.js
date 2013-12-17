@@ -430,7 +430,9 @@ function setDistribution(dependentVariable, level, normal)
         }
         else
         {
-            console.log("\n\tchecking if normality transform is possible...");            
+            console.log("\n\tchecking if normality transform is possible...");     
+            
+            d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
             
             if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
             {

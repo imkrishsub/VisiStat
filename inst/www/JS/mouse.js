@@ -1010,6 +1010,7 @@ function OnMouseDown(e)
                     {
                         case "normality":
                                         {
+                                            removeElementsByClassName("densityCurve");
                                             var homogeneityText = d3.select("#homogeneity.assumptions");
                                             var homogeneityButton = d3.select("#homogeneity.assumptionsButtonBack");
                                             

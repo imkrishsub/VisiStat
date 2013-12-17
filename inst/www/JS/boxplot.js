@@ -845,7 +845,7 @@ function drawHomogeneityPlot(homogeneity)
     canvas.transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
     
     var variancePlotWidth = plotWidth/2;
-    var variancePlotHeight = scaleForWindowSize(250);
+    var variancePlotHeight = scaleForWindowSize(230);
     
     //make a small variance comparison plot
     var l = canvasWidth/2 - variancePlotWidth/2;
