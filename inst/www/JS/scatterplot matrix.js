@@ -391,5 +391,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
 
 function getValue(number, min, max)
 {
+    console.log(max - min);
+    console.log(number - min);
     return (number - min)/(max - min);
 }
