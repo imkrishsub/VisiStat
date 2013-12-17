@@ -398,13 +398,27 @@ function drawEffectSize(value)
                             .domain([min, max])
                             .range([0, effectSizeWidth]);
     
-    var effectSize = sideBar.append("rect")
-                                .attr("x", L + scale(0))
-                                .attr("y", T)
-                                .attr("width", scale(min + (value - 0)))
-                                .attr("height", effectSizeHeight)
-                                .attr("fill", color)
-                                .attr("class", "effectSize");
+    if(scale(min + (value - 0)) > 0)
+    {
+        var effectSize = sideBar.append("rect")
+                                    .attr("x", L + scale(0))
+                                    .attr("y", T)
+                                    .attr("width", scale(min + (value - 0)))
+                                    .attr("height", effectSizeHeight)
+                                    .attr("fill", color)
+                                    .attr("class", "effectSize");
+    }
+    else
+    {
+        console.log("negative effect size value");
+        var effectSize = sideBar.append("rect")
+                                    .attr("x", L + scale(0) + scale(min + (value - 0)))
+                                    .attr("y", T)
+                                    .attr("width", -scale(min + (value - 0)))
+                                    .attr("height", effectSizeHeight)
+                                    .attr("fill", color)
+                                    .attr("class", "effectSize");
+    }
     
     if(scale(min + (value - 0)) > effectSizeWidth/6)
     {    

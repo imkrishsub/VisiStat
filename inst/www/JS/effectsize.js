@@ -22,20 +22,18 @@ var effectSizeInterpretations = new Object();
     effectSizeInterpretations["𝜏"] = [0.2, 0.5, 0.8];
     
 var effectSizeColors = new Object();
-    effectSizeColors["small"] = "PowderBlue";
-    effectSizeColors["small-medium"] = "LemonChiffon";
-    effectSizeColors["medium-large"] = "Orange";
-    effectSizeColors["large"] = "DarkRed";
+    effectSizeColors["small"] = "#bff330";
+    effectSizeColors["small-medium"] = "ffff00";
+    effectSizeColors["medium-large"] = "#39e639";
+    effectSizeColors["large"] = "#269926";
 
 function getColour(type, value)
 {
-    console.log(type);
-    
     var interpretations = effectSizeInterpretations[type];
     
-    if(value < interpretations[0])
+    if(value <= interpretations[0])
         return effectSizeColors["small"];
-    else if(value >= interpretations[0] && value < interpretations[1])
+    else if(value > interpretations[0] && value < interpretations[1])
         return effectSizeColors["small-medium"];
     else if(value >= interpretations[1] && value < interpretations[2])
         return effectSizeColors["medium-large"];

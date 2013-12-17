@@ -205,8 +205,6 @@ function performMannWhitneyTest(groupA, groupB)
                     groupB: groupB
                   }, function(output) {                                                   
                   
-                  
-                  
                   console.log("\t\t Mann-Whitney U test");
                   console.log("\t\t\t U = " + output.U);
                   console.log("\t\t\t p = " + output.p);
