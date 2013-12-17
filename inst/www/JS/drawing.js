@@ -493,6 +493,7 @@ function drawEffectSize(value)
     {
         for(i=0; i<effectSizeInterpretations[type].length; i++)
         {
+            console.log("adding extra indicators");
             sideBar.append("line")
                     .attr("x1", L - scale(effectSizeInterpretations[type][i]))
                     .attr("y1", T)
