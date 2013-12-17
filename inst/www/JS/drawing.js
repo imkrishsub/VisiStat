@@ -420,7 +420,7 @@ function drawEffectSize(value)
                                     .attr("class", "effectSize");
     }
     
-    if(abs(scale(min + (value - 0))) > effectSizeWidth/4)
+    if(Math.abs(scale(min + (value - 0))) > effectSizeWidth/4)
     {    
         sideBar.append("text")
                 .attr("x", L + scale(0) + scale(min + (value - 0)) - yAxisTickTextOffset)
