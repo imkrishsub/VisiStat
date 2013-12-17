@@ -223,7 +223,7 @@ function performMannWhitneyTest(groupA, groupB)
                   testResults["effect-size-type"] = "r";
                   testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
                   
-                  sessionObject.setObject(label, testResults);
+                  localStorage.setObject(label, testResults);
                   logResult();
                   
                 //drawing stuff

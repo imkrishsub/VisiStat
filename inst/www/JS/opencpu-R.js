@@ -281,44 +281,47 @@ function performNormalityTest(distribution, dependentVariable, level)
     else
     {
         var variableList = getSelectedVariables(); 
-                        
-        if(localStorage.getItem(label) < 0.05)
-        {   
-            //not normal
-            if(variableList["independent"].length == 0)
-            {
-                //one sample t-test
-                d3.select("#normality.crosses").attr("display", "inline");
-                d3.select("#normality.loading").attr("display", "none");
+        
+        setTimeout(function()
+        {
+            if(localStorage.getItem(label) < 0.05)
+            {   
+                //not normal
+                if(variableList["independent"].length == 0)
+                {
+                    //one sample t-test
+                    d3.select("#normality.crosses").attr("display", "inline");
+                    d3.select("#normality.loading").attr("display", "none");
             
-                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
+                    d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
     
-                //draw boxplots in red 
-                drawBoxPlotInRed(variableList["dependent"][0]);
-                drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
+                    //draw boxplots in red 
+                    drawBoxPlotInRed(variableList["dependent"][0]);
+                    drawNormalityPlot(variableList["dependent"][0], "dataset", "notnormal");
     
-                findTransformForNormalityForDependentVariables(getNumericVariables());
+                    findTransformForNormalityForDependentVariables(getNumericVariables());
+                }
+                else
+                {
+                    setDistribution(dependentVariable, level, false);
+                }
             }
             else
-            {
-                setDistribution(dependentVariable, level, false);
-            }
-        }
-        else
-        {   
-            //normal
-            if(variableList["independent"].length == 0)
-            {
-                d3.select("#normality.ticks").attr("display", "inline");
-                d3.select("#normality.loading").attr("display", "none");
+            {   
+                //normal
+                if(variableList["independent"].length == 0)
+                {
+                    d3.select("#normality.ticks").attr("display", "inline");
+                    d3.select("#normality.loading").attr("display", "none");
             
-                drawDialogBoxToGetPopulationMean();
+                    drawDialogBoxToGetPopulationMean();
+                }
+                else
+                {
+                    setDistribution(dependentVariable, level, true);
+                }
             }
-            else
-            {
-                setDistribution(dependentVariable, level, true);
-            }
-        }
+        }, 1200);
     }
 }
 
