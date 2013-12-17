@@ -729,25 +729,15 @@ function OnMouseDown(e)
             
                 if(backButton.attr("stroke") == "black")
                 {
-                    console.log(states.pop());
-                    
                     var state = states[states.length - 1];
-                    
-                    console.log("state:");
-                    console.dir(state);   
-                    
-                    console.log("current stack:");
-                    console.dir(states);
-                    
-                    console.log("variables = " + state.variables);
                     
                     currentVariableSelection = (state.variables).slice();
                     currentVisualisationSelection = state.visualisation;
                     
-                    console.log("currentVisualisation : " + currentVisualisationSelection);
-                    
                     if(state.visualisation == "Boxplot")
                     {   
+                        console.log("substate: " + state.substate);
+                        
                         if(state.substate == "base")
                         {
                             removeElementsByClassName("compareNow");
@@ -977,7 +967,11 @@ function OnMouseDown(e)
                 
                 resetMeans();
     
-                drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");        
+                drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");
+        
+                d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
+                d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
+        
                 removeElementsByClassName("compareMean");
             }
             
