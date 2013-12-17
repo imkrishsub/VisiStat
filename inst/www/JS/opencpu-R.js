@@ -653,7 +653,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     
                     var variableList = getSelectedVariables();
                 
-                    if(output.type == "none")
+//                     if(output.type == "none")
                     {
                         console.log("Transformation to homogeneity is not possible!");
                     
@@ -707,14 +707,14 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                             }
                         }
                     }                
-                    else
-                    {
-                        console.log("Transformation type = " + output.type);
-                        transformationType = output.type;
-                    
-                        //offer choice
-                        drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
-                    }                  
+                    // else
+//                     {
+//                         console.log("Transformation type = " + output.type);
+//                         transformationType = output.type;
+//                     
+//                         //offer choice
+//                         drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
+//                     }                  
           }).fail(function(){
               alert("Failure: " + req.responseText);
         });       
@@ -733,7 +733,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
         
         var variableList = getSelectedVariables();
                 
-        if(output.type == "none")
+//         if(output.type == "none")
         {
             console.log("Transformation to homogeneity is not possible!");
         
@@ -787,14 +787,14 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                 }
             }
         }                
-        else
-        {
-            console.log("Transformation type = " + output.type);
-            transformationType = output.type;
-        
-            //offer choice
-            drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
-        }
+        // else
+//         {
+//             console.log("Transformation type = " + output.type);
+//             transformationType = output.type;
+//         
+//             //offer choice
+//             drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
+//         }
     }
 }
 

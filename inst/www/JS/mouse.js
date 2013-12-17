@@ -52,6 +52,8 @@ function OnMouseDown(e)
                     subState = "base";
                 
                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice(), substate: subState});
+                
+                console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
@@ -62,6 +64,8 @@ function OnMouseDown(e)
                 plotVisualisation();
                 
                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});               
+                
+                console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
@@ -710,10 +714,15 @@ function OnMouseDown(e)
             
                 if(backButton.attr("stroke") == "black")
                 {
+                    states.pop();
                     var state = states[states.length - 1];
                     
                     currentVariableSelection = (state.variables).slice();
                     currentVisualisationSelection = state.visualisation;
+                    
+                    console.log(state);
+                    
+                    console.dir(states);
                     
                     if(state.visualisation == "Boxplot")
                     {                           
