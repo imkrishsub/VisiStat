@@ -237,6 +237,9 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         
         console.log("x1=" + x1 + ", x2=" + x2);
         console.log("y1=" + y1 + ", y2=" + y2);
+        
+        console.log("minX=" + minX + ", maxX=" + maxX);
+        console.log("minY=" + minY + ", maxY=" + maxY);
     
         canvas.append("line")
                 .attr("x1", x1)
