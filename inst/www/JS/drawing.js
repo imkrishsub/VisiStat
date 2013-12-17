@@ -469,7 +469,7 @@ function drawEffectSize(value)
                 .attr("x1", L + scale(effectSizeInterpretations[type][i]))
                 .attr("y1", T)
                 .attr("x2", L + scale(effectSizeInterpretations[type][i]))
-                .attr("y1", T + effectSizeHeight)
+                .attr("y2", T + effectSizeHeight)
                 .attr("stroke", "black")
                 .attr("class", "effectSizeInterpretationIndicators");
     }
