@@ -149,6 +149,8 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     var canvas = d3.select("#plotCanvas");
     
     y = y + shortHeight;
+    
+    console.log("y=" + y);
 
     var dataX = variables[variableX]["dataset"];
     var dataY = variables[variableY]["dataset"];
@@ -233,7 +235,9 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         y1 = y - getValue(Y1, minY, maxY)*shortHeight;
     
         x2 = x + getValue(X2, minX, maxX)*shortWidth;
-        y2 = y - getValue(Y2, minY, maxY)*shortHeight;            
+        y2 = y - getValue(Y2, minY, maxY)*shortHeight;    
+        
+        console.log(getValue(Y1, minY, maxY);
         
         console.log("x1=" + x1 + ", x2=" + x2);
         console.log("y1=" + y1 + ", y2=" + y2);
@@ -391,6 +395,5 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
 
 function getValue(number, min, max)
 {
-    console.log("max - min: " + (max-min));
     return (number - min)/(max - min);
 }
