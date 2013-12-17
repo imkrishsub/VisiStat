@@ -731,7 +731,9 @@ function OnMouseDown(e)
                             removeElementsByClassName("compareNow");
                             removeElementsByClassName("selectAll");
                             removeElementsByClassName("selectNone");
-                            removeElementById("border");
+                            
+                            if(document.getElementById("border") != null)                            
+                                removeElementById("border");
                         
                             d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "1.0");
                             d3.selectAll(".means").transition().duration(500).attr("r", meanRadius);
@@ -753,7 +755,9 @@ function OnMouseDown(e)
                             removeElementsByClassName("differenceInMeansMain");
                             removeElementsByClassName("assumptionsButtonFront");
                             removeElementsByClassName("assumptionsButtonBack");
-                            removeElementById("border");
+                            if(document.getElementById("border") != null)                            
+                                removeElementById("border");
+
                             
                             unselectAllMeans();
                             var canvas = d3.select("#plotCanvas");
@@ -829,7 +833,9 @@ function OnMouseDown(e)
                             removeElementsByClassName("differenceInMeansMain");
                             removeElementsByClassName("assumptionsButtonFront");
                             removeElementsByClassName("assumptionsButtonBack");
-                            removeElementById("border");
+                            if(document.getElementById("border") != null)                            
+                                removeElementById("border");
+
                             
                             unselectAllMeans();
                             
