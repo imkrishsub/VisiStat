@@ -946,6 +946,8 @@ function OnMouseDown(e)
                 removeElementsByClassName("effectSizeInterpretationIndicators");
                 removeElementsByClassName("differenceInMeans");
                 removeElementsByClassName("differenceInMeansText");
+                removeElementsByClassName("densityCurve");
+                
                 removeElementById("border");
         
                 pairwiseComparisons = true;

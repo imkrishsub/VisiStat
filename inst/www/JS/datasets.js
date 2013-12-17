@@ -29,7 +29,7 @@ var variablesInDataset = new Object();
     variablesInDataset["keyboards"] = ["participantID", "keyboardLayout", "gender", "typingSpeed", "errors", "userSatisfaction"];
     variablesInDataset["foodEffect"] = ["participantID","foodEaten","gender","score_V","score_Q","satisfactionRating"];
     variablesInDataset["weight_loss"] = ["participantID","condition","exercise","weightLost","BMI","userRating"];
-    variablesInDataset["phoneEffect"] = ["participantID","OS","gender", "stressScore","happScore","satisfaction"];
+    variablesInDataset["phoneEffect"] = ["participantID","phoneOS","gender", "stressScore","happScore","satisfaction"];
  
 var types = ["participant", "dependent", "independent"];
 var variablesInDatasetRow = new Object();

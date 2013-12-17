@@ -583,6 +583,8 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                       localStorage.setObject(label, testResults);
                       
                       logResult();
+                      
+                      drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");               
                   
                     //drawing stuff
                     removeElementsByClassName("completeLines");
@@ -609,7 +611,8 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
         { 
             //drawing stuff
             removeElementsByClassName("completeLines");
-    
+            
+            drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");               
             displayANOVAResults();  
         }, 1800);
     }        

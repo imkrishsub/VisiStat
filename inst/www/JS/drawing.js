@@ -792,7 +792,7 @@ function drawScales(cx, cy)
                 .attr("x", x + scaleForWindowSize(35))
                 .attr("y", (yMin + yMax)/2)
                 .attr("fill", "black")
-                .attr("font-size", scaleForWindowSize(16) + "px")
+                .attr("font-size", scaleForWindowSize(14) + "px")
                 .attr("id", "tickText")
                 .attr("class", "significanceTest")
                 .text(dec2(means[means.length-1] - means[0]));
