@@ -794,7 +794,7 @@ function drawScales(cx, cy)
                 .attr("fill", "black")
                 .attr("font-size", scaleForWindowSize(14) + "px")
                 .attr("id", "tickText")
-                .attr("class", "significanceTest")
+                .attr("class", "differenceInMeansMain")
                 .text(dec2(means[means.length-1] - means[0]));
     
     if(cy.length >= 2)

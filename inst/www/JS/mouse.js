@@ -946,6 +946,7 @@ function OnMouseDown(e)
                 removeElementsByClassName("effectSizeInterpretationIndicators");
                 removeElementsByClassName("differenceInMeans");
                 removeElementsByClassName("differenceInMeansText");
+                removeElementsByClassName("differenceInMeansMain");
                 removeElementsByClassName("densityCurve");
                 
                 removeElementById("border");
@@ -1120,7 +1121,7 @@ function OnMouseDown(e)
                     
                     effectButtonText.attr("fill", "white");
                     
-//                     removeElementsByClassName("significanceTest");
+                    removeElementsByClassName("significanceTest");
                     removeElementsByClassName("effectSize");
                     removeElementsByClassName("parameter");
                     
