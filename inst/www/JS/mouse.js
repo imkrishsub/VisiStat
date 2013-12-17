@@ -685,7 +685,7 @@ function OnMouseDown(e)
                     }
                     
                     console.log("stroke=" + d3.select("#homogeneity.assumptionsButtonBack").attr("stroke"));
-                    if(d3.select("#homogeneity.assumptionsButtonBack").attr("stroke") == "none")
+                    if(d3.select("#homogeneity.assumptionsButtonBack").attr("stroke") != "black")
                     {
                         var variancePlotWidth = plotWidth/2;
                         var variancePlotHeight = scaleForWindowSize(250);
