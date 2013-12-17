@@ -29,7 +29,7 @@ var variablesInDataset = new Object();
     variablesInDataset["keyboards"] = ["participantID", "keyboardLayout", "gender", "typingSpeed", "errors", "userSatisfaction"];
     variablesInDataset["foodEffect"] = ["participantID","foodEaten","gender","score_V","score_Q","satisfactionRating"];
     variablesInDataset["weight_loss"] = ["participantID","condition","exercise","weightLost","BMI","userRating"];
-    variablesInDataset["phoneEffect"] = ["participant","OS","stressScore","happScore","rating"];
+    variablesInDataset["phoneEffect"] = ["participantID","OS","gender", "stressScore","happScore","satisfaction"];
  
 var types = ["participant", "dependent", "independent"];
 var variablesInDatasetRow = new Object();
@@ -48,7 +48,7 @@ var variablesInDatasetType = new Object();
     variablesInDatasetType["keyboards"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     variablesInDatasetType["foodEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     variablesInDatasetType["weight_loss"] = [dataTypes[0], dataTypes[0], dataTypes[1], dataTypes[3], dataTypes[2], dataTypes[1]];
-    variablesInDatasetType["phoneEffect"] = [dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
+    variablesInDatasetType["phoneEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     
 function initVariablesInDatasetTypes()
 {  
@@ -64,5 +64,5 @@ function initVariablesInDatasetTypes()
     variablesInDatasetRow["keyboards"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
     variablesInDatasetRow["foodEffect"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
     variablesInDatasetRow["weight_loss"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
-    variablesInDatasetRow["phoneEffect"] = [types[0], types[2], types[1], types[1], types[1]];
+    variablesInDatasetRow["phoneEffect"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
 }
