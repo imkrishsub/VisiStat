@@ -393,7 +393,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
 
 function convertToRange(number, min, max)
 {
-    if(isNaN(number-min)
+    if(isNaN(number-min))
     {
         console.log(number);
         console.log(min);
