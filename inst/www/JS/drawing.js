@@ -755,8 +755,7 @@ function loadAssumptionCheckList(type)
 function drawNormalityPlot(dependentVariable, level, type)
 {
     //make histogram with these variables in a separate svg
-    removeElementsByClassName("homogeneityPlot");
-    removeElementsByClassName("densityCurve");
+    removeElementsByClassName("homogeneityPlot")
     
     var mean;
     if(level == "dataset")
