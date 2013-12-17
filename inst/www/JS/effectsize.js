@@ -22,9 +22,9 @@ var effectSizeInterpretations = new Object();
     effectSizeInterpretations["𝜏"] = [0.2, 0.5, 0.8];
     
 var effectSizeColors = new Object();
-    effectSizeColors["small"] = "#bff330";
-    effectSizeColors["small-medium"] = "ffff00";
-    effectSizeColors["medium-large"] = "#39e639";
+    effectSizeColors["small"] = "#bFF330";
+    effectSizeColors["small-medium"] = "FFFF00";
+    effectSizeColors["medium-large"] = "#39E639";
     effectSizeColors["large"] = "#269926";
 
 function getColour(type, value)
