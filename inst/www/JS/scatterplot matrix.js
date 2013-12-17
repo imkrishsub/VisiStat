@@ -153,8 +153,8 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     var dataX = variables[variableX]["dataset"];
     var dataY = variables[variableY]["dataset"];
     
-    var uniqueDataX = dataX.unique();
-    var uniqueDataY = dataY.unique();  
+    var uniqueDataX = dataX.unique().sort();
+    var uniqueDataY = dataY.unique().sort();  
 
     var minX=0, minY=0, maxX=0, maxY=0;
     
@@ -236,12 +236,6 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         y2 = y - convertToRange(Y2, minY, maxY)*shortHeight;    
         
         console.log(convertToRange(Y1, minY, maxY));
-        
-        console.log("x1=" + x1 + ", x2=" + x2);
-        console.log("y1=" + y1 + ", y2=" + y2);
-        
-        console.log("minX=" + minX + ", maxX=" + maxX);
-        console.log("minY=" + minY + ", maxY=" + maxY);
     
         canvas.append("line")
                 .attr("x1", x1)
