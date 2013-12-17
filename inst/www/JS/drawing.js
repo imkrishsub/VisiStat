@@ -479,7 +479,7 @@ function drawEffectSize(value)
                 .attr("y", T - yAxisTickTextOffset)
                 .attr("transform", "rotate (-45" + (L + scale(effectSizeInterpretations[type][i])) + " " + (T - yAxisTickTextOffset) + ")")
                 .attr("text-anchor", "start")
-                .attr("font-size", scaleForWindowSize(14) + "px");
+                .attr("font-size", scaleForWindowSize(14) + "px")
                 .text(effectSizeInterpretationIndicators[i])
                 .attr("fill", getColor(type, effectSizeInterpretations[type][i]))
                 .attr("class", "effectSizeInterpretationIndicators");
