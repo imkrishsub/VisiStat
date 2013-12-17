@@ -684,7 +684,7 @@ function OnMouseDown(e)
                                     .attr("class", "effectSizeHelp");
                     }
                     
-                    console.log("stroke=" + d3.select("#homogeneity.assumptionsButtonBack").attr("stroke"));
+                    
                     if(d3.select("#homogeneity.assumptionsButtonBack").attr("stroke") != "black")
                     {
                         var variancePlotWidth = plotWidth/2;
@@ -702,6 +702,23 @@ function OnMouseDown(e)
                                     .attr("opacity", "0.01")
                                     .attr("class", "variancePlotHelp");
                     }
+                    
+                    if(d3.select("#normality.assumptionsButtonBack").attr("stroke") != "black")
+                    {   
+                        plotCanvas.append("rect")
+                                    .attr("x", canvasWidth/2 - plotWidth/2)
+                                    .attr("y", canvasHeight + normalityPlotOffset - 2*scaleForWindowSize(10))
+                                    .attr("height", normalityPlotHeight + 4*scaleForWindowSize(10))
+                                    .attr("width", plotWidth)
+                                    .attr("rx", "5px")
+                                    .attr("ry", "5px")
+                                    .attr("fill", "white")
+                                    .attr("stroke", "orange")
+                                    .attr("opacity", "0.01")
+                                    .attr("class", "normalityPlotHelp");
+                    }
+                    
+                    
                     
                 }
             }
@@ -1307,6 +1324,18 @@ function OnMouseOver(e)
                 helpText.text(desc["variancePlot"]);                
             }
             
+            if(target.className.baseVal == "normalityPlotHelp")
+            {
+                setup(e, target);
+                
+                var visualisation = currentVisualisationSelection;
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select(".normalityPlotHelp").attr("opacity","0.3").attr("cursor", "help");
+
+                helpText.text(desc["normalityPlot"]);                
+            }
+            
             if(target.className.baseVal == "assumptionsButtonFront")
             {
                 setup(e, target);
@@ -1898,6 +1927,11 @@ function OnMouseOut(e)
         if(target.className.baseVal == "variancePlotHelp")
         {
             d3.select(".variancePlotHelp").attr("fill", "white").attr("opacity","0.01").attr("cursor", "default");        
+        }
+        
+        if(target.className.baseVal == "normalityPlotHelp")
+        {
+            d3.select(".normalityPlotHelp").attr("fill", "white").attr("opacity","0.01").attr("cursor", "default");        
         }
         
         if(target.className.baseVal == "pValueHelp")

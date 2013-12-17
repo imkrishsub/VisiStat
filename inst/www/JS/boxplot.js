@@ -870,6 +870,7 @@ function drawHomogeneityPlot(homogeneity)
             .attr("x", l - axesOffset)
             .attr("y", b - variancePlotHeight/2)
             .attr("text-anchor", "middle")
+            .attr("fill", "black")
             .attr("font-size", scaleForWindowSize(12) + "px")
             .attr("transform", "rotate (-90" + (l - axesOffset) + " " + (b - variancePlotHeight/2) + ")")
             .attr("class", "homogeneityPlot");    
