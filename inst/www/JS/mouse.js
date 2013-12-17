@@ -686,7 +686,19 @@ function OnMouseDown(e)
                     
                     if(d3.select("#homogeneity.assumptionsButtonFront").attr("display") == "inline")
                     {
-//                         plotCanvas.append("rect")canvasWidth/2 - variancePlotWidth/2;
+                        var variancePlotWidth = plotWidth/2;
+                        var variancePlotHeight = scaleForWindowSize(250);
+                        
+                        plotCanvas.append("rect")
+                                    .attr("x", canvasWidth/2 - variancePlotWidth/2 - scaleForWindowSize(10))
+                                    .attr("y", canvasHeight/2 + plotHeight/2 + 3*axesOffset - scaleForWindowSize(10))
+                                    .attr("height", variancePlotHeight + 2*scaleForWindowSize(10))
+                                    .attr("width", variancePlotWidth + 2*scaleForWindowSize(10))
+                                    .attr("rx", "5px")
+                                    .attr("ry", "5px")
+                                    .attr("stroke", "none")
+                                    .attr("opacity", "0.01")
+                                    .attr("class", "variancePlotHelp");
                     }
                     
                 }
@@ -1279,6 +1291,16 @@ function OnMouseOver(e)
                 d3.select(".effectSizeHelp").attr("opacity","0.3").attr("cursor", "help");
                 
                 helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
+            }
+            
+            if(target.className.baseVal == "variancePlotHelp")
+            {
+                setup(e, target);
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select(".variancePlotHelp").attr("opacity","0.3").attr("cursor", "help");
+                
+                helpText.text(desc["variancePlot"]]);
             }
             
             if(target.className.baseVal == "assumptionsButtonFront")
