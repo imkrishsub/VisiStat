@@ -54,18 +54,19 @@ function compareMeans()
                                 {  
                                     //get distributions                                                                        
                                     
-                                    if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
-                                    {
-                                        //within-groups design
-                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
-                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][1]);
-                                    }
-                                    else
-                                    {
-                                        //between-groups design
-                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
-                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][1]);
-                                    }
+                                    performHomoscedasticityTests();
+                                    // if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
+//                                     {
+//                                         //within-groups design
+//                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+//                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][1]);
+//                                     }
+//                                     else
+//                                     {
+//                                         //between-groups design
+//                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+//                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][1]);
+//                                     }
                                 }
                     }
                     break;
@@ -221,6 +222,8 @@ function performNormalityTests()
     
     //normality
     distributions[variableList["dependent"][0]] = {};
+    
+    console.dir(variableList);
     
     if(variableList["independent"].length == 2)
     {
