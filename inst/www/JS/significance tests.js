@@ -641,7 +641,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
 {
     var label = "fT" + dependentVariable + "~" + independentVariable;
     
-    if(localStoraget.getObject(label) == null)
+    if(localStorage.getObject(label) == null)
     {
         var req = ocpu.rpc("performFriedmanTest", {
                         dependentVariable: dependentVariable,
