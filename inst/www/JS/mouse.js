@@ -1393,6 +1393,8 @@ function OnMouseOver(e)
             
             if(target.id == "effectSizeFront")
             {
+                console.log("hover over effectSizeFront detected!");
+                
                 setup(e, target);
                 
                 d3.select("#labelMin.effectSize").attr("display", "none");
