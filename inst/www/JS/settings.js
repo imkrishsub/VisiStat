@@ -149,7 +149,7 @@ assumptions["one-sample tests"] = ["normality"];
 assumptions["normal"] = ["normality", "homogeneity"];
 assumptions["repeated measures"] = ["normality", "homogeneity"];//["normality", "homogeneity", "sphericity"];
 
-var significanceTestResultOffset = scaleForWindowSize(40);
+var significanceTestResultOffset = scaleForWindowSize(75);
 
 var effectSizeWidth = sideBarWidth*0.8;
 var effectSizeHeight = scaleForWindowSize(30);
