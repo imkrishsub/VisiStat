@@ -176,15 +176,19 @@ function performTTest(groupA, groupB, varianceEqual, paired)
     else
     {
         console.log("using cached value :)");
+        
         testResults = localStorage.getObject(label);
 
         //add to log
         logResult();
-  
-        //drawing stuff
-        removeElementsByClassName("completeLines");
+        
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");
 
-        displaySignificanceTestResults();            
+            displaySignificanceTestResults();            
+        }, 1200);
     }
 }
 
@@ -244,11 +248,13 @@ function performMannWhitneyTest(groupA, groupB)
         testResults = localStorage.getObject(label);
         
         logResult();
-                  
-        //drawing stuff
-        removeElementsByClassName("completeLines");           
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");           
 
-        displaySignificanceTestResults(); 
+            displaySignificanceTestResults(); 
+        }, 1200);
     }
 }
 
@@ -306,11 +312,14 @@ function performWilcoxonTest(groupA, groupB)
         testResults = localStorage.getObject(label);
         
         logResult();                  
-                  
-        //drawing stuff
-        removeElementsByClassName("completeLines");           
+        
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");           
 
-        displaySignificanceTestResults();
+            displaySignificanceTestResults();
+        }, 1200);
     }
 }
 
@@ -376,14 +385,16 @@ function performOneWayANOVA(dependentVariable, independentVariable)
     {
         testResults = localStorage.getObject(label);        
         logResult();                           
-                    
-        //drawing stuff
-        removeElementsByClassName("completeLines");           
+         
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");           
 
-        displaySignificanceTestResults();      
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
-        drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
-        
+            displaySignificanceTestResults();      
+            drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+            drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);
+        }, 1200);        
     }
 }
 
@@ -436,10 +447,8 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
                         logResult();
                            
     //                   findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
-                    //drawing stuff
                     removeElementsByClassName("completeLines");           
                 
-    //                 drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
                     displayANOVAResults();  
         
           }).fail(function(){
@@ -459,13 +468,15 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
         testResults = localStorage.getObject(label);
         
         logResult();
-                           
-//                   findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
-        //drawing stuff
-        removeElementsByClassName("completeLines");           
+        
+        setTimeout(function()
+        {
+//             findEffect(dependentVariable, [betweenGroupVariableA,betweenGroupVariableB]);
+            removeElementsByClassName("completeLines");           
     
-//                 drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
-        displayANOVAResults();
+//             drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD");
+            displayANOVAResults();
+        }, 1200);
     }
 }
 
@@ -530,12 +541,15 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
         testResults = localStorage.getObject(label);
         
         logResult();
-                  
-        //drawing stuff
-        removeElementsByClassName("completeLines");
+        
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");
     
-        displaySignificanceTestResults();               
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+            displaySignificanceTestResults();               
+            drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+        }, 1200);
     }
 }
 
@@ -607,11 +621,14 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
     {
         testResults = localStorage.getObject(label);
         logResult();
-                  
-        //drawing stuff
-        removeElementsByClassName("completeLines");
+         
+        setTimeout(function()
+        { 
+            //drawing stuff
+            removeElementsByClassName("completeLines");
     
-        displayANOVAResults();  
+            displayANOVAResults();  
+        }, 1200);
     }        
 }
 
@@ -674,12 +691,15 @@ function performFriedmanTest(dependentVariable, independentVariable)
         testResults = localStorage.getObject(label);
         
         logResult();
-                  
-        //drawing stuff
-        removeElementsByClassName("completeLines");           
+        
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");           
 
-        displaySignificanceTestResults();   
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+            displaySignificanceTestResults();   
+            drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+        }, 1200);
     }
 }
 
@@ -785,12 +805,15 @@ function performWelchANOVA(dependentVariable, independentVariable)
     {
         testResults = localStorage.getObject;
         logResult();       
-                  
-        //drawing stuff
-        removeElementsByClassName("completeLines"); 
+        
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines"); 
     
-        displaySignificanceTestResults();
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");     
+            displaySignificanceTestResults();
+            drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");     
+        }, 1200);
     }
 }
 
@@ -856,12 +879,16 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
         testResults = localStorage.getObject(label);
         
         logResult();
-        //drawing stuff
-        removeElementsByClassName("completeLines");   
+        
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");   
     
-        displaySignificanceTestResults();
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
-        drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);        
+            displaySignificanceTestResults();
+            drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+            drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);        
+        }, 1200);
     }
 }
 
@@ -1044,10 +1071,14 @@ function performPairwiseTTest(varianceEqual, paired)
         testResults = localStorage.getObject(label);
         
         logResult();
-        //drawing stuff
-        removeElementsByClassName("completeLines");
+        
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");
     
-        displaySignificanceTestResults();        
+            displaySignificanceTestResults();       
+        }, 1200);        
     }
 }
 
@@ -1109,37 +1140,13 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
         testResults = localStorage.getObject(label);
         
         logResult();
-        //drawing stuff
-        removeElementsByClassName("completeLines");
+        
+        setTimeout(function()
+        {
+            //drawing stuff
+            removeElementsByClassName("completeLines");
     
-        displaySignificanceTestResults();        
+            displaySignificanceTestResults();        
+        }, 1200);
     }
 }
-
-// Effect sizes
-
-// function getDFromT(n)
-// {
-//     // Get variable names and their data type
-//     var req = ocpu.rpc("getDFromT", {
-//                     t: testResults["t"],                   
-//                     n1: n,
-//                     n2: n
-//                   }, function(output) {                                                   
-//                   
-//                   console.log("Cohen's d: " + output.d);
-//                   
-//                   testResults["effect-size"] = "Cohen's d = " + output.d;
-//         
-//       }).fail(function(){
-//           alert("Failure: " + req.responseText);
-//     });
-// 
-//     //if R returns an error, alert the error message
-//     req.fail(function(){
-//       alert("Server error: " + req.responseText);
-//     });
-//     req.complete(function(){
-//         
-//     });
-// }
