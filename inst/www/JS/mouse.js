@@ -842,6 +842,8 @@ function OnMouseDown(e)
                             var variableList = getSelectedVariables();
                             
                             drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+                            
+                            return;
                         }
                     }                   
                     
