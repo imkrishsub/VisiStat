@@ -32,7 +32,10 @@ function getColour(type, value)
     var interpretations = effectSizeInterpretations[type];
     
     if(value <= interpretations[0])
+    {
+        console.log(effectSizeColors["small"]);
         return effectSizeColors["small"];
+    }
     else if(value > interpretations[0] && value < interpretations[1])
         return effectSizeColors["small-medium"];
     else if(value >= interpretations[1] && value < interpretations[2])
