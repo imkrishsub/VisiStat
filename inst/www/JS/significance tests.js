@@ -892,7 +892,7 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
 
 function performTukeyHSDTestOneIndependentVariable(dependentVariable, independentVariable)
 { 
-    var label = "tuk" + dependentVariable + "~" + independentVariable;
+    var label = "tukeyHSD(" + dependentVariable + "~" + independentVariable + ")";
     
     if(localStorage.getObject(label) == null)
     {
@@ -965,6 +965,7 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
     }
     else
     {
+        console.dir(tukeyResults);
         tukeyResults = localStorage.getObject(label);
         
         resetSVGCanvas();
