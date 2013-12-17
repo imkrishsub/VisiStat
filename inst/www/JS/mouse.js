@@ -831,9 +831,29 @@ function OnMouseDown(e)
                             
                             return;
                         }
+                        else if(state.substate == "pairwise")
+                        {
+                            removeElementsByClassName("significanceTest");
+                            removeElementsByClassName("assumptions");
+                            removeElementsByClassName("pairwisePostHoc");
+                            removeElementsByClassName("effectSize");
+                            removeElementsByClassName("parameter");
+                            removeElementsByClassName("crosses");
+                            removeElementsByClassName("ticks");
+                            removeElementsByClassName("checkingAssumptions");
+                            removeElementsByClassName("loading");
+                            removeElementsByClassName("differenceInMeans");
+                            removeElementsByClassName("assumptionsButtonFront");
+                            removeElementsByClassName("assumptionsButtonBack");
+                            
+                            unselectAllMeans();
+                            
+                            var canvas = d3.select("#plotCanvas");
+                            var variableList = getSelectedVariables();
+                            
+                            drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+                        }
                     }                   
-                    
-                    console.log("hi");
                     
                     setColorsForVariablesWithArray(currentVariableSelection);
         
@@ -949,34 +969,15 @@ function OnMouseDown(e)
                 removeElementsByClassName("selectAll");
         
                 pairwiseComparisons = true;
+                
+                states.push({variables: currentVariableSelection, visualisation: currentVisualisationSelection, substate: "pairwise"});
         
                 var variableList = getSelectedVariables();
                 var canvas = d3.select("#plotCanvas");
                 
                 resetMeans();
     
-                drawButtonInSideBar("SELECT TWO MEANS TO COMPARE", "doPairwiseTest");
-                
-//                 canvas.append("rect")
-//                         .attr("x", canvasWidth/2 - buttonWidth/2)
-//                         .attr("y", 0)
-//                         .attr("width", buttonWidth)
-//                         .attr("height", buttonHeight)
-//                         .attr("rx", scaleForWindowSize(10) + "px")
-//                         .attr("ry", scaleForWindowSize(10) + "px")
-//                         .attr("fill", "url(#buttonFillNormal)")
-//                         .attr("filter", "url(#Bevel)")
-//                         .attr("stroke", "black")
-//                         .attr("id", "button")
-//                         .attr("class", "doPairwiseTest");
-//     
-//                 canvas.append("text")
-//                         .attr("x", canvasWidth/2)
-//                         .attr("y", buttonHeight/2 + yAxisTickTextOffset)
-//                         .attr("text-anchor", "middle")
-//                         .text("SELECT TWO MEANS TO COMPARE")
-//                         .attr("id", "text")
-//                         .attr("class", "doPairwiseTest"); 
+                drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");
         
                 d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
                 d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
