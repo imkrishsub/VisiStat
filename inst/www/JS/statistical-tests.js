@@ -402,6 +402,8 @@ function setDistribution(dependentVariable, level, normal)
                             //2 variables
                             var groups = getGroupsForColourBoxPlotData();
                             
+                            console.log("hi");
+                            
                             if(pairwiseComparisons)
                                 performPairwiseTTest("TRUE", "FALSE");
                             else
