@@ -684,7 +684,7 @@ function OnMouseDown(e)
                                     .attr("class", "effectSizeHelp");
                     }
                     
-                    if(d3.select("#homogeneity.assumptionsButtonFront").attr("display") == "inline")
+                    if(d3.select("#homogeneity.assumptionsButtonFront").attr("stroke") == "none")
                     {
                         var variancePlotWidth = plotWidth/2;
                         var variancePlotHeight = scaleForWindowSize(250);
