@@ -609,7 +609,7 @@ function OnMouseDown(e)
                 if(helpButton.attr("stroke") == "black")
                 {
                     help = true;
-                    helpButton.attr("fill", "url(#bannerFillSelected)")
+                    helpButton.attr("fill", "url(#buttonFillSelected)")
                                 .attr("filter", "none")
                                 .attr("stroke", "none");
                 
@@ -1463,6 +1463,19 @@ function OnMouseOver(e)
                 
                 helpText.text(desc["tukeyHSD"]);   
             }
+            
+            if(target.className.baseVal == "variableNameHolderFront")
+            {
+                setup(e, target);
+                var varName = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#" + varName + ".variableNameHolderBack").attr("stroke-width","2px");
+                d3.select("#" + varName + ".variableNameHolderFront").attr("cursor", "help");
+                
+                helpText.text(desc["variables"][varName]);                
+            }
         }
         else
         {
@@ -2132,6 +2145,14 @@ function OnMouseOut(e)
         {
             d3.select("#button.tukeyHSD").attr("stroke-width", "1px").attr("cursor", "pointer");
             d3.select("#text.tukeyHSD").attr("cursor", "pointer");
+        }
+        
+        if(target.className.baseVal == "variableNameHolderFront")
+        {
+            var varName = target.id;
+            
+            d3.select("#" + varName + ".variableNameHolderBack").attr("stroke-width","1px");
+            d3.select("#" + varName + ".variableNameHolderFront").attr("cursor", "pointer");
         }
         
     }

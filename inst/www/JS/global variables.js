@@ -148,7 +148,7 @@ desc["effect-size"]["eS"] = "Eta squared value describes the amount of variance 
 desc["effect-size"]["𝜏"] = "It is a measure of rank correlation, i.e., the similarity of the orderings of the data when ranked by each of the quantities. It is named after Maurice Kendall, who developed it in 1938.";
 desc["effect-size"]["RS"] = "R squared values describes the amount of variance accounted for in the sample. In case of simple linear regression, it is the square of the pearson's correlation coefficient r.";
 
-desc["assumptions"] = new Object();
+desc["assumptions"] = new Object(); 
 
 desc["assumptions"]["normality"] = "This assumption checks if the distributions of the group are normal distributions (i.e., if they follow a Gaussian distribution characteristic of a bell-curve).";
 desc["assumptions"]["homogeneity"] = "Homogeneity of variances means that the variances of the distributions are roughly the same.";
@@ -160,3 +160,12 @@ desc["compareMean"] = "Click on this to selects means of the distributions you w
 desc["compareNow"] = "Click on this to compare the means! Make sure at least 2 means are selected!";
 desc["tukeyHSD"] = "Click on this to perform a Tukey's HSD test. This pairwise-compares each level of the plot against every other level in the boxplot.";
 desc["pairwisePostHoc"] = "Click on this to select means of the two levels you want to perform a pairwise post-hoc test on.";
+
+desc["variables"] = new Object();
+
+desc["variables"]["participantID"] = "The ID of the participant";
+desc["variables"]["keyboardLayout"] = "The keyboard layout used by the participant (\"QWERTY\", \"DVORAK\", \"i10\")";
+desc["variables"]["gender"] = "The gender of the participant";
+desc["variables"]["typingSpeed"] = "The typing speed of the participant in Words Per Minute (WPM).";
+desc["variables"]["errors"] = "The number of errors made by the participant in a minute";
+desc["variables"]["userSatisfaction"] = "The rating given by the participant after using the keyboard layout.";
