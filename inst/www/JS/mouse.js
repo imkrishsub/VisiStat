@@ -1794,7 +1794,7 @@ function OnMouseOver(e)
                 var helpButton = d3.select(".helpButtonFront");
                 var helpButtonText = d3.select(".helpButtonText");
                 
-                if(currentState().substate = "base"
+//                 if(currentState().substate = "base"
             
                 helpButton.attr("cursor", "pointer");
                 helpButtonText.attr("cursor", "pointer");
