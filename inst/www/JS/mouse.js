@@ -626,17 +626,20 @@ function OnMouseDown(e)
                     var plotCanvas = d3.select("#plotCanvas");
                     var sideBar = d3.select("#sideBarCanvas");
                     
-                    plotCanvas.append("rect")
-                                .attr("x", canvasWidth/2 - plotWidth/2)
-                                .attr("y", canvasHeight/2 - plotHeight/2)
-                                .attr("width", plotWidth)
-                                .attr("height", plotHeight)
-                                .attr("rx", "10px")
-                                .attr("ry", "10px")
-                                .attr("fill", "white")
-                                .attr("stroke", "orange")
-                                .attr("opacity", "0.01")
-                                .attr("class", "plotHelp");  
+                    if(document.getElementById("#regressionLine") == null)
+                    {
+                        plotCanvas.append("rect")
+                                    .attr("x", canvasWidth/2 - plotWidth/2)
+                                    .attr("y", canvasHeight/2 - plotHeight/2)
+                                    .attr("width", plotWidth)
+                                    .attr("height", plotHeight)
+                                    .attr("rx", "10px")
+                                    .attr("ry", "10px")
+                                    .attr("fill", "white")
+                                    .attr("stroke", "orange")
+                                    .attr("opacity", "0.01")
+                                    .attr("class", "plotHelp");  
+                    }
                     
                     if(document.getElementsByClassName("significanceTest").length > 0)
                     {
