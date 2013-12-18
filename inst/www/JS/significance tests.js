@@ -886,7 +886,7 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                         console.log("TukeyHSD test for " + dependentVariable + " ~ " + independentVariable);
                         
                         localStorage.setItem((label + "tkMin"), Array.min(output.lower));
-                        localStorage.setItem((label + "tkMax"), Array.min(output.upper));
+                        localStorage.setItem((label + "tkMax"), Array.max(output.upper));
                         
                            //get levels of the independent variable
                         var levels = variables[independentVariable]["dataset"].unique().slice();
