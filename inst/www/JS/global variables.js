@@ -165,7 +165,7 @@ desc["compareMean"] = "Click on this to selects means of the distributions you w
 desc["compareNow"] = "Click on this to compare the means! Make sure at least 2 means are selected!";
 desc["tukeyHSD"] = "Click on this to perform a Tukey's HSD test. This pairwise-compares each level of the plot against every other level in the boxplot.";
 desc["pairwisePostHoc"] = "Click on this to select means of the two levels you want to perform a pairwise post-hoc test on.";
-desc["regression"] = "Click on this to construct a linear regression model (predicting a variable from other variable(s)).";
+desc["regression"] = "Click on this to construct a regression model (predicting a variable from other variable(s)).";
 
 desc["variables"] = new Object();
 
