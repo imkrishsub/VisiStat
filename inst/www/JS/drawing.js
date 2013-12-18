@@ -241,8 +241,8 @@ function drawResetButton()
     sideBar.append("image")
             .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
             .attr("y", helpButtonOffset/2)
-            .attr("height", helpButtonHeight)
-            .attr("width", helpButtonWidth)
+            .attr("height", helpButtonHeight/1.5)
+            .attr("width", helpButtonWidth/1.5)
             .attr("xlink:href", "images/reset.png")
             .attr("class", "backButtonText");
     
