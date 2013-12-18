@@ -739,8 +739,6 @@ function OnMouseDown(e)
                 
                 var rButton = d3.select(".backButtonBack");
                 
-                console.log(rButton.attr("stroke"));
-                
                 if(currentVisualisationSelection == "Boxplot" && rButton.attr("stroke") == "black")
                 {
                     plotVisualisation();
