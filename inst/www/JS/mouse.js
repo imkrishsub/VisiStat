@@ -747,9 +747,9 @@ function OnMouseDown(e)
                     
                     pairwiseComparisons = false;
                 
-                    rButton.attr("fill", "grey")
-                        .attr("filter", "none")
-                        .attr("stroke", "none");
+                    d3.select(".backButtonBack").attr("fill", "grey")
+                                                .attr("filter", "none")
+                                                .attr("stroke", "none");
 
                     var canvas = d3.select("#plotCanvas");
                     var variableList = getSelectedVariables();
