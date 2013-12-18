@@ -684,14 +684,14 @@ function drawComputingResultsImage()
             .attr("text-anchor", "middle")
             .attr("id", "computingResultsImage");
     
-    T.transition().duration(500).attr("opacity", "0.2");
-    T.transition().delay(500).duration(500).attr("opacity", "1.0");
+    T.transition().duration(750).attr("opacity", "0.2");
+    T.transition().delay(750).duration(750).attr("opacity", "1.0");
     
     setInterval(function()
     {
-        T.transition().duration(500).attr("opacity", "0.2");
-        T.transition().delay(500).duration(500).attr("opacity", "1.0");
-    }, 1000);
+        T.transition().duration(750).attr("opacity", "0.2");
+        T.transition().delay(750).duration(750).attr("opacity", "1.0");
+    }, 1500);
 }
 
 function setOpacityForElementsWithClassNames(classNames, opacity)
