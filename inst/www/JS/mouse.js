@@ -626,7 +626,7 @@ function OnMouseDown(e)
                     var plotCanvas = d3.select("#plotCanvas");
                     var sideBar = d3.select("#sideBarCanvas");
                     
-                    if(document.getElementById("#regressionLine") == null)
+                    if(document.getElementById("regressionLine") == null)
                     {
                         plotCanvas.append("rect")
                                     .attr("x", canvasWidth/2 - plotWidth/2)
