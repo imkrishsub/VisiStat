@@ -1394,9 +1394,10 @@ function displaySimpleRegressionResults()
             .attr("x", canvasWidth/2)
             .attr("y", canvasHeight + 2*axesOffset)
             .attr("text-anchor", "middle")
-            .attr("font-size", fontSizeSignificanceTestResults + "px")
+            .attr("font-size", scaleForWindowSize(24) + "px")
             .attr("fill", "orange")
             .text(testResults["equation"])
+            .attr("id", "equation")
             .attr("class", "significanceTest");
     
     //make div tag at the bottom of the page

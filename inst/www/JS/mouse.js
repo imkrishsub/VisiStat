@@ -1368,7 +1368,7 @@ function OnMouseOver(e)
                 var helpText = d3.select("#descriptionLabel");
                 
                 d3.select(".effectSizeHelp").attr("opacity","0.3").attr("cursor", "help");
-                
+                console.log(testResults["effect-size-type"]);
                 helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
             }
             
@@ -1459,6 +1459,30 @@ function OnMouseOver(e)
                 d3.select("#text.tukeyHSD").attr("cursor", "help");
                 
                 helpText.text(desc["tukeyHSD"]);   
+            }
+            
+            if(target.id == "regressionLine")
+            {
+                setup(e, target);
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.selectAll("#regressionLine").attr("stroke-width", "12px");
+                
+                helpText.text(desc["regressionLine"]);
+            }
+            
+            if(target.className.baseVal == "interactionEffect")
+            {
+                setup(e, target);
+                var assumptionType = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#button.interactionEffect").attr("stroke-width","2px").attr("cursor", "help");
+                d3.select("#text.interactionEffect").attr("cursor", "help");
+                
+                helpText.text(desc["interactionEffect"]);   
             }
             
             if(target.className.baseVal == "variableNameHolderFront")
@@ -2144,12 +2168,23 @@ function OnMouseOut(e)
             d3.select("#text.tukeyHSD").attr("cursor", "pointer");
         }
         
+        if(target.className.baseVal == "interactionEffect")
+        {
+            d3.select("#button.interactionEffect").attr("stroke-width", "1px").attr("cursor", "pointer");
+            d3.select("#text.interactionEffect").attr("cursor", "pointer");
+        }
+        
         if(target.className.baseVal == "variableNameHolderFront")
         {
             var varName = target.id;
             
             d3.select("#" + varName + ".variableNameHolderBack").attr("stroke-width","1px");
             d3.select("#" + varName + ".variableNameHolderFront").attr("cursor", "pointer");
+        }
+        
+        if(target.id == "regressionLine")
+        {
+            d3.selectAll("#regressionLine").attr("stroke-width", "10px");
         }
         
     }
