@@ -1475,6 +1475,17 @@ function OnMouseOver(e)
                 helpText.text(desc["regressionLine"]);
             }
             
+            if(target.id == "equation")
+            {
+                setup(e, target);
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.selectAll("#equation").attr("fill", "lightorange");
+                
+                helpText.text(desc["equation"]);
+            }
+            
             if(target.className.baseVal == "interactionEffect")
             {
                 setup(e, target);
@@ -2188,6 +2199,11 @@ function OnMouseOut(e)
         if(target.id == "regressionLine")
         {
             d3.selectAll("#regressionLine").attr("stroke-width", "10px");
+        }
+        
+        if(target.id == "equation")
+        {
+            d3.selectAll("#equation").attr("fill", "orange");
         }
         
     }

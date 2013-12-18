@@ -107,6 +107,8 @@ desc["Boxplot"] = "A box plot or boxplot is a convenient way of graphically depi
 desc["Scatterplot"] = "A scatter plot, scatterplot, or scattergraph is a type of mathematical diagram using Cartesian coordinates to display values for two variables for a set of data. The data is displayed as a collection of points, each having the value of one variable determining the position on the horizontal axis and the value of the other variable determining the position on the vertical axis. Regression lines are models that are drawn from the regression model.";
 desc["Scatterplot-matrix"] = "Given a set of variables X1, X2, ... , Xk, the scatterplot matrix contains all the pairwise scatter plots of the variables on a single page in a matrix format. That is, if there are k variables, the scatterplot matrix will have k rows and k columns and the ith row and jth column of this matrix is a plot of Xi versus Xj. Regression lines are models that are drawn from the regression model.";
 
+desc["regressionLine"] = "A regression line is a model that is fit to the given data so that the sum of squares of errors (distance of points from regression line) is minimal.";
+desc["equation"] = "An equation represents the regression model that is fit to the data. This can be used to predict the value of the outcome variable from the explanatory/causal variables.";
 desc["p-value"] = "p-value is the probability of obtaining a test statistic at least as extreme as the one that was actually observed, assuming that the null hypothesis is true. A researcher will often \"reject the null hypothesis\" when the p-value turns out to be less than a certain significance level, often 0.05";
 
 desc["parameter"] = new Object();
