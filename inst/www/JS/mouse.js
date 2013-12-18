@@ -45,6 +45,8 @@ function OnMouseDown(e)
                 restrictVisualisationSelection();      
                 plotVisualisation(); //checks which plot is selected and draws that plot
                 setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
+                
+                states = [];
 //                 
 //                 var subState = null;
 //                 
@@ -62,6 +64,8 @@ function OnMouseDown(e)
                 currentVisualisationSelection = target.id;        
                 setColorsForVisualisations();        
                 plotVisualisation();
+                
+                states = [];
 //                 
 //                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});               
 //                 
