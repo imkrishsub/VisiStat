@@ -240,8 +240,8 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
                 .attr("y1", y1)
                 .attr("x2", x2)
                 .attr("y2", y2)
-                .attr("stroke", "magenta")
-                .attr("stroke-width", "5px")
+                .attr("stroke", "#627bf4")
+                .attr("stroke-width", "10px")
                 .attr("id", "regressionLine");
     }
     
