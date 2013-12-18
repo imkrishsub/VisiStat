@@ -142,6 +142,9 @@ desc["method"]["bC"] = "point biserial correlation coefficient (rpb) is a correl
 desc["method"]["ptT"] = "Pairwise t-test is a parametric post-hoc comparison test. Typically, pairwise tests use some method like Bonferroni or Holms corrections to adjust the p-value and thereby keep the family-wise type I error at the required significance level.";
 desc["method"]["pwT"] = "Pairwise Wilcoxon-test is the non-parametric alternative of pairwise t-test used in post-hoc comparisons. Typically, pairwise tests use some method like Bonferroni or Holms corrections to adjust the p-value and thereby keep the family-wise type I error at the required significance level.";
 
+desc["method"]["linR"] = "In linear regression, the outcome variable is predicted from one causal variable. The user must know if the causality makes sense.";
+desc["method"]["mulR"] = "In multiple regression, the outcome variable is predicted from more than one causal variable. The user must know if the causality makes sense.";
+
 desc["effect-size"] = new Object();
 
 desc["effect-size"]["d"] = "Cohen's d is an effect size. It indicates the difference between the means of two distributions in terms of the pooled standard deviation. 0.2, 0.5, and 0.8 are considered as general guidelines for small, medium, and large effect sizes respectively.";

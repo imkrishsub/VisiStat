@@ -149,6 +149,7 @@ function getLinearModelCoefficients(outcome, explanatory)
                         explanatory: variables[explanatory]["dataset"]
                       }, function(output) {          
                   
+                    testResults["test-type"] = "linR";
                     if(isNaN(variables[explanatory]["dataset"][0]))
                     {
                         //we have a categorical variable
@@ -251,7 +252,8 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
                         explanatoryVariables: explanatoryVariables,
                         dataset: pathToFile                
                       }, function(output) {                                                   
-                  
+                    
+                    testResults["test-type"] = "mulR";
                     console.log("Performing Multiple Regression for " + outcomeVariable + " ~ [" + explanatoryVariables + "]");
                   
                     testResults["outcomeVariable"] = outcomeVariable;
