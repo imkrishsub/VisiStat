@@ -676,13 +676,22 @@ function drawComputingResultsImage()
 {
     var sideBar = d3.select("#sideBarCanvas");
     
-    sideBar.append("image")
-            .attr("x", sideBarWidth/2 - computingResultsImageSize/2)
+    var T = sideBar.append("text")
+            .attr("x", sideBarWidth/2)
             .attr("y", canvasHeight/2 - computingResultsImageSize/2)
-            .attr("xlink:href", "images/checkingAssumptions.gif")
-            .attr("height", computingResultsImageSize)
-            .attr("width", computingResultsImageSize)
+            .text("PICKING THE APPROPRIATE TEST...");
+            .attr("font-size", scaleForWindowSize(24))
+            .attr("text-anchor", "middle")
             .attr("id", "computingResultsImage");
+    
+    T.transition().duration(500).attr("opacity", "0.2");
+    T.transition().delay(500).duration(500).attr("opacity", "1.0");
+    
+    setInterval(function()
+    {
+        T.transition().duration(500).attr("opacity", "0.2");
+        T.transition().delay(500).duration(500).attr("opacity", "1.0");
+    }, 1000);
 }
 
 function setOpacityForElementsWithClassNames(classNames, opacity)
