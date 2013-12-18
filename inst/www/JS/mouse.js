@@ -310,7 +310,9 @@ function OnMouseDown(e)
             {
                 d3.selectAll(".compareNow").attr("cursor", "pointer");
                     
-                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: "significanceTest"});
+                states.push({visualisation: currentVisualisationSelection, substate: "significanceTest"});
+                
+                console.dir(states);
                 
                 //get selected means
                 var means = document.getElementsByClassName("means");
@@ -948,6 +950,9 @@ function OnMouseDown(e)
                 
                 var variableList = getSelectedVariables();
                 
+                states.push({variables: currentVariableSelection, substate: "other"});
+                console.dir(states);
+                
                 findEffect(variableList["dependent"][0], variableList["independent"]);
             }
     
@@ -979,7 +984,8 @@ function OnMouseDown(e)
         
                 pairwiseComparisons = true;
                 
-                states.push({variables: currentVariableSelection, visualisation: currentVisualisationSelection, substate: "pairwise"});
+                states.push({variables: currentVariableSelection, substate: "pairwise"});
+                console.dir(states);
         
                 var variableList = getSelectedVariables();
                 var canvas = d3.select("#plotCanvas");
@@ -998,6 +1004,9 @@ function OnMouseDown(e)
             {
                 setup(e, target);        
                 var variableList = sort(currentVariableSelection);
+                
+                states.push({variables: currentVariableSelection, substate: "other"});
+                console.dir(states);
         
                 if(variableList["independent"].length == 1)
                 {
