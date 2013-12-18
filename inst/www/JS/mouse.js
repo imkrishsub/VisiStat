@@ -1361,6 +1361,7 @@ function OnMouseOver(e)
                 var helpText = d3.select("#descriptionLabel");
                 
                 d3.select(".methodHelp").attr("opacity","0.3").attr("cursor", "help");
+                console.log(testResults["test-type"]);                
                 
                 helpText.text(desc["method"][testResults["test-type"]]);
             }
@@ -1371,7 +1372,6 @@ function OnMouseOver(e)
                 var helpText = d3.select("#descriptionLabel");
                 
                 d3.select(".effectSizeHelp").attr("opacity","0.3").attr("cursor", "help");
-                console.log(testResults["effect-size-type"]);
                 helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
             }
             
@@ -1470,7 +1470,7 @@ function OnMouseOver(e)
                 
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.selectAll("#regressionLine").attr("stroke-width", "12px");
+                d3.selectAll("#regressionLine").attr("stroke-width", "12px").attr("cursor", "help");
                 
                 helpText.text(desc["regressionLine"]);
             }
@@ -1481,7 +1481,7 @@ function OnMouseOver(e)
                 
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.selectAll("#equation").attr("fill", "lightorange");
+                d3.selectAll("#equation").attr("fill", "lightorange").attr("cursor", "help");
                 
                 helpText.text(desc["equation"]);
             }
@@ -2198,12 +2198,12 @@ function OnMouseOut(e)
         
         if(target.id == "regressionLine")
         {
-            d3.selectAll("#regressionLine").attr("stroke-width", "10px");
+            d3.selectAll("#regressionLine").attr("stroke-width", "10px").attr("cursor", "default");
         }
         
         if(target.id == "equation")
         {
-            d3.selectAll("#equation").attr("fill", "orange");
+            d3.selectAll("#equation").attr("fill", "orange").attr("cursor", "default");
         }
         
     }
