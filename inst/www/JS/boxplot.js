@@ -156,10 +156,10 @@ function makeBoxplot()
     if(altBoxPlot)
     {
         canvas.append("text")
-                .attr("x", canvasWidth/2 - plotWidth/2 - 1.5*labelOffset)
+                .attr("x", canvasWidth/2 - plotWidth/2 - 1.25*labelOffset)
                 .attr("y", (TOP + BOTTOM)/2)
                 .attr("text-anchor", "middle")
-                .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
+                .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.25*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
                 .attr("font-size", fontSizeLabels + "px")
                 .text(variableList["dependent"][0])
                 .attr("fill", "black");
