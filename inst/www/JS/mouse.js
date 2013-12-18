@@ -1168,6 +1168,109 @@ function OnMouseDown(e)
                     drawEffectSize(parseFloat(testResults["effect-size"][index]));
                 }
             }
+            
+            else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "stateForNavigation")
+            {
+                setup(e, target);
+                
+                d3.selectAll(".stateForNavigation").attr("fill", "url(#buttonFillNormal").attr("filter", "url(#Bevel)").attr("stroke", "black");
+                d3.selectAll(".stateForNavigationText").attr("fill", "black");                
+                
+                var button = d3.select("#" + target.id + ".stateForNavigation");
+                var buttonText = d3.select("#" + target.id + ".stateForNavigationText");
+                
+                if(button.attr("stroke") == "black")
+                {
+                    button.attr("fill", "url(#buttonFillSelected)")
+                            .attr("filter", "none")
+                            .attr("stroke", "none");
+                    
+                    buttonText.attr("fill", "white");
+                    
+                    switch(currentVisualisationSelection)
+                    {
+                        case "Boxplot":
+                                        {
+                                            switch(target.id)
+                                            {
+                                                case "significance test":
+                                                                        {
+                                                                            var canvas = d3.select("#plotCanvas");
+                                                                            var variableList = getSelectedVariables();
+        
+                                                                            var inText = "COMPARE NOW";
+    
+                                                                            drawButtonInSideBar(inText, "compareNow");
+            
+                                                                            var availableWidth = canvasWidth;
+            
+                                                                            canvas.append("rect")
+                                                                                    .attr("x", availableWidth/3 - selectionButtonWidth/2)
+                                                                                    .attr("y", selectionButtonOffset)
+                                                                                    .attr("height", selectionButtonHeight)
+                                                                                    .attr("width", selectionButtonWidth)
+                                                                                    .attr("rx", scaleForWindowSize(10) + "px")
+                                                                                    .attr("ry", scaleForWindowSize(10) + "px")
+                                                                                    .attr("fill", "url(#buttonFillSelected)")
+                                                                                    .attr("filter", "none")
+                                                                                    .attr("stroke", "none")
+                                                                                    .attr("id", "rect")
+                                                                                    .attr("class", "selectNone");
+                    
+                                                                            canvas.append("text")
+                                                                                    .attr("x", availableWidth/3)
+                                                                                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
+                                                                                    .attr("fill", "white")
+                                                                                    .attr("text-anchor", "middle")
+                                                                                    .attr("font-size", fontSizeButtonLabel + "px")
+                                                                                    .text("SELECT NONE")
+                                                                                    .attr("id", "text")
+                                                                                    .attr("class", "selectNone");
+            
+                                                                            canvas.append("rect")
+                                                                                    .attr("x", 2*availableWidth/3 - selectionButtonWidth/2)
+                                                                                    .attr("y", selectionButtonOffset)
+                                                                                    .attr("height", selectionButtonHeight)
+                                                                                    .attr("width", selectionButtonWidth)
+                                                                                    .attr("rx", scaleForWindowSize(10) + "px")
+                                                                                    .attr("ry", scaleForWindowSize(10) + "px")
+                                                                                    .attr("fill", "url(#buttonFillNormal)")
+                                                                                    .attr("filter", "url(#Bevel)")
+                                                                                    .attr("stroke", "black")
+                                                                                    .attr("id", "rect")
+                                                                                    .attr("class", "selectAll");
+                    
+                                                                            canvas.append("text")
+                                                                                    .attr("x", 2*availableWidth/3)
+                                                                                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
+                                                                                    .attr("fill", "black")
+                                                                                    .attr("text-anchor", "middle")
+                                                                                    .attr("font-size", fontSizeButtonLabel + "px")
+                                                                                    .text("SELECT ALL")
+                                                                                    .attr("id", "text")
+                                                                                    .attr("class", "selectAll");
+        
+                                                                            freezeMouseEvents = true;
+                                                                            d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
+                                                                            d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
+            
+                                                                            setTimeout(function()
+                                                                            {
+                                                                                freezeMouseEvents = false;
+                                                                            }, 500);
+        
+                                                                            removeElementsByClassName("compareMean");
+                                                                            
+                                                                            break;
+                                                                        }
+                                            }
+                                            
+                                            break;                                            
+                                        }
+                        
+                    }
+                }
+            }
     
             else
             {
@@ -1954,6 +2057,25 @@ function OnMouseOver(e)
                 
                 if(d3.select("#" + target.id + ".effectButtonBack").attr("stroke") == "black")
                     effectButton.attr("cursor", "pointer");
+            }
+            
+            else if((target.className.baseVal == "stateForNavigation") || (target.className.baseVal == "stateForNavigationText"))
+            {
+                setup(e, target);
+                
+                var button = d3.select("#" + target.id + ".stateForNavigation");
+                var buttonText = d3.select("#" + target.id + ".stateForNavigationText");
+                
+                if(button.attr("stroke") == "black")
+                {
+                    button.attr("cursor", "pointer");
+                    buttonText.attr("cursor", "pointer");
+                }
+                else
+                {
+                    button.attr("cursor", "default");
+                    buttonText.attr("cursor", "pointer");
+                }
             }
             
             else if(target.id == "effectSizeFront")

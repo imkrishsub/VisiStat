@@ -1528,7 +1528,7 @@ function drawNavigator(STATES)
         
         canvas.append("text")
                 .attr("x", x + stateWidth/2)
-                .attr("y", navigatorHeight/2 - scaleForWindowSize(10))
+                .attr("y", navigatorHeight/2 - scaleForWindowSize(5))
                 .attr("fill", "black")
                 .attr("text-anchor", "middle")
                 .text(STATES[i])

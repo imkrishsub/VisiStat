@@ -98,6 +98,8 @@ var loadingDataAnimation;
 //miscellaneous
 var factorials = [0, 1, 2, 6, 24, 120];
 
+var STATES = new Object();
+
 //settings
 var desc = new Object();
 desc["Histogram"] = "A histogram is a graphical representation of the distribution of data. It is an estimate of the probability distribution of a continuous variable and was first introduced by Karl Pearson. A histogram is a representation of tabulated frequencies, shown as adjacent rectangles, erected over discrete intervals (bins), with an area equal to the frequency of the observations in the interval. The height of a rectangle is also equal to the frequency density of the interval, i.e., the frequency divided by the width of the interval. The total area of the histogram is equal to the number of data.";
