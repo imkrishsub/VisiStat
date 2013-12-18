@@ -233,8 +233,8 @@ function drawResetButton()
             .attr("ry", "15px")
             .attr("height", helpButtonHeight)
             .attr("width", helpButtonWidth)
-            .attr("fill", "url(#bannerFillNormal)")
-            .attr("filter", "url(#Bevel)")
+            .attr("fill", "grey")
+            .attr("filter", "none")
             .attr("stroke", "black")
             .attr("class", "backButtonBack");
     
