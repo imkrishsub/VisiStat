@@ -6,6 +6,8 @@ function compareMeans()
     removeElementsByClassName("selectAll");
     removeElementsByClassName("selectNone");
     
+    drawComputingResultsImage();
+    
     switch(document.getElementsByClassName("completeLines").length)
     {
 
@@ -350,7 +352,6 @@ function setDistribution(dependentVariable, level, normal)
                     //do test
                     if(variableList["independent-levels"].length == 2)
                     {
-                        drawComputingResultsImage()
                         //2 variables
                         if(pairwiseComparisons)
                             performPairwiseTTest("TRUE", "TRUE");
@@ -359,7 +360,6 @@ function setDistribution(dependentVariable, level, normal)
                     }
                     else
                     {
-                        drawComputingResultsImage()
                         //> 2 variables
                         performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
                     }
@@ -373,7 +373,6 @@ function setDistribution(dependentVariable, level, normal)
                     {
                         if(variableList["independent-levels"].length == 2)
                         {
-                            drawComputingResultsImage()
                             //2 variables
                             if(pairwiseComparisons)
                                 performPairwiseTTest("TRUE", "FALSE");
@@ -382,7 +381,6 @@ function setDistribution(dependentVariable, level, normal)
                         }
                         else
                         {
-                            drawComputingResultsImage()
                             //> 2 variables
                             performOneWayANOVA(variableList["dependent"][0], variableList["independent"][0]);
                         }                    
@@ -404,7 +402,6 @@ function setDistribution(dependentVariable, level, normal)
                     {
                         if(variableList["independent-levels"].length == 2)
                         {
-                            drawComputingResultsImage()
                             //2 variables
                             var groups = getGroupsForColourBoxPlotData();
                             
@@ -423,7 +420,7 @@ function setDistribution(dependentVariable, level, normal)
                     {
                         //2 variables
                         var groups = getGroupsForColourBoxPlotData();
-                        drawComputingResultsImage()
+                        
                         if(pairwiseComparisons)
                             performPairwiseTTest("TRUE", "FALSE");
                         else
@@ -485,7 +482,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             
             if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
             {
-                drawComputingResultsImage()
                 //between-groups design
                 if(pairwiseComparisons)
                 {
@@ -496,7 +492,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             }
             else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
             {
-                drawComputingResultsImage()
                 performNormalityTests();
             }
         }

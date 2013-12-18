@@ -565,7 +565,6 @@ function findTransformForNormality(dependentVariable, independentVariable)
 //         if(output.type == "none")
         {
             console.log("Transformation to normality is not possible!");
-            drawComputingResultsImage()
             if(variableList["independent"].length == 1)
             {
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
@@ -661,9 +660,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                         d3.select("#homogeneity.loading").attr("display", "none"); 
                     
                         d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
-                    
-                        drawComputingResultsImage();
-                    
+                                        
                         if(variableList["independent"].length == 1)
                         {
                             if(experimentalDesign == "between-groups")
@@ -742,7 +739,6 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
         
             d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
         
-            drawComputingResultsImage();
         
             if(variableList["independent"].length == 1)
             {
