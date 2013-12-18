@@ -1511,7 +1511,7 @@ function drawNavigator(STATES)
     var arrowHeadLength = scaleForWindowSize(15);
     
     var canvas = d3.select("#plotCanvas");
-    var stateWidth = canvasWidth/(STATES.length - 1);
+    var stateWidth = (canvasWidth-sideBarWidth)/(STATES.length - 1);
     
     for(i=0; i<STATES.length; i++)
     {
@@ -1519,8 +1519,9 @@ function drawNavigator(STATES)
         var y = 0;
         
         canvas.append("path")
-                .attr("d", "M " + x + " " + y + " L " + (x + stateWidth) + " " + y + " L " + (x + stateWidth + arrowHeadLength) + " " + (y + navigatorHeight/2) + " L " + (x + stateWidth) + " " + (navigatorHeight) + " L " + (x) + " " + (navigatorHeight) + " L " + (x) + " " + y + " z")
+                .attr("d", "M " + (x + arrowHeadLength) + " " + y + " L " + (x + stateWidth) + " " + y + " L " + (x + stateWidth + arrowHeadLength) + " " + (y + navigatorHeight/2) + " L " + (x + stateWidth) + " " + (y + navigatorHeight) + " L " + (x + arrowHeadLength) + " " + (y + navigatorHeight) + " L " + (x) + " " + (y + navigatorHeight/2) + " L " + (x + arrowHeadLength) + " " + (y) + " z")
                 .attr("stroke", "black")
+                .attr("fill", "none")
                 .attr("id", STATES[i])
                 .attr("class", "stateForNavigation");
     }
