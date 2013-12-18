@@ -1519,11 +1519,19 @@ function drawNavigator(STATES)
         var y = 0;
         
         canvas.append("path")
-                .attr("d", "M " + (x - arrowHeadLength) + " " + y + " L " + (x + stateWidth) + " " + y + " L " + (x + stateWidth + arrowHeadLength) + " " + (y + navigatorHeight/2) + " L " + (x + stateWidth) + " " + (y + navigatorHeight) + " L " + (x - arrowHeadLength) + " " + (y + navigatorHeight) + " L " + (x) + " " + (y + navigatorHeight/2) + " L " + (x - arrowHeadLength) + " " + (y) + " z")
+                .attr("d", "M " + (x) + " " + y + " L " + (x + stateWidth) + " " + y + " L " + (x + stateWidth + arrowHeadLength) + " " + (y + navigatorHeight/2) + " L " + (x + stateWidth) + " " + (y + navigatorHeight) + " L " + (x) + " " + (y + navigatorHeight) + " L " + (x + arrowHeadLength) + " " + (y + navigatorHeight/2) + " L " + (x) + " " + (y) + " z")
                 .attr("stroke", "black")
                 .attr("fill", "none")
                 .attr("id", STATES[i])
                 .attr("class", "stateForNavigation");
+        
+        canvas.append("text")
+                .attr("x", x + stateWidth/2)
+                .attr("y", navigatorHeight/2 - scaleForWindowSize(10))
+                .attr("fill", "black")
+                .text(STATES[i])
+                .attr("id", STATES[i])
+                .attr("class", "stateForNavigationText");
     }
 }
 
