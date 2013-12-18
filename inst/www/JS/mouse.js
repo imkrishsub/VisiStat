@@ -1173,7 +1173,7 @@ function OnMouseDown(e)
             {
                 setup(e, target);
                 
-                d3.selectAll(".stateForNavigation").attr("fill", "url(#buttonFillNormal").attr("filter", "url(#Bevel)").attr("stroke", "black");
+                d3.selectAll(".stateForNavigation").attr("fill", "url(#buttonFillNormal)").attr("filter", "url(#Bevel)").attr("stroke", "black");
                 d3.selectAll(".stateForNavigationText").attr("fill", "black");                
                 
                 var button = d3.select("#" + target.id + ".stateForNavigation");
