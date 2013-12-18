@@ -720,7 +720,6 @@ function OnMouseDown(e)
                     states.pop();
                     var state = states[states.length - 1];
                     
-                    currentVariableSelection = (state.variables).slice();
                     currentVisualisationSelection = state.visualisation;
                     
                     console.log(state);
