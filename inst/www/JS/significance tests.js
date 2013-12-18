@@ -885,8 +885,9 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
 
                         console.log("TukeyHSD test for " + dependentVariable + " ~ " + independentVariable);
                         
-                        localStorage.tukeyResultsMin = Array.min(output.lower);
-                        localStorage.tukeyResultsMax = Array.max(output.upper);
+                        localStorage.setItem((label + "tkMin"), Array.min(output.lower));
+                        localStorage.setItem((label + "tkMax"), Array.min(output.upper));
+                        
                            //get levels of the independent variable
                         var levels = variables[independentVariable]["dataset"].unique().slice();
                         //sort it
@@ -916,9 +917,10 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                                     tukeyResults[levels[i]][levels[j]]["p"] = output.adjustedP[index++];
                                 }
                             }
-                        }
+                        }                        
                         
                         localStorage.setObject(label, tukeyResults);
+                    
                     
                         resetSVGCanvas();
                         drawFullScreenButton();
