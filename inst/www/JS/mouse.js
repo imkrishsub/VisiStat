@@ -337,6 +337,7 @@ function OnMouseDown(e)
         
                 pairwiseComparisons = false;
                 
+                states.push({visualisation: currentVisualisationSelection, substate: "base"});
                 states.push({visualisation: currentVisualisationSelection, substate: "meanSelection"});
                 
                 console.dir(states);
