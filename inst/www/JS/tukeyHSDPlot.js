@@ -122,7 +122,8 @@ function drawTukeyHSDPlot()
             {                            
                 var x1, y1, x2, y2;
                 
-                x1 = x2 = LEFT + (index)*xStep;
+                x1 = LEFT + (index)*xStep;
+                x2 = LEFT + (index)*xStep;
                 y1 = BOTTOM - getValue1(tukeyResults[levels[i]][levels[j]]["lower"], min, max)*plotHeight;        
                 y2 = BOTTOM - getValue1(tukeyResults[levels[i]][levels[j]]["upper"], min, max)*plotHeight;        
                 
