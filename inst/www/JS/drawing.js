@@ -1453,6 +1453,7 @@ function displayMultipleRegressionResults()
             .attr("font-size", fontSizeSignificanceTestResults + "px")
             .attr("fill", "orange")
             .text(testResults["equation"])
+            .attr("id", "equation")
             .attr("class", "significanceTest"); 
     
     //make div tag at the bottom of the page
