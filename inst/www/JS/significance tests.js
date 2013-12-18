@@ -254,8 +254,6 @@ function performWilcoxonTest(groupA, groupB)
     
     var label = "wilcoxon(" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1] + ")";
     
-    console.log("test");
-    
     if(localStorage.getObject(label) == null)
     {
         // Get variable names and their data type
@@ -276,7 +274,7 @@ function performWilcoxonTest(groupA, groupB)
                     testResults["effect-size-type"] = "r";
                     testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
                     
-                    localStorage.setObject(value, testResults);
+                    localStorage.setObject(label, testResults);
                       
                     logResult();                  
                   
