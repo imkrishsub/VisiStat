@@ -613,15 +613,7 @@ function OnMouseDown(e)
                                 .attr("stroke", "none");
                 
                     helpButtonText.attr("fill", "white");
-                
-//                     var index = d3.select("body").append("div");                
-//                     index.attr("id", "indexPanel")
-//                          .attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + canvasHeight + "px");
-//                 
-//                     index.append("H1")
-//                             .text("HELP")
-//                             .attr("id", "helpTitle");
-                
+            
                     var description = d3.select("body").append("div");                
                     description.attr("id", "descriptionPanel")
                          .attr("style", "width: " + width + "px; height: " + (height - canvasHeight) + "px; top: " + canvasHeight + "px;");
@@ -629,7 +621,6 @@ function OnMouseDown(e)
                     description.append("label")
                                 .attr("id", "descriptionLabel")
                                 .text("Hover over a visible element to get help");
-                    
                     
                     //plotCanvas
                     var plotCanvas = d3.select("#plotCanvas");
@@ -646,6 +637,8 @@ function OnMouseDown(e)
                                 .attr("stroke", "orange")
                                 .attr("opacity", "0.01")
                                 .attr("class", "plotHelp");   
+                        
+                    console.log(document.getElementsByClassName("significanceTest").length);
                     
                     if(document.getElementsByClassName("significanceTest").length > 0)
                     {
