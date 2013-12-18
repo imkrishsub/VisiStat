@@ -121,7 +121,7 @@ function resetSVGCanvas()
 //                     .attr("xlink:href", "images/leather.png");
     
     drawHelpButton();
-    drawBackButton();
+    drawResetButton();
 }
 
 function drawFullScreenButton()
@@ -203,6 +203,48 @@ function drawBackButton()
             .attr("text-anchor", "middle")
             .attr("fill", "white")
             .text("<")
+            .attr("class", "backButtonText");
+    
+    sideBar.append("rect")
+            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
+            .attr("y", helpButtonOffset/2)//canvasHeight - helpButtonHeight - helpButtonOffset)
+            .attr("rx", "15px")
+            .attr("ry", "15px")
+            .attr("height", helpButtonHeight)
+            .attr("width", helpButtonWidth)
+            .attr("opacity", "0.1")
+            .attr("class", "backButtonFront");
+}
+
+function drawResetButton()
+{
+    var sideBar = d3.select("#sideBarCanvas");
+    var helpButtonHeight = scaleForWindowSize(50);
+    var helpButtonWidth = scaleForWindowSize(50);
+    
+    var helpButtonOffset = assumptionImageSize;
+    
+    var offset = 2;
+    
+    sideBar.append("rect")
+            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
+            .attr("y", helpButtonOffset/2)//canvasHeight - helpButtonHeight - helpButtonOffset)
+            .attr("rx", "15px")
+            .attr("ry", "15px")
+            .attr("height", helpButtonHeight)
+            .attr("width", helpButtonWidth)
+            .attr("fill", "url(#bannerFillNormal)")
+            .attr("filter", "url(#Bevel)")
+            .attr("stroke", "black")
+            .attr("class", "backButtonBack");
+    
+    sideBar.append("text")
+            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset) + helpButtonWidth/2)
+            .attr("y", helpButtonOffset/2 + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
+            .attr("font-size", scaleForWindowSize(32))
+            .attr("text-anchor", "middle")
+            .attr("fill", "white")
+            .text("_|")
             .attr("class", "backButtonText");
     
     sideBar.append("rect")

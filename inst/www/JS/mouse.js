@@ -717,155 +717,233 @@ function OnMouseDown(e)
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "backButtonFront")
             {
                 setup(e, target);
-            
-                var backButton = d3.select(".backButtonBack");
-                var backButtonText = d3.select(".backButtonText");
-            
-                if(backButton.attr("stroke") == "black")
+                
+                if(currentVisualisationSelection == "Boxplot")
                 {
-                    if(states[states.length - 1].substate == "other")
-                    {                        
-                        plotVisualisation(); //checks which plot is selected and draws that plot
-                        setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
-                    }
+                    plotVisualisation();
                     
-                    states.pop();
-                    var state = states[states.length - 1];
-                    
-                    currentVisualisationSelection = state.visualisation;
-                    
-                    console.log(state);
-                    
+                    pairwiseComparisons = false;
+                
+                    states.push({visualisation: currentVisualisationSelection, substate: "base"});
+                    states.push({visualisation: currentVisualisationSelection, substate: "meanSelection"});
+                
                     console.dir(states);
-                    
-                    if(state.visualisation == "Boxplot")
-                    {                           
-                        if(state.substate == "base")
-                        {
-                            removeElementsByClassName("compareNow");
-                            removeElementsByClassName("selectAll");
-                            removeElementsByClassName("selectNone");
-                            
-                            if(document.getElementById("border") != null)                            
-                                removeElementById("border");
-                        
-                            d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "1.0");
-                            d3.selectAll(".means").transition().duration(500).attr("r", meanRadius);
-                            
-                            states = [];
-                        }
-                        else if(state.substate == "meanSelection" || state.substate == "significanceTest")
-                        {            
-                            removeElementsByClassName("doPairwiseTest");
-                            removeElementsByClassName("significanceTest");
-                            removeElementsByClassName("assumptions");
-                            removeElementsByClassName("pairwisePostHoc");
-                            removeElementsByClassName("tukeyHSD");
-                            removeElementsByClassName("effectSize");
-                            removeElementsByClassName("parameter");
-                            removeElementsByClassName("crosses");
-                            removeElementsByClassName("ticks");
-                            removeElementsByClassName("checkingAssumptions");
-                            removeElementsByClassName("loading");
-                            removeElementsByClassName("differenceInMeans");
-                            removeElementsByClassName("differenceInMeansText");
-                            removeElementsByClassName("differenceInMeansMain");
-                            removeElementsByClassName("assumptionsButtonFront");
-                            removeElementsByClassName("assumptionsButtonBack");
-                            removeElementsByClassName("effectSizeInterpretationIndicators");
-                            if(document.getElementById("border") != null)                            
-                                removeElementById("border");
-
-                            
-                            unselectAllMeans();
-                            var canvas = d3.select("#plotCanvas");
-                            var variableList = getSelectedVariables();
         
-                            var inText = variableList["independent"].length > 0 ? "SELECT TWO OR ALL THE MEANS" : "SELECT ONE MEAN FOR COMPARISON AGAINST POPULATION MEAN";             
+                    var canvas = d3.select("#plotCanvas");
+                    var variableList = getSelectedVariables();
+        
+                    var inText = "COMPARE NOW";
     
-                            drawButtonInSideBar(inText, "compareNow");
+                    drawButtonInSideBar(inText, "compareNow");
             
-                            var availableWidth = canvasWidth;
+                    var availableWidth = canvasWidth;
             
-                            canvas.append("rect")
-                                    .attr("x", availableWidth/3 - selectionButtonWidth/2)
-                                    .attr("y", selectionButtonOffset)
-                                    .attr("height", selectionButtonHeight)
-                                    .attr("width", selectionButtonWidth)
-                                    .attr("rx", scaleForWindowSize(10) + "px")
-                                    .attr("ry", scaleForWindowSize(10) + "px")
-                                    .attr("fill", "url(#buttonFillSelected)")
-                                    .attr("filter", "none")
-                                    .attr("stroke", "none")
-                                    .attr("id", "rect")
-                                    .attr("class", "selectNone");
+                    canvas.append("rect")
+                            .attr("x", availableWidth/3 - selectionButtonWidth/2)
+                            .attr("y", selectionButtonOffset)
+                            .attr("height", selectionButtonHeight)
+                            .attr("width", selectionButtonWidth)
+                            .attr("rx", scaleForWindowSize(10) + "px")
+                            .attr("ry", scaleForWindowSize(10) + "px")
+                            .attr("fill", "url(#buttonFillSelected)")
+                            .attr("filter", "none")
+                            .attr("stroke", "none")
+                            .attr("id", "rect")
+                            .attr("class", "selectNone");
                     
-                            canvas.append("text")
-                                    .attr("x", availableWidth/3)
-                                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
-                                    .attr("fill", "white")
-                                    .attr("text-anchor", "middle")
-                                    .attr("font-size", fontSizeButtonLabel + "px")
-                                    .text("SELECT NONE")
-                                    .attr("id", "text")
-                                    .attr("class", "selectNone");
+                    canvas.append("text")
+                            .attr("x", availableWidth/3)
+                            .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
+                            .attr("fill", "white")
+                            .attr("text-anchor", "middle")
+                            .attr("font-size", fontSizeButtonLabel + "px")
+                            .text("SELECT NONE")
+                            .attr("id", "text")
+                            .attr("class", "selectNone");
             
-                            canvas.append("rect")
-                                    .attr("x", 2*availableWidth/3 - selectionButtonWidth/2)
-                                    .attr("y", selectionButtonOffset)
-                                    .attr("height", selectionButtonHeight)
-                                    .attr("width", selectionButtonWidth)
-                                    .attr("rx", scaleForWindowSize(10) + "px")
-                                    .attr("ry", scaleForWindowSize(10) + "px")
-                                    .attr("fill", "url(#buttonFillNormal)")
-                                    .attr("filter", "url(#Bevel)")
-                                    .attr("stroke", "black")
-                                    .attr("id", "rect")
-                                    .attr("class", "selectAll");
+                    canvas.append("rect")
+                            .attr("x", 2*availableWidth/3 - selectionButtonWidth/2)
+                            .attr("y", selectionButtonOffset)
+                            .attr("height", selectionButtonHeight)
+                            .attr("width", selectionButtonWidth)
+                            .attr("rx", scaleForWindowSize(10) + "px")
+                            .attr("ry", scaleForWindowSize(10) + "px")
+                            .attr("fill", "url(#buttonFillNormal)")
+                            .attr("filter", "url(#Bevel)")
+                            .attr("stroke", "black")
+                            .attr("id", "rect")
+                            .attr("class", "selectAll");
                     
-                            canvas.append("text")
-                                    .attr("x", 2*availableWidth/3)
-                                    .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
-                                    .attr("fill", "black")
-                                    .attr("text-anchor", "middle")
-                                    .attr("font-size", fontSizeButtonLabel + "px")
-                                    .text("SELECT ALL")
-                                    .attr("id", "text")
-                                    .attr("class", "selectAll");
-                            
-                            return;
-                        }
-                        else if(state.substate == "pairwise")
-                        {
-                            removeElementsByClassName("significanceTest");
-                            removeElementsByClassName("assumptions");
-                            removeElementsByClassName("pairwisePostHoc");
-                            removeElementsByClassName("effectSize");
-                            removeElementsByClassName("parameter");
-                            removeElementsByClassName("crosses");
-                            removeElementsByClassName("ticks");
-                            removeElementsByClassName("checkingAssumptions");
-                            removeElementsByClassName("loading");
-                            removeElementsByClassName("differenceInMeans");
-                            removeElementsByClassName("differenceInMeansText");
-                            removeElementsByClassName("differenceInMeansMain");
-                            removeElementsByClassName("assumptionsButtonFront");
-                            removeElementsByClassName("assumptionsButtonBack");
-                            removeElementsByClassName("effectSizeInterpretationIndicators");
-                            if(document.getElementById("border") != null)                            
-                                removeElementById("border");
-
-                            
-                            unselectAllMeans();
-                            
-                            var canvas = d3.select("#plotCanvas");
-                            var variableList = getSelectedVariables();
-                            
-                            drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");
-                            
-                            return;
-                        }
-                    }                   
+                    canvas.append("text")
+                            .attr("x", 2*availableWidth/3)
+                            .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
+                            .attr("fill", "black")
+                            .attr("text-anchor", "middle")
+                            .attr("font-size", fontSizeButtonLabel + "px")
+                            .text("SELECT ALL")
+                            .attr("id", "text")
+                            .attr("class", "selectAll");
+        
+                    freezeMouseEvents = true;
+                    d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
+                    d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
+            
+                    setTimeout(function()
+                    {
+                        freezeMouseEvents = false;
+                    }, 500);
+        
+                    removeElementsByClassName("compareMean");
+                }
+            
+                // var backButton = d3.select(".backButtonBack");
+//                 var backButtonText = d3.select(".backButtonText");
+//             
+//                 if(backButton.attr("stroke") == "black")
+//                 {
+//                     if(states[states.length - 1].substate == "other")
+//                     {                        
+//                         plotVisualisation(); //checks which plot is selected and draws that plot
+//                         setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
+//                     }
+//                     
+//                     states.pop();
+//                     var state = states[states.length - 1];
+//                     
+//                     currentVisualisationSelection = state.visualisation;
+//                     
+//                     console.log(state);
+//                     
+//                     console.dir(states);
+//                     
+//                     if(state.visualisation == "Boxplot")
+//                     {                           
+//                         if(state.substate == "base")
+//                         {
+//                             removeElementsByClassName("compareNow");
+//                             removeElementsByClassName("selectAll");
+//                             removeElementsByClassName("selectNone");
+//                             
+//                             if(document.getElementById("border") != null)                            
+//                                 removeElementById("border");
+//                         
+//                             d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "1.0");
+//                             d3.selectAll(".means").transition().duration(500).attr("r", meanRadius);
+//                             
+//                             states = [];
+//                         }
+//                         else if(state.substate == "meanSelection" || state.substate == "significanceTest")
+//                         {            
+//                             removeElementsByClassName("doPairwiseTest");
+//                             removeElementsByClassName("significanceTest");
+//                             removeElementsByClassName("assumptions");
+//                             removeElementsByClassName("pairwisePostHoc");
+//                             removeElementsByClassName("tukeyHSD");
+//                             removeElementsByClassName("effectSize");
+//                             removeElementsByClassName("parameter");
+//                             removeElementsByClassName("crosses");
+//                             removeElementsByClassName("ticks");
+//                             removeElementsByClassName("checkingAssumptions");
+//                             removeElementsByClassName("loading");
+//                             removeElementsByClassName("differenceInMeans");
+//                             removeElementsByClassName("differenceInMeansText");
+//                             removeElementsByClassName("differenceInMeansMain");
+//                             removeElementsByClassName("assumptionsButtonFront");
+//                             removeElementsByClassName("assumptionsButtonBack");
+//                             removeElementsByClassName("effectSizeInterpretationIndicators");
+//                             if(document.getElementById("border") != null)                            
+//                                 removeElementById("border");
+// 
+//                             
+//                             unselectAllMeans();
+//                             var canvas = d3.select("#plotCanvas");
+//                             var variableList = getSelectedVariables();
+//         
+//                             var inText = variableList["independent"].length > 0 ? "SELECT TWO OR ALL THE MEANS" : "SELECT ONE MEAN FOR COMPARISON AGAINST POPULATION MEAN";             
+//     
+//                             drawButtonInSideBar(inText, "compareNow");
+//             
+//                             var availableWidth = canvasWidth;
+//             
+//                             canvas.append("rect")
+//                                     .attr("x", availableWidth/3 - selectionButtonWidth/2)
+//                                     .attr("y", selectionButtonOffset)
+//                                     .attr("height", selectionButtonHeight)
+//                                     .attr("width", selectionButtonWidth)
+//                                     .attr("rx", scaleForWindowSize(10) + "px")
+//                                     .attr("ry", scaleForWindowSize(10) + "px")
+//                                     .attr("fill", "url(#buttonFillSelected)")
+//                                     .attr("filter", "none")
+//                                     .attr("stroke", "none")
+//                                     .attr("id", "rect")
+//                                     .attr("class", "selectNone");
+//                     
+//                             canvas.append("text")
+//                                     .attr("x", availableWidth/3)
+//                                     .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
+//                                     .attr("fill", "white")
+//                                     .attr("text-anchor", "middle")
+//                                     .attr("font-size", fontSizeButtonLabel + "px")
+//                                     .text("SELECT NONE")
+//                                     .attr("id", "text")
+//                                     .attr("class", "selectNone");
+//             
+//                             canvas.append("rect")
+//                                     .attr("x", 2*availableWidth/3 - selectionButtonWidth/2)
+//                                     .attr("y", selectionButtonOffset)
+//                                     .attr("height", selectionButtonHeight)
+//                                     .attr("width", selectionButtonWidth)
+//                                     .attr("rx", scaleForWindowSize(10) + "px")
+//                                     .attr("ry", scaleForWindowSize(10) + "px")
+//                                     .attr("fill", "url(#buttonFillNormal)")
+//                                     .attr("filter", "url(#Bevel)")
+//                                     .attr("stroke", "black")
+//                                     .attr("id", "rect")
+//                                     .attr("class", "selectAll");
+//                     
+//                             canvas.append("text")
+//                                     .attr("x", 2*availableWidth/3)
+//                                     .attr("y", selectionButtonOffset + selectionButtonHeight/2 + yAxisTickTextOffset)
+//                                     .attr("fill", "black")
+//                                     .attr("text-anchor", "middle")
+//                                     .attr("font-size", fontSizeButtonLabel + "px")
+//                                     .text("SELECT ALL")
+//                                     .attr("id", "text")
+//                                     .attr("class", "selectAll");
+//                             
+//                             return;
+//                         }
+//                         else if(state.substate == "pairwise")
+//                         {
+//                             removeElementsByClassName("significanceTest");
+//                             removeElementsByClassName("assumptions");
+//                             removeElementsByClassName("pairwisePostHoc");
+//                             removeElementsByClassName("effectSize");
+//                             removeElementsByClassName("parameter");
+//                             removeElementsByClassName("crosses");
+//                             removeElementsByClassName("ticks");
+//                             removeElementsByClassName("checkingAssumptions");
+//                             removeElementsByClassName("loading");
+//                             removeElementsByClassName("differenceInMeans");
+//                             removeElementsByClassName("differenceInMeansText");
+//                             removeElementsByClassName("differenceInMeansMain");
+//                             removeElementsByClassName("assumptionsButtonFront");
+//                             removeElementsByClassName("assumptionsButtonBack");
+//                             removeElementsByClassName("effectSizeInterpretationIndicators");
+//                             if(document.getElementById("border") != null)                            
+//                                 removeElementById("border");
+// 
+//                             
+//                             unselectAllMeans();
+//                             
+//                             var canvas = d3.select("#plotCanvas");
+//                             var variableList = getSelectedVariables();
+//                             
+//                             drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");
+//                             
+//                             return;
+//                         }
+//                     }                   
                     
 //                     setColorsForVariablesWithArray(currentVariableSelection);
 //         
@@ -876,7 +954,7 @@ function OnMouseDown(e)
 //                     restrictVisualisationSelection();      
 //                     plotVisualisation(); //checks which plot is selected and draws that plot
 //                     setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
-                }
+//                 }
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "regression")
