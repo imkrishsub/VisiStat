@@ -238,13 +238,12 @@ function drawResetButton()
             .attr("stroke", "black")
             .attr("class", "backButtonBack");
     
-    sideBar.append("text")
-            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset) + helpButtonWidth/2)
-            .attr("y", helpButtonOffset/2 + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
-            .attr("font-size", scaleForWindowSize(32))
-            .attr("text-anchor", "middle")
-            .attr("fill", "white")
-            .text("_|")
+    sideBar.append("image")
+            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
+            .attr("y", helpButtonOffset/2)
+            .attr("height", helpButtonHeight)
+            .attr("width", helpButtonWidth)
+            .attr("xlink:href", "images/reset.png")
             .attr("class", "backButtonText");
     
     sideBar.append("rect")

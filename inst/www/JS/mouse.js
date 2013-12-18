@@ -1769,7 +1769,7 @@ function OnMouseOver(e)
                 var backButton = d3.select(".backButtonFront");
                 var backButtonText = d3.select(".backButtonText");
             
-                if(backButton.attr("stroke") == "black")
+                if(d3.select(".backButtonBack").attr("stroke") == "black")
                 {
                     backButton.attr("cursor", "pointer");
                     backButtonText.attr("cursor", "pointer");
