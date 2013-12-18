@@ -121,7 +121,7 @@ function resetSVGCanvas()
 //                     .attr("xlink:href", "images/leather.png");
     
     drawHelpButton();
-//     drawBackButton();
+    drawBackButton();
 }
 
 function drawFullScreenButton()
@@ -149,7 +149,7 @@ function drawHelpButton()
             .attr("ry", "15px")
             .attr("height", helpButtonHeight)
             .attr("width", helpButtonWidth)
-            .attr("fill", "url(#bannerFillNormal)")
+            .attr("fill", "url(#buttonFillNormal)")
             .attr("filter", "url(#Bevel)")
             .attr("stroke", "black")
             .attr("class", "helpButtonBack");
@@ -159,7 +159,7 @@ function drawHelpButton()
             .attr("y", helpButtonOffset/2 + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
             .attr("font-size", scaleForWindowSize(32))
             .attr("text-anchor", "middle")
-            .attr("fill", "white")
+            .attr("fill", "black")
             .text("?")
             .attr("class", "helpButtonText");
     

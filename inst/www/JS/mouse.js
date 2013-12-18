@@ -45,15 +45,15 @@ function OnMouseDown(e)
                 restrictVisualisationSelection();      
                 plotVisualisation(); //checks which plot is selected and draws that plot
                 setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
-                
-                var subState = null;
-                
-                if(currentVisualisationSelection == "Boxplot")
-                    subState = "base";
-                
-                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice(), substate: subState});
-                
-                console.dir(states);
+//                 
+//                 var subState = null;
+//                 
+//                 if(currentVisualisationSelection == "Boxplot")
+//                     subState = "base";
+//                 
+//                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice(), substate: subState});
+//                 
+//                 console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
@@ -62,10 +62,10 @@ function OnMouseDown(e)
                 currentVisualisationSelection = target.id;        
                 setColorsForVisualisations();        
                 plotVisualisation();
-                
-                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});               
-                
-                console.dir(states);
+//                 
+//                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});               
+//                 
+//                 console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
@@ -850,15 +850,15 @@ function OnMouseDown(e)
                         }
                     }                   
                     
-                    setColorsForVariablesWithArray(currentVariableSelection);
-        
-                    //display the current variable selection
-                    removeElementsByClassName("displayDataTable");
-                    removeElementsByClassName("displayDataText");
-                    
-                    restrictVisualisationSelection();      
-                    plotVisualisation(); //checks which plot is selected and draws that plot
-                    setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
+//                     setColorsForVariablesWithArray(currentVariableSelection);
+//         
+//                     //display the current variable selection
+//                     removeElementsByClassName("displayDataTable");
+//                     removeElementsByClassName("displayDataText");
+//                     
+//                     restrictVisualisationSelection();      
+//                     plotVisualisation(); //checks which plot is selected and draws that plot
+//                     setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
                 }
             }
     
@@ -1793,6 +1793,8 @@ function OnMouseOver(e)
             
                 var helpButton = d3.select(".helpButtonFront");
                 var helpButtonText = d3.select(".helpButtonText");
+                
+                if(currentState().substate = "base"
             
                 helpButton.attr("cursor", "pointer");
                 helpButtonText.attr("cursor", "pointer");
