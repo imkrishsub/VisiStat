@@ -139,17 +139,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
               
                     testResults["p"] = changePValueNotation(output.p); 
                     
-                    if(paired)
-                    {
-                        testResults["method"] = "Paired 2-sample t-test";
-                    }
-                    else
-                    {
-                        if(varianceEqual)
-                            testResults["method"] = "Unpaired 2-sample t-test";
-                        else
-                            testResults["method"] = "Welch's t-test";
-                    }
+                    testResults["method"] = output.method;
                     
                     testResults["effect-size"] = output.d;
                     testResults["effect-size-type"] = "d";
