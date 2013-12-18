@@ -680,7 +680,7 @@ function drawComputingResultsImage()
             .attr("x", sideBarWidth/2)
             .attr("y", canvasHeight/2 - computingResultsImageSize/2)
             .text("PICKING THE APPROPRIATE TEST...")
-            .attr("font-size", scaleForWindowSize(24))
+            .attr("font-size", scaleForWindowSize(14))
             .attr("text-anchor", "middle")
             .attr("id", "computingResultsImage");
     
