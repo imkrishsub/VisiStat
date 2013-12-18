@@ -1681,11 +1681,11 @@ function OnMouseOver(e)
                 d3.selectAll(".selectNone").attr("cursor", "pointer");
             }
         
-            else if(target.className.baseVal == "assumptionButtonFront")
+            else if(target.className.baseVal == "assumptionsButtonFront")
             {
                 setup(e, target);
             
-                d3.selectAll("#" + target.id + ".assumptionButtonFront").attr("cursor", "pointer");
+                d3.selectAll("#" + target.id + ".assumptionsButtonFront").attr("cursor", "pointer");
             }
     
             else if(target.className.baseVal == "bins")

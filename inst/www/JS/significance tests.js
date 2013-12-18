@@ -107,6 +107,8 @@ function performTTest(groupA, groupB, varianceEqual, paired)
     
     var label = "t-test(" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1] + ")";
     
+    console.log("test");
+    
     if(localStorage.getObject(label) == null)
     {
         // Get variable names and their data type
