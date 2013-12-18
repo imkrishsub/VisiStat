@@ -11,6 +11,7 @@ function makeBoxplot()
 
     var canvas = d3.select("#plotCanvas");
     drawButtonInSideBar("COMPARE MEANS", "compareMean");
+    drawNavigator(["boxplot", "significance test", "result", "post-hoc pairwise"]);
     
     //initializations
     var variableList = sort(currentVariableSelection);

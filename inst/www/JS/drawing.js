@@ -121,7 +121,7 @@ function resetSVGCanvas()
 //                     .attr("xlink:href", "images/leather.png");
     
     drawHelpButton();
-    drawBackButton();
+//     drawBackButton();
 }
 
 function drawFullScreenButton()
@@ -1503,6 +1503,27 @@ function meanSelectionHelper()
 //         }
 //     }   
     setCompareNowButtonText();
+}
+
+function drawNavigator(STATES)
+{
+    var navigatorHeight = scaleForWindowSize(50);
+    var arrowHeadLength = scaleForWindowSize(15);
+    
+    var canvas = d3.select("#plotCanvas");
+    var stateWidth = canvasWidth/(STATES.length - 1);
+    
+    for(i=0; i<STATES.length; i++)
+    {
+        var x = i*stateWidth;
+        var y = 0;
+        
+        canvas.append("path")
+                .attr("d", "M " + x + " " + y + " L " + (x + stateWidth) + " " + y + " L " + (x + stateWidth + arrowHeadLength) + " " + (y + navigatorHeight/2) + " L " + (x + stateWidth) + " " + (navigatorHeight) + " L " + (x) + " " + (navigatorHeight) + " L " + (x) + " " + y + " z")
+                .attr("stroke", "black")
+                .attr("id", STATES[i])
+                .attr("class", "stateForNavigation");
+    }
 }
 
     
