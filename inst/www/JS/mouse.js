@@ -636,9 +636,7 @@ function OnMouseDown(e)
                                 .attr("fill", "white")
                                 .attr("stroke", "orange")
                                 .attr("opacity", "0.01")
-                                .attr("class", "plotHelp");   
-                        
-                    console.log(document.getElementsByClassName("significanceTest").length);
+                                .attr("class", "plotHelp");  
                     
                     if(document.getElementsByClassName("significanceTest").length > 0)
                     {
@@ -1322,9 +1320,16 @@ function OnMouseOver(e)
                 var visualisation = currentVisualisationSelection;
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".plotHelp").attr("opacity","0.3").attr("cursor", "help");
-
-                helpText.text(desc[visualisation]);                
+                
+                if(visualisation == null || visualisation == undefined)
+                {
+                    helpText.text("Please select a variable to get started");
+                }
+                else
+                {   
+                    d3.select(".plotHelp").attr("opacity","0.3").attr("cursor", "help");
+                    helpText.text(desc[visualisation]);                
+                }
             }
             
             if(target.className.baseVal == "pValueHelp")
