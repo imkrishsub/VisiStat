@@ -748,7 +748,7 @@ function OnMouseDown(e)
                             
                             states = [];
                         }
-                        else if(state.substate == "meanSelection")
+                        else if(state.substate == "meanSelection" || state.substate == "significanceTest")
                         {            
                             removeElementsByClassName("significanceTest");
                             removeElementsByClassName("assumptions");
