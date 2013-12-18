@@ -177,9 +177,6 @@ function drawHelpButton()
 function drawBackButton()
 {
     var sideBar = d3.select("#sideBarCanvas");
-    var helpButtonHeight = scaleForWindowSize(50);
-    var helpButtonWidth = scaleForWindowSize(50);
-    
     var helpButtonOffset = assumptionImageSize;
     
     var offset = 2;
