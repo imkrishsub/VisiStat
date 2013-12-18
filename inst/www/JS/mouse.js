@@ -337,7 +337,9 @@ function OnMouseDown(e)
         
                 pairwiseComparisons = false;
                 
-                states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection, substate: "meanSelection"});
+                states.push({visualisation: currentVisualisationSelection, substate: "meanSelection"});
+                
+                console.dir(states);
         
                 var canvas = d3.select("#plotCanvas");
                 var variableList = getSelectedVariables();
