@@ -723,6 +723,12 @@ function OnMouseDown(e)
             
                 if(backButton.attr("stroke") == "black")
                 {
+                    if(states[states.length - 1].substate == "other")
+                    {                        
+                        plotVisualisation(); //checks which plot is selected and draws that plot
+                        setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
+                    }
+                    
                     states.pop();
                     var state = states[states.length - 1];
                     
@@ -750,6 +756,7 @@ function OnMouseDown(e)
                         }
                         else if(state.substate == "meanSelection" || state.substate == "significanceTest")
                         {            
+                            removeElementsByClassName("doPairwiseTest");
                             removeElementsByClassName("significanceTest");
                             removeElementsByClassName("assumptions");
                             removeElementsByClassName("pairwisePostHoc");
