@@ -156,7 +156,7 @@ function drawHelpButton()
     
     sideBar.append("text")
             .attr("x", sideBarWidth - helpButtonWidth/2 - helpButtonOffset)
-            .attr("y", scaleForWindowSize(5) + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
+            .attr("y", scaleForWindowSize(15) + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
             .attr("font-size", scaleForWindowSize(55))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
