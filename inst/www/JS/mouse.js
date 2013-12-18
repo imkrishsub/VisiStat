@@ -1464,6 +1464,19 @@ function OnMouseOver(e)
                 helpText.text(desc["tukeyHSD"]);   
             }
             
+            if(target.className.baseVal == "regression")
+            {
+                setup(e, target);
+                var assumptionType = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#button.regression").attr("stroke-width","2px").attr("cursor", "help");
+                d3.select("#text.regression").attr("cursor", "help");
+                
+                helpText.text(desc["regression"]);   
+            }
+            
             if(target.id == "regressionLine")
             {
                 setup(e, target);
@@ -2180,6 +2193,12 @@ function OnMouseOut(e)
         {
             d3.select("#button.tukeyHSD").attr("stroke-width", "1px").attr("cursor", "pointer");
             d3.select("#text.tukeyHSD").attr("cursor", "pointer");
+        }
+        
+        if(target.className.baseVal == "regression")
+        {
+            d3.select("#button.regression").attr("stroke-width", "1px").attr("cursor", "pointer");
+            d3.select("#text.regression").attr("cursor", "pointer");
         }
         
         if(target.className.baseVal == "interactionEffect")
