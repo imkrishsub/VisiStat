@@ -441,13 +441,17 @@ function setDistribution(dependentVariable, level, normal)
                 if(variableList["independent-levels"].length == 2)
                 {
                     var groups = getGroupsForColourBoxPlotData();
+                    
                     //Mann-Whitney U test
                     if(pairwiseComparisons)
                         performPairwiseWilcoxTest("TRUE", "FALSE");
                     else
                         performMannWhitneyTest(groups[0], groups[1]);
                 }
-                performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                else
+                {
+                    performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                }
             }
             
             findTransformForNormality(variableList["dependent"][0], variableList["independent"][0]);
