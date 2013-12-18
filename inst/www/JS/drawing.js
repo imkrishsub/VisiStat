@@ -141,7 +141,7 @@ function drawFullScreenButton()
 function drawHelpButton()
 {
     var sideBar = d3.select("#sideBarCanvas");
-    
+    helpButtonOffset = assumptionImageSize*2;
     sideBar.append("rect")
             .attr("x", sideBarWidth - helpButtonWidth - helpButtonOffset)
             .attr("y", helpButtonOffset/2)//canvasHeight - helpButtonHeight - helpButtonOffset)
@@ -157,7 +157,7 @@ function drawHelpButton()
     sideBar.append("text")
             .attr("x", sideBarWidth - helpButtonWidth/2 - helpButtonOffset)
             .attr("y", helpButtonOffset/2 + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
-            .attr("font-size", scaleForWindowSize(32))
+            .attr("font-size", scaleForWindowSize(42))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
             .text("?")
@@ -215,11 +215,8 @@ function drawBackButton()
 
 function drawResetButton()
 {
-    var sideBar = d3.select("#sideBarCanvas");
-    var helpButtonHeight = scaleForWindowSize(50);
-    var helpButtonWidth = scaleForWindowSize(50);
-    
-    var helpButtonOffset = assumptionImageSize;
+    var sideBar = d3.select("#sideBarCanvas");    
+    var helpButtonOffset = assumptionImageSize*2;
     
     var offset = 2;
     
