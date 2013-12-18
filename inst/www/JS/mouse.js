@@ -743,6 +743,8 @@ function OnMouseDown(e)
                         
                             d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "1.0");
                             d3.selectAll(".means").transition().duration(500).attr("r", meanRadius);
+                            
+                            states = [];
                         }
                         else if(state.substate == "meanSelection")
                         {            
