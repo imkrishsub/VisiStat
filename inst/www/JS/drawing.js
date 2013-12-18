@@ -1521,7 +1521,8 @@ function drawNavigator(STATES)
         canvas.append("path")
                 .attr("d", "M " + (x) + " " + y + " L " + (x + stateWidth) + " " + y + " L " + (x + stateWidth + arrowHeadLength) + " " + (y + navigatorHeight/2) + " L " + (x + stateWidth) + " " + (y + navigatorHeight) + " L " + (x) + " " + (y + navigatorHeight) + " L " + (x + arrowHeadLength) + " " + (y + navigatorHeight/2) + " L " + (x) + " " + (y) + " z")
                 .attr("stroke", "black")
-                .attr("fill", "none")
+                .attr("fill", "url(#buttonFillNormal)")
+                .attr("filter", "url(#Bevel)")
                 .attr("id", STATES[i])
                 .attr("class", "stateForNavigation");
         
@@ -1529,6 +1530,7 @@ function drawNavigator(STATES)
                 .attr("x", x + stateWidth/2)
                 .attr("y", navigatorHeight/2 - scaleForWindowSize(10))
                 .attr("fill", "black")
+                .attr("text-anchor", "middle")
                 .text(STATES[i])
                 .attr("id", STATES[i])
                 .attr("class", "stateForNavigationText");
