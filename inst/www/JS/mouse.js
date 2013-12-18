@@ -88,31 +88,33 @@ function OnMouseDown(e)
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
             {
                 setup(e, target);
-                var variableNameHolderBack = d3.select("#" + target.id + ".variableNameHolderBack");
-                var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
-                var dependentVariableText = d3.select("#" + target.id + ".dependentVariableText");
-                var independentVariableText = d3.select("#" + target.id + ".independentVariableText");
-                if(toggleButton.attr("xlink:href") == "images/toggle_up.png")
-                {
-                    toggleButton.attr("xlink:href","images/toggle_down.png");
-            
-                    if(variableNameHolderBack.attr("fill") == "url(#buttonFillNormal)")
-                        independentVariableText.attr("fill", "#627bf4");
-                    else
-                        independentVariableText.attr("fill", "white");
                 
-                    dependentVariableText.attr("fill", "#BEC9FC");
-                }
-                else if(toggleButton.attr("xlink:href") == "images/toggle_down.png")
-                {
-                    toggleButton.attr("xlink:href","images/toggle_up.png");
-            
-                    if(variableNameHolderBack.attr("fill") == "url(#buttonFillNormal)")
-                        dependentVariableText.attr("fill", "#627bf4");
-                    else
-                        dependentVariableText.attr("fill", "white");
-                    independentVariableText.attr("fill", "#BEC9FC");
-                }
+                // 
+//                 var variableNameHolderBack = d3.select("#" + target.id + ".variableNameHolderBack");
+//                 var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
+//                 var dependentVariableText = d3.select("#" + target.id + ".dependentVariableText");
+//                 var independentVariableText = d3.select("#" + target.id + ".independentVariableText");
+//                 if(toggleButton.attr("xlink:href") == "images/toggle_up.png")
+//                 {
+//                     toggleButton.attr("xlink:href","images/toggle_down.png");
+//             
+//                     if(variableNameHolderBack.attr("fill") == "url(#buttonFillNormal)")
+//                         independentVariableText.attr("fill", "#627bf4");
+//                     else
+//                         independentVariableText.attr("fill", "white");
+//                 
+//                     dependentVariableText.attr("fill", "#BEC9FC");
+//                 }
+//                 else if(toggleButton.attr("xlink:href") == "images/toggle_down.png")
+//                 {
+//                     toggleButton.attr("xlink:href","images/toggle_up.png");
+//             
+//                     if(variableNameHolderBack.attr("fill") == "url(#buttonFillNormal)")
+//                         dependentVariableText.attr("fill", "#627bf4");
+//                     else
+//                         dependentVariableText.attr("fill", "white");
+//                     independentVariableText.attr("fill", "#BEC9FC");
+//                 }
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "disabled"))
@@ -613,13 +615,13 @@ function OnMouseDown(e)
                 
                     helpButtonText.attr("fill", "white");
                 
-                    var index = d3.select("body").append("div");                
-                    index.attr("id", "indexPanel")
-                         .attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + canvasHeight + "px");
-                
-                    index.append("H1")
-                            .text("HELP")
-                            .attr("id", "helpTitle");
+//                     var index = d3.select("body").append("div");                
+//                     index.attr("id", "indexPanel")
+//                          .attr("style", "width: " + (width - canvasWidth - sideBarWidth) + "px; height: " + canvasHeight + "px");
+//                 
+//                     index.append("H1")
+//                             .text("HELP")
+//                             .attr("id", "helpTitle");
                 
                     var description = d3.select("body").append("div");                
                     description.attr("id", "descriptionPanel")
@@ -627,7 +629,7 @@ function OnMouseDown(e)
                     
                     description.append("label")
                                 .attr("id", "descriptionLabel")
-                                .text("willy wonka is mad");
+                                .text("Hover over a visible element to get help");
                     
                     
                     //plotCanvas
