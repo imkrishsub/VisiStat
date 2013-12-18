@@ -737,8 +737,6 @@ function OnMouseDown(e)
                 if(currentVisualisationSelection == "Boxplot" && rButton.attr("stroke") == "black")
                 {
                     plotVisualisation();
-                    
-                    pairwiseComparisons = false;
                 
                     d3.select(".backButtonBack").attr("fill", "grey")
                                                 .attr("filter", "none")
@@ -749,7 +747,10 @@ function OnMouseDown(e)
         
                     var inText = "COMPARE NOW";
     
-                    drawButtonInSideBar(inText, "compareNow");
+                    if(pairwiseComparisons)
+                        drawButtonInSideBar(inText, "doPairwiseTest");
+                    else
+                        drawButtonInSideBar(inText, "compareNow");
             
                     var availableWidth = canvasWidth;
             
