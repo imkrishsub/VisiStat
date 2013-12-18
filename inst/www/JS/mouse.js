@@ -503,6 +503,12 @@ function OnMouseDown(e)
     
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "doPairwiseTest")
             {
+                var rButton = d3.select(".backButtonBack");
+                
+                rButton.attr("fill", "url(#buttonFillNormal)")
+                        .attr("filter", "url(#Bevel)")
+                        .attr("stroke", "black");
+                    
                 d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
         
                 //get selected means
