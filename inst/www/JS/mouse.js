@@ -15,13 +15,12 @@ function OnMouseDown(e)
                 var helpButtonText = d3.select(".helpButtonText");
                 
                 help = false;
-                helpButton.attr("fill", "url(#bannerFillNormal)")
+                
+                helpButton.attr("fill", "url(#buttonFillNormal)")
                             .attr("filter", "url(#Bevel)")
                             .attr("stroke", "black");
             
                 helpButtonText.attr("fill", "black");
-            
-                removeElementById("indexPanel");
                 removeElementById("descriptionPanel");
                 
                 removeElementsByClassName("plot");
