@@ -15,8 +15,8 @@ function drawTukeyHSDPlot()
     
     var label = "tukeyHSD(" + variableList["dependent"][0] + "~" + variableList["independent"][0] + ")";
     
-    var min = parseFloat(localStorage.getItem((label+"tkMin"));
-    var max = parseFloat(localStorage.getItem((label+"tkMax"));
+    var min = parseFloat(localStorage.getItem((label+"tkMin")));
+    var max = parseFloat(localStorage.getItem((label+"tkMax")));
     
     //Axes
     var xAxis = canvas.append("line")
