@@ -175,3 +175,8 @@ desc["variables"]["gender"] = "The gender of the participant";
 desc["variables"]["typingSpeed"] = "The typing speed of the participant in Words Per Minute (WPM).";
 desc["variables"]["errors"] = "The number of errors made by the participant in a minute";
 desc["variables"]["userSatisfaction"] = "The rating given by the participant after using the keyboard layout.";
+
+desc["variables"]["phoneOS"] = "The OS used by the participant (iOS, android, or windows)";
+desc["variables"]["happScore"] = "The happiness score of the participant (out of 100)";
+desc["variables"]["stressScore"] = "The stress score of the participant (out of 100)";
+desc["variables"]["satisfaction"] = "The rating given by the participant after using the keyboard layout.";

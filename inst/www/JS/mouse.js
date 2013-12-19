@@ -1555,11 +1555,11 @@ function OnMouseOver(e)
     
             else if(target.className.baseVal == "variableTypeToggleButton")
             {
-                setup(e, target);
+                // setup(e, target);
         
-                var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
+                // var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
         
-                toggleButton.attr("cursor", "pointer");
+                // toggleButton.attr("cursor", "pointer");
             }
     
             else if(target.className.baseVal == "dependentVariableButtonFront")
