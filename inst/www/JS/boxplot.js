@@ -1014,6 +1014,8 @@ function selectAllMeans()
     var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
     
     var means = new Array();
+
+    console.log("lastMean(id): " + lastMean.getAttribute("id"));
     
     if(lastMean != 0)
         means.push(lastMean);
