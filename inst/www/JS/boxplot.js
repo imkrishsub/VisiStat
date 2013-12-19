@@ -1023,12 +1023,13 @@ function selectAllMeans()
         
     means.sort(function(a, b)
     {
-        if(a.getAttribute("cx") < b.getAttribute("cx"))
+        if(parseFloat(a.getAttribute("cx")) < parseFloat(b.getAttribute("cx")))
             return -1;
-        if(a.getAttribute("cx") > b.getAttribute("cx"))
+        if(parseFloat(a.getAttribute("cx")) > parseFloat(b.getAttribute("cx")))
             return 1;
         return 0;
     });
+
     var plotCanvas = d3.select("#plotCanvas");    
     for(var i=0; i<means.length; i++)
     {
