@@ -1,8 +1,5 @@
 performOneWayRepeatedMeasuresANOVA <- function(dependentVariable, independentVariable, participantVariable, dataset)
 {   
-    install.packages("ez");
-    library(ez);
-        
     table <- as.data.frame(dataset);
     
     result <- eval(parse(text = paste("ezANOVA(table,",dependentVariable,",",participantVariable,",between=",independentVariable,")",sep="")));

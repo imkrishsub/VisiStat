@@ -1,10 +1,5 @@
 getESFromRawMeanScores <- function(m1 = "", m2 = "",  sd1 = "", sd2 = "", n1 = "", n2 = "")
 {
-  install.packages("compute.es");
-  
-  library(compute.es);
-  
-  
   if(m1 == "")
   {
     m1 = "2.4";

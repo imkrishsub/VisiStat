@@ -1,7 +1,5 @@
 performMannWhitneyTest <- function(groupA, groupB)
 {
-    install.packages("coin");
-    
     groupA <- c(groupA);
     groupB <- c(groupB);
     
@@ -9,8 +7,7 @@ performMannWhitneyTest <- function(groupA, groupB)
     
     U = result$statistic[["W"]];
     p = result$p.value;
-    
-    library(coin);
+ 
     
     g <- factor(c(rep("groupA", length(groupA)), rep("groupB", length(groupB))));
     v <- c(groupA, groupB);

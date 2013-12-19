@@ -2,9 +2,6 @@ performTwoWayANOVA <- function(dataset, dependentVariable, participantVariable, 
 {
     table <- as.data.frame(dataset);
     
-    install.packages("ez");
-    library(ez);
-    
     result = eval(parse(text = paste("ezANOVA(table, dv = ", dependentVariable,", wid = ", participantVariable, ", between = c(", betweenGroupVariableA, ",", betweenGroupVariableB, "))", sep="")));
     
     result = result$ANOVA;

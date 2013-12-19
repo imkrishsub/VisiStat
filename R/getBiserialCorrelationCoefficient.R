@@ -1,7 +1,5 @@
 getBiserialCorrelationCoefficient <- function(continuousVariable, binaryVariable)
 {
-    require("ltm");
-    
     c <- c(continuousVariable);
     b <- c(binaryVariable);
     

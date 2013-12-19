@@ -8,7 +8,6 @@ performTTest <- function(filePath, groupA, groupB, paired = "FALSE", alternative
   
   result = eval(parse(text = paste("t.test(groupA, groupB, alternative=\"two.sided\", paired=",paired,",var.equal=",variance,")",sep="")));
   
-  require(MBESS);
   d = abs(smd(groupA, groupB));
   
   list(p=result$p.value, 

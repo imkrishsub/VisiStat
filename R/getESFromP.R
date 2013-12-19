@@ -1,10 +1,5 @@
 getESFromP <- function(p = "", n1 = "", n2 = "", type = "")
 {
-  install.packages("compute.es");
-  
-  library(compute.es);
-  
-  
   if(p == "")
   {
     p = "0.05";

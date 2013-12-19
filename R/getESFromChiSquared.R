@@ -1,11 +1,5 @@
 getESFromChiSquared <- function(ChiSquared = "", n = "")
 {
-  
-  install.packages("compute.es");
-  
-  library(compute.es);
-  
-  
   if(ChiSquared == "")
   {
     ChiSquared = "3.14";

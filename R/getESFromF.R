@@ -1,11 +1,5 @@
 getESFromF <- function(FVal = "", n1 = "", n2 = "")
 {
-  
-  install.packages("compute.es");
-  
-  library(compute.es);
-  
-  
   if(FVal == "")
   {
     FVal = "3.14";
