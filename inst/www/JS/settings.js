@@ -139,8 +139,8 @@ var assumptionsText = new Object();
     assumptionsText["homogeneity"] = "Homogeneity of variances";
     assumptionsText["sphericity"] = "Sphericity of distributions";
     
-var helpButtonHeight = scaleForWindowSize(75);
-    var helpButtonWidth = scaleForWindowSize(75);
+var helpButtonHeight = scaleForWindowSize(60);
+    var helpButtonWidth = scaleForWindowSize(60);
     
     var helpButtonOffset = assumptionImageSize;
     
