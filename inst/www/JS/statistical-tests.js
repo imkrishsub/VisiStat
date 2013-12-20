@@ -438,7 +438,7 @@ function setDistribution(dependentVariable, level, normal)
             if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
             {
                 //within-group design
-                if(variableList["independent-levels"].length == 2)
+                if(variableList["independent-levels"].length == 2 && variableList["independent"].length == 2)
                 {
                     var groups = getGroupsForColourBoxPlotData();
                     
