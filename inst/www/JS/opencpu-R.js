@@ -472,7 +472,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                     localStorage.getObject(label, output);
                     var variableList = getSelectedVariables();
                 
-//                     if(output.type == "none")
+                    if(output.type == "none")
                     {
                         console.log("Transformation to normality is not possible!");
  
@@ -537,13 +537,13 @@ function findTransformForNormality(dependentVariable, independentVariable)
                         d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                     }
                     // else
-//                     {
-//                         console.log("Transformation type = " + output.type);
-//                         transformationType = output.type;
-//                     
-//                         //offer choice
-//                         drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
-//                     }                  
+                    {
+                        console.log("Transformation type = " + output.type);
+                        transformationType = output.type;
+                    
+                        //offer choice
+                        drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
+                    }                  
           }).fail(function(){
               alert("Failure: " + req.responseText);
         });       
@@ -562,7 +562,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
         
         var variableList = getSelectedVariables();
                 
-//         if(output.type == "none")
+        if(output.type == "none")
         {
             console.log("Transformation to normality is not possible!");
             if(variableList["independent"].length == 1)
@@ -625,14 +625,14 @@ function findTransformForNormality(dependentVariable, independentVariable)
             }
             d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
         }
-       //  else
-//         {
-//             console.log("Transformation type = " + output.type);
-//             transformationType = output.type;
-//         
-//             //offer choice
-//             drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
-//         }
+        else
+        {
+            console.log("Transformation type = " + output.type);
+            transformationType = output.type;
+        
+            //offer choice
+            drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
+        }
     }
 }
 
@@ -652,7 +652,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                     
                     var variableList = getSelectedVariables();
                 
-//                     if(output.type == "none")
+                    if(output.type == "none")
                     {
                         console.log("Transformation to homogeneity is not possible!");
                     
@@ -704,14 +704,14 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                             }
                         }
                     }                
-                    // else
-//                     {
-//                         console.log("Transformation type = " + output.type);
-//                         transformationType = output.type;
-//                     
-//                         //offer choice
-//                         drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
-//                     }                  
+                    else
+                    {
+                        console.log("Transformation type = " + output.type);
+                        transformationType = output.type;
+                    
+                        //offer choice
+                        drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
+                    }                  
           }).fail(function(){
               alert("Failure: " + req.responseText);
         });       
@@ -730,7 +730,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
         
         var variableList = getSelectedVariables();
                 
-//         if(output.type == "none")
+        if(output.type == "none")
         {
             console.log("Transformation to homogeneity is not possible!");
         
@@ -783,14 +783,14 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                 }
             }
         }                
-        // else
-//         {
-//             console.log("Transformation type = " + output.type);
-//             transformationType = output.type;
-//         
-//             //offer choice
-//             drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
-//         }
+        else
+        {
+            console.log("Transformation type = " + output.type);
+            transformationType = output.type;
+        
+            //offer choice
+            drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
+        }
     }
 }
 

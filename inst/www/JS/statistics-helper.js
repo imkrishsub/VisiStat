@@ -157,6 +157,7 @@ function getUnselectedMeansForColourBoxPlotData()
     
     return selectedMeans;
 }
+
 function getSelectedMeanLevelsForColourBoxPlotData()
 {
     var means = document.getElementsByClassName("means");
