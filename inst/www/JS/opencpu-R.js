@@ -864,6 +864,10 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
     }
     else
     {
+        console.dir(variables);
+        
+        variables[dependentVariable][level] = localStorage.getObject(label);
+        
         MIN[dependentVariable][level] = Array.min(localStorage.getObject(label));
         MAX[dependentVariable][level] = Array.max(localStorage.getObject(label));
         IQR[dependentVariable][level] = findIQR(localStorage.getObject(label));
