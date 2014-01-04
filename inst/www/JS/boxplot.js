@@ -499,9 +499,8 @@ function redrawBoxPlot()
         CIs[0] = CI[currentVariableSelection[0]]["dataset"];
         means[0] = mean(data[0]);  
     }   
-
-    console.dir(MIN);
-    console.dir(MAX);
+    
+    console.log("data: " + data);
     
     min = Array.min(mins);
     max = Array.max(maxs);
