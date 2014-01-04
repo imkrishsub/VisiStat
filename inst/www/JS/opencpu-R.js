@@ -876,7 +876,8 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
         //if this is the last variable, then redraw boxplots and display the significance test results
         redrawBoxPlot();
         
-        return;
+        d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth*1.5 + " " + canvasHeight*1.5);                    
+    
         removeElementsByClassName("densityCurve");
         var variableList = getSelectedVariables();
         
