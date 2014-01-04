@@ -849,7 +849,6 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                         type: transformationType
                       }, function(output) 
                     {
-                        console.dir(variables);
                         variables[dependentVariable][level] = output.transformedData;
                 
                         MIN[dependentVariable][level] = Array.min(output.transformedData);
@@ -864,8 +863,6 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
     }
     else
     {
-        console.dir(variables);
-        
         variables[dependentVariable][level] = localStorage.getObject(label);
         
         MIN[dependentVariable][level] = Array.min(localStorage.getObject(label));
@@ -879,6 +876,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
         //if this is the last variable, then redraw boxplots and display the significance test results
         redrawBoxPlot();
         
+        return;
         removeElementsByClassName("densityCurve");
         var variableList = getSelectedVariables();
         
