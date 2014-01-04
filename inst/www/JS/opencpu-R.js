@@ -562,7 +562,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
         
         var variableList = getSelectedVariables();
                 
-//         if(output.type == "none")
+        if(output.type == "none")
         {
             console.log("Transformation to normality is not possible!");
             if(variableList["independent"].length == 1)
@@ -625,14 +625,14 @@ function findTransformForNormality(dependentVariable, independentVariable)
             }
             d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
         }
-       //  else
-//         {
-//             console.log("Transformation type = " + output.type);
-//             transformationType = output.type;
-//         
-//             //offer choice
-//             drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
-//         }
+        else
+        {
+            console.log("Transformation type = " + output.type);
+            transformationType = output.type;
+        
+            //offer choice
+            drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
+        }
     }
 }
 
