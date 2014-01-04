@@ -848,7 +848,8 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                         distribution: variables[dependentVariable][level],
                         type: transformationType
                       }, function(output) 
-                    {                                                                  
+                    {
+                        console.dir(variables);
                         variables[dependentVariable][level] = output.transformedData;
                 
                         MIN[dependentVariable][level] = Array.min(output.transformedData);
@@ -857,11 +858,9 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                         CI[dependentVariable][level] = findCI(output.transformedData);
                     
                         localStorage.setObject(label, output.transformedData);
-                                
-                  
-              }).fail(function(){
-              alert("Failure: " + req.responseText);
-        });
+                   }).fail(function(){
+                   alert("Failure: " + req.responseText);
+             });
     }
     else
     {
