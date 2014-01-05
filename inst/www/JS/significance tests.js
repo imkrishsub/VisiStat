@@ -124,6 +124,8 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                     testResults["parameter"] = output.t;
                     testResults["parameter-type"] = "t";
                     console.log("confidence interval of mean: " + output.CI);
+                    
+                    testResults["CI"] = output.CI;
               
                     if(varianceEqual == "FALSE")
                     {
