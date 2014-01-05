@@ -1986,7 +1986,7 @@ function OnMouseOver(e)
                         .attr("x",parseFloat(bottomFringe.attr("x1")))
                         .attr("y", parseFloat(bottomFringe.attr("y1")) + displayOffsetBottom)
                         .attr("text-anchor", "middle")
-                        .text(testResults["CI"][1])
+                        .text(testResults["CI"][0])
                         .attr("class", "hover");
             }
     
@@ -2340,6 +2340,11 @@ function OnMouseOut(e)
         }
     
         else if((target.className.baseVal == "CIs") || (target.className.baseVal == "CITopFringes") || (target.className.baseVal == "CIBottomFringes"))
+        {
+            removeElementsByClassName("hover");
+        }
+        
+        else if((target.className.baseVal == "CI_mean") || (target.className.baseVal == "CI_top") || (target.className.baseVal == "CI_bottom"))
         {
             removeElementsByClassName("hover");
         }
