@@ -319,7 +319,7 @@ function setDistribution(dependentVariable, level, normal)
             }
             else
             {
-                drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "notnormal");
+                drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "normal");
             }
         }
         
