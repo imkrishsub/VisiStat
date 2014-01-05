@@ -843,10 +843,8 @@ function drawScales(cx, cy)
                 .attr("id", "tickText")
                 .attr("class", "differenceInMeansMain")
                 .text(dec2(means[means.length-1] - means[0]));
-    
-    console.log(testResults["CI"]);
-    
-    if(testResults["CI"][0] < 0 && testResults["CI"][1] < 0)
+
+    if(testResults["CI"][1] - (means[means.length -1] - means[0]) != (means[means.length -1] - means[0]) - testResults["CI"][0])   
     {
         testResults["CI"][0] = -testResults["CI"][0];
         testResults["CI"][1] = -testResults["CI"][1];
