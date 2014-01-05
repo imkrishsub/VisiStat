@@ -475,7 +475,8 @@ function findTransformForNormality(dependentVariable, independentVariable)
                     if(output.type == "none")
                     {
                         console.log("Transformation to normality is not possible!");
- 
+                        d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+                        
                         if(variableList["independent"].length == 1)
                         {
                             if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
@@ -875,7 +876,9 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
     {
         //if this is the last variable, then redraw boxplots and display the significance test results
         redrawBoxPlot();
-    
+        
+        return;
+        
         removeElementsByClassName("densityCurve");
         var variableList = getSelectedVariables();
         

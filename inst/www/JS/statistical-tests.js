@@ -34,8 +34,7 @@ function compareMeans()
                     switch(variableList["independent"].length)
                     {
                         case 0:
-                                {
-                            
+                                {                            
                                     break;
                                 }
                         case 1:
@@ -54,21 +53,8 @@ function compareMeans()
                                 }
                         case 2:
                                 {  
-                                    //get distributions                                                                        
-                                    
+                                    //get distributions            
                                     performHomoscedasticityTests();
-                                    // if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
-//                                     {
-//                                         //within-groups design
-//                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
-//                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][1]);
-//                                     }
-//                                     else
-//                                     {
-//                                         //between-groups design
-//                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
-//                                         performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][1]);
-//                                     }
                                 }
                     }
                     break;
@@ -431,11 +417,8 @@ function setDistribution(dependentVariable, level, normal)
         }
         else
         {
-            console.log("\n\tNormality of distributions is not satisfied!");
-            
+            console.log("\n\tNormality of distributions is not satisfied!");            
             console.log("\n\tChecking if transformation is possible...");     
-            
-            d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
             
             if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
             {
