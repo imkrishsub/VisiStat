@@ -317,6 +317,10 @@ function setDistribution(dependentVariable, level, normal)
                 drawBoxPlotInRed(variableList["independent-levels"][i]);
                 drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "notnormal");
             }
+            else
+            {
+                drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "notnormal");
+            }
         }
         
         if(normal)
