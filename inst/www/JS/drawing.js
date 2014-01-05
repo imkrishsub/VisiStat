@@ -1085,9 +1085,9 @@ function displaySignificanceTestResults()
     //CI for mean
     canvas.append("line")
             .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
-            .attr("y1", cyMax - testResults[CI][0]);
+            .attr("y1", cyMax - testResults[CI][0])
             .attr("x2", canvasWidth/2 + plotWidth/2 + 5)
-            .attr("y2", cyMax + testResults[CI][1]);
+            .attr("y2", cyMax + testResults[CI][1])
             .attr("stroke", "black");
 
     var x = canvasWidth/2 + plotWidth/2;
