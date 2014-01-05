@@ -889,6 +889,8 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                 {
                     var centerX = d3.select("#" + variableList["independent-levels"][i] + ".means");
                     
+                    console.log("centerX = " + centerX);
+                    
                     makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;                
                 }
             }                 
@@ -901,6 +903,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
         removeElementsByClassName("transformToNormal");
         removeElementsByClassName("completeLines");
         
+        return; 
         //change the labels to normal color
         var text = d3.select("#" + level + ".xAxisGrooveText");
         text.attr("fill", boxColors["normal"]);
