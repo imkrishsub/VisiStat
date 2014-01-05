@@ -887,7 +887,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
             {   
                 if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
                 {
-                    var centerX = d3.select("#" + variableList["independent-levels"][i] + ".means");
+                    var centerX = d3.select("#" + variableList["independent-levels"][i] + ".means").attr("cx");
                     
                     console.log("centerX = " + centerX);
                     
