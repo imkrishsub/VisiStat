@@ -885,10 +885,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
         {
             for(var i=0; i<variableList["independent-levels"].length; i++)
             {                   
-                var centerX = d3.select("#" + variableList["independent-levels"][i] + ".means").attr("cx");
-                
-                console.log("centerX = " + centerX);
-                
+                var centerX = d3.select("#" + variableList["independent-levels"][i] + ".means").attr("cx");                
                 makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, canvasHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;                                
             }                 
         }
@@ -938,7 +935,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                         if(variableList["independent-levels"].length == 2)
                         {
                             //2 variables
-                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
                         }
                         else
                         {
