@@ -1973,7 +1973,10 @@ function OnMouseOver(e)
                 var topFringe = d3.select(".CI_top");
                 var bottomFringe = d3.select(".CI_bottom");
     
-                var variableList = sort(currentVariableSelection);        
+                var variableList = sort(currentVariableSelection);       
+                
+                var top = testResults["CI"][1] > testResults["CI"][0] ? testResults["CI"][1] : testResults["CI"][0];
+                var bottom = testResults["CI"][1] > testResults["CI"][0] ? testResults["CI"][0] : testResults["CI"][1];
                    
                 canvas.append("text")
                         .attr("x",parseFloat(topFringe.attr("x1")))
