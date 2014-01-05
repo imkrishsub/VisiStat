@@ -908,7 +908,6 @@ function drawBoxPlotInRed(level)
 
 function getFraction(number)
 {
-    console.log("min=" + min + ", max=" + max);
     return (number - min)/(max - min);
 }
 
