@@ -844,15 +844,14 @@ function drawScales(cx, cy)
                 .attr("class", "differenceInMeansMain")
                 .text(dec2(means[means.length-1] - means[0]));
     
-    console.log((getActualValue(cyMin) + testResults["CI"][0]) + ", " + (getActualValue(cyMin) + testResults["CI"][1]));
-    
-    console.log(getFraction(50));
+    console.log((getActualValue(cyMin) + testResults["CI"][0]) + ", " + (getActualValue(cyMin) + testResults["CI"][1]));    
+    var BOTTOM = canvasHeight/2 + plotHeight/2;
     //CI for mean
     canvas.append("line")
             .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
-            .attr("y1", getFraction(getActualValue(cyMin) + testResults["CI"][0]))
+            .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) + testResults["CI"][0])*plotHeight)
             .attr("x2", canvasWidth/2 + plotWidth/2 + 5)
-            .attr("y2", getFraction(getActualValue(cyMin) + testResults["CI"][1]))
+            .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + testResults["CI"][1])*plotHeight)
             .attr("stroke", "black");
     
     if(cy.length >= 2)
