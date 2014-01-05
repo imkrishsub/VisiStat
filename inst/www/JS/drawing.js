@@ -832,6 +832,9 @@ function drawScales(cx, cy)
     means = means.sort(function(a,b){return a-b});
     cy = cy.sort(function(a,b){return b-a});
     
+    var cyMax = Math.max.apply(Math, cy);
+    var cyMin = Math.min.apply(Math, cy);		   	 
+    
     canvas.append("text")
                 .attr("x", x + scaleForWindowSize(35))
                 .attr("y", (yMin + yMax)/2)
