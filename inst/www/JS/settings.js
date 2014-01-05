@@ -100,7 +100,7 @@ var meanColors = new Object(); //Colors for mean, and ?
     meanColors["click"] = "#729e38";
 
 // Histogram
-var nBins = 4; 
+var nBins = 20; 
 var binCountFontSize = "16px";
 var histLegendOffsetX = scaleForWindowSize(45);
 var histLegendOffsetY = scaleForWindowSize(45);
