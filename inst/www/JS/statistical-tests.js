@@ -431,7 +431,9 @@ function setDistribution(dependentVariable, level, normal)
         }
         else
         {
-            console.log("\n\tchecking if normality transform is possible...");     
+            console.log("\n\tNormality of distributions is not satisfied!");
+            
+            console.log("\n\tChecking if transformation is possible...");     
             
             d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
             
@@ -510,6 +512,8 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         }
         else
         {
+            console.log("\n\tHomogeneity of distributions is not satisfied!");
+            console.log("\n\tChecking if transformation is possible...");
             //check if transformation is possible
             findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);                
         }

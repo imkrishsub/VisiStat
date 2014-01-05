@@ -332,8 +332,6 @@ function OnMouseDown(e)
                     
                 states.push({visualisation: currentVisualisationSelection, substate: "significanceTest"});
                 
-                console.dir(states);
-                
                 //get selected means
                 var means = document.getElementsByClassName("means");
                 var selectedMeans = []; 
@@ -365,8 +363,6 @@ function OnMouseDown(e)
                 
                 states.push({visualisation: currentVisualisationSelection, substate: "base"});
                 states.push({visualisation: currentVisualisationSelection, substate: "meanSelection"});
-                
-                console.dir(states);
         
                 var canvas = d3.select("#plotCanvas");
                 var variableList = getSelectedVariables();
