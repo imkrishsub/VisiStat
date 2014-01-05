@@ -877,8 +877,6 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
         //if this is the last variable, then redraw boxplots and display the significance test results
         redrawBoxPlot();
         
-        return;
-        
         removeElementsByClassName("densityCurve");
         var variableList = getSelectedVariables();
         
