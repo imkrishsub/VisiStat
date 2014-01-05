@@ -844,6 +844,7 @@ function drawScales(cx, cy)
                 .attr("class", "differenceInMeansMain")
                 .text(dec2(means[means.length-1] - means[0]));
     
+    console.log(testResults["CI"]);
     var CI_diff = testResults["CI"][1] - (means[means.length-1] - means[0]);
     
     var BOTTOM = canvasHeight/2 + plotHeight/2;
