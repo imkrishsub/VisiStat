@@ -845,6 +845,8 @@ function drawScales(cx, cy)
                 .text(dec2(means[means.length-1] - means[0]));
     
     console.log((getActualValue(cyMin) + testResults["CI"][0]) + ", " + (getActualValue(cyMin) + testResults["CI"][1]));
+    
+    console.log(getFraction(50));
     //CI for mean
     canvas.append("line")
             .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
