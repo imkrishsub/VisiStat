@@ -845,6 +845,12 @@ function drawScales(cx, cy)
                 .text(dec2(means[means.length-1] - means[0]));
     
     console.log(testResults["CI"]);
+    
+    if(testResults["CI"][0] < 0 && testResults["CI"][1] < 0)
+    {
+        testResults["CI"][0] = -testResults["CI"][0];
+        testResults["CI"][1] = -testResults["CI"][1];
+    }
     var CI_diff = testResults["CI"][1] - (means[means.length-1] - means[0]);
     
     var BOTTOM = canvasHeight/2 + plotHeight/2;
