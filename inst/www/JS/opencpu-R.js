@@ -878,10 +878,16 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
         redrawBoxPlot();
         
         removeElementsByClassName("densityCurve");
+        
         var variableList = getSelectedVariables();
         
         var mean = d3.select("#" + variableList["dependent"][0] + ".means");
-        var centerX = mean.attr("cx");   
+        var centerX = mean.attr("cx"); 
+        
+        console.log("centerX: " + centerX);
+        console.log("\n\ndistributions:");
+        
+        console.dir(distributions);
         
         if(variableList["independent"].length > 0)
         {
