@@ -3,10 +3,11 @@ performMannWhitneyTest <- function(groupA, groupB)
     groupA <- c(groupA);
     groupB <- c(groupB);
     
-    result <- wilcox.test(groupA, groupB);
+    result <- wilcox.test(groupA, groupB, conf.int = TRUE);
     
     U = result$statistic[["W"]];
     p = result$p.value;
+    CI = result$conf.int;
  
     
     g <- factor(c(rep("groupA", length(groupA)), rep("groupB", length(groupB))));
@@ -18,5 +19,5 @@ performMannWhitneyTest <- function(groupA, groupB)
     
     r = Z/length(groupA);
     
-    list(U = U, p = p, r = abs(r));
+    list(U = U, p = p, r = abs(r), CI = CI);
 }

@@ -3,10 +3,11 @@ performWilcoxonTest <- function(groupA, groupB)
     groupA <- c(groupA);    
     groupB <- c(groupB);
       
-    result <- wilcox.test(groupA, groupB, paired = T);
+    result <- wilcox.test(groupA, groupB, paired = T, conf.int=TRUE);
   
     V = result$statistic[["V"]];
     p = result$p.value;
+    CI = result$conf.int;
     
     result <- wilcoxsign_test(groupA ~ groupB, distribution = "exact");
     
@@ -16,5 +17,5 @@ performWilcoxonTest <- function(groupA, groupB)
     
     r = Z/length(groupA);
     
-    list(V = V, p = p, r = abs(r));
+    list(V = V, p = p, r = abs(r), CI = CI);
 }

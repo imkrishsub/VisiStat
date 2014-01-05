@@ -1982,14 +1982,14 @@ function OnMouseOver(e)
                         .attr("x",parseFloat(topFringe.attr("x1")))
                         .attr("y", parseFloat(topFringe.attr("y1")) - displayOffsetTop)
                         .attr("text-anchor", "middle")
-                        .text(testResults["CI"][1])
+                        .text(top)
                         .attr("class", "hover");
                 
                 canvas.append("text")
                         .attr("x",parseFloat(bottomFringe.attr("x1")))
                         .attr("y", parseFloat(bottomFringe.attr("y1")) + displayOffsetBottom)
                         .attr("text-anchor", "middle")
-                        .text(testResults["CI"][0])
+                        .text(bottom)
                         .attr("class", "hover");
             }
     
