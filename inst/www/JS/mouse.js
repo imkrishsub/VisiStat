@@ -1965,6 +1965,30 @@ function OnMouseOver(e)
                         .text(dec2(getActualValue(parseFloat(bottomFringe.attr("y1")))))
                         .attr("class", "hover");
             }
+            
+            else if((target.className.baseVal == "CI_mean") || (target.className.baseVal == "CI_top") || (target.className.baseVal == "CI_bottom"))
+            {
+                var canvas = d3.select("#plotCanvas");
+        
+                var topFringe = d3.select(".CI_top");
+                var bottomFringe = d3.select(".CI_bottom");
+    
+                var variableList = sort(currentVariableSelection);        
+                   
+                canvas.append("text")
+                        .attr("x",parseFloat(topFringe.attr("x1")))
+                        .attr("y", parseFloat(topFringe.attr("y1")) - displayOffsetTop)
+                        .attr("text-anchor", "middle")
+                        .text(testResults["CI"][1])
+                        .attr("class", "hover");
+                
+                canvas.append("text")
+                        .attr("x",parseFloat(bottomFringe.attr("x1")))
+                        .attr("y", parseFloat(bottomFringe.attr("y1")) + displayOffsetBottom)
+                        .attr("text-anchor", "middle")
+                        .text(testResults["CI"][1])
+                        .attr("class", "hover");
+            }
     
             else if(target.className.baseVal == "regression")
             {
