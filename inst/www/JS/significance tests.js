@@ -173,6 +173,8 @@ function performTTest(groupA, groupB, varianceEqual, paired)
     else
     {        
         testResults = localStorage.getObject(label);
+        
+        console.log(testResults["CI"]);
 
         //add to log
         logResult();
