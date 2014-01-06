@@ -847,6 +847,8 @@ function drawScales(cx, cy)
     if(1)
     {
         testResults["CI"] = [8.36, 13.36];
+        
+        console.log(means[means.length - 1] - means[0]);
         if(testResults["CI"][1] - (means[means.length -1] - means[0]) != (means[means.length -1] - means[0]) - testResults["CI"][0])   
         {
             testResults["CI"][0] = -testResults["CI"][0];
