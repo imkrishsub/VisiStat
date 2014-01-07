@@ -844,10 +844,8 @@ function drawScales(cx, cy)
                 .attr("class", "differenceInMeansMain")
                 .text(dec2(means[means.length-1] - means[0]));
     
-    if(0)
-    {
-        testResults["CI"] = [8.36, 13.36];
-    
+    if(1)
+    {    
         if(testResults["CI"][1] - dec2(means[means.length -1] - means[0]) != dec2(means[means.length -1] - means[0]) - testResults["CI"][0])   
         {
             testResults["CI"][0] = -testResults["CI"][0];
