@@ -6,7 +6,7 @@ function loadFile(filePath)
     if(localStorage.getObject(label) == null)
     {
         //loads the file and returns the dataset and variable names
-        var req = ocpu.call("loadFile", {
+        var req = ocpu.rpc("loadFile", {
                         filePath: filePath
                       }, function(output) {                   
             localStorage.setObject(label, output);          
@@ -104,7 +104,7 @@ function performHomoscedasticityTest(dependent, independent)
     if(localStorage.getItem(label) == null)
     {
         // Get variable names and their data type
-        var req = ocpu.call("performHomoscedasticityTest", {
+        var req = ocpu.rpc("performHomoscedasticityTest", {
                         dependentVariable: dependent,
                         independentVariable: independent,
                         dataset: dataset                    
@@ -210,7 +210,7 @@ function performNormalityTest(distribution, dependentVariable, level)
     if(localStorage.getItem(label) == null)
     {
         // Get variable names and their data type
-        var req = ocpu.call("performShapiroWilkTest", {
+        var req = ocpu.rpc("performShapiroWilkTest", {
                         distribution: distribution                                                           
                       }, function(output) {                                                   
                     
@@ -321,7 +321,7 @@ function performNormalityTestForMultipleDistributions(distributions, n)
     
     if(localStorage.getObject(label) == null)
     {
-        var req = ocpu.call("performShapiroWilkTestForMultipleDistributions", {
+        var req = ocpu.rpc("performShapiroWilkTestForMultipleDistributions", {
                         distributions: distributions,
                         n: n
                       }, function(output) {                                                                     
@@ -435,7 +435,7 @@ function performSphericityTest()
     var variableList = getSelectedVariables();
     
     // Get variable names and their data type
-    var req = ocpu.call("performSphericityTest", {
+    var req = ocpu.rpc("performSphericityTest", {
                     dependentVariable: variableList["dependent"][0],
                     withinGroupVariable: getWithinGroupVariable(variableList),
                     betweenGroupVariable: getBetweenGroupVariable(variableList),
@@ -464,7 +464,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
     if(localStorage.getObject(label) == null)
     {
         // Get variable names and their data type
-        var req = ocpu.call("findTransformForNormality", {
+        var req = ocpu.rpc("findTransformForNormality", {
                         dependentVariable: dependentVariable,
                         independentVariable: independentVariable,
                         dataset: dataset
@@ -644,7 +644,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
     if(localStorage.getObject(label) == null)
     {
         // Get variable names and their data type
-        var req = ocpu.call("findTransformForHomogeneity", {
+        var req = ocpu.rpc("findTransformForHomogeneity", {
                         dependentVariable: dependentVariable,
                         independentVariable: independentVariable,
                         dataset: dataset
@@ -798,7 +798,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
 function findTransformForNormalityForDependentVariables(numericVariables)
 {
     // Get variable names and their data type
-    var req = ocpu.call("findTransformForNormalityForDependentVariables", {                    
+    var req = ocpu.rpc("findTransformForNormalityForDependentVariables", {                    
                     dataset: dataset,
                     numericVariables: numericVariables
                   }, function(output) {                                                   
@@ -845,7 +845,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
     
     if(localStorage.getObject(label) == null)
     {
-        var req = ocpu.call("applyTransform", {
+        var req = ocpu.rpc("applyTransform", {
                         distribution: variables[dependentVariable][level],
                         type: transformationType
                       }, function(output) 
@@ -979,7 +979,7 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
 {
     level = "dataset";
     // Get variable names and their data type
-    var req = ocpu.call("applyTransform", {
+    var req = ocpu.rpc("applyTransform", {
                     distribution: variables[dependentVariable][level],
                     type: transformationType
                   }, function(output) {                 
@@ -1050,7 +1050,7 @@ function writeToFile(fileName)
 {
     //loads the file and returns the dataset and variable names
     console.dir(log);
-    var req = ocpu.call("writeToFile", {
+    var req = ocpu.rpc("writeToFile", {
                     object: log,
                     fileName: fileName
                   }, function(output) {
