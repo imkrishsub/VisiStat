@@ -755,7 +755,7 @@ function loadAssumptionCheckList(type)
                 .attr("id", assumptions[type][i])
                 .attr("class", "loading");
             
-            console.log(new Data().getTime());
+            console.log(new Date().getTime());
                 
             canvas.append("image")
                 .attr("x", 0)
