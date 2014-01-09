@@ -967,10 +967,10 @@ function startLoopAnimation(meanCircle)
                      .attr("stroke-width", "2px")				
                      .attr("class", "loops");
 
-       loop.transition().duration(1500).attr("r", "30px").attr("opacity", "0.5");
+       loop.transition().duration(1500).attr("r", "30px").attr("stroke", "grey");
        loop.transition().delay(1500).attr("opacity", "0");
 //        loop.transition().delay(1500).duration(1000).attr("r", "45px").attr("opacity", "0");
-    },700);
+    },1500);
 }
 
 function drawBoxPlotLegends(varNames)
