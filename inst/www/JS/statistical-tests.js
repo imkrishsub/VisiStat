@@ -30,6 +30,7 @@ function compareMeans()
 
                     //homoscedasticity
                     loadAssumptionCheckList("normal");
+                    console.log(new Date().getTime());
                     
                     switch(variableList["independent"].length)
                     {
@@ -279,7 +280,8 @@ function performNormalityTests()
 }
 
 function performHomoscedasticityTests()
-{
+{  
+    console.log(new Date().getTime());
     var variableList = getSelectedVariables();    
     
     //initialise distributions

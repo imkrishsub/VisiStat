@@ -100,7 +100,9 @@ function performHomoscedasticityTest(dependent, independent)
 {   
     var variableList = getSelectedVariables(); 
     var label = "levene(" + dependent + "~" + independent + ")";
-        
+    
+    console.log(new Date().getTime());
+                
     if(localStorage.getItem(label) == null)
     {
         // Get variable names and their data type
@@ -109,7 +111,9 @@ function performHomoscedasticityTest(dependent, independent)
                         independentVariable: independent,
                         dataset: dataset                    
                       }, function(output) {                                 
-                  
+                    
+                    console.log(new Date().getTime());
+                                
                     localStorage.setItem(label, output.p);
                 
                     if(output.p < 0.05)
