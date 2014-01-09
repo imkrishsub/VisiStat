@@ -1,5 +1,5 @@
 // Data
-    var wd = "http://hci.rwth-aachen.de/~subramanian/datsets/" + sessionStorage.fileName +".csv";//"/" + sessionStorage.fileName + ".csv"; 
+    var wd = "http://hci.rwth-aachen.de/~subramanian/datasets/" + sessionStorage.fileName +".csv";//"/" + sessionStorage.fileName + ".csv"; 
     var pathToFile =  wd;
 
 // Skeleton
