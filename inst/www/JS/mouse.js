@@ -1602,7 +1602,7 @@ function OnMouseOver(e)
             {		
                 setup(e, target);
         
-                var meanCircle = d3.select("#" + target.id + ".means");
+                var meanCircle = d3.select("#" + target.id + ".means");                
         
                 if(meanCircle.attr("r") == meanRadius)
                 {                
@@ -1635,7 +1635,8 @@ function OnMouseOver(e)
                 else
                 {                
                     if((document.getElementsByClassName("completeLines").length+1 <= (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
-                    {            
+                    {      
+                        startLoopAnimation(meanCircle);
                         meanCircle.attr("cursor","pointer");
                     
                         //change color of the mean circle
@@ -2288,7 +2289,7 @@ function OnMouseOut(e)
                 removeElementsByClassName("hover");
             }
         
-    //         removeElementsByClassName("loops");
+        removeElementsByClassName("loops");
         
         
     //         clearInterval(intervals[meanCircle.attr("id")]);
