@@ -2289,10 +2289,8 @@ function OnMouseOut(e)
                 removeElementsByClassName("hover");
             }
         
-        removeElementsByClassName("loops");
-        
-        
-    //         clearInterval(intervals[meanCircle.attr("id")]);
+            removeElementsByClassName("loops");
+            clearInterval(intervals[meanCircle.attr("id")]);
         
     //         var incompleteLines = d3.selectAll(".incompleteLines");
     //             
