@@ -961,15 +961,14 @@ function startLoopAnimation(meanCircle)
        var loop = canvas.append("circle")
                      .attr("cx", meanCircle.attr("cx"))
                      .attr("cy", meanCircle.attr("cy"))
-                     .attr("r", "0px")
+                     .attr("r", engorgedMeanRadius)
                      .attr("fill", "none")
-                     .attr("style", "z-index: -1;")
                      .attr("stroke", "black")
                      .attr("stroke-width", "2px")				
                      .attr("class", "loops");
 
-       loop.transition().duration(1500).attr("r", "30px").attr("opacity", "0.25").attr("stroke","lightgrey");
-       loop.transition().delay(1500).duration(1000).attr("r", "45px").attr("opacity", "0");
+       loop.transition().duration(1500).attr("r", 2*engorgedMeanRadius).attr("opacity", "0");
+//        loop.transition().delay(1500).duration(1000).attr("r", "45px").attr("opacity", "0");
     },700);
 }
 
