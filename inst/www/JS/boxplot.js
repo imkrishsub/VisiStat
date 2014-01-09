@@ -970,7 +970,7 @@ function startLoopAnimation(meanCircle)
        loop.transition().duration(1500).attr("r", "30px").attr("stroke", "grey");
        loop.transition().delay(1500).attr("opacity", "0");
 //        loop.transition().delay(1500).duration(1000).attr("r", "45px").attr("opacity", "0");
-    },1500);
+    },1000);
 }
 
 function drawBoxPlotLegends(varNames)
