@@ -969,7 +969,7 @@ function startLoopAnimation(meanCircle)
                      .attr("class", "loops");
 
        loop.transition().duration(1500).attr("r", "35px").attr("opacity", "0.25").attr("stroke","beige");
-       loop.transition().delay(2300).attr("opacity", "0");
+       loop.transition().delay(1600).attr("opacity", "0");
     },700);
 }
 
