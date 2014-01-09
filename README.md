@@ -1,20 +1,10 @@
-StatViz
+VisiStat
 =======
 
-An application that allows users to do basic statistical analysis on-the-fly. 
+VisiStat is a tool that allows users to do statistical analysis by interacting with visualizations. It guides the user to select appropriate statistical analysis tasks based on her research questions. It also prevents common statistical analysis mistakes and promotes understanding by collocating appropriate visualizations with statistical analysis results.
 
+Homepage
+========
 
-How to run this application?
-=======
-
-1. Bare-clone this github repository (git clone --bare "https://www.github.com/krishna221/StatViz.git") to your system.
-2. Open R.
-3. Install the following packages using install.packages('package_name') command:
-    i) 'devtools',
-    ii) 'opencpu'.
-4. Load these package libraries using library(package_name) command.
-5. Install the git project using install_git("path to folder cloned in step 1")
-6. Run the opencpu server locally using opencpu$browse("library/StatViz/www")
-
-
+http://hci.rwth-aachen.de/visistat/
 
