@@ -950,10 +950,10 @@ function startLoopAnimation(meanCircle)
                   .attr("fill", "none")
                   .attr("style", "z-index: -1;")
                   .attr("stroke", "goldenrod")
-                  .attr("stroke-width", "2px")				
+                  .attr("stroke-width", "3px")				
                   .attr("class", "loops");
 
-    loop.transition().duration(1500).attr("r", "25px").attr("opacity", "0.5").attr("stroke","beige");
+    loop.transition().duration(1500).attr("r", "35px").attr("opacity", "0.25").attr("stroke","beige");
     loop.transition().delay(2300).attr("opacity", "0");
 
     intervals[meanCircle.attr("id")] = setInterval(function()
@@ -965,10 +965,10 @@ function startLoopAnimation(meanCircle)
                      .attr("fill", "none")
                      .attr("style", "z-index: -1;")
                      .attr("stroke", "goldenrod")
-                     .attr("stroke-width", "2px")				
+                     .attr("stroke-width", "3px")				
                      .attr("class", "loops");
 
-       loop.transition().duration(1500).attr("r", "25px").attr("opacity", "0.5").attr("stroke","beige");
+       loop.transition().duration(1500).attr("r", "35px").attr("opacity", "0.25").attr("stroke","beige");
        loop.transition().delay(2300).attr("opacity", "0");
     },700);
 }
