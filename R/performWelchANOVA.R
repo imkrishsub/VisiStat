@@ -20,7 +20,7 @@ performWelchANOVA <- function(dependentVariable, independentVariable, dataset)
 
     result = eval(parse(text = paste("oneway.test(", dependentVariable, " ~ ", independentVariable, ", data = table)")));
     
-    n = length(dependentVariable);
+    n = eval(parse(text = paste("length(table$", dependentVariable, ")", sep="")));
     
     es = ci.pvaf(result$statistic[["F"]], result$parameter[["num df"]], result$parameter[["denom df"]], n);
     
