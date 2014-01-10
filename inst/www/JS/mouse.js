@@ -1636,12 +1636,12 @@ function OnMouseOver(e)
                 {                
                     if((document.getElementsByClassName("completeLines").length+1 <= (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
                     {      
-                        startLoopAnimation(meanCircle);
                         meanCircle.attr("cursor","pointer");
                     
                         //change color of the mean circle
                         if(meanCircle.attr("fill") == meanColors["normal"])
                         {
+                            startLoopAnimation(meanCircle);
                             meanCircle.attr("fill", meanColors["hover"]);
             
                             // startLoopAnimation(meanCircle);
@@ -1972,8 +1972,8 @@ function OnMouseOver(e)
     
                 var variableList = sort(currentVariableSelection);       
                 
-                var top = testResults["CI"][1] > testResults["CI"][0] ? testResults["CI"][1] : testResults["CI"][0];
-                var bottom = testResults["CI"][1] > testResults["CI"][0] ? testResults["CI"][0] : testResults["CI"][1];
+                var top = testResults["CI"][1];
+                var bottom = testResults["CI"][0];
                    
                 canvas.append("text")
                         .attr("x",parseFloat(topFringe.attr("x1")))
