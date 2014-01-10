@@ -3,7 +3,8 @@ performWilcoxonTest <- function(groupA, groupB)
     groupA <- c(groupA);    
     groupB <- c(groupB);
       
-    error = findError(c(list(groupA), list(groupB)));
+    result = findError(c(list(groupA), list(groupB)));
+    error =  result$error;
         
     result <- wilcox.test(groupA, groupB, paired = T);
   
