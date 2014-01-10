@@ -534,4 +534,9 @@ function setSelectButtons()
         
         selectAllText.attr("fill", "black");
     }
-}    
+}  
+
+function calculateCI(mean, error)
+{
+    return([mean - error, mean + error]);
+}

@@ -122,7 +122,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                     testResults["parameter"] = output.t;
                     testResults["parameter-type"] = "t";
                     
-                    testResults["CI"] = output.CI;
+                    testResults["error"] = output.error;
               
                     if(varianceEqual == "FALSE")
                     {
@@ -170,9 +170,7 @@ function performTTest(groupA, groupB, varianceEqual, paired)
     else
     {        
         testResults = localStorage.getObject(label);
-        
-        console.log(testResults["CI"]);
-
+    
         //add to log
         logResult();
         
@@ -210,7 +208,7 @@ function performMannWhitneyTest(groupA, groupB)
                   testResults["parameter-type"] = "U";
                   
                   testResults["test-type"] = "mwT";
-                  testResults["CI"] = output.CI;
+                  testResults["error"] = output.error;
                   testResults["p"] = changePValueNotation(output.p);                  
                   testResults["effect-size"] = output.r;
                   testResults["method"] = "Mann-Whitney U test";
@@ -272,7 +270,7 @@ function performWilcoxonTest(groupA, groupB)
                     testResults["parameter-type"] = "V";
                 
                     testResults["test-type"] = "wT";
-                    testResults["CI"] = output.CI;
+                    testResults["error"] = output.error;
                     testResults["p"] = changePValueNotation(output.p);                  
                     testResults["effect-size"] = output.r;
                     testResults["method"] = "Wilcoxon Signed-rank test";

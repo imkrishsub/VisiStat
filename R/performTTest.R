@@ -3,6 +3,8 @@ performTTest <- function(filePath, groupA, groupB, paired = "FALSE", alternative
   groupA <- c(groupA);
   groupB <- c(groupB);
   
+  error = findError(c(list(groupA), list(groupB)));
+  
   paired <- eval(parse(text = paired));
   variance <- eval(parse(text = variance));
   
@@ -13,7 +15,7 @@ performTTest <- function(filePath, groupA, groupB, paired = "FALSE", alternative
   list(p=result$p.value, 
   t=result$statistic[["t"]], 
   DOF=result$parameter[["df"]], 
-  CI=result$conf.int, 
+  error = error, 
   method=result$method, 
   alpha = alpha,
   mean = result$estimate,

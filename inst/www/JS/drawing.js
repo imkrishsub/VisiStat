@@ -846,39 +846,34 @@ function drawScales(cx, cy)
     
     if(1)
     {    
-        if(testResults["CI"][1] - dec2(means[means.length -1] - means[0]) != dec2(means[means.length -1] - means[0]) - testResults["CI"][0])   
-        {
-            testResults["CI"][0] = -testResults["CI"][0];
-            testResults["CI"][1] = -testResults["CI"][1];
-        }
-    
-        var CI_diff = testResults["CI"][1] - (means[means.length-1] - means[0]);
+        CI = calculateCI(means[means.length -1] - means[0], testResults["error"]);
+        var error = testResults["error"];
     
         var BOTTOM = canvasHeight/2 + plotHeight/2;
         //CI for mean
         canvas.append("line")
                 .attr("x1", canvasWidth/2 + plotWidth/2 + 10)
-                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - CI_diff)*plotHeight)
+                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
                 .attr("x2", canvasWidth/2 + plotWidth/2 + 10)
-                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + CI_diff)*plotHeight)
+                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
                 .attr("stroke", "rosybrown")
                 .attr("stroke-width", "4")
                 .attr("class", "CI_mean");
             
         canvas.append("line")
                 .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
-                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - CI_diff)*plotHeight)
+                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
                 .attr("x2", canvasWidth/2 + plotWidth/2 + 15)
-                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) - CI_diff)*plotHeight)
+                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
                 .attr("stroke", "rosybrown")
                 .attr("stroke-width", "4")
                 .attr("class", "CI_top");
             
         canvas.append("line")
                 .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
-                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) + CI_diff)*plotHeight)
+                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
                 .attr("x2", canvasWidth/2 + plotWidth/2 + 15)
-                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + CI_diff)*plotHeight)
+                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
                 .attr("stroke", "rosybrown")
                 .attr("stroke-width", "4")
                 .attr("class", "CI_bottom");
