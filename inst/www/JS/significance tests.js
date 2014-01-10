@@ -239,6 +239,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
 //perform Kruskal-Wallis test(non-parametric alternative for one-way ANOVA)
 function performKruskalWallisTest(dependentVariable, independentVariable)
 {
+    console.log("dependentVariable: " + dependentVariable + ", independentVariable: " + independentVariable);
     // Get variable names and their data type
     var req = ocpu.rpc("performKruskalWallisTest", 
     {
