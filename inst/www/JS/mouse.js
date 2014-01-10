@@ -1972,8 +1972,8 @@ function OnMouseOver(e)
     
                 var variableList = sort(currentVariableSelection);       
                 
-                var top = testResults["CI"][1];
-                var bottom = testResults["CI"][0];
+                var top = dec2(testResults["CI"][1]);
+                var bottom = dec2(testResults["CI"][0]);
                    
                 canvas.append("text")
                         .attr("x",parseFloat(topFringe.attr("x1")))

@@ -1013,6 +1013,8 @@ function performPairwiseTTest(varianceEqual, paired)
                     testResults["effect-size-type"] = "d";
                     testResults["test-type"] = "ptT";
                     
+                    testResults["error"] = output.error;
+                    
                     localStorage.setObject(label, testResults);
                 
                     logResult();
@@ -1079,6 +1081,8 @@ function performPairwiseWilcoxTest(varianceEqual, paired) //groupA, groupB, pair
                     testResults["method"] = "Pairwise Wilcoxon-test (Bonf.)";
                     testResults["test-type"] = "pwT";
                     testResults["effect-size-type"] = "r";                  
+                    
+                    testResults["error"] = output.error;
                     
                     localStorage.setObject(label, testResults);
                 
