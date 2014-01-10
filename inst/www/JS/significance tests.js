@@ -340,6 +340,9 @@ function performOneWayANOVA(dependentVariable, independentVariable)
                 
                     testResults["parameter"] = output.F;
                     testResults["parameter-type"] = "F";
+                    testResults["error"] = output.error;
+                    
+                    console.log("Error for One-way anova: " + error);
                 
                     testResults["p"] = changePValueNotation(output.p);   
                     testResults["method"] = "1-way ANOVA"; //todo
