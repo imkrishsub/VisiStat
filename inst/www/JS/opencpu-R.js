@@ -10,11 +10,9 @@ function loadFile(filePath)
     {     
         var timeAfter = new Date().getTime();
 
-        console.log("Latency for call = " + (timeAfter - timeBefore) + " ~ " + (timeAfter - timeBefore)/1000 + "seconds");
-        dataset = output.dataset;
+        console.log("Latency for loadFile() = " + (timeAfter - timeBefore)/1000 + "seconds");
 
-        console.log("dataset: " + output.dataset)
-        console.log(output.variableNames);
+        dataset = output.dataset;
 
         //render the variable names
         renderVariableNames(output.variableNames);    
@@ -70,6 +68,8 @@ function getData(dataset, variableName, level)
         
         experimentalDesign = findExperimentalDesign();            
         console.log("\n\tExperimental-design of the dataset is \"" + experimentalDesign + "\"");
+
+        displayTooltips();
     }
 }
 

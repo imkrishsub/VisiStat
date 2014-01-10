@@ -34,7 +34,25 @@ function performTTest(groupA, groupB, varianceEqual, paired)
 
         testResults["p"] = changePValueNotation(output.p); 
 
-        testResults["method"] = output.method;
+        var method = "";
+        if(paired == "TRUE")
+        {
+            method = "Paired T-test";  
+        }
+        else
+        {
+            if(varianceEqual == "TRUE")
+            {
+                method = "Unpaired T-test";
+            }
+            else
+            {
+                method = "Welch's T-test";
+            }
+        }
+        console.log("\n Method = \"" + method + "\"");
+
+        testResults["method"] = method;
 
         testResults["effect-size"] = output.d;
         testResults["effect-size-type"] = "d";
@@ -153,8 +171,6 @@ function performOneWayANOVA(dependentVariable, independentVariable)
         testResults["parameter"] = output.F;
         testResults["parameter-type"] = "F";
         testResults["error"] = output.error;
-    
-        console.log("Error for One-way anova: " + output.error);
 
         testResults["p"] = changePValueNotation(output.p);   
         testResults["method"] = "1-way ANOVA"; //todo
@@ -182,15 +198,12 @@ function performOneWayANOVA(dependentVariable, independentVariable)
 //perform Welch's ANOVA(non-parametric alternative for one-way ANOVA)
 function performWelchANOVA(dependentVariable, independentVariable)
 {
-    //get data from variable names
-    dependentVariableData = variables[dependentVariable]["dataset"];
-    independentVariableData = variables[independentVariable]["dataset"];
-
     // Get variable names and their data type
     var req = ocpu.rpc("performWelchANOVA", 
     {
-        dependentVariable: dependentVariableData,
-        independentVariable: independentVariableData                   
+        dependentVariable: dependentVariable,
+        independentVariable: independentVariable,
+        dataset: dataset                   
     }, function(output) 
     {                                                   
         testResults["df"] = output.numeratorDF + "," + output.denominatorDF;
@@ -198,6 +211,8 @@ function performWelchANOVA(dependentVariable, independentVariable)
         testResults["parameter"] = output.F;
         testResults["parameter-type"] = "F";
         testResults["test-type"] = "WA";
+
+        testResults["error"] = output.error;
     
         testResults["p"] = changePValueNotation(output.p);
         testResults["method"] = "Welch's ANOVA"; 
@@ -224,15 +239,12 @@ function performWelchANOVA(dependentVariable, independentVariable)
 //perform Kruskal-Wallis test(non-parametric alternative for one-way ANOVA)
 function performKruskalWallisTest(dependentVariable, independentVariable)
 {
-    //get data from variable names
-    dependentVariableData = variables[dependentVariable]["dataset"];
-    independentVariableData = variables[independentVariable]["dataset"];
-    
     // Get variable names and their data type
     var req = ocpu.rpc("performKruskalWallisTest", 
     {
-        dependentVariable: dependentVariableData,
-        independentVariable: independentVariableData                   
+        dependentVariable: dependentVariable,
+        independentVariable: independentVariable,
+        dataset: dataset                   
     }, function(output) 
     {                                                                      
         testResults["df"] = output.DF; 
@@ -240,6 +252,8 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
         testResults["parameter"] = output.ChiSquared;
         testResults["parameter-type"] = "cS";
         testResults["test-type"] = "kwT";
+
+        testResults["error"] = output.error;
 
         testResults["p"] = changePValueNotation(output.p);                  
         testResults["method"] = "Kruskal-Wallis test"; 
