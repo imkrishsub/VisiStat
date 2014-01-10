@@ -127,56 +127,56 @@
                 var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
                 var variablePanelSVG = variablePanel.append("svg").attr("id", "variablePanelSVG");                
                 variablePanelSVG.attr("id","variablePanelSVG")
-                                            .attr("height", variablePanel.style("height"))
-                                            .attr("width", variablePanel.style("width"))
-                                            .attr("left", variablePanel.style("left"))
-                                            .attr("top", variablePanel.style("top"))
-                                            .attr("fill", "url(#buttonFillNormal)");      
+                                .attr("height", variablePanel.style("height"))
+                                .attr("width", variablePanel.style("width"))
+                                .attr("left", variablePanel.style("left"))
+                                .attr("top", variablePanel.style("top"))
+                                .attr("fill", "url(#buttonFillNormal)");      
                 
                 for(var i=0; i<variableNames.length; i++)
                 {                
                     variablePanelSVG.append("rect")
-                                                    .attr("x", variableNameHolderPadding)
-                                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))                                                   
-                                                    .attr("height", variableNameHolderHeight)
-                                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
-                                                    .attr("rx", radius)
-                                                    .attr("ry", radius)
-                                                    .attr("fill", "url(#buttonFillNormal)")
-                                                    .attr("filter","url(#Bevel)")
-                                                    .attr("stroke", "black")
-                                                    .attr("id", variableNames[i])
-                                                    .attr("class", "variableNameHolderBack");
+                                    .attr("x", variableNameHolderPadding)
+                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))                                                   
+                                    .attr("height", variableNameHolderHeight)
+                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
+                                    .attr("rx", radius)
+                                    .attr("ry", radius)
+                                    .attr("fill", "url(#buttonFillNormal)")
+                                    .attr("filter","url(#Bevel)")
+                                    .attr("stroke", "black")
+                                    .attr("id", variableNames[i])
+                                    .attr("class", "variableNameHolderBack");
                                                 
                     variablePanelSVG.append("text")
-                                                    .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
-                                                    .attr("y", variableNameHolderPadding + variableNameHolderHeight/2 + i*(variableNameHolderHeight + variableNameHolderPadding) + yAxisTickTextOffset)
-                                                    .attr("fill", "black")
-                                                    .attr("font-size", fontSizeVariablePanel + "px")
-                                                    .attr("text-anchor", "middle")
-                                                    .text(variableNames[i])
-                                                    .attr("id", variableNames[i])
-                                                    .attr("class", "variableNameHolderText");
+                                    .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
+                                    .attr("y", variableNameHolderPadding + variableNameHolderHeight/2 + i*(variableNameHolderHeight + variableNameHolderPadding) + yAxisTickTextOffset)
+                                    .attr("fill", "black")
+                                    .attr("font-size", fontSizeVariablePanel + "px")
+                                    .attr("text-anchor", "middle")
+                                    .text(variableNames[i])
+                                    .attr("id", variableNames[i])
+                                    .attr("class", "variableNameHolderText");
                     variablePanelSVG.append("rect")
-                                                    .attr("x", variableNameHolderPadding)
-                                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))                                                   
-                                                    .attr("height", variableNameHolderHeight)
-                                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
-                                                    .attr("rx", radius)
-                                                    .attr("ry", radius)
-                                                    .attr("fill", panelColors.normal)
-                                                    .attr("id", variableNames[i])
-                                                    .attr("opacity", "0.1")
-                                                    .attr("class", "variableNameHolderFront");
+                                    .attr("x", variableNameHolderPadding)
+                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))                                                   
+                                    .attr("height", variableNameHolderHeight)
+                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
+                                    .attr("rx", radius)
+                                    .attr("ry", radius)
+                                    .attr("fill", panelColors.normal)
+                                    .attr("id", variableNames[i])
+                                    .attr("opacity", "0.1")
+                                    .attr("class", "variableNameHolderFront");
                     
                     variablePanelSVG.append("image")
-                                        .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding)
-                                        .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
-                                        .attr("height", variableNameHolderHeight)
-                                        .attr("width", (variableNameHolderHeight - variableNameHolderPadding/2)/1.75)
-                                        .attr("xlink:href", "images/toggle_up.png")
-                                        .attr("id", variableNames[i])
-                                        .attr("class", "variableTypeToggleButton");
+                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding)
+                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
+                                    .attr("height", variableNameHolderHeight)
+                                    .attr("width", (variableNameHolderHeight - variableNameHolderPadding/2)/1.75)
+                                    .attr("xlink:href", "images/toggle_up.png")
+                                    .attr("id", variableNames[i])
+                                    .attr("class", "variableTypeToggleButton");
  
                     variablePanelSVG.append("text")
                                     .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4 + 2*variableNameHolderPadding)
@@ -274,6 +274,7 @@
         
         <div id="variable" class="panel"></div>
         <div id="visualisation" class="panel"></div>
+        
         <div id="canvas"></div>    
         <div id="sideBar"></div>    
     </body>
