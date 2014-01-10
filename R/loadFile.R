@@ -9,6 +9,5 @@ loadFile <- function(filePath)
     
     variableNames = names(dataset);
     
-    list(dataset = dataset, variableNames = variableNames);
-    
+    list(dataset = dataset, variableNames = variableNames);    
 }

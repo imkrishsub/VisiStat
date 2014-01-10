@@ -12,6 +12,8 @@ function loadFile(filePath)
 
         console.log("Latency for call = " + (timeAfter - timeBefore) + " ~ " + (timeAfter - timeBefore)/1000 + "seconds");
         dataset = output.dataset;
+
+        console.log("dataset: " + output.dataset)
         console.log(output.variableNames);
 
         //render the variable names
