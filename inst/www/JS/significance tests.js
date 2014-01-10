@@ -123,8 +123,6 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                     testResults["parameter-type"] = "t";
                     
                     testResults["error"] = output.error;
-                    
-                    console.log(output.errorAlt);
               
                     if(varianceEqual == "FALSE")
                     {

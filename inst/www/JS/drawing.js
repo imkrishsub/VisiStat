@@ -849,6 +849,8 @@ function drawScales(cx, cy)
         console.log("error: " + testResults["error"]);
         
         CI = calculateCI(means[means.length -1] - means[0], testResults["error"]);
+        console.log("CI: " + CI);
+        
         var error = testResults["error"];
     
         var BOTTOM = canvasHeight/2 + plotHeight/2;
