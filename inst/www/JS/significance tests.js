@@ -123,6 +123,8 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                     testResults["parameter-type"] = "t";
                     
                     testResults["error"] = output.error;
+                    
+                    console.log(output.errorAlt);
               
                     if(varianceEqual == "FALSE")
                     {
@@ -271,6 +273,7 @@ function performWilcoxonTest(groupA, groupB)
                 
                     testResults["test-type"] = "wT";
                     testResults["error"] = output.error;
+                    
                     
                     testResults["p"] = changePValueNotation(output.p);                  
                     testResults["effect-size"] = output.r;
