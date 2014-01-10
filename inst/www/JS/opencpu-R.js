@@ -1,14 +1,16 @@
 //load the file to a JS object
 function loadFile(filePath)
 {
-    console.log("Time stamp before calling the function = "  + new Date().getTime());
+    var timeBefore = new Date().getTime();
     //loads the file and returns the dataset and variable names
     var req = ocpu.rpc("loadFile", 
     {
         filePath: filePath
     }, function(output) 
     {     
-        console.log("Time stamp after = "  + new Date().getTime());
+        var timeAfter = new Date().getTime();
+
+        console.log("Latency for call = " + (timeAfter - timeBefore) + " ~ " + (timeAfter - timeBefore)/1000 + "seconds");
         dataset = output.dataset;
 
         //render the variable names
