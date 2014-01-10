@@ -352,7 +352,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
 
         testResults["test-type"] = "owrA";
 
-        testResults["method"] = "1-way repeated-measures ANOVA"; //todo
+        testResults["method"] = "Repeated-measures ANOVA"; //todo
         testResults["effect-size"] = output.etaSquared;
         testResults["p"] = changePValueNotation(output.p);
         testResults["effect-size-type"] = "eS";
@@ -614,7 +614,7 @@ function performPairwiseTTest(varianceEqual, paired)
         testResults["parameter-type"] = "t";
 
         testResults["p"] = changePValueNotation(output.p); 
-        testResults["method"] = "Pairwise t-test (Bonf.)";
+        testResults["method"] = "Pairwise T-test (Bonf.)";
         testResults["effect-size"] = output.d;
         testResults["effect-size-type"] = "d";
         testResults["test-type"] = "ptT";

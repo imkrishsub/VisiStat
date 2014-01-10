@@ -322,26 +322,29 @@ function drawDialogBoxToGetOutcomeVariable()
     
     for(var i=0; i<currentVariableSelection.length; i++)
     {
-        canvas.append("rect")
-                .attr("x", centerX - dialogBoxWidth/3)
-                .attr("y", i*step + yStart)
-                .attr("width", 2*dialogBoxWidth/3)
-                .attr("height", buttHeight)
-                .attr("rx", scaleForWindowSize(10) + "px")
-                .attr("ry", scaleForWindowSize(10) + "px")
-                .attr("fill", "url(#buttonFillNormal)")
-                .attr("filter", "url(#Bevel)")
-                .attr("stroke", "black")
-                .attr("id", currentVariableSelection[i])
-                .attr("class", "outcomeVariable");
-        canvas.append("text")
-                .attr("x", centerX)
-                .attr("y", i*step + yStart + buttHeight/2 + yAxisTickTextOffset)
-                .attr("text-anchor", "middle")
-                .text(currentVariableSelection[i])
-                .attr("font-size", fontSizeVariablePanel)
-                .attr("id", currentVariableSelection[i])
-                .attr("class", "outcomeVariable");
+        if(variableRows[currentVariableSelection[i]] == "dependentVariable")
+        {
+            canvas.append("rect")
+                    .attr("x", centerX - dialogBoxWidth/3)
+                    .attr("y", i*step + yStart)
+                    .attr("width", 2*dialogBoxWidth/3)
+                    .attr("height", buttHeight)
+                    .attr("rx", scaleForWindowSize(10) + "px")
+                    .attr("ry", scaleForWindowSize(10) + "px")
+                    .attr("fill", "url(#buttonFillNormal)")
+                    .attr("filter", "url(#Bevel)")
+                    .attr("stroke", "black")
+                    .attr("id", currentVariableSelection[i])
+                    .attr("class", "outcomeVariable");
+            canvas.append("text")
+                    .attr("x", centerX)
+                    .attr("y", i*step + yStart + buttHeight/2 + yAxisTickTextOffset)
+                    .attr("text-anchor", "middle")
+                    .text(currentVariableSelection[i])
+                    .attr("font-size", fontSizeVariablePanel)
+                    .attr("id", currentVariableSelection[i])
+                    .attr("class", "outcomeVariable");
+        }
     }
 }
 
