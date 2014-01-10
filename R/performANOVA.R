@@ -2,18 +2,17 @@ performOneWayANOVA <- function(dependentVariable, independentVariable, participa
 {       
     table <- as.data.frame(dataset);
     
-    levels = eval(parse(text = paste("unique(table$", independentVariable, ")", sep="")))
-    
+    levels = eval(parse(text = paste("unique(table$", independentVariable, ")", sep="")))   
     
     for(i in 1:length(levels))
     {
         if(i == 1)
         {
-            distributions = c(list(eval(parse(text = paste("subset(table, ", independentVariable, " == ", levels[i], ")", sep = "")))))
+            distributions = c(list(eval(parse(text = paste("subset(table, ", independentVariable, " == \"", levels[i], "\")", sep = "")))))
         }
         else
         {
-            distributions = c(distributions, list(eval(parse(text = paste("subset(table, ", independentVariable, " == ", levels[i], ")", sep = "")))))
+            distributions = c(distributions, list(eval(parse(text = paste("subset(table, ", independentVariable, " == \"", levels[i], "\")", sep = "")))))
         }
     }
     
