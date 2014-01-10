@@ -3,7 +3,7 @@ function loadFile(filePath)
 {
     var timeBefore = new Date().getTime();
     //loads the file and returns the dataset and variable names
-    var req = ocpu.rpc("loadFile", 
+    var req = ocpu.call("loadFile", 
     {
         filePath: filePath
     }, function(output) 
