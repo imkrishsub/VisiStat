@@ -322,7 +322,7 @@ function drawDialogBoxToGetOutcomeVariable()
     
     for(var i=0; i<currentVariableSelection.length; i++)
     {
-        if(variableRows[currentVariableSelection[i]] == "dependentVariable")
+        if(variableRows[currentVariableSelection[i]] == "dependent")
         {
             canvas.append("rect")
                     .attr("x", centerX - dialogBoxWidth/3)
