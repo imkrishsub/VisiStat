@@ -846,6 +846,8 @@ function drawScales(cx, cy)
     
     if(1)
     {    
+        console.log("error: " + testResults["error"]);
+        
         CI = calculateCI(means[means.length -1] - means[0], testResults["error"]);
         var error = testResults["error"];
     

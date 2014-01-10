@@ -271,6 +271,7 @@ function performWilcoxonTest(groupA, groupB)
                 
                     testResults["test-type"] = "wT";
                     testResults["error"] = output.error;
+                    
                     testResults["p"] = changePValueNotation(output.p);                  
                     testResults["effect-size"] = output.r;
                     testResults["method"] = "Wilcoxon Signed-rank test";
