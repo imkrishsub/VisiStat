@@ -1,7 +1,7 @@
 Package: StatViz
 Type: OpenCPU Application
-Title: StatViz
-Version: 0.1
+Title: VisiStat
+Version: 0.4
 Date: 20-11-2013
 Author: Krishna Subramanian
 Maintainer: Krishna <krishna.prasath.subramanian@rwth-aachen.de>
