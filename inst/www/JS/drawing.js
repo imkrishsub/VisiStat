@@ -1630,6 +1630,7 @@ function displayToolTips()
 {
     var canvas = d3.select("#plotCanvas");
 
+    var variablePanel = d3.select("#variable.panel");                
     var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
     var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
 
