@@ -58,6 +58,7 @@ export(findTransformForDependentVariables)
 export(findTransformForNormality)
 export(findTransformForHomogeneity)
 export(findEffect)
+export(findError)
 
 export(runThisRCode)
 
