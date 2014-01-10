@@ -1626,4 +1626,24 @@ function drawNavigator(STATES)
     }
 }
 
+function displayToolTips()
+{
+    var canvas = d3.select("#plotCanvas");
+
+    var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
+    var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
+
+    var variablePanelBorder = canvas.append("rect")
+                                    .attr("x", variableNameHolderPadding)
+                                    .attr("y", variableNameHolderPadding)
+                                    .attr("width", variableNameHolderWidth)
+                                    .attr("height", variableNameHolderHeight)
+                                    .attr("rx", "5px")
+                                    .attr("ry", "5px")
+                                    .attr("fill","none")
+                                    .attr("stroke", "#3957F1")
+                                    .attr("stroke-dasharray","3,3")
+                                    .attr("class","toolTips");
+}
+
     

@@ -31,6 +31,8 @@ function OnMouseDown(e)
             if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableNameHolderFront"))
             {
                 setup(e, target);        
+
+                removeElementsByClassName("toolTips")
         
                 //add to list of variables selected
                 currentVariableSelection = setColorsForVariables(currentVariableSelection, target.id);

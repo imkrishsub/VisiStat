@@ -208,27 +208,6 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         Y2 = (slope*X2 + intercept) > maxY ? maxY : (parseFloat(slope*X2) + parseFloat(intercept));
         Y2 = (slope*X2 + intercept) < minY ? minY : (parseFloat(slope*X2) + parseFloat(intercept));
         
-//         if(uniqueDataX.length <= shortNumberOfGrooves)
-//             x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
-//         else
-//             x1 = x + convertToRange(X1, minX, maxX)*shortWidth;
-//         
-//         if(uniqueDataY.length <= shortNumberOfGrooves)
-//             y1 = y - uniqueDataY.indexOf(Y1)*yStep - yStep/2;
-//         else
-//             y1 = y - convertToRange(Y1, minY, maxY)*shortHeight;
-//     
-//         if(uniqueDataX.length <= shortNumberOfGrooves)
-//             x2 = x + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
-//         else
-//             x2 = x + convertToRange(X2, minX, maxX)*shortWidth;
-//         
-//         if(uniqueDataY.length <= shortNumberOfGrooves)
-//             y2 = y - uniqueDataY.indexOf(Y2)*yStep - yStep/2;
-//         else
-//             y2 = y - convertToRange(Y2, minY, maxY)*shortHeight;
-
-        
         x1 = x + convertToRange(X1, minX, maxX)*shortWidth;
         y1 = y - convertToRange(Y1, minY, maxY)*shortHeight;
     
@@ -342,11 +321,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
                     .attr("x2", x - shortAxesOffset - shortTickLength)
                     .attr("y2", textPosition)
                     .attr("id", "groove" + i)
-                    .attr("class", "yAxisGrooves");       
-        
-        
-        
-        
+                    .attr("class", "yAxisGrooves");     
         
         canvas.append("text")
                     .attr("x", x - shortAxesOffset - shortTickTextOffsetYAxis)
