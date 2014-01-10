@@ -12,7 +12,7 @@ performOneWayANOVA <- function(dependentVariable, independentVariable, participa
         }
         else
         {
-            distributions = c(distributions, list(eval(parse(text = paste("subset(table, ", independentVariable, " == \"", levels[i], "\"))$", dependentVariable, sep = "")))))
+            distributions = c(distributions, list(eval(parse(text = paste("(subset(table, ", independentVariable, " == \"", levels[i], "\"))$", dependentVariable, sep = "")))))
         }
     }
     
