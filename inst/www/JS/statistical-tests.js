@@ -109,7 +109,7 @@ function compareMeans()
                                             {
                                                 loadAssumptionCheckList("repeated measures");
                                                 
-                                                performFactorialANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                                performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
                                             }
                                             else
                                             {
@@ -128,7 +128,7 @@ function compareMeans()
                                         {
                                             loadAssumptionCheckList("repeated measures");
                                             
-                                            performFactorialANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                            performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
                                         }
                                         else
                                         {
