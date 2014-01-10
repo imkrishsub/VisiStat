@@ -39,9 +39,6 @@ function performTTest(groupA, groupB, varianceEqual, paired)
         testResults["effect-size"] = output.d;
         testResults["effect-size-type"] = "d";
         testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
-
-        localStorage.setObject(label, testResults);
-
         //add to log
         logResult();
 
@@ -81,7 +78,6 @@ function performMannWhitneyTest(groupA, groupB)
         testResults["effect-size-type"] = "r";
         testResults["formula"] = variableList["independent-levels"][0] + "." + variableList["dependent"][0] + " vs " + variableList["independent-levels"][1] + "." + variableList["dependent"][0];
 
-        localStorage.setObject(label, testResults);
         logResult();
 
         //drawing stuff
@@ -166,8 +162,6 @@ function performOneWayANOVA(dependentVariable, independentVariable)
         testResults["effect-size-type"] = "eS";
         testResults["formula"] = variableList["dependent"][0] + " ~ " + variableList["independent"][0] + "(" + variableList["independent-levels"] + ")";
     
-        localStorage.setObject(label, testResults);
-
         logResult();                           
     
         //drawing stuff
@@ -475,8 +469,6 @@ function findInteractionEffect(dependentVariable, independentVariables)
         var levelsB = variables[variableList["independent"][1]]["dataset"].unique().slice().sort();
 
         interactions = output.fit;
-        localStorage.setObject(label, interactions);
-        
         resetSVGCanvas();
         drawFullScreenButton();
 
@@ -532,10 +524,7 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
                     tukeyResults[levels[i]][levels[j]]["p"] = output.adjustedP[index++];
                 }
             }
-        }                        
-        
-        localStorage.setObject(label, tukeyResults);
-    
+        }
     
         resetSVGCanvas();
         drawFullScreenButton();

@@ -94,7 +94,6 @@ function testForEvilVariables()
         {            
             if(uniqueVariableData.length >= 10)
             {
-                console.log("\n\tMaking " + variable + " as an evil variable");
                 setThisVariableEvil(variableNames[i]);
             }
         }

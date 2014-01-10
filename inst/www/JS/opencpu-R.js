@@ -201,9 +201,7 @@ function performNormalityTestForMultipleDistributions(distributions, n)
         var pValues = output.p;
 
         for(var i=0; i<pValues.length; i++)
-        {
-            localStorage.setObject(label, pValues[i]);
-    
+        {    
             if(pValues[i] < 0.05)
             {   
                 //not normal
@@ -468,8 +466,6 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
         MAX[dependentVariable][level] = Array.max(output.transformedData);
         IQR[dependentVariable][level] = findIQR(output.transformedData);
         CI[dependentVariable][level] = findCI(output.transformedData);
-
-        localStorage.setObject(label, output.transformedData);
     })    
     if(finalVariable)
     {
