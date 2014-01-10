@@ -18,7 +18,7 @@ performKruskalWallisTest <- function(dependentVariable, independentVariable, dat
 	result = findError(distributions);
 	error = result$error;
   
-	result <- eval(parse(text = paste("kruskal.test(", dependentVariable. " ~ ", independentVariable, "data = table)")));
+	result <- eval(parse(text = paste("kruskal.test(", dependentVariable, " ~ ", independentVariable, ", data = table)")));
 	etaSq = result$statistic[["Kruskal-Wallis chi-squared"]]/(length(independentVariable)-1);
 
 	list(ChiSquared = result$statistic[["Kruskal-Wallis chi-squared"]], DF = result$parameter[["df"]], p = result$p.value, etaSquared = etaSq, error = error);
