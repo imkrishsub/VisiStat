@@ -1634,6 +1634,7 @@ function displayToolTips()
     var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
     var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
 
+    console.log((variableNameHolderHeight - variableTypeSelectionButtonWidth + variableNameHolderPadding));
     var variablePanelBorder = canvas.append("rect")
                                     .attr("x", variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding)
