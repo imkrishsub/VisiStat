@@ -427,6 +427,8 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
               
                     testResults["parameter"] = output.F;
                     testResults["parameter-type"] = "F";                 
+                    
+                    testResults["error"] = output.error;
                              
                     testResults["test-type"] = "twA";
                 
@@ -491,6 +493,8 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
                 
                     testResults["parameter"] = output.F;
                     testResults["parameter-type"] = "F";
+                    
+                    testResults["error"] = output.error;
                 
                     testResults["test-type"] = "owrA";
                 
@@ -560,6 +564,7 @@ function performFactorialANOVA(dependentVariable, withinGroupVariable, betweenGr
                 
                       testResults["df"] = [];
                       testResults["p"] = output.p;
+                      testResults["error"] = output.error;
                   
                       for(var i=0; i<(output.numDF).length; i++)
                       {
@@ -636,6 +641,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
                     testResults["parameter-type"] = "cS";
                 
                     testResults["test-type"] = "fT";
+                    testResults["error"] = output.error;
                 
                     testResults["method"] = "Friedman's Analysis";
                     testResults["p"] = changePValueNotation(output.p);
