@@ -1628,7 +1628,7 @@ function drawNavigator(STATES)
 
 function displayToolTips()
 {
-    var canvas = d3.select("#plotCanvas");
+    var canvas = d3.select("#variablePanelSVG");
 
     var variablePanel = d3.select("#variable.panel");                
     var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
