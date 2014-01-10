@@ -30,7 +30,6 @@ function compareMeans()
 
                     //homoscedasticity
                     loadAssumptionCheckList("normal");
-                    console.log(new Date().getTime());
                     
                     switch(variableList["independent"].length)
                     {

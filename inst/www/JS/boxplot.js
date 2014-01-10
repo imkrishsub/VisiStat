@@ -939,7 +939,6 @@ function getOutliers(data, TOPFringe, BOTTOMFringe)
 //Loop animation
 function startLoopAnimation(meanCircle)
 {
-    console.log("starting loop animation...");
     var canvas = d3.select("#plotCanvas");
         
     //insert animation

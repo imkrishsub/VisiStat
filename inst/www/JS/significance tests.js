@@ -116,14 +116,11 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                         variance: varianceEqual,
                         paired: paired
                       }, function(output) {
-                      
-                    console.log("t-test");
-                      
+                                          
                     testResults["df"] = output.DOF;
               
                     testResults["parameter"] = output.t;
                     testResults["parameter-type"] = "t";
-                    console.log("confidence interval of mean: " + output.CI);
                     
                     testResults["CI"] = output.CI;
               
@@ -193,6 +190,9 @@ function performMannWhitneyTest(groupA, groupB)
 {
     var variableList = getSelectedVariables();
     variableList["independent-levels"] = variableList["independent-levels"].sort();
+    
+    console.log("groupA: [" + groupA + "]");
+    console.log("groupB: [" + groupB + "]");
     
     var label = "mann-whitney(" + variableList["dependent"][0] + "~" + variableList["independent-levels"][0] + "," + variableList["independent-levels"][1] + ")";
     // Get variable names and their data type
