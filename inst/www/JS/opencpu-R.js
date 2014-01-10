@@ -69,7 +69,7 @@ function getData(dataset, variableName, level)
         experimentalDesign = findExperimentalDesign();            
         console.log("\n\tExperimental-design of the dataset is \"" + experimentalDesign + "\"");
 
-        displayTooltips();
+        displayToolTips();
     }
 }
 
