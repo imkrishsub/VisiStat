@@ -2155,8 +2155,8 @@ function loadAssumptionCheckList(type)
                     .attr("fill", "url(#buttonFillNormal)")
                     .attr("filter", "url(#Bevel)")
                     .attr("stroke", "black")
-                    .attr("class", assumptions[type][i])
-                    .attr("id", "assumptionsButtonBack");
+                    .attr("id", assumptions[type][i])
+                    .attr("class", "assumptionsButtonBack");
                     
             canvas.append("text")
                 .attr("x", assumptionImageSize*1.25 + assumptionImageSize/2)
@@ -2164,38 +2164,40 @@ function loadAssumptionCheckList(type)
                 .attr("font-size", fontSizeAssumptions + "px")
                 .attr("fill", "black")
                 .text(assumptionsText[assumptions[type][i]])
-                .attr("class", assumptions[type][i])
-                .attr("id", "assumptions");
+                .attr("id", assumptions[type][i])
+                .attr("class", "assumptions");
                 
             canvas.append("image")
                 .attr("x", 0)
                 .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
+                .attr("text-anchor", "end")
                 .attr("xlink:href", "images/checkingAssumptions.gif")
                 .attr("height", assumptionImageSize)            
                 .attr("width", assumptionImageSize)
-                .attr("display","inline")
-                .attr("class", assumptions[type][i])
-                .attr("id", "loading");
+                .attr("id", assumptions[type][i])
+                .attr("class", "loading");
                 
             canvas.append("image")
                 .attr("x", 0)
                 .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
+                .attr("text-anchor", "end")
                 .attr("xlink:href", "images/tick.png")
                 .attr("height", assumptionImageSize)            
                 .attr("width", assumptionImageSize)
                 .attr("display", "none")
-                .attr("class", assumptions[type][i])
-                .attr("id", "ticks");
+                .attr("id", assumptions[type][i])
+                .attr("class", "ticks");
                          
             canvas.append("image")
                 .attr("x", 0)
                 .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 8)
+                .attr("text-anchor", "end")
                 .attr("xlink:href", "images/cross.png")
                 .attr("height", assumptionImageSize)
                 .attr("width", assumptionImageSize)
                 .attr("display", "none")
-                .attr("class", assumptions[type][i])
-                .attr("id", "crosses");
+                .attr("id", assumptions[type][i])
+                .attr("class", "crosses");
                 
             canvas.append("rect")
                     .attr("x", assumptionImageSize*1.25) 
@@ -2205,8 +2207,8 @@ function loadAssumptionCheckList(type)
                     .attr("rx", "5px")
                     .attr("ry", "5px")
                     .attr("opacity", "0.1")
-                    .attr("class", assumptions[type][i])
-                    .attr("id", "assumptionsButtonFront");
+                    .attr("id", assumptions[type][i])
+                    .attr("class", "assumptionsButtonFront");
         }    
     }, 1300);
     
@@ -6144,7 +6146,7 @@ function OnMouseDown(e)
                                     
                                             var dependentVariable = variableList["dependent"][0];
                                             
-                                            var homogeneity = d3.select("#homogeneity.ticks").attr("display") == "inline" ? true : false;
+                                            var homogeneity = d3.select("#ticks.homogeneity").attr("display") == "inline" ? true : false;
         
                                             for(var i=0; i<variableList["independent"].length; i++)
                                             {                   
@@ -7540,25 +7542,25 @@ function loadFile(filePath)
 
         console.log("Latency for loadFile() = " + (timeAfter - timeBefore)/1000 + "seconds");
 
-        dataset = output.dataset;
+        // dataset = output.dataset;
 
-        //render the variable names
-        renderVariableNames(output.variableNames);    
+        // //render the variable names
+        // renderVariableNames(output.variableNames);    
 
-        //we now have the variable names. let the dogs out!
-        variableNames = output.variableNames;
+        // //we now have the variable names. let the dogs out!
+        // variableNames = output.variableNames;
 
-        //for each variable, get the data and the IQR
-        for(var i=0; i<output.variableNames.length; i++)
-        {      
-            variables[output.variableNames[i]] = new Object();
-            MIN[output.variableNames[i]] = new Object();
-            MAX[output.variableNames[i]] = new Object();
-            IQR[output.variableNames[i]] = new Object();
-            CI[output.variableNames[i]] = new Object();
+        // //for each variable, get the data and the IQR
+        // for(var i=0; i<output.variableNames.length; i++)
+        // {      
+        //     variables[output.variableNames[i]] = new Object();
+        //     MIN[output.variableNames[i]] = new Object();
+        //     MAX[output.variableNames[i]] = new Object();
+        //     IQR[output.variableNames[i]] = new Object();
+        //     CI[output.variableNames[i]] = new Object();
 
-            getData(dataset, output.variableNames[i]);                 
-        }
+        //     getData(dataset, output.variableNames[i]);                 
+        // }
     });
     //if R returns an error, alert the error message
     req.fail(function()
@@ -7603,8 +7605,7 @@ function getData(dataset, variableName, level)
 
 //perform levene's test, p < 0.05 => not homogeneous
 function performHomoscedasticityTest(dependent, independent)
-{ 
-    console.log("yes, it's working...");  
+{   
     var variableList = getSelectedVariables(); 
                 
     //get variable names and their data type
@@ -7621,8 +7622,8 @@ function performHomoscedasticityTest(dependent, independent)
            if(variableList["independent"].length == 0)
            {
                //one sample t-test
-               d3.select("#homogeneity.crosses").attr("display", "inline");
-               d3.select("#homogeneity.loading").attr("display", "none");
+               d3.select("#normality.crosses").attr("display", "inline");
+               d3.select("#normality.loading").attr("display", "none");
            
                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
    
@@ -7642,8 +7643,8 @@ function performHomoscedasticityTest(dependent, independent)
            //normal
            if(variableList["independent"].length == 0)
            {
-               d3.select("#homogeneity.ticks").attr("display", "inline");
-               d3.select("#homogeneity.loading").attr("display", "none");
+               d3.select("#normality.ticks").attr("display", "inline");
+               d3.select("#normality.loading").attr("display", "none");
            
                drawDialogBoxToGetPopulationMean();
            }
@@ -7847,7 +7848,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                         performFriedmanTest(dependentVariable, independentVariable);
                     }
                 }                       
-                else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                else if(d3.select("#ticks.homogeneity").attr("display") == "inline")
                 {
                     //between-groups design
                     if(variableList["independent-levels"].length == 2)
@@ -7872,7 +7873,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                     //within-group design
                 
                 }                       
-                else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                else if(d3.select("#ticks.homogeneity").attr("display") == "inline")
                 {
                     //between-groups design
                     if(variableList["independent-levels"].length == 2)
@@ -7922,8 +7923,8 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
         {
             console.log("Transformation to homogeneity is not possible!");
         
-            d3.select("#homogeneity.crosses").attr("display", "inline"); 
-            d3.select("#homogeneity.loading").attr("display", "none"); 
+            d3.select("#crosses.homogeneity").attr("display", "inline"); 
+            d3.select("#loading.homogeneity").attr("display", "none"); 
         
             d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                             
@@ -8060,7 +8061,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                 else
                 {
                     //between-group design
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    if(d3.select("#ticks.homogeneity").attr("display") == "inline")
                     {
                         //only if homogeneous
                         if(variableList["independent-levels"].length == 2)
@@ -8086,7 +8087,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                 else
                 {
                     //between-group design
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    if(d3.select("#ticks.homogeneity").attr("display") == "inline")
                     {
                         //only if homogeneous
                         if(variableList["independent-levels"].length == 2)
@@ -8151,9 +8152,9 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
         removeElementsByClassName("completeLines");
 
         //modify the assumptions checklist icons
-        d3.select("#homogeneity.crosses").attr("display", "none");  
-        d3.select("#homogeneity.ticks").attr("display", "inline");  
-        d3.select("#homogeneity.loading").attr("display", "none");                                        
+        d3.select("#crosses.homogeneity").attr("display", "none");  
+        d3.select("#ticks.homogeneity").attr("display", "inline");  
+        d3.select("#loading.homogeneity").attr("display", "none");                                        
 
         d3.select("#plotCanvas").transition().delay(2000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
 
@@ -9082,7 +9083,6 @@ var viewBoxHeightForRegressionLine = viewBoxWidthForRegressionLine/2;
 //unpaired t-test, paired t-test, and welch's t-test
 function performTTest(groupA, groupB, varianceEqual, paired) 
 {
-    console.log("t-test :)");
     var variableList = getSelectedVariables();    
     
     // Get variable names and their data type
@@ -9771,7 +9771,7 @@ var hasDF = new Object();
     hasDF["F"] = true;
     hasDF["cS"] = true;
 
-function compareMeans()
+    function compareMeans()
 {    
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
@@ -10132,10 +10132,8 @@ function setDistribution(dependentVariable, level, normal)
                 {
                     //between-group design
                     
-                    console.log(d3.select("#homogeneity.ticks").attr("display"));
-
                     //homoscedasticity test is already done (and no case is handled)
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    if(d3.select("#ticks.homogeneity").attr("display") == "inline")
                     {
                         if(variableList["independent-levels"].length == 2)
                         {
@@ -10164,7 +10162,7 @@ function setDistribution(dependentVariable, level, normal)
                     //between-group design
                     
                     //homoscedasticity test is already done (and no case is handled)
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    if(d3.select("#ticks.homogeneity").attr("display") == "inline")
                     {
                         if(variableList["independent-levels"].length == 2)
                         {
@@ -10182,7 +10180,7 @@ function setDistribution(dependentVariable, level, normal)
                 if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
                 {
                     console.log("hi");
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    if(d3.select("#ticks.homogeneity").attr("display") == "inline")
                     {
                         //2 variables
                         var groups = getGroupsForColourBoxPlotData();
@@ -10240,15 +10238,8 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         {   
             if(variances[dependentVariable][variableList["independent"][i]] == false)
             {
-                console.log(d3.select("#homogeneity.crosses").attr("display"));
-                console.log(d3.select("#homogeneity.loading").attr("display"));
-
-                d3.select("#homogeneity.crosses").attr("display", "inline");
-                d3.select("#homogeneity.loading").attr("display", "none"); 
-
-                console.log(d3.select("#homogeneity.crosses").attr("display"));
-                console.log(d3.select("#homogeneity.loading").attr("display"));
-
+                d3.select("#crosses.homogeneity").attr("display", "inline");
+                d3.select("#loading.homogeneity").attr("display", "none"); 
                 homogeneity = false;
             
                 drawHomogeneityPlot(homogeneity);
@@ -10261,32 +10252,24 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         if(homogeneity)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
-
-            console.log(d3.select("#homogeneity.ticks").attr("display"));
-            console.log(d3.select("#homogeneity.loading").attr("display"));
             
-            d3.select("#homogeneity.ticks").attr("display", "inline"); 
-            d3.select("#homogeneity.loading").attr("display", "none"); 
-
-            console.log(d3.select("#homogeneity.ticks").attr("display"));
-            console.log(d3.select("#homogeneity.loading").attr("display"));
-
-            console.log("homogeneity thing should be displayed properly now...");
+            d3.select("#ticks.homogeneity").attr("display", "inline"); 
+            d3.select("#loading.homogeneity").attr("display", "none"); 
             
-            // if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
-            // {
-            //     //between-groups design
-            //     if(pairwiseComparisons)
-            //     {
-            //         performNormalityTests();                    
-            //     }
-            //     else
-            //         performNormalityTests();                
-            // }
-            // else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
-            // {
-            //     performNormalityTests();
-            // }
+            if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
+            {
+                //between-groups design
+                if(pairwiseComparisons)
+                {
+                    performNormalityTests();                    
+                }
+                else
+                    performNormalityTests();                
+            }
+            else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
+            {
+                performNormalityTests();
+            }
         }
         else
         {
