@@ -1,12 +1,4 @@
 import(lawstat)
-import(ez)
-import(effects)
-import(ltm)
-import(MAd)
-import(compute.es)
-import(coin)
-import(powerAnalysis)
-import(MBESS)
 
 export(getData)
 export(getCorrelationCoefficient)
