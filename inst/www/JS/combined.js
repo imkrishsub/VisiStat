@@ -2173,6 +2173,7 @@ function loadAssumptionCheckList(type)
                 .attr("xlink:href", "images/checkingAssumptions.gif")
                 .attr("height", assumptionImageSize)            
                 .attr("width", assumptionImageSize)
+                .attr("display","inline")
                 .attr("id", assumptions[type][i])
                 .attr("class", "loading");
                 
@@ -10262,7 +10263,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
 
             console.log(d3.select("#homogeneity.ticks").attr("display"));
             console.log(d3.select("#homogeneity.loading").attr("display"));
-            
+
             console.log("homogeneity thing should be displayed properly now...");
             
             // if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
