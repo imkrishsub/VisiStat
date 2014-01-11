@@ -7605,7 +7605,8 @@ function getData(dataset, variableName, level)
 
 //perform levene's test, p < 0.05 => not homogeneous
 function performHomoscedasticityTest(dependent, independent)
-{   
+{ 
+    console.log("yes, it's working...");  
     var variableList = getSelectedVariables(); 
                 
     //get variable names and their data type
