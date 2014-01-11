@@ -1,5 +1,3 @@
-import(lawstat)
-
 export(getData)
 export(getCorrelationCoefficient)
 export(getBiserialCorrelationCoefficient)
