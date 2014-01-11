@@ -7623,8 +7623,8 @@ function performHomoscedasticityTest(dependent, independent)
            if(variableList["independent"].length == 0)
            {
                //one sample t-test
-               d3.select("#normality.crosses").attr("display", "inline");
-               d3.select("#normality.loading").attr("display", "none");
+               d3.select("#homogeneity.crosses").attr("display", "inline");
+               d3.select("#homogeneity.loading").attr("display", "none");
            
                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
    
@@ -7644,8 +7644,8 @@ function performHomoscedasticityTest(dependent, independent)
            //normal
            if(variableList["independent"].length == 0)
            {
-               d3.select("#normality.ticks").attr("display", "inline");
-               d3.select("#normality.loading").attr("display", "none");
+               d3.select("#homogeneity.ticks").attr("display", "inline");
+               d3.select("#homogeneity.loading").attr("display", "none");
            
                drawDialogBoxToGetPopulationMean();
            }
@@ -9084,6 +9084,7 @@ var viewBoxHeightForRegressionLine = viewBoxWidthForRegressionLine/2;
 //unpaired t-test, paired t-test, and welch's t-test
 function performTTest(groupA, groupB, varianceEqual, paired) 
 {
+    console.log("t-test :)");
     var variableList = getSelectedVariables();    
     
     // Get variable names and their data type
@@ -10133,6 +10134,8 @@ function setDistribution(dependentVariable, level, normal)
                 {
                     //between-group design
                     
+                    console.log(d3.select("#homogeneity.ticks").attr("display"));
+
                     //homoscedasticity test is already done (and no case is handled)
                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
