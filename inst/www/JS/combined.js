@@ -2170,7 +2170,6 @@ function loadAssumptionCheckList(type)
             canvas.append("image")
                 .attr("x", 0)
                 .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
-                .attr("text-anchor", "end")
                 .attr("xlink:href", "images/checkingAssumptions.gif")
                 .attr("height", assumptionImageSize)            
                 .attr("width", assumptionImageSize)
@@ -2180,7 +2179,6 @@ function loadAssumptionCheckList(type)
             canvas.append("image")
                 .attr("x", 0)
                 .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
-                .attr("text-anchor", "end")
                 .attr("xlink:href", "images/tick.png")
                 .attr("height", assumptionImageSize)            
                 .attr("width", assumptionImageSize)
@@ -2191,7 +2189,6 @@ function loadAssumptionCheckList(type)
             canvas.append("image")
                 .attr("x", 0)
                 .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 8)
-                .attr("text-anchor", "end")
                 .attr("xlink:href", "images/cross.png")
                 .attr("height", assumptionImageSize)
                 .attr("width", assumptionImageSize)
@@ -10262,20 +10259,20 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
 
             console.log("homogeneity thing should be displayed properly now...");
             
-            if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
-            {
-                //between-groups design
-                if(pairwiseComparisons)
-                {
-                    performNormalityTests();                    
-                }
-                else
-                    performNormalityTests();                
-            }
-            else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
-            {
-                performNormalityTests();
-            }
+            // if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
+            // {
+            //     //between-groups design
+            //     if(pairwiseComparisons)
+            //     {
+            //         performNormalityTests();                    
+            //     }
+            //     else
+            //         performNormalityTests();                
+            // }
+            // else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
+            // {
+            //     performNormalityTests();
+            // }
         }
         else
         {
