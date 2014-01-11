@@ -9773,7 +9773,7 @@ var hasDF = new Object();
     hasDF["F"] = true;
     hasDF["cS"] = true;
 
-    function compareMeans()
+function compareMeans()
 {    
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
@@ -10259,6 +10259,8 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             
             d3.select("#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
+
+            console.log("homogeneity thing should be displayed properly now...");
             
             if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
             {
