@@ -10240,8 +10240,15 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         {   
             if(variances[dependentVariable][variableList["independent"][i]] == false)
             {
+                console.log(d3.select("#homogeneity.crosses").attr("display"));
+                console.log(d3.select("#homogeneity.loading").attr("display"));
+
                 d3.select("#homogeneity.crosses").attr("display", "inline");
                 d3.select("#homogeneity.loading").attr("display", "none"); 
+
+                console.log(d3.select("#homogeneity.crosses").attr("display"));
+                console.log(d3.select("#homogeneity.loading").attr("display"));
+
                 homogeneity = false;
             
                 drawHomogeneityPlot(homogeneity);
