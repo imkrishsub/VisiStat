@@ -1,18 +1,23 @@
 performTwoWayANOVA <- function(dataset, dependentVariable, participantVariable, betweenGroupVariableA, betweenGroupVariableB)
 {
     table <- as.data.frame(dataset);
+
+    independentVariables = c(betweenGroupVariableA, betweenGroupVariableB)
     
-    levels = eval(parse(text = paste("unique(table$", independentVariable, ")", sep="")))   
-    
-    for(i in 1:length(levels))
+    for(j in 1:2)
     {
-        if(i == 1)
+        levels = eval(parse(text = paste("unique(table$", independentVariables[j], ")", sep="")))   
+        
+        for(i in 1:length(levels))
         {
-            distributions = c(list(eval(parse(text = paste("(subset(table, ", independentVariable, " == \"", levels[i], "\"))$", dependentVariable, sep = "")))))
-        }
-        else
-        {
-            distributions = c(distributions, list(eval(parse(text = paste("(subset(table, ", independentVariable, " == \"", levels[i], "\"))$", dependentVariable, sep = "")))))
+            if(i == 1 && j == 1)
+            {
+                distributions = c(list(eval(parse(text = paste("(subset(table, ", independentVariables[j], " == \"", levels[i], "\"))$", dependentVariable, sep = "")))))
+            }
+            else
+            {
+                distributions = c(distributions, list(eval(parse(text = paste("(subset(table, ", independentVariable[j], " == \"", levels[i], "\"))$", dependentVariable, sep = "")))))
+            }
         }
     }
     
