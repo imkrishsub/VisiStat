@@ -12,25 +12,25 @@ function loadFile(filePath)
 
         console.log("Latency for loadFile() = " + (timeAfter - timeBefore)/1000 + "seconds");
 
-        // dataset = output.dataset;
+        dataset = output.dataset;
 
-        // //render the variable names
-        // renderVariableNames(output.variableNames);    
+        //render the variable names
+        renderVariableNames(output.variableNames);    
 
-        // //we now have the variable names. let the dogs out!
-        // variableNames = output.variableNames;
+        //we now have the variable names. let the dogs out!
+        variableNames = output.variableNames;
 
-        // //for each variable, get the data and the IQR
-        // for(var i=0; i<output.variableNames.length; i++)
-        // {      
-        //     variables[output.variableNames[i]] = new Object();
-        //     MIN[output.variableNames[i]] = new Object();
-        //     MAX[output.variableNames[i]] = new Object();
-        //     IQR[output.variableNames[i]] = new Object();
-        //     CI[output.variableNames[i]] = new Object();
+        //for each variable, get the data and the IQR
+        for(var i=0; i<output.variableNames.length; i++)
+        {      
+            variables[output.variableNames[i]] = new Object();
+            MIN[output.variableNames[i]] = new Object();
+            MAX[output.variableNames[i]] = new Object();
+            IQR[output.variableNames[i]] = new Object();
+            CI[output.variableNames[i]] = new Object();
 
-        //     getData(dataset, output.variableNames[i]);                 
-        // }
+            getData(dataset, output.variableNames[i]);                 
+        }
     });
     //if R returns an error, alert the error message
     req.fail(function()
