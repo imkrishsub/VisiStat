@@ -43,3 +43,5 @@ export(findError)
 
 export(getVariableNames)
 export(loadFile)
+
+export(levene.test)
