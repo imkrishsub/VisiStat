@@ -45,3 +45,4 @@ export(getVariableNames)
 export(loadFile)
 
 export(levene.test)
+export(smd)
