@@ -92,8 +92,8 @@ function performHomoscedasticityTest(dependent, independent)
            if(variableList["independent"].length == 0)
            {
                //one sample t-test
-               d3.select("#normality.crosses").attr("display", "inline");
-               d3.select("#loadingnormality").attr("display", "none");
+               d3.select("#homogeneity.crosses").attr("display", "inline");
+               d3.select("#homogeneity.loading").attr("display", "none");
            
                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
    
@@ -113,8 +113,8 @@ function performHomoscedasticityTest(dependent, independent)
            //normal
            if(variableList["independent"].length == 0)
            {
-               d3.select("#normality.ticks").attr("display", "inline");
-               d3.select("#loadingnormality").attr("display", "none");
+               d3.select("#homogeneity.ticks").attr("display", "inline");
+               d3.select("#homogeneity.loading").attr("display", "none");
            
                drawDialogBoxToGetPopulationMean();
            }
@@ -393,9 +393,6 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
         if(output.type == "none")
         {
             console.log("Transformation to homogeneity is not possible!");
-        
-            d3.select("#homogeneity.ticks").attr("display", "inline"); 
-            d3.select("#homogeneity.loading").attr("display", "none"); 
         
             d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                             
