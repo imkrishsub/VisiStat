@@ -19,7 +19,7 @@ performOneWayRepeatedMeasuresANOVA <- function(dependentVariable, independentVar
     result = findError(distributions);
     error = result$error;
     
-    result <- eval(parse(text = paste("ezANOVA(table,",dependentVariable,",",participantVariable,",between=",independentVariable,")",sep="")));
+    result <- eval(parse(text = paste("ez::ezANOVA(table,",dependentVariable,",",participantVariable,",between=",independentVariable,")",sep="")));
     result <- result$ANOVA;
     
     list(numDF = result$DFn, denomDF = result$DFd, F = result$F, p = result$p, etaSquared = result$ges, error = error);    

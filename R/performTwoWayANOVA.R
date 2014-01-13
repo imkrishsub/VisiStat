@@ -24,7 +24,7 @@ performTwoWayANOVA <- function(dataset, dependentVariable, participantVariable, 
     result = findError(distributions);
     error = result$error;
     
-    result = eval(parse(text = paste("ezANOVA(table, dv = ", dependentVariable,", wid = ", participantVariable, ", between = c(", betweenGroupVariableA, ",", betweenGroupVariableB, "))", sep="")));
+    result = eval(parse(text = paste("ez::ezANOVA(table, dv = ", dependentVariable,", wid = ", participantVariable, ", between = c(", betweenGroupVariableA, ",", betweenGroupVariableB, "))", sep="")));
     
     result = result$ANOVA;
     
