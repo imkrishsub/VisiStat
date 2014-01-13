@@ -308,7 +308,7 @@ function setDistribution(dependentVariable, level, normal)
             if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
             {
                 d3.select("#normalitycrosses").attr("display", "inline"); 
-                d3.select("#normalityloading").attr("display", "none"); 
+                d3.select("#loadingnormality").attr("display", "none"); 
                 
                 normal = false;
                 
@@ -331,7 +331,7 @@ function setDistribution(dependentVariable, level, normal)
             console.log("\n\tAll distributions are normal!");
             
             d3.select("#normalityticks").attr("display", "inline");  
-            d3.select("#normalityloading").attr("display", "none"); 
+            d3.select("#loadingnormality").attr("display", "none"); 
             
             if(variableList["independent"].length == 1)
             {
@@ -466,7 +466,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             if(variances[dependentVariable][variableList["independent"][i]] == false)
             {
                 d3.select("#homogeneityticks").attr("display", "inline");
-                d3.select("#homogeneityloading").attr("display", "none"); 
+                d3.select("#loadinghomogeneity").attr("display", "none"); 
                 homogeneity = false;
             
                 drawHomogeneityPlot(homogeneity);
@@ -481,15 +481,14 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             console.log("\n\tHomogeneous requirement satisfied!");
 
             console.log(document.getElementById("normalityticks").getAttribute("display"));
-            console.log(document.getElementById("normalityloading").getAttribute("display"));
-            
-            console.log(document.getElementById("homogeneityticks").getAttribute("display"));
-            console.log(document.getElementById("homogeneityloading").getAttribute("display"));
+            console.log(document.getElementById("loadingnormality").getAttribute("display"));
 
+            console.log(document.getElementById("homogeneityticks").getAttribute("display"));
+            console.log(document.getElementById("loadinghomogeneity").getAttribute("display"));
             
             
             d3.select("#homogeneityticks").attr("display", "inline"); 
-            d3.select("#homogeneityloading").attr("display", "none"); 
+            d3.select("#loadinghomogeneity").attr("display", "none"); 
             
             if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
             {

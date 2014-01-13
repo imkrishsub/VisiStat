@@ -755,7 +755,7 @@ function loadAssumptionCheckList(type)
                     .attr("xlink:href", "images/checkingAssumptions.gif")
                     .attr("height", assumptionImageSize)            
                     .attr("width", assumptionImageSize)
-                    .attr("id", assumptions[type][i] + "loading")
+                    .attr("id", "loading" + assumptions[type][i])
                     .attr("class", "loading");
                 
             canvas.append("image")

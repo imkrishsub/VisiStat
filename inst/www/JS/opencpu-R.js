@@ -92,8 +92,8 @@ function performHomoscedasticityTest(dependent, independent)
            if(variableList["independent"].length == 0)
            {
                //one sample t-test
-               d3.select("#normality.crosses").attr("display", "inline");
-               d3.select("#normality.loading").attr("display", "none");
+               d3.select("#normalitycrosses").attr("display", "inline");
+               d3.select("#loadingnormality").attr("display", "none");
            
                d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
    
@@ -113,8 +113,8 @@ function performHomoscedasticityTest(dependent, independent)
            //normal
            if(variableList["independent"].length == 0)
            {
-               d3.select("#normality.ticks").attr("display", "inline");
-               d3.select("#normality.loading").attr("display", "none");
+               d3.select("#normalityticks").attr("display", "inline");
+               d3.select("#loadingnormality").attr("display", "none");
            
                drawDialogBoxToGetPopulationMean();
            }
@@ -150,8 +150,8 @@ function performNormalityTest(distribution, dependentVariable, level)
             if(variableList["independent"].length == 0)
             {
                 //one sample t-test
-                d3.select("#normality.crosses").attr("display", "inline");
-                d3.select("#normality.loading").attr("display", "none");
+                d3.select("#normalitycrosses").attr("display", "inline");
+                d3.select("#loadingnormality").attr("display", "none");
         
                 d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
 
@@ -171,8 +171,8 @@ function performNormalityTest(distribution, dependentVariable, level)
             //normal
             if(variableList["independent"].length == 0)
             {
-                d3.select("#normality.ticks").attr("display", "inline");
-                d3.select("#normality.loading").attr("display", "none");
+                d3.select("#normalityticks").attr("display", "inline");
+                d3.select("#loadingnormality").attr("display", "none");
         
                 drawDialogBoxToGetPopulationMean();
             }
@@ -215,8 +215,8 @@ function performNormalityTestForMultipleDistributions(distributions, n)
                 if(variableList["independent"].length == 0)
                 {
                     //one sample t-test
-                    d3.select("#normality.crosses").attr("display", "inline");
-                    d3.select("#normality.loading").attr("display", "none");
+                    d3.select("#normalitycrosses").attr("display", "inline");
+                    d3.select("#loadingnormality").attr("display", "none");
         
                     d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight*1.5);
 
@@ -236,8 +236,8 @@ function performNormalityTestForMultipleDistributions(distributions, n)
                 //normal
                 if(variableList["independent"].length == 0)
                 {
-                    d3.select("#normality.ticks").attr("display", "inline");
-                    d3.select("#normality.loading").attr("display", "none");
+                    d3.select("#normalityticks").attr("display", "inline");
+                    d3.select("#loadingnormality").attr("display", "none");
         
                     drawDialogBoxToGetPopulationMean();
                 }
@@ -318,7 +318,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                         performFriedmanTest(dependentVariable, independentVariable);
                     }
                 }                       
-                else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                else if(d3.select("#homogeneityticks").attr("display") == "inline")
                 {
                     //between-groups design
                     if(variableList["independent-levels"].length == 2)
@@ -343,7 +343,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                     //within-group design
                 
                 }                       
-                else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                else if(d3.select("#homogeneityticks").attr("display") == "inline")
                 {
                     //between-groups design
                     if(variableList["independent-levels"].length == 2)
@@ -393,8 +393,8 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
         {
             console.log("Transformation to homogeneity is not possible!");
         
-            d3.select("#homogeneity.crosses").attr("display", "inline"); 
-            d3.select("#homogeneity.loading").attr("display", "none"); 
+            d3.select("#homogeneityticks").attr("display", "inline"); 
+            d3.select("#loadinghomogeneity").attr("display", "none"); 
         
             d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
                             
@@ -504,9 +504,9 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
         text.attr("fill", boxColors["normal"]);
         
         //modify the assumptions checklist icons
-        d3.select("#normality.crosses").attr("display", "none");  
-        d3.select("#normality.ticks").attr("display", "inline");  
-        d3.select("#normality.loading").attr("display", "none");                                        
+        d3.select("#normalitycrosses").attr("display", "none");  
+        d3.select("#normalityticks").attr("display", "inline");  
+        d3.select("#loadingnormality").attr("display", "none");                                        
         
         d3.select("#plotCanvas").transition().delay(2000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
         
@@ -531,7 +531,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                 else
                 {
                     //between-group design
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    if(d3.select("#homogeneityticks").attr("display") == "inline")
                     {
                         //only if homogeneous
                         if(variableList["independent-levels"].length == 2)
@@ -557,7 +557,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                 else
                 {
                     //between-group design
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    if(d3.select("#homogeneityticks").attr("display") == "inline")
                     {
                         //only if homogeneous
                         if(variableList["independent-levels"].length == 2)
@@ -622,9 +622,9 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
         removeElementsByClassName("completeLines");
 
         //modify the assumptions checklist icons
-        d3.select("#homogeneity.crosses").attr("display", "none");  
-        d3.select("#homogeneity.ticks").attr("display", "inline");  
-        d3.select("#homogeneity.loading").attr("display", "none");                                        
+        d3.select("#homogeneityticks").attr("display", "none");  
+        d3.select("#homogeneityticks").attr("display", "inline");  
+        d3.select("#loadinghomogeneity").attr("display", "none");                                        
 
         d3.select("#plotCanvas").transition().delay(2000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
 
