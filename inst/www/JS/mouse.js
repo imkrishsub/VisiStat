@@ -52,17 +52,6 @@ function OnMouseDown(e)
                 rButton.attr("fill", "grey")
                         .attr("filter", "none")
                         .attr("stroke", "none");
-                
-                states = [];
-//                 
-//                 var subState = null;
-//                 
-//                 if(currentVisualisationSelection == "Boxplot")
-//                     subState = "base";
-//                 
-//                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice(), substate: subState});
-//                 
-//                 console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
@@ -77,20 +66,12 @@ function OnMouseDown(e)
                 rButton.attr("fill", "grey")
                         .attr("filter", "none")
                         .attr("stroke", "none");
-
-                
-                states = [];
-//                 
-//                 states.push({visualisation: currentVisualisationSelection, variables: currentVariableSelection.slice()});               
-//                 
-//                 console.dir(states);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
             {
                 setup(e, target);
                 
-                // 
 //                 var variableNameHolderBack = d3.select("#" + target.id + ".variableNameHolderBack");
 //                 var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
 //                 var dependentVariableText = d3.select("#" + target.id + ".dependentVariableText");
