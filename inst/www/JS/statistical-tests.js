@@ -134,6 +134,9 @@ function compareMeans()
                                             {
                                                 loadAssumptionCheckList("normal");                    
 
+                                                console.log("Hi :)")
+
+
                                                 setTimeout(function(){                    
                                                     performNormalityTests();
                                                     performHomoscedasticityTests();                                                    
