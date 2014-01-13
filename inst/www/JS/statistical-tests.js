@@ -480,10 +480,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
 
-            console.log(document.getElementById("normalityticks").getAttribute("display"));
             console.log(document.getElementById("loadingnormality").getAttribute("display"));
-
-            console.log(document.getElementById("homogeneityticks").getAttribute("display"));
             console.log(document.getElementById("loadinghomogeneity").getAttribute("display"));
             
             
