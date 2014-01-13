@@ -1015,7 +1015,7 @@ function OnMouseDown(e)
                                     
                                             var dependentVariable = variableList["dependent"][0];
                                             
-                                            var homogeneity = d3.select("#homogeneityticks").attr("display") == "inline" ? true : false;
+                                            var homogeneity = d3.select("#homogeneity.ticks").attr("display") == "inline" ? true : false;
         
                                             for(var i=0; i<variableList["independent"].length; i++)
                                             {                   
