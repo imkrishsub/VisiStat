@@ -55,4 +55,6 @@ export(dot)
 export(ddply)
 export(ldply)
 export(llply)
+export(empty)
+export(idata.frame)
 
