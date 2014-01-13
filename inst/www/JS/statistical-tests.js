@@ -480,11 +480,13 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
 
+            console.log(document.getElementById("normalityticks").getAttribute("display"));
+            console.log(document.getElementById("normalityloading").getAttribute("display"));
+            
             console.log(document.getElementById("homogeneityticks").getAttribute("display"));
             console.log(document.getElementById("homogeneityloading").getAttribute("display"));
 
-            console.log(document.getElementById("normalityticks").getAttribute("display"));
-            console.log(document.getElementById("normalityloading").getAttribute("display"));
+            
             
             d3.select("#homogeneityticks").attr("display", "inline"); 
             d3.select("#homogeneityloading").attr("display", "none"); 
