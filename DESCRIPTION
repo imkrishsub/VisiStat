@@ -8,7 +8,7 @@ Maintainer: Krishna <krishna.prasath.subramanian@rwth-aachen.de>
 Description: An application that allows users to statistics without much previous knowledge by showing the statistics in the context of visualizations.
 LazyData: yes
 Imports:
-	ez,
+	plyr,
 	effects,
 	ltm,
 	MAd,

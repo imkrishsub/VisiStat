@@ -1,4 +1,5 @@
 import(coin)
+import(plyr)
 
 export(getData)
 export(getCorrelationCoefficient)
@@ -51,10 +52,4 @@ export(smd)
 
 export(ezANOVA)
 export(ezANOVA_main)
-export(dot)
-export(ddply)
-export(ldply)
-export(llply)
-export(empty)
-export(idata.frame)
 
