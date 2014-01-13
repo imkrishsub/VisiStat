@@ -2,31 +2,28 @@ performTwoWayANOVA <- function(dataset, dependentVariable, participantVariable, 
 {
     table <- as.data.frame(dataset);
 
-    independentVariables = c(betweenGroupVariableA, betweenGroupVariableB)
-    
-    for(j in 1:2)
+    IV = c(betweenGroupVariableA, betweenGroupVariableB)
+
+    levelsA = eval(parse(text = paste("unique(table$", IV[1], ")", sep="")));
+    levelsB = eval(parse(text = paste("unique(table$", IV[2], ")", sep="")));
+    for(i in 1:length(levelsA))
     {
-        levels = eval(parse(text = paste("unique(table$", independentVariables[j], ")", sep="")))   
-        
-        for(i in 1:length(levels))
+        for(j in 1:length(levelsB))
         {
-            if(i == 1 && j == 1)
+            if(j == 1 && i == 1)
             {
-                distributions = c(list(eval(parse(text = paste("(subset(table, ", independentVariables[j], " == \"", levels[i], "\"))$", dependentVariable, sep = "")))))
+                distributions = c(eval(parse(text = paste("list(subset(subset(table, ", betweenGroupVariableA, " == \"", levelsA[i], "\"), ", betweenGroupVariableB, " == \"", levelsB[j], "\")$", dependentVariable, ")", sep=""))))
             }
             else
             {
-                distributions = c(distributions, list(eval(parse(text = paste("(subset(table, ", independentVariable[j], " == \"", levels[i], "\"))$", dependentVariable, sep = "")))))
+                distributions = c(distributions, eval(parse(text = paste("list(subset(subset(table, ", betweenGroupVariableA, " == \"", levelsA[i], "\"), ", betweenGroupVariableB, " == \"", levelsB[j], "\")$", dependentVariable, ")", sep=""))))
             }
         }
     }
-    
+ 
     result = findError(distributions);
     error = result$error;
-    
     result = eval(parse(text = paste("ez::ezANOVA(table, dv = ", dependentVariable,", wid = ", participantVariable, ", between = c(", betweenGroupVariableA, ",", betweenGroupVariableB, "))", sep="")));
-    
     result = result$ANOVA;
-    
     list(numDF = result$DFn, denomDF = result$DFd, F = result$F, p = result$p, etaSquared = result$ges, error = error);
 }
