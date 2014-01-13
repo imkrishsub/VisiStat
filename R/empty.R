@@ -1,5 +1,5 @@
 empty <- function (df) 
-{(
+{
 	if(!is.null(df))
 	 	FALSE
 	else
