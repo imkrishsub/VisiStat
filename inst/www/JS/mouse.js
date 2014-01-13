@@ -330,8 +330,9 @@ function OnMouseDown(e)
                 {
                     setTimeout(function()
                     {
+                        console.log("Yes!");
                         compareMeans();    
-                    }, 1500);
+                    }, 2500);
                     
                     removeElementsByClassName("boxplotLegends");
                     removeElementsByClassName("compareNow");
