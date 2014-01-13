@@ -124,7 +124,9 @@ function compareMeans()
                                                 setTimeout(function(){                    
                                                     performNormalityTests();
                                                     performHomoscedasticityTests();
-                                                    performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                                    setTimeout(function(){
+                                                        performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                                    }, 2000);                                                    
                                                 }, 1200);                                                
                                                 
                                             }
@@ -135,7 +137,9 @@ function compareMeans()
                                                 setTimeout(function(){                    
                                                     performNormalityTests();
                                                     performHomoscedasticityTests();
-                                                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                                    setTimeout(function(){
+                                                        performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                                    }, 2000);  
                                                 }, 1200);                                                
                                                 
                                             }
@@ -150,7 +154,9 @@ function compareMeans()
                                             setTimeout(function(){                    
                                                     performNormalityTests();
                                                     performHomoscedasticityTests();
-                                                    performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                                    setTimeout(function(){
+                                                        performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                                    }, 2000);                                                    
                                                 }, 1200);
                                             
                                         }
@@ -161,10 +167,10 @@ function compareMeans()
                                             setTimeout(function(){                    
                                                     performNormalityTests();
                                                     performHomoscedasticityTests();
-                                                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                                                }, 1200);                   
-                                            
-                                            
+                                                    setTimeout(function(){
+                                                        performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                                    }, 2000);                                                                                                        
+                                                }, 1200);                                             
                                         }
                                     }
                                 }
