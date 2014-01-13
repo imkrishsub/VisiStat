@@ -87,13 +87,19 @@ function compareMeans()
                                     {
                                         loadAssumptionCheckList("repeated measures");
                                         //within-groups design
-                                        performNormalityTests();
+
+                                        setTimeout(function(){                    
+                                            performNormalityTests();
+                                        }, 1200);                                
                                     }
                                     else
                                     {
                                         loadAssumptionCheckList("normal");
                                         //between-groups design
-                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                        setTimeout(function(){                    
+                                            performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                        }, 1200);
+                                        
                                     }            
                                     break;    
                                 }
@@ -110,40 +116,55 @@ function compareMeans()
                                         var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
                                         selectAllMeans();
                                         setTimeout(function()
-                                        {
-                                            performNormalityTests();
-                                            performHomoscedasticityTests();
-                                            
+                                        {   
                                             if(isFactorialANOVA(variableList))
                                             {
                                                 loadAssumptionCheckList("repeated measures");
+
+                                                setTimeout(function(){                    
+                                                    performNormalityTests();
+                                                    performHomoscedasticityTests();
+                                                    performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                                }, 1200);                                                
                                                 
-                                                performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
                                             }
                                             else
                                             {
                                                 loadAssumptionCheckList("normal");                    
+
+                                                setTimeout(function(){                    
+                                                    performNormalityTests();
+                                                    performHomoscedasticityTests();
+                                                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                                }, 1200);                                                
                                                 
-                                                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
                                             }
                                         }, (unSelectedMeans.length+1)*1000);
                                     }
                                     else
-                                    {
-                                        performNormalityTests();
-                                        performHomoscedasticityTests();
-                                        
+                                    {                                        
                                         if(isFactorialANOVA(variableList))
                                         {
                                             loadAssumptionCheckList("repeated measures");
                                             
-                                            performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                            setTimeout(function(){                    
+                                                    performNormalityTests();
+                                                    performHomoscedasticityTests();
+                                                    performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                                }, 1200);
+                                            
                                         }
                                         else
                                         {
-                                            loadAssumptionCheckList("normal");                    
+                                            loadAssumptionCheckList("normal"); 
+
+                                            setTimeout(function(){                    
+                                                    performNormalityTests();
+                                                    performHomoscedasticityTests();
+                                                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                                }, 1200);                   
                                             
-                                            performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                            
                                         }
                                     }
                                 }
