@@ -19,7 +19,7 @@ function compareMeans()
                     
                     setTimeout(function(){                    
                         performNormalityTest(variables[variableList["dependent"][0]]["dataset"], variableList["dependent"][0], "dataset");                    
-                    }, 1300);
+                    }, 1200);
                 }
                 
                 break;
@@ -42,19 +42,28 @@ function compareMeans()
                                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                                     {
                                         //within-groups design
-                                        performNormalityTests();
+                                        setTimeout(function(){                    
+                                            performNormalityTests();
+                                        }, 1200);
+                                        
                                     }
                                     else
                                     {
                                         //between-groups design
-                                        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                        setTimeout(function(){                    
+                                            performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                                        }, 1200);
+                                        
                                     }            
                                     break;    
                                 }
                         case 2:
                                 {  
-                                    //get distributions            
-                                    performHomoscedasticityTests();
+                                    //get distributions     
+                                    setTimeout(function(){                    
+                                        performHomoscedasticityTests();
+                                    }, 1200);       
+                                    
                                 }
                     }
                     break;

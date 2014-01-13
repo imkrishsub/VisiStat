@@ -328,11 +328,8 @@ function OnMouseDown(e)
         
                 if(selectedMeans.length == 2 || selectedMeans.length == means.length)
                 {
-                    setTimeout(function()
-                    {
-                        console.log("Yes!");
-                        compareMeans();    
-                    }, 2500);
+                
+                    compareMeans();                    
                     
                     removeElementsByClassName("boxplotLegends");
                     removeElementsByClassName("compareNow");
