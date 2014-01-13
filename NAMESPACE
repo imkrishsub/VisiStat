@@ -18,6 +18,7 @@ export(performFriedmanTest)
 export(performKruskalWallisTest)
 export(performWilcoxonTest)
 export(performMannWhitneyTest)
+export(ezANOVA)
 
 export(performHomoscedasticityTest)
 export(performShapiroWilkTest)
