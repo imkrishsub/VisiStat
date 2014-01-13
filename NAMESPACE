@@ -38,7 +38,7 @@ export(applyTransform)
 export(findTransformForDependentVariables)
 export(findTransformForNormality)
 export(findTransformForHomogeneity)
-export(findEffect)
+export(findInteractionEffect)
 export(findError)
 
 export(getVariableNames)

@@ -1,4 +1,4 @@
-findEffect <- function(dependentVariable, independentVariables, dataset)
+findInteractionEffect <- function(dependentVariable, independentVariables, dataset)
 {
     table <- as.data.frame(dataset);
     independentVariables = c(independentVariables);
