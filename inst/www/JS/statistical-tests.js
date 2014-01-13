@@ -111,73 +111,34 @@ function compareMeans()
                                     var variableList = getSelectedVariables();                    
                                     var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
                 
-                                    if(selectedMeans.length < totalNumberOfLevels && selectedMeans.length != 2)
+                                    if(isFactorialANOVA(variableList))
                                     {
-                                        var unSelectedMeans = getUnselectedMeansForColourBoxPlotData();
-                                        selectAllMeans();
-                                        setTimeout(function()
-                                        {   
-                                            if(isFactorialANOVA(variableList))
-                                            {
-                                                loadAssumptionCheckList("repeated measures");
-
-                                                setTimeout(function(){                    
-                                                    performNormalityTests();
-                                                    performHomoscedasticityTests();
-                                                    setTimeout(function(){
-                                                        performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
-                                                    }, 2000);                                                    
-                                                }, 1200);                                                
-                                                
-                                            }
-                                            else
-                                            {
-                                                loadAssumptionCheckList("normal");                    
-
-                                                console.log("Hi :)")
-
-
-                                                setTimeout(function(){                    
-                                                    performNormalityTests();
-                                                    performHomoscedasticityTests();                                                    
-                                                }, 1200);                          
-
+                                        loadAssumptionCheckList("repeated measures");
+                                        
+                                        setTimeout(function(){                    
+                                                performNormalityTests();
+                                                performHomoscedasticityTests();
                                                 setTimeout(function(){
-                                                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                                                }, 3200);                        
-                                                
-                                            }
-                                        }, (unSelectedMeans.length+1)*1000);
+                                                    performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
+                                                }, 2000);                                                    
+                                            }, 1200);
+                                        
                                     }
                                     else
-                                    {                                        
-                                        if(isFactorialANOVA(variableList))
-                                        {
-                                            loadAssumptionCheckList("repeated measures");
-                                            
-                                            setTimeout(function(){                    
-                                                    performNormalityTests();
-                                                    performHomoscedasticityTests();
-                                                    setTimeout(function(){
-                                                        performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
-                                                    }, 2000);                                                    
-                                                }, 1200);
-                                            
-                                        }
-                                        else
-                                        {
-                                            loadAssumptionCheckList("normal"); 
+                                    {
+                                        loadAssumptionCheckList("normal"); 
+                                        console.log("hey");
 
-                                            setTimeout(function(){                    
-                                                performNormalityTests();
-                                                performHomoscedasticityTests();                                                    
-                                            }, 1200);                          
+                                        setTimeout(function(){                    
+                                            performNormalityTests();
+                                            performHomoscedasticityTests();                                                    
+                                        }, 1200);                          
 
-                                            setTimeout(function(){
-                                                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                                            }, 3200);                                             
-                                        }
+                                        setTimeout(function(){
+                                            performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                        }, 3200);                                             
                                     }
+                                    
                                 }
                     }
                         
