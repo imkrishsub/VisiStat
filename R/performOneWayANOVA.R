@@ -23,7 +23,7 @@ performOneWayANOVA <- function(dependentVariable, independentVariable, participa
     
     result = anova(model);    
     
-    DF = result$Df;
+    DF = result[["Df"]];
     etaSquared = etaSquared(model)[1];
     
     list(numDF = Df[1], denomDF = Df[2], F = result[["F value"]][1], p = result[["Pr(>F)"]][1], etaSquared = etaSquared, error = error);
