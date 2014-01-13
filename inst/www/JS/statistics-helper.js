@@ -47,7 +47,6 @@ function findCorrelationCoefficient(variableA, variableB)
             else
             {
 //                 drawButtonInSideBar("CONSTRUCT MODEL", "regression");
-                console.log("\t\t\tDoing nothing");
                 return null;
             }            
         }

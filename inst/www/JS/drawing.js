@@ -847,42 +847,38 @@ function drawScales(cx, cy)
                 .attr("class", "differenceInMeansMain")
                 .text(dec2(means[means.length-1] - means[0]));
     
-    if(1)
-    {    
-        var error = parseFloat(testResults["error"]);        
-        testResults["CI"] = calculateCI(means[means.length -1] - means[0], error);
+    var error = parseFloat(testResults["error"]);        
+    testResults["CI"] = calculateCI(means[means.length -1] - means[0], error);
+    
+    var BOTTOM = canvasHeight/2 + plotHeight/2;
+    //CI for mean
+    canvas.append("line")
+            .attr("x1", canvasWidth/2 + plotWidth/2 + 10)
+            .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
+            .attr("x2", canvasWidth/2 + plotWidth/2 + 10)
+            .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
+            .attr("stroke", "rosybrown")
+            .attr("stroke-width", "4")
+            .attr("class", "CI_mean");
         
-        console.log(testResults["CI"]);
+    canvas.append("line")
+            .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
+            .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
+            .attr("x2", canvasWidth/2 + plotWidth/2 + 15)
+            .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
+            .attr("stroke", "rosybrown")
+            .attr("stroke-width", "4")
+            .attr("class", "CI_bottom");
         
-        var BOTTOM = canvasHeight/2 + plotHeight/2;
-        //CI for mean
-        canvas.append("line")
-                .attr("x1", canvasWidth/2 + plotWidth/2 + 10)
-                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
-                .attr("x2", canvasWidth/2 + plotWidth/2 + 10)
-                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
-                .attr("stroke", "rosybrown")
-                .attr("stroke-width", "4")
-                .attr("class", "CI_mean");
-            
-        canvas.append("line")
-                .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
-                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
-                .attr("x2", canvasWidth/2 + plotWidth/2 + 15)
-                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
-                .attr("stroke", "rosybrown")
-                .attr("stroke-width", "4")
-                .attr("class", "CI_bottom");
-            
-        canvas.append("line")
-                .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
-                .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
-                .attr("x2", canvasWidth/2 + plotWidth/2 + 15)
-                .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
-                .attr("stroke", "rosybrown")
-                .attr("stroke-width", "4")
-                .attr("class", "CI_top");
-    }
+    canvas.append("line")
+            .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
+            .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
+            .attr("x2", canvasWidth/2 + plotWidth/2 + 15)
+            .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
+            .attr("stroke", "rosybrown")
+            .attr("stroke-width", "4")
+            .attr("class", "CI_top");
+    
     if(cy.length >= 2)
     {
         for(var i=0; i<cy.length-1; i++)
@@ -1633,8 +1629,6 @@ function displayToolTips()
     var variablePanel = d3.select("#variable.panel");                
     var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
     var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
-
-    console.log((variableNameHolderHeight - variableTypeSelectionButtonWidth + variableNameHolderPadding));
     var variablePanelBorder = canvas.append("rect")
                                     .attr("x", variableNameHolderPadding/2)
                                     .attr("y", variableNameHolderPadding/2)

@@ -884,7 +884,7 @@ function OnMouseDown(e)
                 states.push({variables: currentVariableSelection, substate: "other"});
                 console.dir(states);
                 
-                findEffect(variableList["dependent"][0], variableList["independent"]);
+                findInteractionEffect(variableList["dependent"][0], variableList["independent"]);
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "pairwisePostHoc")
