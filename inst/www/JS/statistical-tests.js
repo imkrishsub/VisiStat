@@ -479,6 +479,9 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         if(homogeneity)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
+
+            console.log(d3.select("#homogeneityticks").attr("display"));
+            console.log(d3.select("#homogeneityloading").attr("display"));
             
             d3.select("#homogeneityticks").attr("display", "inline"); 
             d3.select("#homogeneityloading").attr("display", "none"); 
