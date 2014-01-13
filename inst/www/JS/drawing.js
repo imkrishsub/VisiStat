@@ -859,7 +859,8 @@ function drawScales(cx, cy)
             .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
             .attr("stroke", "rosybrown")
             .attr("stroke-width", "4")
-            .attr("class", "CI_mean");
+            .attr("id", "center")
+            .attr("class", "CIMean");
         
     canvas.append("line")
             .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
@@ -868,7 +869,8 @@ function drawScales(cx, cy)
             .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
             .attr("stroke", "rosybrown")
             .attr("stroke-width", "4")
-            .attr("class", "CI_bottom");
+            .attr("id", "bottom")
+            .attr("class", "CIMean");
         
     canvas.append("line")
             .attr("x1", canvasWidth/2 + plotWidth/2 + 5)
@@ -877,7 +879,8 @@ function drawScales(cx, cy)
             .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
             .attr("stroke", "rosybrown")
             .attr("stroke-width", "4")
-            .attr("class", "CI_top");
+            .attr("id", "top")
+            .attr("class", "CIMean");
     
     if(cy.length >= 2)
     {

@@ -484,6 +484,8 @@ function OnMouseDown(e)
     
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "doPairwiseTest")
             {
+                removeElementsByClassName("CIMean");
+                
                 var rButton = d3.select(".backButtonBack");
                 
                 rButton.attr("fill", "url(#buttonFillNormal)")
@@ -1948,12 +1950,12 @@ function OnMouseOver(e)
                         .attr("class", "hover");
             }
             
-            else if((target.className.baseVal == "CI_mean") || (target.className.baseVal == "CI_top") || (target.className.baseVal == "CI_bottom"))
+            else if(target.className.baseVal == "CIMean")
             {
                 var canvas = d3.select("#plotCanvas");
         
-                var topFringe = d3.select(".CI_top");
-                var bottomFringe = d3.select(".CI_bottom");
+                var topFringe = d3.select("#top.CIMean");
+                var bottomFringe = d3.select("#bottom.CIMean");
     
                 var variableList = sort(currentVariableSelection);       
                 
@@ -2327,7 +2329,7 @@ function OnMouseOut(e)
             removeElementsByClassName("hover");
         }
         
-        else if((target.className.baseVal == "CI_mean") || (target.className.baseVal == "CI_top") || (target.className.baseVal == "CI_bottom"))
+        else if(target.className.baseVal == "CIMean")
         {
             removeElementsByClassName("hover");
         }
