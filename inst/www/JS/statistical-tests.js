@@ -494,7 +494,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         {   
             if(variances[dependentVariable][variableList["independent"][i]] == false)
             {
-                d3.select("#homogeneity.ticks").attr("display", "inline");
+                d3.select("#homogeneity.crosses").attr("display", "inline");
                 d3.select("#homogeneity.loading").attr("display", "none"); 
                 homogeneity = false;
             
