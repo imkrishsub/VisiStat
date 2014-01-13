@@ -1,5 +1,4 @@
 import(coin)
-import(ez)
 
 export(getData)
 export(getCorrelationCoefficient)
@@ -49,3 +48,7 @@ export(loadFile)
 
 export(levene.test)
 export(smd)
+
+export(ezANOVA)
+export(ezANOVA_main)
+export(dot)
