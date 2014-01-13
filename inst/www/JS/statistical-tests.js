@@ -159,7 +159,7 @@ function populationMeanEntered()
     var populationValue = document.getElementById("populationValue").value;
     var variableList = getSelectedVariables();
     
-    if(d3.select("#normalitycrosses").attr("display") == "inline")
+    if(d3.select("#normality.crosses").attr("display") == "inline")
     {    
         sessionStorage.popMedian = parseFloat(populationValue);
         
@@ -316,7 +316,7 @@ function setDistribution(dependentVariable, level, normal)
         {   
             if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
             {
-                d3.select("#normalitycrosses").attr("display", "inline"); 
+                d3.select("#normality.crosses").attr("display", "inline"); 
                 d3.select("#loadingnormality").attr("display", "none"); 
                 
                 normal = false;
@@ -339,7 +339,7 @@ function setDistribution(dependentVariable, level, normal)
             
             console.log("\n\tAll distributions are normal!");
             
-            d3.select("#normalityticks").attr("display", "inline");  
+            d3.select("#normality.ticks").attr("display", "inline");  
             d3.select("#loadingnormality").attr("display", "none"); 
             
             if(variableList["independent"].length == 1)
@@ -369,7 +369,7 @@ function setDistribution(dependentVariable, level, normal)
                     //between-group design
                     
                     //homoscedasticity test is already done (and no case is handled)
-                    if(d3.select("#homogeneityticks").attr("display") == "inline")
+                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
                         if(variableList["independent-levels"].length == 2)
                         {
@@ -398,7 +398,7 @@ function setDistribution(dependentVariable, level, normal)
                     //between-group design
                     
                     //homoscedasticity test is already done (and no case is handled)
-                    if(d3.select("#homogeneityticks").attr("display") == "inline")
+                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
                         if(variableList["independent-levels"].length == 2)
                         {
@@ -416,7 +416,7 @@ function setDistribution(dependentVariable, level, normal)
                 if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
                 {
                     console.log("hi");
-                    if(d3.select("#homogeneityticks").attr("display") == "inline")
+                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
                         //2 variables
                         var groups = getGroupsForColourBoxPlotData();
@@ -474,8 +474,8 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         {   
             if(variances[dependentVariable][variableList["independent"][i]] == false)
             {
-                d3.select("#homogeneityticks").attr("display", "inline");
-                d3.select("#loadinghomogeneity").attr("display", "none"); 
+                d3.select("#homogeneity.ticks").attr("display", "inline");
+                d3.select("#homogeneity.loading").attr("display", "none"); 
                 homogeneity = false;
             
                 drawHomogeneityPlot(homogeneity);
@@ -488,11 +488,9 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         if(homogeneity)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
-
-            console.log(d3.selectAll(".ticks"));
             
-            d3.select("#homogeneityticks").attr("display", "inline"); 
-            d3.select("#loadinghomogeneity").attr("display", "none"); 
+            d3.select("#homogeneity.ticks").attr("display", "inline"); 
+            d3.select("#homogeneity.loading").attr("display", "none"); 
             
             if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0])
             {
