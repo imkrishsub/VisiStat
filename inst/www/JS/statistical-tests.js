@@ -317,7 +317,7 @@ function setDistribution(dependentVariable, level, normal)
             if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
             {
                 d3.select("#normality.crosses").attr("display", "inline"); 
-                d3.select("#loadingnormality").attr("display", "none"); 
+                d3.select("#normality.loading").attr("display", "none"); 
                 
                 normal = false;
                 
@@ -340,7 +340,7 @@ function setDistribution(dependentVariable, level, normal)
             console.log("\n\tAll distributions are normal!");
             
             d3.select("#normality.ticks").attr("display", "inline");  
-            d3.select("#loadingnormality").attr("display", "none"); 
+            d3.select("#normality.loading").attr("display", "none"); 
             
             if(variableList["independent"].length == 1)
             {
@@ -415,7 +415,6 @@ function setDistribution(dependentVariable, level, normal)
                 
                 if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
                 {
-                    console.log("hi");
                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
                         //2 variables
@@ -496,9 +495,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             {
                 //between-groups design
                 if(pairwiseComparisons)
-                {
                     performNormalityTests();                    
-                }
                 else
                     performNormalityTests();                
             }
