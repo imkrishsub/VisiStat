@@ -71,7 +71,7 @@ function OnMouseDown(e)
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
             {
                 setup(e, target);
-                
+
 //                 var variableNameHolderBack = d3.select("#" + target.id + ".variableNameHolderBack");
 //                 var toggleButton = d3.select("#" + target.id + ".variableTypeToggleButton");
 //                 var dependentVariableText = d3.select("#" + target.id + ".dependentVariableText");
@@ -328,7 +328,11 @@ function OnMouseDown(e)
         
                 if(selectedMeans.length == 2 || selectedMeans.length == means.length)
                 {
-                    compareMeans();
+                    setTimeout(function()
+                    {
+                        compareMeans();    
+                    }, 1500);
+                    
                     removeElementsByClassName("boxplotLegends");
                     removeElementsByClassName("compareNow");
                 }

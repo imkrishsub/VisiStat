@@ -791,7 +791,7 @@ function loadAssumptionCheckList(type)
                     .attr("id", assumptions[type][i])
                     .attr("class", "assumptionsButtonFront");
         }    
-    }, 1300);
+    }, 1200);
     
     
 }
