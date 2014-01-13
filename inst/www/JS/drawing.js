@@ -755,7 +755,7 @@ function loadAssumptionCheckList(type)
                     .attr("xlink:href", "images/checkingAssumptions.gif")
                     .attr("height", assumptionImageSize)            
                     .attr("width", assumptionImageSize)
-                    .attr("id", "loading" + assumptions[type][i])
+                    .attr("id", assumptions[type][i])
                     .attr("class", "loading");
                 
             canvas.append("image")
@@ -766,7 +766,7 @@ function loadAssumptionCheckList(type)
                     .attr("height", assumptionImageSize)            
                     .attr("width", assumptionImageSize)
                     .attr("display", "none")
-                    .attr("id", assumptions[type][i] + "ticks")
+                    .attr("id", assumptions[type][i])
                     .attr("class", "ticks");
                          
             canvas.append("image")
@@ -777,7 +777,7 @@ function loadAssumptionCheckList(type)
                     .attr("height", assumptionImageSize)
                     .attr("width", assumptionImageSize)
                     .attr("display", "none")
-                    .attr("id", assumptions[type][i] + "crosses")
+                    .attr("id", assumptions[type][i])
                     .attr("class", "crosses");
                 
             canvas.append("rect")
