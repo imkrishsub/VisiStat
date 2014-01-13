@@ -136,11 +136,12 @@ function compareMeans()
 
                                                 setTimeout(function(){                    
                                                     performNormalityTests();
-                                                    performHomoscedasticityTests();
-                                                    setTimeout(function(){
-                                                        performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                                                    }, 2000);  
-                                                }, 1200);                                                
+                                                    performHomoscedasticityTests();                                                    
+                                                }, 1200);                          
+
+                                                setTimeout(function(){
+                                                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
+                                                }, 3200);                        
                                                 
                                             }
                                         }, (unSelectedMeans.length+1)*1000);
