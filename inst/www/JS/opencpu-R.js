@@ -297,7 +297,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
         if(output.type == "none")
         {
             console.log("Transformation to normality is not possible!");
-            d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+            d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
             
             if(variableList["independent"].length == 1)
             {
@@ -358,7 +358,6 @@ function findTransformForNormality(dependentVariable, independentVariable)
                     }                            
                 }
             }
-            d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
         }
         else
         {
