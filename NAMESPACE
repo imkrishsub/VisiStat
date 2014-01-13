@@ -1,10 +1,4 @@
 import(coin)
-import(effects)
-import(ltm)
-import(MAd)
-import(compute.es)
-import(powerAnalysis)
-import(MBESS)
 
 export(getData)
 export(getCorrelationCoefficient)
@@ -55,6 +49,5 @@ export(loadFile)
 export(levene.test)
 export(smd)
 
-export(ezANOVA)
-export(ezANOVA_main)
+export(etaSquared)
 
