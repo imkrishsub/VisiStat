@@ -1,6 +1,5 @@
 function compareMeans()
 {    
-    console.log("In compareMeans()")
     var completeLines = d3.selectAll(".completeLines");
     var variableList = getSelectedVariables();  
     

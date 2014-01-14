@@ -50,7 +50,6 @@ function performTTest(groupA, groupB, varianceEqual, paired)
                 method = "Welch's T-test";
             }
         }
-        console.log("\n Method = \"" + method + "\"");
 
         testResults["method"] = method;
 
