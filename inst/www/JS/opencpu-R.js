@@ -356,7 +356,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             performMannWhitneyTest(groups[0], groups[1]);
                     }                            
                 }
-            }f
+            }
         }
         else
         {

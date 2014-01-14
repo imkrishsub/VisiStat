@@ -130,12 +130,12 @@ function compareMeans()
 
                                         setTimeout(function(){                    
                                             performNormalityTests();
-                                            performHomoscedasticityTests();                                                    
+                                            // performHomoscedasticityTests();                                                    
                                         }, 1200);                          
 
-                                        setTimeout(function(){
-                                            performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
-                                        }, 3200);                                             
+                                        // setTimeout(function(){
+                                        //     
+                                        // }, 3200);                                             
                                     }
                                     
                                 }
@@ -444,6 +444,21 @@ function setDistribution(dependentVariable, level, normal)
             
             findTransformForNormality(variableList["dependent"][0], variableList["independent"][0]);
         }
+
+        if(variableList["independent"].length == 2)
+        {
+            //Factorial/2-way ANOVA
+
+            if(isFactorialANOVA(variableList))
+            {
+                                       
+            }
+            else
+            {
+                //2-way ANOVA
+                performHomoscedasticityTests();
+            }
+        }
     }    
 }
 
@@ -500,6 +515,19 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             console.log("\n\tChecking if transformation is possible...");
             //check if transformation is possible
             findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);                
+        }
+
+        if(variableList["independent"].length == 2)
+        {
+            if(isFactorialANOVA(variableList))
+            {
+
+            }
+            else
+            {
+                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);                
+            }
+                                       
         }
     }    
 }
