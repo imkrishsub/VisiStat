@@ -398,6 +398,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
             {
                 if(experimentalDesign == "between-groups")
                 {
+                    console.log("1");
                     performNormalityTests();
             
                     //between-groups design
@@ -420,6 +421,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
             {
                 if(experimentalDesign == "between-groups" && variableList["independent-levels"].length == 2)
                 {
+                    console.log("2");
                     performNormalityTests();
                     
                     //2 variables
@@ -630,6 +632,7 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                 else
                 {
                     //between-group design
+                    console.log("3");
                     performNormalityTests();       
                 }
             }                            

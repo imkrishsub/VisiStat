@@ -129,7 +129,8 @@ function compareMeans()
                                     {
                                         loadAssumptionCheckList("normal");                             
 
-                                        setTimeout(function(){                    
+                                        setTimeout(function(){
+                                            console.log("6");                    
                                             performNormalityTests();
                                         }, 1200);                          
 
@@ -201,6 +202,7 @@ function doPairwiseTests()
     }                    
     else
     {
+        console.log("7");
         performNormalityTests(); 
     }                   
 }
@@ -233,7 +235,6 @@ function performNormalityTests()
 //             }
 //         }
 //     }
-    console.log("Hi");
     var variableList = getSelectedVariables();    
     
     //initialise distributions
@@ -508,6 +509,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             
             if(experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0] && variableList["independent-levels"].length == 2)
             {
+                console.log("4 & 5");
                 //between-groups design
                 if(pairwiseComparisons)
                     performNormalityTests();                    
