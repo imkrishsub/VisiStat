@@ -455,11 +455,19 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
     {
         variables[dependentVariable][level] = output.transformedData;
 
+        console.log("output.transformedData = [" + output.transformedData + "]");
+
         MIN[dependentVariable][level] = Array.min(output.transformedData);
         MAX[dependentVariable][level] = Array.max(output.transformedData);
         IQR[dependentVariable][level] = findIQR(output.transformedData);
         CI[dependentVariable][level] = findCI(output.transformedData);
-    })    
+    });
+    //if R returns an error, alert the error message
+    req.fail(function()
+    {
+        alert("Server error: " + req.responseText);
+    });    
+    
     if(finalVariable)
     {
         //if this is the last variable, then redraw boxplots and display the significance test results
@@ -561,13 +569,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
             }
         }, 3000);
                 
-}
-
-    //if R returns an error, alert the error message
-    req.fail(function()
-    {
-        alert("Server error: " + req.responseText);
-    });
+    }    
 }
 
 //applies a transform to distributions
