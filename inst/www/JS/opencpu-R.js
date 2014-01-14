@@ -470,6 +470,8 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
     
     if(finalVariable)
     {
+        console.log("finalVariable");
+        
         //if this is the last variable, then redraw boxplots and display the significance test results
         redrawBoxPlot();
         

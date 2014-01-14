@@ -515,6 +515,8 @@ function redrawBoxPlot()
     ids = getValidIds(labels);
 
     nGroovesY = numberOfGrooves;
+
+    console.dir(data);
     
     // Draw axes        
     canvas.append("line")
