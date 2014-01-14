@@ -1676,6 +1676,8 @@ function displayToolTips()
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
                         .attr("fill", "#3957F1")
+                        .attr("stroke", "none")
+                        .attr("class", "toolTips");
 
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
                                             .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
