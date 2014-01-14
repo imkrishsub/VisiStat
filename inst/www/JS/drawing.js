@@ -410,7 +410,7 @@ function drawEffectSize(value)
     var type = testResults["effect-size-type"];
     
     if(type == "d")
-        value = value > 3.0 ? 3.0 : value;
+        value = value > 5.0 ? 5.0 : value;
     
     var min = parseFloat(effectSizeMins[type]);
     var max = parseFloat(effectSizeMaxs[type]);
@@ -608,10 +608,10 @@ function drawEffectSize(value)
     } 
     
     sideBar.append("rect")
-            .attr("x", 0)
-            .attr("y", T - effectSizeHeight/2)
-            .attr("width", sideBarWidth)
-            .attr("height", effectSizeHeight*2)
+            .attr("x", L)
+            .attr("y", T)
+            .attr("width", effectSizeWidth)
+            .attr("height", effectSizeHeight)
             .attr("stroke", "black")
             .attr("opacity", "0.001")
             .attr("id", "effectSizeFront");        
@@ -783,7 +783,7 @@ function loadAssumptionCheckList(type)
             canvas.append("rect")
                     .attr("x", assumptionImageSize*1.25) 
                     .attr("y", i*assumptionStep + assumptionOffsetTop - assumptionImageSize/2 - 10)
-                    .attr("width", sideBarWidth - 2*assumptionImageSize)
+                    .attr("width", sideBarWidth - 1.5*assumptionImageSize)
                     .attr("height", assumptionImageSize)
                     .attr("rx", "5px")
                     .attr("ry", "5px")

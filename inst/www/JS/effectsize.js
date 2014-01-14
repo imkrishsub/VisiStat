@@ -8,7 +8,7 @@ var effectSizeMins = new Object();
     effectSizeMins["𝜏"] = -1;
     
 var effectSizeMaxs = new Object();
-    effectSizeMaxs["d"] = 3;
+    effectSizeMaxs["d"] = 5;
     effectSizeMaxs["eS"] = 1;
     effectSizeMaxs["rS"] = 1;
     effectSizeMaxs["r"] = 1;

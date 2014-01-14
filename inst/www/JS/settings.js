@@ -29,7 +29,7 @@
         
         var variablePanelColors = new Object();
             variablePanelColors["active"] = "lightgrey";
-            variablePanelColors["disabled"] = "darkgrey";
+            variablePanelColors["disabled"] = "#A60000";
         
         var variableTypeButtonColors = new Object();
             variableTypeButtonColors["dependent"] = new Object();
@@ -63,7 +63,7 @@
     var fontSizeForDisplayDataTableElements = scaleForWindowSize(20);
     var fontSizeLabels = scaleForWindowSize(16);
     var fontSizeTicks = scaleForWindowSize(12);
-    var fontSizeAssumptions = scaleForWindowSize(20);
+    var fontSizeAssumptions = scaleForWindowSize(18);
     var fontSizeAssumptionsTitle = scaleForWindowSize(26);
     var fontSizeVariablePanel = scaleForWindowSize(20);
     var fontSizeVisualisationPanel = scaleForWindowSize(32);
