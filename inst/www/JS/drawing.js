@@ -408,7 +408,7 @@ function drawEffectSize(value)
     var sideBar = d3.select("#sideBarCanvas");    
     var type = testResults["effect-size-type"];
 
-    value = parseFloat(value);s
+    value = parseFloat(value);
     
     if(type == "d")
         value = value > 5.0 ? 5.0 : value;
