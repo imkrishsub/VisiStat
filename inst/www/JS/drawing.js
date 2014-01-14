@@ -455,9 +455,9 @@ function drawEffectSize(value)
                                     .attr("class", "effectSize");
     }
     
-    console.log("Math.abs(scale(min + value)) = " + Math.abs(scale(min + value)) + "\effectSizeWidth/7 = " + effectSizeWidth/7);
+    console.log("Math.abs(scale(min + value)) = " + Math.abs(scale(min + value)) + "\effectSizeWidth/4 = " + effectSizeWidth/4);
 
-    if(Math.abs(scale(min + value)) > effectSizeWidth/7)
+    if(Math.abs(scale(min + value)) > effectSizeWidth/4)
     {   
         console.log("greater!");
 
