@@ -473,7 +473,7 @@ function setVariableRow()
             var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                     
                                     
             variablePanelSVG.append("text")
-                            .attr("x", variableNameHolderWidth + variableNameHolderPadding - variableTypeSelectionButtonWidth)
+                            .attr("x", variableNameHolderWidth + variableNameHolderPadding - variableTypeSelectionButtonWidth/2)
                             .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/2 + yAxisTickTextOffset/2)                                                   
                             .attr("text-anchor", "start")
                             .attr("fill", "#627bf4")
