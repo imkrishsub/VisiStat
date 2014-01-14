@@ -297,6 +297,8 @@ function setDistribution(dependentVariable, level, normal)
         distributions[dependentVariable] = new Object();
     
     distributions[dependentVariable][level] = normal;    
+
+    console.log("In setDistribution()");
     
     if(getObjectLength(distributions[dependentVariable]) == getNumberOfSelectedMeans())
     {       
