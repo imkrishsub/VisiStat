@@ -405,16 +405,16 @@ function drawDialogBoxToGetPopulationMean()
 
 function drawEffectSize(value)
 {
-    var sideBar = d3.select("#sideBarCanvas");
-    
+    var sideBar = d3.select("#sideBarCanvas");    
     var type = testResults["effect-size-type"];
+
+    value = parseFloat(value);s
     
     if(type == "d")
         value = value > 5.0 ? 5.0 : value;
     
     var min = parseFloat(effectSizeMins[type]);
     var max = parseFloat(effectSizeMaxs[type]);
-    value = parseFloat(value);
     
     var color = getColour(type, value);
     
@@ -422,19 +422,19 @@ function drawEffectSize(value)
     var T = significanceTestResultOffsetTop - significanceTestResultStep - effectSizeHeight/2;
     
     var bar = sideBar.append("rect")
-            .attr("x", L)
-            .attr("y", T)
-            .attr("width", effectSizeWidth)
-            .attr("height", effectSizeHeight)
-            .attr("stroke", "MediumSlateBlue")
-            .attr("fill", "none")
-            .attr("class", "effectSize");
+                        .attr("x", L)
+                        .attr("y", T)
+                        .attr("width", effectSizeWidth)
+                        .attr("height", effectSizeHeight)
+                        .attr("stroke", "MediumSlateBlue")
+                        .attr("fill", "none")
+                        .attr("class", "effectSize");
             
     var scale = d3.scale.linear()
                             .domain([min, max])
                             .range([0, effectSizeWidth]);
     
-    if(scale(min + (value - 0)) > 0)
+    if(scale(min + value) > 0)
     {
         var effectSize = sideBar.append("rect")
                                     .attr("x", L + scale(0))
@@ -456,7 +456,8 @@ function drawEffectSize(value)
     }
     
     if(Math.abs(scale(min + (value - 0))) > effectSizeWidth/4)
-    {    
+    {   
+        console.log("greater!");
         sideBar.append("text")
                 .attr("x", L + scale(0) + scale(min + (value - 0)) - yAxisTickTextOffset)
                 .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset)
@@ -469,6 +470,7 @@ function drawEffectSize(value)
     }
     else
     {
+        console.log("lesser!");
         sideBar.append("text")
                 .attr("x", L + scale(0) + scale(min + (value - 0)) + yAxisTickTextOffset)
                 .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset)
