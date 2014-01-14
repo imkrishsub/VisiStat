@@ -830,6 +830,10 @@ function OnMouseDown(e)
                         currentVariableSelection[0] = temp;
                 
                         plotVisualisation();  
+
+                        setTimeout(function(){
+
+                        }, 1500);
                     }
         
                     var variableList = sort(currentVariableSelection);
