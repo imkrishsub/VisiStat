@@ -169,6 +169,8 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         maxY = MAX[variableY]["dataset"];
         minY = MIN[variableY]["dataset"];
     }
+
+    console.log("shortNumberOfGrooves = " + shortNumberOfGrooves);
     
     var numberOfGroovesInXAxis = uniqueDataX.length <= shortNumberOfGrooves ? uniqueDataX.length : shortNumberOfGrooves;
     var numberOfGroovesInYAxis = uniqueDataY.length <= shortNumberOfGrooves ? uniqueDataY.length : shortNumberOfGrooves;
