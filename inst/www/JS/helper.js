@@ -554,7 +554,7 @@ function findExperimentalDesign()
 function setThisVariableEvil(variable)
 {    
     d3.select("#" + variable + ".variableNameHolderFront").attr("class", "disabled");
-    d3.select("#" + variable + ".variableNameHolderBack").attr("fill", variablePanelColors["disabled"]);
+    d3.select("#" + variable + ".variableNameHolderBack").attr("fill", variablePanelColors["disabled"]).attr("filter", "none");
 }
 
 function getNumericVariables()
