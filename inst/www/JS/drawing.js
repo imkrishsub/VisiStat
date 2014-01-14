@@ -1679,10 +1679,11 @@ function displayToolTips()
                         .attr("stroke", "none")
                         .attr("class", "toolTips");
 
-    variablePanelCanvas.append("label")
+    d3.select("body").append("label")
                         .text("test")
                         .attr("id", "variablePanel")
-                        .attr("class", "toolTips");
+                        .attr("class", "toolTips")
+                        .attr("style", "position: absolute; left: " + variableNameHolderPadding/2 + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding) + "px; "));
 
 
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
