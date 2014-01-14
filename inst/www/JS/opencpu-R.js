@@ -322,8 +322,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                 {
                     //between-groups design
                     if(variableList["independent-levels"].length == 2)
-                    {
-                        console.log("In!");
+                    {                    
                         //Mann-Whitney U test
                         if(pairwiseComparisons)
                             performPairwiseWilcoxTest("TRUE", "FALSE");
@@ -357,7 +356,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                             performMannWhitneyTest(groups[0], groups[1]);
                     }                            
                 }
-            }
+            }f
         }
         else
         {
