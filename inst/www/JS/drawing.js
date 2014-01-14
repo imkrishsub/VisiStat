@@ -1679,6 +1679,15 @@ function displayToolTips()
                         .attr("stroke", "none")
                         .attr("class", "toolTips");
 
+    variablePanelCanvas.append("text")
+                        .attr("x", variableNameHolderPadding/2 + (variableNameHolderWidth - variableNameHolderPadding)/2)
+                        .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding + variableNameHolderHeight - yAxisTickTextOffset)
+                        .attr("fill", "white")
+                        .attr("text-anchor", "middle")
+                        .text("The variables in the dataset. Simply click on the variable to select/unselect it.")
+                        .attr("class", "toolTips");
+
+
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
                                             .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
                                             .attr("y", variableNameHolderPadding/2)
