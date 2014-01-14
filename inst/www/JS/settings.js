@@ -13,7 +13,7 @@
     var canvasHeight = height*(3/4);
     var canvasWidth = width*0.60; 
     
-    var sideBarWidth = width*0.20;
+    var sideBarWidth = width*0.15;
     var bottomDivHeight = height/7;
     
     var loadingImageSize = scaleForWindowSize(100);
