@@ -418,22 +418,17 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
             }
             else
             {
-                if(experimentalDesign == "between-groups")
+                if(experimentalDesign == "between-groups" && variableList["independent-levels"].length == 2)
                 {
                     performNormalityTests();
                     
-                    //between-groups design
-                    if(variableList["independent-levels"].length == 2)
-                    {
-                        //2 variables
-                        var groups = getGroupsForColourBoxPlotData();
-                    
-                        if(pairwiseComparisons)
-                            performPairwiseTTest("FALSE", "FALSE");
-                        else
-                            performTTest(groups[0], groups[1], "FALSE", "FALSE");
-                    }
-                    
+                    //2 variables
+                    var groups = getGroupsForColourBoxPlotData();
+                
+                    if(pairwiseComparisons)
+                        performPairwiseTTest("FALSE", "FALSE");
+                    else
+                        performTTest(groups[0], groups[1], "FALSE", "FALSE");
                 }
             }
         }                
