@@ -832,7 +832,7 @@ function OnMouseDown(e)
                 
                         plotVisualisation();  
 
-                        timeOut = 1500;
+                        timeOut = 1000;
                     }
                     
                     setTimeout(
