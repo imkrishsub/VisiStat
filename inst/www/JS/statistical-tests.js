@@ -130,7 +130,7 @@ function compareMeans()
                                         loadAssumptionCheckList("normal");                             
 
                                         setTimeout(function(){
-                                            console.log("6");                    
+                      
                                             performNormalityTests();
                                         }, 1200);                          
 
@@ -202,7 +202,6 @@ function doPairwiseTests()
     }                    
     else
     {
-        console.log("7");
         performNormalityTests(); 
     }                   
 }
@@ -256,8 +255,6 @@ function performNormalityTests()
                 allDistributions.push(groups[i][j]);
             }
         }
-        
-        console.log("In performNormalityTests()");
 
         performNormalityTestForMultipleDistributions(allDistributions, numberOfElements);       
     }
@@ -285,7 +282,6 @@ function performNormalityTests()
 
 function performHomoscedasticityTests()
 {  
-    console.log(new Date().getTime());
     var variableList = getSelectedVariables();    
     
     //initialise distributions
@@ -301,8 +297,6 @@ function setDistribution(dependentVariable, level, normal)
         distributions[dependentVariable] = new Object();
     
     distributions[dependentVariable][level] = normal;    
-
-    console.log("In setDistribution()");
     
     if(getObjectLength(distributions[dependentVariable]) == getNumberOfSelectedMeans())
     {       
@@ -464,7 +458,6 @@ function setDistribution(dependentVariable, level, normal)
                 }
                 else
                 {
-                    console.log("Hey");
                     //2-way ANOVA
                     performHomoscedasticityTests();
                 }    
@@ -509,7 +502,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
             
             if((experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0]) && variableList["independent"].length != 2)
             {
-                console.log("4 & 5");
                 //between-groups design
                 if(pairwiseComparisons)
                     performNormalityTests();                    

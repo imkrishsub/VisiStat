@@ -1,17 +1,12 @@
 //load the file to a JS object
 function loadFile(filePath)
 {
-    var timeBefore = new Date().getTime();
     //loads the file and returns the dataset and variable names
     var req = ocpu.rpc("loadFile", 
     {
         filePath: filePath
     }, function(output) 
-    {     
-        var timeAfter = new Date().getTime();
-
-        console.log("Latency for loadFile() = " + (timeAfter - timeBefore)/1000 + "seconds");
-
+    {    
         dataset = output.dataset;
 
         //render the variable names
@@ -398,7 +393,6 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
             {
                 if(experimentalDesign == "between-groups")
                 {
-                    console.log("1");
                     performNormalityTests();
             
                     //between-groups design
@@ -421,7 +415,6 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
             {
                 if(experimentalDesign == "between-groups" && variableList["independent-levels"].length == 2)
                 {
-                    console.log("2");
                     performNormalityTests();
                     
                     //2 variables
@@ -632,7 +625,6 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
                 else
                 {
                     //between-group design
-                    console.log("3");
                     performNormalityTests();       
                 }
             }                            
