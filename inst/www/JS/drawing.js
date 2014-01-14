@@ -1668,6 +1668,15 @@ function displayToolTips()
                                     .attr("stroke-dasharray","3,3")
                                     .attr("class","toolTips");
 
+    variablePanelCanvas.append("rect")
+                        .attr("x", variableNameHolderPadding/2)
+                        .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
+                        .attr("height", variableNameHolderHeight*2)
+                        .attr("width", variableNameHolderWidth - variableNameHolderPadding)
+                        .attr("rx", radiusForRoundedRect)
+                        .attr("ry", radiusForRoundedRect)
+                        .attr("fill", "#3957F1")
+
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
                                             .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
                                             .attr("y", variableNameHolderPadding/2)
