@@ -10,10 +10,10 @@
         panelColors.normal = "#F5F5F5";
         panelColors.active = "#3957F1";
 
-    var canvasHeight = height*(3/4);
-    var canvasWidth = width*0.60; 
+    var canvasHeight = height*0.75;
+    var canvasWidth = width*0.65; 
     
-    var sideBarWidth = width*0.15;
+    var sideBarWidth = width*0.2;
     var bottomDivHeight = height/7;
     
     var loadingImageSize = scaleForWindowSize(100);
