@@ -856,7 +856,7 @@ function drawScales(cx, cy)
     var yMax = Array.max(cy);
     
     var canvas = d3.select("#plotCanvas");    
-    var x = canvasWidth/2 + plotWidth/2 + significanceTestScaleOffset + scaleForWindowSize(10);
+    var x = canvasWidth/2 + plotWidth/2 + significanceTestScaleOffset + scaleForWindowSize(5);
     
     var variableList = getSelectedVariables();
     var means = [];
@@ -909,7 +909,7 @@ function drawScales(cx, cy)
             .attr("class", "CIMean");
         
     canvas.append("line")
-            .attr("x1", canvasWidth/2 + plotWidth/2 + 15)
+            .attr("x1", canvasWidth/2 + plotWidth/2 + 10)
             .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
             .attr("x2", canvasWidth/2 + plotWidth/2 + 20)
             .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
