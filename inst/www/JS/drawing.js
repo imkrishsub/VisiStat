@@ -1679,6 +1679,9 @@ function displayToolTips()
                                             .attr("class","toolTips");
 
     var visualizationPanelCanvas = d3.select("#visualizationPanelCanvas");
+    
+    var visualisationPanelHeight = visualisationPanel.style("height");
+    var visualisationPanelWidth = visualisationPanel.style("width");
 
     var visualizationPanelBorder = visualizationPanelCanvas.append("rect")
                                                             .attr("x", variableNameHolderPadding/2)
