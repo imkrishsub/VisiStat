@@ -1026,7 +1026,7 @@ function displayOneSampleTestResults()
             .attr("y", canvasHeight/2 + significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["method"])
             .attr("class", "significanceTest");
     
@@ -1035,7 +1035,7 @@ function displayOneSampleTestResults()
             .attr("y", canvasHeight/2 + 2*significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["statistic"])
             .attr("class", "significanceTest");
     
@@ -1044,7 +1044,7 @@ function displayOneSampleTestResults()
             .attr("y", canvasHeight/2 + 3*significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["p"])
             .attr("class", "significanceTest");
     
@@ -1056,7 +1056,7 @@ function displayOneSampleTestResults()
 //             .attr("y", canvasHeight/2 - significanceTestResultStep)
 //             .attr("text-anchor", "middle")
 //             .attr("font-size", "24px")
-//             .attr("fill", "orange")
+//             .attr("fill", "#627bf4")
 //             .text(testResults["effect-size"])
 //             .attr("class", "significanceTest");
 }
@@ -1359,7 +1359,7 @@ function displayCorrelationResults()
             .attr("y", significanceTestResultOffsetTop + significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["method"])
             .attr("class", "significanceTest");
     
@@ -1368,7 +1368,7 @@ function displayCorrelationResults()
             .attr("y", significanceTestResultOffsetTop + 2*significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["statistic"])
             .attr("class", "significanceTest");
     
@@ -1377,7 +1377,7 @@ function displayCorrelationResults()
             .attr("y", significanceTestResultOffsetTop + 3*significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["p"])
             .attr("class", "significanceTest");
     
@@ -1389,7 +1389,7 @@ function displayCorrelationResults()
 //             .attr("y", canvasHeight/2 - significanceTestResultStep)
 //             .attr("text-anchor", "middle")
 //             .attr("font-size", "24px")
-//             .attr("fill", "orange")
+//             .attr("fill", "#627bf4")
 //             .text(testResults["effect-size"])
 //             .attr("class", "significanceTest");
  
@@ -1407,7 +1407,7 @@ function displayBiserialCorrelationResults()
             .attr("y", significanceTestResultOffsetTop + significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["method"])
             .attr("class", "significanceTest");
     
@@ -1427,7 +1427,7 @@ function displaySimpleRegressionResults()
             .attr("y", significanceTestResultOffsetTop + significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["method"])
             .attr("class", "significanceTest");
     //Effect sizes
@@ -1440,7 +1440,7 @@ function displaySimpleRegressionResults()
             .attr("y", canvasHeight + 2*axesOffset)
             .attr("text-anchor", "middle")
             .attr("font-size", scaleForWindowSize(24) + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["equation"])
             .attr("id", "equation")
             .attr("class", "significanceTest");
@@ -1483,7 +1483,7 @@ function displayMultipleRegressionResults()
             .attr("y", significanceTestResultOffsetTop + significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["method"])
             .attr("class", "significanceTest");
     //Effect sizes
@@ -1496,7 +1496,7 @@ function displayMultipleRegressionResults()
             .attr("y", 3*plotHeight/4)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "orange")
+            .attr("fill", "#627bf4")
             .text(testResults["equation"])
             .attr("id", "equation")
             .attr("class", "significanceTest"); 

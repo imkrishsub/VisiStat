@@ -625,7 +625,7 @@ function OnMouseDown(e)
                                     .attr("rx", "10px")
                                     .attr("ry", "10px")
                                     .attr("fill", "white")
-                                    .attr("stroke", "orange")
+                                    .attr("stroke", "#627bf4")
                                     .attr("opacity", "0.01")
                                     .attr("class", "plotHelp");  
                     }
@@ -695,7 +695,7 @@ function OnMouseDown(e)
                                     .attr("rx", "5px")
                                     .attr("ry", "5px")
                                     .attr("fill", "white")
-                                    .attr("stroke", "orange")
+                                    .attr("stroke", "#627bf4")
                                     .attr("opacity", "0.01")
                                     .attr("class", "variancePlotHelp");
                     }
@@ -710,7 +710,7 @@ function OnMouseDown(e)
                                     .attr("rx", "5px")
                                     .attr("ry", "5px")
                                     .attr("fill", "white")
-                                    .attr("stroke", "orange")
+                                    .attr("stroke", "#627bf4")
                                     .attr("opacity", "0.01")
                                     .attr("class", "normalityPlotHelp");
                     }                   
@@ -1493,7 +1493,7 @@ function OnMouseOver(e)
                 
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.selectAll("#equation").attr("fill", "lightorange").attr("cursor", "help");
+                d3.selectAll("#equation").attr("fill", "light#627bf4").attr("cursor", "help");
                 
                 helpText.text(desc["equation"]);
             }
@@ -2249,7 +2249,7 @@ function OnMouseOut(e)
         
         if(target.id == "equation")
         {
-            d3.selectAll("#equation").attr("fill", "orange").attr("cursor", "default");
+            d3.selectAll("#equation").attr("fill", "#627bf4").attr("cursor", "default");
         }
         
     }
