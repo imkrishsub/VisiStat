@@ -377,7 +377,7 @@ function setDistribution(dependentVariable, level, normal)
                     }
                 }
             }   
-            else if(variableList["independent"].length == 2)
+            else if(variableList["independent"].length == 2 && getSelectedMeansForColourBoxPlotData().length == 2) 
             {
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                 {
@@ -455,6 +455,7 @@ function setDistribution(dependentVariable, level, normal)
             }
             else
             {
+                console.log("Hey");
                 //2-way ANOVA
                 performHomoscedasticityTests();
             }
