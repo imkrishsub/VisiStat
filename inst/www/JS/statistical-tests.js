@@ -233,6 +233,7 @@ function performNormalityTests()
 //             }
 //         }
 //     }
+    console.log("Hi");
     var variableList = getSelectedVariables();    
     
     //initialise distributions
@@ -450,17 +451,21 @@ function setDistribution(dependentVariable, level, normal)
         if(variableList["independent"].length == 2)
         {
             //Factorial/2-way ANOVA
+            var selectedMeans = getSelectedMeansForColourBoxPlotData();
 
-            if(isFactorialANOVA(variableList))
+            if(selectedMeans.length > 2)
             {
-                                       
-            }
-            else
-            {
-                console.log("Hey");
-                //2-way ANOVA
-                performHomoscedasticityTests();
-            }
+                if(isFactorialANOVA(variableList))
+                {
+                                           
+                }
+                else
+                {
+                    console.log("Hey");
+                    //2-way ANOVA
+                    performHomoscedasticityTests();
+                }    
+            }            
         }
     }    
 }
