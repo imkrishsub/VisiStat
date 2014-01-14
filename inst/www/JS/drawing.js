@@ -460,7 +460,22 @@ function drawEffectSize(value)
     if(Math.abs(scale(min + value)) > effectSizeWidth/7)
     {   
         console.log("greater!");
-        sideBar.append("text")
+
+        if(value < 0)
+        {
+            sideBar.append("text")
+                .attr("x", L + scale(0) + scale(min + (value - 0)) - yAxisTickTextOffset)
+                .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset)
+                .attr("text-anchor", "start")
+                .attr("font-size", effectSizeFontSize)
+                .attr("fill", "white")
+                .text(value)
+                .attr("id", "effectSizeValue")
+                .attr("class", "effectSize");    
+        }
+        else
+        {
+            sideBar.append("text")
                 .attr("x", L + scale(0) + scale(min + (value - 0)) - yAxisTickTextOffset)
                 .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset)
                 .attr("text-anchor", "end")
@@ -469,6 +484,7 @@ function drawEffectSize(value)
                 .text(value)
                 .attr("id", "effectSizeValue")
                 .attr("class", "effectSize");
+        }
     }
     else
     {
