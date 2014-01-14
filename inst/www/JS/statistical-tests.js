@@ -519,14 +519,19 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
 
         if(variableList["independent"].length == 2)
         {
-            if(isFactorialANOVA(variableList))
-            {
+            var selectedMeans = getSelectedMeansForColourBoxPlotData();
 
-            }
-            else
+            if(selectedMeans.length > 2)
             {
-                performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);                
-            }
+                if(isFactorialANOVA(variableList))
+                {
+
+                }
+                else
+                {
+                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);                
+                }
+            }            
                                        
         }
     }    
