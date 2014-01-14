@@ -112,13 +112,6 @@ function resetSVGCanvas()
               .attr("height", canvasHeight)
               .attr("width", sideBarWidth)
               .attr("viewBox", "0 0 " + sideBarWidth + " " + canvasHeight);
-              
-//     sideBarCanvas.append("image")
-//                     .attr("x", sideBarWidth - 3*(helpButtonWidth + helpButtonOffset))
-//                     .attr("y", helpButtonOffset/4)
-//                     .attr("width", sideBarWidth)
-//                     .attr("height", helpButtonHeight)
-//                     .attr("xlink:href", "images/leather.png");
     
     drawHelpButton();
     drawResetButton();
@@ -126,16 +119,7 @@ function resetSVGCanvas()
 
 function drawFullScreenButton()
 {
-//     var canvas = d3.select("#sideBarCanvas");
-//     
-//     canvas.append("image")
-//                 .attr("x", canvas.attr("width") - (fullScreenButtonSize + fullScreenButtonOffset))
-//                 .attr("y", 0)
-//                 .attr("xlink:href", "images/fullscreennormal.png")
-//                 .attr("height", fullScreenButtonSize)
-//                 .attr("width", fullScreenButtonSize)
-//                 .attr("style", "opacity: 1.0;")
-//                 .attr("class", "fullscreen");
+    //TODO
 }
 
 function drawHelpButton()
@@ -1669,6 +1653,7 @@ function displayToolTips()
     var variablePanel = d3.select("#variable.panel");                
     var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
     var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
+
     var variablePanelBorder = canvas.append("rect")
                                     .attr("x", variableNameHolderPadding/2)
                                     .attr("y", variableNameHolderPadding/2)
@@ -1680,6 +1665,8 @@ function displayToolTips()
                                     .attr("stroke", "#3957F1")
                                     .attr("stroke-dasharray","3,3")
                                     .attr("class","toolTips");
+    // var variableTypeSelectionBorder = canvas.append("rect")
+    //                                         .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/2)
 }
 
     
