@@ -504,8 +504,9 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         {         
             console.log("\n\tHomogeneous requirement satisfied!");
             
-            d3.select("#homogeneity.ticks").attr("display", "inline"); 
+            d3.select("9#homogeneity.ticks").attr("display", "inline"); 
             d3.select("#homogeneity.loading").attr("display", "none"); 
+            console.log("variableList["independent-levels"].length: " + variableList["independent-levels"].length);
             
             if((experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0]) && variableList["independent-levels"].length == 2)
             {
