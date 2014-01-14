@@ -1678,7 +1678,7 @@ function displayToolTips()
                                             .attr("stroke-dasharray","3,3")
                                             .attr("class","toolTips");
 
-    var visualizationPanelCanvas = d3.select("#visualizationPanelCanvas");
+    var visualizationPanelCanvas = d3.select("#visualisationPanelSVG");
     
     var visualisationPanelHeight = visualisationPanel.style("height");
     var visualisationPanelWidth = visualisationPanel.style("width");
