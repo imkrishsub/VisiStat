@@ -208,11 +208,11 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         Y2 = (slope*X2 + intercept) > maxY ? maxY : (parseFloat(slope*X2) + parseFloat(intercept));
         Y2 = (slope*X2 + intercept) < minY ? minY : (parseFloat(slope*X2) + parseFloat(intercept));
         
-        x1 = x + convertT#627bf4(X1, minX, maxX)*shortWidth;
-        y1 = y - convertT#627bf4(Y1, minY, maxY)*shortHeight;
+        x1 = x + convertToRange(X1, minX, maxX)*shortWidth;
+        y1 = y - convertToRange(Y1, minY, maxY)*shortHeight;
     
-        x2 = x + convertT#627bf4(X2, minX, maxX)*shortWidth;
-        y2 = y - convertT#627bf4(Y2, minY, maxY)*shortHeight;    
+        x2 = x + convertToRange(X2, minX, maxX)*shortWidth;
+        y2 = y - convertToRange(Y2, minY, maxY)*shortHeight;    
     
         canvas.append("line")
                 .attr("x1", x1)
@@ -340,12 +340,12 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         if(isNaN(dataX[0]))
             X = x + uniqueDataX.indexOf(dataX[i])*xStep + xStep/2;    
         else
-            X = x + convertT#627bf4(dataX[i], minX, maxX)*shortWidth;
+            X = x + convertToRange(dataX[i], minX, maxX)*shortWidth;
             
         if(isNaN(dataY[0]))
             Y = y - uniqueDataY.indexOf(dataY[i])*yStep - yStep/2;
         else
-            Y = y - convertT#627bf4(dataY[i], minY, maxY)*shortHeight;
+            Y = y - convertToRange(dataY[i], minY, maxY)*shortHeight;
             
         var color = "black";
         
@@ -358,7 +358,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
     }
 }
 
-function convertT#627bf4(number, min, max)
+function convertToRange(number, min, max)
 {
     return (number - min)/(max - min);
 }
