@@ -1667,10 +1667,10 @@ function displayToolTips()
                                     .attr("class","toolTips");
 
     var variableTypeSelectionBorder = canvas.append("rect")
-                                            .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/2)
+                                            .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
                                             .attr("y", variableNameHolderPadding/2)
                                             .attr("height", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding))
-                                            .attr("width", (variableNameHolderHeight - variableNameHolderPadding/2)/1.75 + variableNameHolderPadding)
+                                            .attr("width", variableTypeSelectionButtonWidth + variableNameHolderPadding)
                                             .attr("rx", "5px")
                                             .attr("ry", "5px")
                                             .attr("fill","none")
