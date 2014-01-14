@@ -29,7 +29,7 @@
         
         var variablePanelColors = new Object();
             variablePanelColors["active"] = "lightgrey";
-            variablePanelColors["disabled"] = "#A60000";
+            variablePanelColors["disabled"] = "#8F6B3F";
         
         var variableTypeButtonColors = new Object();
             variableTypeButtonColors["dependent"] = new Object();
