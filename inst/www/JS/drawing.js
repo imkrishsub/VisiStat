@@ -856,7 +856,7 @@ function drawScales(cx, cy)
     var yMax = Array.max(cy);
     
     var canvas = d3.select("#plotCanvas");    
-    var x = canvasWidth/2 + plotWidth/2 + significanceTestScaleOffset;
+    var x = canvasWidth/2 + plotWidth/2 + significanceTestScaleOffset + scaleForWindowSize(10);
     
     var variableList = getSelectedVariables();
     var means = [];
@@ -928,6 +928,7 @@ function drawScales(cx, cy)
                     .attr("x", x + scaleForWindowSize(5))
                     .attr("y", (parseFloat(cy[i]) + parseFloat(cy[i+1]))/2 + yAxisTickTextOffset)
                     .attr("fill", "black")
+                    .attr("font-size", fontSizeTicks)
                     .attr("id", "DIM" + i)
                     .attr("class", "differenceInMeansText")
                     .attr("display", "none")
