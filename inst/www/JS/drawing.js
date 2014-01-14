@@ -1652,15 +1652,17 @@ function displayToolTips()
 
     var variablePanel = d3.select("#variable.panel");                
     var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
-    var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
+    var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;  
+
+    var radiusForRoundedRect = scaleForWindowSize(10) + "px";                                      
 
     var variablePanelBorder = variablePanelCanvas.append("rect")
                                     .attr("x", variableNameHolderPadding/2)
                                     .attr("y", variableNameHolderPadding/2)
                                     .attr("width", variableNameHolderWidth - variableTypeSelectionButtonWidth + variableNameHolderPadding)
                                     .attr("height", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding))
-                                    .attr("rx", "5px")
-                                    .attr("ry", "5px")
+                                    .attr("rx", radiusForRoundedRect)
+                                    .attr("ry", radiusForRoundedRect)
                                     .attr("fill","none")
                                     .attr("stroke", "#3957F1")
                                     .attr("stroke-dasharray","3,3")
@@ -1671,25 +1673,25 @@ function displayToolTips()
                                             .attr("y", variableNameHolderPadding/2)
                                             .attr("height", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding))
                                             .attr("width", variableTypeSelectionButtonWidth/1.5 + variableNameHolderPadding)
-                                            .attr("rx", "5px")
-                                            .attr("ry", "5px")
+                                            .attr("rx", radiusForRoundedRect)
+                                            .attr("ry", radiusForRoundedRect)
                                             .attr("fill","none")
                                             .attr("stroke", "#3957F1")
                                             .attr("stroke-dasharray","3,3")
                                             .attr("class","toolTips");
 
     var visualizationPanelCanvas = d3.select("#visualisationPanelSVG");
-    
+
     var visualisationPanelHeight = visualisationPanel.style("height");
     var visualisationPanelWidth = visualisationPanel.style("width");
 
     var visualizationPanelBorder = visualizationPanelCanvas.append("rect")
                                                             .attr("x", variableNameHolderPadding/2)
                                                             .attr("y", variableNameHolderPadding/2)
-                                                            .attr("width", visualisationPanelWidth)
-                                                            .attr("height", visualisationPanelHeight)
-                                                            .attr("rx", "5px")
-                                                            .attr("ry", "5px")
+                                                            .attr("width", visualisationPanelWidth - variableNameHolderPadding)
+                                                            .attr("height", visualisationPanelHeight - variableNameHolderPadding)
+                                                            .attr("rx", radiusForRoundedRect)
+                                                            .attr("ry", radiusForRoundedRect)
                                                             .attr("fill","none")
                                                             .attr("stroke", "#3957F1")
                                                             .attr("stroke-dasharray","3,3")
