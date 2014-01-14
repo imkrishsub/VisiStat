@@ -875,7 +875,7 @@ function drawScales(cx, cy)
     var cyMin = Math.min.apply(Math, cy);		   	 
     
     canvas.append("text")
-                .attr("x", x + scaleForWindowSize(25))
+                .attr("x", x + scaleForWindowSize(35))
                 .attr("y", (yMin + yMax)/2)
                 .attr("fill", "black")
                 .attr("font-size", scaleForWindowSize(14) + "px")
