@@ -823,6 +823,7 @@ function OnMouseDown(e)
         
                 if(currentVisualisationSelection == "Scatterplot")
                 {
+                    var timeOut = 0;
                     if(choice != currentVariableSelection[1])
                     {   
                         var temp = currentVariableSelection[1];
@@ -831,27 +832,28 @@ function OnMouseDown(e)
                 
                         plotVisualisation();  
 
-                        setTimeout(function(){
-                            console.log("In timeout...");
-                        }, 2500);
+                        timeOut = 1500;
                     }
                     
-                    console.log("I am out! :)");
-                    var variableList = sort(currentVariableSelection);
+                    setTimeout(
+                        function()
+                        {
+                            var variableList = sort(currentVariableSelection);
         
-                        console.log("\n\t\tFinding the regression model to predict the outcome variable (" + currentVariableSelection[1] + ") from the explanatory variable (" + currentVariableSelection[0] + ")");
-        
-                        //some interaction to get the variables :)
-        
-                        removeElementsByClassName("outcomeVariable");
-                        removeElementsByClassName("dialogBox");
-        
-                    setTimeout(function(){            
-                        removeElementsByClassName("regression");
-                        removeElementsByClassName("significanceTest");
-                        removeElementsByClassName("effectSize");
-                        getLinearModelCoefficients(currentVariableSelection[1], currentVariableSelection[0]);
-                    }, 300);  
+                            console.log("\n\t\tFinding the regression model to predict the outcome variable (" + currentVariableSelection[1] + ") from the explanatory variable (" + currentVariableSelection[0] + ")");
+                
+                            removeElementsByClassName("outcomeVariable");
+                            removeElementsByClassName("dialogBox");
+                
+                            setTimeout(function(){            
+                                removeElementsByClassName("regression");
+                                removeElementsByClassName("significanceTest");
+                                removeElementsByClassName("effectSize");
+                                getLinearModelCoefficients(currentVariableSelection[1], currentVariableSelection[0]);
+                            }, 300);   
+                        }
+                    ), timeOut);
+                      
                 }
                 else if(currentVisualisationSelection == "Scatterplot-matrix")
                 {
