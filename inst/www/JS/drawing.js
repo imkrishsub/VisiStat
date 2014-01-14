@@ -1648,13 +1648,13 @@ function drawNavigator(STATES)
 
 function displayToolTips()
 {
-    var canvas = d3.select("#variablePanelSVG");
+    var variablePanelCanvas = d3.select("#variablePanelSVG");
 
     var variablePanel = d3.select("#variable.panel");                
     var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
     var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
 
-    var variablePanelBorder = canvas.append("rect")
+    var variablePanelBorder = variablePanelCanvas.append("rect")
                                     .attr("x", variableNameHolderPadding/2)
                                     .attr("y", variableNameHolderPadding/2)
                                     .attr("width", variableNameHolderWidth - variableTypeSelectionButtonWidth + variableNameHolderPadding)
@@ -1666,7 +1666,7 @@ function displayToolTips()
                                     .attr("stroke-dasharray","3,3")
                                     .attr("class","toolTips");
 
-    var variableTypeSelectionBorder = canvas.append("rect")
+    var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
                                             .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
                                             .attr("y", variableNameHolderPadding/2)
                                             .attr("height", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding))
@@ -1677,6 +1677,21 @@ function displayToolTips()
                                             .attr("stroke", "#3957F1")
                                             .attr("stroke-dasharray","3,3")
                                             .attr("class","toolTips");
+
+    var visualizationPanelCanvas = d3.select("#visualizationPanelCanvas");
+
+    var visualizationPanelBorder = visualizationPanelCanvas.append("rect")
+                                                            .attr("x", variableNameHolderPadding/2)
+                                                            .attr("y", variableNameHolderPadding/2)
+                                                            .attr("width", visualizationPanelWidth)
+                                                            .attr("height", visualizationPanelHeight)
+                                                            .attr("rx", "5px")
+                                                            .attr("ry", "5px")
+                                                            .attr("fill","none")
+                                                            .attr("stroke", "#3957F1")
+                                                            .attr("stroke-dasharray","3,3")
+                                                            .attr("class","toolTips");
+
 }
 
     
