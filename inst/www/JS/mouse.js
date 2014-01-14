@@ -851,9 +851,7 @@ function OnMouseDown(e)
                                 removeElementsByClassName("effectSize");
                                 getLinearModelCoefficients(currentVariableSelection[1], currentVariableSelection[0]);
                             }, 300);   
-                        }
-                    ), timeOut);
-                      
+                        }, timeOut);                      
                 }
                 else if(currentVisualisationSelection == "Scatterplot-matrix")
                 {
