@@ -1665,8 +1665,18 @@ function displayToolTips()
                                     .attr("stroke", "#3957F1")
                                     .attr("stroke-dasharray","3,3")
                                     .attr("class","toolTips");
-    // var variableTypeSelectionBorder = canvas.append("rect")
-    //                                         .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/2)
+                                    
+    var variableTypeSelectionBorder = canvas.append("rect")
+                                            .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/2)
+                                            .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2) - variableNameHolderPadding/2)
+                                            .attr("height", variableNameHolderHeight)
+                                            .attr("width", (variableNameHolderHeight - variableNameHolderPadding/2)/1.75 + variableNameHolderPadding)
+                                            .attr("rx", "5px")
+                                            .attr("ry", "5px")
+                                            .attr("fill","none")
+                                            .attr("stroke", "#3957F1")
+                                            .attr("stroke-dasharray","3,3")
+                                            .attr("class","toolTips");
 }
 
     
