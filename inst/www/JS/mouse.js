@@ -832,10 +832,11 @@ function OnMouseDown(e)
                         plotVisualisation();  
 
                         setTimeout(function(){
-
-                        }, 1500);
+                            console.log("In timeout...");
+                        }, 2500);
                     }
-        
+                    
+                    console.log("I am out! :)");
                     var variableList = sort(currentVariableSelection);
         
                         console.log("\n\t\tFinding the regression model to predict the outcome variable (" + currentVariableSelection[1] + ") from the explanatory variable (" + currentVariableSelection[0] + ")");
