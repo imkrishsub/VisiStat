@@ -912,6 +912,7 @@ function OnMouseDown(e)
                 removeElementsByClassName("differenceInMeansText");
                 removeElementsByClassName("differenceInMeansMain");
                 removeElementsByClassName("densityCurve");
+                removeElementsByClassName("CIMean");
                 
                 removeElementById("border");
         
