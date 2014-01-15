@@ -849,6 +849,7 @@ function OnMouseDown(e)
                                 removeElementsByClassName("regression");
                                 removeElementsByClassName("significanceTest");
                                 removeElementsByClassName("effectSize");
+                                removeElementsByClassName("effectSizeInterpretationIndicators");
                                 getLinearModelCoefficients(currentVariableSelection[1], currentVariableSelection[0]);
                             }, 300);   
                         }, timeOut);                      
