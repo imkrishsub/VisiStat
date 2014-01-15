@@ -1799,7 +1799,7 @@ function displayToolTips()
                         .attr("class", "toolTips");
 
     d3.select("body").append("label")
-                        .text("Visualizations available in VisiStat");
+                        .text("Visualizations available in VisiStat")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
