@@ -1750,7 +1750,7 @@ function displayToolTips()
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
-    variablePanelSVG.append("line")
+    variablePanelCanvas.append("line")
                     .attr("x1", variableTypeSelectionButtonWidth/1.5 + variableNameHolderPadding + variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
                     .attr("y1", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
                     .attr("x2", variablePanelWidth)
