@@ -1750,6 +1750,15 @@ function displayToolTips()
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
+    variablePanelSVG.append("line")
+                    .attr("x1", variableTypeSelectionButtonWidth/1.5 + variableNameHolderPadding + variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
+                    .attr("y1", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                    .attr("x2", variablePanelWidth)
+                    .attr("y2", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                    .attr("stroke", "#3957F1")
+                    .attr("stroke-dasharray", "3,3")
+                    .attr("class", "toolTips");
+                
     plotCanvas.append("line")
                 .attr("x1", 0)
                 .attr("y1", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
@@ -1778,7 +1787,7 @@ function displayToolTips()
     plotCanvas.append("rect")
                         .attr("x", canvasWidth/2 - 3*variableNameHolderPadding)
                         .attr("y", canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75)
-                        .attr("height", variableNameHolderHeight*1.5)
+                        .attr("height", variableNameHolderHeight*1.75)
                         .attr("width", variableNameHolderWidth + variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
@@ -1793,13 +1802,22 @@ function displayToolTips()
                         .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
     plotCanvas.append("line")
-                .attr("x1", canvasWidth/2)
+                .attr("x1", canvasWidth/2 + sideBarWidth)
                 .attr("y1", canvasHeight)
                 .attr("x2", canvasWidth/2)
                 .attr("y2", canvasHeight - variableNameHolderPadding*3)
                 .attr("stroke", "#3957F1")
                 .attr("stroke-dasharray", "3,3")
                 .attr("class", "toolTips");
+
+    visualizationPanelCanvas.append("line")
+                            .attr("x1", canvasWidth/2 + sideBarWidth)
+                            .attr("y1", variableNameHolderPadding/2)
+                            .attr("x2", canvasWidth/2 + sideBarWidth)
+                            .attr("y2", 0)
+                            .attr("stroke", "#3957F1")
+                            .attr("stroke-dasharray", "3,3")
+                            .attr("class", "toolTips");
 
 }
 
