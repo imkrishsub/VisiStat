@@ -1726,7 +1726,7 @@ function displayToolTips()
                         .attr("x", 3*variableNameHolderPadding)
                         .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
                         .attr("height", variableNameHolderHeight*1.25)
-                        .attr("width", variableNameHolderWidth - variableNameHolderPadding)
+                        .attr("width", variableNameHolderWidth)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
                         .attr("fill", "#7CA9FB")
@@ -1737,7 +1737,7 @@ function displayToolTips()
                         .text("Displays the type of the variable. Use the switch to toggle the type as dependent or independent. Note that VisiStat picks the visualization based on this information.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center font: \"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif;");
+                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center font: \"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif;");
 
     var visualizationPanelCanvas = d3.select("#visualisationPanelSVG");
 
