@@ -867,7 +867,9 @@ function drawScales(cx, cy)
                 .attr("class", "differenceInMeansMain")
                 .text(dec2(means[means.length-1] - means[0]));
     
-    var error = parseFloat(testResults["error"]);        
+    var error = parseFloat(testResults["error"]);   
+
+    console.log("error = " + error);     
     testResults["CI"] = calculateCI(means[means.length -1] - means[0], error);
     
     var BOTTOM = canvasHeight/2 + plotHeight/2;
