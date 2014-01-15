@@ -537,27 +537,27 @@ function setSelectButtons()
 function calculateCI(mean, error)
 {
     var CI = [mean - error, mean + error];
-    var variableList = getSelectedVariables();
-    var dependentVariable = variables[variableList["dependent"][0]]["dataset"];
-    console.log("variableList[\"dependent\"][0] = " + variableList["dependent"][0]);
-    console.log("dependentVariable = [" + dependentVariable + "]");
+    // var variableList = getSelectedVariables();
+    // var dependentVariable = variables[variableList["dependent"][0]]["dataset"];
+    // console.log("variableList[\"dependent\"][0] = " + variableList["dependent"][0]);
+    // console.log("dependentVariable = [" + dependentVariable + "]");
 
-    var min = Array.min(dependentVariable);
-    var max = Array.max(dependentVariable);
+    // var min = Array.min(dependentVariable);
+    // var max = Array.max(dependentVariable);
 
-    console.log("min = " + min + ", max = " + max);
+    // console.log("min = " + min + ", max = " + max);
 
-    if(CI[0] < min)
-    {
-        CI[0] = min;
-    }
+    // if(CI[0] < min)
+    // {
+    //     CI[0] = min;
+    // }
 
-    if(CI[1] > max)
-    {
-        CI[1] = max;
-    }
+    // if(CI[1] > max)
+    // {
+    //     CI[1] = max;
+    // }
 
-    console.log("CI = [" + CI + "]");
+    // console.log("CI = [" + CI + "]");
 
     return CI;
 }
