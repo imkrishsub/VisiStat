@@ -1637,7 +1637,7 @@ function OnMouseOver(e)
                 helpText.text(desc["interactionEffect"]);   
             }
             
-            if(target.className.baseVal == "variableNameHolderFront")
+            if((target.className.baseVal == "variableNameHolderFront") || (target.className.baseVal == "disabled"))
             {
                 setup(e, target);
                 var varName = target.id;
