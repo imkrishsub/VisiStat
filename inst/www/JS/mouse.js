@@ -752,6 +752,7 @@ function OnMouseDown(e)
                                     .attr("fill", "white")
                                     .attr("stroke", "#627bf4")
                                     .attr("opacity", "0.01")
+                                    .attr("zIndex", "-1")
                                     .attr("class", "plotHelp");  
                     }
                     
