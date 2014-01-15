@@ -1,7 +1,7 @@
 function drawTukeyHSDPlot()
 {
     //graphics
-    currentVisualisationSelection = "tukeyHSD";
+    currentVisualisationSelection = "tukeyHSDPlot";
 
     var LEFT = canvasWidth/2 - plotWidth/2;
     var RIGHT = canvasWidth/2 + plotWidth/2;
