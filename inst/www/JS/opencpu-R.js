@@ -64,6 +64,9 @@ function getData(dataset, variableName, level)
         experimentalDesign = findExperimentalDesign();            
         console.log("\n\tExperimental-design of the dataset is \"" + experimentalDesign + "\"");
 
+        var visualisations = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot-matrix"];
+        invalidate(visualisations);
+
         displayToolTips();
     }
 }
