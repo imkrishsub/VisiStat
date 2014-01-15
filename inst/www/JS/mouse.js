@@ -1637,7 +1637,7 @@ function OnMouseOver(e)
                 helpText.text(desc["interactionEffect"]);   
             }
             
-            if((target.className.baseVal == "variableNameHolderFront") || (target.className.baseVal == "disabled"))
+            if((target.className.baseVal == "variableNameHolderFront"))
             {
                 setup(e, target);
                 var varName = target.id;
@@ -1646,6 +1646,18 @@ function OnMouseOver(e)
                 
                 d3.select("#" + varName + ".variableNameHolderBack").attr("stroke-width","2px");
                 d3.select("#" + varName + ".variableNameHolderFront").attr("cursor", "help");
+                
+                helpText.text(desc["variables"][varName]);                
+            }
+
+            if((target.className.baseVal == "disabled"))
+            {
+                setup(e, target);
+                var varName = target.id;
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#" + varName + ".disabled").attr("cursor", "help");
                 
                 helpText.text(desc["variables"][varName]);                
             }
