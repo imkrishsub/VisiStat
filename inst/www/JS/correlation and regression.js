@@ -39,7 +39,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
         
             logResult();
 
-            drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+            drawButtonInSideBar("FIT MODEL FOR PREDICTION", "regression");
         }
         else if(method == "kendall")
         {
@@ -61,7 +61,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
         
             logResult();
     
-            drawButtonInSideBar("CONSTRUCT MODEL", "regression");
+            drawButtonInSideBar("FIT MODEL FOR PREDICTION", "regression");
         }
 
         displayCorrelationResults();

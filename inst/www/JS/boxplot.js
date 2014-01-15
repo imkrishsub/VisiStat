@@ -10,7 +10,7 @@ function makeBoxplot()
     var BOTTOM = canvasHeight/2 + plotHeight/2;
 
     var canvas = d3.select("#plotCanvas");
-    drawButtonInSideBar("COMPARE MEANS", "compareMean");
+    drawButtonInSideBar("DO SIGNIFICANCE TEST", "compareMean");
 //     drawNavigator(["boxplot", "significance test", "result", "post-hoc pairwise"]);
     
     //initializations

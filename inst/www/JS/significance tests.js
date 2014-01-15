@@ -183,8 +183,8 @@ function performOneWayANOVA(dependentVariable, independentVariable)
         removeElementsByClassName("completeLines");           
 
         displaySignificanceTestResults();      
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
-        drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);        
+        drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "pairwisePostHoc");
+        drawButtonInSideBar("DO TUKEY'S HSD TEST", "tukeyHSD",1);        
     });
     
     //if R returns an error, alert the error message
@@ -225,7 +225,7 @@ function performWelchANOVA(dependentVariable, independentVariable)
         removeElementsByClassName("completeLines"); 
     
         displaySignificanceTestResults();
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");          
+        drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "pairwisePostHoc");          
     });
     
     //if R returns an error, alert the error message
@@ -266,8 +266,8 @@ function performKruskalWallisTest(dependentVariable, independentVariable)
         removeElementsByClassName("completeLines");   
 
         displaySignificanceTestResults();
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
-        drawButtonInSideBar("TUKEY'S HSD", "tukeyHSD",1);        
+        drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "pairwisePostHoc");
+        drawButtonInSideBar("DO TUKEY'S HSD TEST", "tukeyHSD",1);        
     });
     
     //if R returns an error, alert the error message
@@ -315,7 +315,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
   
         logResult();
            
-        drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");               
+        drawButtonInSideBar("SHOW INTERACTION PLOT", "interactionEffect");               
         removeElementsByClassName("completeLines");           
     
         displayANOVAResults();  
@@ -363,7 +363,7 @@ function performOneWayRepeatedMeasuresANOVA(dependentVariable, independentVariab
         removeElementsByClassName("completeLines");
 
         displaySignificanceTestResults();               
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");
+        drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "pairwisePostHoc");
         
     });
     
@@ -405,7 +405,7 @@ function performFriedmanTest(dependentVariable, independentVariable)
         removeElementsByClassName("completeLines");           
 
         displaySignificanceTestResults();   
-        drawButtonInSideBar("PAIRWISE POST-HOC COMPARISONS", "pairwisePostHoc");  
+        drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "pairwisePostHoc");  
         
     });
     
@@ -451,7 +451,7 @@ function performMixedDesignANOVA(dependentVariable, withinGroupVariable, between
 
         logResult();
 
-        drawButtonInSideBar("INTERACTION EFFECT", "interactionEffect");               
+        drawButtonInSideBar("SHOW INTERACTION PLOT", "interactionEffect");               
 
         //drawing stuff
         removeElementsByClassName("completeLines");

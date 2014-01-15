@@ -352,7 +352,7 @@ function OnMouseDown(e)
                 var canvas = d3.select("#plotCanvas");
                 var variableList = getSelectedVariables();
         
-                var inText = "COMPARE SELECTED MEANS";
+                var inText = "COMPARE SELECTED DISTRIBUTIONS";
     
                 drawButtonInSideBar(inText, "compareNow");
             
@@ -860,10 +860,10 @@ function OnMouseDown(e)
                     var canvas = d3.select("#plotCanvas");
                     var variableList = getSelectedVariables();
         
-                    var inText = "COMPARE SELECTED MEANS";
+                    var inText = "COMPARE SELECTED DISTRIBUTIONS";
     
                     if(pairwiseComparisons)
-                        drawButtonInSideBar("DO PAIRWISE TEST", "doPairwiseTest");
+                        drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "doPairwiseTest");
                     else
                         drawButtonInSideBar(inText, "compareNow");
             
@@ -1058,7 +1058,7 @@ function OnMouseDown(e)
                 
                 resetMeans();
     
-                drawButtonInSideBar("COMPARE MEANS", "doPairwiseTest");
+                drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "doPairwiseTest");
         
                 d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
                 d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
@@ -1281,7 +1281,7 @@ function OnMouseDown(e)
                                                                             var canvas = d3.select("#plotCanvas");
                                                                             var variableList = getSelectedVariables();
         
-                                                                            var inText = "COMPARE NOW";
+                                                                            var inText = "COMPARE SELECTED DISTRIBUTIONS";
     
                                                                             drawButtonInSideBar(inText, "compareNow");
             

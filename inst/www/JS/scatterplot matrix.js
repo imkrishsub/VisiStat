@@ -57,7 +57,7 @@ function makeScatterplotMatrix()
         }
         
         if(allVariablesAreNumeric())
-            drawButtonInSideBar("PERFORM MULTIPLE REGRESSION", "regression");
+            drawButtonInSideBar("FIT MODEL FOR PREDICTION", "regression");
         else
             removeElementsByClassName("regression");
     }
