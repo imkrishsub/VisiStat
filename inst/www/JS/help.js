@@ -15,8 +15,8 @@ desc["parameter"] = new Object();
 desc["parameter"]["t"] = "The t-statistic is a ratio of the departure of an estimated parameter from its notional value and its standard error.";
 desc["parameter"]["F"] = "The F-statistic is the ratio of variance between treatments to the variance within treatments.";
 desc["parameter"]["cS"] = "The chi-square statistic is a normalized sum of squared deviations between observed and theoretical frequencies.";
-desc["parameter"]["U"] = "";
-desc["parameter"]["V"] = "";
+desc["parameter"]["U"] = "W is a statistic used in Wilcoxon-test";
+desc["parameter"]["V"] = "V is a statistic used in Wilcoxon-test";
 desc["parameter"]["z"] = "";
 
 desc["method"] = new Object();
