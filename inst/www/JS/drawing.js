@@ -1722,7 +1722,7 @@ function displayToolTips()
                                             .attr("class","toolTips");
     var plotCanvas = d3.select("#plotCanvas");
 
-    plot.append("rect")
+    plotCanvas.append("rect")
                         .attr("x", 3*variableNameHolderPadding)
                         .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
                         .attr("height", variableNameHolderHeight*1.25)
