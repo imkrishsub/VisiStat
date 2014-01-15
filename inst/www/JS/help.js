@@ -1,7 +1,7 @@
 //settings
 var desc = new Object();
 desc["Histogram"] = "Shows the distribution of the data by clustering data into different bins. Hover over each bar to see the number of participants corresponding to the bar. Histogram is useful for viewing the shape of the distribution. ";
-desc["Boxplot"] = "Boxplot shows the distribution of the data. It is useful for seeing the central tendency of the distribution. Hover over individual entities of the boxplot to get more help. ";
+desc["Boxplot"] = "Boxplot shows the distribution of the data. It is useful for seeing the central tendency of the distribution. The horizontal line in the middle indicates the median and the circle represents the mean.";
 desc["Scatterplot"] = "It is a simple plot of one variable against the other variable. If you select an additional variable that has a fixed number of values, a color boxplot is drawn with the different values of the third variable mapped to different colors (See legend on top-right for inference).";
 desc["Scatterplot-matrix"] = "A Scatterplot-matrix is an extension of scatterplot. It plots variables pairwise against each other. The color of a cell indicatest the correlation between the variables involved (darker shade of green => more correlation). ";
 desc["tukeyHSDPlot"] = "A Tukey's HSD test compares every pair of distributions. The difference between the means and the confidence intervals are plotted. If the confidence interval includes 0 (i.e., no significant effect), it is plotted in red. If not, it is plotted in green color. The golden line indicates zero. ";
