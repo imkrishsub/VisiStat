@@ -539,6 +539,8 @@ function calculateCI(mean, error)
     var CI = [mean - error, mean + error];
     var variableList = getSelectedVariables();
     var dependentVariable = variables[variableList["dependent"][0]]["dataset"];
+    console.log("variableList[\"dependent\"][0] = " + variableList["dependent"][0]);
+    console.log("dependentVariable = [" + dependentVariable + "]");
 
     var min = Math.min.apply(dependentVariable);
     var max = Math.max.apply(dependentVariable);
