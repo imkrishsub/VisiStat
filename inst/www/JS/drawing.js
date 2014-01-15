@@ -1673,6 +1673,8 @@ function displayToolTips()
 {
     var variablePanelCanvas = d3.select("#variablePanelSVG");
 
+    var fontSizeTooTips = scaleForWindowSize(16) + "px";
+
     var variablePanel = d3.select("#variable.panel");                
     var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
     var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;  
@@ -1694,7 +1696,7 @@ function displayToolTips()
     variablePanelCanvas.append("rect")
                         .attr("x", variableNameHolderPadding/2)
                         .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
-                        .attr("height", variableNameHolderHeight*1.25)
+                        .attr("height", variableNameHolderHeight*1.5)
                         .attr("width", variableNameHolderWidth - variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
@@ -1706,7 +1708,7 @@ function displayToolTips()
                         .text("Displays the list of variables in your dataset. Click on a variable to select/unselect them. Variables that don't have a meaningful visualization are faded out.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center font: \"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif;");
+                        .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
 
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
@@ -1737,7 +1739,7 @@ function displayToolTips()
                         .text("Displays the type of the variable. Use the switch to toggle the type as dependent or independent. VisiStat picks the visualization based on this information.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: 20px");
+                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips ";");
 
     var visualizationPanelCanvas = d3.select("#visualisationPanelSVG");
 
