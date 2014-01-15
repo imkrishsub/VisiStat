@@ -1750,6 +1750,15 @@ function displayToolTips()
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
+    plotCanvas.append("line")
+                .attr("x1", 0)
+                .attr("y1", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                .attr("x2", 3*variableNameHolderPadding)
+                .attr("y2", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                .attr("stroke", "#3957F1")
+                .attr("stroke-dasharray", "3,3")
+                .attr("class", "toolTips");
+
     var visualizationPanelCanvas = d3.select("#visualisationPanelSVG");
 
     var visualisationPanelHeight = visualisationPanel.style("height");
@@ -1778,10 +1787,19 @@ function displayToolTips()
                         .attr("class", "toolTips");
 
     d3.select("body").append("label")
-                        .text("The visualizations available in VisiStat. Although VisiStat chooses the visualization automatically, you can explore other visualizations.")
+                        .text("Displays the visualizations available in VisiStat. Although VisiStat chooses the visualization automatically, you can explore other visualizations.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
+
+    plotCanvas.append("line")
+                .attr("x1", canvasWidth/2)
+                .attr("y1", canvasHeight)
+                .attr("x2", canvasWidth/2)
+                .attr("y2", canvasHeight - variableNameHolderPadding*3)
+                .attr("stroke", "#3957F1")
+                .attr("stroke-dasharray", "3,3")
+                .attr("class", "toolTips");
 
 }
 
