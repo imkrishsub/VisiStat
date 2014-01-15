@@ -466,6 +466,8 @@ function setDistribution(dependentVariable, level, normal)
 
 function setHomogeneity(dependentVariable, independentVariable, homogeneous)
 {    
+    console.log("In setHomogeneity()");
+
     if(variances[dependentVariable] == undefined)
         variances[dependentVariable] = new Object();
     
@@ -473,6 +475,7 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
     
     if(getObjectLength(variances[dependentVariable]) == (currentVariableSelection.length - 1))
     {       
+        console.log("Inside if condition...");
         var variableList = sort(currentVariableSelection);
         var homogeneity = true;
         
