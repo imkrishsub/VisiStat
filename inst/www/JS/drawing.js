@@ -1049,7 +1049,7 @@ function displayOneSampleTestResults()
                             .attr("y2", cyMax)
                             .attr("stroke", "red")
                             .attr("stroke-width", "2px")
-                            .attr("class", "significanceTest");
+                            .attr("class", "differenceInMeans");
 
 
     var x = canvasWidth/2 + plotWidth/2;
@@ -1058,7 +1058,7 @@ function displayOneSampleTestResults()
                   .attr("d", "M " + x + " " + y + " L " + (x-5)+ " " + (y+5) + " L " + (x+5) + " " + (y+5) + " z")
                   .attr("stroke", "red")
                   .attr("fill", "red")
-                  .attr("class", "significanceTest");
+                  .attr("class", "differenceInMeans");
 
     sideBar = d3.select("#sideBarCanvas");
     
@@ -1162,7 +1162,7 @@ function displaySignificanceTestResults()
                             .attr("y2", cyMax)
                             .attr("stroke", "red")
                             .attr("stroke-width", "2px")
-                            .attr("class", "significanceTest");
+                            .attr("class", "differenceInMeans");
 
 
     var x = canvasWidth/2 + plotWidth/2;
@@ -1171,7 +1171,7 @@ function displaySignificanceTestResults()
                   .attr("d", "M " + x + " " + y + " L " + (x-5)+ " " + (y+5) + " L " + (x+5) + " " + (y+5) + " z")
                   .attr("stroke", "red")
                   .attr("fill", "red")
-                  .attr("class", "significanceTest");
+                  .attr("class", "differenceInMeans");
     
     drawScales(cx, cy);     
     
@@ -1274,7 +1274,7 @@ function displayANOVAResults()
                             .attr("y2", cyMax)
                             .attr("stroke", "red")
                             .attr("stroke-width", "2px")
-                            .attr("class", "significanceTest");
+                            .attr("class", "differenceInMeans");
 
     var x = canvasWidth/2 + plotWidth/2;
     var y = cyMin;			 
@@ -1282,7 +1282,7 @@ function displayANOVAResults()
                   .attr("d", "M " + x + " " + y + " L " + (x-5)+ " " + (y+5) + " L " + (x+5) + " " + (y+5) + " z")
                   .attr("stroke", "red")
                   .attr("fill", "red")
-                  .attr("class", "significanceTest");
+                  .attr("class", "differenceInMeans");
     
     drawScales(cx, cy);     
     
