@@ -33,7 +33,7 @@ h2
 
 #datasetInformation
 {
-    width: 30em;
+    width: 35em;
     display: inline-block;
 }
 
@@ -89,7 +89,6 @@ th
 {
     width: 15em;
     height: 3em;
-    position: relative;
     color: black;
     font:1.7em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
     padding:25px;
