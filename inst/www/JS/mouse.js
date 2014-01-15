@@ -1045,8 +1045,7 @@ function OnMouseDown(e)
                 removeElementsByClassName("differenceInMeansMain");
                 removeElementsByClassName("densityCurve");
                 removeElementsByClassName("CIMean");
-                removeElementsByClassName("tukeyHSD");
-                
+                removeElementsByClassName("tukeyHSD");                
                 removeElementById("border");
         
                 pairwiseComparisons = true;
