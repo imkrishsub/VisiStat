@@ -537,7 +537,7 @@ function setSelectButtons()
 function calculateCI(mean, error)
 {
     var CI = [mean - error, mean + error];
-    var dependentVariable = variables[variableList["dependent"][0]["dataset"];
+    var dependentVariable = variables[variableList["dependent"][0]]["dataset"];
 
     var min = Math.min.apply(dependentVariable);
     var max = Math.max.apply(dependentVariable);
