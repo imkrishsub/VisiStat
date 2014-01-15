@@ -1710,6 +1710,15 @@ function displayToolTips()
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
+    variablePanelCanvas.append("line")
+                        .attr("x1", variableNameHolderWidth/2)
+                        .attr("y1", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + variableNameHolderPadding/2)
+                        .attr("x2", variableNameHolderWidth/2)
+                        .attr("y2", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
+                        .attr("stroke", "#3957F1")
+                        .attr("stroke-dasharray", "3,3")
+                        .attr("class", "toolTips");
+
 
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
                                             .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
@@ -1726,7 +1735,7 @@ function displayToolTips()
 
     plotCanvas.append("rect")
                         .attr("x", 3*variableNameHolderPadding)
-                        .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                        .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2)
                         .attr("height", variableNameHolderHeight*1.75)
                         .attr("width", variableNameHolderWidth + variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
@@ -1739,7 +1748,7 @@ function displayToolTips()
                         .text("Displays the type of the variable. Use the switch to toggle the type as dependent or independent. VisiStat picks the visualization based on this information.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
+                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
     var visualizationPanelCanvas = d3.select("#visualisationPanelSVG");
 
