@@ -1822,6 +1822,32 @@ function displayToolTips()
                             .attr("stroke-dasharray", "3,3")
                             .attr("class", "toolTips");
 
+    var sideBar = d3.select("#sideBarCanvas");
+
+    sideBar.append("rect")
+            .attr("x", sideBarWidth - 2*(helpButtonWidth + helpButtonOffset) - variableNameHolderPadding/2)
+            .attr("y", scaleForWindowSize(2))
+            .attr("width", helpButtonWidth + variableNameHolderPadding)
+            .attr("height", helpButtonHeight + scaleForWindowSize(5))
+            .attr("rx", radiusForRoundedRect)
+            .attr("ry", radiusForRoundedRect)
+            .attr("fill","none")
+            .attr("stroke", "#3957F1")                                                
+            .attr("stroke-dasharray","3,3")
+            .attr("class","toolTips");
+
+    sideBar.append("rect")
+            .attr("x", sideBarWidth - (helpButtonWidth + helpButtonOffset) - variableNameHolderPadding/2)
+            .attr("y", scaleForWindowSize(2))
+            .attr("width", helpButtonWidth + variableNameHolderPadding)
+            .attr("height", helpButtonHeight + scaleForWindowSize(5))
+            .attr("rx", radiusForRoundedRect)
+            .attr("ry", radiusForRoundedRect)
+            .attr("fill","none")
+            .attr("stroke", "#3957F1")                                                
+            .attr("stroke-dasharray","3,3")
+            .attr("class","toolTips");
+
 }
 
     
