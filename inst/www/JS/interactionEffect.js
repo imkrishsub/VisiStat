@@ -1,5 +1,7 @@
 function drawInteractionEffectPlot()
 {
+    currentVisualisationSelection = "interactionEffect";
+    
     var LEFT = canvasWidth/2 - plotWidth/2;
     var RIGHT = canvasWidth/2 + plotWidth/2;
      

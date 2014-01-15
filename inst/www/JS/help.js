@@ -4,6 +4,8 @@ desc["Histogram"] = "Shows the distribution of the data by clustering data into 
 desc["Boxplot"] = "Boxplot shows the distribution of the data. It is useful for seeing the central tendency of the distribution. Hover over individual entities of the boxplot to get more help. ";
 desc["Scatterplot"] = "It is a simple plot of one variable against the other variable. If you select an additional variable that has a fixed number of values, a color boxplot is drawn with the different values of the third variable mapped to different colors (See legend on top-right for inference).";
 desc["Scatterplot-matrix"] = "A Scatterplot-matrix is an extension of scatterplot. It plots variables pairwise against each other. The color of a cell indicatest the correlation between the variables involved (darker shade of green => more correlation). ";
+desc["tukeyHSD"] = "TUK";
+desc["interactionEffect"] = "INT";
 
 desc["regressionLine"] = "A regression line is a model that is fit to the given data so that the sum of squares of errors (distance of points from regression line) is minimum. In multiple regression, the variability due to the other causal variables is also taken into account.";
 desc["equation"] = "An equation defines the regression model that is fit to the data. This can be used to predict the value of the outcome variable from the explanatory/causal variables.";
