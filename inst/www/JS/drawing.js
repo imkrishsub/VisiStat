@@ -1703,7 +1703,7 @@ function displayToolTips()
                         .attr("class", "toolTips");
 
     d3.select("body").append("label")
-                        .text("test")
+                        .text("Displays the variables in your dataset. Click on a variable to select/unselect them.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + variableNameHolderPadding/2 + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding) + "px; color: white; text-align: center");
