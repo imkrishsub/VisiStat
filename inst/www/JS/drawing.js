@@ -999,7 +999,7 @@ function displayOneSampleTestResults()
             .attr("y2", BOTTOM - getFraction(testResults["estimate"])*plotHeight)
             .attr("stroke", "green")
             .attr("id", "estimateLine")
-            .attr("class", "significanceTest");
+            .attr("class", "differenceInMeans");
         
         canvas.append("line")
             .attr("x1", RIGHT)
@@ -1008,7 +1008,7 @@ function displayOneSampleTestResults()
             .attr("y2", BOTTOM - getFraction(sessionStorage.popMean)*plotHeight)
             .attr("stroke", "red")
             .attr("id", "populationLine")
-            .attr("class", "significanceTest");
+            .attr("class", "differenceInMeans");
             
         cy.push(BOTTOM - getFraction(testResults["estimate"])*plotHeight);
         cy.push(BOTTOM - getFraction(sessionStorage.popMean)*plotHeight);
@@ -1022,7 +1022,7 @@ function displayOneSampleTestResults()
                 .attr("y2", BOTTOM - getFraction(testResults["estimate"])*plotHeight)
                 .attr("stroke", "green")
                 .attr("id", "estimateLine")
-                .attr("class", "significanceTest");
+                .attr("class", "differenceInMeans");
         
         canvas.append("line")
                 .attr("x1", RIGHT)
@@ -1031,7 +1031,7 @@ function displayOneSampleTestResults()
                 .attr("y2", BOTTOM - getFraction(sessionStorage.popMedian)*plotHeight)
                 .attr("stroke", "red")
                 .attr("id", "populationLine")
-                .attr("class", "significanceTest");
+                .attr("class", "differenceInMeans");
                 
         cy.push(BOTTOM - getFraction(testResults["estimate"])*plotHeight);
         cy.push(BOTTOM - getFraction(sessionStorage.popMedian)*plotHeight);
@@ -1132,7 +1132,7 @@ function displaySignificanceTestResults()
                                  .attr("stroke", "black")
                                  .attr("stroke-dasharray","5,5")
                                  .attr("id", "meanrefLine")
-                                 .attr("class", "significanceTest");
+                                 .attr("class", "differenceInMeans");
                                  
                             canvas.append("line")
                                  .attr("x1", means[i].getAttribute("cx"))
@@ -1143,7 +1143,7 @@ function displaySignificanceTestResults()
                                  .attr("opacity", "0.25")
                                  .attr("stroke-dasharray","5,5")
                                  .attr("id", "meanrefLine")
-                                 .attr("class", "significanceTest");
+                                 .attr("class", "differenceInMeans");
         }
         else
         {									
@@ -1244,7 +1244,7 @@ function displayANOVAResults()
                                  .attr("stroke", "black")
                                  .attr("stroke-dasharray","5,5")
                                  .attr("id", "meanrefLine")
-                                 .attr("class", "significanceTest");
+                                 .attr("class", "differenceInMeans");
                                  
                             canvas.append("line")
                                  .attr("x1", means[i].getAttribute("cx"))
@@ -1255,7 +1255,7 @@ function displayANOVAResults()
                                  .attr("opacity", "0.25")
                                  .attr("stroke-dasharray","5,5")
                                  .attr("id", "meanrefLine")
-                                 .attr("class", "significanceTest");
+                                 .attr("class", "differenceInMeans");
         }
         else
         {									
