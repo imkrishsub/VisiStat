@@ -532,6 +532,74 @@ function OnMouseDown(e)
         
                 applyNormalityTransform(variableList["dependent"][0], "dataset", true);               
             }
+
+            else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "dontTransformToNormal")
+            {
+                setup(e, target);
+                var variableList = getSelectedVariables();
+
+                console.log("not transforming...");
+                d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+            
+                if(variableList["independent"].length == 1)
+                {
+                    if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                    {
+                        //within-group design
+                        if(variableList["independent-levels"].length == 2)
+                        {
+                            //wilcoxon signed-rank
+                            if(pairwiseComparisons)
+                                performPairwiseWilcoxTest("TRUE", "TRUE");
+                            else
+                                performWilcoxonTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                        }
+                        else
+                        {   
+                            //Friedman's test
+                            performFriedmanTest(dependentVariable, independentVariable);
+                        }
+                    }                       
+                    else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    {
+                        //between-groups design
+                        if(variableList["independent-levels"].length == 2)
+                        {                    
+                            //Mann-Whitney U test
+                            if(pairwiseComparisons)
+                                performPairwiseWilcoxTest("TRUE", "FALSE");
+                            else
+                                performMannWhitneyTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]]);
+                        }
+                        else
+                        {   
+                            //Kruskal-Wallis test
+                            performKruskalWallisTest(dependentVariable, independentVariable);
+                        }
+                    }
+                }      
+                else if(variableList["independent"].length == 2)
+                {
+                    if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                    {
+                        //within-group design
+                    
+                    }                       
+                    else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    {
+                        //between-groups design
+                        if(variableList["independent-levels"].length == 2)
+                        {
+                            var groups = getGroupsForColourBoxPlotData();
+                            //Mann-Whitney U test
+                            if(pairwiseComparisons)
+                                performPairwiseWilcoxTest("TRUE", "FALSE");
+                            else
+                                performMannWhitneyTest(groups[0], groups[1]);
+                        }                            
+                    }
+                }
+            }
         
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "transformToHomogeneity")
             {
@@ -546,6 +614,54 @@ function OnMouseDown(e)
             
                 applyHomogeneityTransform(variableList["dependent"][0], variableList["independent"][0]);               
             }
+
+            else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "dontTransformToHomogeneity")
+            {
+                setup(e, target);
+                
+                d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
+
+                var variableList = getSelectedVariables();
+                            
+                if(variableList["independent"].length == 1)
+                {
+                    if(experimentalDesign == "between-groups")
+                    {
+                        performNormalityTests();
+                
+                        //between-groups design
+                        if(variableList["independent-levels"].length == 2)
+                        {
+                            //2 variables
+                            if(pairwiseComparisons)
+                                performPairwiseTTest("FALSE", "FALSE");
+                            else
+                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "FALSE", "FALSE");
+                        }
+                        else
+                        {
+                            //> 2 variables
+                            performWelchANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                        }                
+                    }
+                }
+                else
+                {
+                    if(experimentalDesign == "between-groups" && variableList["independent-levels"].length == 2)
+                    {
+                        performNormalityTests();
+                        
+                        //2 variables
+                        var groups = getGroupsForColourBoxPlotData();
+                    
+                        if(pairwiseComparisons)
+                            performPairwiseTTest("FALSE", "FALSE");
+                        else
+                            performTTest(groups[0], groups[1], "FALSE", "FALSE");
+                    }
+                }
+            }
+
     
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "fullscreen")
             {

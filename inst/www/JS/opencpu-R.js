@@ -360,6 +360,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
         
             //offer choice
             drawButtonInSideBar("TRANSFORM TO NORMAL DISTRIBUTIONS", "transformToNormal");
+            drawButtonInSideBar("DON'T TRANSFORM", "dontTransformToNormal", 1);
         }                  
     })
       
@@ -434,6 +435,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
         
             //offer choice
             drawButtonInSideBar("TRANSFORM TO HOMOGENEOUS DISTRIBUTIONS", "transformToHomogeneity");
+            drawButtonInSideBar("DON'T TRANSFORM", "dontTransformToHomogeneity", 1);
         }                  
     });
     
