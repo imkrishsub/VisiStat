@@ -67,6 +67,9 @@ function plotVisualisation()
                                         outlierValues = [];
                                         topFringeValues = [];
                                         bottomFringeValues = [];
+                                        testResults = new Object();
+                                        distributions = new Object();
+                                        variances = new Object();
                                         
                                         makeBoxplot();
                                         
