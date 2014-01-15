@@ -24,6 +24,13 @@ function OnMouseDown(e)
                 removeElementById("descriptionPanel");
                 
                 removeElementsByClassName("plot");
+                removeElementsByClassName("plotHelp");
+                removeElementsByClassName("pValueHelp");
+                removeElementsByClassName("testStatisticHelp");
+                removeElementsByClassName("methodHelp");
+                removeElementsByClassName("effectSizeHelp");
+                removeElementsByClassName("variancePlotWidth");
+                removeElementsByClassName("normalityPlotHelp");
             }
         }
         else
