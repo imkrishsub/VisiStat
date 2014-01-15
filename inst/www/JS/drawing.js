@@ -1691,22 +1691,22 @@ function displayToolTips()
                                     .attr("stroke-dasharray","3,3")
                                     .attr("class","toolTips");
 
-    // variablePanelCanvas.append("rect")
-    //                     .attr("x", variableNameHolderPadding/2)
-    //                     .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
-    //                     .attr("height", variableNameHolderHeight*2)
-    //                     .attr("width", variableNameHolderWidth - variableNameHolderPadding)
-    //                     .attr("rx", radiusForRoundedRect)
-    //                     .attr("ry", radiusForRoundedRect)
-    //                     .attr("fill", "#3957F1")
-    //                     .attr("stroke", "none")
-    //                     .attr("class", "toolTips");
+    variablePanelCanvas.append("rect")
+                        .attr("x", variableNameHolderPadding/2)
+                        .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
+                        .attr("height", variableNameHolderHeight*2)
+                        .attr("width", variableNameHolderWidth - variableNameHolderPadding)
+                        .attr("rx", radiusForRoundedRect)
+                        .attr("ry", radiusForRoundedRect)
+                        .attr("fill", "#3957F1")
+                        .attr("stroke", "none")
+                        .attr("class", "toolTips");
 
-    // d3.select("body").append("label")
-    //                     .text("test")
-    //                     .attr("id", "variablePanel")
-    //                     .attr("class", "toolTips")
-    //                     .attr("style", "position: absolute; left: " + variableNameHolderPadding/2 + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding) + "px; ");
+    d3.select("body").append("label")
+                        .text("test")
+                        .attr("id", "variablePanel")
+                        .attr("class", "toolTips")
+                        .attr("style", "position: absolute; left: " + variableNameHolderPadding/2 + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding) + "px; color: white; text-align: center");
 
 
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
