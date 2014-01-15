@@ -1696,7 +1696,7 @@ function displayToolTips()
     variablePanelCanvas.append("rect")
                         .attr("x", variableNameHolderPadding/2)
                         .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
-                        .attr("height", variableNameHolderHeight*1.75)
+                        .attr("height", variableNameHolderHeight*1.25)
                         .attr("width", variableNameHolderWidth - variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
@@ -1706,7 +1706,7 @@ function displayToolTips()
                         .attr("class", "toolTips");
 
     d3.select("body").append("label")
-                        .text("Displays the list of variables in your dataset. Click on a variable to select/unselect them. Variables that don't have a meaningful visualization are faded out.")
+                        .text("List of variables in the dataset. Click on a variable to select/unselect them. ")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
@@ -1747,7 +1747,7 @@ function displayToolTips()
                         .attr("class", "toolTips");
 
     d3.select("body").append("label")
-                        .text("Displays the type of the variable. Use the switch to toggle the type as dependent or independent. VisiStat picks the visualization based on this information.")
+                        .text("Displays the type of the variable. Use the switch to toggle the type as dependent or independent. VisiStat selects the visualization based on this information.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
@@ -1788,8 +1788,8 @@ function displayToolTips()
                                                             .attr("class","toolTips");
     plotCanvas.append("rect")
                         .attr("x", (canvasWidth)/2 - 3*variableNameHolderPadding)
-                        .attr("y", canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75)
-                        .attr("height", variableNameHolderHeight*1.75)
+                        .attr("y", canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1)
+                        .attr("height", variableNameHolderHeight*1)
                         .attr("width", variableNameHolderWidth + variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
@@ -1799,7 +1799,7 @@ function displayToolTips()
                         .attr("class", "toolTips");
 
     d3.select("body").append("label")
-                        .text("Displays the visualizations available in VisiStat. Although VisiStat chooses the visualization automatically, you can explore other visualizations.")
+                        .text("Visualizations available in VisiStat");
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
@@ -1822,31 +1822,31 @@ function displayToolTips()
                             .attr("stroke-dasharray", "3,3")
                             .attr("class", "toolTips");
 
-    var sideBar = d3.select("#sideBarCanvas");
+    // var sideBar = d3.select("#sideBarCanvas");
 
-    sideBar.append("rect")
-            .attr("x", sideBarWidth - 2*(helpButtonWidth + helpButtonOffset) - variableNameHolderPadding/2)
-            .attr("y", scaleForWindowSize(2))
-            .attr("width", helpButtonWidth + variableNameHolderPadding)
-            .attr("height", helpButtonHeight + scaleForWindowSize(5))
-            .attr("rx", radiusForRoundedRect)
-            .attr("ry", radiusForRoundedRect)
-            .attr("fill","none")
-            .attr("stroke", "#3957F1")                                                
-            .attr("stroke-dasharray","3,3")
-            .attr("class","toolTips");
+    // sideBar.append("rect")
+    //         .attr("x", sideBarWidth - 2*(helpButtonWidth + helpButtonOffset) - variableNameHolderPadding/2)
+    //         .attr("y", scaleForWindowSize(2))
+    //         .attr("width", helpButtonWidth + variableNameHolderPadding)
+    //         .attr("height", helpButtonHeight + variableNameHolderPadding)
+    //         .attr("rx", radiusForRoundedRect)
+    //         .attr("ry", radiusForRoundedRect)
+    //         .attr("fill","none")
+    //         .attr("stroke", "#3957F1")                                                
+    //         .attr("stroke-dasharray","3,3")
+    //         .attr("class","toolTips");
 
-    sideBar.append("rect")
-            .attr("x", sideBarWidth - (helpButtonWidth + helpButtonOffset) - variableNameHolderPadding/2)
-            .attr("y", scaleForWindowSize(2))
-            .attr("width", helpButtonWidth + variableNameHolderPadding)
-            .attr("height", helpButtonHeight + scaleForWindowSize(5))
-            .attr("rx", radiusForRoundedRect)
-            .attr("ry", radiusForRoundedRect)
-            .attr("fill","none")
-            .attr("stroke", "#3957F1")                                                
-            .attr("stroke-dasharray","3,3")
-            .attr("class","toolTips");
+    // sideBar.append("rect")
+    //         .attr("x", sideBarWidth - (helpButtonWidth + helpButtonOffset) - variableNameHolderPadding/2)
+    //         .attr("y", scaleForWindowSize(2))
+    //         .attr("width", helpButtonWidth + variableNameHolderPadding)
+    //         .attr("height", helpButtonHeight + variableNameHolderPadding)
+    //         .attr("rx", radiusForRoundedRect)
+    //         .attr("ry", radiusForRoundedRect)
+    //         .attr("fill","none")
+    //         .attr("stroke", "#3957F1")                                                
+    //         .attr("stroke-dasharray","3,3")
+    //         .attr("class","toolTips");
 
 }
 
