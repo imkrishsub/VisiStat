@@ -540,7 +540,7 @@ function OnMouseDown(e)
 
                 removeElementsByClassName("transformToNormal");
                 removeElementsByClassName("dontTransformToNormal");
-                
+
                 var variableList = getSelectedVariables();
 
                 console.log("not transforming...");
@@ -1908,11 +1908,23 @@ function OnMouseOver(e)
                 setup(e, target);
                 d3.selectAll(".transformToNormal").attr("cursor", "pointer");
             }
+
+            else if(target.className.baseVal == "dontTransformToNormal")
+            {
+                setup(e, target);
+                d3.selectAll(".dontTransformToNormal").attr("cursor", "pointer");
+            }
         
             else if(target.className.baseVal == "transformToHomogeneity")
             {
                 setup(e, target);
                 d3.selectAll(".transformToHomogeneity").attr("cursor", "pointer");
+            }
+
+            else if(target.className.baseVal == "dontTransformToHomogeneity")
+            {
+                setup(e, target);
+                d3.selectAll(".dontTransformToHomogeneity").attr("cursor", "pointer");
             }
     
             else if(target.className.baseVal == "fullscreen")
