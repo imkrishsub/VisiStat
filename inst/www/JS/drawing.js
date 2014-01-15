@@ -1694,7 +1694,7 @@ function displayToolTips()
     variablePanelCanvas.append("rect")
                         .attr("x", variableNameHolderPadding/2)
                         .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
-                        .attr("height", variableNameHolderHeight*1.1)
+                        .attr("height", variableNameHolderHeight*1.25)
                         .attr("width", variableNameHolderWidth - variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
@@ -1720,6 +1720,24 @@ function displayToolTips()
                                             .attr("stroke", "#3957F1")
                                             .attr("stroke-dasharray","3,3")
                                             .attr("class","toolTips");
+    var plotCanvas = d3.select("#plotCanvas");
+
+    plot.append("rect")
+                        .attr("x", 3*variableNameHolderPadding)
+                        .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                        .attr("height", variableNameHolderHeight*1.25)
+                        .attr("width", variableNameHolderWidth - variableNameHolderPadding)
+                        .attr("rx", radiusForRoundedRect)
+                        .attr("ry", radiusForRoundedRect)
+                        .attr("fill", "#7CA9FB")
+                        .attr("stroke", "none")
+                        .attr("class", "toolTips");
+
+    d3.select("body").append("label")
+                        .text("Displays the type of the variable. Use the switch to toggle the type as dependent or independent. Note that VisiStat picks the visualization based on this information.")
+                        .attr("id", "variablePanel")
+                        .attr("class", "toolTips")
+                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center font: \"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif;");
 
     var visualizationPanelCanvas = d3.select("#visualisationPanelSVG");
 
