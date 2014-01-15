@@ -863,7 +863,7 @@ function OnMouseDown(e)
                     var inText = "COMPARE SELECTED DISTRIBUTIONS";
     
                     if(pairwiseComparisons)
-                        drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "doPairwiseTest");
+                        drawButtonInSideBar(inText, "doPairwiseTest");
                     else
                         drawButtonInSideBar(inText, "compareNow");
             
@@ -1045,6 +1045,7 @@ function OnMouseDown(e)
                 removeElementsByClassName("differenceInMeansMain");
                 removeElementsByClassName("densityCurve");
                 removeElementsByClassName("CIMean");
+                removeElementsByClassName("tukeyHSD");
                 
                 removeElementById("border");
         
@@ -1058,7 +1059,7 @@ function OnMouseDown(e)
                 
                 resetMeans();
     
-                drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "doPairwiseTest");
+                drawButtonInSideBar("COMPARE SELECTED DISTRIBUTIONS", "doPairwiseTest");
         
                 d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
                 d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
