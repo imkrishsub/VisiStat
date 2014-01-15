@@ -1694,7 +1694,7 @@ function displayToolTips()
     variablePanelCanvas.append("rect")
                         .attr("x", variableNameHolderPadding/2)
                         .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
-                        .attr("height", variableNameHolderHeight*2)
+                        .attr("height", variableNameHolderHeight*1.5)
                         .attr("width", variableNameHolderWidth - variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
@@ -1706,7 +1706,7 @@ function displayToolTips()
                         .text("Displays the variables in your dataset. Click on a variable to select/unselect them.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + variableNameHolderPadding/2 + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding) + "px; color: white; text-align: center");
+                        .attr("style", "position: absolute; left: " + variableNameHolderPadding/2 + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding) + "px; color: white; text-align: center font: 1.2em Lucida Sans Unicode, Lucida Grande, sans-serif;");
 
 
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
