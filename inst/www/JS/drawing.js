@@ -1698,7 +1698,7 @@ function displayToolTips()
                         .attr("width", variableNameHolderWidth - variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
-                        .attr("fill", "#url(buttonFillSelected)")
+                        .attr("fill", "#url(buttonFillNormal)")
                         .attr("stroke", "none")
                         .attr("class", "toolTips");
 
