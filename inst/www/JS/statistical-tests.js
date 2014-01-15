@@ -30,6 +30,7 @@ function compareMeans()
 
                     //homoscedasticity
                     loadAssumptionCheckList("normal");
+                    console.log("variableList[\"independent\"] = [" + variableList["independent"] + "]");
                     
                     switch(variableList["independent"].length)
                     {
@@ -41,6 +42,7 @@ function compareMeans()
                                 {
                                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                                     {
+                                        console.log("within-groups :)");
                                         //within-groups design
                                         setTimeout(function(){                    
                                             performNormalityTests();
@@ -49,6 +51,7 @@ function compareMeans()
                                     }
                                     else
                                     {
+                                        console.log("between-groups :)");
                                         //between-groups design
                                         setTimeout(function(){                    
                                             performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
