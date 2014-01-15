@@ -871,14 +871,32 @@ function drawScales(cx, cy)
 
     console.log("error = " + error);     
     testResults["CI"] = calculateCI(means[means.length -1] - means[0], error);
+
+    var meanValue = getActualValue(cyMin);
+    var dependentVariable = variables[variableList["dependent"][0]]["dataset"];
+    var dependentVariableMin = Array.min(dependentVariable);
+    var dependentVariableMax = Array.max(dependentVariable);
+
+    var lowerCI = meanValue - error;
+    var upperCI = meanValue + error;
+
+    if(lowerCI < dependentVariableMin)
+    {
+        lowerCI = dependentVariableMin;
+    }
+
+    if(upperCI > dependentVariableMax)
+    {
+        upperCI = dependentVariableMax;
+    }
     
     var BOTTOM = canvasHeight/2 + plotHeight/2;
     //CI for mean
     canvas.append("line")
             .attr("x1", canvasWidth/2 + plotWidth/2 + 15)
-            .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
+            .attr("y1", BOTTOM - getFraction(lowerCI)*plotHeight)
             .attr("x2", canvasWidth/2 + plotWidth/2 + 15)
-            .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
+            .attr("y2", BOTTOM - getFraction(upperCI)*plotHeight)
             .attr("stroke", "rosybrown")
             .attr("stroke-width", "4")
             .attr("id", "center")
@@ -886,9 +904,9 @@ function drawScales(cx, cy)
         
     canvas.append("line")
             .attr("x1", canvasWidth/2 + plotWidth/2 + 10)
-            .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
+            .attr("y1", BOTTOM - getFraction(lowerCI)*plotHeight)
             .attr("x2", canvasWidth/2 + plotWidth/2 + 20)
-            .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) - error)*plotHeight)
+            .attr("y2", BOTTOM - getFraction(lowerCI)*plotHeight)
             .attr("stroke", "rosybrown")
             .attr("stroke-width", "4")
             .attr("id", "bottom")
@@ -896,9 +914,9 @@ function drawScales(cx, cy)
         
     canvas.append("line")
             .attr("x1", canvasWidth/2 + plotWidth/2 + 10)
-            .attr("y1", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
+            .attr("y1", BOTTOM - getFraction(upperCI)*plotHeight)
             .attr("x2", canvasWidth/2 + plotWidth/2 + 20)
-            .attr("y2", BOTTOM - getFraction(getActualValue(cyMin) + error)*plotHeight)
+            .attr("y2", BOTTOM - getFraction(upperCI)*plotHeight)
             .attr("stroke", "rosybrown")
             .attr("stroke-width", "4")
             .attr("id", "top")
