@@ -543,6 +543,8 @@ function calculateCI(mean, error)
     var min = Math.min.apply(dependentVariable);
     var max = Math.max.apply(dependentVariable);
 
+    console.log("min = " + min + ", max = " + max);
+
     if(CI[0] < min)
     {
         CI[0] = min;
@@ -552,6 +554,8 @@ function calculateCI(mean, error)
     {
         CI[1] = max;
     }
+
+    console.log("CI = [" + CI + "]");
 
     return CI;
 }
