@@ -11,8 +11,8 @@ var datasetInformation = new Object();
     datasetInformation["bankloan"] = "TBD";
     datasetInformation["car_sales"] = "TBD";
     datasetInformation["hp"] = "TBD";
-    datasetInformation["keyboards"] = "TBD";
-    datasetInformation["foodEffect"] = "TBD";
+    datasetInformation["keyboards"] = "In this experiment, three types of keyboard layouts are compared (QWERTY, DVORAK, and i10). The experiment follows a between-groups design. For each participant, the typing speed (in words per minute) and the errors (in number of errors per minute) are measured. Following the experiment, we also get the satisfaction rating from the participant. The gender of the participant is also considered as an independent variable.";
+    datasetInformation["foodEffect"] = "We compare the effect of different types of food on the participant' test scores. The foods considered are plain yoghurt, a snickers bar, and a sandwich. We measure the verbal (language) and the quantitative (math) scores of the participant. Since the same set of participants are used for different conditions (foodEaten), this experiment follows a within-groups design. Following the experiment, we also get the satisfaction rating from the participant. The gender of the participant is also considered as an independent variable.";
     datasetInformation["weight_loss"] = "TBD";
     datasetInformation["phoneEffect"] = "TBD";
 
