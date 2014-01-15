@@ -1758,9 +1758,9 @@ function displayToolTips()
                                                             .attr("stroke-dasharray","3,3")
                                                             .attr("class","toolTips");
     plotCanvas.append("rect")
-                        .attr("x", 3*variableNameHolderPadding)
+                        .attr("x", canvasWidth/2 - 3*variableNameHolderPadding)
                         .attr("y", canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75)
-                        .attr("height", variableNameHolderHeight*1.75)
+                        .attr("height", variableNameHolderHeight*1.5)
                         .attr("width", variableNameHolderWidth + variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
@@ -1772,7 +1772,7 @@ function displayToolTips()
                         .text("The visualizations available in VisiStat. Although VisiStat chooses the visualization automatically, you can explore other visualizations.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
+                        .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
 }
 
