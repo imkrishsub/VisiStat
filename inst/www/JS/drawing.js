@@ -1802,18 +1802,18 @@ function displayToolTips()
                         .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
     plotCanvas.append("line")
-                .attr("x1", canvasWidth/2 + sideBarWidth)
+                .attr("x1", (canvasWidth + sideBarWidth)/2)
                 .attr("y1", canvasHeight)
-                .attr("x2", canvasWidth/2)
+                .attr("x2", (canvasWidth + sideBarWidth)/2)
                 .attr("y2", canvasHeight - variableNameHolderPadding*3)
                 .attr("stroke", "#3957F1")
                 .attr("stroke-dasharray", "3,3")
                 .attr("class", "toolTips");
 
     visualizationPanelCanvas.append("line")
-                            .attr("x1", canvasWidth/2 + sideBarWidth)
+                            .attr("x1", (canvasWidth + sideBarWidth)/2)
                             .attr("y1", variableNameHolderPadding/2)
-                            .attr("x2", canvasWidth/2 + sideBarWidth)
+                            .attr("x2", (canvasWidth + sideBarWidth)/2)
                             .attr("y2", 0)
                             .attr("stroke", "#3957F1")
                             .attr("stroke-dasharray", "3,3")
