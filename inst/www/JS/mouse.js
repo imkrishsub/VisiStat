@@ -522,6 +522,7 @@ function OnMouseDown(e)
                 setup(e, target);
                 
                 removeElementsByClassName("transformToNormal");
+                removeElementsByClassName("dontTransformToNormal");
             
                 var variableList = sort(currentVariableSelection);
         
@@ -536,6 +537,10 @@ function OnMouseDown(e)
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "dontTransformToNormal")
             {
                 setup(e, target);
+
+                removeElementsByClassName("transformToNormal");
+                removeElementsByClassName("dontTransformToNormal");
+                
                 var variableList = getSelectedVariables();
 
                 console.log("not transforming...");
@@ -609,6 +614,7 @@ function OnMouseDown(e)
                 var buttonText = d3.select("#text." + target.className.baseVal);        
         
                 removeElementsByClassName("transformToHomogeneity");
+                removeElementsByClassName("dontTransformToHomogeneity");
             
                 var variableList = sort(currentVariableSelection);
             
@@ -618,7 +624,10 @@ function OnMouseDown(e)
             else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "dontTransformToHomogeneity")
             {
                 setup(e, target);
-                
+
+                removeElementsByClassName("transformToHomogeneity");
+                removeElementsByClassName("dontTransformToHomogeneity");
+
                 d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + canvasWidth + " " + canvasHeight);
 
                 var variableList = getSelectedVariables();
