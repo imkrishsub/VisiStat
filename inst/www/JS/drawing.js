@@ -1694,7 +1694,7 @@ function displayToolTips()
     variablePanelCanvas.append("rect")
                         .attr("x", variableNameHolderPadding/2)
                         .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
-                        .attr("height", variableNameHolderHeight*1.25)
+                        .attr("height", variableNameHolderHeight*1.1)
                         .attr("width", variableNameHolderWidth - variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
@@ -1703,7 +1703,7 @@ function displayToolTips()
                         .attr("class", "toolTips");
 
     d3.select("body").append("label")
-                        .text("Displays the variables in your dataset. Click on a variable to select/unselect them.")
+                        .text("Displays the list of variables in your dataset. Click on a variable to select/unselect them. Variables that don't have a meaningful visualization are faded out.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
                         .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding) + "px; color: white; text-align: center font: 1.2em Lucida Sans Unicode, Lucida Grande, sans-serif;");
