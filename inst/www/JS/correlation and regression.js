@@ -27,7 +27,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
             testResults["parameter-type"] = "t";
     
             testResults["p"] = changePValueNotation(output.p);                  
-            testResults["method"] = output.method; 
+            testResults["method"] = "Pearson's correlation \'r\'"; 
     
             testResults["test-type"] = "pC";
     
@@ -51,7 +51,7 @@ function getCorrelationCoefficient(variableA, variableB, method)
             testResults["parameter-type"] = "z";
   
             testResults["p"] = changePValueNotation(output.p);
-            testResults["method"] = output.method; 
+            testResults["method"] = "Kendall's correlation \'𝜏\'"
             testResults["effect-size"] = output.cor;
             testResults["effect-size-type"] = "𝜏";
     
@@ -85,7 +85,7 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
     {                                                   
         console.log("\t\t Biserial Correlation-coefficient for (" + continuousVariable + " , " + binaryVariable + ")");                
     
-        testResults["method"] = "Biserial Correlation-coefficient";
+        testResults["method"] = "Biserial correlation";
         testResults["effect-size"] = output.cor;  
         testResults["effect-size-type"] = "r";                
         testResults["test-type"] = "bC";                
