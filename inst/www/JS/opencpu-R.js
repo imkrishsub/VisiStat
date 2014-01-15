@@ -75,8 +75,7 @@ function getData(dataset, variableName, level)
 function performHomoscedasticityTest(dependent, independent)
 {   
     var variableList = getSelectedVariables(); 
-    console.log("In performHomoscedasticityTest()");
-                
+    
     //get variable names and their data type
     var req = ocpu.rpc("performHomoscedasticityTest", 
     {
@@ -84,8 +83,7 @@ function performHomoscedasticityTest(dependent, independent)
        independentVariable: independent,
        dataset: dataset                    
     }, function(output) 
-    {      
-        console.log("output.p = " + output.p);                                          
+    {                                                
        if(output.p < 0.05)
        {   
            //not normal

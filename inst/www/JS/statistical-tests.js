@@ -30,7 +30,6 @@ function compareMeans()
 
                     //homoscedasticity
                     loadAssumptionCheckList("normal");
-                    console.log("variableList[\"independent\"] = [" + variableList["independent"] + "]");
                     
                     switch(variableList["independent"].length)
                     {
@@ -42,7 +41,6 @@ function compareMeans()
                                 {
                                     if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
                                     {
-                                        console.log("within-groups :)");
                                         //within-groups design
                                         setTimeout(function(){                    
                                             performNormalityTests();
@@ -50,8 +48,7 @@ function compareMeans()
                                         
                                     }
                                     else
-                                    {
-                                        console.log("between-groups :)");
+                                    {                                    
                                         //between-groups design
                                         setTimeout(function(){                    
                                             performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
@@ -466,8 +463,6 @@ function setDistribution(dependentVariable, level, normal)
 
 function setHomogeneity(dependentVariable, independentVariable, homogeneous)
 {    
-    console.log("In setHomogeneity()");
-
     if(variances[dependentVariable] == undefined)
         variances[dependentVariable] = new Object();
     
@@ -475,7 +470,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
     
     if(getObjectLength(variances[dependentVariable]) == (currentVariableSelection.length - 1))
     {       
-        console.log("Inside if condition...");
         var variableList = sort(currentVariableSelection);
         var homogeneity = true;
         
@@ -493,8 +487,6 @@ function setHomogeneity(dependentVariable, independentVariable, homogeneous)
         
         var selectedMeans = getSelectedMeansForColourBoxPlotData();
         var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
-
-        console.log("homogeneity = " + homogeneity);
         
         if(homogeneity)
         {         
