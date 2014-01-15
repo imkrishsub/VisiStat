@@ -1701,6 +1701,7 @@ function displayToolTips()
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
                         .attr("fill", "#7CA9FB")
+                        .attr("filter", "#url(Bevel)")
                         .attr("stroke", "none")
                         .attr("class", "toolTips");
 
@@ -1741,6 +1742,7 @@ function displayToolTips()
                         .attr("rx", radiusForRoundedRect)
                         .attr("ry", radiusForRoundedRect)
                         .attr("fill", "#7CA9FB")
+                        .attr("filter", "#url(Bevel)")
                         .attr("stroke", "none")
                         .attr("class", "toolTips");
 
@@ -1782,10 +1784,11 @@ function displayToolTips()
                                                             .attr("ry", radiusForRoundedRect)
                                                             .attr("fill","none")
                                                             .attr("stroke", "#3957F1")
+                                                            .attr("filter", "#url(Bevel)")
                                                             .attr("stroke-dasharray","3,3")
                                                             .attr("class","toolTips");
     plotCanvas.append("rect")
-                        .attr("x", canvasWidth/2 - 3*variableNameHolderPadding)
+                        .attr("x", (canvasWidth + sideBarWidth)/2 - 3*variableNameHolderPadding)
                         .attr("y", canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75)
                         .attr("height", variableNameHolderHeight*1.75)
                         .attr("width", variableNameHolderWidth + variableNameHolderPadding)
@@ -1799,7 +1802,7 @@ function displayToolTips()
                         .text("Displays the visualizations available in VisiStat. Although VisiStat chooses the visualization automatically, you can explore other visualizations.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
+                        .attr("style", "position: absolute; left: " + ((canvasWidth + sideBarWidth)/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1.75 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
 
     plotCanvas.append("line")
                 .attr("x1", (canvasWidth + sideBarWidth)/2)
