@@ -1822,7 +1822,7 @@ function displayToolTips()
             .attr("class", "toolTips");
 
     sideBar.append("rect")
-            .attr("x", 3/sideBarWidth/4 - variableNameHolderWidth/4)
+            .attr("x", 3*sideBarWidth/4 - variableNameHolderWidth/4)
             .attr("y", variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding)
             .attr("width", variableNameHolderWidth/2)
             .attr("height", variableNameHolderHeight)
