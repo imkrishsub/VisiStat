@@ -130,7 +130,7 @@ function drawHelpButton()
     var sideBar = d3.select("#sideBarCanvas");
 
     var helpButtonOffset = assumptionImageSize*2;
-    var size = sideBarWidth/4;
+    var size = sideBarWidth/6;
 
     sideBar.append("rect")
             .attr("x", 5*sideBarWidth/8)
@@ -169,7 +169,7 @@ function drawResetButton()
     var sideBar = d3.select("#sideBarCanvas");        
 
     var helpButtonOffset = assumptionImageSize*2;
-    var size = sideBarWidth/4;
+    var size = sideBarWidth/6;
     
     sideBar.append("rect")
             .attr("x", sideBarWidth/8)
