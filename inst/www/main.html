@@ -154,18 +154,6 @@
                                     .attr("stroke", "black")
                                     .attr("id", variableNames[i])
                                     .attr("class", "variableNameHolderBack");
-
-                    variablePanelSVG.append("rect")
-                                    .attr("x", variableNameHolderPadding)
-                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))
-                                    .attr("height", variableNameHolderHeight)
-                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
-                                    .attr("rx", radius)
-                                    .attr("ry", radius)
-                                    .attr("fill", panelColors.normal)
-                                    .attr("id", variableNames[i])
-                                    .attr("opacity", "0.1")
-                                    .attr("class", "variableNameHolderFront");
                                                 
                     variablePanelSVG.append("text")
                                     .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
@@ -205,6 +193,18 @@
                                     .attr("fill", variableTypeTextColors["independent"]["normal"])
                                     .attr("id", variableNames[i])
                                     .attr("class", "independentVariableText");
+
+                    variablePanelSVG.append("rect")
+                                    .attr("x", variableNameHolderPadding)
+                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))
+                                    .attr("height", variableNameHolderHeight)
+                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
+                                    .attr("rx", radius)
+                                    .attr("ry", radius)
+                                    .attr("fill", panelColors.normal)
+                                    .attr("id", variableNames[i])
+                                    .attr("opacity", "0.1")
+                                    .attr("class", "variableNameHolderFront");
                 }                    
             }
             
