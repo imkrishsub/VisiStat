@@ -1788,17 +1788,17 @@ function displayToolTips()
 
     var sideBar = d3.select("#sideBarCanvas");
 
-    sideBar.append("rect")
-            .attr("x", sideBarWidth/4 - variableNameHolderHeight/2 - variableNameHolderPadding/2)
-            .attr("y", variableNameHolderPadding/2)
-            .attr("width", variableNameHolderHeight + variableNameHolderPadding)
-            .attr("height", variableNameHolderHeight + variableNameHolderPadding)
-            .attr("rx", radiusForRoundedRect)
-            .attr("ry", radiusForRoundedRect)
-            .attr("fill","none")
-            .attr("stroke", "#3957F1")                                                
-            .attr("stroke-dasharray","3,3")
-            .attr("class","toolTips");
+    // sideBar.append("rect")
+    //         .attr("x", sideBarWidth/4 - variableNameHolderHeight/2 - variableNameHolderPadding/2)
+    //         .attr("y", variableNameHolderPadding/2)
+    //         .attr("width", variableNameHolderHeight + variableNameHolderPadding)
+    //         .attr("height", variableNameHolderHeight + variableNameHolderPadding)
+    //         .attr("rx", radiusForRoundedRect)
+    //         .attr("ry", radiusForRoundedRect)
+    //         .attr("fill","none")
+    //         .attr("stroke", "#3957F1")                                                
+    //         .attr("stroke-dasharray","3,3")
+    //         .attr("class","toolTips");
 
     sideBar.append("rect")
             .attr("x", 3*sideBarWidth/4 - variableNameHolderHeight/2 - variableNameHolderPadding/2)
@@ -1836,7 +1836,7 @@ function displayToolTips()
     d3.select("body").append("label")
                     .text("Help")
                     .attr("class", "toolTips")
-                    .attr("style", "position: absolute; left: " + (canvasWidth + parseFloat(variablePanelWidth) + 3*sideBarWidth/4 - variableNameHolderWidth/4 + variableNameHolderPadding) + "px; top: " + (variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding + variableNameHolderPadding/2) + "px; width: " + (variableNameHolderWidth/2 - variableNameHolderPadding) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
+                    .attr("style", "position: absolute; left: " + (canvasWidth + parseFloat(variablePanelWidth) + 3*sideBarWidth/4 - variableNameHolderWidth/4 + variableNameHolderPadding) + "px; top: " + (variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth/2 - variableNameHolderPadding) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
 
 }
 
