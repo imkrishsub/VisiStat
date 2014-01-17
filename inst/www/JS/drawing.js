@@ -146,7 +146,7 @@ function drawHelpButton()
     
     sideBar.append("text")
             .attr("x", 6*sideBarWidth/8)
-            .attr("y", variableNameHolderPadding + size/2 - yAxisTickTextOffset)
+            .attr("y", variableNameHolderPadding + size/2 + yAxisTickTextOffset)
             .attr("font-size", scaleForWindowSize(55))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
@@ -184,10 +184,10 @@ function drawResetButton()
             .attr("class", "backButtonBack");
     
     sideBar.append("image")
-            .attr("x", sideBarWidth/8)
-            .attr("y", variableNameHolderPadding)
-            .attr("height", size)
-            .attr("width", size)
+            .attr("x", sideBarWidth/8 + sideBarWidth/16)
+            .attr("y", variableNameHolderPadding + sideBarWidth/16)
+            .attr("height", size/2)
+            .attr("width", size/2)
             .attr("xlink:href", "images/reset.png")
             .attr("class", "backButtonText");
     
