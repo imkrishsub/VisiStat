@@ -1976,7 +1976,7 @@ function OnMouseOver(e)
                 var resetButtonImage = d3.select(".resetButtonImage");
                 var resetButton = d3.select(".resetButtonFront");
             
-                if(resetButtonImage.attr("xlink:href", "images/reset.png"))            
+                if(resetButtonImage.attr("xlink:href") == "images/reset.png")            
                     resetButton.attr("cursor", "pointer");
                 else
                     resetButton.attr("cursor", "default");
