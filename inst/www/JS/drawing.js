@@ -1838,6 +1838,12 @@ function displayToolTips()
                     .attr("class", "toolTips")
                     .attr("style", "position: absolute; left: " + (canvasWidth + parseFloat(variablePanelWidth) + 3*sideBarWidth/4 - variableNameHolderWidth/4 + variableNameHolderPadding) + "px; top: " + (variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth/2 - variableNameHolderPadding) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
 
+    d3.select("body").append("label")
+                    .text("SELECT A VARIABLE TO GET STARTED")
+                    .attr("class", "toolTips")
+                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: MediumSlateBlue; text-align: center; font-size: " + scaleForWindowSize(32) + "px;");
+
+
 }
 
     
