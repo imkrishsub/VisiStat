@@ -181,7 +181,7 @@ function drawResetButton()
             .attr("fill", "url(#buttonFillNormal)")
             .attr("filter", "url(#Bevel)")
             .attr("stroke", "black")
-            .attr("class", "backButtonBack");
+            .attr("class", "resetButtonBack");
     
     sideBar.append("image")
             .attr("x", sideBarWidth/4 - size/4)
@@ -189,7 +189,7 @@ function drawResetButton()
             .attr("height", size/2)
             .attr("width", size/2)
             .attr("xlink:href", "images/reset-faded.png")
-            .attr("class", "backButtonText");
+            .attr("class", "resetButtonImage");
     
     sideBar.append("rect")
             .attr("x", sideBarWidth/4 - size/2)
@@ -199,7 +199,7 @@ function drawResetButton()
             .attr("height", size)
             .attr("width", size)
             .attr("opacity", "0.1")
-            .attr("class", "backButtonFront");
+            .attr("class", "resetButtonFront");
 }
 
 function drawButtonInSideBar(buttonText, className, offset)
