@@ -1821,11 +1821,10 @@ function displayToolTips()
             .attr("stroke-dasharray", "3,3")
             .attr("class", "toolTips");
 
-
     sideBar.append("rect")
-            .attr("x", variableNameHolderPadding*2)
+            .attr("x", 3/sideBarWidth/4 - variableNameHolderWidth/4)
             .attr("y", variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding)
-            .attr("width", variableNameHolderWidth)
+            .attr("width", variableNameHolderWidth/2)
             .attr("height", variableNameHolderHeight)
             .attr("rx", radiusForRoundedRect)
             .attr("ry", radiusForRoundedRect)
