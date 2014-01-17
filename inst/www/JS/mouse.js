@@ -844,7 +844,7 @@ function OnMouseDown(e)
                 
                 var resetButtonImage = d3.select(".resetButtonImage")
                 
-                if(currentVisualisationSelection == "Boxplot" && rButton.attr("stroke") == "black")
+                if(currentVisualisationSelection == "Boxplot" && resetButtonImage.attr("xlink:href") == "images/reset.png")
                 {
                     plotVisualisation();
                 
