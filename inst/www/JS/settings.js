@@ -55,6 +55,7 @@
 
     // Visualisation panel
         var visualisationImageSize = scaleForWindowSize(200);  
+        var visualizationHolderRadius = scaleForWindowSize(15) + "px";
 
 // Displaying Data
     var displayDataLimit = 20;

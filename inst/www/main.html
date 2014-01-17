@@ -85,21 +85,15 @@
                     <stop stop-color="#f8f9f7" offset="0"/>
                     <stop stop-color="#b6b6b6" offset="1.0"/>
                 </linearGradient>
-            <linearGradient id="bannerFillNormal" gradientUnits="objectBoundingBox" x1="0" x2="1" y1="0" y2="1">
-                    <stop stop-color="#a68800" offset="0.2"/>
-                    <stop stop-color="#a66ff0" offset="1.0"/>
-                </linearGradient>
-            <linearGradient id="bannerFillSelected" gradientUnits="objectBoundingBox" x1="0" x2="1" y1="0" y2="1">
-                    <stop stop-color="#ffdd00" offset="0.2"/>
-                    <stop stop-color="#ffb42c" offset="1.0"/>
-                </linearGradient>
             <linearGradient id="buttonFillSelected" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="0" y2="1">
                     <stop stop-color="#627bf4" offset="0"/>
                     <stop stop-color="#6B8FD4" offset="1.0"/>
             </linearGradient>
           </defs>
         </svg>
+
         <script>
+        // Activate Google Analytics feature
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -109,6 +103,7 @@
           ga('send', 'pageview');
 
         </script>
+
         <script type="text/javascript">            
         
             window.onload = function()
@@ -149,7 +144,7 @@
                 {                
                     variablePanelSVG.append("rect")
                                     .attr("x", variableNameHolderPadding)
-                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))                                                   
+                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))
                                     .attr("height", variableNameHolderHeight)
                                     .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
                                     .attr("rx", radius)
@@ -159,6 +154,18 @@
                                     .attr("stroke", "black")
                                     .attr("id", variableNames[i])
                                     .attr("class", "variableNameHolderBack");
+
+                    variablePanelSVG.append("rect")
+                                    .attr("x", variableNameHolderPadding)
+                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))
+                                    .attr("height", variableNameHolderHeight)
+                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
+                                    .attr("rx", radius)
+                                    .attr("ry", radius)
+                                    .attr("fill", panelColors.normal)
+                                    .attr("id", variableNames[i])
+                                    .attr("opacity", "0.1")
+                                    .attr("class", "variableNameHolderFront");
                                                 
                     variablePanelSVG.append("text")
                                     .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
@@ -168,18 +175,7 @@
                                     .attr("text-anchor", "middle")
                                     .text(variableNames[i])
                                     .attr("id", variableNames[i])
-                                    .attr("class", "variableNameHolderText");
-                    variablePanelSVG.append("rect")
-                                    .attr("x", variableNameHolderPadding)
-                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))                                                   
-                                    .attr("height", variableNameHolderHeight)
-                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
-                                    .attr("rx", radius)
-                                    .attr("ry", radius)
-                                    .attr("fill", panelColors.normal)
-                                    .attr("id", variableNames[i])
-                                    .attr("opacity", "0.1")
-                                    .attr("class", "variableNameHolderFront");
+                                    .attr("class", "variableNameHolderText");                    
                     
                     variablePanelSVG.append("image")
                                     .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding)
@@ -217,9 +213,7 @@
                 visualisationPanel = d3.select("#visualisation.panel");
                 var visualisationPanelHeight = visualisationPanel.style("height");
                 var visualisationPanelWidth = visualisationPanel.style("width");
-                
-                var visualisationHolderPadding = 15;
-                var radius = "15px";
+            
                 var visualisationHolderHeight = removeAlphabetsFromString(visualisationPanelHeight) - 2*visualisationHolderPadding;                
                 
                 var visualisationPanelSVG = visualisationPanel.append("svg");                
@@ -232,17 +226,17 @@
                 
                 var visualisations = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot-matrix"];
                 
-                var visualisationHolderWidth = (removeAlphabetsFromString(visualisationPanelWidth) - (visualisations.length+1)*visualisationHolderPadding)/(visualisations.length);
+                var visualisationHolderWidth = (removeAlphabetsFromString(visualisationPanelWidth) - (visualisations.length+1)*variableNameHolderPadding)/(visualisations.length);
                 
                 for(var i=0; i<visualisations.length; i++)
                 {    
                     visualisationPanelSVG.append("rect")
-                                                    .attr("x", visualisationHolderPadding + i*(visualisationHolderWidth + visualisationHolderPadding))
-                                                    .attr("y", visualisationHolderPadding )
+                                                    .attr("x", variableNameHolderPadding + i*(visualisationHolderWidth + variableNameHolderPadding))
+                                                    .attr("y", variableNameHolderPadding )
                                                     .attr("height", visualisationHolderHeight)
                                                     .attr("width",  visualisationHolderWidth)     
-                                                    .attr("rx", radius)
-                                                    .attr("ry", radius)
+                                                    .attr("rx", visualizationHolderRadius)
+                                                    .attr("ry", visualizationHolderRadius)
                                                     .attr("id", visualisations[i])
                                                     .attr("stroke", "black")
                                                     .attr("fill", "url(#buttonFillNormal)")
@@ -250,8 +244,8 @@
                                                     .attr("class", "visualisationHolderBack");
                                                     
                     visualisationPanelSVG.append("image")
-                                                    .attr("x", visualisationHolderPadding + visualisationHolderWidth/2 - visualisationImageSize/2 + i*(visualisationHolderWidth + visualisationHolderPadding))
-                                                    .attr("y", visualisationHolderPadding + visualisationHolderHeight/2 - visualisationImageSize/2)
+                                                    .attr("x", variableNameHolderPadding + visualisationHolderWidth/2 - visualisationImageSize/2 + i*(visualisationHolderWidth + variableNameHolderPadding))
+                                                    .attr("y", variableNameHolderPadding + visualisationHolderHeight/2 - visualisationImageSize/2)
                                                     .attr("xlink:href", "images/" + (i+1) + ".png")
                                                     .attr("height", visualisationImageSize)
                                                     .attr("width", visualisationImageSize)
@@ -260,8 +254,8 @@
                                                     .attr("class", "visualisationHolderImage");
                                                 
                     visualisationPanelSVG.append("text")
-                                                    .attr("x", visualisationHolderPadding + visualisationHolderWidth/2 + i*(visualisationHolderWidth + visualisationHolderPadding))
-                                                    .attr("y", visualisationHolderPadding + visualisationHolderHeight/2)
+                                                    .attr("x", variableNameHolderPadding + visualisationHolderWidth/2 + i*(visualisationHolderWidth + variableNameHolderPadding))
+                                                    .attr("y", variableNameHolderPadding + visualisationHolderHeight/2)
                                                     .attr("fill", "black")
                                                     .attr("font-size", fontSizeVisualisationPanel + "px")
                                                     .attr("text-anchor", "middle")
@@ -269,12 +263,12 @@
                                                     .attr("id", visualisations[i])
                                                     .attr("class", "visualisationHolderText");
                     visualisationPanelSVG.append("rect")
-                                                    .attr("x", visualisationHolderPadding + i*(visualisationHolderWidth + visualisationHolderPadding))
-                                                    .attr("y", visualisationHolderPadding )
+                                                    .attr("x", variableNameHolderPadding + i*(visualisationHolderWidth + variableNameHolderPadding))
+                                                    .attr("y", variableNameHolderPadding )
                                                     .attr("height", visualisationHolderHeight)
                                                     .attr("width",  visualisationHolderWidth)     
-                                                    .attr("rx", radius)
-                                                    .attr("ry", radius)
+                                                    .attr("rx", visualizationHolderRadius)
+                                                    .attr("ry", visualizationHolderRadius)
                                                     .attr("id", visualisations[i])
                                                     .attr("fill", "url(#buttonFillNormal)")
                                                     .attr("opacity", "0.1")

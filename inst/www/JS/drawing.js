@@ -121,19 +121,21 @@ function resetSVGCanvas()
 }
 
 function drawFullScreenButton()
-{
-    //TODO
+{    
+    //TODO 
 }
 
 function drawHelpButton()
 {
     var sideBar = d3.select("#sideBarCanvas");
-    helpButtonOffset = assumptionImageSize*2;
+
+    var helpButtonOffset = assumptionImageSize*2;
+
     sideBar.append("rect")
-            .attr("x", sideBarWidth - helpButtonWidth - helpButtonOffset)
-            .attr("y", scaleForWindowSize(5))//canvasHeight - helpButtonHeight - helpButtonOffset)
-            .attr("rx", "15px")
-            .attr("ry", "15px")
+            .attr("x", 5*sideBarWidth/8)
+            .attr("y", variableNameHolderPadding)
+            .attr("rx", visualizationHolderRadius)
+            .attr("ry", visualizationHolderRadius)
             .attr("height", helpButtonHeight)
             .attr("width", helpButtonWidth)
             .attr("fill", "url(#buttonFillNormal)")
@@ -142,8 +144,8 @@ function drawHelpButton()
             .attr("class", "helpButtonBack");
     
     sideBar.append("text")
-            .attr("x", sideBarWidth - helpButtonWidth/2 - helpButtonOffset)
-            .attr("y", scaleForWindowSize(12) + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
+            .attr("x", 6*sideBarWidth/8)
+            .attr("y", variableNameHolderPadding + helpButtonHeight/2 - yAxisTickTextOffset)
             .attr("font-size", scaleForWindowSize(55))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
@@ -151,8 +153,8 @@ function drawHelpButton()
             .attr("class", "helpButtonText");
     
     sideBar.append("rect")
-            .attr("x", sideBarWidth - helpButtonWidth - helpButtonOffset)
-            .attr("y", scaleForWindowSize(5))//canvasHeight - helpButtonHeight - helpButtonOffset)
+            .attr("x", 5*sideBarWidth/8)
+            .attr("y", variableNameHolderPadding)
             .attr("rx", "15px")
             .attr("ry", "15px")
             .attr("height", helpButtonHeight)
