@@ -146,7 +146,7 @@ function drawHelpButton()
     
     sideBar.append("text")
             .attr("x", 6*sideBarWidth/8)
-            .attr("y", variableNameHolderPadding + size/2 + yAxisTickTextOffset)
+            .attr("y", variableNameHolderPadding + size/2 + 2*yAxisTickTextOffset)
             .attr("font-size", scaleForWindowSize(35))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
@@ -178,8 +178,8 @@ function drawResetButton()
             .attr("ry", visualizationHolderRadius)
             .attr("height", size)
             .attr("width", size)
-            .attr("fill", "grey")
-            .attr("filter", "none")
+            .attr("fill", "url(#buttonFillNormal)")
+            .attr("filter", "url(#Bevel)")
             .attr("stroke", "black")
             .attr("class", "backButtonBack");
     
@@ -188,7 +188,7 @@ function drawResetButton()
             .attr("y", variableNameHolderPadding + size/4)
             .attr("height", size/2)
             .attr("width", size/2)
-            .attr("xlink:href", "images/reset.png")
+            .attr("xlink:href", "images/reset-faded.png")
             .attr("class", "backButtonText");
     
     sideBar.append("rect")
