@@ -130,14 +130,15 @@ function drawHelpButton()
     var sideBar = d3.select("#sideBarCanvas");
 
     var helpButtonOffset = assumptionImageSize*2;
+    var size = sideBarWidth/4;
 
     sideBar.append("rect")
             .attr("x", 5*sideBarWidth/8)
             .attr("y", variableNameHolderPadding)
             .attr("rx", visualizationHolderRadius)
             .attr("ry", visualizationHolderRadius)
-            .attr("height", helpButtonHeight)
-            .attr("width", helpButtonWidth)
+            .attr("height", size)
+            .attr("width", size)
             .attr("fill", "url(#buttonFillNormal)")
             .attr("filter", "url(#Bevel)")
             .attr("stroke", "black")
@@ -145,7 +146,7 @@ function drawHelpButton()
     
     sideBar.append("text")
             .attr("x", 6*sideBarWidth/8)
-            .attr("y", variableNameHolderPadding + helpButtonHeight/2 - yAxisTickTextOffset)
+            .attr("y", variableNameHolderPadding + size/2 - yAxisTickTextOffset)
             .attr("font-size", scaleForWindowSize(55))
             .attr("text-anchor", "middle")
             .attr("fill", "black")
@@ -157,85 +158,46 @@ function drawHelpButton()
             .attr("y", variableNameHolderPadding)
             .attr("rx", "15px")
             .attr("ry", "15px")
-            .attr("height", helpButtonHeight)
-            .attr("width", helpButtonWidth)
+            .attr("height", size)
+            .attr("width", size)
             .attr("opacity", "0.1")
             .attr("class", "helpButtonFront");
 }
 
-function drawBackButton()
-{
-    var sideBar = d3.select("#sideBarCanvas");
-    var helpButtonOffset = assumptionImageSize;
-    
-    var offset = 2;
-    
-    sideBar.append("rect")
-            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
-            .attr("y", helpButtonOffset/2)//canvasHeight - helpButtonHeight - helpButtonOffset)
-            .attr("rx", "15px")
-            .attr("ry", "15px")
-            .attr("height", helpButtonHeight)
-            .attr("width", helpButtonWidth)
-            .attr("fill", "url(#bannerFillNormal)")
-            .attr("filter", "url(#Bevel)")
-            .attr("stroke", "black")
-            .attr("class", "backButtonBack");
-    
-    sideBar.append("text")
-            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset) + helpButtonWidth/2)
-            .attr("y", helpButtonOffset/2 + 2*helpButtonHeight/3)//canvasHeight - helpButtonHeight/3 - helpButtonOffset)
-            .attr("font-size", scaleForWindowSize(32))
-            .attr("text-anchor", "middle")
-            .attr("fill", "white")
-            .text("<")
-            .attr("class", "backButtonText");
-    
-    sideBar.append("rect")
-            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
-            .attr("y", helpButtonOffset/2)//canvasHeight - helpButtonHeight - helpButtonOffset)
-            .attr("rx", "15px")
-            .attr("ry", "15px")
-            .attr("height", helpButtonHeight)
-            .attr("width", helpButtonWidth)
-            .attr("opacity", "0.1")
-            .attr("class", "backButtonFront");
-}
-
 function drawResetButton()
 {
-    var sideBar = d3.select("#sideBarCanvas");    
+    var sideBar = d3.select("#sideBarCanvas");        
+
     var helpButtonOffset = assumptionImageSize*2;
-    
-    var offset = 2;
+    var size = sideBarWidth/4;
     
     sideBar.append("rect")
-            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
-            .attr("y", scaleForWindowSize(5))//canvasHeight - helpButtonHeight - helpButtonOffset)
-            .attr("rx", "15px")
-            .attr("ry", "15px")
-            .attr("height", helpButtonHeight)
-            .attr("width", helpButtonWidth)
+            .attr("x", sideBarWidth/8)
+            .attr("y", variableNameHolderPadding)
+            .attr("rx", visualizationHolderRadius)
+            .attr("ry", visualizationHolderRadius)
+            .attr("height", size)
+            .attr("width", size)
             .attr("fill", "grey")
             .attr("filter", "none")
             .attr("stroke", "black")
             .attr("class", "backButtonBack");
     
     sideBar.append("image")
-            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset) + (helpButtonWidth/1.5)/4)
-            .attr("y", scaleForWindowSize(5) + (helpButtonHeight/1.5)/4)
-            .attr("height", helpButtonHeight/1.5)
-            .attr("width", helpButtonWidth/1.5)
+            .attr("x", sideBarWidth/8)
+            .attr("y", variableNameHolderPadding)
+            .attr("height", size)
+            .attr("width", size)
             .attr("xlink:href", "images/reset.png")
             .attr("class", "backButtonText");
     
     sideBar.append("rect")
-            .attr("x", sideBarWidth - offset*(helpButtonWidth + helpButtonOffset))
-            .attr("y", scaleForWindowSize(5))//canvasHeight - helpButtonHeight - helpButtonOffset)
-            .attr("rx", "15px")
-            .attr("ry", "15px")
-            .attr("height", helpButtonHeight)
-            .attr("width", helpButtonWidth)
+            .attr("x", sideBarWidth/8)
+            .attr("y", variableNameHolderPadding)
+            .attr("rx", visualizationHolderRadius)
+            .attr("ry", visualizationHolderRadius)
+            .attr("height", size)
+            .attr("width", size)
             .attr("opacity", "0.1")
             .attr("class", "backButtonFront");
 }
