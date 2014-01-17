@@ -1812,6 +1812,15 @@ function displayToolTips()
             .attr("stroke-dasharray","3,3")
             .attr("class","toolTips");
 
+    sideBar.append("line")
+            .attr("x1", 3*sideBarWidth/4)
+            .attr("y1", variableNameHolderPadding + variableNameHolderHeight + variableNameHolderPadding/2)
+            .attr("x2", 3*sideBarWidth/4)
+            .attr("y2", variableNameHolderPadding + variableNameHolderHeight + 3*variableNameHolderPadding)
+            .attr("stroke", "#3957F1")
+            .attr("stroke-dasharray", "3,3")
+            .attr("class", "toolTips");
+
 }
 
     
