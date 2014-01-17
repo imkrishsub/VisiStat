@@ -1766,7 +1766,7 @@ function displayToolTips()
                         .text("Visualizations available in VisiStat")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeTooTips + ";");
+                        .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
 
     plotCanvas.append("line")
                 .attr("x1", (canvasWidth + sideBarWidth)/2)
@@ -1816,10 +1816,28 @@ function displayToolTips()
             .attr("x1", 3*sideBarWidth/4)
             .attr("y1", variableNameHolderPadding + variableNameHolderHeight + variableNameHolderPadding/2)
             .attr("x2", 3*sideBarWidth/4)
-            .attr("y2", variableNameHolderPadding + variableNameHolderHeight + 3*variableNameHolderPadding)
+            .attr("y2", variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding)
             .attr("stroke", "#3957F1")
             .attr("stroke-dasharray", "3,3")
             .attr("class", "toolTips");
+
+
+    sideBar.append("rect")
+            .attr("x", variableNameHolderPadding*2)
+            .attr("y", variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding)
+            .attr("width", variableNameHolderWidth)
+            .attr("height", variableNameHolderHeight)
+            .attr("rx", radiusForRoundedRect)
+            .attr("ry", radiusForRoundedRect)
+            .attr("fill", "#3957F1")
+            .attr("filter", "url(#Bevel)")
+            .attr("stroke", "none")
+            .attr("class", "toolTips");
+
+    d3.select("body").append("label")
+                    .text("Help")
+                    .attr("class", "toolTips")
+                    .attr("style", "position: absolute; left: " + (canvasWidth + parseFloat(variablePanelWidth) + variableNameHolderPadding*2 + variableNameHolderPadding) + "px; top: " + (variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
 
 }
 
