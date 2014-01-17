@@ -130,10 +130,10 @@ function drawHelpButton()
     var sideBar = d3.select("#sideBarCanvas");
 
     var helpButtonOffset = assumptionImageSize*2;
-    var size = sideBarWidth/6;
+    var size = variableNameHolderHeight;
 
     sideBar.append("rect")
-            .attr("x", 5*sideBarWidth/8)
+            .attr("x", 6*sideBarWidth/8 - size/2)
             .attr("y", variableNameHolderPadding)
             .attr("rx", visualizationHolderRadius)
             .attr("ry", visualizationHolderRadius)
@@ -169,10 +169,10 @@ function drawResetButton()
     var sideBar = d3.select("#sideBarCanvas");        
 
     var helpButtonOffset = assumptionImageSize*2;
-    var size = sideBarWidth/6;
+    var size = variableNameHolderHeight;
     
     sideBar.append("rect")
-            .attr("x", sideBarWidth/8)
+            .attr("x", sideBarWidth/4 - size/2)
             .attr("y", variableNameHolderPadding)
             .attr("rx", visualizationHolderRadius)
             .attr("ry", visualizationHolderRadius)
@@ -184,15 +184,15 @@ function drawResetButton()
             .attr("class", "backButtonBack");
     
     sideBar.append("image")
-            .attr("x", sideBarWidth/8 + sideBarWidth/16)
-            .attr("y", variableNameHolderPadding + sideBarWidth/16)
+            .attr("x", sideBarWidth/4 - size/4)
+            .attr("y", variableNameHolderPadding + size/4)
             .attr("height", size/2)
             .attr("width", size/2)
             .attr("xlink:href", "images/reset.png")
             .attr("class", "backButtonText");
     
     sideBar.append("rect")
-            .attr("x", sideBarWidth/8)
+            .attr("x", sideBarWidth/4 - size/2)
             .attr("y", variableNameHolderPadding)
             .attr("rx", visualizationHolderRadius)
             .attr("ry", visualizationHolderRadius)
