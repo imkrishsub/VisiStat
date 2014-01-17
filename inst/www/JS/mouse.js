@@ -838,7 +838,7 @@ function OnMouseDown(e)
                 }                
             }
             
-            else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "resetButtonImage")
+            else if((e.button == 1 && window.event != null || e.button == 0) && target.className.baseVal == "resetButtonFront")
             {
                 setup(e, target);
                 
@@ -1969,7 +1969,7 @@ function OnMouseOver(e)
                 helpButtonText.attr("cursor", "pointer");
             } 
             
-            else if(target.className.baseVal == "resetButtonImage")
+            else if(target.className.baseVal == "resetButtonFront")
             {
                 setup(e, target);
             

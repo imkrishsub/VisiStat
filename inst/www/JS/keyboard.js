@@ -1,1 +1,0 @@
-document.addEventListener('keydown', function(event){    if(event.keyCode == 83)    {        var fileName = window.prompt("Enter your name: ");                if(fileName != null)        {            writeToFile(fileName);        }    }});
