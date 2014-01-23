@@ -19,20 +19,23 @@ function getWidth()
 
 function getHeight()
 {
-      var y = 0;
-      if (self.innerHeight)
-      {
-              y = self.innerHeight;
-      }
-      else if (document.documentElement && document.documentElement.clientHeight)
-      {
-              y = document.documentElement.clientHeight;
-      }
-      else if (document.body)
-      {
-              y = document.body.clientHeight;
-      }
-      return y;
+      // var y = 0;
+      // if (self.innerHeight)
+      // {
+      //         y = self.innerHeight;
+      // }
+      // else if (document.documentElement && document.documentElement.clientHeight)
+      // {
+      //         y = document.documentElement.clientHeight;
+      // }
+      // else if (document.body)
+      // {
+      //         y = document.body.clientHeight;
+      // }
+      // return y;
+
+      var w = getWidth();
+      return w/1.75;
 }
 
 function plotVisualisation()
