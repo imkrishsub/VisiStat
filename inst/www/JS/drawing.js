@@ -408,13 +408,9 @@ function drawEffectSize(value)
                                     .attr("fill", color)
                                     .attr("class", "effectSize");
     }
-    
-    console.log("Math.abs(scale(min + value)) = " + Math.abs(scale(min + value)) + "\effectSizeWidth/4 = " + effectSizeWidth/4);
 
     if(Math.abs(scale(min + value)) > effectSizeWidth/4)
     {   
-        console.log("greater!");
-
         if(value < 0)
         {
             sideBar.append("text")
@@ -442,7 +438,6 @@ function drawEffectSize(value)
     }
     else
     {
-        console.log("lesser!");
         if(value < 0)
         {
             sideBar.append("text")
@@ -837,9 +832,7 @@ function drawScales(cx, cy)
                 .attr("class", "differenceInMeansMain")
                 .text(dec2(means[means.length-1] - means[0]));
     
-    var error = parseFloat(testResults["error"]);   
-
-    console.log("error = " + error);     
+    var error = parseFloat(testResults["error"]);     
     testResults["CI"] = calculateCI(means[means.length -1] - means[0], error);
 
     var meanValue = getActualValue(cyMin);

@@ -714,8 +714,6 @@ function sort(list)
 
 function scaleForWindowSize(value)
 {  
-    console.log("height = " + height);
-    console.log("width = " + width);
     return value*(height/1004);
 }
 
