@@ -35,7 +35,7 @@ function getHeight()
       // return y;
 
       var w = getWidth();
-      return w/1.75;
+      return w/1.745;
 }
 
 function plotVisualisation()
@@ -1844,7 +1844,7 @@ function displayToolTips()
     d3.select("body").append("label")
                     .text("SELECT A VARIABLE TO GET STARTED")
                     .attr("class", "toolTips")
-                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: #3957F1; text-align: center; font: normal 32px verdana !important;");
+                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: #3957F1; text-align: center; font: normal " + scaleForWindowSize(32) + "px verdana !important;");
 
 
 }
