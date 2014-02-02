@@ -68,10 +68,10 @@ desc["pairwisePostHoc"] = "Click on this to select means of the two levels you w
 desc["regression"] = "Click on this to construct a regression model (which can be used to predict the outcome variable from the causal/explanatory variable(s)).";
 
 desc["visualisation"] = new Object();
-desc["visualisation"]["Histogram"] = "Histogram";
-desc["visualisation"]["Boxplot"] = "Boxplot";
-desc["visualisation"]["Scatterplot"] = "Scatterplot";
-desc["visualisation"]["Scatterplot-matrix"] = "Scatterplot-matrix";
+desc["visualisation"]["Histogram"] = "Shows the distribution of the data by clustering data into different bins. Hover over each bar to see the number of participants corresponding to the bar. Histogram is useful for viewing the shape of the distribution. ";
+desc["visualisation"]["Boxplot"] = "Boxplot shows the distribution of the data. It is useful for seeing the central tendency of the distribution. The horizontal line in the middle indicates the median and the circle represents the mean.";
+desc["visualisation"]["Scatterplot"] = "It is a simple plot of one variable against the other variable. If you select an additional variable that has a fixed number of values, a color boxplot is drawn with the different values of the third variable mapped to different colors (See legend on top-right for inference).";
+desc["visualisation"]["Scatterplot-matrix"] = "A Scatterplot-matrix is an extension of scatterplot. It plots variables pairwise against each other. The color of a cell indicatest the correlation between the variables involved (darker shade of green => more correlation). ";
 
 desc["variables"] = new Object();
 
