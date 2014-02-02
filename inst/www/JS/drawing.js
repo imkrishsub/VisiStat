@@ -1330,6 +1330,7 @@ function displayANOVAResults()
             .attr("y", significanceTestResultOffsetTop + significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
+            .attr("font-family", "Verdana")
             .attr("fill", "#627bf4")
             .text(testResults["method"])
             .attr("class", "significanceTest");
