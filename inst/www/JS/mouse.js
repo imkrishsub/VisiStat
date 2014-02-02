@@ -720,10 +720,11 @@ function OnMouseDown(e)
                     helpButtonText.attr("fill", "white");
 
                     var helpTextHeight = (height - canvasHeight)/2;
+                    console.log("helpTextHeight = " + helpTextHeight);
             
                     var description = d3.select("body").append("div");                
                     description.attr("id", "descriptionPanel")
-                         .attr("style", "width: " + width + "px; height: " + helpTextHeight + "px; top: " + (parseFloat(canvasHeight) + parseFloat(helpTextHeight)) +  + "px;");
+                         .attr("style", "width: " + width + "px; height: " + helpTextHeight + "px; top: " + (parseFloat(canvasHeight) + parseFloat(helpTextHeight)) + "px;");
                     
                     description.append("label")
                                 .attr("id", "descriptionLabel")
