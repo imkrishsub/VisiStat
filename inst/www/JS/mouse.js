@@ -709,6 +709,8 @@ function OnMouseDown(e)
             
                 var helpButton = d3.select(".helpButtonBack");
                 var helpButtonText = d3.select(".helpButtonText");
+
+                removeElementsByClassName("toolTips");
             
                 if(helpButton.attr("stroke") == "black")
                 {
@@ -1642,6 +1644,20 @@ function OnMouseOver(e)
                 d3.select("#" + varName + ".variableNameHolderFront").attr("cursor", "help");
                 
                 helpText.text(desc["variables"][varName]);                
+            }
+
+            if((target.className.baseVal == "visualisationHolderFront"))
+            {
+                setup(e, target);
+                var visualisationName = target.id;
+                console.log(visualisationName);
+                
+                var helpText = d3.select("#descriptionLabel");
+                
+                d3.select("#" + visualisationName + ".visualisationHolder").attr("stroke-width","2px");
+                d3.select("#" + visualisationName + ".visualisationHolderFront").attr("cursor", "help");
+                
+                helpText.text(desc["visualisation"][visualisationName]);                
             }
 
             if((target.className.baseVal == "disabled"))

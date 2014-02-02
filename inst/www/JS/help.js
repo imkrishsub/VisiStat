@@ -67,6 +67,12 @@ desc["tukeyHSD"] = "Click on this to perform a Tukey's HSD test. Tukey's HSD tes
 desc["pairwisePostHoc"] = "Click on this to select means of the two levels you want to perform a pairwise post-hoc test on.  It is used to find which particular pair of distributions are significantly different from each other. ";
 desc["regression"] = "Click on this to construct a regression model (which can be used to predict the outcome variable from the causal/explanatory variable(s)).";
 
+desc["visualisation"] = new Object();
+desc["visualisation"]["Histogram"] = "Histogram";
+desc["visualisation"]["Boxplot"] = "Boxplot";
+desc["visualisation"]["Scatterplot"] = "Scatterplot";
+desc["visualisation"]["Scatterplot-matrix"] = "Scatterplot-matrix";
+
 desc["variables"] = new Object();
 
 desc["variables"]["participantID"] = "The ID of the participant";
