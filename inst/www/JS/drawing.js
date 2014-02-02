@@ -1844,7 +1844,7 @@ function displayToolTips()
     d3.select("body").append("img")
                     .attr("class", "tooltips")
                     .attr("src", "images/arrow.png")
-                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth)) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding - 45) + "px; height: 100px; ");
+                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth)) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding - 35) + "px; height: 100px; ");
 
 
 }
