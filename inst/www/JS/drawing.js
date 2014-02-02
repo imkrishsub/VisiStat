@@ -184,6 +184,7 @@ function drawResetButton()
             .attr("fill", "url(#buttonFillNormal)")
             .attr("filter", "url(#Bevel)")
             .attr("stroke", "black")
+            .attr("display", "none")
             .attr("class", "resetButtonBack");
     
     sideBar.append("image")
@@ -191,6 +192,7 @@ function drawResetButton()
             .attr("y", variableNameHolderPadding + size/4)
             .attr("height", size/2)
             .attr("width", size/2)
+            .attr("display", "none")
             .attr("xlink:href", "images/reset-faded.png")
             .attr("class", "resetButtonImage");
     
@@ -201,7 +203,7 @@ function drawResetButton()
             .attr("ry", visualizationHolderRadius)
             .attr("height", size)
             .attr("width", size)
-            .attr("opacity", "0.1")
+            .attr("opacity", "0.001")
             .attr("class", "resetButtonFront");
 }
 
@@ -1840,6 +1842,20 @@ function displayToolTips()
                     .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: #3957F1; text-align: center; font: normal " + scaleForWindowSize(32) + "px verdana !important;");
 
 
+}
+
+showResetButton()
+{
+    var resetButtonElements = d3.selectAll(".resetButtonBack, .resetButtonBack");
+
+    resetButtonElements.attr("display", "inline");
+}
+
+hideResetButton()
+{
+    var resetButtonElements = d3.selectAll(".resetButtonBack, .resetButtonBack");
+
+    resetButtonElements.attr("display", "none");
 }
 
     

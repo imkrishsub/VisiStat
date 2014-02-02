@@ -54,8 +54,7 @@ function OnMouseDown(e)
                 plotVisualisation(); //checks which plot is selected and draws that plot
                 setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
                 
-                var resetButtonImage = d3.select(".resetButtonImage");
-                resetButtonImage.attr("xlink:href", "images/reset-faded.png");
+                showResetButton();
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
@@ -65,8 +64,7 @@ function OnMouseDown(e)
                 setColorsForVisualisations();        
                 plotVisualisation();
                 
-                var resetButtonImage = d3.select(".resetButtonImage");
-                resetButtonImage.attr("xlink:href", "images/reset-faded.png");
+                showResetButton();
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
@@ -308,8 +306,7 @@ function OnMouseDown(e)
             {
                 d3.selectAll(".compareNow").attr("cursor", "pointer");
                 
-                var resetButtonImage = d3.select(".resetButtonImage");                
-                resetButtonImage.attr("xlink:href", "images/reset.png");
+                hideResetButton();
                     
                 states.push({visualisation: currentVisualisationSelection, substate: "significanceTest"});
                 
@@ -484,8 +481,7 @@ function OnMouseDown(e)
             {
                 removeElementsByClassName("CIMean");
                 
-                var resetButtonImage = d3.select(".resetButtonImage");
-                resetButtonImage.attr("xlink:href", "images/reset.png");
+                hideResetButton();
                     
                 d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
         
@@ -842,13 +838,14 @@ function OnMouseDown(e)
             {
                 setup(e, target);
                 
-                var resetButtonImage = d3.select(".resetButtonImage")
                 
-                if(currentVisualisationSelection == "Boxplot" && resetButtonImage.attr("xlink:href") == "images/reset.png")
+                var resetButtonImage = d3.select(".resetButtonImage");
+                
+                if(currentVisualisationSelection == "Boxplot" && resetButtonImage.attr("display") == "inline")
                 {
                     plotVisualisation();
                 
-                    resetButtonImage.attr("xlink:href", "images/reset-faded.png");
+                    hideResetButton();
 
                     var canvas = d3.select("#plotCanvas");
                     var variableList = getSelectedVariables();
@@ -1974,12 +1971,10 @@ function OnMouseOver(e)
                 setup(e, target);
             
                 var resetButtonImage = d3.select(".resetButtonImage");
-                var resetButton = d3.select(".resetButtonFront");
+                var resetButton = d3.select(".resetButtonFront");            
+                        
+                resetButton.attr("cursor", "pointer");
             
-                if(resetButtonImage.attr("xlink:href") == "images/reset.png")            
-                    resetButton.attr("cursor", "pointer");
-                else
-                    resetButton.attr("cursor", "default");
             } 
     
             else if(target.className.baseVal == "outliers")
