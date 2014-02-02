@@ -1844,6 +1844,7 @@ function displayToolTips()
 
 }
 
+
 showResetButton()
 {
     var resetButtonElements = d3.selectAll(".resetButtonBack, .resetButtonBack");
