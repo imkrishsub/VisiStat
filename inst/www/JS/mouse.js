@@ -54,7 +54,7 @@ function OnMouseDown(e)
                 plotVisualisation(); //checks which plot is selected and draws that plot
                 setColorsForVisualisations(); //manages the fill colors of vizualizations (only one at a time)
                 
-                showResetButton();
+                hideResetButton();
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "visualisationHolderFront"))
@@ -64,7 +64,7 @@ function OnMouseDown(e)
                 setColorsForVisualisations();        
                 plotVisualisation();
                 
-                showResetButton();
+                hideResetButton();
             }
     
             else if((e.button == 1 && window.event != null || e.button == 0) && (target.className.baseVal == "variableTypeToggleButton"))
@@ -306,7 +306,7 @@ function OnMouseDown(e)
             {
                 d3.selectAll(".compareNow").attr("cursor", "pointer");
                 
-                hideResetButton();
+                showResetButton();
                     
                 states.push({visualisation: currentVisualisationSelection, substate: "significanceTest"});
                 
@@ -481,7 +481,7 @@ function OnMouseDown(e)
             {
                 removeElementsByClassName("CIMean");
                 
-                hideResetButton();
+                showResetButton();
                     
                 d3.selectAll(".doPairwiseTest").attr("cursor", "pointer");
         
@@ -845,7 +845,7 @@ function OnMouseDown(e)
                 {
                     plotVisualisation();
                 
-                    hideResetButton();
+                    showResetButton();
 
                     var canvas = d3.select("#plotCanvas");
                     var variableList = getSelectedVariables();
