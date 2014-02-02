@@ -1846,12 +1846,14 @@ function displayToolTips()
 
 function showResetButton()
 {
+    console.log("Showing reset button!");
     d3.select(".resetButtonBack").attr("display", "inline");
     d3.select(".resetButtonImage").attr("display", "inline");
 }
 
 function hideResetButton()
 {
+    console.log("Hiding reset button!");
     var resetButtonElements = d3.selectAll(".resetButtonBack, .resetButtonImage");
 
     resetButtonElements.attr("display", "none");
