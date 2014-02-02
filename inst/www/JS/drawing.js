@@ -1846,14 +1846,14 @@ function displayToolTips()
 
 function showResetButton()
 {
-    var resetButtonElements = d3.selectAll(".resetButtonBack, .resetButtonBack");
+    var resetButtonElements = d3.selectAll(".resetButtonBack, .resetButtonImage");
 
     resetButtonElements.attr("display", "inline");
 }
 
 function hideResetButton()
 {
-    var resetButtonElements = d3.selectAll(".resetButtonBack, .resetButtonBack");
+    var resetButtonElements = d3.selectAll(".resetButtonBack, .resetButtonImage");
 
     resetButtonElements.attr("display", "none");
 }
