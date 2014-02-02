@@ -193,7 +193,7 @@ function drawResetButton()
             .attr("height", size/2)
             .attr("width", size/2)
             .attr("display", "none")
-            .attr("xlink:href", "images/reset-faded.png")
+            .attr("xlink:href", "images/reset.png")
             .attr("class", "resetButtonImage");
     
     sideBar.append("rect")
@@ -1840,6 +1840,11 @@ function displayToolTips()
                     .text("SELECT A VARIABLE TO GET STARTED")
                     .attr("class", "toolTips")
                     .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: #3957F1; text-align: center; font: normal " + scaleForWindowSize(32) + "px verdana !important;");
+
+    d3.select("body").append("img")
+                    .attr("class", "tooltips")
+                    .attr("src", "images/arrow.png")
+                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth)) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px;";
 
 
 }
