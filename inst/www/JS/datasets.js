@@ -15,6 +15,9 @@ var datasetInformation = new Object();
     datasetInformation["foodEffect"] = "We compare the effect of different types of food on the participant' test scores. The foods considered are plain yoghurt, a snickers bar, and a sandwich. We measure the verbal (language) and the quantitative (math) scores of the participant. Since the same set of participants are used for different conditions (foodEaten), this experiment follows a within-groups design. Following the experiment, we also get the satisfaction rating from the participant. The gender of the participant is also considered as an independent variable.";
     datasetInformation["weight_loss"] = "Does skipping a meal lead to weight loss? If so, does it vary for different meals? In this experiment, we compare the weight lost by participants under four different conditions: skip breakfast, skip lunch, skip dinner, and control. We measured the amount of weight lost (positive value means that weight was lost) and the absolute BMI after 3 months. The experiment follows a between-group design. Following the experiment, we also get the satisfaction rating from the participant. The amount of exercise of the participant is also considered as an independent variable.";
     datasetInformation["phoneEffect"] = "In this experiment, we compare three different types of phone operating systems for their emotional impact on the users. In particular, we measure the stress and happiness levels of the user after using the phone OS for 6 months. The scores are out of 100 and are based on heuristics. Since we used the same set of participants for different conditions (phone OS), this experiment follows a within-groups design. Following the experiment, we also get the satisfaction rating from the participant. The gender of the participant is also considered as an independent variable.";
+    datasetInformation["s1"] = "TBD";
+    datasetInformation["s2"] = "TBD";
+    datasetInformation["s3"] = "TBD";
 
 var variablesInDataset = new Object();
     variablesInDataset["impact"] = ["subject","condition","verbalMemoryPre","visualMemoryPre","visualMotorSpeedPre","reactionTimePre","impulseControlPre","totalSymptomPre","verbalMemoryPost","visualMemoryPost","visualMotorSpeedPost","reactionTimePost","impulseConstrolPost","totalSymptomPost"]
@@ -30,6 +33,9 @@ var variablesInDataset = new Object();
     variablesInDataset["foodEffect"] = ["participantID","foodEaten","gender","score_V","score_Q","satisfactionRating"];
     variablesInDataset["weight_loss"] = ["participantID","condition","exercise","weightLost","BMI","userRating"];
     variablesInDataset["phoneEffect"] = ["participantID","phoneOS","gender", "stressScore","happScore","satisfaction"];
+    variablesInDataset["s1"] = ["ID", "layout", "speed"];
+    variablesInDataset["s2"] = ["ID", "layout", "speed"];
+    variablesInDataset["s3"] = ["ID", "layout", "speed"];
  
 var types = ["participant", "dependent", "independent"];
 var variablesInDatasetRow = new Object();
@@ -49,6 +55,9 @@ var variablesInDatasetType = new Object();
     variablesInDatasetType["foodEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
     variablesInDatasetType["weight_loss"] = [dataTypes[0], dataTypes[0], dataTypes[1], dataTypes[3], dataTypes[2], dataTypes[1]];
     variablesInDatasetType["phoneEffect"] = [dataTypes[0], dataTypes[0], dataTypes[0], dataTypes[3], dataTypes[3], dataTypes[1]];
+    variablesInDatasetType["s1"] = [dataTypes[0], dataTypes[0], dataTypes[3]];
+    variablesInDatasetType["s2"] = [dataTypes[0], dataTypes[0], dataTypes[3]];
+    variablesInDatasetType["s3"] = [dataTypes[0], dataTypes[0], dataTypes[3]];
     
 function initVariablesInDatasetTypes()
 {  
@@ -65,4 +74,7 @@ function initVariablesInDatasetTypes()
     variablesInDatasetRow["foodEffect"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
     variablesInDatasetRow["weight_loss"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
     variablesInDatasetRow["phoneEffect"] = [types[0], types[2], types[2], types[1], types[1], types[1]];
+    variablesInDatasetRow["s1"] = [types[0], types[2], types[1]];
+    variablesInDatasetRow["s2"] = [types[0], types[2], types[1]];
+    variablesInDatasetRow["s3"] = [types[0], types[2], types[1]];
 }
