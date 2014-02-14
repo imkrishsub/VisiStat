@@ -1680,7 +1680,7 @@ function displayToolTips()
                         .text("List of variables in the dataset. Click on a variable to select/unselect them. ")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + "; font-family: sans-serif; font-weight: bold; font-style: italic;");
+                        .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + "; font-family: sans-serif; font-style: italic;");
 
     variablePanelCanvas.append("line")
                         .attr("x1", variableNameHolderWidth/2)
@@ -1721,7 +1721,7 @@ function displayToolTips()
                         .text("Displays the type of the variable. Use the switch to toggle the type as dependent or independent. VisiStat selects the visualization based on this information.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + "; font-family: sans-serif; font-weight: bold; font-style: italic;");
+                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + "; font-family: sans-serif; font-style: italic;");
 
     variablePanelCanvas.append("line")
                     .attr("x1", variableTypeSelectionButtonWidth/1.5 + variableNameHolderPadding + variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
@@ -1773,7 +1773,7 @@ function displayToolTips()
                         .text("Visualizations available in VisiStat")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + "; font-family: sans-serif; font-weight: bold; font-style: italic;");
+                        .attr("style", "position: absolute; left: " + (canvasWidth/2 + parseFloat(variablePanelWidth) - 3*variableNameHolderPadding + variableNameHolderPadding) + "px; top: " + (canvasHeight - variableNameHolderPadding*3 - variableNameHolderHeight*1 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + "; font-family: sans-serif; font-style: italic;");
 
     plotCanvas.append("line")
                 .attr("x1", (canvasWidth + sideBarWidth)/2)
@@ -1843,12 +1843,12 @@ function displayToolTips()
     d3.select("body").append("label")
                     .text("Help")
                     .attr("class", "toolTips")
-                    .attr("style", "position: absolute; left: " + (canvasWidth + parseFloat(variablePanelWidth) + 3*sideBarWidth/4 - variableNameHolderWidth/4 + variableNameHolderPadding) + "px; top: " + (variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth/2 - variableNameHolderPadding) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + "; font-family: sans-serif; font-weight: bold; font-style: italic;");
+                    .attr("style", "position: absolute; left: " + (canvasWidth + parseFloat(variablePanelWidth) + 3*sideBarWidth/4 - variableNameHolderWidth/4 + variableNameHolderPadding) + "px; top: " + (variableNameHolderPadding + variableNameHolderHeight + 5*variableNameHolderPadding + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth/2 - variableNameHolderPadding) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + "; font-family: sans-serif; font-style: italic;");
 
     d3.select("body").append("label")
-                    .text("SELECT A VARIABLE TO GET STARTED")
+                    .text("Select a variable to get started!")
                     .attr("class", "toolTips")
-                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: #3957F1; text-align: center; font-size: " + scaleForWindowSize(32) + "px; font-family: sans-serif; font-weight: bold; font-style: italic;");
+                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: #3957F1; text-align: center; font-size: " + scaleForWindowSize(32) + "px; font-family: sans-serif; font-weight: bold;");
 
     d3.select("body").append("img")
                     .attr("class", "toolTips")
