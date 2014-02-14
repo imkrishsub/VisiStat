@@ -640,9 +640,13 @@ function drawParameter(DF, parameter)
                 .attr("class", "parameter");
             
         mainText.append("tspan")
+                    .attr("font-family", "serif")
+                    .attr("font-style", "italic")
                     .text("𝝌");
         
         mainText.append("tspan")
+                    .attr("font-family", "serif")
+                    .attr("font-style", "italic")
                     .attr("baseline-shift", "super")
                     .text("2");
         
@@ -650,28 +654,42 @@ function drawParameter(DF, parameter)
                     .text("(" + DF + ") = " + parameter);
     }
     else
-    {
+    {        
         if(hasDF[type] && !pairwiseComparisons)
         {
-            sideBar.append("text")
+            var textTag = sideBar.append("text")
                     .attr("x", X)
                     .attr("y", Y)
                     .attr("font-size", fontSizeSignificanceTestResults + "px")
                     .attr("text-anchor", "middle")
                     .attr("fill", "#627bf4")
-                    .attr("class", "parameter")
-                    .text(type + "(" + DF + ") = " + parameter);
+                    .attr("class", "parameter");
+
+            textTag.append("tspan")
+                    .attr("font-family", "serif")
+                    .attr("font-style", "italic")
+                    .text(type);
+
+            textTag.append("tspan")                    
+                    .text("(" + DF + ") = " + parameter);
         }
         else
         {
-            sideBar.append("text")
+            var textTag = sideBar.append("text")
                 .attr("x", X)
                 .attr("y", Y)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeSignificanceTestResults + "px")
                 .attr("fill", "#627bf4")
-                .attr("class", "parameter")
-                .text(type + " = " + parameter);
+                .attr("class", "parameter");
+
+            textTag.append("tspan")
+                    .attr("font-family", "serif")
+                    .attr("font-style", "italic")
+                    .text(type);
+
+            textTag.append("tspan")
+                    .text(" = " + parameter);
         }
     }
 }    
