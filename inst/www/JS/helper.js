@@ -472,13 +472,18 @@ function setVariableRow()
             var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
             var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                     
                                     
-            variablePanelSVG.append("text")
+            var textTag = variablePanelSVG.append("text")
                             .attr("x", variableNameHolderWidth + variableNameHolderPadding - variableTypeSelectionButtonWidth/2)
-                            .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/2 + yAxisTickTextOffset/2)                                                   
+                            .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/2 + yAxisTickTextOffset/2);
+            
+            textTag.append("tspan")
+                            .attr("x", variableNameHolderWidth + variableNameHolderPadding - variableTypeSelectionButtonWidth/2)
+                            .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/2 + yAxisTickTextOffset/2)
                             .attr("text-anchor", "middle")
+                            .attr("font-family", "sans-serif")
                             .attr("font-size", scaleForWindowSize(20))
                             .attr("fill", "#627bf4")
-                            .text("SUBJECT")
+                            .text("Participant")
                             .attr("id", variableNames[i])
                             .attr("class", "participantVariableText");
         }

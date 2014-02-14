@@ -154,11 +154,11 @@
                                     .attr("id", variableNames[i])
                                     .attr("class", "variableNameHolderBack");
                                                 
-                    var textEl = variablePanelSVG.append("text")
+                    var textTag = variablePanelSVG.append("text")
                                     .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
                                     .attr("y", variableNameHolderPadding + variableNameHolderHeight/2 + i*(variableNameHolderHeight + variableNameHolderPadding) + yAxisTickTextOffset)
                     
-                    textEl.append("tspan")                                
+                    textTag.append("tspan")                                
                                     .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
                                     .attr("y", variableNameHolderPadding + variableNameHolderHeight/2 + i*(variableNameHolderHeight + variableNameHolderPadding) + yAxisTickTextOffset)
                                     .attr("fill", "black")
@@ -178,31 +178,31 @@
                                     .attr("id", variableNames[i])
                                     .attr("class", "variableTypeToggleButton");
  
-                    textEl = variablePanelSVG.append("text")
+                    textTag = variablePanelSVG.append("text")
                                     .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4 + 2*variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/4 + yAxisTickTextOffset/2);
 
-                    textEl.append("tspan")
+                    textTag.append("tspan")
                                     .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4 + 2*variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/4 + yAxisTickTextOffset/2)                                
                                     .attr("text-anchor", "left")
                                     .attr("font-family", "sans-serif")
                                     .attr("font-size", fontSizeTicks/1.4)
                                     .attr("fill", variableTypeTextColors["dependent"]["normal"])
-                                    .text("DEPENDENT")
+                                    .text("Dependent")
                                     .attr("id", variableNames[i])
                                     .attr("class", "dependentVariableText");
 
-                    textEl = variablePanelSVG.append("text")
+                    textTag = variablePanelSVG.append("text")
                                     .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/4 + 2*variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + 3*(variableNameHolderHeight)/4 + yAxisTickTextOffset);
-                    textEl.append("tspan") 
+                    textTag.append("tspan") 
                                     .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/4 + 2*variableNameHolderPadding)
                                     .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + 3*(variableNameHolderHeight)/4 + yAxisTickTextOffset)           
-                                    .attr("font-family", "sans-serif")                                       
                                     .attr("text-anchor", "left")
-                                    .text("INDEPENDENT")
-                                    .attr("font-size", fontSizeTicks/1.4)
+                                    .attr("font-family", "sans-serif")                                       
+                                    .attr("font-size", fontSizeTicks/1.4)                                    
+                                    .text("Independent")                                    
                                     .attr("fill", variableTypeTextColors["independent"]["normal"])
                                     .attr("id", variableNames[i])
                                     .attr("class", "independentVariableText");
@@ -266,11 +266,11 @@
                                                     .attr("id", visualisations[i])
                                                     .attr("class", "visualisationHolderImage");
                                                 
-                    var textEl = visualisationPanelSVG.append("text")
+                    var textTag = visualisationPanelSVG.append("text")
                                                     .attr("x", variableNameHolderPadding + visualisationHolderWidth/2 + i*(visualisationHolderWidth + variableNameHolderPadding))
                                                     .attr("y", variableNameHolderPadding + visualisationHolderHeight/2);
 
-                    textEl.append("tspan")
+                    textTag.append("tspan")
                                                     .attr("x", variableNameHolderPadding + visualisationHolderWidth/2 + i*(visualisationHolderWidth + variableNameHolderPadding))
                                                     .attr("y", variableNameHolderPadding + visualisationHolderHeight/2)          .attr("fill", "black")
                                                     .attr("font-family", "sans-serif")
