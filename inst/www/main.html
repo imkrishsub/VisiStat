@@ -154,7 +154,11 @@
                                     .attr("id", variableNames[i])
                                     .attr("class", "variableNameHolderBack");
                                                 
-                    variablePanelSVG.append("text")
+                    var textEl = variablePanelSVG.append("text")
+                                    .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
+                                    .attr("y", variableNameHolderPadding + variableNameHolderHeight/2 + i*(variableNameHolderHeight + variableNameHolderPadding) + yAxisTickTextOffset)
+                    
+                    textEl.append("tspan")                                
                                     .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
                                     .attr("y", variableNameHolderPadding + variableNameHolderHeight/2 + i*(variableNameHolderHeight + variableNameHolderPadding) + yAxisTickTextOffset)
                                     .attr("fill", "black")
