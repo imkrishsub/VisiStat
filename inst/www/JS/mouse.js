@@ -160,6 +160,7 @@ function OnMouseDown(e)
                                     .attr("y2", lineBefore.getAttribute("y1"))
                                     .attr("stroke", meanColors["normal"])
                                     .attr("stroke-dasharray", "5,5")
+                                    .attr("stroke-width", "2px")
                                     .attr("id", meanCircle.attr("id"))
                                     .attr("class", "incompleteLines");
                 
@@ -181,6 +182,7 @@ function OnMouseDown(e)
                                         .attr("y2", endingLine.getAttribute("y2"))
                                         .attr("stroke", meanColors["normal"])
                                         .attr("stroke-dasharray", "5,5")
+                                        .attr("stroke-width", "2px")
                                         .attr("id", meanCircle.attr("id"))
                                         .attr("class", "incompleteLines");
                             }
@@ -193,6 +195,7 @@ function OnMouseDown(e)
                                         .attr("y2", lineAfter.getAttribute("y2"))
                                         .attr("stroke", meanColors["normal"])
                                         .attr("stroke-dasharray", "5,5")
+                                        .attr("stroke-width", "2px")
                                         .attr("id", meanCircle.attr("id"))
                                         .attr("class", "incompleteLines");
                             }
@@ -216,6 +219,7 @@ function OnMouseDown(e)
                                         .attr("x2", endingLine.getAttribute("x2"))
                                         .attr("y2", endingLine.getAttribute("y2"))
                                         .attr("stroke", meanColors["normal"])
+                                        .attr("stroke-width", "2px")
                                         .attr("stroke-dasharray", "5,5")
                                         .attr("id", meanCircle.attr("id"))
                                         .attr("class", "incompleteLines");
@@ -229,6 +233,7 @@ function OnMouseDown(e)
                                         .attr("y2", lineAfter.getAttribute("y2"))
                                         .attr("stroke", meanColors["normal"])
                                         .attr("stroke-dasharray", "5,5")
+                                        .attr("stroke-width", "2px")
                                         .attr("id", meanCircle.attr("id"))
                                         .attr("class", "incompleteLines");
                             }
@@ -286,6 +291,7 @@ function OnMouseDown(e)
                                         .attr("y2", meanCircle.attr("cy"))
                                         .attr("stroke", meanColors["normal"])
                                         .attr("stroke-dasharray", "5,5")
+                                        .attr("stroke-width", "2px")
                                         .attr("id", meanCircle.attr("id"))
                                         .attr("class", "incompleteLines");
                             }
@@ -1761,6 +1767,7 @@ function OnMouseOver(e)
                                 .attr("x2", L)
                                 .attr("y2", meanCircle.attr("cy"))
                                 .attr("stroke-dasharray", "5,5")
+                                .attr("stroke-width", "2px")
                                 .attr("stroke", meanColors["normal"])
                                 .attr("class", "hover");
             
