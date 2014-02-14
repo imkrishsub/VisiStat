@@ -411,22 +411,14 @@ function drawEffectSize(value)
                                     .attr("class", "effectSize");
     }
 
-    var textTag;
-
     if(Math.abs(scale(min + value)) > effectSizeWidth/4)
     {   
         if(value < 0)
         {
-            textTag = sideBar.append("text")
-                .attr("x", L + scale(0) + scale(min + (value - 0)) + yAxisTickTextOffset)
-                .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset);
-
-            textTag.append("tspan")
+            sideBar.append("text")
                 .attr("x", L + scale(0) + scale(min + (value - 0)) + yAxisTickTextOffset)
                 .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset)
                 .attr("text-anchor", "start")
-                .attr("font-family", "serif")
-                .attr("font-style", "italic")
                 .attr("font-size", effectSizeFontSize)
                 .attr("fill", "white")
                 .text(value)
@@ -435,16 +427,10 @@ function drawEffectSize(value)
         }
         else
         {
-            textTag = sideBar.append("text")
-                .attr("x", L + scale(0) + scale(min + (value - 0)) - yAxisTickTextOffset)
-                .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset);
-
-            textTag.append("tspan")
+            sideBar.append("text")
                 .attr("x", L + scale(0) + scale(min + (value - 0)) - yAxisTickTextOffset)
                 .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset)
                 .attr("text-anchor", "end")
-                .attr("font-family", "serif")
-                .attr("font-style", "italic")
                 .attr("font-size", effectSizeFontSize)
                 .attr("fill", "white")
                 .text(value)
@@ -456,16 +442,10 @@ function drawEffectSize(value)
     {
         if(value < 0)
         {
-            textTag = sideBar.append("text")
-                .attr("x", L + scale(0) + scale(min + (value - 0)) - yAxisTickTextOffset)
-                .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset);
-
-            textTag.append("tspan")
+            sideBar.append("text")
                 .attr("x", L + scale(0) + scale(min + (value - 0)) - yAxisTickTextOffset)
                 .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset)
                 .attr("text-anchor", "end")
-                .attr("font-family", "serif")
-                .attr("font-style", "italic")
                 .attr("font-size", effectSizeFontSize)
                 .attr("fill", "black")
                 .text(value)
@@ -474,16 +454,10 @@ function drawEffectSize(value)
         }
         else
         {
-            textTag = sideBar.append("text")
-                .attr("x", L + scale(0) + scale(min + (value - 0)) + yAxisTickTextOffset)
-                .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset);
-
-            textTag.append("tspan")
+            sideBar.append("text")
                 .attr("x", L + scale(0) + scale(min + (value - 0)) + yAxisTickTextOffset)
                 .attr("y", significanceTestResultOffsetTop - significanceTestResultStep + effectSizeHeight/2 - yAxisTickTextOffset)
                 .attr("text-anchor", "start")
-                .attr("font-family", "serif")
-                .attr("font-style", "italic")
                 .attr("font-size", effectSizeFontSize)
                 .attr("fill", "black")
                 .text(value)
@@ -493,32 +467,20 @@ function drawEffectSize(value)
         
     }
     
-    textTag = sideBar.append("text")
-            .attr("x", L + scale(min))
-            .attr("y", T + 3*effectSizeHeight/2);
-
-    textTag.append("tspan")
+    sideBar.append("text")
             .attr("x", L + scale(min))
             .attr("y", T + 3*effectSizeHeight/2)
             .attr("text-anchor", "start")
-            .attr("font-family", "serif")
-            .attr("font-style", "italic")
             .attr("font-size", effectSizeFontSize)
             .attr("fill", "darkgrey")
             .attr("id", "labelMin")
             .attr("class", "effectSize")
             .text(min);
     
-    textTag = sideBar.append("text")
-            .attr("x", L + scale(max))
-            .attr("y", T + 3*effectSizeHeight/2);
-
-    textTag.append("tspan")
+    sideBar.append("text")
             .attr("x", L + scale(max))
             .attr("y", T + 3*effectSizeHeight/2)
             .attr("text-anchor", "end")
-            .attr("font-family", "serif")
-            .attr("font-style", "italic")
             .attr("font-size", effectSizeFontSize)
             .attr("fill", "darkgrey")
             .attr("id", "labelMax")
@@ -597,8 +559,12 @@ function drawEffectSize(value)
             .attr("class", "effectSize");
             
         mainText.append("tspan")
+                    .attr("font-family", "serif")
+                    .attr("font-style", "italic")
                     .text("η");
         mainText.append("tspan")
+                    .attr("font-family", "serif")
+                    .attr("font-style", "italic")
                     .attr("baseline-shift", "super")
                     .text("2");
     }
@@ -614,17 +580,27 @@ function drawEffectSize(value)
             .attr("class", "effectSize");
             
         mainText.append("tspan")
+                    .attr("font-family", "serif")
+                    .attr("font-style", "italic")
                     .text("r");
         mainText.append("tspan")
+                    .attr("font-family", "serif")
+                    .attr("font-style", "italic")
                     .attr("baseline-shift", "super")
                     .text("2");
     }
     else
     {
-        sideBar.append("text")
+        var textTag = sideBar.append("text")
+            .attr("x", sideBarWidth/2)
+            .attr("y", significanceTestResultOffsetTop - significanceTestResultStep - effectSizeHeight/2 - yAxisTickTextOffset);
+
+        textTag.append("tspan")
             .attr("x", sideBarWidth/2)
             .attr("y", significanceTestResultOffsetTop - significanceTestResultStep - effectSizeHeight/2 - yAxisTickTextOffset)
             .attr("text-anchor", "middle")
+            .attr("font-family", "serif")
+            .attr("font-style", "italic")
             .attr("font-size", effectSizeFontSize)
             .attr("id", "effectSizeText")
             .attr("fill", "black")
@@ -648,6 +624,8 @@ function drawParameter(DF, parameter)
     
     var type = testResults["parameter-type"];
     
+
+    
     var X = sideBarWidth/2;
     var Y = significanceTestResultOffsetTop + 2*significanceTestResultStep;
     
@@ -662,34 +640,22 @@ function drawParameter(DF, parameter)
                 .attr("class", "parameter");
             
         mainText.append("tspan")
-                    .attr("font-family", "serif")
-                    .attr("font-style", "italic")
                     .text("𝝌");
         
         mainText.append("tspan")
-                    .attr("font-family", "serif")
-                    .attr("font-style", "italic")
                     .attr("baseline-shift", "super")
                     .text("2");
         
         mainText.append("tspan")
-                    .attr("font-family", "serif")
-                    .attr("font-style", "italic")
                     .text("(" + DF + ") = " + parameter);
     }
     else
     {
         if(hasDF[type] && !pairwiseComparisons)
         {
-            var textTag = sideBar.append("text")
+            sideBar.append("text")
                     .attr("x", X)
                     .attr("y", Y)
-
-            textTag.append("tspan")
-                    .attr("x", X)
-                    .attr("y", Y) 
-                    .attr("font-family", "serif")
-                    .attr("font-style", "italic")
                     .attr("font-size", fontSizeSignificanceTestResults + "px")
                     .attr("text-anchor", "middle")
                     .attr("fill", "#627bf4")
@@ -698,20 +664,14 @@ function drawParameter(DF, parameter)
         }
         else
         {
-            var textTag = sideBar.append("text")
-                    .attr("x", X)
-                    .attr("y", Y)
-
-            textTag.append("tspan")
-                    .attr("x", X)
-                    .attr("y", Y) 
-                    .attr("text-anchor", "middle")
-                    .attr("font-family", "serif")
-                    .attr("font-style", "italic")
-                    .attr("font-size", fontSizeSignificanceTestResults + "px")
-                    .attr("fill", "#627bf4")
-                    .attr("class", "parameter")
-                    .text(type + " = " + parameter);
+            sideBar.append("text")
+                .attr("x", X)
+                .attr("y", Y)
+                .attr("text-anchor", "middle")
+                .attr("font-size", fontSizeSignificanceTestResults + "px")
+                .attr("fill", "#627bf4")
+                .attr("class", "parameter")
+                .text(type + " = " + parameter);
         }
     }
 }    
@@ -1341,6 +1301,7 @@ function displayANOVAResults()
                 .attr("y", significanceTestResultOffsetTop - 3.0*significanceTestResultStep - tabHeight/2 + yAxisTickTextOffset)
                 .attr("text-anchor", "middle")
                 .attr("font-size", fontSizeTabText + "px")
+                .attr("font-family", "serif")
                 .attr("fill", "black")
                 .attr("id", levels[i])
                 .text(levels[i])
@@ -1383,17 +1344,13 @@ function displayANOVAResults()
                     .attr("id", "border");
     
     //drawing
-    var textTag = sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", significanceTestResultOffsetTop + significanceTestResultStep);
-
-    textTag.append("tspan")
+    sideBar.append("text")
             .attr("x", sideBarWidth/2)
             .attr("y", significanceTestResultOffsetTop + significanceTestResultStep)
             .attr("text-anchor", "middle")
+            .attr("font-size", fontSizeSignificanceTestResults + "px")
             .attr("font-family", "serif")
             .attr("font-style", "italic")
-            .attr("font-size", fontSizeSignificanceTestResults + "px")            
             .attr("fill", "#627bf4")
             .text(testResults["method"])
             .attr("class", "significanceTest");
@@ -1403,17 +1360,13 @@ function displayANOVAResults()
     //things that change for each effect
     drawParameter(testResults["df"][0], parseFloat(testResults["parameter"][0]));
     
-    textTag = sideBar.append("text")
-            .attr("x", sideBarWidth/2)
-            .attr("y", significanceTestResultOffsetTop + 3*significanceTestResultStep);
-
-    textTag.append("tspan")
+    sideBar.append("text")
             .attr("x", sideBarWidth/2)
             .attr("y", significanceTestResultOffsetTop + 3*significanceTestResultStep)
             .attr("text-anchor", "middle")
+            .attr("font-size", fontSizeSignificanceTestResults + "px")
             .attr("font-family", "serif")
             .attr("font-style", "italic")
-            .attr("font-size", fontSizeSignificanceTestResults + "px")            
             .attr("fill", "#627bf4")
             .text(testResults["p"][0])
             .attr("class", "significanceTest");
