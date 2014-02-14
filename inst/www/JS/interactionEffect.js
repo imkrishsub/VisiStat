@@ -122,7 +122,7 @@ function drawInteractionEffectPlot()
         canvas.append("circle")
                     .attr("cx", x)
                     .attr("cy", y)
-                    .attr("r", "5px")
+                    .attr("r", "7px")
                     .attr("fill", color)
                     .attr("id", "c" + Math.floor(i/(interactions.length/levelsOfIndependentVariableColor.length)) + (i%levelsOfIndependentVariableXAxis.length))
                     .attr("class", "effs");     
@@ -143,7 +143,8 @@ function drawInteractionEffectPlot()
                         .attr("y1", circles[j].attr("cy"))
                         .attr("x2", circles[j-1].attr("cx"))
                         .attr("y2", circles[j-1].attr("cy"))
-                        .attr("stroke", colors[i]);
+                        .attr("stroke", colors[i])
+                        .attr("stroke-width", "3px");
             }
         }        
     }
