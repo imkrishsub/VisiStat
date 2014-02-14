@@ -406,7 +406,7 @@ function OnMouseDown(e)
                         .attr("class", "selectAll");
         
                 freezeMouseEvents = true;
-                d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
+                d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.6");
                 d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
             
                 setTimeout(function()
@@ -920,7 +920,7 @@ function OnMouseDown(e)
                     }
         
                     freezeMouseEvents = true;
-                    d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
+                    d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.6");
                     d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
             
                     setTimeout(function()
@@ -1061,7 +1061,7 @@ function OnMouseDown(e)
     
                 drawButtonInSideBar("COMPARE SELECTED DISTRIBUTIONS", "doPairwiseTest");
         
-                d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
+                d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.6");
                 d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
         
                 removeElementsByClassName("compareMean");
@@ -1335,7 +1335,7 @@ function OnMouseDown(e)
                                                                                     .attr("class", "selectAll");
         
                                                                             freezeMouseEvents = true;
-                                                                            d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.2");
+                                                                            d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").transition().duration(500).style("opacity", "0.6");
                                                                             d3.selectAll(".means").transition().duration(500).attr("r", engorgedMeanRadius);
             
                                                                             setTimeout(function()
@@ -2237,7 +2237,7 @@ function OnMouseOver(e)
                 {
                     if(differenceInMeansLines[i].getAttribute("id") != target.id)
                     {
-                        differenceInMeansLines[i].setAttribute("opacity", "0.2");
+                        differenceInMeansLines[i].setAttribute("opacity", "0.6");
                     }
                 }
             }
