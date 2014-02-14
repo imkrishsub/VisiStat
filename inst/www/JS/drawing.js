@@ -1848,7 +1848,7 @@ function displayToolTips()
     d3.select("body").append("label")
                     .text("Select a variable to get started!")
                     .attr("class", "toolTips")
-                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: #3957F1; text-align: center; font-size: " + scaleForWindowSize(32) + "px; font-family: sans-serif; font-weight: bold;");
+                    .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + variableNameHolderPadding) + "px; top: " + (canvasHeight/2 + variableNameHolderPadding) + "px; width: " + (canvasWidth - variableNameHolderPadding) + "px; color: black; text-align: center; font-size: " + scaleForWindowSize(42) + "px; font-family: sans-serif; font-weight: bold;");
 
     d3.select("body").append("img")
                     .attr("class", "toolTips")

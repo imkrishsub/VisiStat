@@ -46,7 +46,7 @@
         
             window.onload = function()
             {  
-               d3.select("body").style("font-size", scaleForWindowSize(100)+"%");
+               d3.select("body").style("font-size", scaleForWindowSize(100)+"%").style("font-family", "sans-serif");
                
                initVariablesInDatasetTypes();
                changeDataset();
@@ -159,7 +159,7 @@
                     <label id="datasetInformationLabel" class="labels">BACKGROUND INFORMATION:</label>
                 </td>
                 <td id="right">
-                    <label id="datasetInformation"></label>
+                    <label id="datasetInformation" font-style="italic"></label>
                 </td>
             </tr>
             
