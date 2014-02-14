@@ -561,10 +561,12 @@ function drawEffectSize(value)
         mainText.append("tspan")
                     .attr("font-family", "serif")
                     .attr("font-style", "italic")
+                    .attr("font-size", effectSizeFontSize + scaleForWindowSize(4) + "px")
                     .text("η");
         mainText.append("tspan")
                     .attr("font-family", "serif")
                     .attr("font-style", "italic")
+                    .attr("font-size", effectSizeFontSize + scaleForWindowSize(4) + "px")
                     .attr("baseline-shift", "super")
                     .text("2");
     }
@@ -582,11 +584,13 @@ function drawEffectSize(value)
         mainText.append("tspan")
                     .attr("font-family", "serif")
                     .attr("font-style", "italic")
+                    .attr("font-size", effectSizeFontSize + scaleForWindowSize(4) + "px")
                     .text("r");
         mainText.append("tspan")
                     .attr("font-family", "serif")
                     .attr("font-style", "italic")
                     .attr("baseline-shift", "super")
+                    .attr("font-size", effectSizeFontSize + scaleForWindowSize(4) + "px")
                     .text("2");
     }
     else
@@ -601,7 +605,7 @@ function drawEffectSize(value)
             .attr("text-anchor", "middle")
             .attr("font-family", "serif")
             .attr("font-style", "italic")
-            .attr("font-size", effectSizeFontSize)
+            .attr("font-size", effectSizeFontSize + scaleForWindowSize(4) + "px")
             .attr("id", "effectSizeText")
             .attr("fill", "black")
             .text(type)
@@ -642,11 +646,13 @@ function drawParameter(DF, parameter)
         mainText.append("tspan")
                     .attr("font-family", "serif")
                     .attr("font-style", "italic")
+                    .attr("font-size", fontSizeSignificanceTestResults + scaleForWindowSize(4) + "px")
                     .text("𝝌");
         
         mainText.append("tspan")
                     .attr("font-family", "serif")
                     .attr("font-style", "italic")
+                    .attr("font-size", fontSizeSignificanceTestResults + scaleForWindowSize(4) + "px")
                     .attr("baseline-shift", "super")
                     .text("2");
         
@@ -668,6 +674,7 @@ function drawParameter(DF, parameter)
             textTag.append("tspan")
                     .attr("font-family", "serif")
                     .attr("font-style", "italic")
+                    .attr("font-size", fontSizeSignificanceTestResults + scaleForWindowSize(4) + "px")
                     .text(type);
 
             textTag.append("tspan")                    
@@ -686,6 +693,7 @@ function drawParameter(DF, parameter)
             textTag.append("tspan")
                     .attr("font-family", "serif")
                     .attr("font-style", "italic")
+                    .attr("font-size", fontSizeSignificanceTestResults + scaleForWindowSize(4) + "px")
                     .text(type);
 
             textTag.append("tspan")
@@ -1077,14 +1085,21 @@ function displayOneSampleTestResults()
             .text(testResults["statistic"])
             .attr("class", "significanceTest");
     
-    sideBar.append("text")
+    var textTag = sideBar.append("text")
             .attr("x", sideBarWidth/2)
             .attr("y", canvasHeight/2 + 3*significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "#627bf4")
-            .text(testResults["p"])
+            .attr("fill", "#627bf4")            
             .attr("class", "significanceTest");
+
+    textTag.append("tspan")
+            .attr("font-family", "serif")
+            .attr("font-style", "italic")
+            .text("p ");
+
+    textTag.append("tspan")
+            .text(testResults["p"]);
     
     
     //Effect sizes
@@ -1187,16 +1202,22 @@ function displaySignificanceTestResults()
     
     drawParameter(testResults["df"], parseFloat(testResults["parameter"]));
     
-    sideBar.append("text")
+    var textTag = sideBar.append("text")
             .attr("x", sideBarWidth/2)
-            .attr("y", significanceTestResultOffsetTop + 3*significanceTestResultStep)
+            .attr("y", canvasHeight/2 + 3*significanceTestResultStep)
             .attr("text-anchor", "middle")
+            .attr("font-size", fontSizeSignificanceTestResults + "px")
+            .attr("fill", "#627bf4")            
+            .attr("class", "significanceTest");
+
+    textTag.append("tspan")
             .attr("font-family", "serif")
             .attr("font-style", "italic")
-            .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "#627bf4")
-            .text(testResults["p"])
-            .attr("class", "significanceTest");
+            .text("p ");
+
+    textTag.append("tspan")
+            .text(testResults["p"]);
+    
     
     
     //Effect sizes
@@ -1378,16 +1399,22 @@ function displayANOVAResults()
     //things that change for each effect
     drawParameter(testResults["df"][0], parseFloat(testResults["parameter"][0]));
     
-    sideBar.append("text")
+    var textTag = sideBar.append("text")
             .attr("x", sideBarWidth/2)
-            .attr("y", significanceTestResultOffsetTop + 3*significanceTestResultStep)
+            .attr("y", canvasHeight/2 + 3*significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
+            .attr("fill", "#627bf4")            
+            .attr("class", "significanceTest");
+
+    textTag.append("tspan")
             .attr("font-family", "serif")
             .attr("font-style", "italic")
-            .attr("fill", "#627bf4")
-            .text(testResults["p"][0])
-            .attr("class", "significanceTest");
+            .text("p ");
+
+    textTag.append("tspan")
+            .text(testResults["p"]);
+    
     
     
     //Effect sizes
@@ -1419,14 +1446,22 @@ function displayCorrelationResults()
             .text(testResults["statistic"])
             .attr("class", "significanceTest");
     
-    sideBar.append("text")
+    var textTag = sideBar.append("text")
             .attr("x", sideBarWidth/2)
-            .attr("y", significanceTestResultOffsetTop + 3*significanceTestResultStep)
+            .attr("y", canvasHeight/2 + 3*significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
-            .attr("fill", "#627bf4")
-            .text(testResults["p"])
+            .attr("fill", "#627bf4")            
             .attr("class", "significanceTest");
+
+    textTag.append("tspan")
+            .attr("font-family", "serif")
+            .attr("font-style", "italic")
+            .text("p ");
+
+    textTag.append("tspan")
+            .text(testResults["p"]);
+    
     
     
     //Effect sizes
