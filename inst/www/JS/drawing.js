@@ -1448,7 +1448,7 @@ function displayCorrelationResults()
     
     var textTag = sideBar.append("text")
             .attr("x", sideBarWidth/2)
-            .attr("y", canvasHeight/2 + 3*significanceTestResultStep)
+            .attr("y", canvasHeight/2 + 4*significanceTestResultStep)
             .attr("text-anchor", "middle")
             .attr("font-size", fontSizeSignificanceTestResults + "px")
             .attr("fill", "#627bf4")            
