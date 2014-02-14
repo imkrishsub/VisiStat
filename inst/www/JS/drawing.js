@@ -232,7 +232,7 @@ function drawButtonInSideBar(buttonText, className, offset)
             .attr("y", canvasHeight - buttonOffset + offset*(buttonPadding/2 + buttonHeight) + buttonHeight/2 + yAxisTickTextOffset)
             .attr("text-anchor", "middle")
             .text(buttonText)
-            .attr("font-size", fontSizeButtonLabel + "px")
+            .attr("font-size", fontSizeButtonLabel + scaleForWindowSize(4) + "px")
             .attr("id", "text")
             .attr("class", className); 
 }

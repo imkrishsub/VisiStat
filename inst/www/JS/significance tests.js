@@ -183,8 +183,8 @@ function performOneWayANOVA(dependentVariable, independentVariable)
         removeElementsByClassName("completeLines");           
 
         displaySignificanceTestResults();      
-        drawButtonInSideBar("DO PAIRWISE POST-HOC TEST", "pairwisePostHoc");
-        drawButtonInSideBar("DO TUKEY'S HSD TEST", "tukeyHSD",1);        
+        drawButtonInSideBar("Do pairwise post-hoc test", "pairwisePostHoc");
+        drawButtonInSideBar("Do Tukey's HSD test", "tukeyHSD",1);        
     });
     
     //if R returns an error, alert the error message
