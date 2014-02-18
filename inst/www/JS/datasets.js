@@ -18,6 +18,7 @@ var datasetInformation = new Object();
     datasetInformation["s1"] = "TBD";
     datasetInformation["s2"] = "TBD";
     datasetInformation["s3"] = "TBD";
+    datasetInformation["correlation"] = "TBD";
 
 var variablesInDataset = new Object();
     variablesInDataset["impact"] = ["subject","condition","verbalMemoryPre","visualMemoryPre","visualMotorSpeedPre","reactionTimePre","impulseControlPre","totalSymptomPre","verbalMemoryPost","visualMemoryPost","visualMotorSpeedPost","reactionTimePost","impulseConstrolPost","totalSymptomPost"]
@@ -36,6 +37,7 @@ var variablesInDataset = new Object();
     variablesInDataset["s1"] = ["ID", "layout", "speed"];
     variablesInDataset["s2"] = ["ID", "layout", "speed"];
     variablesInDataset["s3"] = ["ID", "layout", "speed"];
+    variablesInDataset["correlation"] = ["speed", "errors", "satisfaction"];
  
 var types = ["participant", "dependent", "independent"];
 var variablesInDatasetRow = new Object();
@@ -58,6 +60,7 @@ var variablesInDatasetType = new Object();
     variablesInDatasetType["s1"] = [dataTypes[0], dataTypes[0], dataTypes[3]];
     variablesInDatasetType["s2"] = [dataTypes[0], dataTypes[0], dataTypes[3]];
     variablesInDatasetType["s3"] = [dataTypes[0], dataTypes[0], dataTypes[3]];
+    variablesInDatasetType["correlation"] = [dataTypes[3], dataTypes[3], dataTypes[1]];
     
 function initVariablesInDatasetTypes()
 {  
@@ -77,4 +80,5 @@ function initVariablesInDatasetTypes()
     variablesInDatasetRow["s1"] = [types[0], types[2], types[1]];
     variablesInDatasetRow["s2"] = [types[0], types[2], types[1]];
     variablesInDatasetRow["s3"] = [types[0], types[2], types[1]];
+    variablesInDatasetRow["correlation"] = [types[1], types[1], types[1]];
 }
