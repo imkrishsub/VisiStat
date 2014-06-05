@@ -8,6 +8,7 @@ function loadFile(filePath)
         fileName: sessionStorage.fileName
     }, function(output) 
     {    
+        console.dir(output);
         dataset = output.dataset;
 
         //render the variable names
