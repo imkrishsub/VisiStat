@@ -6,6 +6,8 @@ loadFile <- function(fileName)
     #     dataset <- read.table(filePath, head=T);
     # if(fileType == "csv")
     #     dataset <- read.csv(filePath, head=T);
+
+    fileName = eval(parse(text = fileName));
     
     variableNames = names(fileName);
     
