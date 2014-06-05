@@ -5,7 +5,7 @@ function loadFile(filePath)
     //loads the file and returns the dataset and variable names
     var req = ocpu.rpc("loadFile", 
     {
-        filePath: filePath
+        fileName: sessionStorage.fileName
     }, function(output) 
     {    
         dataset = output.dataset;
