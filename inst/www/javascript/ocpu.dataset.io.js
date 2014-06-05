@@ -18,8 +18,9 @@ function loadFile(filePath)
         variableNames = output.variableNames;
 
         //for each variable, get the data and the IQR
-        for(var i=0; i<output.variableNames.length; i++)
-        {      
+        for(var i=0; i<output.variableNames.length(); i++)
+        {    
+            conso  
             variables[output.variableNames[i]] = new Object();
             MIN[output.variableNames[i]] = new Object();
             MAX[output.variableNames[i]] = new Object();
@@ -44,7 +45,7 @@ function getData(dataset, variableName, level)
     
     variables[variableName][level] = [];
     
-    for(var i=0; i<dataset.length; i++)
+    for(var i=0; i<dataset.length(); i++)
         variables[variableName][level].push(dataset[i][variableName]);  
         
     MIN[variableName][level] = Array.min(variables[variableName][level]);

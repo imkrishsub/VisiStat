@@ -58,14 +58,14 @@ function drawTukeyHSDPlot()
                 .attr("transform", "rotate(-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2 + 6) + ")");
                 
     //X-axis grooves
-    var numberOfGroovesInXAxis = findNumberOfCombinations(levels.length,2);    
+    var numberOfGroovesInXAxis = findNumberOfCombinations(levels.length(),2);    
     var xStep = plotWidth/(numberOfGroovesInXAxis - 1);   
 
     var index = 0;   
         
-    for(var i=0; i<levels.length; i++)
+    for(var i=0; i<levels.length(); i++)
     {
-        for(var j=i+1; j<levels.length; j++)
+        for(var j=i+1; j<levels.length(); j++)
         {
             if(i != j)
             {  
@@ -127,9 +127,9 @@ function drawTukeyHSDPlot()
             .attr("class", "zeroLine");
     
     index = 0;
-    for(var i=0; i<levels.length; i++)
+    for(var i=0; i<levels.length(); i++)
     {
-        for(var j=i+1; j<levels.length; j++)
+        for(var j=i+1; j<levels.length(); j++)
         {
             if(i != j)
             {                            

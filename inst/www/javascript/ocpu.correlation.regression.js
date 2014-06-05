@@ -203,7 +203,7 @@ function getLinearModelCoefficients(outcome, explanatory)
         {
             //we have a categorical variable
             var levels = variables[explanatory]["dataset"].unique().slice().sort();                    
-            var nCoefficients = levels.length - 1;
+            var nCoefficients = levels.length() - 1;
             var coefficients = output.coefficients;                  
     
             testResults["effect-size"] = output.rSquared;
@@ -226,7 +226,7 @@ function getLinearModelCoefficients(outcome, explanatory)
     
             testResults["coefficients"] = new Object();
     
-            for(var i=0; i<levels.length; i++)
+            for(var i=0; i<levels.length(); i++)
             {
                 testResults["coefficients"][levels[i]] = coefficients[i];
             }    
@@ -290,7 +290,7 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
     
         var intercepts = [];
     
-        for(var i=0; i<explanatoryVariables.length; i++)
+        for(var i=0; i<explanatoryVariables.length(); i++)
         {
             if(i == 0)
                 testResults["equation"] = testResults["equation"] + output.coefficients[i] + explanatoryVariables[i];
@@ -298,7 +298,7 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
                 testResults["equation"] = testResults["equation"] + (output.coefficients[i] < 0 ? output.coefficients[i] : "+" + output.coefficients[i]) + explanatoryVariables[i];
             
             var sum=output.intercept;
-            for(var j=0; j<explanatoryVariables.length; j++)
+            for(var j=0; j<explanatoryVariables.length(); j++)
             {
                 if(i != j)
                 {

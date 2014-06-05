@@ -52,7 +52,7 @@ function getStarredHistoryEntryIndices()
     var starImages = document.getElementsByClassName("starImage");
     var starredHistoryEntryIndices = new Array();
 
-    for(var i=0; i<starImages.length; i++)
+    for(var i=0; i<starImages.length(); i++)
     {
         if(starImages[i].getAttribute("href") == "images/star_fill.png")
             starredHistoryEntryIndices.push(i);
@@ -69,14 +69,14 @@ function scaleToHistoryEntry(number)
 //Subset the data based on the different levels of the independent variable
 function subsetDataByLevels(independentVariable)
 {        
-    for(var j=0; j<variableNames.length; j++)
+    for(var j=0; j<variableNames.length(); j++)
     {
         //for every variable
         var uniqueData = variables[independentVariable]["dataset"].unique();
-        for(var k=0; k<uniqueData.length; k++)
+        for(var k=0; k<uniqueData.length(); k++)
         {
             //for every level
-            for(var m=0; m<variables[variableNames[j]]["dataset"].length; m++)
+            for(var m=0; m<variables[variableNames[j]]["dataset"].length(); m++)
             {
                 if(variables[independentVariable]["dataset"][m] == uniqueData[k])
                 {
@@ -96,7 +96,7 @@ function subsetDataByLevels(independentVariable)
                 }
             }
         }
-        for(var k=0; k<uniqueData.length; k++)
+        for(var k=0; k<uniqueData.length(); k++)
         {
             IQR[variableNames[j]][uniqueData[k]] = findIQR(variables[variableNames[j]][uniqueData[k]]);
             CI[variableNames[j]][uniqueData[k]] = findCI(variables[variableNames[j]][uniqueData[k]]);
@@ -114,16 +114,16 @@ function splitThisLevelBy(independentVariableA, independentVariableB, dependentV
     var indepB = variables[independentVariableB]["dataset"];
     var dep = variables[dependentVariable]["dataset"];
     
-    for(var i=0; i<levelsA.length; i++)
+    for(var i=0; i<levelsA.length(); i++)
     {
         splitData[levelsA[i]] = new Object();
-        for(var j=0; j<levelsB.length; j++)
+        for(var j=0; j<levelsB.length(); j++)
         {
             splitData[levelsA[i]][levelsB[j]] = new Array();
         }
     }
     
-    for(var i=0; i<dep.length; i++)
+    for(var i=0; i<dep.length(); i++)
     {
         var indexA = indepA[i];
         var indexB = indepB[i];
@@ -154,7 +154,7 @@ function removeElementById(id)
 function removeElementsByClassName(className)
 {
    elements = document.getElementsByClassName(className);
-   while(elements.length > 0)
+   while(elements.length() > 0)
    {
        elements[0].parentNode.removeChild(elements[0]);
    }
@@ -163,7 +163,7 @@ function removeElementsByClassName(className)
 //Returns the unique elements of the given array
 Array.prototype.unique = function() {
     var arr = new Array();
-    for(var i = 0; i < this.length; i++) {
+    for(var i = 0; i < this.length(); i++) {
         if(!arr.contains(this[i])) {
             arr.push(this[i]);
         }
@@ -173,7 +173,7 @@ Array.prototype.unique = function() {
 
 //Returns true if the given array contains a particular element
 Array.prototype.contains = function(v) {
-   for(var i = 0; i < this.length; i++) {
+   for(var i = 0; i < this.length(); i++) {
        if(this[i] === v) return true;
    }
    return false;
@@ -181,7 +181,7 @@ Array.prototype.contains = function(v) {
 
 //returns the length of an object
 function getObjectLength(obj) {
-    return Object.keys(obj).length;
+    return Object.keys(obj).length();
 }
 
 //VARIABLES AND VISUALISATIONS
@@ -190,11 +190,11 @@ function restrictVisualisationSelection()
 {
     var variableList = sort(currentVariableSelection);    
     
-    switch(variableList["independent"].length)
+    switch(variableList["independent"].length())
     {
         case 0:
                 {
-                    switch(variableList["dependent"].length)
+                    switch(variableList["dependent"].length())
                     {
                         case 1:
                                 {                                
@@ -216,7 +216,7 @@ function restrictVisualisationSelection()
                 }
         case 1:
                 {
-                    switch(variableList["dependent"].length)
+                    switch(variableList["dependent"].length())
                     {
                         case 0:
                                 {                                 
@@ -243,7 +243,7 @@ function restrictVisualisationSelection()
                 }  
         case 2:
                 {
-                    switch(variableList["dependent"].length)
+                    switch(variableList["dependent"].length())
                     {
                         case 0:
                                 {  
@@ -296,7 +296,7 @@ function setColorsForVariables(array, element)
 
 function setColorsForVariablesWithArray(array)
 {   
-    for(var i=0; i<variableNames.length; i++)
+    for(var i=0; i<variableNames.length(); i++)
     {
         var variable = d3.select("#" + variableNames[i] + ".variableNameHolderBack");
         var variableText = d3.select("#" + variableNames[i] + ".variableNameHolderText");    
@@ -308,7 +308,7 @@ function setColorsForVariablesWithArray(array)
         variableText.attr("fill", "black");
     }
     
-    for(var i=0; i<array.length; i++)
+    for(var i=0; i<array.length(); i++)
     {
         var variable = d3.select("#" + array[i] + ".variableNameHolderBack");
         var variableText = d3.select("#" + array[i] + ".variableNameHolderText");    
@@ -329,11 +329,11 @@ function setColorsForVisualisations()
     var visualisations = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot-matrix"];
     validateAll();
     
-    switch(variableList["independent"].length)
+    switch(variableList["independent"].length())
     {
         case 0:
                 {
-                    switch(variableList["dependent"].length)
+                    switch(variableList["dependent"].length())
                     {
                         case 0: 
                                 invalidate([visualisations[0], visualisations[1], visualisations[2],visualisations[3]]);
@@ -351,7 +351,7 @@ function setColorsForVisualisations()
                 }
         case 1:
                 {
-                    switch(variableList["dependent"].length)
+                    switch(variableList["dependent"].length())
                     {
                         case 0: 
                                 invalidate([visualisations[1],visualisations[2],visualisations[3]]);
@@ -370,7 +370,7 @@ function setColorsForVisualisations()
                 }
         case 2:
                 {
-                    switch(variableList["dependent"].length)
+                    switch(variableList["dependent"].length())
                     {
                         case 0: 
                                 invalidate([visualisations[0], visualisations[1]]);
@@ -389,7 +389,7 @@ function setColorsForVisualisations()
     }
     var visualisationButtons = document.getElementsByClassName("visualisationHolderBack");
     
-    for(var i=0; i<visualisationButtons.length; i++)
+    for(var i=0; i<visualisationButtons.length(); i++)
     {      
         if(visualisationButtons[i].getAttribute("id") == currentVisualisationSelection)
         {
@@ -420,7 +420,7 @@ function invalidate(list)
 {
     var visualizations = document.getElementsByClassName("visualisationHolderFront");
     
-    for(var i=0; i<list.length; i++)
+    for(var i=0; i<list.length(); i++)
     {
         var viz = d3.select("#" + list[i] + ".visualisationHolderFront");
         viz.attr("fill", "grey").attr("opacity", "0.75").attr("class", "invalid");        
@@ -453,11 +453,11 @@ function convertIntegersToStrings(numbers)
 {
     var strings = new Array();
     
-    for(var i=0; i<numbers.length; i++)
+    for(var i=0; i<numbers.length(); i++)
     {        
         var string = "";
         
-        for(var j=0; j<numbers[i].toString().length; j++)
+        for(var j=0; j<numbers[i].toString().length(); j++)
         {            
             string = string + stringForNumber[numbers[i].toString().charAt(j)];
         }
@@ -472,7 +472,7 @@ function allVariablesAreNumeric()
 {
     var yeah=true;
     
-    for(var i=0; i<currentVariableSelection.length; i++)
+    for(var i=0; i<currentVariableSelection.length(); i++)
     {
         if(isNaN(variables[currentVariableSelection[i]]["dataset"][0]))
         {
@@ -485,12 +485,12 @@ function allVariablesAreNumeric()
 //PROCESSING DATASET
 function setVariableRoles()
 {    
-    for(var i=0; i<variableNames.length; i++)
+    for(var i=0; i<variableNames.length(); i++)
     {
         variableRoles[variableNames[i]] = sessionStorage.getItem(variableNames[i]);
     }
     
-    for(var i=0; i<variableNames.length; i++)
+    for(var i=0; i<variableNames.length(); i++)
     {
         if(variableRoles[variableNames[i]] == "independent")
         {
@@ -542,15 +542,15 @@ function setVariableRoles()
 
 function setVariableTypes()
 {
-    for(var i=0; i<variableNames.length; i++)
+    for(var i=0; i<variableNames.length(); i++)
     {
-        if(variables[variableNames[i]]["dataset"].unique().length == 2)
+        if(variables[variableNames[i]]["dataset"].unique().length() == 2)
             variableTypes[variableNames[i]] = "binary";
         else
             variableTypes[variableNames[i]] = variableTypesInDataset[sessionStorage.fileName][i];
     }
     
-    for(var i=0; i<variableNames.length; i++)
+    for(var i=0; i<variableNames.length(); i++)
     {
         switch(variableTypes[variableNames[i]])
         {
@@ -577,7 +577,7 @@ function findExperimentalDesign()
 {
     var participantData = [];
     
-    for(var i=0; i<variableNames.length; i++)
+    for(var i=0; i<variableNames.length(); i++)
     {
         if(variableRoles[variableNames[i]] == "participant")
         {
@@ -586,7 +586,7 @@ function findExperimentalDesign()
         }
     }
     
-    if(participantData.length > participantData.unique().length)
+    if(participantData.length() > participantData.unique().length())
     {
         return "within-groups";
     }
@@ -606,7 +606,7 @@ function getNumericVariables()
 {
     var numericVariables = [];
     
-    for(var i=0; i<variableNames.length; i++)
+    for(var i=0; i<variableNames.length(); i++)
     {   
         if((variableTypes[variableNames[i]] != "nominal") && (variableTypes[variableNames[i]] != "ordinal"))
         {
@@ -622,7 +622,7 @@ function getValidIds(labels)
 {
     var validIds = true;
     
-    for(var i=0; i<labels.length; i++)
+    for(var i=0; i<labels.length(); i++)
     {
         if(isString(labels[i]) == false)
         {
@@ -648,7 +648,7 @@ function getValidId(label)
     {
         var string = "";
         
-        for(var j=0; j<label.toString().length; j++)
+        for(var j=0; j<label.toString().length(); j++)
         {            
             string = string + stringForNumber[label.toString().charAt(j)];
         }
@@ -672,7 +672,7 @@ function getSelectedVariables()
     variableList["independent-levels"] = new Array();    
     
     //add the dependent variable
-    for(var i=0; i<currentVariableSelection.length; i++)
+    for(var i=0; i<currentVariableSelection.length(); i++)
     {        
         if(variableRoles[currentVariableSelection[i]] == "dependent")
             variableList["dependent"].push(currentVariableSelection[i]);
@@ -681,9 +681,9 @@ function getSelectedVariables()
     }    
     
     //add the levels of the independent variable
-    if(variableList["independent"].length > 0)
+    if(variableList["independent"].length() > 0)
     {
-        for(var i=0; i<means.length; i++)
+        for(var i=0; i<means.length(); i++)
         {
             if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "green") || ((means[i].getAttribute("fill") == "#008000")))
             {
@@ -697,7 +697,7 @@ function getSelectedVariables()
     else
     {
         variableList["dependent"] = [];
-        for(var i=0; i<means.length; i++)
+        for(var i=0; i<means.length(); i++)
         {
             if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "green"))
             {
@@ -725,7 +725,7 @@ function sort(list)
     variableList["independent"] = new Array();
     variableList["independent-levels"] = new Array();
     
-    for(var i=0; i<list.length; i++)
+    for(var i=0; i<list.length(); i++)
     {
         if(variableRoles[list[i]] == "independent")
         {
@@ -737,26 +737,26 @@ function sort(list)
         }
     }
     
-    if(variableList["independent"].length > 0)
+    if(variableList["independent"].length() > 0)
     {
-        if(variableList["independent"].length == 1)
+        if(variableList["independent"].length() == 1)
         {
             var uniqueData = variables[variableList["independent"][0]]["dataset"].unique();
         
-            for(var i=0; i<uniqueData.length; i++)
+            for(var i=0; i<uniqueData.length(); i++)
             {
                 variableList["independent-levels"].push(uniqueData[i]);
             }
         }
         else
         {
-            for(var i=0; i<variableList["independent"].length; i++)
+            for(var i=0; i<variableList["independent"].length(); i++)
             {
                 variableList["independent-levels"][i] = new Array();
                 
                 var uniqueData = variables[variableList["independent"][i]]["dataset"].unique();
         
-                for(var k=0; k<uniqueData.length; k++)
+                for(var k=0; k<uniqueData.length(); k++)
                 {
                     variableList["independent-levels"][i].push(uniqueData[k]);
                 }
@@ -814,7 +814,7 @@ function printLogList()
 {
     console.log(" - - - - - - - - - - - - - LOG - - - - - - - - - - - - - ");
 
-    for(var i=0; i<logList.length; i++)
+    for(var i=0; i<logList.length(); i++)
     {
         console.log("\n");
         console.dir(logList[i]);
@@ -827,7 +827,7 @@ function getNumberOfSelectedMeans()
     
     var count = 0;
     
-    for(var i=0; i<means.length; i++)
+    for(var i=0; i<means.length(); i++)
     {
         if(means[i].getAttribute("fill") == meanColors["click"])
         {
@@ -851,24 +851,24 @@ Array.prototype.clone = function() {
     return this.slice(0);
 };
 
-Object.prototype.length = function()
+Object.prototype.length() = function()
 {
     console.dir(this);
 
-    console.log(Object.keys(this).length);
-    return Object.keys(this).length;
+    console.log(Object.keys(this).length());
+    return Object.keys(this).length();
 }
 
-Array.prototype.length = function()
+Array.prototype.length() = function()
 {
-    return this.length;
+    return this.length();
 }
 
 function getAllIndependentVariables()
 {
     var IV = new Array();
 
-    for(var i=0; i<variableNames.length; i++)
+    for(var i=0; i<variableNames.length(); i++)
     {
         // console.log("variableRoles[" + variableNames[i] + "] = " + variableRoles[variableNames[i]]);
 
@@ -881,7 +881,7 @@ function getAllIndependentVariables()
 
 function eliminateDuplicates(arr) {
   var i,
-      len=arr.length,
+      len=arr.length(),
       out=[],
       obj={};
  
