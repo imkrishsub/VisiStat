@@ -74,40 +74,38 @@ function getData(dataset, variableName, level)
 //TODO: writes the list of tasks done to a file
 function writeToFileTests(fileName)
 {
-    // var req = ocpu.rpc("writeToFile", 
-    // {
-    //     object: logListTests,
-    //     fileName: fileName
-    // }, function(output) 
-    // {
+    var req = ocpu.rpc("writeToFile", 
+    {
+        object: logListTests,
+        fileName: fileName
+    }, function(output) 
+    {
     
-    // })
+    })
     
-    // //if R returns an error, alert the error message
-    // req.fail(function()
-    // {
-    //     alert("Server error: " + req.responseText);
-    // });
-    return;
+    //if R returns an error, alert the error message
+    req.fail(function()
+    {
+        alert("Server error: " + req.responseText);
+    });
 }
 
 //TODO: writes the list of tasks done to a file
 function writeToFileVisualizations(fileName)
 {
-    // var req = ocpu.rpc("writeToFile", 
-    // {
-    //     object: logListVisualizations,
-    //     fileName: fileName
-    // }, function(output) 
-    // {
+    var req = ocpu.rpc("writeToFile", 
+    {
+        object: logListVisualizations,
+        fileName: fileName
+    }, function(output) 
+    {
     
-    // })
+    })
     
-    // //if R returns an error, alert the error message
-    // req.fail(function()
-    // {
-    //     alert("Server error: " + req.responseText);
-    // });
-    return;
+    //if R returns an error, alert the error message
+    req.fail(function()
+    {
+        alert("Server error: " + req.responseText);
+    });
 }
 
