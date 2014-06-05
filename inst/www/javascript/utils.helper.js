@@ -859,6 +859,11 @@ Object.prototype.length = function()
     return Object.keys(this).length;
 }
 
+Array.prototype.length = function()
+{
+    return this.length;
+}
+
 function getAllIndependentVariables()
 {
     var IV = new Array();
