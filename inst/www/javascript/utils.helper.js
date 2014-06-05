@@ -858,6 +858,8 @@ Array.prototype.clone = function() {
     return this.slice(0);
 };
 
+Object.prototype.length = Object.keys(this).length;
+
 function getAllIndependentVariables()
 {
     var IV = new Array();
