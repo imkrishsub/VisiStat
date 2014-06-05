@@ -1,1 +1,1 @@
-writeToFile <- function(object, fileName){    write.csv(object, paste("/Users/krishsub/Documents/Logs/", fileName, ".txt", sep=""), quote=F, row.names=T);}
+writeToFile <- function(object, fileName){    write.csv(object, paste("~/Documents/Logs/", fileName, ".txt", sep=""), quote=F, row.names=T);}
