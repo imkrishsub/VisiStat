@@ -3,6 +3,8 @@
     // var wd = "/Users/krishsub/Documents/datasets/" + sessionStorage.fileName + ".csv";
     var pathToFile =  wd;
 
+    var dataset = new Object();
+
     // Skeleton
     var width = getWidth();
     var height = getHeight();  
