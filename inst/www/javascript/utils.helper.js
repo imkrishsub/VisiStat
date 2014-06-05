@@ -181,14 +181,7 @@ Array.prototype.contains = function(v) {
 
 //returns the length of an object
 function getObjectLength(obj) {
-    var count = 0;
-
-    for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            ++count;
-    }
-
-    return count;
+    return Object.keys(obj).length;
 }
 
 //VARIABLES AND VISUALISATIONS
