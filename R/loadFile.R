@@ -7,7 +7,7 @@ loadFile <- function(fileName)
     # if(fileType == "csv")
     #     dataset <- read.csv(filePath, head=T);
 
-    fileName = eval(parse(text = fileName));
+    fileName = eval(parse(text = eval(parse(text = paste("data(", fileName, ")", sep="")))));
     
     variableNames = names(fileName);
     
