@@ -851,18 +851,6 @@ Array.prototype.clone = function() {
     return this.slice(0);
 };
 
-Object.prototype.length = function()
-{
-    console.dir(this);
-
-    console.log(Object.keys(this).length);
-    return Object.keys(this).length;
-}
-
-Array.prototype.length = function()
-{
-    return this.length;
-}
 
 function getAllIndependentVariables()
 {
