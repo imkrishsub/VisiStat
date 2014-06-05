@@ -7,6 +7,8 @@ findInteractionEffect <- function(dependentVariable, independentVariables, datas
     
     for(i in 1:length(independentVariables))
     {
+        eval(parse(text = paste("table$", independentVariables[i], " = as.factor(table$", independentVariables[i], ")")));
+        
         if(i != length(independentVariables))
         {
             pretext = paste(pretext, independentVariables[i], " + ", sep="");

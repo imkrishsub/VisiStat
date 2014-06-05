@@ -1,11 +1,15 @@
 Package: StatViz
 Type: OpenCPU Application
-Title: VisiStat
 Version: 0.4
 Date: 20-11-2013
 Author: Krishna Subramanian
 Maintainer: Krishna <krishna.prasath.subramanian@rwth-aachen.de>
 Description: An application that allows users to statistics without much previous knowledge by showing the statistics in the context of visualizations.
-LazyData: yes
-Suggests: opencpu (>= 1.2)
-
+Imports: 
+	ez,
+	car,
+	effects,
+	coin,
+	MBESS,
+	ltm
+Lazyload: yes
