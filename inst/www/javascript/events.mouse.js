@@ -166,7 +166,7 @@ function OnMouseDown(e)
                                     .attr("class", "plotHelp");  
                     }
                     
-                    if(document.getElementsByClassName("significanceTest").length() > 0)
+                    if(document.getElementsByClassName("significanceTest").length > 0)
                     {
                         resultsCanvas.append("rect")
                                     .attr("x", scaleForWindowSize(10))
@@ -294,14 +294,14 @@ function OnMouseDown(e)
                     {
                         imageHolder.attr("xlink:href", "images/checkbox_checked.png");
 
-                        var sizeBefore = researchQuestionsSelectedForReport.length();
+                        var sizeBefore = researchQuestionsSelectedForReport.length;
                         var modifiedArray = researchQuestionsSelectedForReport.slice(0);
                         modifiedArray.push(listOfResearchQuestions[id]);
 
                         console.log("\n\narrayBefore = [" + researchQuestionsSelectedForReport + "]");
                         console.log("arrayAfter = [" + modifiedArray + "]");
 
-                        var sizeAfter = (eliminateDuplicates(modifiedArray)).length();
+                        var sizeAfter = (eliminateDuplicates(modifiedArray)).length;
 
                         console.log("after eliminateDuplicates = [" + eliminateDuplicates(modifiedArray) + "]");
 
@@ -437,7 +437,7 @@ function OnMouseDown(e)
                 researchQuestionsSelectedForReport = [];
                 variablesSelectedForReport = [];
 
-                for(var i=0; i<starredHistoryEntryIndices.length(); i++)
+                for(var i=0; i<starredHistoryEntryIndices.length; i++)
                 {
                     var image = d3.select("#image" + starredHistoryEntryIndices[i] + ".checkboxImage");                
 
@@ -457,7 +457,7 @@ function OnMouseDown(e)
 
                 if ( reportPanel.hasChildNodes() )
                 {
-                    while ( reportPanel.childNodes.length() >= 1 )
+                    while ( reportPanel.childNodes.length >= 1 )
                     {
                         reportPanel.removeChild( reportPanel.firstChild );       
                     } 
@@ -472,7 +472,7 @@ function OnMouseDown(e)
 
                 if ( reportPanel.hasChildNodes() )
                 {
-                    while ( reportPanel.childNodes.length() >= 1 )
+                    while ( reportPanel.childNodes.length >= 1 )
                     {
                         reportPanel.removeChild( reportPanel.firstChild );       
                     } 
@@ -482,7 +482,7 @@ function OnMouseDown(e)
                 console.log("researchQuestionsSelectedForReport = [" + researchQuestionsSelectedForReport + "]");               
                 console.dir(variablesSelectedForReport);
 
-                for(var i=0; i<testTypesSelectedForReport.length(); i++)                    
+                for(var i=0; i<testTypesSelectedForReport.length; i++)                    
                 {
                     (function(i) 
                     {
@@ -511,7 +511,7 @@ function OnMouseDown(e)
                             else
                                 generateReport(researchQuestionsSelectedForReport[i], testTypesSelectedForReport[i], "false"); // Generate report (text and image)
                         
-                            if(i == testTypesSelectedForReport.length() - 1)
+                            if(i == testTypesSelectedForReport.length - 1)
                             {                            
                                 checkForOverTesting();
                             }
@@ -532,13 +532,13 @@ function OnMouseDown(e)
                 var id; // ID of one of the entries
                 var selectedLevels = new Array();
 
-                for(var i=0; i<historyEntries.length(); i++)
+                for(var i=0; i<historyEntries.length; i++)
                 {
                     if(historyEntries[i].getAttribute("opacity") == "0.6")
                     {
                         id = removeAlphabetsFromString(historyEntries[i].getAttribute("id")); 
 
-                        for(var j=0; j<variableLists[id].length(); j++)
+                        for(var j=0; j<variableLists[id].length; j++)
                         {   
                             if(selectedLevels.indexOf(variableLists[id][j]) == -1)                   
                                 selectedLevels.push(variableLists[id][j]);
@@ -637,7 +637,7 @@ function OnMouseDown(e)
                         var completeLines = document.getElementsByClassName("completeLines");
                         var lineBefore, lineAfter;
             
-                        for(var i=0; i<completeLines.length(); i++)
+                        for(var i=0; i<completeLines.length; i++)
                         {
                             if(completeLines[i].getAttribute("x1") == meanCircle.attr("cx"))
                             {
@@ -676,7 +676,7 @@ function OnMouseDown(e)
                             removeElementsByClassName("incompleteLines");
                             var canvas = d3.select("#plotCanvas");
                     
-                            if(document.getElementsByClassName("completeLines").length() > 0)
+                            if(document.getElementsByClassName("completeLines").length > 0)
                             {
                                 var endingLine = findEndingLine();
                         
@@ -712,7 +712,7 @@ function OnMouseDown(e)
                 
                             var canvas = d3.select("#plotCanvas");
             
-                            if(document.getElementsByClassName("completeLines").length() > 0)
+                            if(document.getElementsByClassName("completeLines").length > 0)
                             {
                                 var endingLine = findEndingLine();
                         
@@ -748,7 +748,7 @@ function OnMouseDown(e)
                     }
                     else
                     {
-                        if(document.getElementsByClassName("means").length() == 1)
+                        if(document.getElementsByClassName("means").length == 1)
                         {
                             //if there is only mean (one sample tests)
                             if(meanCircle.attr("fill") == meanColors["hover"])
@@ -761,13 +761,13 @@ function OnMouseDown(e)
                                 meanCircle.attr("fill", meanColors["normal"]);
                             }
                         }
-                        else if(document.getElementsByClassName("completeLines").length() < (document.getElementsByClassName("means").length() - 1))
+                        else if(document.getElementsByClassName("completeLines").length < (document.getElementsByClassName("means").length - 1))
                         {
                             //if there are 2+ means            
                             meanCircle.attr("fill", meanColors["click"]);
         
                             //check if we are finishing an incomplete line here
-                            if(document.getElementsByClassName("incompleteLines").length() > 0)
+                            if(document.getElementsByClassName("incompleteLines").length > 0)
                             {
                                 var incompleteLines = d3.selectAll(".incompleteLines");
                 
@@ -781,7 +781,7 @@ function OnMouseDown(e)
                             }
                             var means = document.getElementsByClassName("means");
                     
-                            if(document.getElementsByClassName("completeLines").length() < (document.getElementsByClassName("means").length() - 1))
+                            if(document.getElementsByClassName("completeLines").length < (document.getElementsByClassName("means").length - 1))
                             {
                                 var canvas = d3.select("#plotCanvas");
             
@@ -822,13 +822,13 @@ function OnMouseDown(e)
                 var selectedMeans = []; 
                 var variableList = getSelectedVariables();
         
-                for(var i=0; i<means.length(); i++)
+                for(var i=0; i<means.length; i++)
                 {
                     if(means[i].getAttribute("fill") == meanColors["click"])
                         selectedMeans.push(means[i]);
                 }
         
-                if(selectedMeans.length() == 2 || selectedMeans.length() == means.length())
+                if(selectedMeans.length == 2 || selectedMeans.length == means.length)
                 {
                 
                     compareMeans();                    
@@ -997,13 +997,13 @@ function OnMouseDown(e)
                 var selectedMeans = []; 
                 var variableList = getSelectedVariables();
         
-                for(var i=0; i<means.length(); i++)
+                for(var i=0; i<means.length; i++)
                 {
                     if(means[i].getAttribute("fill") == meanColors["click"])
                         selectedMeans.push(means[i]);
                 }
         
-                if(selectedMeans.length() != 2)
+                if(selectedMeans.length != 2)
                 {
                     alert("select two means then press compare");
                 }
@@ -1024,7 +1024,7 @@ function OnMouseDown(e)
             
                 var variableList = sort(currentVariableSelection);
         
-                for(var i=0; i<variableList["independent-levels"].length(); i++)
+                for(var i=0; i<variableList["independent-levels"].length; i++)
                 {    
                     applyNormalityTransform(variableList["dependent"][0], variableList["independent-levels"][i], false);
                 }
@@ -1044,12 +1044,12 @@ function OnMouseDown(e)
                 console.log("not transforming...");
                 d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight);
             
-                if(variableList["independent"].length() == 1)
+                if(variableList["independent"].length == 1)
                 {
                     if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                     {
                         //within-group design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {
                             //wilcoxon signed-rank
                             if(pairwiseComparisons)
@@ -1066,7 +1066,7 @@ function OnMouseDown(e)
                     else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
                         //between-groups design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {                    
                             //Mann-Whitney U test
                             if(pairwiseComparisons)
@@ -1081,7 +1081,7 @@ function OnMouseDown(e)
                         }
                     }
                 }      
-                else if(variableList["independent"].length() == 2)
+                else if(variableList["independent"].length == 2)
                 {
                     if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                     {
@@ -1091,7 +1091,7 @@ function OnMouseDown(e)
                     else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
                         //between-groups design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {
                             var groups = getGroupsForColourBoxPlotData();
                             //Mann-Whitney U test
@@ -1130,14 +1130,14 @@ function OnMouseDown(e)
 
                 var variableList = getSelectedVariables();
                             
-                if(variableList["independent"].length() == 1)
+                if(variableList["independent"].length == 1)
                 {
                     if(experimentalDesign == "between-groups")
                     {
                         performNormalityTests();
                 
                         //between-groups design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {
                             //2 variables
                             if(pairwiseComparisons)
@@ -1154,7 +1154,7 @@ function OnMouseDown(e)
                 }
                 else
                 {
-                    if(experimentalDesign == "between-groups" && variableList["independent-levels"].length() == 2)
+                    if(experimentalDesign == "between-groups" && variableList["independent-levels"].length == 2)
                     {
                         performNormalityTests();
                         
@@ -1258,7 +1258,7 @@ function OnMouseDown(e)
                                     .attr("class", "plotHelp");  
                     }
                     
-                    if(document.getElementsByClassName("significanceTest").length() > 0)
+                    if(document.getElementsByClassName("significanceTest").length > 0)
                     {
                         sideBar.append("rect")
                                     .attr("x", scaleForWindowSize(10))
@@ -1490,14 +1490,14 @@ function OnMouseDown(e)
                     var explanatoryVariables = [];
                     var outcomeVariable = choice;
             
-                    for(var i=0; i<currentVariableSelection.length(); i++)
+                    for(var i=0; i<currentVariableSelection.length; i++)
                     {
                         if(currentVariableSelection[i] != outcomeVariable)
                         {
                             explanatoryVariables.push(currentVariableSelection[i]);
                         }
                     }
-                    if(explanatoryVariables.length() == 1)
+                    if(explanatoryVariables.length == 1)
                     {
                         getLinearModelCoefficients(outcomeVariable, explanatoryVariables[0]);
                         currentVisualisationSelection = "Scatterplot";
@@ -1574,11 +1574,11 @@ function OnMouseDown(e)
                 states.push({variables: currentVariableSelection, substate: "other"});
                 console.dir(states);
         
-                if(variableList["independent"].length() == 1)
+                if(variableList["independent"].length == 1)
                 {
                     performTukeyHSDTestOneIndependentVariable(variableList["dependent"][0], variableList["independent"][0]);
                 }
-                else if(variableList["independent"].length() == 2)
+                else if(variableList["independent"].length == 2)
                 {
                     performTukeyHSDTestTwoIndependentVariables(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);
                 }
@@ -1616,7 +1616,7 @@ function OnMouseDown(e)
                                     
                                             var dependentVariable = variableList["dependent"][0];
         
-                                            for(var i=0; i<variableList["independent-levels"].length(); i++)
+                                            for(var i=0; i<variableList["independent-levels"].length; i++)
                                             {   
                                                 if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
                                                 {                                
@@ -1652,7 +1652,7 @@ function OnMouseDown(e)
                                             
                                             var homogeneity = d3.select("#homogeneity.ticks").attr("display") == "inline" ? true : false;
         
-                                            for(var i=0; i<variableList["independent"].length(); i++)
+                                            for(var i=0; i<variableList["independent"].length; i++)
                                             {                   
                                                 d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight*1.5);
         
@@ -1875,7 +1875,7 @@ function OnMouseMove(e)
     if(_dragElement != undefined)
     {
         var incompleteLines = d3.selectAll(".incompleteLines");
-        // if((_dragElement.className.baseVal == 'means') && (document.getElementsByClassName("incompleteLines").length() > 0) && incompleteLines.attr("stroke") == meanColors["normal"])
+        // if((_dragElement.className.baseVal == 'means') && (document.getElementsByClassName("incompleteLines").length > 0) && incompleteLines.attr("stroke") == meanColors["normal"])
 //         {
 //             if(!fullScreen)
 //             {
@@ -2347,7 +2347,7 @@ function OnMouseOver(e)
                 }   
                 else
                 {                
-                    if((document.getElementsByClassName("completeLines").length()+1 <= (document.getElementsByClassName("means").length())) || (document.getElementsByClassName("means").length() == 1))
+                    if((document.getElementsByClassName("completeLines").length+1 <= (document.getElementsByClassName("means").length)) || (document.getElementsByClassName("means").length == 1))
                     {      
                         meanCircle.attr("cursor","pointer");
                     
@@ -2361,7 +2361,7 @@ function OnMouseOver(e)
             
                             var incompleteLines = d3.selectAll(".incompleteLines");
             
-                            if(document.getElementsByClassName("incompleteLines").length() > 0)
+                            if(document.getElementsByClassName("incompleteLines").length > 0)
                             {
                                 incompleteLines.attr("x2", meanCircle.attr("cx"))
                                                 .attr("y2", meanCircle.attr("cy"))
@@ -2427,9 +2427,9 @@ function OnMouseOver(e)
                 var text = new Array();
         
                 //Get data, minimums and maximums for each selected variable
-                for(var i=0; i<currentVariableSelection.length(); i++)
+                for(var i=0; i<currentVariableSelection.length; i++)
                 {   
-                    if(variableRoles[currentVariableSelection[i]] == false && currentVariableSelection.length() > 1)
+                    if(variableRoles[currentVariableSelection[i]] == false && currentVariableSelection.length > 1)
                     {
                         // Levels are needed when we have a independent variable and one or more dependent variables
                         levels = variables[currentVariableSelection[i]]["dataset"].unique();            
@@ -2437,7 +2437,7 @@ function OnMouseOver(e)
                     }
                 }
     
-                for(var i=0; i<currentVariableSelection.length(); i++)
+                for(var i=0; i<currentVariableSelection.length; i++)
                 {        
                     if(altScatterPlot)
                     {
@@ -2445,7 +2445,7 @@ function OnMouseOver(e)
                         {
                             //for the dependent variable(s)
                 
-                            for(var j=0; j<levels.length(); j++)
+                            for(var j=0; j<levels.length; j++)
                             {
                                 // for each level of the independent variable, find the dependent variables                    
                     
@@ -2798,7 +2798,7 @@ function OnMouseOver(e)
         
                 var differenceInMeansLines = document.getElementsByClassName("differenceInMeans");
         
-                for(var i=0; i<differenceInMeansLines.length(); i++)
+                for(var i=0; i<differenceInMeansLines.length; i++)
                 {
                     if(differenceInMeansLines[i].getAttribute("id") != target.id)
                     {
@@ -3011,7 +3011,7 @@ function OnMouseOut(e)
         
     //         var incompleteLines = d3.selectAll(".incompleteLines");
     //             
-    //         if(document.getElementsByClassName("incompleteLines").length() > 0)
+    //         if(document.getElementsByClassName("incompleteLines").length > 0)
     //         {
     //             incompleteLines.attr("stroke", meanColors["normal"]);
     //         }   
@@ -3083,7 +3083,7 @@ function OnMouseOut(e)
         
             var differenceInMeansLines = document.getElementsByClassName("differenceInMeans");
         
-            for(var i=0; i<differenceInMeansLines.length(); i++)
+            for(var i=0; i<differenceInMeansLines.length; i++)
             {
                 if(differenceInMeansLines[i].getAttribute("id") != target.id)
                 {

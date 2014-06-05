@@ -35,14 +35,14 @@ function makeHistogram()
     
     var variableList = sort(currentVariableSelection);
     
-    if(currentVariableSelection.length() > 1)
+    if(currentVariableSelection.length > 1)
     {
         //if more than 2 variables are selected
-        switch(variableList["independent"].length())
+        switch(variableList["independent"].length)
         {
             case 0:
                     {
-                        for(var i=0; i<variableList["dependent"].length(); i++)
+                        for(var i=0; i<variableList["dependent"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][i]]["dataset"];      
                             varNames[i] = variableList["dependent"][i];      
@@ -55,7 +55,7 @@ function makeHistogram()
             case 1:
                     {
                         altHistogram = true;
-                        for(var i=0; i<variableList["independent-levels"].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][0]][variableList["independent-levels"][i]];
                             varNames[i] = variableList["dependent"][0] + "[" + variableList["independent-levels"][i] + "]";
@@ -80,9 +80,9 @@ function makeHistogram()
     
     
     // combine the collected data
-    for(var i=0; i<data.length(); i++)
+    for(var i=0; i<data.length; i++)
     {
-        for(var j=0; j<data[i].length(); j++)
+        for(var j=0; j<data[i].length; j++)
         {
             combinedData.push(data[i][j]);
         }
@@ -107,19 +107,19 @@ function makeHistogram()
     
     var ids = getValidIds(labels);
     
-    if(combinedData.unique().length() < nBins)
+    if(combinedData.unique().length < nBins)
     {
         //bar chart        
         var uniqueData = combinedData.unique();
         
-        var numberOfGroovesInXAxis = uniqueData.length();
+        var numberOfGroovesInXAxis = uniqueData.length;
     
-        var slice = (max - min)/uniqueData.length();    
+        var slice = (max - min)/uniqueData.length;    
     
         var bins = new Object();
     
         // Set all bin count to zero
-        for(var i=0; i<labels.length(); i++)
+        for(var i=0; i<labels.length; i++)
         {
             bins[labels[i]] = new Array();
             for(var j=0; j<nBins; j++)
@@ -129,14 +129,14 @@ function makeHistogram()
         }
     
         // Update counts
-        for(var i=0; i<labels.length(); i++)
+        for(var i=0; i<labels.length; i++)
         {
-            for(var j=0; j<data[i].length(); j++)
+            for(var j=0; j<data[i].length; j++)
             {           
                 var index = Math.ceil((data[i][j] - min)/slice);
             
-                if(index >= uniqueData.length())
-                    index = uniqueData.length() - 1;
+                if(index >= uniqueData.length)
+                    index = uniqueData.length - 1;
                 
                 bins[labels[i]][uniqueData.indexOf(data[i][j])]++;         
             }
@@ -145,15 +145,15 @@ function makeHistogram()
         var binMaxs = new Array();
         var binMins = new Array();
     
-        for(var i=0; i<labels.length(); i++)
+        for(var i=0; i<labels.length; i++)
         {
             binMaxs[i] = Array.max(bins[labels[i]]);        
         }
         
          // Find ticks   
         var nGroovesY = findTicksForHistogramFrequencyAxis(Array.max(binMaxs));    
-        var individualPlotHeight = labels.length() > 1 ? (plotHeight/labels.length())-axesOffset : plotHeight;
-        yDiffForPlots = labels.length() > 1 ? (plotHeight/labels.length()) : plotHeight;
+        var individualPlotHeight = labels.length > 1 ? (plotHeight/labels.length)-axesOffset : plotHeight;
+        yDiffForPlots = labels.length > 1 ? (plotHeight/labels.length) : plotHeight;
         drawHistogramLegends(varNames);
         
         nGroovesY = Math.ceil(nGroovesY * (individualPlotHeight/plotHeight));
@@ -206,7 +206,7 @@ function makeHistogram()
     
         var yStep;
     
-        for(i=0; i<labels.length(); i++)
+        for(i=0; i<labels.length; i++)
         {
             yStep = individualPlotHeight/(nGroovesY-1);
             
@@ -241,9 +241,9 @@ function makeHistogram()
         }
     
         //bars
-        for(i=0; i<labels.length(); i++)
+        for(i=0; i<labels.length; i++)
         {
-            for(j=0; j<uniqueData.length()+2; j++)
+            for(j=0; j<uniqueData.length+2; j++)
             {           
                 if(bins[labels[i]][j] != 0)
                 {                    
@@ -263,7 +263,7 @@ function makeHistogram()
                             .attr("x", LEFT + j*xStep)
                             .attr("y", BOTTOM - (bins[labels[i]][j]/Array.max(binMaxs))*individualPlotHeight - i*yDiffForPlots)
                             .attr("height", (bins[labels[i]][j]/Array.max(binMaxs))*individualPlotHeight)
-                            .attr("width", plotWidth/uniqueData.length())          
+                            .attr("width", plotWidth/uniqueData.length)          
                             .attr("fill", colors[i])         
                             .attr("id", ids[i] + j)
                             .attr("class", "bins");
@@ -283,7 +283,7 @@ function makeHistogram()
         var canvas = d3.select("#plotCanvas");
     
         // Set all bin count to zero
-        for(var i=0; i<labels.length(); i++)
+        for(var i=0; i<labels.length; i++)
         {
             bins[labels[i]] = new Array();
             for(var j=0; j<nBins; j++)
@@ -293,9 +293,9 @@ function makeHistogram()
         }
     
         // Update counts
-        for(var i=0; i<labels.length(); i++)
+        for(var i=0; i<labels.length; i++)
         {
-            for(var j=0; j<data[i].length(); j++)
+            for(var j=0; j<data[i].length; j++)
             {           
                 var index = Math.ceil((data[i][j] - min)/slice);
             
@@ -309,15 +309,15 @@ function makeHistogram()
         var binMaxs = new Array();
         var binMins = new Array();
     
-        for(var i=0; i<labels.length(); i++)
+        for(var i=0; i<labels.length; i++)
         {
             binMaxs[i] = Array.max(bins[labels[i]]);        
         }
         
          // Find ticks   
         var nGroovesY = findTicksForHistogramFrequencyAxis(Array.max(binMaxs));  
-        var individualPlotHeight = labels.length() > 1 ? (plotHeight/labels.length())-axesOffset : plotHeight;
-        yDiffForPlots = labels.length() > 1 ? (plotHeight/labels.length()) : plotHeight;
+        var individualPlotHeight = labels.length > 1 ? (plotHeight/labels.length)-axesOffset : plotHeight;
+        yDiffForPlots = labels.length > 1 ? (plotHeight/labels.length) : plotHeight;
 
         drawHistogramLegends(varNames);
         
@@ -366,7 +366,7 @@ function makeHistogram()
         }
 
         var yStep;
-        for(i=0; i<labels.length(); i++)
+        for(i=0; i<labels.length; i++)
         {
             yStep = individualPlotHeight/(nGroovesY-1);
             
@@ -400,7 +400,7 @@ function makeHistogram()
         }
         
         //bars
-        for(i=0; i<labels.length(); i++)
+        for(i=0; i<labels.length; i++)
         {
             for(j=0; j<nBins; j++)
             {           
@@ -442,7 +442,7 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
     var min;
     var max;
     
-    if(variableList["independent"].length() == 2)
+    if(variableList["independent"].length == 2)
     {        
         var levels = level.split("-");
         
@@ -476,7 +476,7 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
     }  
 
     // Binning
-    for(var i=0; i<data.length(); i++)
+    for(var i=0; i<data.length; i++)
     {
         var index = Math.ceil((data[i] - min)/slice);
         
@@ -519,7 +519,7 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
 
     //grooves
 
-    if(document.getElementsByClassName("means").length() <= 4)
+    if(document.getElementsByClassName("means").length <= 4)
     {
         for(i=0; i<=numberOfGroovesInXAxis; i++)
         {
@@ -597,7 +597,7 @@ function drawHistogramLegends(varNames)
     
     var xStep = (plotPanelWidth - 3*histLegendSize)/5;
     
-    for(var i=0; i<varNames.length(); i++)
+    for(var i=0; i<varNames.length; i++)
     {
         canvas.append("rect")
                 .attr("x", (5-i)*xStep)
@@ -655,7 +655,7 @@ function highlightBinWithId(ID)
     var bins = document.getElementsByClassName("bins");
     var binTexts = document.getElementsByClassName("binTexts");
     
-    for(var i=0; i<bins.length(); i++)
+    for(var i=0; i<bins.length; i++)
     {    
         if(removeAlphabetsFromString(bins[i].getAttribute("id")) != removeAlphabetsFromString(ID))
         {
@@ -667,7 +667,7 @@ function highlightBinWithId(ID)
             
             binText = d3.select("#" + bins[i].getAttribute("id") + ".binTexts");
             
-            if(binText.length() > 0)
+            if(binText.length > 0)
             {                
                 binText.attr("display", "inline");                
             }
@@ -681,13 +681,13 @@ function unhighlightBins()
     var bins = document.getElementsByClassName("bins");
     var binTexts = document.getElementsByClassName("binTexts");
     
-    for(var i=0; i<bins.length(); i++)
+    for(var i=0; i<bins.length; i++)
     {   
         bins[i].setAttribute("opacity", "1.0");
 
         binTexts = d3.selectAll(".binTexts");
             
-        if(binTexts.length() > 0)
+        if(binTexts.length > 0)
         {
             binTexts.attr("display", "none");
         }

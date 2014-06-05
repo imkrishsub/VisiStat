@@ -20,7 +20,7 @@ function makeScatterplotMatrix()
     removeElementsByClassName("regression");
     
     //any number of dependent variables -> should work
-    var numberOfVariables = currentVariableSelection.length();
+    var numberOfVariables = currentVariableSelection.length;
     
     // Scatterplot matrix
     shortAxesOffset = axesOffset/numberOfVariables;
@@ -85,7 +85,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
     
     //any number of dependent variables -> should work
     var explanatoryVariables = [];
-    for(var i=0; i<currentVariableSelection.length(); i++)
+    for(var i=0; i<currentVariableSelection.length; i++)
     {
         if(currentVariableSelection[i] != outcomeVariable)
         {
@@ -93,7 +93,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
         }
     }
     
-    var numberOfVariables = currentVariableSelection.length() - 1;
+    var numberOfVariables = currentVariableSelection.length - 1;
     
     // Scatterplot matrix
     shortAxesOffset = axesOffset/numberOfVariables;
@@ -186,12 +186,12 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         minY = MIN[variableY]["dataset"];
     }
     
-    var numberOfGroovesInXAxis = uniqueDataX.length() <= shortNumberOfGrooves ? uniqueDataX.length() : shortNumberOfGrooves;
-    var numberOfGroovesInYAxis = uniqueDataY.length() <= shortNumberOfGrooves ? uniqueDataY.length() : shortNumberOfGrooves;
+    var numberOfGroovesInXAxis = uniqueDataX.length <= shortNumberOfGrooves ? uniqueDataX.length : shortNumberOfGrooves;
+    var numberOfGroovesInYAxis = uniqueDataY.length <= shortNumberOfGrooves ? uniqueDataY.length : shortNumberOfGrooves;
     
     //y-axis grooves
-    var xStep = uniqueDataX.length() <= shortNumberOfGrooves ? shortWidth/numberOfGroovesInXAxis : shortWidth/(numberOfGroovesInXAxis - 1);
-    var yStep = uniqueDataY.length() <= shortNumberOfGrooves ? shortHeight/numberOfGroovesInYAxis : shortHeight/(numberOfGroovesInYAxis - 1);
+    var xStep = uniqueDataX.length <= shortNumberOfGrooves ? shortWidth/numberOfGroovesInXAxis : shortWidth/(numberOfGroovesInXAxis - 1);
+    var yStep = uniqueDataY.length <= shortNumberOfGrooves ? shortHeight/numberOfGroovesInYAxis : shortHeight/(numberOfGroovesInYAxis - 1);
     
     var xSlice = (maxX - minX)/(shortNumberOfGrooves-1);    
     var ySlice = (maxY - minY)/(shortNumberOfGrooves-1);  
@@ -273,7 +273,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         
         var textAnchor = "middle";
         
-        if(uniqueDataX.length() <= shortNumberOfGrooves)
+        if(uniqueDataX.length <= shortNumberOfGrooves)
         {
             axisText = uniqueDataX[i];
             textPosition = x + xStep/2 + i*xStep;
@@ -314,7 +314,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         textPosition = y - i*yStep;                  
         var offset = 0;
         
-        if(uniqueDataY.length() <= shortNumberOfGrooves)
+        if(uniqueDataY.length <= shortNumberOfGrooves)
         {
             axisText = uniqueDataY[i];
             textPosition = y - yStep/2 - i*yStep;                    
@@ -349,16 +349,16 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
                     .attr("class", "yAxisGrooveText");
     }
     
-    for(var i=0; i<dataX.length(); i++)
+    for(var i=0; i<dataX.length; i++)
     {
         var X,Y;
         
-        if(isNaN(dataX[0]) || uniqueDataX.length() <= shortNumberOfGrooves)
+        if(isNaN(dataX[0]) || uniqueDataX.length <= shortNumberOfGrooves)
             X = x + uniqueDataX.indexOf(dataX[i])*xStep + xStep/2;    
         else
             X = x + convertToRange(dataX[i], minX, maxX)*shortWidth;
             
-        if(isNaN(dataY[0]) || uniqueDataY.length() <= shortNumberOfGrooves)
+        if(isNaN(dataY[0]) || uniqueDataY.length <= shortNumberOfGrooves)
             Y = y - uniqueDataY.indexOf(dataY[i])*yStep - yStep/2;
         else
             Y = y - convertToRange(dataY[i], minY, maxY)*shortHeight;

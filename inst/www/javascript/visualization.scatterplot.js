@@ -34,11 +34,11 @@ function makeScatterplot()
 
     var canvas = d3.select("#plotCanvas");
     
-    if(currentVariableSelection.length() == 3)
+    if(currentVariableSelection.length == 3)
     {
         var variableList = getSelectedVariables();
         
-        if(variableList["dependent"].length() == 2 && variableList["independent"].length() == 1)
+        if(variableList["dependent"].length == 2 && variableList["independent"].length == 1)
         {
             if(currentVariableSelection[2] != variableList["independent"][0])
             {
@@ -56,7 +56,7 @@ function makeScatterplot()
                 }
             }
         }
-        else if(variableList["independent"].length() == 2 && variableList["dependent"].length() == 1)
+        else if(variableList["independent"].length == 2 && variableList["dependent"].length == 1)
         {
             if((currentVariableSelection[2] != variableList["independent"][0]) && (currentVariableSelection[2] != variableList["independent"][1]))
             {
@@ -85,14 +85,14 @@ function makeScatterplot()
     var colorsForPlot = new Object();
     var varNames = [];
     
-    if((currentVariableSelection.length() == 3))
+    if((currentVariableSelection.length == 3))
     {
-        if(parseInt(variables[currentVariableSelection[2]]["dataset"].unique().length()) <= 10)
+        if(parseInt(variables[currentVariableSelection[2]]["dataset"].unique().length) <= 10)
         {
             colorData = variables[currentVariableSelection[2]]["dataset"];
             uniqueColorData = colorData.unique();
         
-            for(var i=0; i<uniqueColorData.length(); i++)
+            for(var i=0; i<uniqueColorData.length; i++)
             {
                 colorsForPlot[uniqueColorData[i]] = colors[i];
                 varNames[i] = uniqueColorData[i];
@@ -147,12 +147,12 @@ function makeScatterplot()
     uniqueDataX = data["X"].unique().sort();
     uniqueDataY = data["Y"].unique().sort();  
     
-    var numberOfGroovesInXAxis = uniqueDataX.length() > numberOfGrooves ? numberOfGrooves : uniqueDataX.length();
-    var numberOfGroovesInYAxis = uniqueDataY.length() > numberOfGrooves ? numberOfGrooves : uniqueDataY.length();
+    var numberOfGroovesInXAxis = uniqueDataX.length > numberOfGrooves ? numberOfGrooves : uniqueDataX.length;
+    var numberOfGroovesInYAxis = uniqueDataY.length > numberOfGrooves ? numberOfGrooves : uniqueDataY.length;
     
     //y-axis grooves
-    xStep = uniqueDataX.length() <= numberOfGrooves ? plotWidth/numberOfGroovesInXAxis : plotWidth/(numberOfGroovesInXAxis - 1);
-    yStep = uniqueDataY.length() <= numberOfGrooves ? plotHeight/numberOfGroovesInYAxis : plotHeight/(numberOfGroovesInYAxis - 1);
+    xStep = uniqueDataX.length <= numberOfGrooves ? plotWidth/numberOfGroovesInXAxis : plotWidth/(numberOfGroovesInXAxis - 1);
+    yStep = uniqueDataY.length <= numberOfGrooves ? plotHeight/numberOfGroovesInYAxis : plotHeight/(numberOfGroovesInYAxis - 1);
     
     var xSlice = (maxs["X"] - mins["X"])/(numberOfGroovesInXAxis - 1);    
     var ySlice = (maxs["Y"] - mins["Y"])/(numberOfGroovesInYAxis - 1);    
@@ -164,7 +164,7 @@ function makeScatterplot()
         axisText = dec2(mins["X"] + i*xSlice);
         textPosition = LEFT + i*xStep;
         
-        if(uniqueDataX.length() <= numberOfGrooves)
+        if(uniqueDataX.length <= numberOfGrooves)
         {
             axisText = uniqueDataX[i];
             textPosition = LEFT + xStep/2 + i*xStep;
@@ -193,7 +193,7 @@ function makeScatterplot()
         axisText = dec2(mins["Y"] + i*ySlice);
         textPosition = BOTTOM - i*yStep;                  
         
-        if(uniqueDataY.length() <= numberOfGrooves)
+        if(uniqueDataY.length <= numberOfGrooves)
         {
             axisText = uniqueDataY[i];
             textPosition = BOTTOM - yStep/2 - i*yStep;                    
@@ -217,16 +217,16 @@ function makeScatterplot()
                     .attr("class", "yAxisGrooveText");
     }
     
-    for(var i=0; i<data["X"].length(); i++)
+    for(var i=0; i<data["X"].length; i++)
     {
         var x,y;
         
-        if(uniqueDataX.length() <= numberOfGrooves)
+        if(uniqueDataX.length <= numberOfGrooves)
             x = LEFT + uniqueDataX.indexOf(data["X"][i])*xStep + xStep/2;    
         else
             x = LEFT + getValue1(data["X"][i], mins["X"], maxs["X"])*plotWidth;
             
-        if(uniqueDataY.length() <= numberOfGrooves)
+        if(uniqueDataY.length <= numberOfGrooves)
             y = BOTTOM - uniqueDataY.indexOf(data["Y"][i])*yStep - yStep/2;
         else
             y = BOTTOM - getValue1(data["Y"][i], mins["Y"], maxs["Y"])*plotHeight;
@@ -255,11 +255,11 @@ function makeScatterplotHistory()
 
     var sideCanvas = d3.select("#sideCanvas");
     
-    if(currentVariableSelection.length() == 3)
+    if(currentVariableSelection.length == 3)
     {
         var variableList = getSelectedVariables();
         
-        if(variableList["dependent"].length() == 2 && variableList["independent"].length() == 1)
+        if(variableList["dependent"].length == 2 && variableList["independent"].length == 1)
         {
             if(currentVariableSelection[2] != variableList["independent"][0])
             {
@@ -277,7 +277,7 @@ function makeScatterplotHistory()
                 }
             }
         }
-        else if(variableList["independent"].length() == 2 && variableList["dependent"].length() == 1)
+        else if(variableList["independent"].length == 2 && variableList["dependent"].length == 1)
         {
             if((currentVariableSelection[2] != variableList["independent"][0]) && (currentVariableSelection[2] != variableList["independent"][1]))
             {
@@ -306,14 +306,14 @@ function makeScatterplotHistory()
     var colorsForPlot = new Object();
     var varNames = [];
     
-    if((currentVariableSelection.length() == 3))
+    if((currentVariableSelection.length == 3))
     {
-        if(parseInt(variables[currentVariableSelection[2]]["dataset"].unique().length()) <= 10)
+        if(parseInt(variables[currentVariableSelection[2]]["dataset"].unique().length) <= 10)
         {
             colorData = variables[currentVariableSelection[2]]["dataset"];
             uniqueColorData = colorData.unique();
         
-            for(var i=0; i<uniqueColorData.length(); i++)
+            for(var i=0; i<uniqueColorData.length; i++)
             {
                 colorsForPlot[uniqueColorData[i]] = colors[i];
                 varNames[i] = uniqueColorData[i];
@@ -364,12 +364,12 @@ function makeScatterplotHistory()
     uniqueDataX = data["X"].unique().sort();
     uniqueDataY = data["Y"].unique().sort();  
     
-    var numberOfGroovesInXAxis = uniqueDataX.length() > numberOfGrooves ? numberOfGrooves : uniqueDataX.length();
-    var numberOfGroovesInYAxis = uniqueDataY.length() > numberOfGrooves ? numberOfGrooves : uniqueDataY.length();
+    var numberOfGroovesInXAxis = uniqueDataX.length > numberOfGrooves ? numberOfGrooves : uniqueDataX.length;
+    var numberOfGroovesInYAxis = uniqueDataY.length > numberOfGrooves ? numberOfGrooves : uniqueDataY.length;
     
     //y-axis grooves
-    xStep = uniqueDataX.length() <= numberOfGrooves ? (RIGHT - LEFT)/numberOfGroovesInXAxis : (RIGHT - LEFT)/(numberOfGroovesInXAxis - 1);
-    yStep = uniqueDataY.length() <= numberOfGrooves ? (BOTTOM - TOP)/numberOfGroovesInYAxis : (BOTTOM - TOP)/(numberOfGroovesInYAxis - 1);
+    xStep = uniqueDataX.length <= numberOfGrooves ? (RIGHT - LEFT)/numberOfGroovesInXAxis : (RIGHT - LEFT)/(numberOfGroovesInXAxis - 1);
+    yStep = uniqueDataY.length <= numberOfGrooves ? (BOTTOM - TOP)/numberOfGroovesInYAxis : (BOTTOM - TOP)/(numberOfGroovesInYAxis - 1);
     
     var xSlice = (maxs["X"] - mins["X"])/(numberOfGroovesInXAxis - 1);    
     var ySlice = (maxs["Y"] - mins["Y"])/(numberOfGroovesInYAxis - 1);    
@@ -381,7 +381,7 @@ function makeScatterplotHistory()
         axisText = dec2(mins["X"] + i*xSlice);
         textPosition = LEFT + i*xStep;
         
-        if(uniqueDataX.length() <= numberOfGrooves)
+        if(uniqueDataX.length <= numberOfGrooves)
         {
             axisText = uniqueDataX[i];
             textPosition = LEFT + xStep/2 + i*xStep;
@@ -410,7 +410,7 @@ function makeScatterplotHistory()
         axisText = dec2(mins["Y"] + i*ySlice);
         textPosition = BOTTOM - i*yStep;                  
         
-        if(uniqueDataY.length() <= numberOfGrooves)
+        if(uniqueDataY.length <= numberOfGrooves)
         {
             axisText = uniqueDataY[i];
             textPosition = BOTTOM - yStep/2 - i*yStep;                    
@@ -434,16 +434,16 @@ function makeScatterplotHistory()
                     .attr("class", "yAxisGrooveText");
     }
     
-    for(var i=0; i<data["X"].length(); i++)
+    for(var i=0; i<data["X"].length; i++)
     {
         var x,y;
         
-        if(uniqueDataX.length() <= numberOfGrooves)
+        if(uniqueDataX.length <= numberOfGrooves)
             x = LEFT + uniqueDataX.indexOf(data["X"][i])*xStep + xStep/2;    
         else
             x = LEFT + getValue1(data["X"][i], mins["X"], maxs["X"])*(RIGHT - LEFT);
             
-        if(uniqueDataY.length() <= numberOfGrooves)
+        if(uniqueDataY.length <= numberOfGrooves)
             y = BOTTOM - uniqueDataY.indexOf(data["Y"][i])*yStep - yStep/2;
         else
             y = BOTTOM - getValue1(data["Y"][i], mins["Y"], maxs["Y"])*(BOTTOM - TOP);        
@@ -471,7 +471,7 @@ function drawScatterPlotLegends(varNames)
     
     // var yStep = plotHeight/10;
     
-    // for(var i=0; i<varNames.length(); i++)
+    // for(var i=0; i<varNames.length; i++)
     // {
     //     canvas.append("circle")
     //             .attr("cx", sideBarWidth/2)
@@ -497,7 +497,7 @@ function drawScatterPlotLegends(varNames)
     
     var xStep = (plotPanelWidth - 2*histLegendSize)/10;
     
-    for(var i=0; i<varNames.length(); i++)
+    for(var i=0; i<varNames.length; i++)
     {
         canvas.append("circle")
                 .attr("x", (10-i)*xStep)
@@ -542,14 +542,14 @@ function drawRegressionLine(intercept, slope)
     Y2 = ((slope*X2) + intercept) > maxs["Y"] ? maxs["Y"] : ((slope*X2) + intercept);
     Y2 = ((slope*X2) + intercept) < mins["Y"] ? mins["Y"] : ((slope*X2) + intercept);
     
-    if(uniqueDataX.length() <= numberOfGrooves)
+    if(uniqueDataX.length <= numberOfGrooves)
         x1 = LEFT + uniqueDataX.indexOf(X1)*xStep + xStep/2;    
     else
         x1 = LEFT + getValue1(X1, mins["X"], maxs["X"])*plotWidth;
         
     y1 = BOTTOM - getValue1(Y1, mins["Y"], maxs["Y"])*plotHeight;
     
-    if(uniqueDataX.length() <= numberOfGrooves)
+    if(uniqueDataX.length <= numberOfGrooves)
         x2 = LEFT + uniqueDataX.indexOf(X2)*xStep + xStep/2;    
     else
         x2 = LEFT + getValue1(X2, mins["X"], maxs["X"])*plotWidth;

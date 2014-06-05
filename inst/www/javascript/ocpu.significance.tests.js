@@ -534,7 +534,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
             testResults["df"] = [];
             testResults["p"] = output.p;   
       
-            for(var i=0; i<(output.numDF).length(); i++)
+            for(var i=0; i<(output.numDF).length; i++)
             {
               testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
               testResults["p"][i] = changePValueNotation(testResults["p"][i]);
@@ -576,7 +576,7 @@ function performTwoWayANOVA(dependentVariable, betweenGroupVariableA, betweenGro
         testResults["df"] = [];
         testResults["p"] = output.p;   
   
-        for(var i=0; i<(output.numDF).length(); i++)
+        for(var i=0; i<(output.numDF).length; i++)
         {
           testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
           testResults["p"][i] = changePValueNotation(testResults["p"][i]);
@@ -786,7 +786,7 @@ function performMixedDesignANOVA(dependentVariable, withinGroupVariable, between
             testResults["p"] = output.p;
             testResults["error"] = output.error;
 
-            for(var i=0; i<(output.numDF).length(); i++)
+            for(var i=0; i<(output.numDF).length; i++)
             {
             testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
             testResults["p"][i] = changePValueNotation(testResults["p"][i]);
@@ -828,7 +828,7 @@ function performMixedDesignANOVA(dependentVariable, withinGroupVariable, between
         testResults["p"] = output.p;
         testResults["error"] = output.error;
 
-        for(var i=0; i<(output.numDF).length(); i++)
+        for(var i=0; i<(output.numDF).length; i++)
         {
         testResults["df"].push((output.numDF)[i] + ", " + (output.denomDF)[i]);
         testResults["p"][i] = changePValueNotation(testResults["p"][i]);
@@ -932,10 +932,10 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
             levels = levels.sort();
             var index = 0;
         
-            for(i=0; i<levels.length(); i++)
+            for(i=0; i<levels.length; i++)
             {
                 tukeyResults[levels[i]] = new Object();
-                for(j=i+1; j<levels.length(); j++)
+                for(j=i+1; j<levels.length; j++)
                 {
                     if(tukeyResults[levels[j]] == undefined)
                         tukeyResults[levels[j]] = new Object();
@@ -982,10 +982,10 @@ function performTukeyHSDTestOneIndependentVariable(dependentVariable, independen
         levels = levels.sort();
         var index = 0;
     
-        for(i=0; i<levels.length(); i++)
+        for(i=0; i<levels.length; i++)
         {
             tukeyResults[levels[i]] = new Object();
-            for(j=i+1; j<levels.length(); j++)
+            for(j=i+1; j<levels.length; j++)
             {
                 if(tukeyResults[levels[j]] == undefined)
                     tukeyResults[levels[j]] = new Object();

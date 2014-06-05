@@ -41,10 +41,10 @@ function detectOverTesting(testTypes, researchQuestions, variables)
 
     // console.log("numberOfPairwiseComparisonsForOverTesting = [" + numberOfPairwiseComparisonsForOverTesting + "]");
 
-    for(var i=0; i<independentVariables.length(); i++)
+    for(var i=0; i<independentVariables.length; i++)
         numberOfPairwiseComparisons[i] = 0;
 
-    for(var i=0; i<testTypes.length(); i++)
+    for(var i=0; i<testTypes.length; i++)
     {
         var independentVariable = (variables[i])["independent"];
         // console.log("independentVariable = " + independentVariable);
@@ -55,11 +55,11 @@ function detectOverTesting(testTypes, researchQuestions, variables)
 
     // console.log("numberOfPairwiseComparisons = [" + numberOfPairwiseComparisons + "]");
 
-    for(var i=0; i<independentVariables.length(); i++)
+    for(var i=0; i<independentVariables.length; i++)
     {
         if(numberOfPairwiseComparisons[i] >= numberOfPairwiseComparisonsForOverTesting[i])
         {
-            for(var j=0; j<testTypes.length(); j++)
+            for(var j=0; j<testTypes.length; j++)
             {
                 var independentVariable = (variables[j])["independent"];
 
@@ -81,9 +81,9 @@ function getNumberOfComparisonsForOverTesting(independentVariables)
 {
     var numberOfComparisonsForOverTesting = new Array();    
 
-    for(var i=0; i<independentVariables.length(); i++)
+    for(var i=0; i<independentVariables.length; i++)
     {
-        numberOfComparisonsForOverTesting[i] = variables[independentVariables[i]]["dataset"].unique().length() != 2 ? getSumUpTo(variables[independentVariables[i]]["dataset"].unique().length() - 1) : 99999;
+        numberOfComparisonsForOverTesting[i] = variables[independentVariables[i]]["dataset"].unique().length != 2 ? getSumUpTo(variables[independentVariables[i]]["dataset"].unique().length - 1) : 99999;
     }
 
     return numberOfComparisonsForOverTesting;
@@ -171,7 +171,7 @@ function findCorrelationCoefficient(variableA, variableB)
 
 function testForEvilVariables()
 {  
-    for(var i=0; i<variableNames.length(); i++)
+    for(var i=0; i<variableNames.length; i++)
     {
         var variable = variableNames[i];
         var variableData = variables[variable]["dataset"];
@@ -179,7 +179,7 @@ function testForEvilVariables()
 
         if(isNaN(variableData[0]) || variableRoles[variable]=="participant")
         {            
-            if(uniqueVariableData.length() >= 10)
+            if(uniqueVariableData.length >= 10)
             {
                 setThisVariableEvil(variableNames[i]);
             }
@@ -200,7 +200,7 @@ function getGroupsForColourBoxPlotData()
     var variableList = getSelectedVariables();
     
     var groups = [];
-    for(var i=0; i<variableList["independent-levels"].length(); i++)
+    for(var i=0; i<variableList["independent-levels"].length; i++)
     {
         var meanOfDist = variableList["independent-levels"][i].split("-");
         var groupOfDist = colourBoxPlotData[meanOfDist[0]][meanOfDist[1]];
@@ -217,7 +217,7 @@ function getSelectedMeansForColourBoxPlotData()
     var means = document.getElementsByClassName("means");
     var selectedMeans = [];
     
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "green"))
         {   
@@ -233,7 +233,7 @@ function getUnselectedMeansForColourBoxPlotData()
     var means = document.getElementsByClassName("means");
     var selectedMeans = [];
     
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         if(means[i].getAttribute("fill") != meanColors["click"])
         {   
@@ -249,7 +249,7 @@ function getSelectedMeanLevelsForColourBoxPlotData()
     var means = document.getElementsByClassName("means");
     var selectedMeans = [];
     
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         if(means[i].getAttribute("fill") == meanColors["click"])
         {   
@@ -259,7 +259,7 @@ function getSelectedMeanLevelsForColourBoxPlotData()
     
     var selectedMeanLevels = [];
     
-    for(var i=0; i<selectedMeans.length(); i++)
+    for(var i=0; i<selectedMeans.length; i++)
     {
         if(selectedMeanLevels[i] == undefined)
             selectedMeanLevels[i] = []; 
@@ -279,9 +279,9 @@ function findEndingLine()
     var START = [];
     var END = [];
     
-    for(var j=0; j<completeLines.length(); j++)
+    for(var j=0; j<completeLines.length; j++)
     {
-        for(var i=0; i<means.length(); i++)
+        for(var i=0; i<means.length; i++)
         {        
             if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
             {
@@ -294,11 +294,11 @@ function findEndingLine()
         }
     }
     
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         if(START.indexOf(i) == -1 && END.indexOf(i) != -1)
         {
-            for(var j=0; j<completeLines.length(); j++)
+            for(var j=0; j<completeLines.length; j++)
             {
                 if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
                     return completeLines[j];
@@ -317,9 +317,9 @@ function findEndingMean()
     var START = [];
     var END = [];
     
-    for(var j=0; j<completeLines.length(); j++)
+    for(var j=0; j<completeLines.length; j++)
     {
-        for(var i=0; i<means.length(); i++)
+        for(var i=0; i<means.length; i++)
         {        
             if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
             {
@@ -332,11 +332,11 @@ function findEndingMean()
         }
     }
     
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         if(START.indexOf(i) == -1 && END.indexOf(i) != -1)
         {
-            for(var j=0; j<completeLines.length(); j++)
+            for(var j=0; j<completeLines.length; j++)
             {
                 if(completeLines[j].getAttribute("x2") == means[i].getAttribute("cx"))
                     return means[i];
@@ -362,16 +362,16 @@ function setCompareNowButtonText()
     
         var variableList = getSelectedVariables();
     
-        if(variableList["independent"].length() == 0)
+        if(variableList["independent"].length == 0)
         {  
-            if(variableList["dependent"].length() == 0)
+            if(variableList["dependent"].length == 0)
                 compareNowText.text("SELECT ONE OR MORE MEANS");    
             else
                 compareNowText.text("TEST AGAINST POPULATION MEAN");    
         }
         else
         {
-            switch(variableList["independent-levels"].length())
+            switch(variableList["independent-levels"].length)
             {
                 case 0:
                         compareNowText.text("SELECT TWO OR MORE MEANS");    
@@ -391,7 +391,7 @@ function setCompareNowButtonText()
         var compareNowText = d3.select("#text.doPairwiseTest");    
         var variableList = getSelectedVariables();    
 
-        switch(variableList["independent-levels"].length())
+        switch(variableList["independent-levels"].length)
         {
             case 0:
                     compareNowText.text("SELECT TWO OR MORE MEANS");    
@@ -409,7 +409,7 @@ function setCompareNowButtonText()
 
 function calculateOutcome()
 {    
-    if(currentVariableSelection.length() == 2)
+    if(currentVariableSelection.length == 2)
     {    
         var outcomeVariable = document.getElementById("value_outcome");
         var predictorVariable = document.getElementById("value_" + currentVariableSelection[0]);
@@ -428,7 +428,7 @@ function calculateOutcome()
         
         var outcomeVariableValue = testResults["intercept"];
         
-        for(var i=0; i<explanatoryVariables.length(); i++)
+        for(var i=0; i<explanatoryVariables.length; i++)
         {
             var valueEnteredForExplanatoryVariable = isNaN(document.getElementById("value_" + explanatoryVariables[i]).value) ? 0 : document.getElementById("value_" + explanatoryVariables[i]).value;
             var coefficient = testResults["coefficients"][i];
@@ -448,23 +448,23 @@ function isFactorialANOVA(variableList)
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
         
-    for(i=0; i<variableList["independent"].length(); i++)
+    for(i=0; i<variableList["independent"].length; i++)
     {
         //for each independent variable
         var levels = variables[variableList["independent"][i]]["dataset"].unique();
         
         var prev = 0, curr = 0;
-        for(j=0; j<levels.length(); j++)
+        for(j=0; j<levels.length; j++)
         {
             //for each level
             if(j == 0)
             {
-                prev = variables[variableList["dependent"][0]][levels[j]].length();               
+                prev = variables[variableList["dependent"][0]][levels[j]].length;               
             }
             
             else
             {
-                curr = variables[variableList["dependent"][0]][levels[j]].length();
+                curr = variables[variableList["dependent"][0]][levels[j]].length;
                
                 if(curr != prev)
                 {
@@ -474,7 +474,7 @@ function isFactorialANOVA(variableList)
                 else
                 {
                     prev = curr; 
-                    if(j == (levels.length()-1))
+                    if(j == (levels.length-1))
                         withinGroupVariableExists = true;                    
                 }                
             }
@@ -490,23 +490,23 @@ function getBetweenGroupVariable(variableList)
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
     
-    for(i=0; i<variableList["independent"].length(); i++)
+    for(i=0; i<variableList["independent"].length; i++)
     {
         //for each independent variable
         var levels = variables[variableList["independent"][i]]["dataset"].unique();
         
         var prev = 0, curr = 0;
-        for(j=0; j<levels.length(); j++)
+        for(j=0; j<levels.length; j++)
         {
             //for each level
             if(j == 0)
             {
-                prev = variables[variableList["dependent"][0]][levels[j]].length();
+                prev = variables[variableList["dependent"][0]][levels[j]].length;
             }
             
             else
             {
-                curr = variables[variableList["dependent"][0]][levels[j]].length();                
+                curr = variables[variableList["dependent"][0]][levels[j]].length;                
                 
                 if(curr != prev)
                 {
@@ -515,7 +515,7 @@ function getBetweenGroupVariable(variableList)
                 else
                 {                    
                     prev = curr; 
-                    if(j == (levels.length()-1))
+                    if(j == (levels.length-1))
                         betweenGroupVariableExists = true;                    
                 }                
             }
@@ -528,23 +528,23 @@ function getWithinGroupVariable(variableList)
     var withinGroupVariableExists = false;
     var betweenGroupVariableExists = false;
     
-    for(i=0; i<variableList["independent"].length(); i++)
+    for(i=0; i<variableList["independent"].length; i++)
     {
         //for each independent variable
         var levels = variables[variableList["independent"][i]]["dataset"].unique();
         
         var prev = 0, curr = 0;
-        for(j=0; j<levels.length(); j++)
+        for(j=0; j<levels.length; j++)
         {
             //for each level
             if(j == 0)
             {
-                prev = variables[variableList["dependent"][0]][levels[j]].length();
+                prev = variables[variableList["dependent"][0]][levels[j]].length;
             }
             
             else
             {
-                curr = variables[variableList["dependent"][0]][levels[j]].length();                
+                curr = variables[variableList["dependent"][0]][levels[j]].length;                
                 
                 if(curr != prev)
                 {
@@ -553,7 +553,7 @@ function getWithinGroupVariable(variableList)
                 else
                 {                    
                     prev = curr; 
-                    if(j == (levels.length()-1))
+                    if(j == (levels.length-1))
                         return variableList["independent"][i];
                 }                
             }
@@ -574,13 +574,13 @@ function setSelectButtons()
     var means = document.getElementsByClassName("means");
     var selectedMeans = [];
     
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         if(means[i].getAttribute("fill") == meanColors["click"])
             selectedMeans.push(means[i]);
     }    
     
-    if(selectedMeans.length() == 0)
+    if(selectedMeans.length == 0)
     {           
         selectNoneButton.attr("fill", "url(#buttonFillSelected)");
         selectNoneButton.attr("filter", "none");
@@ -594,7 +594,7 @@ function setSelectButtons()
         
         selectAllText.attr("fill", "black");
     }
-    else if(selectedMeans.length() == means.length())
+    else if(selectedMeans.length == means.length)
     {
         selectAllButton.attr("fill", "url(#buttonFillSelected)");
         selectAllButton.attr("filter", "none");
@@ -705,7 +705,7 @@ function getHighestMean()
    
    var variableList = getSelectedVariables();
    
-   for (var i=0; i<variableList["independent-levels"].length(); i++)
+   for (var i=0; i<variableList["independent-levels"].length; i++)
    {
       currentMean = mean(variables[variableList["dependent"]][variableList["independent-levels"][i]]);
       if (currentMean > highestMean)

@@ -68,7 +68,7 @@ function getSignificanceTestReportingText(method)
    //this variables counts the number of levels that have already been reported for language issues (insertig komma or "and")
    var nrOfLevels = 1;
    //add each condition of IV its mean, confidence intervals standard deviation and n have to be reported
-   for (var i=0; i<variableList["independent-levels"].length(); i++)
+   for (var i=0; i<variableList["independent-levels"].length; i++)
    {
       //for index (level with highest mean) results have already been reported
       if (i != index)
@@ -77,9 +77,9 @@ function getSignificanceTestReportingText(method)
          text += getVariableCharacteristicsReportingText(variableList["dependent"], currentIVlevel, variableList);
       
          //add komma between each variable, add "and" for one before last, add nothing for last one
-         if (nrOfLevels < variableList["independent-levels"].length() - 2)
+         if (nrOfLevels < variableList["independent-levels"].length - 2)
             text += ", ";
-         else if (nrOfLevels == variableList["independent-levels"].length() - 2)
+         else if (nrOfLevels == variableList["independent-levels"].length - 2)
             text += " and for ";
          
          nrOfLevels++;
@@ -120,13 +120,13 @@ function getSignificanceTest2WayReportingText(method)
    var currentIVlevel;
    
    //add main effects of each independent variable and for the interaction (therefore, i <= nr. of IV)
-   for (var i=0; i<=variableList["independent"].length(); i++)
+   for (var i=0; i<=variableList["independent"].length; i++)
    {
        //differ text between significant and non-significant p
       var p = getPurePValue(testResults["p"][i]);
 
       //results of each independent variable
-      if (i<variableList["independent"].length())
+      if (i<variableList["independent"].length)
       {
             //varying text so that text is more fluent: start
          if (i%2 == 0)
@@ -135,16 +135,16 @@ function getSignificanceTest2WayReportingText(method)
             text += "Comparing  "
          
          //add independent variables' levels and their means, n, sds, ci 
-         for (var j = 0; j<variableList["independent-levels"][i].length(); j++)
+         for (var j = 0; j<variableList["independent-levels"][i].length; j++)
          {
             //get current level of current IV
             currentIVlevel = variableList["independent-levels"][i][j]; 
             text += getVariableCharacteristicsReportingText(variableList["dependent"], currentIVlevel, variableList);
    
             //add komma between each variable, add "and" for one before last, add nothing for last one
-            if (j < variableList["independent-levels"][i].length() - 2)
+            if (j < variableList["independent-levels"][i].length - 2)
                text += ", ";
-            else if (j == variableList["independent-levels"][i].length() - 2)
+            else if (j == variableList["independent-levels"][i].length - 2)
                text += " and ";
          }
          
@@ -172,7 +172,7 @@ function getSignificanceTest2WayReportingText(method)
       text += getEffectSizeReportingText(p, testResults["effect-size"][i]);
       
       //add line break if this is not the last part of reporting textt
-      if (i<variableList["independent"].length())
+      if (i<variableList["independent"].length)
          text += "\n";
       
    }
@@ -250,7 +250,7 @@ function getVariableCharacteristicsReportingText(dependentVariable, IVlevel, var
    text += "<i>SD</i> = " + sd.toFixed(2) + ", ";
             
    //add n
-   text += "<i>n</i> = " + (distribution).length() + ")";
+   text += "<i>n</i> = " + (distribution).length + ")";
             
    return text;
 }   

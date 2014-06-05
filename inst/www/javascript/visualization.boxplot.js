@@ -44,14 +44,14 @@ function makeBoxPlotInPlotCanvas()
     var levelsForXAxis;
     
     //get data
-    if(currentVariableSelection.length() > 1)
+    if(currentVariableSelection.length > 1)
     {
         //if more than 2 variables are selected
-        switch(variableList["independent"].length())
+        switch(variableList["independent"].length)
         {
             case 0:
                     {                        
-                        for(var i=0; i<variableList["dependent"].length(); i++)
+                        for(var i=0; i<variableList["dependent"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][i]]["dataset"];      
                             mins[i] = MIN[variableList["dependent"][i]]["dataset"];      
@@ -66,7 +66,7 @@ function makeBoxPlotInPlotCanvas()
             case 1:
                     {
                         altBoxPlot = true;
-                        for(var i=0; i<variableList["independent-levels"].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"]][variableList["independent-levels"][i]];
                             mins[i] = MIN[variableList["dependent"][0]][variableList["independent-levels"][i]];
@@ -87,9 +87,9 @@ function makeBoxPlotInPlotCanvas()
                         
                         drawBoxPlotLegends(variables[variableList["independent"][1]]["dataset"].unique());
                         
-                        for(var i=0; i<variableList["independent-levels"][0].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"][0].length; i++)
                         {
-                            for(var j=0; j<variableList["independent-levels"][1].length(); j++)
+                            for(var j=0; j<variableList["independent-levels"][1].length; j++)
                             {   
 
                                 levels.push(variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]);
@@ -128,7 +128,7 @@ function makeBoxPlotInPlotCanvas()
     min = Array.min(mins);
     max = Array.max(maxs);
     
-    if(variableList["independent"].length() == 1)    
+    if(variableList["independent"].length == 1)    
         levels = variableList["independent-levels"]; //otherwise the arrays are contained into independent-levels
      
     //alt boxplot is the one with independent variable
@@ -176,18 +176,18 @@ function makeBoxPlotInPlotCanvas()
     //grooves
     
     //x-axis grooves           
-    nGroovesX = labels.length();  
-    widthOfEachBox = plotWidth/(labels.length()*2) > boxWidth ? boxWidth : plotWidth/(labels.length()*2);
+    nGroovesX = labels.length;  
+    widthOfEachBox = plotWidth/(labels.length*2) > boxWidth ? boxWidth : plotWidth/(labels.length*2);
     
     var xStep = plotWidth/nGroovesX;  
     var index = 0;
     for(i=0; i<nGroovesX; i++)
     {
-        if(variableList["independent"].length() == 2)
+        if(variableList["independent"].length == 2)
         {
             levelsForXAxis = variableList["independent-levels"][0];
-            xStep = plotWidth/levelsForXAxis.length();  
-            if(i<levelsForXAxis.length())
+            xStep = plotWidth/levelsForXAxis.length;  
+            if(i<levelsForXAxis.length)
             {
                 canvas.append("line")
                         .attr("x1", LEFT + index*xStep + xStep/2)
@@ -261,14 +261,14 @@ function makeBoxPlotInPlotCanvas()
     
     for(var i=0; i<nGroovesX; i++)
     {
-        if(data[i].length() > 0)
+        if(data[i].length > 0)
         {
             var boxColor = boxColors["normal"];
         
-            if(variableList["independent"].length() == 2)
+            if(variableList["independent"].length == 2)
             {
                 levelsForColor = variableList["independent-levels"][1];
-                boxColor = colors[i%levelsForColor.length()];
+                boxColor = colors[i%levelsForColor.length];
             }
         
             var rectBottom = (medians[i] - iqrs[i]/2) < min ? min : (medians[i] - iqrs[i]/2);
@@ -370,7 +370,7 @@ function makeBoxPlotInPlotCanvas()
         
             var outliers = getOutliers(data[i], TOPFringe, BOTTOMFringe);
             
-            for(var j=0; j<outliers.length(); j++)
+            for(var j=0; j<outliers.length; j++)
             {
                 canvas.append("circle")
                         .attr("cx", plotPanelWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
@@ -383,7 +383,7 @@ function makeBoxPlotInPlotCanvas()
             }
         
             var dataAttributeForIndependentVariableA, dataAttributeForIndependentVariableB;
-            if(variableList["independent"].length() == 2)
+            if(variableList["independent"].length == 2)
             {
                 dataAttributeForIndependentVariableA = variableList["independent"][0];
                 dataAttributeForIndependentVariableB = variableList["independent"][1];
@@ -439,14 +439,14 @@ function makeBoxPlotInHistoryCanvas()
     var levelsForXAxis;
     
     //get data
-    if(currentVariableSelection.length() > 1)
+    if(currentVariableSelection.length > 1)
     {
         //if more than 2 variables are selected
-        switch(variableList["independent"].length())
+        switch(variableList["independent"].length)
         {
             case 0:
                     {                        
-                        for(var i=0; i<variableList["dependent"].length(); i++)
+                        for(var i=0; i<variableList["dependent"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][i]]["dataset"];      
                             mins[i] = MIN[variableList["dependent"][i]]["dataset"];      
@@ -461,7 +461,7 @@ function makeBoxPlotInHistoryCanvas()
             case 1:
                     {
                         altBoxPlot = true;
-                        for(var i=0; i<variableList["independent-levels"].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"]][variableList["independent-levels"][i]];
                             mins[i] = MIN[variableList["dependent"][0]][variableList["independent-levels"][i]];
@@ -482,9 +482,9 @@ function makeBoxPlotInHistoryCanvas()
                         
                         drawBoxPlotLegends(variables[variableList["independent"][1]]["dataset"].unique());
                         
-                        for(var i=0; i<variableList["independent-levels"][0].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"][0].length; i++)
                         {
-                            for(var j=0; j<variableList["independent-levels"][1].length(); j++)
+                            for(var j=0; j<variableList["independent-levels"][1].length; j++)
                             {   
                                 levels.push(variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]);
                             
@@ -522,7 +522,7 @@ function makeBoxPlotInHistoryCanvas()
     min = Array.min(mins);
     max = Array.max(maxs);
     
-    if(variableList["independent"].length() == 1)    
+    if(variableList["independent"].length == 1)    
         levels = variableList["independent-levels"]; //otherwise the arrays are contained into independent-levels
      
     //alt boxplot is the one with independent variable
@@ -566,20 +566,20 @@ function makeBoxPlotInHistoryCanvas()
     //grooves
     
     //x-axis grooves           
-    nGroovesX = labels.length();  
-    widthOfEachBox = (RIGHT - LEFT)/(labels.length()*2) > scaleToHistoryEntry(boxWidth) ? scaleToHistoryEntry(boxWidth) : (RIGHT - LEFT)/(labels.length()*2);
+    nGroovesX = labels.length;  
+    widthOfEachBox = (RIGHT - LEFT)/(labels.length*2) > scaleToHistoryEntry(boxWidth) ? scaleToHistoryEntry(boxWidth) : (RIGHT - LEFT)/(labels.length*2);
     
     var xStep = (RIGHT - LEFT)/nGroovesX;  
     var index = 0;
 
     for(i=0; i<nGroovesX; i++)
     {
-        if(variableList["independent"].length() == 2)
+        if(variableList["independent"].length == 2)
         {
             levelsForXAxis = variableList["independent-levels"][0];
-            xStep = (RIGHT - LEFT)/levelsForXAxis.length();  
+            xStep = (RIGHT - LEFT)/levelsForXAxis.length;  
 
-            if(i<levelsForXAxis.length())
+            if(i<levelsForXAxis.length)
             {
                 sideCanvas.append("line")
                         .attr("x1", LEFT + index*xStep + xStep/2)
@@ -644,7 +644,7 @@ function makeBoxPlotInHistoryCanvas()
     
     for(var i=0; i<nGroovesX; i++)
     {
-        if(data[i].length() > 0)
+        if(data[i].length > 0)
         {
             var boxColor = boxColors["normal"];
 
@@ -659,10 +659,10 @@ function makeBoxPlotInHistoryCanvas()
                 mRadius = meanRadius;
             }
         
-            if(variableList["independent"].length() == 2)
+            if(variableList["independent"].length == 2)
             {
                 levelsForColor = variableList["independent-levels"][1];
-                boxColor = colors[i%levelsForColor.length()];
+                boxColor = colors[i%levelsForColor.length];
             }
         
             var rectBottom = (medians[i] - iqrs[i]/2) < min ? min : (medians[i] - iqrs[i]/2);
@@ -755,7 +755,7 @@ function makeBoxPlotInHistoryCanvas()
         
             var outliers = getOutliers(data[i], TOPFringe, BOTTOMFringe);
             
-            for(var j=0; j<outliers.length(); j++)
+            for(var j=0; j<outliers.length; j++)
             {
                 sideCanvas.append("circle")
                         .attr("cx", LEFT + i*xStep + xStep/2)
@@ -809,14 +809,14 @@ function makeBoxplotForReport(canvas)
     var levelsForXAxis;
     
     //get data
-    if(currentVariableSelection.length() > 1)
+    if(currentVariableSelection.length > 1)
     {
         //if more than 2 variables are selected
-        switch(variableList["independent"].length())
+        switch(variableList["independent"].length)
         {
             case 0:
                     {                        
-                        for(var i=0; i<variableList["dependent"].length(); i++)
+                        for(var i=0; i<variableList["dependent"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][i]]["dataset"];      
                             mins[i] = MIN[variableList["dependent"][i]]["dataset"];      
@@ -831,7 +831,7 @@ function makeBoxplotForReport(canvas)
             case 1:
                     {
                         altBoxPlot = true;
-                        for(var i=0; i<variableList["independent-levels"].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"]][variableList["independent-levels"][i]];
                             mins[i] = MIN[variableList["dependent"][0]][variableList["independent-levels"][i]];
@@ -852,9 +852,9 @@ function makeBoxplotForReport(canvas)
                         
                         drawBoxPlotLegends(variables[variableList["independent"][1]]["dataset"].unique());
                         
-                        for(var i=0; i<variableList["independent-levels"][0].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"][0].length; i++)
                         {
-                            for(var j=0; j<variableList["independent-levels"][1].length(); j++)
+                            for(var j=0; j<variableList["independent-levels"][1].length; j++)
                             {   
 
                                 levels.push(variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]);
@@ -893,7 +893,7 @@ function makeBoxplotForReport(canvas)
     min = Array.min(mins);
     max = Array.max(maxs);
     
-    if(variableList["independent"].length() == 1)    
+    if(variableList["independent"].length == 1)    
         levels = variableList["independent-levels"]; //otherwise the arrays are contained into independent-levels
      
     //alt boxplot is the one with independent variable
@@ -941,18 +941,18 @@ function makeBoxplotForReport(canvas)
     //grooves
     
     //x-axis grooves           
-    nGroovesX = labels.length();  
-    widthOfEachBox = plotWidth/(labels.length()*2) > boxWidth ? boxWidth : plotWidth/(labels.length()*2);
+    nGroovesX = labels.length;  
+    widthOfEachBox = plotWidth/(labels.length*2) > boxWidth ? boxWidth : plotWidth/(labels.length*2);
     
     var xStep = plotWidth/nGroovesX;  
     var index = 0;
     for(i=0; i<nGroovesX; i++)
     {
-        if(variableList["independent"].length() == 2)
+        if(variableList["independent"].length == 2)
         {
             levelsForXAxis = variableList["independent-levels"][0];
-            xStep = plotWidth/levelsForXAxis.length();  
-            if(i<levelsForXAxis.length())
+            xStep = plotWidth/levelsForXAxis.length;  
+            if(i<levelsForXAxis.length)
             {
                 canvas.append("line")
                         .attr("x1", LEFT + index*xStep + xStep/2)
@@ -1024,14 +1024,14 @@ function makeBoxplotForReport(canvas)
     
     for(var i=0; i<nGroovesX; i++)
     {
-        if(data[i].length() > 0)
+        if(data[i].length > 0)
         {
             var boxColor = boxColors["normal"];
         
-            if(variableList["independent"].length() == 2)
+            if(variableList["independent"].length == 2)
             {
                 levelsForColor = variableList["independent-levels"][1];
-                boxColor = colors[i%levelsForColor.length()];
+                boxColor = colors[i%levelsForColor.length];
             }
         
             var rectBottom = (medians[i] - iqrs[i]/2) < min ? min : (medians[i] - iqrs[i]/2);
@@ -1128,7 +1128,7 @@ function makeBoxplotForReport(canvas)
         
             var outliers = getOutliers(data[i], TOPFringe, BOTTOMFringe);
             
-            for(var j=0; j<outliers.length(); j++)
+            for(var j=0; j<outliers.length; j++)
             {
                 canvas.append("circle")
                         .attr("cx", plotPanelWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
@@ -1141,7 +1141,7 @@ function makeBoxplotForReport(canvas)
             }
         
             var dataAttributeForIndependentVariableA, dataAttributeForIndependentVariableB;
-            if(variableList["independent"].length() == 2)
+            if(variableList["independent"].length == 2)
             {
                 dataAttributeForIndependentVariableA = variableList["independent"][0];
                 dataAttributeForIndependentVariableB = variableList["independent"][1];
@@ -1191,14 +1191,14 @@ function redrawBoxPlot()
     var widthOfEachBox;
     
     //get data
-    if(currentVariableSelection.length() > 1)
+    if(currentVariableSelection.length > 1)
     {
         //if more than 2 variables are selected
-        switch(variableList["independent"].length())
+        switch(variableList["independent"].length)
         {
             case 0:
                     {
-                        for(var i=0; i<variableList["dependent"].length(); i++)
+                        for(var i=0; i<variableList["dependent"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][i]]["dataset"];      
                             mins[i] = MIN[variableList["dependent"][i]]["dataset"];      
@@ -1214,7 +1214,7 @@ function redrawBoxPlot()
             case 1:
                     {
                         altBoxPlot = true;
-                        for(var i=0; i<variableList["independent-levels"].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"]][variableList["independent-levels"][i]];
                             mins[i] = MIN[variableList["dependent"][0]][variableList["independent-levels"][i]];
@@ -1234,9 +1234,9 @@ function redrawBoxPlot()
                         var index = 0;
                         drawBoxPlotLegends(variables[variableList["independent"][1]]["dataset"].unique());
                         
-                        for(var i=0; i<variableList["independent-levels"][0].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"][0].length; i++)
                         {
-                            for(var j=0; j<variableList["independent-levels"][1].length(); j++)
+                            for(var j=0; j<variableList["independent-levels"][1].length; j++)
                             {   
 
                                 levels.push(variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]);
@@ -1276,7 +1276,7 @@ function redrawBoxPlot()
     min = Array.min(mins);
     max = Array.max(maxs);
     
-    if(variableList["independent"].length() == 1)    
+    if(variableList["independent"].length == 1)    
         levels = variableList["independent-levels"]; //otherwise the arrays are contained into independent-levels
      
     //alt boxplot is the one with independent variable
@@ -1322,8 +1322,8 @@ function redrawBoxPlot()
     }
     
     //x-axis grooves           
-    nGroovesX = labels.length();    
-    widthOfEachBox = plotWidth/(labels.length()*2) > boxWidth ? boxWidth : plotWidth/(labels.length()*2);
+    nGroovesX = labels.length;    
+    widthOfEachBox = plotWidth/(labels.length*2) > boxWidth ? boxWidth : plotWidth/(labels.length*2);
     
     var xStep = plotWidth/nGroovesX; 
     
@@ -1346,7 +1346,7 @@ function redrawBoxPlot()
     
     for(var i=0; i<nGroovesX; i++)
     {
-        if(data[i].length() > 0)
+        if(data[i].length > 0)
         {
             var rectBottom = (medians[i] - iqrs[i]/2) < min ? min : (medians[i] - iqrs[i]/2);
             var rectTop = (medians[i] + iqrs[i]/2) > max ? max : (medians[i] + iqrs[i]/2);
@@ -1415,7 +1415,7 @@ function redrawBoxPlot()
     
             var outliers = getOutliers(data[i], TOPFringe, BOTTOMFringe);
             
-            for(var j=0; j<outliers.length(); j++)
+            for(var j=0; j<outliers.length; j++)
             {
                 canvas.append("circle")
                         .attr("cx", plotPanelWidth/2 + i*widthSlice - plotWidth/2 + xStep/2)
@@ -1472,14 +1472,14 @@ function drawHomogeneityPlot(homogeneity)
     var widthOfEachBox;
     
     //get data
-    if(currentVariableSelection.length() > 1)
+    if(currentVariableSelection.length > 1)
     {
         //if more than 2 variables are selected
-        switch(variableList["independent"].length())
+        switch(variableList["independent"].length)
         {
             case 0:
                     {
-                        for(var i=0; i<variableList["dependent"].length(); i++)
+                        for(var i=0; i<variableList["dependent"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"][i]]["dataset"];      
                             mins[i] = MIN[variableList["dependent"][i]]["dataset"];      
@@ -1495,7 +1495,7 @@ function drawHomogeneityPlot(homogeneity)
             case 1:
                     {
                         altBoxPlot = true;
-                        for(var i=0; i<variableList["independent-levels"].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"].length; i++)
                         {
                             data[i] = variables[variableList["dependent"]][variableList["independent-levels"][i]];
                             mins[i] = MIN[variableList["dependent"][0]][variableList["independent-levels"][i]];
@@ -1513,9 +1513,9 @@ function drawHomogeneityPlot(homogeneity)
                         var splitData = splitThisLevelBy(variableList["independent"][0], variableList["independent"][1], variableList["dependent"][0]);
                         colourBoxPlotData = splitData;
                         var index = 0;                        
-                        for(var i=0; i<variableList["independent-levels"][0].length(); i++)
+                        for(var i=0; i<variableList["independent-levels"][0].length; i++)
                         {
-                            for(var j=0; j<variableList["independent-levels"][1].length(); j++)
+                            for(var j=0; j<variableList["independent-levels"][1].length; j++)
                             {   
 
                                 levels.push(variableList["independent-levels"][0][i] + "-" + variableList["independent-levels"][1][j]);
@@ -1555,7 +1555,7 @@ function drawHomogeneityPlot(homogeneity)
     min = Array.min(mins);
     max = Array.max(maxs);
     
-    if(variableList["independent"].length() == 1)    
+    if(variableList["independent"].length == 1)    
         levels = variableList["independent-levels"]; //otherwise the arrays are contained into independent-levels
      
     //alt boxplot is the one with independent variable
@@ -1571,8 +1571,8 @@ function drawHomogeneityPlot(homogeneity)
     //grooves
     
     //x-axis grooves           
-    nGroovesX = labels.length();    
-    widthOfEachBox = plotWidth/(labels.length()*2) > boxWidth ? boxWidth : plotWidth/(labels.length()*2);
+    nGroovesX = labels.length;    
+    widthOfEachBox = plotWidth/(labels.length*2) > boxWidth ? boxWidth : plotWidth/(labels.length*2);
     
     var xStep = plotWidth/nGroovesX; 
     
@@ -1588,7 +1588,7 @@ function drawHomogeneityPlot(homogeneity)
     
     for(var i=0; i<nGroovesX; i++)
     {
-        if(data[i].length() > 0)
+        if(data[i].length > 0)
         {
             if(mins[i] < varianceMin)
                 varianceMin = mins[i];
@@ -1712,7 +1712,7 @@ function getOutliers(data, TOPFringe, BOTTOMFringe)
 {
     var outliers = [];
     
-    for(var i=0; i<data.length(); i++)
+    for(var i=0; i<data.length; i++)
     {
         if((data[i] > (TOPFringe) )|| (data[i] < (BOTTOMFringe) ))
         {
@@ -1764,7 +1764,7 @@ function drawBoxPlotLegends(varNames)
     
     var xStep = (plotPanelWidth - 2*histLegendSize)/10;
     
-    for(var i=0; i<varNames.length(); i++)
+    for(var i=0; i<varNames.length; i++)
     {
         canvas.append("rect")
                 .attr("x", (10-i)*xStep)
@@ -1796,7 +1796,7 @@ function selectMeansFromArray(meansToSelect, canvas)
         canvas = d3.select("#plotCanvas");
     }
 
-    for(var i=0; i<meansToSelect.length(); i++)
+    for(var i=0; i<meansToSelect.length; i++)
     {
         d3.select("#" + meansToSelect[i] + ".means")
             .attr("r", engorgedMeanRadius + "px")
@@ -1831,7 +1831,7 @@ function selectAllMeans()
     if(lastMean != 0)
         means.push(lastMean);
     
-    for(var i=0; i<unSelectedMeans.length(); i++)
+    for(var i=0; i<unSelectedMeans.length; i++)
         means.push(unSelectedMeans[i]);
         
     means.sort(function(a, b)
@@ -1844,12 +1844,12 @@ function selectAllMeans()
     });
 
     var plotCanvas = d3.select("#plotCanvas");    
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         var mean = d3.select("#" + means[i].getAttribute("id") + ".means");
         mean.transition().duration(500).attr("fill", meanColors["click"]);
         
-        if(i != means.length() - 1)
+        if(i != means.length - 1)
         {
             var line = plotCanvas.append("line")
                         .attr("x1", means[i].getAttribute("cx"))

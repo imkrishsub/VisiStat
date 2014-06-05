@@ -18,7 +18,7 @@ function performHomoscedasticityTest(dependent, independent)
            if(output.p < 0.05)
            {   
                //not normal
-               if(variableList["independent"].length() == 0)
+               if(variableList["independent"].length == 0)
                {
                    //one sample t-test
                     d3.select("#homogeneity.crosses").attr("display", "inline");
@@ -49,7 +49,7 @@ function performHomoscedasticityTest(dependent, independent)
            else
            {   
                //normal
-               if(variableList["independent"].length() == 0)
+               if(variableList["independent"].length == 0)
                {
                    d3.select("#homogeneity.ticks").attr("display", "inline");
                    d3.select("#homogeneity.loading").attr("display", "none");
@@ -77,7 +77,7 @@ function performHomoscedasticityTest(dependent, independent)
         if(p < 0.05)
         {   
             //not normal
-            if(variableList["independent"].length() == 0)
+            if(variableList["independent"].length == 0)
             {
                //one sample t-test
                d3.select("#homogeneity.crosses").attr("display", "inline");
@@ -105,7 +105,7 @@ if(d3.select("#normality.assumptionsViolationText").attr("display") == "inline")
         else
         {   
            //normal
-           if(variableList["independent"].length() == 0)
+           if(variableList["independent"].length == 0)
            {
                d3.select("#homogeneity.ticks").attr("display", "inline");
                d3.select("#homogeneity.loading").attr("display", "none");
@@ -140,7 +140,7 @@ function performNormalityTest(distribution, dependentVariable, level)
             if(output.p < 0.05)
             {   
                 //not normal
-                if(variableList["independent"].length() == 0)
+                if(variableList["independent"].length == 0)
                 {
                     //one sample t-test
                     d3.select("#normality.crosses").attr("display", "inline");
@@ -164,7 +164,7 @@ function performNormalityTest(distribution, dependentVariable, level)
             else
             {   
                 //normal
-                if(variableList["independent"].length() == 0)
+                if(variableList["independent"].length == 0)
                 {
                     d3.select("#normality.ticks").attr("display", "inline");
                     d3.select("#loadingnormality").attr("display", "none");
@@ -192,7 +192,7 @@ function performNormalityTest(distribution, dependentVariable, level)
         if(p < 0.05)
         {   
             //not normal
-            if(variableList["independent"].length() == 0)
+            if(variableList["independent"].length == 0)
             {
                 //one sample t-test
                 d3.select("#normality.crosses").attr("display", "inline");
@@ -216,7 +216,7 @@ d3.select("#normality.assumptionsViolationText").attr("display", "inline");
         else
         {   
             //normal
-            if(variableList["independent"].length() == 0)
+            if(variableList["independent"].length == 0)
             {
                 d3.select("#normality.ticks").attr("display", "inline");
                 d3.select("#loadingnormality").attr("display", "none");
@@ -251,12 +251,12 @@ function performNormalityTestForMultipleDistributions(distributions, n)
             var pValues = output.p;
             sessionStorage.setObject(formula, pValues);
 
-            for(var i=0; i<pValues.length(); i++)
+            for(var i=0; i<pValues.length; i++)
             {    
                 if(pValues[i] < 0.05)
                 {   
                     //not normal
-                    if(variableList["independent"].length() == 0)
+                    if(variableList["independent"].length == 0)
                     {
                         //one sample t-test
                         d3.select("#normality.crosses").attr("display", "inline");
@@ -280,7 +280,7 @@ d3.select("#normality.assumptionsViolationText").attr("display", "inline");
                 else
                 {   
                     //normal
-                    if(variableList["independent"].length() == 0)
+                    if(variableList["independent"].length == 0)
                     {
                         d3.select("#normality.ticks").attr("display", "inline");
                         d3.select("#loadingnormality").attr("display", "none");
@@ -305,12 +305,12 @@ d3.select("#normality.assumptionsViolationText").attr("display", "inline");
     {
         var pValues = sessionStorage.getObject(formula);
 
-        for(var i=0; i<pValues.length(); i++)
+        for(var i=0; i<pValues.length; i++)
         {    
             if(pValues[i] < 0.05)
             {   
                 //not normal
-                if(variableList["independent"].length() == 0)
+                if(variableList["independent"].length == 0)
                 {
                     //one sample t-test
                     d3.select("#normality.crosses").attr("display", "inline");
@@ -334,7 +334,7 @@ d3.select("#normality.assumptionsViolationText").attr("display", "inline");
             else
             {   
                 //normal
-                if(variableList["independent"].length() == 0)
+                if(variableList["independent"].length == 0)
                 {
                     d3.select("#normality.ticks").attr("display", "inline");
                     d3.select("#loadingnormality").attr("display", "none");
@@ -400,12 +400,12 @@ function findTransformForNormality(dependentVariable, independentVariable)
                 if(sessionStorage.plotWithNoInteraction == "false")
                     d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight);
                 
-                if(variableList["independent"].length() == 1)
+                if(variableList["independent"].length == 1)
                 {
                     if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                     {
                         //within-group design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {
                             //wilcoxon signed-rank
                             if(pairwiseComparisons)
@@ -422,7 +422,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                     else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
                         //between-groups design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {                    
                             //Mann-Whitney U test
                             if(pairwiseComparisons)
@@ -437,7 +437,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                         }
                     }
                 }      
-                else if(variableList["independent"].length() == 2)
+                else if(variableList["independent"].length == 2)
                 {
                     if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                     {
@@ -447,7 +447,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                     else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                     {
                         //between-groups design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {
                             var groups = getGroupsForColourBoxPlotData();
                             //Mann-Whitney U test
@@ -487,12 +487,12 @@ function findTransformForNormality(dependentVariable, independentVariable)
             if(sessionStorage.plotWithNoInteraction == "false")
                 d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight);
             
-            if(variableList["independent"].length() == 1)
+            if(variableList["independent"].length == 1)
             {
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                 {
                     //within-group design
-                    if(variableList["independent-levels"].length() == 2)
+                    if(variableList["independent-levels"].length == 2)
                     {
                         //wilcoxon signed-rank
                         if(pairwiseComparisons)
@@ -509,7 +509,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                 else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                 {
                     //between-groups design
-                    if(variableList["independent-levels"].length() == 2)
+                    if(variableList["independent-levels"].length == 2)
                     {                    
                         //Mann-Whitney U test
                         if(pairwiseComparisons)
@@ -524,7 +524,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                     }
                 }
             }      
-            else if(variableList["independent"].length() == 2)
+            else if(variableList["independent"].length == 2)
             {
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                 {
@@ -534,7 +534,7 @@ function findTransformForNormality(dependentVariable, independentVariable)
                 else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                 {
                     //between-groups design
-                    if(variableList["independent-levels"].length() == 2)
+                    if(variableList["independent-levels"].length == 2)
                     {
                         var groups = getGroupsForColourBoxPlotData();
                         //Mann-Whitney U test
@@ -583,14 +583,14 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                 if(sessionStorage.plotWithNoInteraction == "false")
                     d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight);
                                 
-                if(variableList["independent"].length() == 1)
+                if(variableList["independent"].length == 1)
                 {
                     if(experimentalDesign == "between-groups")
                     {
                         performNormalityTests();
                 
                         //between-groups design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {
                             //2 variables
                             if(pairwiseComparisons)
@@ -607,7 +607,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
                 }
                 else
                 {
-                    if(experimentalDesign == "between-groups" && variableList["independent-levels"].length() == 2)
+                    if(experimentalDesign == "between-groups" && variableList["independent-levels"].length == 2)
                     {
                         performNormalityTests();
                         
@@ -649,14 +649,14 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
             if(sessionStorage.plotWithNoInteraction == "false")
                 d3.select("#plotCanvas").transition().delay(3000).duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight);
                             
-            if(variableList["independent"].length() == 1)
+            if(variableList["independent"].length == 1)
             {
                 if(experimentalDesign == "between-groups")
                 {
                     performNormalityTests();
             
                     //between-groups design
-                    if(variableList["independent-levels"].length() == 2)
+                    if(variableList["independent-levels"].length == 2)
                     {
                         //2 variables
                         if(pairwiseComparisons)
@@ -673,7 +673,7 @@ function findTransformForHomogeneity(dependentVariable, independentVariable)
             }
             else
             {
-                if(experimentalDesign == "between-groups" && variableList["independent-levels"].length() == 2)
+                if(experimentalDesign == "between-groups" && variableList["independent-levels"].length == 2)
                 {
                     performNormalityTests();
                     
@@ -727,9 +727,9 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                 redrawBoxPlot();            
                 removeElementsByClassName("densityCurve");
                 
-                if(variableList["independent"].length() > 0)
+                if(variableList["independent"].length > 0)
                 {
-                    for(var i=0; i<variableList["independent-levels"].length(); i++)
+                    for(var i=0; i<variableList["independent-levels"].length; i++)
                     {                   
                         var centerX = d3.select("#" + variableList["independent-levels"][i] + ".means").attr("cx");                
                         makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, plotPanelHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;                                
@@ -757,12 +757,12 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                 
                 setTimeout(function()
                 {
-                    if(variableList["independent"].length() == 1)
+                    if(variableList["independent"].length == 1)
                     {
                         if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                         {
                             //within-group design
-                            if(variableList["independent-levels"].length() == 2)
+                            if(variableList["independent-levels"].length == 2)
                             {
                                 //Paired t-test
                                 performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
@@ -779,7 +779,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                             if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                             {
                                 //only if homogeneous
-                                if(variableList["independent-levels"].length() == 2)
+                                if(variableList["independent-levels"].length == 2)
                                 {
                                     //2 variables
                                     performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
@@ -792,7 +792,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                             }
                         }
                     }
-                    else if(variableList["independent"].length() == 2)
+                    else if(variableList["independent"].length == 2)
                     {
                         if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                         {
@@ -805,7 +805,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                             if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                             {
                                 //only if homogeneous
-                                if(variableList["independent-levels"].length() == 2)
+                                if(variableList["independent-levels"].length == 2)
                                 {
                                     var groups = getGroupsForColourBoxPlotData();
                                     //Unpaired t-test 
@@ -844,9 +844,9 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
             redrawBoxPlot();            
             removeElementsByClassName("densityCurve");
             
-            if(variableList["independent"].length() > 0)
+            if(variableList["independent"].length > 0)
             {
-                for(var i=0; i<variableList["independent-levels"].length(); i++)
+                for(var i=0; i<variableList["independent-levels"].length; i++)
                 {                   
                     var centerX = d3.select("#" + variableList["independent-levels"][i] + ".means").attr("cx");                
                     makeHistogramWithDensityCurve(centerX - normalityPlotWidth/2, plotPanelHeight + normalityPlotOffset, normalityPlotWidth, normalityPlotHeight, variableList["dependent"][0], variableList["independent-levels"][i], "normal");//left, top, histWidth, histHeight, dependentVariable, level;                                
@@ -874,12 +874,12 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
             
             setTimeout(function()
             {
-                if(variableList["independent"].length() == 1)
+                if(variableList["independent"].length == 1)
                 {
                     if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                     {
                         //within-group design
-                        if(variableList["independent-levels"].length() == 2)
+                        if(variableList["independent-levels"].length == 2)
                         {
                             //Paired t-test
                             performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
@@ -896,7 +896,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                         if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                         {
                             //only if homogeneous
-                            if(variableList["independent-levels"].length() == 2)
+                            if(variableList["independent-levels"].length == 2)
                             {
                                 //2 variables
                                 performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
@@ -909,7 +909,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                         }
                     }
                 }
-                else if(variableList["independent"].length() == 2)
+                else if(variableList["independent"].length == 2)
                 {
                     if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                     {
@@ -922,7 +922,7 @@ function applyNormalityTransform(dependentVariable, level, finalVariable)
                         if(d3.select("#homogeneity.ticks").attr("display") == "inline")
                         {
                             //only if homogeneous
-                            if(variableList["independent-levels"].length() == 2)
+                            if(variableList["independent-levels"].length == 2)
                             {
                                 var groups = getGroupsForColourBoxPlotData();
                                 //Unpaired t-test 
@@ -967,7 +967,7 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
         
             var levels = variables[independentVariable]["dataset"].unique();
         
-            for(i=0; i<levels.length(); i++)
+            for(i=0; i<levels.length; i++)
             {
                 variables[dependentVariable][levels[i]] = [];
                 MIN[dependentVariable][levels[i]] = 999999;
@@ -993,7 +993,7 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
 
             setTimeout(function()
             {
-                if(variableList["independent"].length() == 1)
+                if(variableList["independent"].length == 1)
                 {
                     if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                     {
@@ -1027,7 +1027,7 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
     
         var levels = variables[independentVariable]["dataset"].unique();
     
-        for(i=0; i<levels.length(); i++)
+        for(i=0; i<levels.length; i++)
         {
             variables[dependentVariable][levels[i]] = [];
             MIN[dependentVariable][levels[i]] = 999999;
@@ -1053,7 +1053,7 @@ function applyHomogeneityTransform(dependentVariable, independentVariable)
 
         setTimeout(function()
         {
-            if(variableList["independent"].length() == 1)
+            if(variableList["independent"].length == 1)
             {
                 if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
                 {

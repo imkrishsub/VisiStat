@@ -23,7 +23,7 @@ function displayDataForVariable(variable)
             
     table.append("tr").append("th").text(variable).attr("style", "font-size: " + 1.3*fontSizeForDisplayDataTableElements + "px;");      
             
-    for(var i=0; i<variableData.length(); i++)
+    for(var i=0; i<variableData.length; i++)
     {
         if(i < displayDataLimit)
         {
@@ -264,11 +264,11 @@ function updateHistory(researchQuestion)
     entryHeight = (sidePanelHeight - sideCanvasButtonHeight*2)/3; 
     entryWidth = entryHeight*4/3.5;
 
-    if(listOfResearchQuestions.length() > 3)
+    if(listOfResearchQuestions.length > 3)
             sideCanvas.attr("height", parseFloat(sideCanvas.attr("height")) + parseFloat(entryHeight))
                         .attr("viewBox", "0 0 " + parseFloat(sidePanelWidth) + " " + parseFloat(sideCanvas.attr("height")));
 
-    currentHistoryY = (listOfResearchQuestions.length() - 1) * entryHeight;
+    currentHistoryY = (listOfResearchQuestions.length - 1) * entryHeight;
 
     sideCanvas.append("rect")
                 .attr("x", 0)
@@ -287,7 +287,7 @@ function updateHistory(researchQuestion)
                 .text(researchQuestion)
                 .style("font-family: \"Verdana\", sans-serif; font-weight: normal; font-style: normal;");
 
-    if(document.getElementsByClassName("starImage").length() >= 3)
+    if(document.getElementsByClassName("starImage").length >= 3)
     {
     
         $("#sidePanel").animate({
@@ -629,11 +629,11 @@ function drawDialogBoxToGetOutcomeVariable()
             .attr("id", "regression")
             .attr("class", "dialogBox");
             
-    var step = (dialogBoxHeight/2)/currentVariableSelection.length();
+    var step = (dialogBoxHeight/2)/currentVariableSelection.length;
     var yStart = centerY;
     var buttHeight = step - 10;
     
-    for(var i=0; i<currentVariableSelection.length(); i++)
+    for(var i=0; i<currentVariableSelection.length; i++)
     {
         if(variableRoles[currentVariableSelection[i]] == "dependent")
         {
@@ -847,7 +847,7 @@ function drawEffectSize(value)
     
     var effectSizeInterpretationIndicators = ["small", "medium", "large"];
         
-    for(i=0; i<effectSizeInterpretations[type].length(); i++)
+    for(i=0; i<effectSizeInterpretations[type].length; i++)
     {
         resultsCanvas.append("line")
                 .attr("x1", L + scale(effectSizeInterpretations[type][i]))
@@ -872,7 +872,7 @@ function drawEffectSize(value)
     
     if(min < 0)
     {
-        for(i=0; i<effectSizeInterpretations[type].length(); i++)
+        for(i=0; i<effectSizeInterpretations[type].length; i++)
         {
             resultsCanvas.append("line")
                     .attr("x1", L + scale(-effectSizeInterpretations[type][i]))
@@ -1042,7 +1042,7 @@ function drawComputingResultsImage()
 
 function setOpacityForElementsWithClassNames(classNames, opacity)
 {
-    for(var i=0; i<classNames.length(); i++)
+    for(var i=0; i<classNames.length; i++)
     {
         d3.selectAll("." + classNames[i]).transition().duration(1000).delay(500).attr("opacity", opacity);
     }
@@ -1084,7 +1084,7 @@ function loadAssumptionCheckList(type)
         
     //timer for 500 ms
     setTimeout(function(){
-        for(var i=0; i<assumptions[type].length(); i++)
+        for(var i=0; i<assumptions[type].length; i++)
         {
             assumptionsCanvas.append("rect")
                     .attr("x", assumptionImageSize*2 - scaleForWindowSize(15)) 
@@ -1212,7 +1212,7 @@ function drawScales(cx, cy)
     
     var levels = variableList["independent-levels"]; 
 
-    for(var i=0; i<cy.length(); i++)
+    for(var i=0; i<cy.length; i++)
     {
         means.push(getActualValue(cy[i]));
     }
@@ -1230,10 +1230,10 @@ function drawScales(cx, cy)
                 .attr("font-size", scaleForWindowSize(14) + "px")
                 .attr("id", "tickText")
                 .attr("class", "differenceInMeansMain")
-                .text(dec2(means[means.length()-1] - means[0]));
+                .text(dec2(means[means.length-1] - means[0]));
     
     var error = parseFloat(testResults["error"]);     
-    testResults["CI"] = calculateCI(means[means.length() -1] - means[0], error);
+    testResults["CI"] = calculateCI(means[means.length -1] - means[0], error);
 
     var meanValue = getActualValue(cyMin);
     var dependentVariable = variables[variableList["dependent"][0]]["dataset"];
@@ -1285,11 +1285,11 @@ function drawScales(cx, cy)
             .attr("id", "top")
             .attr("class", "CIMean");
     
-    if(cy.length() >= 2)
+    if(cy.length >= 2)
     {
-        for(var i=0; i<cy.length()-1; i++)
+        for(var i=0; i<cy.length-1; i++)
         {  
-            if(cy.length() > 2)
+            if(cy.length > 2)
             {
                 canvas.append("text")
                     .attr("x", x + scaleForWindowSize(5))
@@ -1480,7 +1480,7 @@ function displaySignificanceTestResults()
     
     var canvas = d3.select("#plotCanvas");
 
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "#008000"))
         {
@@ -1597,7 +1597,7 @@ function displayANOVAResults()
     
     var canvas = d3.select("#plotCanvas");
 
-    for(var i=0; i<means.length(); i++)
+    for(var i=0; i<means.length; i++)
     {
         if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "#008000"))
         {
@@ -1660,7 +1660,7 @@ function displayANOVAResults()
     
     var levels = [variableList["independent"][0], variableList["independent"][1], variableList["independent"][0] + "-" + variableList["independent"][1]];
    
-    var tabWidth = resultsPanelWidth/(levels.length());    
+    var tabWidth = resultsPanelWidth/(levels.length);    
     var tabHeight = scaleForWindowSize(25);
     var fontSizeTabText = scaleForWindowSize(12);
     
@@ -1668,9 +1668,9 @@ function displayANOVAResults()
     
     //construct the tabs
 
-    for(var i=0; i<levels.length(); i++)
+    for(var i=0; i<levels.length; i++)
     {
-        tabWidth = levels[i].length()*fontSizeTabText/1.6;
+        tabWidth = levels[i].length*fontSizeTabText/1.6;
         resultsCanvas.append("rect")
                 .attr("x", currentX)
                 .attr("y", 0)
@@ -1900,7 +1900,7 @@ function displayMultipleRegressionResults()
     var outcomeVariable = testResults["outcomeVariable"];
     var explanatoryVariables = testResults["explanatoryVariables"];
     
-    for(var i=0; i<explanatoryVariables.length(); i++)
+    for(var i=0; i<explanatoryVariables.length; i++)
     {
         //predictor variable
         var tr = table.append("tr");
@@ -1927,7 +1927,7 @@ function meanSelectionHelper()
 {
     // var meanCircle = d3.selectAll("#" + target.id + ".means");    
 // 
-//     if(document.getElementsByClassName("means").length() == 1)
+//     if(document.getElementsByClassName("means").length == 1)
 //     {
 //         //if there is only mean (one sample tests)
 //         if(meanCircle.attr("fill") == meanColors["hover"])
@@ -1940,13 +1940,13 @@ function meanSelectionHelper()
 //             meanCircle.attr("fill", meanColors["normal"]);
 //         }
 //     }
-//     else if(document.getElementsByClassName("completeLines").length() < (document.getElementsByClassName("means").length() - 1))
+//     else if(document.getElementsByClassName("completeLines").length < (document.getElementsByClassName("means").length - 1))
 //     {
 //         //if there are 2+ means            
 //         meanCircle.attr("fill", meanColors["click"]);
 // 
 //         //check if we are finishing an incomplete line here
-//         if(document.getElementsByClassName("incompleteLines").length() > 0)
+//         if(document.getElementsByClassName("incompleteLines").length > 0)
 //         {
 //             var incompleteLines = d3.selectAll(".incompleteLines");
 // 
@@ -1960,7 +1960,7 @@ function meanSelectionHelper()
 //         }
 //         var means = document.getElementsByClassName("means");
 //     
-//         if(document.getElementsByClassName("completeLines").length() < (document.getElementsByClassName("means").length() - 1))
+//         if(document.getElementsByClassName("completeLines").length < (document.getElementsByClassName("means").length - 1))
 //         {
 //             var canvas = d3.select("#plotCanvas");
 // 
@@ -1989,9 +1989,9 @@ function drawNavigator(STATES)
     var arrowHeadLength = scaleForWindowSize(15);
     
     var canvas = d3.select("#plotCanvas");
-    var stateWidth = (plotPanelWidth-sideBarWidth)/(STATES.length() - 1);
+    var stateWidth = (plotPanelWidth-sideBarWidth)/(STATES.length - 1);
     
-    for(i=0; i<STATES.length(); i++)
+    for(i=0; i<STATES.length; i++)
     {
         var x = i*stateWidth;
         var y = 0;
@@ -2031,7 +2031,7 @@ function displayToolTips()
                                     .attr("x", variableNameHolderPadding/2)
                                     .attr("y", variableNameHolderPadding/2)
                                     .attr("width", variableNameHolderWidth - variableTypeSelectionButtonWidth + variableNameHolderPadding)
-                                    .attr("height", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding))
+                                    .attr("height", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding))
                                     .attr("rx", radiusForRoundedRect)
                                     .attr("ry", radiusForRoundedRect)
                                     .attr("fill","none")
@@ -2041,7 +2041,7 @@ function displayToolTips()
 
     variablePanelCanvas.append("rect")
                         .attr("x", variableNameHolderPadding/2)
-                        .attr("y", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
+                        .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
                         .attr("height", variableNameHolderHeight*1.25)
                         .attr("width", variableNameHolderWidth - variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
@@ -2055,13 +2055,13 @@ function displayToolTips()
                         .text("List of variables in the dataset. Click on a variable to select/unselect them. ")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
+                        .attr("style", "position: absolute; left: " + variableNameHolderPadding + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 4*variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - 3*variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
 
     variablePanelCanvas.append("line")
                         .attr("x1", variableNameHolderWidth/2)
-                        .attr("y1", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding) + variableNameHolderPadding/2)
+                        .attr("y1", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + variableNameHolderPadding/2)
                         .attr("x2", variableNameHolderWidth/2)
-                        .attr("y2", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
+                        .attr("y2", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding) + 3*variableNameHolderPadding)
                         .attr("stroke", "#3957F1")
                         .attr("stroke-dasharray", "3,3")
                         .attr("class", "toolTips");
@@ -2070,7 +2070,7 @@ function displayToolTips()
     var variableTypeSelectionBorder = variablePanelCanvas.append("rect")
                                             .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
                                             .attr("y", variableNameHolderPadding/2)
-                                            .attr("height", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding))
+                                            .attr("height", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding))
                                             .attr("width", variableTypeSelectionButtonWidth/1.5 + variableNameHolderPadding)
                                             .attr("rx", radiusForRoundedRect)
                                             .attr("ry", radiusForRoundedRect)
@@ -2082,7 +2082,7 @@ function displayToolTips()
 
     plotCanvas.append("rect")
                         .attr("x", 3*variableNameHolderPadding)
-                        .attr("y", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2)
+                        .attr("y", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2)
                         .attr("height", variableNameHolderHeight*1.75)
                         .attr("width", variableNameHolderWidth + variableNameHolderPadding)
                         .attr("rx", radiusForRoundedRect)
@@ -2096,22 +2096,22 @@ function displayToolTips()
                         .text("Displays the type of the variable. Use the switch to toggle the type as dependent or independent. VisiStat selects the visualization based on this information.")
                         .attr("id", "variablePanel")
                         .attr("class", "toolTips")
-                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
+                        .attr("style", "position: absolute; left: " + (parseFloat(variablePanelWidth) + 4*variableNameHolderPadding) + "px; top: " + (variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2 - variableNameHolderHeight*1.75/2 + variableNameHolderPadding) + "px; width: " + (variableNameHolderWidth - variableNameHolderPadding/2) + "px; color: white; text-align: center; font-size: " + fontSizeToolTips + ";");
 
     variablePanelCanvas.append("line")
                     .attr("x1", variableTypeSelectionButtonWidth/1.5 + variableNameHolderPadding + variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding - variableNameHolderPadding/3)
-                    .attr("y1", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                    .attr("y1", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
                     .attr("x2", variablePanelWidth)
-                    .attr("y2", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                    .attr("y2", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
                     .attr("stroke", "#3957F1")
                     .attr("stroke-dasharray", "3,3")
                     .attr("class", "toolTips");
                 
     plotCanvas.append("line")
                 .attr("x1", 0)
-                .attr("y1", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                .attr("y1", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
                 .attr("x2", 3*variableNameHolderPadding)
-                .attr("y2", variableNames.length() * (variableNameHolderHeight + variableNameHolderPadding)/2)
+                .attr("y2", variableNames.length * (variableNameHolderHeight + variableNameHolderPadding)/2)
                 .attr("stroke", "#3957F1")
                 .attr("stroke-dasharray", "3,3")
                 .attr("class", "toolTips");
@@ -2252,7 +2252,7 @@ function initiateLoadingDatasetAnimation()
     
     var canvas = d3.select("#plotCanvas");
     
-    if(document.getElementsByClassName("loadingAnimation").length() > 0)
+    if(document.getElementsByClassName("loadingAnimation").length > 0)
             removeElementsByClassName("loadingDataset");
             
     canvas.append("text")

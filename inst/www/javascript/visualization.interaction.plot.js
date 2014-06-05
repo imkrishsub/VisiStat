@@ -71,7 +71,7 @@ function drawInteractionEffectPlot()
                 .attr("fill", "black");
                 
     //X-axis grooves
-    var numberOfGroovesInXAxis = levelsOfIndependentVariableXAxis.length();
+    var numberOfGroovesInXAxis = levelsOfIndependentVariableXAxis.length;
     
     var xStep = plotWidth/(numberOfGroovesInXAxis - 1);   
 
@@ -123,29 +123,29 @@ function drawInteractionEffectPlot()
                     .attr("class", "yAxisGrooveText");
     }   
     
-    for(var i=0; i<interactions.length(); i++)
+    for(var i=0; i<interactions.length; i++)
     {
         var x,y;
         
-        x = LEFT + levelsOfIndependentVariableXAxis.indexOf(levelsOfIndependentVariableXAxis[i%levelsOfIndependentVariableXAxis.length()])*xStep;
+        x = LEFT + levelsOfIndependentVariableXAxis.indexOf(levelsOfIndependentVariableXAxis[i%levelsOfIndependentVariableXAxis.length])*xStep;
         y = BOTTOM - getValue1(interactions[i], min, max)*plotHeight;        
         
-        var color = colors[Math.floor(i/(interactions.length()/levelsOfIndependentVariableColor.length()))];
+        var color = colors[Math.floor(i/(interactions.length/levelsOfIndependentVariableColor.length))];
         
         canvas.append("circle")
                     .attr("cx", x)
                     .attr("cy", y)
                     .attr("r", "5px")
                     .attr("fill", color)
-                    .attr("id", "c" + Math.floor(i/(interactions.length()/levelsOfIndependentVariableColor.length())) + (i%levelsOfIndependentVariableXAxis.length()))
+                    .attr("id", "c" + Math.floor(i/(interactions.length/levelsOfIndependentVariableColor.length)) + (i%levelsOfIndependentVariableXAxis.length))
                     .attr("class", "effs");     
     }
     
-    for(var i=0; i<levelsOfIndependentVariableColor.length(); i++)
+    for(var i=0; i<levelsOfIndependentVariableColor.length; i++)
     {
         var circles = [];
         
-        for(var j=0; j<levelsOfIndependentVariableXAxis.length(); j++)
+        for(var j=0; j<levelsOfIndependentVariableXAxis.length; j++)
         {
             circles.push(d3.select("#c" + i + j + ".effs"));
             
@@ -168,7 +168,7 @@ function drawInteractionPlotLegends(varNames)
     
     var xStep = (plotPanelWidth - 2*histLegendSize)/10;
     
-    for(var i=0; i<varNames.length(); i++)
+    for(var i=0; i<varNames.length; i++)
     {
         canvas.append("rect")
                 .attr("x", (10-i)*xStep)
