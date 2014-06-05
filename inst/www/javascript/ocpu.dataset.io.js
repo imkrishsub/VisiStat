@@ -44,7 +44,7 @@ function getData(dataset, variableName, level)
     
     variables[variableName][level] = [];
     
-    for(var i=0; i<dataset.length; i++)
+    for(var i=0; i<Object.keys(dataset).length; i++)
         variables[variableName][level].push(dataset[i][variableName]);  
         
     MIN[variableName][level] = Array.min(variables[variableName][level]);
