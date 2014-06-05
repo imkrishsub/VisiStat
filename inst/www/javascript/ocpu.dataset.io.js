@@ -75,6 +75,7 @@ function getData(dataset, variableName, level)
 //TODO: writes the list of tasks done to a file
 function writeToFileTests(fileName)
 {
+    return;
     var req = ocpu.rpc("writeToFile", 
     {
         object: logListTests,
@@ -94,6 +95,7 @@ function writeToFileTests(fileName)
 //TODO: writes the list of tasks done to a file
 function writeToFileVisualizations(fileName)
 {
+    return;
     var req = ocpu.rpc("writeToFile", 
     {
         object: logListVisualizations,
