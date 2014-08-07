@@ -1946,12 +1946,16 @@ function OnMouseOver(e)
 
             // style.innerHTML = "img { width: " + sidePanelWidth + "; } ";
 
-            var sheet = document.styleSheets;
-            console.dir(sheet);
+            var sheet = document.styleSheets;            
 
             for(var i=0; i<sheet.length; i++)
             {
-                console.log(" i = " + i + ", title = " + sheet[i].title);
+                console.log("i=" + i + ", href=" + sheet[i].href);
+                
+                if(sheet[i].href.indexOf("help.css") > -1)
+                {
+                    sheet[i].insertRule("img { width : " + sidePanelWidth + "; } ", 0);
+                }
             }
 
             if(target.className.baseVal == "plotHelp")
