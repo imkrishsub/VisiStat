@@ -55,7 +55,7 @@ desc["effect-size"]["rS"] = "R-squared values describes the amount of variance i
 
 desc["assumptions"] = new Object(); 
 
-desc["assumptions"]["normality"] = "This assumption is met when the distributions that are compared are normally distributed. A normal-distribution or Gaussian distribution can be identified by a characteristic bell-shaped curve.";
+desc["assumptions"]["normality"] = "This assumption is not met when the distributions that are compared are normally distributed. A normal-distribution or Gaussian distribution can be identified by a characteristic bell-shaped curve.";
 desc["assumptions"]["homogeneity"] = "This assumption is met when the distributions have almost similar variances (the spread of the data).";
 
 desc["variancePlot"] = "A plot of the variances of the distributions in the boxplot. If the bars are green in color, the distributions have approximately same variance (homogeneity of variance). If the bars are in red, the distributions have different variances (heterogeneity of variances).";
