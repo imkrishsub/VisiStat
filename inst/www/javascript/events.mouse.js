@@ -1942,8 +1942,10 @@ function OnMouseOver(e)
     {
         if(help)
         {
-            d3.selectAll(".helpImg").style("width", parseFloat(sidePanelWidth));
-            
+            style = getElementById("helpStyle");
+
+            style.innerHTML = "img { width: " + sidePanelWidth + "; } ";
+
             if(target.className.baseVal == "plotHelp")
             {
                 setup(e, target);
