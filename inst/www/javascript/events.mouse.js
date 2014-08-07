@@ -1952,12 +1952,12 @@ function OnMouseOver(e)
                 
                 if(visualisation == null || visualisation == undefined)
                 {
-                    helpText.text("Please select a variable to get started");
+                    helpText.html("Please select a variable to get started");
                 }
                 else
                 {   
                     d3.select(".plotHelp").attr("opacity","0.3").attr("cursor", "help");
-                    helpText.text(desc[visualisation]);                
+                    helpText.html(desc[visualisation]);                
                 }
             }
             
@@ -1968,7 +1968,7 @@ function OnMouseOver(e)
                 
                 d3.select(".pValueHelp").attr("opacity","0.3").attr("cursor", "help");
                 
-                helpText.text(desc["p-value"]);                
+                helpText.html(desc["p-value"]);                
             }
             
             if(target.className.baseVal == "testStatisticHelp")
@@ -1978,7 +1978,7 @@ function OnMouseOver(e)
                 
                 d3.select(".testStatisticHelp").attr("opacity","0.3").attr("cursor", "help");
                 
-                helpText.text(desc["parameter"][testResults["parameter-type"]]);                
+                helpText.html(desc["parameter"][testResults["parameter-type"]]);                
             }
             
             if(target.className.baseVal == "methodHelp")
@@ -1989,7 +1989,7 @@ function OnMouseOver(e)
                 d3.select(".methodHelp").attr("opacity","0.3").attr("cursor", "help");
                 console.log(testResults["test-type"]);                
                 
-                helpText.text(desc["method"][testResults["test-type"]]);
+                helpText.html(desc["method"][testResults["test-type"]]);
             }
             
             if(target.className.baseVal == "effectSizeHelp")
@@ -1998,7 +1998,7 @@ function OnMouseOver(e)
                 var helpText = d3.select("#descriptionLabel");
                 
                 d3.select(".effectSizeHelp").attr("opacity","0.3").attr("cursor", "help");
-                helpText.text(desc["effect-size"][testResults["effect-size-type"]]);
+                helpText.html(desc["effect-size"][testResults["effect-size-type"]]);
             }
             
             if(target.className.baseVal == "variancePlotHelp")
@@ -2010,7 +2010,7 @@ function OnMouseOver(e)
                 
                 d3.select(".variancePlotHelp").attr("opacity","0.3").attr("cursor", "help");
 
-                helpText.text(desc["variancePlot"]);                
+                helpText.html(desc["variancePlot"]);                
             }
             
             if(target.className.baseVal == "normalityPlotHelp")
@@ -2022,7 +2022,7 @@ function OnMouseOver(e)
                 
                 d3.select(".normalityPlotHelp").attr("opacity","0.3").attr("cursor", "help");
 
-                helpText.text(desc["normalityPlot"]);                
+                helpText.html(desc["normalityPlot"]);                
             }
             
             if(target.className.baseVal == "assumptionsButtonFront")
@@ -2035,7 +2035,7 @@ function OnMouseOver(e)
                 d3.select("#" + assumptionType + ".assumptionsButtonBack").attr("stroke-width","2px");
                 d3.select("#" + assumptionType + ".assumptionsButtonFront").attr("cursor", "help");
                 
-                helpText.text(desc["assumptions"][assumptionType]);
+                helpText.html(desc["assumptions"][assumptionType]);
             }
             
             if(target.className.baseVal == "compareMean")
@@ -2048,7 +2048,7 @@ function OnMouseOver(e)
                 d3.select("#button.compareMean").attr("stroke-width","2px").attr("cursor", "help");
                 d3.select("#text.compareMean").attr("cursor", "help");
                 
-                helpText.text(desc["compareMean"]);   
+                helpText.html(desc["compareMean"]);   
             }
             
             if(target.className.baseVal == "compareNow")
@@ -2061,7 +2061,7 @@ function OnMouseOver(e)
                 d3.select("#button.compareNow").attr("stroke-width","2px").attr("cursor", "help");
                 d3.select("#text.compareNow").attr("cursor", "help");
                 
-                helpText.text(desc["compareNow"]);   
+                helpText.html(desc["compareNow"]);   
             }
             
             if(target.className.baseVal == "pairwisePostHoc")
@@ -2074,7 +2074,7 @@ function OnMouseOver(e)
                 d3.select("#button.pairwisePostHoc").attr("stroke-width","2px").attr("cursor", "help");
                 d3.select("#text.pairwisePostHoc").attr("cursor", "help");
                 
-                helpText.text(desc["pairwisePostHoc"]);   
+                helpText.html(desc["pairwisePostHoc"]);   
             }
             
             if(target.className.baseVal == "tukeyHSD")
@@ -2087,7 +2087,7 @@ function OnMouseOver(e)
                 d3.select("#button.tukeyHSD").attr("stroke-width","2px").attr("cursor", "help");
                 d3.select("#text.tukeyHSD").attr("cursor", "help");
                 
-                helpText.text(desc["tukeyHSD"]);   
+                helpText.html(desc["tukeyHSD"]);   
             }
             
             if(target.className.baseVal == "regression")
@@ -2100,7 +2100,7 @@ function OnMouseOver(e)
                 d3.select("#button.regression").attr("stroke-width","2px").attr("cursor", "help");
                 d3.select("#text.regression").attr("cursor", "help");
                 
-                helpText.text(desc["regression"]);   
+                helpText.html(desc["regression"]);   
             }
             
             if(target.id == "regressionLine")
@@ -2111,7 +2111,7 @@ function OnMouseOver(e)
                 
                 d3.selectAll("#regressionLine").attr("stroke-width", "12px").attr("cursor", "help");
                 
-                helpText.text(desc["regressionLine"]);
+                helpText.html(desc["regressionLine"]);
             }
             
             if(target.id == "equation")
@@ -2122,7 +2122,7 @@ function OnMouseOver(e)
                 
                 d3.selectAll("#equation").attr("fill", "light#627bf4").attr("cursor", "help");
                 
-                helpText.text(desc["equation"]);
+                helpText.html(desc["equation"]);
             }
             
             if(target.className.baseVal == "interactionEffect")
@@ -2135,7 +2135,7 @@ function OnMouseOver(e)
                 d3.select("#button.interactionEffect").attr("stroke-width","2px").attr("cursor", "help");
                 d3.select("#text.interactionEffect").attr("cursor", "help");
                 
-                helpText.text(desc["interactionEffect"]);   
+                helpText.html(desc["interactionEffect"]);   
             }
             
             if((target.className.baseVal == "variableNameHolderFront"))
@@ -2148,7 +2148,7 @@ function OnMouseOver(e)
                 d3.select("#" + varName + ".variableNameHolderBack").attr("stroke-width","2px");
                 d3.select("#" + varName + ".variableNameHolderFront").attr("cursor", "help");
                 
-                helpText.text(desc["variables"][varName]);                
+                helpText.html(desc["variables"][varName]);                
             }
 
             if((target.className.baseVal == "visualisationHolderFront"))
@@ -2162,7 +2162,7 @@ function OnMouseOver(e)
                 d3.select("#" + visualisationName + ".visualisationHolder").attr("stroke-width","2px");
                 d3.select("#" + visualisationName + ".visualisationHolderFront").attr("cursor", "help");
                 
-                helpText.text(desc["visualisation"][visualisationName]);                
+                helpText.html(desc["visualisation"][visualisationName]);                
             }
 
             if((target.className.baseVal == "disabled"))
@@ -2174,7 +2174,7 @@ function OnMouseOver(e)
                 
                 d3.select("#" + varName + ".disabled").attr("cursor", "help");
                 
-                helpText.text(desc["variables"][varName]);                
+                helpText.html(desc["variables"][varName]);                
             }
         }
         else
