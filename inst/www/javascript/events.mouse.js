@@ -1950,11 +1950,14 @@ function OnMouseOver(e)
 
             for(var i=0; i<sheet.length; i++)
             {
-                console.log("i=" + i + ", href=" + sheet[i].href);
-                
-                if(sheet[i].href.indexOf("help.css") > -1)
+                if(sheet[i].href != null)
                 {
-                    sheet[i].insertRule("img { width : " + sidePanelWidth + "; } ", 0);
+                    console.log("i=" + i + ", href=" + sheet[i].href);
+
+                    if(sheet[i].href.indexOf("help.css") > -1)
+                    {
+                        sheet[i].insertRule("img { width : " + sidePanelWidth + "; } ", 0);
+                    }
                 }
             }
 
