@@ -1947,6 +1947,7 @@ function OnMouseOver(e)
             // style.innerHTML = "img { width: " + sidePanelWidth + "; } ";
 
             var sheet = document.styleSheets;
+            console.dir(sheet);
 
             for(var i=0; i<sheet.length; i++)
             {
