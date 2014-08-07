@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <link rel="stylesheet" href="../style/help.css">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+    <div class="helpcolumn">
+    
+<!-- DON'T EDIT ANYTHING ABOVE THIS LINE-->
+<div class="description">
+        
+<b> Biserial correlation coefficient</b> is used to find correlation (the direction of change in one variable as the other variable changes) when one of the variables is binary (can take only two values). It has a range of -1 to +1. -1 implies that one variable decreases as the other increases (negative correlation) and +1 implies one variable increases as the other increases (positive correlation). 0 implies there is no dependence between the two variables.
+</div>    
+        
+<h2>Conditions:</h2>
+<ul>
+    <li>Between-subjects experimental design</li>
+    <li>The dependent variable is in interval or ratio scale</li>
+    <li>The independent variable is in nominal scale and is occuring artificially dichotomonous</li>
+</ul>
+        
+<h2>Examples:</h2>
+<div class="example">
+<b>Example 1:</b> In a text entry user study, two keyboard layouts (QWERTY and DVORAK) were compared in a between-subjects experimental design. As shown in the graph below, the measured task completion time were normally distributed in each condition, but their variance were radically different. This violates the assumption of homogeniety of variance of unpaired t-tests.
+    <img src="images/bC2.png"/>
+</div>
+        
+        <div class="example">
+<b>Example 2:</b> In a study of Effect of Food on Test Scores, We compare the effect of different types of food on the participant' test scores. The foods considered are plain yoghurt, a snickers bar, and a sandwich. We measure the verbal (language) and the quantitative (math) scores of the participant. Since the same set of participants are used for different conditions (foodEaten), this experiment follows a within-groups design. Following the experiment, we also get the satisfaction rating from the participant. The gender of the participant is also considered as an independent variable.
+    <img src="images/bC1.png"/>
+</div>
+        
+
+
+        
+<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
+        </div>
+</body>
+</html>

@@ -1,4 +1,6 @@
-//settings
+// - - - - - - - - - - - - - DEPRECATED - - - - - - - - - - - - - 
+
+// Help text description 
 var desc = new Object();
 desc["Histogram"] = "Shows the distribution of the data by clustering data into different bins. Hover over each bar to see the number of participants corresponding to the bar. Histogram is useful for viewing the shape of the distribution. ";
 desc["Boxplot"] = "Boxplot shows the distribution of the data. It is useful for seeing the central tendency of the distribution. The horizontal line in the middle indicates the median and the circle represents the mean.";

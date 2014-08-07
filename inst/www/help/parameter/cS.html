@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <link rel="stylesheet" href="../style/help.css">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+    <div class="helpcolumn">
+    
+<!-- DON'T EDIT ANYTHING ABOVE THIS LINE-->
+<div class="description">
+        
+<b>The chi-square statistic</b> is a normalized sum of squared deviations between observed and theoretical frequencies.
+</div>    
+        
+<h2>Formula:</h2>
+<div class="formula">
+$ \chi^2 = \sum\limits_{c} { { ( O - E )^2 } \over { E } } $
+</div>
+
+<h2>Legend:</h2>
+<ul>
+    <li>$c = $ Cells in the contingency table constructed from the two variables</li>
+    <li>$O = $ Observed frequency: counted from the actual result</li>
+    <li>$E = $ Expected frequency: calculated frequency representing the null hypothesis that there is no relationship between variables.</li>
+    <li>$\chi^2 = $ Chi square statistics</li>    
+
+</ul>
+
+<h2>Expected and Observed Frequencies From Contingency Table:</h2>
+<div class="example">
+For example, if we have the following survey results:
+<img src="images/1.png"/>
+</div>
+<br>
+<div class="example">
+Then we can calculate our expected frequencies (E) based on the proportion of respondents who said yes versus no. It can also be calculated for each cell by the row total with the column total divided by the grand total (e.g. 254 x 294 : 692 = 108).
+<img src="images/2.png"/>
+</div>
+<br>
+<div class="example">
+This second table, where no relationship exists between the interest in attending history and heritage attractions and events and gender, also represents the null hypothesis or Ho. (Therefore, if a study says that it "fails to reject the null hypothesis", it means that no relationship was found to exist between the variables under study.)
+</div>
+<br>
+<div class="description">
+Hence, one can now use the the chi-square statistic to get the results.
+</div>
+
+<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
+        </div>
+</body>
+</html>

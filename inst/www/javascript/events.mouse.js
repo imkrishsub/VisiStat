@@ -1976,9 +1976,9 @@ function OnMouseOver(e)
                 setup(e, target);
                 var helpText = d3.select("#descriptionLabel");
                 
-                d3.select(".testStatisticHelp").attr("opacity","0.3").attr("cursor", "help");
+                d3.select(".testStatisticHelp").attr("opacity","0.3").attr("cursor", "help");               
                 
-                helpText.text(desc["parameter"][testResults["parameter-type"]]);                
+                document.getElementById("helpPanel").innerHTML = '<object type="text/html" data="help/' + testResults["parameter-type"] + '.html" height = ' + (sidePanelHeight - sideCanvasButtonHeight) + ' width = ' + sidePanelWidth + '></object>';               
             }
             
             if(target.className.baseVal == "methodHelp")
@@ -1989,7 +1989,7 @@ function OnMouseOver(e)
                 d3.select(".methodHelp").attr("opacity","0.3").attr("cursor", "help");
                 console.log(testResults["test-type"]);                
                 
-                helpText.text(desc["method"][testResults["test-type"]]);
+                document.getElementById("helpPanel").innerHTML = '<object type="text/html" data="help/' + testResults["test-type"] + '.html" height = ' + (sidePanelHeight - sideCanvasButtonHeight) + ' width = ' + sidePanelWidth + '></object>';
             }
             
             if(target.className.baseVal == "effectSizeHelp")
@@ -2030,14 +2030,10 @@ function OnMouseOver(e)
                 setup(e, target);
                 var assumptionType = target.id;
                 
-                var helpText = d3.select("#descriptionLabel");
-                
                 d3.select("#" + assumptionType + ".assumptionsButtonBack").attr("stroke-width","2px");
                 d3.select("#" + assumptionType + ".assumptionsButtonFront").attr("cursor", "help");
-                
-                // helpText.text(desc["assumptions"][assumptionType]);
 
-                document.getElementById("helpPanel").innerHTML = '<object type="text/html" data="help/'+assumptionType+'.html" height = ' + (sidePanelHeight - sideCanvasButtonHeight) + ' width = ' + sidePanelWidth + '></object>';
+                document.getElementById("helpPanel").innerHTML = '<object type="text/html" data="help/' + assumptionType + '.html" height = ' + (sidePanelHeight - sideCanvasButtonHeight) + ' width = ' + sidePanelWidth + '></object>';
                 
             }
             

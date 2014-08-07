@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <link rel="stylesheet" href="../style/help.css">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+    <div class="helpcolumn">
+    
+<!-- DON'T EDIT ANYTHING ABOVE THIS LINE-->
+<div class="description">
+        
+<b>A paired t-test</b> is used when there are 2 conditions are compared and they are paired (i.e., within-groups factor). Paired t-test can be used only when the distributions are normal and homogeneity of variances is met (i.e., the distributions have equal variances). However, since there is no alternative when homogeneity of variances is not met, a paired t-test is used even then.
+</div>    
+        
+<h2>Conditions:</h2>
+<ul>
+    <li>Within-subjects experimental design</li>
+    <li>The number of Independent Variable is one</li>
+    <li>The number of levels in Independent Variable are two</li>
+     <li>Your independent variable should consist of two categorical, "related groups" or "matched pairs"</li>
+    <li>The dependent variable should be measured on a continuous scale (i.e., it is measured at the interval or ratio level)</li>
+    <li>The distribution of the differences in the dependent variable between the two related groups should be approximately normally distributed</li>
+    <li>There should be no significant outliers in the differences between the two related groups</li>
+    <li>Sampled data from the population of same variance</li>
+</ul>
+
+<h2>Examples:</h2>
+<div class="example">
+<b>Example 1:</b> In an effect of phone operating systems emotionally on users, two types of phone operating systems(ios and android) were compared in a within-subjects experimental design. As shown in the graph below, the measured stress score was normally distributed in each condition, but they are sampled from same participants hence violating the assumption of independence of paired t-tests.
+<img src="images/pt-ex2.png"/>
+</div>
+
+<div class="example">
+<b>Example 2:</b>In an effect of food on test scores user study, two types of food items(Yogurt and Snickers) were compared in a within-subjects experimental design. As shown in the graph below, the measured math score was normally distributed in each condition, but they are sampled from same participants hence violating the assumption of independence of paired t-tests.Their variance is about the same.
+<img src="images/pt-ex1.png"/>
+</div>
+
+        
+<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
+        </div>
+</body>
+</html>

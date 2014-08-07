@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <link rel="stylesheet" href="../style/help.css">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+    <div class="helpcolumn">
+    
+<!-- DON'T EDIT ANYTHING ABOVE THIS LINE-->
+<div class="description">
+        
+<b>Welch's t-test</b> is used when there are 2 conditions are compared and they are unpaired (i.e., between-groups factor). Welch's t-test is the alternative to unpaired t-test when homogeneity of variances is not met (i.e., the distributions have unequal variances). It still requires the distributions to be normal.
+</div>    
+        
+<h2>Conditions:</h2>
+<ul>
+    <li>Between-subjects experimental design</li>
+    <li>Number of levels in the independent variable are two</li>
+    <li>Number of independent variable is one</li>
+    <li>Independent variable that is categorical (i.e., two or more groups)</li>
+    <li>Dependent variable that is continuous (i.e., interval or ratio level)</li>
+    <li>Cases that have values on both the dependent and independent variables</li>
+    <li>Independent samples/groups (i.e., independence of observations)</li>
+    <li>Random sample of data from the population</li>
+    <li>Normal distribution (approximately) of the dependent variable for each group</li>
+    <li>No outliers</li>
+</ul>
+
+<h2>Examples:</h2>
+<div class="example">
+<b>Example 1:</b> In a text entry user study, two keyboard layouts (QWERTY and DVORAK) were compared in a between-subjects experimental design. As shown in the graph below, the measured task completion time were normally distributed in each condition, but their variance were radically different. This violates the assumption of homogeniety of variance of unpaired t-tests.
+<img src="images/wt-ex1.png"/>
+</div>
+
+<div class="example">
+<b>Example 2:</b> In a weight loss user study, weight lost of participants is considered under two different conditions (skip breakfast and skip lunch), which were compared in a between-subjects experimental design. As shown in the graph below, the measured wight lost was normally distributed in each condition, and their variance were about the same. 
+<img src="images/wt-ex2.png"/>
+</div>
+
+        
+<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
+        </div>
+</body>
+</html>

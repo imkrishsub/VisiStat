@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <link rel="stylesheet" href="../style/help.css">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+    <div class="helpcolumn">
+    
+<!-- DON'T EDIT ANYTHING ABOVE THIS LINE-->
+<div class="description">
+        
+<b>Pairwise t-test (with Bonferroni correction)</b>  are used as a follow up to the significance tests (like t-test or ANOVA). Pairwise t-tests can be used to compare two conditions when both normality of distributions and homogeneity of variances are met.
+</div>    
+        
+        <p>
+        You need to use a Bonferroni adjustment on the results you get from the Wilcoxon tests because you are making multiple comparisons, which makes it more likely that you will declare a result significant when you should not (a Type I error). Luckily, the Bonferroni adjustment is very easy to calculate; simply take the significance level you were initially using and divide it by the number of tests you are running.</p>  
+        
+  <p><b>The Bonferroni correction</b> is a multiple-comparison correction used when several dependent or independent statistical tests are being performed simultaneously (since while a given alpha value alpha may be appropriate for each individual comparison, it is not for the set of all comparisons). In order to avoid a lot of spurious positives, the alpha value needs to be lowered to account for the number of comparisons being performed. </p>
+
+<p>The simplest and most conservative approach is the Bonferroni correction, which sets the alpha value for the entire set of n comparisons equal to alpha by taking the alpha value for each comparison equal to alpha/n. Explicitly, given n tests T_i for hypotheses  H_i (1<=i<=n) under the assumption H_0 that all hypotheses H_i are false, and if the individual test critical values are <=alpha/n, then the experiment-wide critical value is <=alpha.</p>
+        
+<h2>Conditions:</h2>
+<ul>
+    <li>Within-subjects experimental design</li>
+    <li> Variables under examination should be measured in interval or ratio scale  
+    </li>
+        <li> Variables should have a linear relationshio between the independent and dependent variable
+    </li>
+    <li> Variables should not have significant outliners
+    </li>
+    <li> Need for dependent data to be normally distributed or homogeneity of variances
+    </li>
+</ul>
+
+        
+<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
+        </div>
+</body>
+</html>
