@@ -2176,7 +2176,7 @@ function OnMouseOver(e)
                 helpText.text(desc["variables"][varName]);                
             }
 
-            d3.selectAll(".helpImg").width(parseFloat(sidePanelWidth);
+            d3.selectAll(".helpImg").width(parseFloat(sidePanelWidth));
         }
         else
         {
