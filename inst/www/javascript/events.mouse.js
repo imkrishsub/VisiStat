@@ -2037,7 +2037,7 @@ function OnMouseOver(e)
                 
                 // helpText.text(desc["assumptions"][assumptionType]);
 
-                document.getElementById("helpPanel").innerHTML = '<object type="text/html" data="help/'+assumptionType+'.html" height = "auto" width = ' + sidePanelWidth + '></object>';
+                document.getElementById("helpPanel").innerHTML = '<object type="text/html" data="help/'+assumptionType+'.html" height = ' + (sidePanelHeight - sideCanvasButtonHeight) + ' width = ' + sidePanelWidth + '></object>';
                 
             }
             
