@@ -1942,6 +1942,8 @@ function OnMouseOver(e)
     {
         if(help)
         {
+            d3.selectAll(".helpImg").style("width", parseFloat(sidePanelWidth));
+            
             if(target.className.baseVal == "plotHelp")
             {
                 setup(e, target);
@@ -2175,8 +2177,6 @@ function OnMouseOver(e)
                 
                 helpText.text(desc["variables"][varName]);                
             }
-
-            d3.selectAll(".helpImg").width(parseFloat(sidePanelWidth));
         }
         else
         {
