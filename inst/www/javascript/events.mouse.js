@@ -2035,7 +2035,10 @@ function OnMouseOver(e)
                 d3.select("#" + assumptionType + ".assumptionsButtonBack").attr("stroke-width","2px");
                 d3.select("#" + assumptionType + ".assumptionsButtonFront").attr("cursor", "help");
                 
-                helpText.text(desc["assumptions"][assumptionType]);
+                // helpText.text(desc["assumptions"][assumptionType]);
+
+                document.getElementById("helpPanel").innerHTML = '<object type="text/html" data="help/"' + assumptionType + '.html" ></object>';
+                
             }
             
             if(target.className.baseVal == "compareMean")
