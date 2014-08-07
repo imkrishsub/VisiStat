@@ -1942,9 +1942,16 @@ function OnMouseOver(e)
     {
         if(help)
         {
-            style = getElementById("helpStyle");
+            // style = document.getElementById("helpStyle");
 
-            style.innerHTML = "img { width: " + sidePanelWidth + "; } ";
+            // style.innerHTML = "img { width: " + sidePanelWidth + "; } ";
+
+            var sheet = document.styleSheets;
+
+            for(var i=0; i<sheet.length; i++)
+            {
+                console.log(" i = " + i + ", title = " + sheet[i].title);
+            }
 
             if(target.className.baseVal == "plotHelp")
             {
