@@ -55,33 +55,7 @@ desc["effect-size"]["rS"] = "R-squared values describes the amount of variance i
 
 desc["assumptions"] = new Object(); 
 
-desc["assumptions"]["normality"] = "<div class=\"description\">
-        
-<b>Normality</b>  This assumption is not met when the distributions that are compared are normally distributed. A normal-distribution or Gaussian distribution can be identified by a characteristic bell-shaped curve.
-</div>    
-        
-<h2>Examples:</h2>
-<div class=\"example\">
-<b>Example 1: Data not normally distributed</b> Fitts law experiment conducted with 10 candidates and histogram created for 80 data points for task completion in milliseconds.
-<img src=\"Images/normality_1.png\"/>
-    Note: Data might be insufficient to figure out whether its normality.
-
-
-
-        
-<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
-        </div>
-        
-        <div class=\"example\">
-<b>Example 2: Data almost normally distributed</b> Height of 40 men plotted.
-<img src=\"Images/normality_2.png\"/>
-    Note: More data would clearly show its normality.
-
-
-
-        
-<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
-        </div>";
+desc["assumptions"]["normality"] = "This assumption is met when the distributions that are compared are normally distributed. A normal-distribution or Gaussian distribution can be identified by a characteristic bell-shaped curve.";
 desc["assumptions"]["homogeneity"] = "This assumption is met when the distributions have almost similar variances (the spread of the data).";
 
 desc["variancePlot"] = "A plot of the variances of the distributions in the boxplot. If the bars are green in color, the distributions have approximately same variance (homogeneity of variance). If the bars are in red, the distributions have different variances (heterogeneity of variances).";
