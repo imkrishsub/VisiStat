@@ -57,7 +57,7 @@ desc["assumptions"] = new Object();
 
 desc["assumptions"]["normality"] = "<div class=\"description\">
         
-<b>Normality</b>  This assumption is met when the distributions that are compared are normally distributed. A normal-distribution or Gaussian distribution can be identified by a characteristic bell-shaped curve.
+<b>Normality</b>  This assumption is not met when the distributions that are compared are normally distributed. A normal-distribution or Gaussian distribution can be identified by a characteristic bell-shaped curve.
 </div>    
         
 <h2>Examples:</h2>
