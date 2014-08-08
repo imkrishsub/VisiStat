@@ -54,6 +54,13 @@
                // load details of default dataset (text entry study)
                changeDataset();
             }
+
+            function handleFiles(files)
+            {
+                file = files[0];
+
+                console.dir(file);
+            }
             
             // loads dataset properties when dataset is changed
             function changeDataset()
@@ -158,7 +165,7 @@
                     <label class="labels">Upload file: </label>
                 </td>
                 <td id="right">
-                    <input type="file" name="dataset" accept="text/csv">
+                    <input type="file" id="fileInput" name="dataset" accept="text/csv" onchange=handleFile(this.files)>
                 </td>
             </tr>
 
