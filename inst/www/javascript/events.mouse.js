@@ -182,13 +182,13 @@ function OnMouseDown(e)
                                     
                         resultsCanvas.append("rect")
                                     .attr("x", scaleForWindowSize(10))
-                                    .attr("y", 4*significanceTestResultStep)
+                                    .attr("y", 2.5*significanceTestResultStep)
                                     .attr("height", significanceTestResultStep)
-                                    .attr("width", sidePanelWidth - 2*scaleForWindowSize(10))
+                                    .attr("width", resultsPanelWidth/2 - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
                                     .attr("stroke", "black")
-                                    .attr("opacity", "0.5")
+                                    .attr("opacity", "0.2")
                                     .attr("fill", "white")
                                     .attr("class", "testStatisticHelp");
                                     
@@ -199,8 +199,8 @@ function OnMouseDown(e)
                                     .attr("width", sidePanelWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "none")
-                                    .attr("opacity", "0.01")
+                                    .attr("stroke", "black")
+                                    .attr("opacity", "0.5")
                                     .attr("fill", "white")
                                     .attr("class", "methodHelp");
                         
