@@ -1946,7 +1946,8 @@ function OnMouseOver(e)
 
             // style.innerHTML = "img { width: " + sidePanelWidth + "; } ";
 
-            var sheet = document.styleSheets;            
+            var sheet = document.styleSheets;  
+            document.getElementById("helpPanel").innerHTML = "";          
 
             for(var i=0; i<sheet.length; i++)
             {
