@@ -1947,7 +1947,11 @@ function OnMouseOver(e)
             // style.innerHTML = "img { width: " + sidePanelWidth + "; } ";
 
             var sheet = document.styleSheets;  
-            document.getElementById("helpPanel").innerHTML = "";          
+            document.getElementById("helpPanel").innerHTML = "";
+            d3.select("#helpPanel").append("label")
+                                .attr("id", "descriptionLabel")
+                                .text("Hover over a visible element to get help");
+                              
 
             for(var i=0; i<sheet.length; i++)
             {
