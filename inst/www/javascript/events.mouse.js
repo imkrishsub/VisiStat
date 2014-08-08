@@ -175,8 +175,8 @@ function OnMouseDown(e)
                                     .attr("width", sidePanelWidth - 2*scaleForWindowSize(10))
                                     .attr("rx", "3px")
                                     .attr("ry", "3px")
-                                    .attr("stroke", "none")
-                                    .attr("opacity", "0.01")
+                                    .attr("stroke", "black")
+                                    .attr("opacity", "0.5")
                                     .attr("fill", "white")
                                     .attr("class", "pValueHelp");
                                     
@@ -1949,8 +1949,8 @@ function OnMouseOver(e)
             var sheet = document.styleSheets;  
             document.getElementById("helpPanel").innerHTML = "";
             d3.select("#helpPanel").append("label")
-                                .attr("id", "descriptionLabel")
-                                .text("Hover over a visible element to get help");
+                                    .attr("id", "descriptionLabel")
+                                    .text("Hover over a visible element to get help");
                               
 
             for(var i=0; i<sheet.length; i++)
