@@ -319,7 +319,7 @@ function getEffectSizeReportingText(p, effectSize)
       }
       
       //add effect-size value
-      text += "<i>" + effectSizeType + "</i>" + " = " + effectSizeRounded + ". ";
+      text += “ ” + "<i>" + effectSizeType + "</i>" + " = " + effectSizeRounded + ". ";
    }
    //p > 0.05 (not significant)
    else 
