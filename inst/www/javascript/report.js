@@ -319,16 +319,16 @@ function getEffectSizeReportingText(p, effectSize)
       }
       
       //add effect-size value
-      text += " (" + "<i>" + effectSizeType + "</i>" + " = " + effectSizeRounded + "). ";
+      text += "<i>" + effectSizeType + "</i>" + " = " + effectSizeRounded + ".";
    }
    //p > 0.05 (not significant)
    else 
    {
            //add effect size text depending on amount of effect
       if (effectSizeAmount == 2)
-         text += " However, the differences constituted a medium effect size, (" + "<i>" + effectSizeType + "</i>" + "= " + effectSizeRounded + ").";
+         text += " However, the differences constituted a medium effect size, " + "<i>" + effectSizeType + "</i>" + "= " + effectSizeRounded + ".";
       else if (effectSizeAmount == 3)
-         text += " However, differences constituted a large effect size, (" + "<i>" + effectSizeType + "</i>" + "= " + effectSizeRounded + ").";
+         text += " However, the differences constituted a large effect size, " + "<i>" + effectSizeType + "</i>" + "= " + effectSizeRounded + ".";
       //in case that effect size is smaller than medium, it is not remarkable as no significant results
    }
    
