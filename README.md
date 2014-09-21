@@ -6,5 +6,5 @@ VisiStat is a tool that allows users to do statistical analysis by interacting w
 Homepage
 ========
 
-http://hci.rwth-aachen.de/visistat/
+Contact: visistat2014@gmail.com
 
