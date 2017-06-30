@@ -1,13 +1,8 @@
-loadFile <- function(filePath)
+loadFile <- function(fileName)
 {
-    fileType = substr(filePath, nchar(filePath) - 3 + 1, nchar(filePath));
+    fileName = eval(parse(text = eval(parse(text = paste("data(", fileName, ")", sep="")))));
     
-    if(fileType == "txt")
-        dataset <- read.table(filePath, head=T);
-    if(fileType == "csv")
-        dataset <- read.csv(filePath, head=T);
+    variableNames = names(fileName);
     
-    variableNames = names(dataset);
-    
-    list(dataset = dataset, variableNames = variableNames);    
+    list(dataset = fileName, variableNames = variableNames);    
 }

@@ -1,0 +1,5 @@
+<?xml-stylesheet type="text/css" href="../style/decisionTree.css" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="canvas" width = "1000" height = "1000">
+    <circle cx="500" cy="50" r="50"/>
+    <circle cx="500" cy="250" r="100"/>
+</svg>

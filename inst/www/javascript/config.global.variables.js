@@ -1,6 +1,35 @@
+/**
+ * Global object that is used to store all global variables
+ * @type {Object}
+ */
+var global = {};
+
+//////////
+//Flags //
+//////////
+
+global.flags = {};
+
+global.flags.isTestWithoutTimeout  = false; // if true, perform tests without delay (for re-plots)
+global.flags.userDidSelectTestManually = false; 
+
+///////////////////////
+//Interaction-effect //
+///////////////////////
+
+global.interactionEffect = {};
+
+////////////////////
+//Data-properties //
+////////////////////
+
+global.CIForSDs = {};
+global.SDs = {};
+
 var variables = new Object();     
-var variableRoles = new Object(); //dependent, independent, participant
-var variableTypes = new Object(); //nominal, ordinal, interval, ratio
+var variableRoles = new Object(); 
+var variableTypes = new Object(); 
+var variablesFromOpenCPU = new Object();
 
 var IQR = new Object();   
 var MIN = new Object();
@@ -17,13 +46,15 @@ var listOfLevelsCompared = new Array();
 var allLevels = new Array();
 var reportingTextsArray = new Object();
 
+var dataIsIncomplete = false;
+
 var widthOfEachBox;
 
 var testTypesSelectedForReport = new Array();
 var researchQuestionsSelectedForReport = new Array();
 var variablesSelectedForReport = new Array();
 
-var nHistoryEntries = 0;
+var numberOfEntriesInHistory = 0;
 
 var colourBoxPlotData = new Object();
 
@@ -34,8 +65,8 @@ var states = new Array();
 
 var variableCount = 0;
 
-var currentVariableSelection = [];    
-var currentVisualisationSelection;
+var selectedVariables = [];    
+var selectedVisualisation;
 
 var fullScreen = false;
 var help = false;
@@ -46,7 +77,7 @@ var topFringeValues = [];
 var bottomFringeValues = [];
 
 var logListTests = new Array();    
-var logListVisualizations = new Array();    
+var logViz = new Array();    
     
 // Mouse events
 var _startX = 0;            // mouse starting positions
@@ -69,21 +100,30 @@ var stringForNumber = ["zero", "one", "two", "three", "four", "five", "six", "se
 var variableDataType = new Object();
 var experimentalDesign;
 var significanceTestNames = new Object();
-    significanceTestNames["pT"] = "Paired t-test";
+    significanceTestNames["pairedTTest"] = "Paired t-test";
     significanceTestNames["uT"] = "Unpaired t-test";
     significanceTestNames["mT"] = "Mann-Whitney U test";    
-    significanceTestNames["wT"] = "Wilcoxon Signed-rank test";
+    significanceTestNames["WelchTTest"] = "Wilcoxon Signed-rank test";
     significanceTestNames["a"] = "Analysis of Variance (ANOVA)";
     significanceTestNames["kT"] = "Kruskal-Wallis test";
     significanceTestNames["rA"] = "Repeated-measures ANOVA";
-    significanceTestNames["fT"] = "Friedman Test";
+    significanceTestNames["FriedmanTest"] = "Friedman Test";
 var currentTestType;
-var testResults = new Object();
+
+var multiVariateTestResults = new Object();
+var postHocTestResults = new Object();
+
 var distributions = new Object();
+var myDistributions = new Object();
 var variances = new Object();
 var participants;
-var interactions = [];
-    var tukeyResults = new Object();
+var tukeyResults = new Object();
+var usedMultiVariateTestType, usedPostHocTestType; // Can take values 'warning', 'error', and 'proper'/undefined
+
+// Interaction effect
+
+var effects = new Object();
+var highestOrderSignificantEffect, highestOrderEffect;
     
 var sampleSizesAreEqual = true;
 var pairwiseComparisons = false;
@@ -122,7 +162,17 @@ var factorials = [0, 1, 2, 6, 24, 120];
 var STATES = new Object();
 
 var entryHeight, entryWidth;
-var currentHistoryY;
+var currentHistoryPanelTop;
 //--------COPY THIS (you don't need the textfield for pure text)
 //reporting results from ANOVA are saved as a text for post-hoc analysis
 var resultsFromANOVA;
+
+// Tabs in the sidePanel
+var tabTopSelected = scaleForWindowSize(10);
+var tabTopUnselected = scaleForWindowSize(15);
+
+// Border
+var borderWidth = scaleForWindowSize(3);
+
+// Margin for help sidePanel
+var marginHelpPanel = scaleForWindowSize(5);

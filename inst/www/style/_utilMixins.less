@@ -1,0 +1,19 @@
+.mxnPanelTransition(@delay: 150ms) {
+	-webkit-transition:background-color @delay ease-in;
+	-moz-transition:background-color @delay ease-in;
+	-ms-transition:background-color @delay ease-in;
+	-o-transition:background-color @delay ease-in;
+	transition:background-color @delay ease-in;
+}
+
+.mxnShadow(@dx; @dy; @blur; @spread; @color) {
+	-webkit-box-shadow: @arguments;
+	-moz-box-shadow:    @arguments;
+	box-shadow:         @arguments;
+}
+
+.mxnRoundedCorner(@radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius; 
+}

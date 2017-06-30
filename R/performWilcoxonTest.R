@@ -11,7 +11,11 @@ performWilcoxonTest <- function(groupA, groupB)
     V = result$statistic[["V"]];
     p = result$p.value;
     
-    result <- coin::wilcoxsign_test(groupA ~ groupB, distribution = "exact");
+    distributionType = "exact";
+    if(length(groupA) > 100)
+      distributionType = "approximate"
+    
+    result <- coin::wilcoxsign_test(groupA ~ groupB, distribution = distributionType);
     
     name <- names(result@statistic@teststatistic);
     

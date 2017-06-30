@@ -1,18 +1,18 @@
-findTransformForNormality <- function(dependentVariable, independentVariable, dataset)
+findTransformForNormality <- function(DV, IVs, dataset)
 {
     D <- as.data.frame(dataset);
     
-    eval(parse(text = paste("D$",independentVariable," = ","as.factor(D$",independentVariable,")",sep="")));
+    eval(parse(text = paste("D$",IVs," = ","as.factor(D$",IVs,")",sep="")));
     
-    levels = eval(parse(text = paste("unique(D$",independentVariable,")")));
-    numberOfLevels = eval(parse(text = paste("length(unique(D$",independentVariable,"))")));
+    levels = eval(parse(text = paste("unique(D$",IVs,")")));
+    numberOfLevels = eval(parse(text = paste("length(unique(D$",IVs,"))")));
     
     transformations = c("sqrt", "cube", "reciprocal", "log");
     
     for(i in 1:numberOfLevels)
     {
-        eval(parse(text = paste("level.",levels[i]," = subset(D, D$",independentVariable," == \"",levels[i],"\")",sep="")));
-        eval(parse(text = paste("level.",levels[i]," = ","level.",levels[i],"$",dependentVariable,sep="")))
+        eval(parse(text = paste("level.",levels[i]," = subset(D, D$",IVs," == \"",levels[i],"\")",sep="")));
+        eval(parse(text = paste("level.",levels[i]," = ","level.",levels[i],"$",DV,sep="")))
     }
     
     type = "none";

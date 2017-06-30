@@ -1,15 +1,24 @@
-Package: StatViz
+Package: VisiStat
 Type: OpenCPU Application
 Version: 0.4
 Date: 20-11-2013
-Author: John Doe
-Maintainer: John Doe <visistat2014@gmail.com>
+Author: Krishna Subramanian
+Maintainer: Krishna <krishna.prasath.subramanian@rwth-aachen.de>
 Description: An application that allows users to statistics without much previous knowledge by showing the statistics in the context of visualizations.
 Imports: 
+	lmerTest,
 	ez,
 	car,
 	effects,
 	coin,
 	MBESS,
-	ltm
+	ltm,
+	ggplot2,
+	assertthat,
+	sqldf,
+	combinat,
+	DTK,
+	doMC,
+	lsr,
+	doBy
 Lazyload: yes

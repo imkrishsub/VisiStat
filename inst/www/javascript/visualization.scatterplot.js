@@ -1,83 +1,77 @@
-//boundaries    
-var LEFT;
-var RIGHT;
-
-var TOP;
-var BOTTOM;
-
-var data = new Object(); 
-var mins = new Object();
-var maxs = new Object();
-
-var uniqueDataX, uniqueDataY;
-var xStep, yStep;
-    
    
 function makeScatterplot()
 {   
-    logListVisualizations.push(
+    logViz.push(
         {
             time: new Date().getTime(), 
             dataset: sessionStorage.fileName,
-            variables: currentVariableSelection.slice(0).join("|"),
+            variables: selectedVariables.slice(0).join("|"),
             visualization: "scatterplot"
         }
     );
 
     writeToFileVisualizations(sessionStorage.logFileName + "_visualizations");
-    // graphics
-    LEFT = plotPanelWidth/2 - plotWidth/2;
-    RIGHT = plotPanelWidth/2 + plotWidth/2;
+    
+    // Boundaries
+    var LEFT = plotPanelWidth/2 - plotWidth/2;
+    var RIGHT = plotPanelWidth/2 + plotWidth/2;
+    
+    var TOP = plotPanelHeight/2 - plotHeight/2;
+    var BOTTOM = plotPanelHeight/2 + plotHeight/2;
 
-    TOP = plotPanelHeight/2 - plotHeight/2 - topOffset;
-    BOTTOM = plotPanelHeight/2 + plotHeight/2 - topOffset;
+    var data = new Object(); 
+    var mins = new Object();
+    var maxs = new Object();
+
+    var uniqueDataX, uniqueDataY;
+    var xStep, yStep;
 
     var canvas = d3.select("#plotCanvas");
     
-    if(currentVariableSelection.length == 3)
+    if(selectedVariables.length == 3)
     {
         var variableList = getSelectedVariables();
         
         if(variableList["dependent"].length == 2 && variableList["independent"].length == 1)
         {
-            if(currentVariableSelection[2] != variableList["independent"][0])
+            if(selectedVariables[2] != variableList["independent"][0])
             {
-                if(currentVariableSelection[1] == variableList["independent"][0])
+                if(selectedVariables[1] == variableList["independent"][0])
                 {
-                    var temp = currentVariableSelection[2];
-                    currentVariableSelection[2] = currentVariableSelection[1];
-                    currentVariableSelection[1] = temp;
+                    var temp = selectedVariables[2];
+                    selectedVariables[2] = selectedVariables[1];
+                    selectedVariables[1] = temp;
                 }
                 else
                 {
-                    var temp = currentVariableSelection[2];
-                    currentVariableSelection[2] = currentVariableSelection[0];
-                    currentVariableSelection[0] = temp;
+                    var temp = selectedVariables[2];
+                    selectedVariables[2] = selectedVariables[0];
+                    selectedVariables[0] = temp;
                 }
             }
         }
         else if(variableList["independent"].length == 2 && variableList["dependent"].length == 1)
         {
-            if((currentVariableSelection[2] != variableList["independent"][0]) && (currentVariableSelection[2] != variableList["independent"][1]))
+            if((selectedVariables[2] != variableList["independent"][0]) && (selectedVariables[2] != variableList["independent"][1]))
             {
-                var temp = currentVariableSelection[2];
-                currentVariableSelection[2] = currentVariableSelection[1];
-                currentVariableSelection[1] = temp;
+                var temp = selectedVariables[2];
+                selectedVariables[2] = selectedVariables[1];
+                selectedVariables[1] = temp;
             }
         }
     }   
 
     // getting data
-    data["X"] = variables[currentVariableSelection[0]]["dataset"];
-    data["Y"] = variables[currentVariableSelection[1]]["dataset"];
+    data["X"] = variables[selectedVariables[0]]["dataset"];
+    data["Y"] = variables[selectedVariables[1]]["dataset"];
     
-    mins["X"] = MIN[currentVariableSelection[0]]["dataset"];
-    mins["Y"] = MIN[currentVariableSelection[1]]["dataset"];
+    mins["X"] = MIN[selectedVariables[0]]["dataset"];
+    mins["Y"] = MIN[selectedVariables[1]]["dataset"];
     
-    maxs["X"] = MAX[currentVariableSelection[0]]["dataset"];
-    maxs["Y"] = MAX[currentVariableSelection[1]]["dataset"];
+    maxs["X"] = MAX[selectedVariables[0]]["dataset"];
+    maxs["Y"] = MAX[selectedVariables[1]]["dataset"];
     
-    findCorrelationCoefficient(currentVariableSelection[0], currentVariableSelection[1]);
+    findCorrelationCoefficient(selectedVariables[0], selectedVariables[1]);
     
     var colorData;
     var uniqueColorData;
@@ -85,11 +79,11 @@ function makeScatterplot()
     var colorsForPlot = new Object();
     var varNames = [];
     
-    if((currentVariableSelection.length == 3))
+    if((selectedVariables.length == 3))
     {
-        if(parseInt(variables[currentVariableSelection[2]]["dataset"].unique().length) <= 10)
+        if(parseInt(variables[selectedVariables[2]]["dataset"].unique().length) <= 10)
         {
-            colorData = variables[currentVariableSelection[2]]["dataset"];
+            colorData = variables[selectedVariables[2]]["dataset"];
             uniqueColorData = colorData.unique();
         
             for(var i=0; i<uniqueColorData.length; i++)
@@ -101,7 +95,7 @@ function makeScatterplot()
         }
     }    
     
-    var ids = currentVariableSelection;
+    var ids = selectedVariables;
     
     
     // Draw axes
@@ -112,6 +106,7 @@ function makeScatterplot()
               .attr("x2", RIGHT)
               .attr("y2", BOTTOM + axesOffset) 
               .attr("stroke", "black")
+              .attr("stroke-width", strokeWidth["axis"])
               .attr("id", "xAxis")
               .attr("class", "axes");
               
@@ -119,8 +114,8 @@ function makeScatterplot()
                 .attr("x", (LEFT + RIGHT)/2)
                 .attr("y", BOTTOM + axesOffset + 1.25*labelOffset)
                 .attr("text-anchor", "middle")
-                .attr("font-size", fontSizeLabels + "px")
-                .text(currentVariableSelection[0])
+                .attr("font-size", fontSizes["label"] )
+                .text(selectedVariables[0])
                 .attr("fill", "black");
     
     canvas.append("line")
@@ -129,16 +124,17 @@ function makeScatterplot()
               .attr("x2", LEFT - axesOffset)
               .attr("y2", BOTTOM)
               .attr("stroke", "black")
+              .attr("stroke-width", strokeWidth["axis"])
               .attr("id", "yAxis")              
               .attr("class", "axes");
     
     canvas.append("text")
-                .attr("x", LEFT - axesOffset - 1.25*labelOffset)
+                .attr("x", LEFT - axesOffset - 1.5*labelOffset)
                 .attr("y", (TOP + BOTTOM)/2)
                 .attr("text-anchor", "middle")
-                .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.25*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
-                .attr("font-size", fontSizeLabels + "px")
-                .text(currentVariableSelection[1])
+                .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
+                .attr("font-size", fontSizes["label"] )
+                .text(selectedVariables[1])
                 .attr("fill", "black");
                                     
     
@@ -174,7 +170,8 @@ function makeScatterplot()
                     .attr("x1", textPosition)
                     .attr("y1", BOTTOM + axesOffset)
                     .attr("x2", textPosition)
-                    .attr("y2", BOTTOM + 10 + axesOffset)
+                    .attr("y2", BOTTOM + tickLength + axesOffset)
+                    .attr("stroke-width", strokeWidth["tick"])
                     .attr("id", "groove" + i)
                     .attr("class", "xAxisGrooves");
         
@@ -182,7 +179,7 @@ function makeScatterplot()
                     .attr("x", textPosition)
                     .attr("y", BOTTOM + tickTextOffsetXAxis + axesOffset)                    
                     .text(axisText)
-                    .attr("font-size", fontSizeTicks + "px")
+                    .attr("font-size", fontSizes["tick"] )
                     .attr("text-anchor", "middle")
                     .attr("id", "groove" + i)
                     .attr("class", "xAxisGrooveText");
@@ -205,13 +202,14 @@ function makeScatterplot()
                     .attr("x2", LEFT  - axesOffset)
                     .attr("y2", textPosition)
                     .attr("id", "groove" + i)
+                    .attr("stroke-width", strokeWidth["tick"])
                     .attr("class", "yAxisGrooves");
         
         canvas.append("text")
                     .attr("x", LEFT - tickTextOffsetYAxis - axesOffset)
-                    .attr("y", textPosition + yAxisTickTextOffset)                     
+                    .attr("y", textPosition + parseFloat(fontSizes["tick"])/2)                     
                     .text(axisText)
-                    .attr("font-size", fontSizeTicks + "px")
+                    .attr("font-size", fontSizes["tick"] )
                     .attr("text-anchor", "end")
                     .attr("id", "groove" + i)
                     .attr("class", "yAxisGrooveText");
@@ -231,74 +229,73 @@ function makeScatterplot()
         else
             y = BOTTOM - getValue1(data["Y"][i], mins["Y"], maxs["Y"])*plotHeight;
         
-        
-        
         var color = getObjectLength(colorsForPlot) > 0 ? colorsForPlot[colorData[i]] : "black";        
         
         canvas.append("circle")
                     .attr("cx", x)
                     .attr("cy", y)
-                    .attr("r", datapointRadius)
-                    .attr("fill", color)
+                    .attr("r", radius["scatter plot"])
+                    .attr("fill", fillColor["scatter plot data point"])
                     .attr("id", "data" + i)
                     .attr("class", "datapoints");     
     }
 }
 
+// ToDo: polish this (someday)
 function makeScatterplotHistory()
 {       
     var LEFT = scaleForWindowSize(75);
     var RIGHT = entryWidth - scaleForWindowSize(100);
     
-    var TOP = currentHistoryY + scaleForWindowSize(50);
-    var BOTTOM = currentHistoryY + entryHeight - scaleForWindowSize(50)
+    var TOP = currentHistoryPanelTop + scaleForWindowSize(50);
+    var BOTTOM = currentHistoryPanelTop + entryHeight - scaleForWindowSize(50)
 
     var sideCanvas = d3.select("#sideCanvas");
     
-    if(currentVariableSelection.length == 3)
+    if(selectedVariables.length == 3)
     {
         var variableList = getSelectedVariables();
         
         if(variableList["dependent"].length == 2 && variableList["independent"].length == 1)
         {
-            if(currentVariableSelection[2] != variableList["independent"][0])
+            if(selectedVariables[2] != variableList["independent"][0])
             {
-                if(currentVariableSelection[1] == variableList["independent"][0])
+                if(selectedVariables[1] == variableList["independent"][0])
                 {
-                    var temp = currentVariableSelection[2];
-                    currentVariableSelection[2] = currentVariableSelection[1];
-                    currentVariableSelection[1] = temp;
+                    var temp = selectedVariables[2];
+                    selectedVariables[2] = selectedVariables[1];
+                    selectedVariables[1] = temp;
                 }
                 else
                 {
-                    var temp = currentVariableSelection[2];
-                    currentVariableSelection[2] = currentVariableSelection[0];
-                    currentVariableSelection[0] = temp;
+                    var temp = selectedVariables[2];
+                    selectedVariables[2] = selectedVariables[0];
+                    selectedVariables[0] = temp;
                 }
             }
         }
         else if(variableList["independent"].length == 2 && variableList["dependent"].length == 1)
         {
-            if((currentVariableSelection[2] != variableList["independent"][0]) && (currentVariableSelection[2] != variableList["independent"][1]))
+            if((selectedVariables[2] != variableList["independent"][0]) && (selectedVariables[2] != variableList["independent"][1]))
             {
-                var temp = currentVariableSelection[2];
-                currentVariableSelection[2] = currentVariableSelection[1];
-                currentVariableSelection[1] = temp;
+                var temp = selectedVariables[2];
+                selectedVariables[2] = selectedVariables[1];
+                selectedVariables[1] = temp;
             }
         }
     }   
 
     // getting data
-    data["X"] = variables[currentVariableSelection[0]]["dataset"];
-    data["Y"] = variables[currentVariableSelection[1]]["dataset"];
+    data["X"] = variables[selectedVariables[0]]["dataset"];
+    data["Y"] = variables[selectedVariables[1]]["dataset"];
     
-    mins["X"] = MIN[currentVariableSelection[0]]["dataset"];
-    mins["Y"] = MIN[currentVariableSelection[1]]["dataset"];
+    mins["X"] = MIN[selectedVariables[0]]["dataset"];
+    mins["Y"] = MIN[selectedVariables[1]]["dataset"];
     
-    maxs["X"] = MAX[currentVariableSelection[0]]["dataset"];
-    maxs["Y"] = MAX[currentVariableSelection[1]]["dataset"];
+    maxs["X"] = MAX[selectedVariables[0]]["dataset"];
+    maxs["Y"] = MAX[selectedVariables[1]]["dataset"];
     
-    // findCorrelationCoefficient(currentVariableSelection[0], currentVariableSelection[1]);
+    // findCorrelationCoefficient(selectedVariables[0], selectedVariables[1]);
     
     var colorData;
     var uniqueColorData;
@@ -306,11 +303,11 @@ function makeScatterplotHistory()
     var colorsForPlot = new Object();
     var varNames = [];
     
-    if((currentVariableSelection.length == 3))
+    if((selectedVariables.length == 3))
     {
-        if(parseInt(variables[currentVariableSelection[2]]["dataset"].unique().length) <= 10)
+        if(parseInt(variables[selectedVariables[2]]["dataset"].unique().length) <= 10)
         {
-            colorData = variables[currentVariableSelection[2]]["dataset"];
+            colorData = variables[selectedVariables[2]]["dataset"];
             uniqueColorData = colorData.unique();
         
             for(var i=0; i<uniqueColorData.length; i++)
@@ -322,7 +319,7 @@ function makeScatterplotHistory()
         }
     }    
     
-    var ids = currentVariableSelection;
+    var ids = selectedVariables;
     
     
     // Draw axes
@@ -338,8 +335,8 @@ function makeScatterplotHistory()
                 .attr("x", (LEFT + RIGHT)/2)
                 .attr("y", BOTTOM + scaleToHistoryEntry(axesOffset + 1.25*labelOffset))
                 .attr("text-anchor", "middle")
-                .attr("font-size", scaleToHistoryEntry(fontSizeLabels) + "px")
-                .text(currentVariableSelection[0])
+                .attr("font-size", scaleToHistoryEntry(fontSizes["label"]) )
+                .text(selectedVariables[0])
                 .attr("fill", "black");
     
     sideCanvas.append("line")
@@ -354,8 +351,8 @@ function makeScatterplotHistory()
                 .attr("y", (TOP + BOTTOM)/2)
                 .attr("text-anchor", "middle")
                 .attr("transform", "rotate (-90 " + (LEFT - scaleToHistoryEntry(axesOffset + 1.25*labelOffset)) + " " + ((TOP + BOTTOM)/2) + ")")
-                .attr("font-size", scaleToHistoryEntry(fontSizeLabels) + "px")
-                .text(currentVariableSelection[1])
+                .attr("font-size", scaleToHistoryEntry(fontSizes["label"]) )
+                .text(selectedVariables[1])
                 .attr("fill", "black");
                                     
     
@@ -399,7 +396,7 @@ function makeScatterplotHistory()
                     .attr("x", textPosition)
                     .attr("y", BOTTOM + scaleToHistoryEntry(tickTextOffsetXAxis + axesOffset))                    
                     .text(axisText)
-                    .attr("font-size", scaleToHistoryEntry(fontSizeTicks) + "px")
+                    .attr("font-size", scaleToHistoryEntry(fontSizes["tick"]) )
                     .attr("text-anchor", "middle")
                     .attr("id", "groove" + i)
                     .attr("class", "xAxisGrooveText");
@@ -428,7 +425,7 @@ function makeScatterplotHistory()
                     .attr("x", LEFT - scaleToHistoryEntry(tickTextOffsetYAxis + axesOffset))
                     .attr("y", textPosition + scaleToHistoryEntry(yAxisTickTextOffset))
                     .text(axisText)
-                    .attr("font-size", scaleToHistoryEntry(fontSizeTicks) + "px")
+                    .attr("font-size", scaleToHistoryEntry(fontSizes["tick"]) )
                     .attr("text-anchor", "end")
                     .attr("id", "groove" + i)
                     .attr("class", "yAxisGrooveText");
@@ -485,7 +482,7 @@ function drawScatterPlotLegends(varNames)
     //             .attr("x", sideBarWidth/2 + histLegendSize)
     //             .attr("y", TOP + histLegendOffsetY + i*yStep + 3)
     //             .attr("fill", "black")
-    //             .attr("font-size", fontSizeTicks + "px")
+    //             .attr("font-size", fontSizes["tick"] )
     //             .attr("text-anchor", "start")
     //             .text(varNames[i])
     //             .attr("id", "legend" + i)
@@ -513,7 +510,7 @@ function drawScatterPlotLegends(varNames)
                 .attr("y", 1.5*histLegendSize + scaleForWindowSize(10)*2)
                 .attr("text-anchor", "middle")
                 .attr("fill", "black")
-                .attr("font-size", fontSizeTicks + "px")
+                .attr("font-size", fontSizes["tick"] )
                 .text(varNames[i])
                 .attr("id", "legend" + i)
                 .attr("class", "circles");

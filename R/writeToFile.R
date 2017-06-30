@@ -1,1 +1,1 @@
-writeToFile <- function(object, fileName){    write.csv(object, paste("/Users/sarah/Documents/Logs/", fileName, ".csv", sep=""), quote=F, row.names=T);}
+writeToFile <- function(object, fileName){	return(0);	tempSubpath <- "VisiStatLog"	tempFullPath <- file.path(tempdir(), tempSubpath)	tempFullPath <- gsub("//", "/", tempFullPath)  # fix R bug that generate double slashes in OS X	dir.create(tempFullPath, showWarnings = FALSE)    write.csv(object, paste(tempFullPath, fileName, ".txt", sep=""), quote=F, row.names=T);}

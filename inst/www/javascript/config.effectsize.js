@@ -19,11 +19,11 @@ var effectSizeMaxs = new Object();
   
 // Interpretation of effect size (small, medium, large) taken from TODO: cite sources    
 var effectSizeInterpretations = new Object();
-    effectSizeInterpretations["d"] = [0.35, 0.5, 0.8];
+    effectSizeInterpretations["d"] = [0.2, 0.5, 0.8];
     effectSizeInterpretations["ηS"] = [0.04, 0.355, 0.64];
     effectSizeInterpretations["rS"] = [0.04, 0.355, 0.64];
-    effectSizeInterpretations["r"] = [0.35, 0.5, 0.8];
-    effectSizeInterpretations["𝜏"] = [0.35, 0.5, 0.8];
+    effectSizeInterpretations["r"] = [0.2, 0.5, 0.8];
+    effectSizeInterpretations["𝜏"] = [0.2, 0.5, 0.8];
 
 // Colors used to indicate the magnitude of effect size    
 var effectSizeColors = new Object();

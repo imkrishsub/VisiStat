@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <link rel="stylesheet" href="../help.css">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+    <div class="helpcolumn">
+    
+<!-- DON'T EDIT ANYTHING ABOVE THIS LINE-->
+<div class="description">
+        
+<b>U statistics</b> is used in Wilcoxon rank-sum test calculated from the number of samples that ranked smaller in the opposite (ranked) datasets.
+</div>    
+
+<div class="description">
+The test involves the calculation of a statistic, usually called U, whose distribution under the null hypothesis is known. In the case of small samples, the distribution is tabulated, but for sample sizes above ~20 approximation using the normal distribution is fairly good. Some books tabulate statistics equivalent to U, such as the sum of ranks in one of the samples, rather than U itself.
+</div>
+        
+<h2>Formula:</h2>
+<h3>Method 1:</h3>
+<div class="methodPart1">
+1.Choose the sample for which the ranks seem to be smaller (The only reason to do this is to make computation easier). Call this "sample 1," and call the other sample "sample 2."
+</div>
+<div class="methodPart1">
+2.For each observation in sample 1, count the number of observations in sample 2 that have a smaller rank (count a half for any that are equal to it). The sum of these ranks is U.
+</div>
+<br>
+<h3>Method 2:</h3>
+<div class="methodPart1">
+For larger samples, a formula can be used:
+<br>
+Add up the ranks for the observations which came from sample 1. Where there are tied groups, take the rank to be equal to the midpoint of the group. The sum of ranks in sample 2 is now determinate, since the sum of all the ranks equals N(N + 1)/2 where N is the total number of observations.
+</div>
+<br>
+<div class="methodPart2">
+2.U is then given by:
+</div>
+<br>
+<div class="formulaU1">
+$ U_1 = n_1n_2 + {{n_1(n_1+1)} \over 2} - R_1$
+</div>
+<br>
+<div class="description">
+Note that it doesn't matter which of the two samples is considered sample 1. An equally valid formula for U is:
+</div>
+<br>
+<div class="formulaU2">
+$ U_2 = n_1n_2 + {{n_2(n_2+1)} \over 2} - R_2$
+</div>
+<br>
+<div class="description">
+The smaller value of U1 and U2 is the one used when consulting significance tables. The sum of the two values is given by:
+</div>
+<br>
+<div class="formulaU2">
+$ U_1 + U_2 = R_1 - {{n_1(n_1+1)} \over 2} + R_2 - {{n_2(n_2+1)} \over 2} $
+</div>
+<br>
+<div class="description">
+Knowing that R1 + R2 = N(N + 1)/2 and N = n1 + n2 , and doing some algebra, we find that the sum is:
+</div>
+<br>
+<div class="final">
+$ U_1 + U_2 = n_1n_2 $
+</div>
+<h2>Legend:</h2>
+<ul>
+    <li>$n_1 = $ Sample size for sample 1 </li>
+    <li>$R_1 = $ The sum of the ranks in sample 1</li>
+    <li>$n_2 = $ Sample size for sample 2</li>
+    <li>$R_2 = $ The sum of the ranks in sample 2</li>
+
+</ul>
+        
+<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
+        </div>
+</body>
+</html>

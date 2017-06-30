@@ -1,99 +1,8 @@
-function checkForOverTesting()
-{
-    var overtesting = detectOverTesting(testTypesSelectedForReport, researchQuestionsSelectedForReport, variablesSelectedForReport);  // Check for over-testing    
-    var reportPanel = d3.select("#reportPanel");
-    
-    // console.log("BOOL.overtesting = " + overtesting);
-
-    if(overtesting && document.getElementById("warningPanel") == null)
-    {
-        // If we have overtesting, append a div tag right on top of the reports that have errors. 
-        var warningPanel = reportPanel.insert("div", ":first-child")
-                    .attr("style", "position: relative; left: 0px; top: 0px; width: " + (width - sidePanelWidth) + "px; height: " + scaleForWindowSize(145) + "px; background-color: #82291D;")
-                    .attr("id", "warningPanel");
-
-        warningPanel.append("label")
-                        .html("<b>Possible overtesting</b> <br/><br/>You have compared he same variables (see the entries highlighted in red on the left panel) in multiple pairs of levels. Interpreting the results of these individual comparisons risks finding a significanct difference when none is actually present. This is called overtesting. <br/> <br/> To prevent overtesting, you should first use a multiple-comparison test. If the result of this test is significant, you can compare each pair afterwards.")
-                        .attr("style", "position: relative; display: block; margin: auto; text-align: center; width: " + 0.5*reportPanelWidth + "px; color: white;")
-
-        warningPanel.append("br");
-
-        warningPanel.append("input")
-                        .attr("type", "button")
-                        .attr("value", "Show multiple-comparison test")
-                        .attr("id", "doANOVAButton")
-                        .attr("style", "position: relative; display: block; margin: auto; text-align: center; width: " + 0.35*reportPanelWidth + "px; padding:15px; font-family: Verdana; cursor: pointer; border-radius: " + scaleForWindowSize(25) + "px; background-color:#f8f9f7;");
-    }
-}
-
-function detectOverTesting(testTypes, researchQuestions, variables)
-{
-    // console.log("testTypes = [" + testTypes + "]");
-    // console.log("researchQuestions = [" + researchQuestions + "]");
-    // console.log("variables = [" + variables + "]");
-
-    var numberOfPairwiseComparisons = new Array();
-    var independentVariables = getAllIndependentVariables();
-
-    // console.log("independentVariables = [" + independentVariables + "]");
-
-    var numberOfPairwiseComparisonsForOverTesting = getNumberOfComparisonsForOverTesting(independentVariables);
-
-    // console.log("numberOfPairwiseComparisonsForOverTesting = [" + numberOfPairwiseComparisonsForOverTesting + "]");
-
-    for(var i=0; i<independentVariables.length; i++)
-        numberOfPairwiseComparisons[i] = 0;
-
-    for(var i=0; i<testTypes.length; i++)
-    {
-        var independentVariable = (variables[i])["independent"];
-        // console.log("independentVariable = " + independentVariable);
-
-        if((testTypes[i] == 'wT') || (testTypes[i] == 'upT') || (testTypes[i] == 'pT') || (testTypes[i] == 'WT') || (testTypes[i] == 'mwT'))
-            numberOfPairwiseComparisons[independentVariables.indexOf(String(independentVariable))]++;        
-    }
-
-    // console.log("numberOfPairwiseComparisons = [" + numberOfPairwiseComparisons + "]");
-
-    for(var i=0; i<independentVariables.length; i++)
-    {
-        if(numberOfPairwiseComparisons[i] >= numberOfPairwiseComparisonsForOverTesting[i])
-        {
-            for(var j=0; j<testTypes.length; j++)
-            {
-                var independentVariable = (variables[j])["independent"];
-
-                if((independentVariables[i] == independentVariable) && ((testTypes[j] == 'wT') || (testTypes[j] == 'upT') || (testTypes[j] == 'pT') || (testTypes[j] == 'WT') || (testTypes[j] == 'mwT')))   
-                {
-                    d3.select("#entry" + listOfResearchQuestions.indexOf(researchQuestions[j]) + ".historyEntry").attr("fill", "red").attr("opacity", "0.75");
-                }
-            }
-
-            return true;
-            // ToDo: highlight the corresponding history entries in red
-        }   
-    }    
-
-    return false;
-}
-
-function getNumberOfComparisonsForOverTesting(independentVariables)
-{
-    var numberOfComparisonsForOverTesting = new Array();    
-
-    for(var i=0; i<independentVariables.length; i++)
-    {
-        numberOfComparisonsForOverTesting[i] = variables[independentVariables[i]]["dataset"].unique().length != 2 ? getSumUpTo(variables[independentVariables[i]]["dataset"].unique().length - 1) : 99999;
-    }
-
-    return numberOfComparisonsForOverTesting;
-}
-
 function findCorrelationCoefficient(variableA, variableB)
 {    
-    testResults["formula"] = variableA + " : " + variableB;
+    multiVariateTestResults["formula"] = variableA + " : " + variableB;
     
-    var isScatterPlotMatrix = currentVisualisationSelection == "Scatterplot-matrix" ? true : false;
+    var isScatterPlotMatrix = selectedVisualisation == "Scatterplot matrix" ? true : false;
     
     
     if((variableTypes[variableA] == "binary") && (variableTypes[variableB] == "binary"))
@@ -177,7 +86,7 @@ function testForEvilVariables()
         var variableData = variables[variable]["dataset"];
         var uniqueVariableData = variableData.unique();
 
-        if(isNaN(variableData[0]) || variableRoles[variable]=="participant")
+        if(isNaN(variableData[0]) || variableRoles[variable]=="subject")
         {            
             if(uniqueVariableData.length >= 10)
             {
@@ -260,12 +169,8 @@ function getSelectedMeanLevelsForColourBoxPlotData()
     var selectedMeanLevels = [];
     
     for(var i=0; i<selectedMeans.length; i++)
-    {
-        if(selectedMeanLevels[i] == undefined)
-            selectedMeanLevels[i] = []; 
-            
-        selectedMeanLevels[i].push(selectedMeans[i].getAttribute("data-levelA"));
-        selectedMeanLevels[i].push(selectedMeans[i].getAttribute("data-levelB"));
+    {       
+        selectedMeanLevels.push(selectedMeans[i].getAttribute("data-levelA")+"-"+selectedMeans[i].getAttribute("data-levelB"));
     }
     
     return selectedMeanLevels;
@@ -409,29 +314,29 @@ function setCompareNowButtonText()
 
 function calculateOutcome()
 {    
-    if(currentVariableSelection.length == 2)
+    if(selectedVariables.length == 2)
     {    
         var outcomeVariable = document.getElementById("value_outcome");
-        var predictorVariable = document.getElementById("value_" + currentVariableSelection[0]);
+        var predictorVariable = document.getElementById("value_" + selectedVariables[0]);
         
-        testResults["coefficients"] = parseFloat(testResults["coefficients"]);
-        testResults["intercept"] = parseFloat(testResults["intercept"]);
+        multiVariateTestResults["coefficients"] = parseFloat(multiVariateTestResults["coefficients"]);
+        multiVariateTestResults["intercept"] = parseFloat(multiVariateTestResults["intercept"]);
         
-        outcomeVariable.innerHTML = dec5(testResults["coefficients"]*predictorVariable.value + testResults["intercept"]);
+        outcomeVariable.innerHTML = dec5(multiVariateTestResults["coefficients"]*predictorVariable.value + multiVariateTestResults["intercept"]);
     }
     else
     {
-        var outcomeVariable = testResults["outcomeVariable"];
-        var explanatoryVariables = testResults["explanatoryVariables"];
+        var outcomeVariable = multiVariateTestResults["outcomeVariable"];
+        var explanatoryVariables = multiVariateTestResults["explanatoryVariables"];
         
         var outcomeVariableLabel = document.getElementById("value_outcome");
         
-        var outcomeVariableValue = testResults["intercept"];
+        var outcomeVariableValue = multiVariateTestResults["intercept"];
         
         for(var i=0; i<explanatoryVariables.length; i++)
         {
             var valueEnteredForExplanatoryVariable = isNaN(document.getElementById("value_" + explanatoryVariables[i]).value) ? 0 : document.getElementById("value_" + explanatoryVariables[i]).value;
-            var coefficient = testResults["coefficients"][i];
+            var coefficient = multiVariateTestResults["coefficients"][i];
             
             outcomeVariableValue += coefficient*valueEnteredForExplanatoryVariable;
         }
@@ -440,7 +345,7 @@ function calculateOutcome()
     }
 }
 
-function isFactorialANOVA(variableList)
+function isMixedDesign(variableList)
 {
     if(experimentalDesign == "between-groups")
         return false;
@@ -661,7 +566,7 @@ function omitZeroPValueNotation(p)
         return p;
     else
     {
-        var newP = p;
+        var newP = p.toString();
         newP = newP.replace("0", '');
         return newP;
     }
@@ -700,7 +605,7 @@ function getEffectSizeAmount(effectSizeType, effectSize)
 function getHighestMean()
 {
    var index = 0;
-   var highestMean = -999;
+   var highestMean = 0;
    var currentMean = 0;
    
    var variableList = getSelectedVariables();
@@ -711,8 +616,169 @@ function getHighestMean()
       if (currentMean > highestMean)
       {
          index = i;
-         highestMean = currentMean;
+         currentMean = highestMean;
       }
    }
    return index;
+}
+
+function doPostHocTests()
+{
+    // ToDo: find post-hoc test when not all pairs are selected
+
+    // Factors needed to make decision: experimental-design, homogeneity, and normality. 
+    var homogeneity = d3.select("#homogeneity.assumptionNodes").attr("fill") == "green" ? true : false;
+    var normality = d3.select("#normality.assumptionNodes").attr("fill") == "green" ? true : false;
+
+    var testType;
+
+    if(experimentalDesign == "between-groups")
+    {
+        if(homogeneity)
+        {            
+            if(normality)
+            {
+                testType = "TukeyHSD";  
+                usedPostHocTestType = "proper";
+
+                performTukeyHSDTest();          
+            }
+            else
+            {
+                testType = "PairwiseUnpairedWilcoxTest";
+                usedPostHocTestType = "proper";
+
+                performPairwiseWilcoxTestsWithBonferroniCorrection("F");
+            }
+        }
+        else
+        {
+            if(normality)
+            {
+                testType = "PairwiseWelchTTest";
+                usedPostHocTestType = "proper";
+
+                performPairwiseTTestsWithBonferroniCorrection("F", "F");
+            }
+            else
+            {
+                testType = undefined;
+                usedPostHocTestType = "error";
+
+                performTukeyHSDTest();          
+            }
+        }
+    }
+    else
+    {
+        if(homogeneity)
+        {
+            if(normality)   
+            {        
+                testType = "PairwisePairedTTest";
+                usedPostHocTestType = "proper";
+
+                performPairwiseTTestsWithBonferroniCorrection("T", "T");
+            }
+            else
+            {
+                testType = "PairwisePairedWilcoxTest";
+                usedPostHocTestType = "proper";
+
+                performPairwiseWilcoxTestsWithBonferroniCorrection("T");
+            }
+        }
+        else
+        {
+            testType = undefined;
+            performPairwiseTTestsWithBonferroniCorrection("T", "T");
+
+            usedPostHocTestType = "error";
+        }
+    }
+
+    // render the results (after getting the R object) in a tabular format and in the results panel
+}
+
+function createEffectsObject()
+{
+    // entities of each element of the effects object: p-value (raw), p-value (dressed), parameter (dressed with df), and effect-size (raw)
+
+    var variableList = sort(selectedVariables);
+    var labels = multiVariateTestResults["labels"];
+
+    for(var i=0; i<labels.length; i++)
+    {
+        // For each label (e.g., A, B, A:B)
+
+        // Find the effectType
+
+        var numberOfColonsInLabel = (labels[i]).split(":").length - 1;
+        var effectType = (numberOfColonsInLabel == 0) ? "main" : ((numberOfColonsInLabel == 1) ? "2-way interaction" : "3-way interaction");
+
+        // Check if property exists
+
+        if(!effects.hasOwnProperty(effectType))
+        {
+            // We are adding the first element of this property
+
+            effects[effectType] = new Array();
+
+        }
+
+        effects[effectType].push({
+                                            rawP: multiVariateTestResults["rawP"][i],
+                                            dressedP: multiVariateTestResults["p"][i],
+                                            df: multiVariateTestResults["df"][i],
+                                            rawEffectSize: multiVariateTestResults["effect-size"][i],
+                                            label: labels[i],
+                                            parameter: multiVariateTestResults["parameter"][i]
+                                        });     
+    }
+
+
+}
+
+/**
+ * Returns true if the statistical test has already been done for the selected distributions
+ * @return {Boolean} flag that indicates if VisiStat displays result without delay
+ */
+function isTestInHistory()
+{    
+    var currentResearchQuestion = getCurrentResearchQuestion(); // Get the current research question
+
+    if(listOfResearchQuestions.indexOf(currentResearchQuestion) != -1) // If research question already in history...
+        return true;
+
+    return false; 
+}
+
+/**
+ * Returns the current research question (as formula)
+ * @return {string} The current research question (as formula)
+ */
+function getCurrentResearchQuestion()
+{
+    var variableList = getSelectedVariables(); // Get the selected variables
+    var DV = variableList["dependent"][0];
+    var IVs = variableList["independent"];
+    var levels = variableList["independent-levels"];
+
+    var researchQuestion = "";
+
+    if(IVs.length == 1)
+    {
+        researchQuestion = DV + " ~ " + IVs[0] + "(" + levels + ")";    
+    }
+    else
+    {
+        researchQuestion = DV + " ~ " + IVs[0];
+
+        for(var i=1; i<IVs.length; i++)
+        {
+            researchQuestion +=  " * " + IVs[i];
+        }    
+    }
+
+    return researchQuestion; 
 }

@@ -3,17 +3,23 @@
     <head>
         <!-- Link external stylesheets -->
         <link rel="stylesheet" type="text/css" href="style/datasetSelectionPage.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 
         <!-- Set encoding -->
         <meta charset="utf-8">
         
         <!-- Set title -->
-        <title>VisiStat: Dataset Selection</title>
+        <title>Statsplorer</title>
 
        <!-- Jquery, OpenCPU, and D3 -->
         <script type = "text/javascript" src = "dependencies/jquery-1.10.2.js"></script>
         <script type = "text/javascript" src = "dependencies/opencpu.js"></script>        
         <script type = "text/javascript" src = "dependencies/d3.v3.js"></script> 
+
+        <!-- Bootstrap -->
+        <script type = "text/javascript" src = "bootstrap/js/bootstrap.min.js"></script>         
+
+        <!-- ToDo: remove unnecessary dependencies -->
         
         <!-- OpenCPU: dataset & io (incl. log file o/p), significance tests, correlation & regression, and assumptions & transformations -->
         <script type = "text/javascript" src = "javascript/ocpu.dataset.io.js"></script>        
@@ -37,29 +43,71 @@
         <script type = "text/javascript" src = "javascript/statistical-tests.js"></script>
         <script type = "text/javascript" src = "javascript/statistics-helper.js"></script>
         <script type = "text/javascript" src = "javascript/report.js"></script>  
+        <script type = "text/javascript" src = "javascript/quickFill.js"></script>  
 
     </head>
     <body>        
         <script type="text/javascript">            
             var height = document.height;
             var width = document.width;
-            
-        
+            sessionStorage.fileName = undefined;
+
             window.onload = function()
             {  
-               d3.select("body").style("font-size", scaleForWindowSize(100)+"%" + "px");
+               d3.select("body").style("font-size", scaleForWindowSize(100)+"%" );
 
-               localStorage.setItem("index", 0);
+               localStorage.setItem("index", 0);              
           
                // load details of default dataset (text entry study)
-               changeDataset();
+               // changeDataset();
+            }
+
+            function handleFile(files)
+            {                
+                var file = files[0];
+                if (file) 
+                {
+                    var reader = new FileReader();
+                    reader.readAsText(file, "UTF-8");
+
+                    reader.onload = function (evt) 
+                    {
+                        sessionStorage.fileContent = evt.target.result;
+                        parseStringToDataFrame();
+
+                        $("#datasetDescription").text("-");
+                        sessionStorage.isUploadedFile = "yes";
+
+                        removeElementsByClassName("variableList");
+
+                        $("#submitButton").css('display', 'inline-block');
+
+                        $("#browseCover").removeClass("btn-primary");
+                    }
+                    reader.onerror = function (evt) 
+                    {
+                        alert("Error reading file!");
+                    }
+                }
             }
             
+            // cheks role of variables to determine whether going to the next page is allowed
+            function checkRole (event) 
+            {
+                var selectedRoles = $(".roleSelect").map(function() { return this.value;}).get();
+                var isSubmitAllowed = ($.inArray("DV", selectedRoles) != -1); 
+                console.log(selectedRoles, isSubmitAllowed)
+                $("#submitButton").prop("disabled", !isSubmitAllowed)
+                    .css("display", isSubmitAllowed ? "inline-block" : "none");
+                $("#submitWarning").css("display", isSubmitAllowed ? "none" : "block");
+            };
+
             // loads dataset properties when dataset is changed
             function changeDataset()
             {
                 fileName = $("#datasetList").val();                
                 sessionStorage.fileName = fileName;
+                sessionStorage.isUploadedFile = "no";
                                 
                 $("#datasetDescription").text(datasetDescription[fileName]);
                 
@@ -74,12 +122,12 @@
                 // construct table with variable names
                 var variablesTable = variablesDiv.append("table")
                                         .attr("border", "1")
-                                        .attr("class", "variableList")
+                                        .attr("class", "variableList table")
                                         .attr("align", "center");
                                             
                 var tr = variablesTable.append("tr");
                             
-                        tr.append("th").text("Name");
+                        tr.append("th").text("Variable");
                         tr.append("th").text("Role");
                         tr.append("th").text("Data type");
                 
@@ -88,43 +136,80 @@
                     var tr = variablesTable.append("tr");                                        
                              tr.append("td").text(variables[i]);
                                 
-                    var select = tr.append("td").append("select").attr("name", "role").attr("id", variables[i]);                    
+                    var select = tr.append("td").append("select").attr("name", "role").attr("id", variables[i]).attr("class", "roleSelect");                    
+                    $(select[0]).change(checkRole);
                     
-                    var participant = select.append("option").attr("value", "participant").text("Participant or Subject Variable");
-                    var dependent = select.append("option").attr("value", "dependent").text("Dependent Variable");
-                    var independent = select.append("option").attr("value", "independent").text("Independent Variable");
+                    var unspecified = select.append("option").attr("value", "undefined").text("Undefined");
+                    var participant = select.append("option").attr("value", "ID").text("Participant or Subject Variable");
+                    var dependent = select.append("option").attr("value", "DV").text("Dependent Variable");
+                    var independent = select.append("option").attr("value", "IV").text("Independent Variable");
                     
                     switch(roles[i])
                     {
-                        case "participant":
+                        case "ID":
                                             participant.attr("selected", "yes");
                                             break;
                         
-                        case "dependent":
+                        case "DV":
                                             dependent.attr("selected", "yes");
                                             break;
                         
-                        case "independent":
+                        case "IV":
                                             independent.attr("selected", "yes");
                                             break;
                     }
                     
                     tr.append("td").text(dataTypes[i]);
                 }
+
+                // check role after each data set is loaded
+                checkRole();
             }
             
             // called when user clicks on 'explore dataset'
             function exploreDataset()
             {
-                for(var i=0; i<variablesInDataset[fileName].length; i++)
+                if(sessionStorage.isUploadedFile === "yes")
                 {
-                    var option = document.getElementById(variablesInDataset[fileName][i]).value;
-                    variableRolesInDataset[fileName][i] = option;                 
-                }   
-                
-                for(var i=0; i<variableRolesInDataset[fileName].length; i++)
+                    variablesInDataset["uploadedFile"] = variableNames;
+                    variableRolesInDataset["uploadedFile"] = new Array();
+                    variableTypesInDataset["uploadedFile"] = new Array();
+
+                    for(var i=0; i<variableNames.length; i++)
+                    {
+                        variableRolesInDataset["uploadedFile"][i] = null;
+                        variableTypesInDataset["uploadedFile"][i] = null;
+                    }
+
+                    for(var i=0; i<variablesInDataset["uploadedFile"].length; i++)
+                    {
+                        var option = document.getElementById(variablesInDataset["uploadedFile"][i] + ".role").value;
+                        variableRolesInDataset["uploadedFile"][i] = option;
+
+                        option = document.getElementById(variablesInDataset["uploadedFile"][i] + ".datatype").value;
+                        variableTypesInDataset["uploadedFile"][i] = option;
+
+                    }
+
+                    for(var i=0; i<variableRolesInDataset["uploadedFile"].length; i++)
+                    {
+                        sessionStorage.setItem(variablesInDataset["uploadedFile"][i], variableRolesInDataset["uploadedFile"][i]);
+                    }
+
+                    sessionStorage.setItem("variableTypesInDataset", variableTypesInDataset["uploadedFile"]);
+                }
+                else
                 {
-                    sessionStorage.setItem(variablesInDataset[fileName][i], variableRolesInDataset[fileName][i]);
+                    for(var i=0; i<variablesInDataset[fileName].length; i++)
+                    {
+                        var option = document.getElementById(variablesInDataset[fileName][i]).value;
+                        variableRolesInDataset[fileName][i] = option;                 
+                    }   
+                    
+                    for(var i=0; i<variableRolesInDataset[fileName].length; i++)
+                    {
+                        sessionStorage.setItem(variablesInDataset[fileName][i], variableRolesInDataset[fileName][i]);
+                    }
                 }
                 
                 sessionStorage.logFileName = new Date().getTime();
@@ -133,49 +218,73 @@
 
         </script>            
         <!-- HTML body code starts here-->
-        <a href="http://www.hci.rwth-aachen.de/visistat"> 
-            <img src="images/visistat.png" alt="VisiStat" class="center" height="150"/> 
-        </a>
 
-        <table align="center" id="datasetTable">
-            
+        <h1 align="center"> 
+            <img src="images/Statsplorer-logo.svg"/>
+        </h1>
+
+        <table align="center" id="datasetTable">            
             <tr>
                 <td id="left">
-                    <label class="labels">Choose a Dataset to Explore: </label>
+                    <label class="labels" style="margin-bottom: 8px;">Dataset: </label>
                 </td>
                 <td id="right">
-                    <select name="dataset" autofocus onchange="changeDataset()" id="datasetList" align="center">                    
-                        <option value="keyboard">Keyboard Layouts Comparison</option>
-                        <option value="food">Effect of Food on Test Scores</option>
-                        <option value="weightLoss">Weight Loss</option>
-                        <option value="phoneOS">Effect of OS on stress</option>
-                        <option value="distance">Running distance comparison with or without drug usage</option>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-append">
+                          <input type="text" class="form-control" readonly>
+                          <span class="btn btn-file btn-primary" id='browseCover'>
+                                Browse&hellip; <input type="file" id="fileInput" name="dataset" accept="text/csv" onchange=handleFile(this.files)>                                        
+                        </span>
+                        </div>
+                    </div>
                 </td>
             </tr>
-            
+
             <tr>
-                <td id="left"> 
-                    <label class="labels">Description: </label>
-                </td>
-                <td id="right">
-                    <label id="datasetDescription"></label>
+                <td colspan="2">
+                    <br/>
                 </td>
             </tr>
-            
-            </br>
             
             <tr>
                 <td id="center" colspan="2">
                     <div id="variablesDiv"></div>
                 </td>
             </tr>
+
         </table>
         
-        <br/><br/><br/><br/>
-        
         <div id="buttonWrapper">
-            <input type="button" onclick="exploreDataset()" value="Explore this Dataset!" id="submitButton"/>
+            <input type="button" onclick="exploreDataset()" value="Start analysis" class="btn btn-primary" id="submitButton"/>
         </div>
+
+        <script type="text/javascript">
+        // handle file browse button (source: http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/)
+        $(document).on('change', '.btn-file :file', function() {
+          var input = $(this),
+              numFiles = input.get(0).files ? input.get(0).files.length : 1,
+              label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+          input.trigger('fileselect', [numFiles, label]);
+        });
+
+        $(document).ready( function() {
+            $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+                
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+                
+                if( input.length ) {
+                    input.val(log);
+                } else {
+                    if( log ) alert(log);
+                }
+                
+            });
+        });
+
+        $("#submitButton").css('display', 'none');
+        </script>
+        
+
     </body>
 </html>

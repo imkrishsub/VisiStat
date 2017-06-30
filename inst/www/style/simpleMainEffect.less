@@ -1,0 +1,87 @@
+@import "_colors.less";
+@import "_utilMixins.less";
+
+@width: 300px;
+@height: 100px;
+
+.mxnPanelFont() {
+	font-size: 14px;
+	font-family: sans-serif;
+	color: @panelTextDefaultColor;
+	text-decoration: none;
+	text-align: left;
+	line-height: 40px;
+}
+
+#simpleMainEffectPopUp{
+	width: @width;
+	height: @width;	
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-60%, -50%);
+	background-color: @panelBackgroundDefaultColor;
+}
+
+select.dropDowns{
+	display: none;
+}
+
+#submitButtonSimpleMainEffect
+{
+	disabled: disabled;
+}
+
+div#overTestingPopup
+{
+	.mxnPanelFont;
+	.mxnShadow(2px, 2px, 5px, 0px, @panelShadowColor);
+	width: 500px;
+	height: 300px;	
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-60%, -50%);
+	background-color: @panelBackgroundDefaultColor;
+	padding: 20px;
+}
+
+div.overTestingHead
+{
+	font-size: 1.3em;
+	font-weight: 600;
+}
+
+div.overTestingBody
+{
+	font-size: 0.9em;
+	line-height: 1.5em;
+	margin-bottom: 1em;
+}
+
+ul.overTestingBody
+{
+	line-height: 0.7em;
+}
+
+span.overTestingExplanation
+{
+	font-size: 0.8em;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+input.overTesting[type=radio]
+{
+	float: left;
+    margin-left: -20px;
+    margin-right: 7px;
+}
+
+label.overTesting
+{
+	display: block;
+    margin-left: 20px;
+    line-height: normal;
+    margin-bottom: 2em;
+}

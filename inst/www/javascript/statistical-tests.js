@@ -1,149 +1,257 @@
+// Test selection
+
 function compareMeans()
-{    
-    var completeLines = d3.selectAll(".completeLines");
+{   
+    global.flags.isTestWithoutTimeout = isTestInHistory();  // If the test is in history, we show the test results without delay.     
+
+    var timeOut = global.flags.isTestWithoutTimeout ? 0 : config.timeouts.assumptions;    
+
     var variableList = getSelectedVariables();  
+    var DV = variableList["dependent"][0];
+
+    var numberOfSelectedMeans = getNumberOfSelectedMeans();
     
+    // Remove the selection buttons
     removeElementsByClassName("selectAll");
     removeElementsByClassName("selectNone");
-    
-    drawComputingResultsImage();
 
-    var timeOut = sessionStorage.plotWithNoInteraction == "true" ? 0 : 1200;
-    
-    switch(document.getElementsByClassName("completeLines").length)
+    switch(numberOfSelectedMeans)
     {
-
-        case 0:
-                //One sample t-test
-                if(variableList["dependent"].length == 1)
-                {
-                    loadAssumptionCheckList("one-sample tests");
-                    
-                    setTimeout(function(){                    
-                        performNormalityTest(variables[variableList["dependent"][0]]["dataset"], variableList["dependent"][0], "dataset");                    
-                    }, timeOut);
-                }
-                
-                break;
         case 1:
-                //t-test
-                {
-                    // console.log("\n\n\t Significance test for 2 variables\n\n");
+            
+                    // ToDo: one-sample tests
 
-                    //homoscedasticity
-                    loadAssumptionCheckList("normal");
-                    
-                    switch(variableList["independent"].length)
-                    {
-                        case 0:
-                                {                            
-                                    break;
-                                }
-                        case 1:
-                                {
-                                    if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
-                                    {
-                                        //within-groups design
-                                        setTimeout(function(){                    
-                                            performNormalityTests();
-                                        }, timeOut);
-                                        
-                                    }
-                                    else
-                                    {                                    
-                                        //between-groups design
-                                        setTimeout(function(){                    
-                                            performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
-                                        }, timeOut);
-                                        
-                                    }            
-                                    break;    
-                                }
-                        case 2:
-                                {  
-                                    //get distributions     
-                                    setTimeout(function(){                    
-                                        performHomoscedasticityTests();
-                                    }, timeOut);                                           
-                                }
-                    }
+                    console.log("Not available in VisiStat!");                
                     break;
-                }
-        
-        default:
-                //ANOVA
-                {
-                    // console.log("\n\n\t Significance test for more than 2 variables\n\n");
-                    
-                    switch(variableList["independent"].length)
-                    {
-                        case 0:
-                                {
-                            
-                                    break;
-                                }
-                        case 1:
-                                {
-                                    if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == variableList["independent"][0]))
-                                    {
-                                        loadAssumptionCheckList("repeated measures");
-                                        //within-groups design
 
-                                        setTimeout(function(){                    
-                                            performNormalityTests();
-                                        }, timeOut);                                
-                                    }
-                                    else
-                                    {
-                                        loadAssumptionCheckList("normal");
-                                        //between-groups design
-                                        setTimeout(function(){                    
-                                            performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
-                                        }, timeOut);
-                                        
-                                    }            
-                                    break;    
-                                }
-                        case 2:
-                                {
-                                    var selectedMeans = getSelectedMeansForColourBoxPlotData();
-                                    var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
-                
-                                    var variableList = getSelectedVariables();                    
-                                    var totalNumberOfLevels = variables[variableList["independent"][0]]["dataset"].unique().length * variables[variableList["independent"][1]]["dataset"].unique().length;
-                
-                                    if(isFactorialANOVA(variableList))
-                                    {
-                                        loadAssumptionCheckList("repeated measures");
-                                        
-                                        setTimeout(function(){                    
-                                                performNormalityTests();
-                                                performHomoscedasticityTests();
-                                                setTimeout(function(){
-                                                    performMixedDesignANOVA(variableList["dependent"][0], getWithinGroupVariable(variableList), getBetweenGroupVariable(variableList));
-                                                }, 2000);                                                    
-                                            }, timeOut);
-                                        
-                                    }
-                                    else
-                                    {
-                                        loadAssumptionCheckList("normal");                             
+        case 2:
 
-                                        setTimeout(function(){
-                      
-                                            performNormalityTests();
-                                        }, timeOut);                          
+                    // Two-sample tests (unpaired t-test, Wilcoxon rank-sum/Mann-Whitney U test, Welch's t-test, paired t-test, and Wilcoxon signed-rank test)
 
-                                        // setTimeout(function(){
-                                        //     
-                                        // }, 3200);                                             
-                                    }
-                                    
-                                }
-                    }
+                    if(variableList["independent"].length == 1)
+                    {    
+                        drawAssumptionNodes(false);                          
+                        var IV = variableList["independent"][0];
+
+                        if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == IV))
+                        {
+                            // Within-subjects factor
+
+                            setTimeout(function(){                    
+                                performNormalityTests(); 
+                            }, timeOut);                            
+                        }
+                        else
+                        {                                    
+                            // Between-subjects factor
+
+                            setTimeout(function(){                    
+                                performHomoscedasticityTest();
+                            }, timeOut);                            
+                        }            
+                    }     
+                    else
+                    {                       
+                        // ToDo: select all the means (Why? See Evernote note: https://www.evernote.com/shard/s98/nl/10853678/a29f7755-cf91-45c0-b04e-1a226dec1843/)
+                        selectAllMeans();
                         
+                        // Check for assumptions      
+                        drawAssumptionNodes(false);      
+
+                        setTimeout(function(){                                                    
+                                performHomoscedasticityTest();                    
+                            }, timeOut);                           
+                    }
+
                     break;
-                }
+        
+        default: 
+
+                    if(variableList["independent"].length == 1)
+                    {    
+                        drawAssumptionNodes(true);      
+
+                        // Statistical tests for 3+ levels and 1 IV (one-way ANOVA, Kruskal-Wallis test, Welch's ANOVA, one-way repeated-measures ANOVA, and Friedman's analysis)              
+                        var IV = variableList["independent"][0];
+                        
+                        if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == IV))
+                        {
+                            // Within-subjects factor
+
+                            setTimeout(function(){                    
+                                performNormalityTests();
+                            }, timeOut);                                
+                        }
+                        else
+                        {
+                            // Between-subjects factor
+
+                            setTimeout(function(){                    
+                                performHomoscedasticityTest();
+                            }, timeOut);                            
+                        }           
+                    }
+                    else                        
+                    {
+                        // Statistical tests for 3+ levels and 2+ IVs (Independent Factorial ANOVA and n-way repeated-measures ANOVA)                        
+                            
+                        drawAssumptionNodes(false);      
+
+                        setTimeout(function(){                                                    
+                                performHomoscedasticityTest();                    
+                            }, timeOut);
+                    }   
+                    break;                 
+    }
+}
+
+function removeSignificanceTestStuff()
+{
+    removeElementsByClassName("differenceInMeans")
+    removeElementsByClassName("CIMean")
+    removeElementsByClassName("differenceInMeansText")
+
+    if(document.getElementById("differenceInMeansMain")) removeElementById("differenceInMeansMain");
+}
+
+function doStatisticalTest(testName)
+{
+    var variableList = sort(selectedVariables);
+    var DV = variableList["dependent"][0];
+    var IVs = variableList["independent"];
+    var IV = variableList["independent"][0];
+
+    switch(testName)
+    {
+        case "Pairedt-test":
+                            var groupA, groupB; 
+                            removeSignificanceTestStuff()
+
+                            groupA = variables[DV][variableList["independent-levels"][0]];
+                            groupB = variables[DV][variableList["independent-levels"][1]];
+
+                            performTTest(groupA, groupB, "TRUE", "TRUE");
+
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            break;
+
+        case "Wilcoxonsigned-ranktest":
+                            var groupA, groupB; 
+                            removeSignificanceTestStuff()
+
+                            groupA = variables[DV][variableList["independent-levels"][0]];
+                            groupB = variables[DV][variableList["independent-levels"][1]];
+
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            performWilcoxonSignedRankTest(groupA, groupB);
+
+                            break;
+
+        case "Unpairedt-test":
+                            var groupA, groupB; 
+                            removeSignificanceTestStuff()
+
+                            groupA = variables[DV][variableList["independent-levels"][0]];
+                            groupB = variables[DV][variableList["independent-levels"][1]];
+
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            performTTest(groupA, groupB, "TRUE", "FALSE");
+
+                            break;
+
+        case "Mann-WhitneyUtest":
+                            var groupA, groupB; 
+                            removeSignificanceTestStuff()
+
+                            groupA = variables[DV][variableList["independent-levels"][0]];
+                            groupB = variables[DV][variableList["independent-levels"][1]];
+
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            performMannWhitneyTest(groupA, groupB);
+
+                            break;
+                               
+        case "Welchst-test":
+                            var groupA, groupB; 
+                            removeSignificanceTestStuff()
+
+                            groupA = variables[DV][variableList["independent-levels"][0]];
+                            groupB = variables[DV][variableList["independent-levels"][1]];
+
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            performTTest(groupA, groupB, "FALSE", "FALSE");
+
+                            break;
+
+        case "One-wayRMANOVA":
+                            performOneWayRepeatedMeasuresANOVA(DV, IV);  
+                            removeSignificanceTestStuff()
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            break;
+
+        case "FriedmansAnalysis":
+                            performFriedmanTest(DV, IV);
+                            removeSignificanceTestStuff()
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            break;
+
+        case "One-wayANOVA":
+                            performOneWayANOVA(DV, IV);
+                            removeSignificanceTestStuff()
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            break;
+
+        case "KruskalWallistest":
+                            performKruskalWallisTest(DV, IV);
+                            removeSignificanceTestStuff()
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+                            
+                            break;
+
+        case "WelchsANOVA":
+                            performWelchANOVA(DV, IV);
+                            removeSignificanceTestStuff()
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            break;
+
+        case "Pairwisepairedt-test":
+                            performPairwiseTTestsWithBonferroniCorrection("T", "T");
+                            removeSignificanceTestStuff()
+                            removeToolTip({id: "differenceInMeansMain", className: null});
+
+                            break;
+
+        case "Friedmanmultiple-comparisons":
+                            // ?
+                            
+                            break;
+
+        case "TukeyHSDtest":
+                            performTukeyHSDTest();
+
+                            break;
+
+        case "PairwiseunpairedWilcox-test":
+                            performPairwiseWilcoxTestsWithBonferroniCorrection("F");
+
+                            break;
+
+        case "PairwiseWelchst-test":                            
+                            performPairwiseTTestsWithBonferroniCorrection("F", "F");
+                            
+                            break;
+
+        default:
+                            break;
     }
 }
 
@@ -152,7 +260,7 @@ function populationMeanEntered()
     var populationValue = document.getElementById("populationValue").value;
     var variableList = getSelectedVariables();
     
-    if(d3.select("#normality.crosses").attr("display") == "inline")
+    if(d3.select("#normality.assumptionNodes").attr("fill") == "red")
     {    
         sessionStorage.popMedian = parseFloat(populationValue);
         
@@ -176,7 +284,7 @@ function doPairwiseTests()
     var variableList = getSelectedVariables();  
     
     //homoscedasticity
-    loadAssumptionCheckList();
+    drawAssumptionNodes();
     
     var sampleSize;
     sampleSizesAreEqual = true;
@@ -208,337 +316,494 @@ function doPairwiseTests()
 
 function performNormalityTests()
 {
-    var variableList = getSelectedVariables();    
-    
-    //initialise distributions
-    distributions[variableList["dependent"][0]] = {};
-    
-    if(variableList["independent"].length == 2)
-    {
-        var allDistributions = new Array();
-        var numberOfElements = new Array();
-        
-        var groups = getGroupsForColourBoxPlotData();        
-        
-        for(var i=0; i<groups.length; i++)
-        {  
-            numberOfElements.push(groups[i].length);            
-            
-            for(var j=0; j<groups[i].length; j++)
-            {
-                allDistributions.push(groups[i][j]);
-            }
-        }
+    var variableList = selectedVisualisation == "DoSignificanceTest" ? sort(selectedVariables) : getSelectedVariables();    
 
-        performNormalityTestForMultipleDistributions(allDistributions, numberOfElements);       
+    var DV = variableList["dependent"][0];
+    
+    // Init. distribution flags
+    distributions[DV] = {};
+    
+    if(variableList["independent"].length == 1)
+    {
+        // - - - - - - - - - - - - - 1 IV - - - - - - - - - - - - - 
+
+        var combinedDistributions = new Array();
+        var numberOfDistributions = new Array();
+
+        for(j=0; j<variableList["independent-levels"].length; j++) // for each level of the IV...
+        {  
+            for(k=0; k<variables[DV][variableList["independent-levels"][j]].length; k++) // for each element in the distribution of the DV corresponding the level j
+            {
+                combinedDistributions.push(variables[DV][variableList["independent-levels"][j]][k]);
+            }
+            
+            numberOfDistributions.push(variables[DV][variableList["independent-levels"][j]].length);
+        }
+        
+        performNormalityTestForMultipleDistributions(combinedDistributions, numberOfDistributions); // We send one enormous array of numbers with another array of array-sizes (to split up the enormous array)
     }
     else
     {
-        var allDistributions = new Array();
-        var numberOfElements = new Array();
-        //for each level corresponding to the dependent variable, perform normality test.
-        for(i=0; i<variableList["dependent"].length; i++)                        
+        // - - - - - - - - - - - - - 2+ IVs - - - - - - - - - - - - - 
+
+        var combinedDistributions = new Array();
+        var numberOfDistributions = new Array();
+
+        if(variableList["independent"].length == 3)
         {
-            for(j=0; j<variableList["independent-levels"].length; j++)
-            {               
-                for(k=0; k<variables[variableList["dependent"][i]][variableList["independent-levels"][j]].length; k++)
+            // Get the distributions
+
+            var levelsA = variables[variableList["independent"][0]]["dataset"].unique();
+            var levelsB = variables[variableList["independent"][1]]["dataset"].unique();
+            var levelsC = variables[variableList["independent"][2]]["dataset"].unique();
+
+            for(var i=0; i<levelsA.length; i++)
+            {
+                for(var j=0; j<levelsB.length; j++)
                 {
-                    allDistributions.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]][k]);
+                    for(var k=0; k<levelsC.length; k++)
+                    {
+                        var variablesObject = variables[DV];
+                        var dist; 
+
+                        if(variablesObject.hasOwnProperty(levelsA[i] + "-" + levelsB[j] + "-" + levelsC[k]))
+                        {
+                            dist = variablesObject[levelsA[i] + "-" + levelsB[j] + "-" + levelsC[k]];
+                        }
+                        else if(variablesObject.hasOwnProperty(levelsA[i] + "-" + levelsC[k] + "-" + levelsB[j]))
+                        {
+                            dist = variablesObject[levelsA[i] + "-" + levelsC[k] + "-" + levelsB[j]];
+                        }
+                        else if(variablesObject.hasOwnProperty(levelsB[j] + "-" + levelsA[i] + "-" + levelsC[k]))
+                        {
+                            dist = variablesObject[levelsB[j] + "-" + levelsA[i] + "-" + levelsC[k]];
+                        }
+                        else if(variablesObject.hasOwnProperty(levelsB[j] + "-" + levelsC[k] + "-" + levelsA[i]))
+                        {
+                            dist = variablesObject[levelsB[j] + "-" + levelsC[k] + "-" + levelsA[i]];
+                        }
+                        else if(variablesObject.hasOwnProperty(levelsC[k] + "-" + levelsA[i] + "-" + levelsB[j]))
+                        {
+                            dist = variablesObject[levelsC[k] + "-" + levelsA[i] + "-" + levelsB[j]];
+                        }
+                        else if(variablesObject.hasOwnProperty(levelsC[k] + "-" + levelsB[j] + "-" + levelsA[i]))
+                        {
+                            dist = variablesObject[levelsC[k] + "-" + levelsB[j] + "-" + levelsA[i]];
+                        }
+
+                        for(l = 0; l<dist.length; l++)
+                        {
+                            combinedDistributions.push(dist[l]);
+                        }
+
+                        numberOfDistributions.push(dist.length);
+                    }
                 }
+            }
+        }        
+        else
+        {
+            var groups = getGroupsForColourBoxPlotData();        
+            
+            for(var i=0; i<groups.length; i++)
+            {  
+                numberOfDistributions.push(groups[i].length);            
                 
-                numberOfElements.push(variables[variableList["dependent"][i]][variableList["independent-levels"][j]].length);
+                for(var j=0; j<groups[i].length; j++)
+                {
+                    combinedDistributions.push(groups[i][j]);
+                }
             }
         }
-        
-        performNormalityTestForMultipleDistributions(allDistributions, numberOfElements);
+
+        performNormalityTestForMultipleDistributions(combinedDistributions, numberOfDistributions);       
     }
+    
 }
 
-function performHomoscedasticityTests()
-{  
-    var variableList = getSelectedVariables();    
-    
-    //initialise distributions
-    variances[variableList["dependent"][0]] = {};
-    
-    for(i=0; i<variableList["independent"].length; i++)
-        performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][i]);
-}
-
-function setDistribution(dependentVariable, level, normal)
+function setDistribution(DV, level, distributionIsNormal)
 {    
-    if(distributions[dependentVariable] == undefined)
-        distributions[dependentVariable] = new Object();
+    if(distributions[DV] == undefined)
+        distributions[DV] = new Object();
     
-    distributions[dependentVariable][level] = normal;    
-    
-    if(getObjectLength(distributions[dependentVariable]) == getNumberOfSelectedMeans())
-    {       
-        //i.e., when all distributions are tested
-        var variableList = getSelectedVariables();
-        var normal = true;
+    distributions[DV][level] = distributionIsNormal;    
+
+    var numberOfHypotheticallySelectedMeans = 0;
+    var variableList = selectedVisualisation == "DoSignificanceTest" ? sort(selectedVariables) : getSelectedVariables(); 
+
+    var timeOut = 0;
+
+    if(selectedVisualisation == "DoSignificanceTest")
+    {
+        var levelsA = variables[variableList["independent"][0]]["dataset"].unique();
+        var levelsB = variables[variableList["independent"][1]]["dataset"].unique();
+        var levelsC = variables[variableList["independent"][2]]["dataset"].unique();
+
+        numberOfHypotheticallySelectedMeans = levelsA.length * levelsB.length * levelsC.length;
+    }
+
+    if((getObjectLength(distributions[DV]) == getNumberOfSelectedMeans()) || ((selectedVisualisation == "DoSignificanceTest") && (getObjectLength(distributions[DV]) == numberOfHypotheticallySelectedMeans)))
+    {   
+        var distributionsAreNormal = true;
         
         for(var i=0; i<variableList["independent-levels"].length; i++)
         {   
-            if(distributions[dependentVariable][variableList["independent-levels"][i]] == false)
+            if(distributions[DV][variableList["independent-levels"][i]] == false)
             {
-                d3.select("#normality.crosses").attr("display", "inline");
-                d3.select("#normality.assumptionsViolationText").attr("display", "inline"); 
-
-                if(d3.select("#homogeneity.assumptionsViolationText").attr("display") == "inline")
+                d3.select("#normality.assumptionNodes").attr("fill", "red");                
+                distributionsAreNormal = false;
+                
+                if(selectedVisualisation != "DoSignificanceTest")
                 {
-                    d3.selectAll(".assumptionsViolationText").attr("display", "none");
-                    d3.select("#bothAssumptions.assumptionsViolationText").attr("display", "inline");
+                    if(!global.flags.isTestWithoutTimeout  )
+                    {                        
+                        d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + scaledPlotPanelHeight);
+                        drawAdvancedPlotButton();
+                    }
+                    
+                    //draw boxplots in red 
+                    drawBoxPlotInRed(variableList["independent-levels"][i]);
+                    drawNormalityPlot(DV, variableList["independent-levels"][i], "notnormal");
+                    timeOut = 1200;
                 }
-                
-                d3.select("#normality.loading").attr("display", "none"); 
-                
-                normal = false;
-                
-                if(sessionStorage.plotWithNoInteraction == "false")
-                    d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight*1.5);
-                
-                //draw boxplots in red 
-                drawBoxPlotInRed(variableList["independent-levels"][i]);
-                drawNormalityPlot(dependentVariable, variableList["independent-levels"][i], "notnormal");
             }
-        }
+        }        
         
-        if(normal)
-        {   
-            // d3.select("#plotCanvas").transition().delay(2500).duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight);
+        if(distributionsAreNormal)        
+        {
+            d3.select("#normality.assumptionNodes").attr("fill", "green");              
+            testSelectionLogicAfterNormalityTest();
+        }
+        else
+         {
+            d3.select("#normality.assumptionNodes").attr("fill", "red");              
+            console.log("Normality: false");
 
-            // console.log("\n\t Normality requirement satisfied!");
-                        
-            d3.select("#normality.ticks").attr("display", "inline");  
-            d3.select("#normality.loading").attr("display", "none"); 
+            // Check for transformations and if transformations are not possible, insert code.    
             
+            findTransformForNormality();
+         }   
+    }
+}
+
+function testSelectionLogicAfterHomogeneityTest()
+{
+    var variableList = sort(selectedVariables);
+    var DV = variableList["dependent"][0];
+    var IVs = variableList["independent"][0];
+
+    var timeOut = global.flags.isTestWithoutTimeout ? 0 : 1200;        
+
+    setTimeout(function() {
+
+        // - - - - - - - - - - - - - Select test/follow-up on the other assumption - - - - - - - - - - - - - 
+
+        if(getNumberOfSelectedMeans() == 2)              
+        {
+            // - - - - - - - - - - - - - Comparison between two distributions - - - - - - - - - - - - - 
+
             if(variableList["independent"].length == 1)
             {
-                if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
+                // - - - - - - - - - - - - - 1 IV - - - - - - - - - - - - - 
+                var IV = variableList["independent"][0];
+
+                if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == IV))
                 {
-                    //within-group design
-                    performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
-                    
-                    //do test
-                    if(variableList["independent-levels"].length == 2)
+                    // Within-subjects factor
+
+                    var distributionsAreHomoscedastic = d3.select("#homogeneity.assumptionNodes").attr("fill") == "green" ? true : false;
+                    var distributionsAreNormal = d3.select("#normality.assumptionNodes").attr("fill") == "green" ? true : false;
+
+                    var groupA, groupB; 
+
+                    groupA = variables[DV][variableList["independent-levels"][0]];
+                    groupB = variables[DV][variableList["independent-levels"][1]];
+
+                    if(distributionsAreNormal && distributionsAreHomoscedastic)
                     {
-                        //2 variables
-                        if(pairwiseComparisons)
-                            performPairwiseTTest("TRUE", "TRUE");
-                        else
-                            performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "TRUE");
+                        // Paired t-test     
+                        usedMultiVariateTestType = "proper";
+
+                        performTTest(groupA, groupB, "TRUE", "TRUE");
+                    }
+                    else if(distributionsAreHomoscedastic)
+                    {
+                        // Wilcoxon signed-rank test                        
+                        usedMultiVariateTestType = "proper";
+
+                        performWilcoxonSignedRankTest(groupA, groupB);
                     }
                     else
                     {
-                        //> 2 variables
-                        performOneWayRepeatedMeasuresANOVA(variableList["dependent"][0], variableList["independent"][0]);
+                        console.log("Test not available in VisiStat");
+
+                        usedMultiVariateTestType = "error";
+                        d3.select("#statisticalTest.assumptionNodes").attr("fill", "red");
+
+                        performWilcoxonSignedRankTest(groupA, groupB);
                     }
                 }
                 else
                 {
-                    //between-group design
-                    
-                    //homoscedasticity test is already done (and no case is handled)
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
-                    {
-                        if(variableList["independent-levels"].length == 2)
-                        {
-                            //2 variables
-                            if(pairwiseComparisons)
-                                performPairwiseTTest("TRUE", "FALSE");
-                            else
-                            {                            
-                                performTTest(variables[variableList["dependent"][0]][variableList["independent-levels"][0]], variables[variableList["dependent"][0]][variableList["independent-levels"][1]], "TRUE", "FALSE");
-                            }
-                        }
-                        else
-                        {
-                            //> 2 variables
-                            performOneWayANOVA(variableList["dependent"][0], variableList["independent"][0]);
-                        }                    
-                    }
-                }
-            }   
-            else if(variableList["independent"].length == 2 && getSelectedMeansForColourBoxPlotData().length == 2) 
-            {
-                if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
-                {
-                    //within-group design
-                }
-                else if(experimentalDesign == "between-groups")
-                {
-                    //between-group design
+                    // Between-subjects factor
 
-                    //homoscedasticity test is already done (and no case is handled)
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
-                    {                    
-                        if(variableList["independent-levels"].length == 2)
-                        {
-                            //2 variables
-                            var groups = getGroupsForColourBoxPlotData();                       
-                            
-                            if(pairwiseComparisons)
-                                performPairwiseTTest("TRUE", "FALSE");
-                            else
-                                performTTest(groups[0], groups[1], "TRUE", "FALSE");
-                        }                    
-                    }
-                }                
-                else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
+                    performNormalityTests();
+                }
+            }
+            else
+            {
+                // - - - - - - - - - - - - - 2+ IVs - - - - - - - - - - - - - 
+
+                console.log("Error: this should not happen: condition should be handled in compareMeans()");
+            }
+        }
+        else
+        {
+            // - - - - - - - - - - - - - Comparison between 3+ distributions - - - - - - - - - - - - - 
+
+            if(variableList["independent"].length == 1)
+            {
+                // - - - - - - - - - - - - - 1 IV - - - - - - - - - - - - - 
+
+                var IV = variableList["independent"][0];
+
+                if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == IV))
                 {
-                    if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+                    // Within-subjects factor
+
+                    var distributionsAreHomoscedastic = d3.select("#homogeneity.assumptionNodes").attr("fill") == "green" ? true : false;
+                    var distributionsAreNormal = d3.select("#normality.assumptionNodes").attr("fill") == "green" ? true : false;
+
+                    if(distributionsAreNormal && distributionsAreHomoscedastic)
                     {
-                        //2 variables
-                        var groups = getGroupsForColourBoxPlotData();
+                        // One-way repeated-measures ANOVA
+                        usedMultiVariateTestType = "proper";
+
+                        performOneWayRepeatedMeasuresANOVA(DV, IV);  
+                    }
+                    else if(distributionsAreNormal)
+                    {
+                        // Friedman's analysis
+                        usedMultiVariateTestType = "proper";
+
+                        performFriedmanTest(DV, IV);
+                    }
+                    else
+                    {
+                        console.log("Test not available in VisiStat");
+                        usedMultiVariateTestType = "error";
+                        d3.select("#statisticalTest.assumptionNodes").attr("fill", "red");
+
+                        performFriedmanTest(DV, IV);
+                    }
+                }
+                else
+                {
+                    // Between-subjects factor
+
+                    performNormalityTests();
+                }
+            }
+            else
+            {
+                // - - - - - - - - - - - - - 2+ IVs - - - - - - - - - - - - - 
+
+                performNormalityTests();
+            }
+        }     
+    }, timeOut); 
+}
+
+function testSelectionLogicAfterNormalityTest()
+{
+    var variableList = sort(selectedVariables);
+    var DV = variableList["dependent"][0];
+    var IVs = variableList["independent"][0];
+
+    var timeOut = global.flags.isTestWithoutTimeout ? 0 : 1200;       
+
+    setTimeout(function() {
+        if(getNumberOfSelectedMeans() == 2)
+        {
+            // - - - - - - - - - - - - -  Comparison between 2 distributions - - - - - - - - - - - - - 
+
+            if(variableList["independent"].length == 1)
+            {
+                // - - - - - - - - - - - - -  1 IV - - - - - - - - - - - - - 
+
+                var IV = variableList["independent"][0];
+
+                if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == IV))
+                {
+                    // Within-subjects factor
+
+                    performHomoscedasticityTest(DV, IV);
+                }
+                else
+                {
+                    // Between-subjects factor
+
+                    var distributionsAreHomoscedastic = d3.select("#homogeneity.assumptionNodes").attr("fill") == "green" ? true : false;
+                    var distributionsAreNormal = d3.select("#normality.assumptionNodes").attr("fill") == "green" ? true : false;
+
+                    var groupA, groupB; 
+
+                    groupA = variables[DV][variableList["independent-levels"][0]];
+                    groupB = variables[DV][variableList["independent-levels"][1]];
+
+                    if(distributionsAreNormal && distributionsAreHomoscedastic)
+                    {
+                        // Unpaired t-test
+                        usedMultiVariateTestType = "proper";
+
+                        performTTest(groupA, groupB, "TRUE", "FALSE");
+                    }
+                    else if(distributionsAreHomoscedastic)
+                    {
+                        // Mann-Whitney U test
+                        usedMultiVariateTestType = "proper";
+
+                        performMannWhitneyTest(groupA, groupB);
+                    }
+                    else if(distributionsAreNormal)
+                    {
+                        // Welch's t-test
+                        usedMultiVariateTestType = "proper";
+
+                        performTTest(groupA, groupB, "FALSE", "FALSE");
+                    }
+                    else
+                    {
+                        console.log("Test not available in VisiStat");
+                        usedMultiVariateTestType = "error";
+                        d3.select("#statisticalTest.assumptionNodes").attr("fill", "red");
+
+                        performMannWhitneyTest(groupA, groupB);
+                    }
+                }            
+            }
+            else
+            {
+                // - - - - - - - - - - - - -  2+ IVs - - - - - - - - - - - - - 
+
+                console.log("This should not happen: condition should be handled in compareMeans()");
+            }
+        }
+        else
+        {
+            // - - - - - - - - - - - - - Comparison between 3+ distributions - - - - - - - - - - - - - 
+
+            if(variableList["independent"].length == 1)
+            {
+                // - - - - - - - - - - - - - 1 IV - - - - - - - - - - - - - 
+
+                var IV = variableList["independent"][0];
+
+                if((experimentalDesign == "within-groups") && (getWithinGroupVariable(variableList) == IV))
+                {
+                    // Within-subjects factor
+
+                    performHomoscedasticityTest(DV, IV);
+                }
+                else
+                {
+                    // Between-subjects factor
+
+                    var distributionsAreHomoscedastic = d3.select("#homogeneity.assumptionNodes").attr("fill") == "green" ? true : false;
+                    var distributionsAreNormal = d3.select("#normality.assumptionNodes").attr("fill") == "green" ? true : false;
+
+                    if(distributionsAreNormal && distributionsAreHomoscedastic)
+                    {
+                        // One-way ANOVA
+                        usedMultiVariateTestType = "proper";
+
+                        performOneWayANOVA(DV, IV);
+                    }
+                    else if(distributionsAreHomoscedastic)
+                    {
+                        // Kruskal-Wallis test
+                        usedMultiVariateTestType = "proper";
+
+                        performKruskalWallisTest(DV, IV);
+                    }
+                    else if(distributionsAreNormal)
+                    {
+                        // Welch's ANOVA
+                        usedMultiVariateTestType = "proper";
+
+                        performWelchANOVA(DV, IV);
+                    }
+                    else
+                    {
+                        console.log("Test not available in VisiStat");
+                        usedMultiVariateTestType = "error";
+                        d3.select("#statisticalTest.assumptionNodes").attr("fill", "red");
+
+                        performKruskalWallisTest(DV, IV);
+                    }
+                }
+            }
+            else
+            {
+                // - - - - - - - - - - - - -  2+ IVs - - - - - - - - - - - - - 
+
+                displayLoadingTextForInteractionEffect();
+
+                var distributionsAreHomoscedastic = d3.select("#homogeneity.assumptionNodes").attr("fill") == "green" ? true : false;
+                var distributionsAreNormal = d3.select("#normality.assumptionNodes").attr("fill") == "green" ? true : false;
+
+                if(distributionsAreNormal && distributionsAreHomoscedastic)
+                {
+                    usedMultiVariateTestType = "proper";
+
+                    if(isMixedDesign(variableList))
+                    {
+                        // - - - - - - - - - - - - -  Mixed-design (at least 1 within-subjects factor) - - - - - - - - - - - - -                         
+
+                        setTimeout(function()
+                        {
+                            performMixedANOVA();
+                        }, timeOut["loading interaction effect"]);                        
                         
-                        if(pairwiseComparisons)
-                            performPairwiseTTest("TRUE", "FALSE");
-                        else
-                            performTTest(groups[0], groups[1], "TRUE", "FALSE");
-                    }   
-                }                
-            }            
-        }
-        else
-        {
-            // console.log("\n\t Normality of distributions is not satisfied!");            
-            // console.log("\n\t Checking if transformation is possible...");     
-            
-            if((experimentalDesign == "within-groups") && (variableList["independent"][0] == getWithinGroupVariable(variableList)))
-            {
-                //within-group design
-                if(variableList["independent-levels"].length == 2 && variableList["independent"].length == 2)
-                {
-                    var groups = getGroupsForColourBoxPlotData();
-                    
-                    //Mann-Whitney U test
-                    if(pairwiseComparisons)
-                        performPairwiseWilcoxTest("TRUE", "FALSE");
+                    }
                     else
-                        performMannWhitneyTest(groups[0], groups[1]);
+                    {
+                        // - - - - - - - - - - - - -  All factors are between-subjects - - - - - - - - - - - - - 
+
+                        setTimeout(function()
+                        {
+                            performNWayANOVA();
+                        }, timeOut["loading interaction effect"]);  
+                    }
                 }
                 else
                 {
-                    performHomoscedasticityTest(variableList["dependent"][0], variableList["independent"][0]);
+                    console.log("Test not available in VisiStat");
+
+                    usedMultiVariateTestType = "error";
+                    d3.select("#statisticalTest.assumptionNodes").attr("fill", "red");
+
+                    if(isMixedDesign(variableList))
+                    {
+                        // - - - - - - - - - - - - -  Mixed-design (at least 1 within-subjects factor) - - - - - - - - - - - - -                         
+
+                        setTimeout(function()
+                        {
+                            performMixedANOVA()
+                        }, timeOut["loading interaction effect"]);
+                    }
+                    else
+                    {
+                        // - - - - - - - - - - - - -  All factors are between-subjects - - - - - - - - - - - - - 
+
+                         setTimeout(function()
+                        {
+                            performNWayANOVA()
+                        }, timeOut["loading interaction effect"]);
+                    }
                 }
             }
-            
-            findTransformForNormality(variableList["dependent"][0], variableList["independent"][0]);
-        }
-
-        if(variableList["independent"].length == 2)
-        {
-            //Factorial/2-way ANOVA
-            var selectedMeans = getSelectedMeansForColourBoxPlotData();
-
-            if(selectedMeans.length > 2)
-            {
-                if(isFactorialANOVA(variableList))
-                {
-                                           
-                }
-                else
-                {
-                    //2-way ANOVA
-                    performHomoscedasticityTests();
-                }    
-            }            
-        }
-    }    
+        }            
+    }, timeOut);     
 }
 
-function setHomogeneity(dependentVariable, independentVariable, homogeneous)
-{    
-    if(variances[dependentVariable] == undefined)
-        variances[dependentVariable] = new Object();
-    
-    variances[dependentVariable][independentVariable] = homogeneous;
-    
-    if(getObjectLength(variances[dependentVariable]) == (currentVariableSelection.length - 1))
-    {       
-        var variableList = sort(currentVariableSelection);
-        var homogeneity = true;
-        
-        for(var i=0; i<variableList["independent"].length; i++)
-        {   
-            if(variances[dependentVariable][variableList["independent"][i]] == false)
-            {
-                d3.select("#homogeneity.crosses").attr("display", "inline");
-                d3.select("#homogeneity.assumptionsViolationText").attr("display", "inline");
-                if(d3.select("#normality.assumptionsViolationText").attr("display") == "inline")
-                {
-                    d3.selectAll(".assumptionsViolationText").attr("display", "none");
-                    d3.select("#bothAssumptions.assumptionsViolationText").attr("display", "inline");
-                }
-                d3.select("#homogeneity.loading").attr("display", "none"); 
-                homogeneity = false;
-            
-                drawHomogeneityPlot(homogeneity);
-            }
-        }
-        
-        var selectedMeans = getSelectedMeansForColourBoxPlotData();
-        var selectedMeanLevels = getSelectedMeanLevelsForColourBoxPlotData();
-        
-        if(variableList["independent"].length == 2)
-        {
-            // console.log("Hey!");
-            if(homogeneity)
-            {
-                // console.log("\n\tHomogeneous requirement satisfied!");
-                d3.select("#homogeneity.ticks").attr("display", "inline"); 
-                d3.select("#homogeneity.loading").attr("display", "none");           
-            }
-            
-            var selectedMeans = getSelectedMeansForColourBoxPlotData();
-
-            if(selectedMeans.length > 2)
-            {
-                if(isFactorialANOVA(variableList))
-                {
-
-                }
-                else
-                {
-                    performTwoWayANOVA(variableList["dependent"][0], variableList["independent"][0], variableList["independent"][1]);                
-                }
-            }  
-            else if(selectedMeans.length == 2)
-            {
-                if(pairwiseComparisons)
-                    performNormalityTests();                    
-                else
-                    performNormalityTests();   
-            }          
-                                       
-        }
-        else if(homogeneity)
-        {         
-            // console.log("\n\t Homogeneous requirement satisfied!");
-            
-            d3.select("#homogeneity.ticks").attr("display", "inline"); 
-            d3.select("#homogeneity.loading").attr("display", "none"); 
-
-            // var nCompleteLines = document.getElementsByClassName("completeLines").length;            
-            
-            if((experimentalDesign == "between-groups" || getWithinGroupVariable(variableList) != variableList["independent"][0]))
-            {
-                //between-groups design
-                if(pairwiseComparisons)
-                    performNormalityTests();                    
-                else
-                    performNormalityTests();                
-            }            
-        }
-        else
-        {
-            // console.log("\n\tHomogeneity of distributions is not satisfied!");
-            // console.log("\n\tChecking if transformation is possible...");
-            //check if transformation is possible
-            findTransformForHomogeneity(variableList["dependent"][0], variableList["independent"][0]);                
-        }
-
-        
-    }    
-}

@@ -26,50 +26,50 @@ function getCorrelationCoefficient(variableA, variableB, method)
             {
                 // console.log("\t\t\t Pearson's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
 
-                testResults["df"] = output.df;
-                testResults["statistic"] = "t(" + output.df + ") = " + output.statistic;
+                multiVariateTestResults["df"] = output.df;
+                multiVariateTestResults["statistic"] = "t(" + output.df + ") = " + output.statistic;
         
-                testResults["parameter"] = output.statistic;
-                testResults["parameter-type"] = "t";
+                multiVariateTestResults["parameter"] = output.statistic;
+                multiVariateTestResults["parameter-type"] = "t";
         
-                testResults["p"] = changePValueNotation(output.p);                  
-                testResults["method"] = "Pearson's correlation \'r\'"; 
+                multiVariateTestResults["p"] = changePValueNotation(output.p);                  
+                multiVariateTestResults["method"] = "Pearson's correlation \'r\'"; 
         
-                testResults["test-type"] = "pC";
+                multiVariateTestResults["test-type"] = "pC";
         
-                testResults["effect-size"] = output.cor;
-                testResults["CI"] = [output.CI_min, output.CI_max];
-                testResults["effect-size-type"] = "r";
+                multiVariateTestResults["effect-size"] = output.cor;
+                multiVariateTestResults["CI"] = [output.CI_min, output.CI_max];
+                multiVariateTestResults["effect-size-type"] = "r";
         
-                testResults["formula"] = variableA + " : " + variableB;
+                multiVariateTestResults["formula"] = variableA + " : " + variableB;
             
                 // logResult();
-                setReportingText(testResults["formula"]);
+                setReportingText(multiVariateTestResults["formula"]);
 
-                // drawButtonInSideBar("FIT MODEL FOR PREDICTION", "regression");
+                // drawButton("FIT MODEL FOR PREDICTION", "regression");
             }
             else if(method == "kendall")
             {
                 // console.log("\t\t\t Kendall's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
             
-                testResults["statistic"] = "z = " + output.statistic;
+                multiVariateTestResults["statistic"] = "z = " + output.statistic;
         
-                testResults["parameter"] = output.statistic;
-                testResults["parameter-type"] = "z";
+                multiVariateTestResults["parameter"] = output.statistic;
+                multiVariateTestResults["parameter-type"] = "z";
       
-                testResults["p"] = changePValueNotation(output.p);
-                testResults["method"] = "Kendall's correlation \'𝜏\'"
-                testResults["effect-size"] = output.cor;
-                testResults["effect-size-type"] = "𝜏";
+                multiVariateTestResults["p"] = changePValueNotation(output.p);
+                multiVariateTestResults["method"] = "Kendall's correlation \'𝜏\'"
+                multiVariateTestResults["effect-size"] = output.cor;
+                multiVariateTestResults["effect-size-type"] = "𝜏";
         
-                testResults["test-type"] = "kC";
+                multiVariateTestResults["test-type"] = "kC";
         
-                testResults["formula"] = variableA + " : " + variableB;
+                multiVariateTestResults["formula"] = variableA + " : " + variableB;
             
                 // logResult();
-                setReportingText(testResults["formula"]);
+                setReportingText(multiVariateTestResults["formula"]);
         
-                // drawButtonInSideBar("FIT MODEL FOR PREDICTION", "regression");
+                // drawButton("FIT MODEL FOR PREDICTION", "regression");
             }
 
             displayCorrelationResults();
@@ -89,50 +89,50 @@ function getCorrelationCoefficient(variableA, variableB, method)
         {
             // console.log("\t\t\t Pearson's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
 
-            testResults["df"] = output.df;
-            testResults["statistic"] = "t(" + output.df + ") = " + output.statistic;
+            multiVariateTestResults["df"] = output.df;
+            multiVariateTestResults["statistic"] = "t(" + output.df + ") = " + output.statistic;
     
-            testResults["parameter"] = output.statistic;
-            testResults["parameter-type"] = "t";
+            multiVariateTestResults["parameter"] = output.statistic;
+            multiVariateTestResults["parameter-type"] = "t";
     
-            testResults["p"] = changePValueNotation(output.p);                  
-            testResults["method"] = "Pearson's correlation \'r\'"; 
+            multiVariateTestResults["p"] = changePValueNotation(output.p);                  
+            multiVariateTestResults["method"] = "Pearson's correlation \'r\'"; 
     
-            testResults["test-type"] = "pC";
+            multiVariateTestResults["test-type"] = "pC";
     
-            testResults["effect-size"] = output.cor;
-            testResults["CI"] = [output.CI_min, output.CI_max];
-            testResults["effect-size-type"] = "r";
+            multiVariateTestResults["effect-size"] = output.cor;
+            multiVariateTestResults["CI"] = [output.CI_min, output.CI_max];
+            multiVariateTestResults["effect-size-type"] = "r";
     
-            testResults["formula"] = variableA + " : " + variableB;
+            multiVariateTestResults["formula"] = variableA + " : " + variableB;
         
             // logResult();
-            setReportingText(testResults["formula"]);
+            setReportingText(multiVariateTestResults["formula"]);
 
-            // drawButtonInSideBar("FIT MODEL FOR PREDICTION", "regression");
+            // drawButton("FIT MODEL FOR PREDICTION", "regression");
         }
         else if(method == "kendall")
         {
             // console.log("\t\t\t Kendall's Correlation-coefficient for (" + variableA + " , " + variableB + ")");
         
-            testResults["statistic"] = "z = " + output.statistic;
+            multiVariateTestResults["statistic"] = "z = " + output.statistic;
     
-            testResults["parameter"] = output.statistic;
-            testResults["parameter-type"] = "z";
+            multiVariateTestResults["parameter"] = output.statistic;
+            multiVariateTestResults["parameter-type"] = "z";
   
-            testResults["p"] = changePValueNotation(output.p);
-            testResults["method"] = "Kendall's correlation \'𝜏\'"
-            testResults["effect-size"] = output.cor;
-            testResults["effect-size-type"] = "𝜏";
+            multiVariateTestResults["p"] = changePValueNotation(output.p);
+            multiVariateTestResults["method"] = "Kendall's correlation \'𝜏\'"
+            multiVariateTestResults["effect-size"] = output.cor;
+            multiVariateTestResults["effect-size-type"] = "𝜏";
     
-            testResults["test-type"] = "kC";
+            multiVariateTestResults["test-type"] = "kC";
     
-            testResults["formula"] = variableA + " : " + variableB;
+            multiVariateTestResults["formula"] = variableA + " : " + variableB;
         
             // logResult();
-            setReportingText(testResults["formula"]);
+            setReportingText(multiVariateTestResults["formula"]);
     
-            // drawButtonInSideBar("FIT MODEL FOR PREDICTION", "regression");
+            // drawButton("FIT MODEL FOR PREDICTION", "regression");
         }
 
         displayCorrelationResults();
@@ -155,14 +155,14 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
             localStorage.setObject(formula, output);                                               
             // console.log("\t\t Biserial Correlation-coefficient for (" + continuousVariable + " , " + binaryVariable + ")");                
         
-            testResults["method"] = "Biserial correlation";
-            testResults["effect-size"] = output.cor;  
-            testResults["effect-size-type"] = "r";                
-            testResults["test-type"] = "bC";                
-            testResults["formula"] = continuousVariable + " : " + binaryVariable;
+            multiVariateTestResults["method"] = "Biserial correlation";
+            multiVariateTestResults["effect-size"] = output.cor;  
+            multiVariateTestResults["effect-size-type"] = "r";                
+            multiVariateTestResults["test-type"] = "bC";                
+            multiVariateTestResults["formula"] = continuousVariable + " : " + binaryVariable;
         
             // logResult();
-            setReportingText(testResults["formula"]);
+            setReportingText(multiVariateTestResults["formula"]);
             displayBiserialCorrelationResults();                    
         });
         
@@ -176,14 +176,14 @@ function getBiserialCorrelationCoefficient(continuousVariable, binaryVariable)
     {
         var output = localStorage.getObject(formula);
 
-        testResults["method"] = "Biserial correlation";
-        testResults["effect-size"] = output.cor;  
-        testResults["effect-size-type"] = "r";                
-        testResults["test-type"] = "bC";                
-        testResults["formula"] = continuousVariable + " : " + binaryVariable;
+        multiVariateTestResults["method"] = "Biserial correlation";
+        multiVariateTestResults["effect-size"] = output.cor;  
+        multiVariateTestResults["effect-size-type"] = "r";                
+        multiVariateTestResults["test-type"] = "bC";                
+        multiVariateTestResults["formula"] = continuousVariable + " : " + binaryVariable;
     
         // logResult();
-        setReportingText(testResults["formula"]);
+        setReportingText(multiVariateTestResults["formula"]);
         displayBiserialCorrelationResults(); 
     }
 }
@@ -197,7 +197,7 @@ function getLinearModelCoefficients(outcome, explanatory)
         explanatory: variables[explanatory]["dataset"]
     }, function(output) 
     {                            
-        testResults["test-type"] = "linR";
+        multiVariateTestResults["test-type"] = "linR";
         
         if(isNaN(variables[explanatory]["dataset"][0]))
         {
@@ -206,44 +206,44 @@ function getLinearModelCoefficients(outcome, explanatory)
             var nCoefficients = levels.length - 1;
             var coefficients = output.coefficients;                  
     
-            testResults["effect-size"] = output.rSquared;
-            testResults["method"] = "Linear Regression Model";
-            testResults["equation"] = outcome + " = ";
-            testResults["effect-size-type"] = "rS";
+            multiVariateTestResults["effect-size"] = output.rSquared;
+            multiVariateTestResults["method"] = "Linear Regression Model";
+            multiVariateTestResults["equation"] = outcome + " = ";
+            multiVariateTestResults["effect-size-type"] = "rS";
     
-            testResults["formula"] = explanatory + " => " + outcome;
+            multiVariateTestResults["formula"] = explanatory + " => " + outcome;
     
             // logResult();
     
             for(var i=0; i<nCoefficients; i++)
             {
                 if(i == 0)                        
-                    testResults["equation"] = testResults["equation"] + coefficients[i] + levels[i+1];
+                    multiVariateTestResults["equation"] = multiVariateTestResults["equation"] + coefficients[i] + levels[i+1];
                 else
-                    testResults["equation"] = testResults["equation"] + (coefficients[i] < 0 ? coefficients[i] : "+" + coefficients[i]) + levels[i+1];
+                    multiVariateTestResults["equation"] = multiVariateTestResults["equation"] + (coefficients[i] < 0 ? coefficients[i] : "+" + coefficients[i]) + levels[i+1];
             }
-            testResults["equation"] = testResults["equation"] + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
+            multiVariateTestResults["equation"] = multiVariateTestResults["equation"] + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
     
-            testResults["coefficients"] = new Object();
+            multiVariateTestResults["coefficients"] = new Object();
     
             for(var i=0; i<levels.length; i++)
             {
-                testResults["coefficients"][levels[i]] = coefficients[i];
+                multiVariateTestResults["coefficients"][levels[i]] = coefficients[i];
             }    
-            testResults["intercept"] = output.intercept;    
-            setReportingText(testResults["formula"]);
+            multiVariateTestResults["intercept"] = output.intercept;    
+            setReportingText(multiVariateTestResults["formula"]);
         }
         else
         {  
             var coefficients = output.coefficients;
   
-            testResults["effect-size"] = output.rSquared;
-            testResults["effect-size-type"] = "rS";
-            testResults["method"] = "Linear Regression Model";
-            testResults["equation"] = outcome + " = " + coefficients + explanatory + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
-            testResults["coefficients"] = coefficients;
-            testResults["intercept"] = output.intercept;
-            testResults["formula"] = explanatory + " => " + outcome;
+            multiVariateTestResults["effect-size"] = output.rSquared;
+            multiVariateTestResults["effect-size-type"] = "rS";
+            multiVariateTestResults["method"] = "Linear Regression Model";
+            multiVariateTestResults["equation"] = outcome + " = " + coefficients + explanatory + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
+            multiVariateTestResults["coefficients"] = coefficients;
+            multiVariateTestResults["intercept"] = output.intercept;
+            multiVariateTestResults["formula"] = explanatory + " => " + outcome;
         
             // logResult();
         
@@ -251,7 +251,7 @@ function getLinearModelCoefficients(outcome, explanatory)
             drawRegressionLine(output.intercept, output.coefficients);                
 
             displaySimpleRegressionResults();  
-            setReportingText(testResults["formula"]);                  
+            setReportingText(multiVariateTestResults["formula"]);                  
         }
     });
     
@@ -271,21 +271,21 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
     {
         outcomeVariable: outcomeVariable,
         explanatoryVariables: explanatoryVariables,
-        dataset: pathToFile                
+        dataset: dataset                
     }, function(output) 
     {                                                   
-        testResults["test-type"] = "mulR";
+        multiVariateTestResults["test-type"] = "mulR";
         // console.log("Performing Multiple Regression for " + outcomeVariable + " ~ [" + explanatoryVariables + "]");
       
-        testResults["outcomeVariable"] = outcomeVariable;
-        testResults["explanatoryVariables"] = explanatoryVariables;
+        multiVariateTestResults["outcomeVariable"] = outcomeVariable;
+        multiVariateTestResults["explanatoryVariables"] = explanatoryVariables;
     
-        testResults["effect-size"] = output.rSquared;
-        testResults["method"] = "Multiple Regression";
-        testResults["equation"] = outcomeVariable + " = ";
-        testResults["effect-size-type"] = "rS";
+        multiVariateTestResults["effect-size"] = output.rSquared;
+        multiVariateTestResults["method"] = "Multiple Regression";
+        multiVariateTestResults["equation"] = outcomeVariable + " = ";
+        multiVariateTestResults["effect-size-type"] = "rS";
     
-        testResults["formula"] = "[" + explanatoryVariables + "] => " + outcomeVariable;                    
+        multiVariateTestResults["formula"] = "[" + explanatoryVariables + "] => " + outcomeVariable;                    
         // logResult();
     
         var intercepts = [];
@@ -293,9 +293,9 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
         for(var i=0; i<explanatoryVariables.length; i++)
         {
             if(i == 0)
-                testResults["equation"] = testResults["equation"] + output.coefficients[i] + explanatoryVariables[i];
+                multiVariateTestResults["equation"] = multiVariateTestResults["equation"] + output.coefficients[i] + explanatoryVariables[i];
             else
-                testResults["equation"] = testResults["equation"] + (output.coefficients[i] < 0 ? output.coefficients[i] : "+" + output.coefficients[i]) + explanatoryVariables[i];
+                multiVariateTestResults["equation"] = multiVariateTestResults["equation"] + (output.coefficients[i] < 0 ? output.coefficients[i] : "+" + output.coefficients[i]) + explanatoryVariables[i];
             
             var sum=output.intercept;
             for(var j=0; j<explanatoryVariables.length; j++)
@@ -308,15 +308,15 @@ function performMultipleRegression(outcomeVariable, explanatoryVariables)
         
             intercepts.push(sum);
         }
-        testResults["equation"] = testResults["equation"] + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
+        multiVariateTestResults["equation"] = multiVariateTestResults["equation"] + (output.intercept < 0 ? output.intercept : "+" + output.intercept);
     
-        testResults["coefficients"] = output.coefficients;                
-        testResults["intercept"] = output.intercept;
-        testResults["intercepts"] = intercepts;
+        multiVariateTestResults["coefficients"] = output.coefficients;                
+        multiVariateTestResults["intercept"] = output.intercept;
+        multiVariateTestResults["intercepts"] = intercepts;
         
         makeScatterplotMatrixForMultipleRegression(outcomeVariable);
         displayMultipleRegressionResults();
-        setReportingText(testResults["formula"]);
+        setReportingText(multiVariateTestResults["formula"]);
         
     });
     

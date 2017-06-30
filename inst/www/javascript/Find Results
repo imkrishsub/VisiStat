@@ -1,0 +1,157 @@
+Searching 32 files for "ticks" (case sensitive)
+
+/Users/krishsub/Code/VisiStat/inst/www/javascript/decisionTree.js:
+  130  	var normality=false, homogeneity=false; 
+  131  
+  132: 	if(d3.select("#normality.ticks").attr("display") == "inline")
+  133  		normality = true;
+  134  
+  135: 	if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  136  		homogeneity = true;
+  137  
+
+/Users/krishsub/Code/VisiStat/inst/www/javascript/events.mouse.js:
+ 1153                          }
+ 1154                      }                       
+ 1155:                     else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+ 1156                      {
+ 1157                          //between-groups design
+ ....
+ 1178                      
+ 1179                      }                       
+ 1180:                     else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+ 1181                      {
+ 1182                          //between-groups design
+ ....
+ 1625                  removeElementsByClassName("assumptionsButtonFront");
+ 1626                  removeElementsByClassName("assumptionsButtonBack");
+ 1627:                 removeElementsByClassName("ticks");
+ 1628                  removeElementsByClassName("crosses");
+ 1629                  removeElementsByClassName("pairwisePostHoc");
+ ....
+ 1740                                              var dependentVariable = variableList["dependent"][0];
+ 1741                                              
+ 1742:                                             var homogeneity = d3.select("#homogeneity.ticks").attr("display") == "inline" ? true : false;
+ 1743          
+ 1744                                              for(var i=0; i<variableList["independent"].length; i++)
+
+/Users/krishsub/Code/VisiStat/inst/www/javascript/ocpu.assumptions.transformations.js:
+  399                          }
+  400                      }                       
+  401:                     else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  402                      {
+  403                          //between-groups design
+  ...
+  424                      
+  425                      }                       
+  426:                     else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  427                      {
+  428                          //between-groups design
+  ...
+  486                      }
+  487                  }                       
+  488:                 else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  489                  {
+  490                      //between-groups design
+  ...
+  511                  
+  512                  }                       
+  513:                 else if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  514                  {
+  515                      //between-groups design
+  ...
+  756                          {
+  757                              //between-group design
+  758:                             if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  759                              {
+  760                                  //only if homogeneous
+  ...
+  782                          {
+  783                              //between-group design
+  784:                             if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  785                              {
+  786                                  //only if homogeneous
+  ...
+  873                      {
+  874                          //between-group design
+  875:                         if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  876                          {
+  877                              //only if homogeneous
+  ...
+  899                      {
+  900                          //between-group design
+  901:                         if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  902                          {
+  903                              //only if homogeneous
+  ...
+  964  
+  965              //modify the assumptions checklist icons
+  966:             d3.select("#homogeneity.ticks").attr("display", "none");  
+  967              d3.select("#homogeneity.assumptionNodes").attr("fill", "green");  
+  968                                                      
+  ...
+ 1024  
+ 1025          //modify the assumptions checklist icons
+ 1026:         d3.select("#homogeneity.ticks").attr("display", "none");  
+ 1027          d3.select("#homogeneity.assumptionNodes").attr("fill", "green");  
+ 1028                                                  
+
+/Users/krishsub/Code/VisiStat/inst/www/javascript/statistical-tests.js:
+  341                      
+  342                      //homoscedasticity test is already done (and no case is handled)
+  343:                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  344                      {
+  345                          if(variableList["independent-levels"].length == 2)
+  ...
+  372  
+  373                      //homoscedasticity test is already done (and no case is handled)
+  374:                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  375                      {                    
+  376                          if(variableList["independent-levels"].length == 2)
+  ...
+  388                  else if(variableList["independent"].length == 2 && getNumberOfSelectedMeans() == 2)
+  389                  {
+  390:                     if(d3.select("#homogeneity.ticks").attr("display") == "inline")
+  391                      {
+  392                          //2 variables
+
+/Users/krishsub/Code/VisiStat/inst/www/javascript/visualization.histogram.js:
+  151          }
+  152          
+  153:          // Find ticks   
+  154          var nGroovesY = findTicksForHistogramFrequencyAxis(Array.max(binMaxs));    
+  155          var individualPlotHeight = labels.length > 1 ? (plotHeight/labels.length)-axesOffset : plotHeight;
+  ...
+  315          }
+  316          
+  317:          // Find ticks   
+  318          var nGroovesY = findTicksForHistogramFrequencyAxis(Array.max(binMaxs));  
+  319          var individualPlotHeight = labels.length > 1 ? (plotHeight/labels.length)-axesOffset : plotHeight;
+  ...
+  509      var maxBinSize = Array.max(bins);
+  510      
+  511:     // Find ticks   
+  512      var nGroovesY = Math.ceil(findTicksForHistogramFrequencyAxis(maxBinSize)*(histWidth/plotWidth)); 
+  513      
+  ...
+  656  }
+  657  
+  658: //Returns the largest possible factor for the given number so that there are a maximum of 10 ticks
+  659  function findTicksForHistogramFrequencyAxis(number)
+  660  {
+
+/Users/krishsub/Code/VisiStat/inst/www/javascript/visualization.scatterplot.matrix.js:
+  266      
+  267      var axisText, textPosition;
+  268:     //x-axis ticks
+  269      for(i=0; i<numberOfGroovesInXAxis; i++)
+  270      {
+
+<untitled 49>:
+   89              //         .attr("display", "none")
+   90              //         .attr("id", assumptions[type][i])
+   91:             //         .attr("class", "ticks");
+   92                           
+   93              // assumptionsCanvas.append("image")
+
+25 matches across 7 files

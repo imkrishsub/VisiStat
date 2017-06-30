@@ -14,8 +14,12 @@ performMannWhitneyTest <- function(groupA, groupB)
 
     g <- factor(c(rep("GroupA", length(groupA)), rep("GroupB", length(groupB))))
     v <- c(groupA, groupB);
- 
-    result <- coin::wilcox_test(v ~ g, distribution="exact")
+    
+    distributionType="exact";    
+    if(length(groupA) > 100)
+      distributionType = "approximate";
+    
+    result <- coin::wilcox_test(v ~ g, distribution = distributionType)
     name <- names(result@statistic@teststatistic);
     
     Z = result@statistic@teststatistic[[name[1]]];

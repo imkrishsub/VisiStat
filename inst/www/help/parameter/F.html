@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <link rel="stylesheet" href="../help.css">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+    <div class="helpcolumn">
+    
+<!-- DON'T EDIT ANYTHING ABOVE THIS LINE-->
+<div class="description">
+        
+<b>The F-statistic</b> is the ratio of variance explained by the model to the variance unexplained by the model.
+</div>    
+        
+<h2>Formula:</h2>
+<div class="formula">
+$F = { \sigma_{explained}^2 \over \sigma_{unexplained}^2 } $
+</div>
+or
+<div class="formula">
+$F = { between-group variability \over within-group variability } $
+</div>
+<br/>
+<div class="description">
+Suppose we use mean ($\bar{x}$) to model the data, explained variance is given by
+</div>
+<br/>
+<div class="formula">
+$\sigma_{explained}^2 = { { \sum_{i} n_{i} (\bar{x}_{i} - \bar{x})^2 } \over {K - 1} }$
+</div>
+<br/>
+<div class="description">
+Where $\bar{x}_{i}$ denotes the sample mean in the ith group,  $n_{i}$ is the number of observations in the ith group,$\bar{x}$ denotes the overall mean of the data, and $K$ denotes the number of groups.
+</div>
+<br/>
+<div class="description">
+And, unexplained variance is given by :
+</div>
+<div class="formula">
+$\sigma_{unexplained}^2 = { { \sum_{ij} ( x_{ij}  - \bar{x}_{i} )^2 } \over {N - K} }$
+</div>
+<br>
+<div class="description">
+Where $x_{ij}$ is the jth observation in the ith out of $K$ groups and $N$ is the overall sample size.
+</div>
+<br/>
+<h2>Legend:</h2>
+<ul>
+    <li>$\sigma_1^2 = $ Variance One</li>
+    <li>$\sigma_2^2 = $ Variance Two</li>
+    <li>$\sigma^2 = $ Variance</li>
+    <li>$x = $ Values given in a set of data</li>
+    <li>$\bar{x} = $ Mean of the data</li>
+    <li>$n = $ Total number of values</li>
+</ul>
+
+
+        
+<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
+        </div>
+</body>
+</html>

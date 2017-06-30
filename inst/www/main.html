@@ -3,6 +3,12 @@
     <head>
         <!-- Link external stylesheet -->
         <link rel="stylesheet" type="text/css" href="style/mainPage.css">
+        <link rel="stylesheet" type="text/css" href="style/help.css">
+        <link rel="stylesheet" type="text/css" href="style/variableSelection.css">
+        <link rel="stylesheet" type="text/css" href="style/opentip.css">
+        <link rel="stylesheet" type="text/css" href="style/history.css">
+        <link rel="stylesheet" type="text/css" href="style/simpleMainEffect.css">
+        <link rel="stylesheet" type="text/css" href="style/dimmer.css">
 
         <!-- Set encoding -->
         <meta charset="utf-8">
@@ -10,39 +16,62 @@
         <!-- Set Title -->
         <title>VisiStat: Visualization-driven, Interactive Statistical Analysis</title>
 
-        <!-- Jquery, OpenCPU, D3, JQuery-easing, and Base64 -->
-        <script type = "text/javascript" src = "dependencies/jquery-1.10.2.js"></script>
+        <!-- Jquery, OpenCPU, D3, JQuery-easing, and Base64 -->        
+        <script type = "text/javascript" src = "dependencies/jquery-2.1.1.min.js"></script>
         <script type = "text/javascript" src = "dependencies/opencpu.js"></script>        
         <script type = "text/javascript" src = "dependencies/d3.v3.js"></script>
         <script type = "text/javascript" src = "dependencies/jquery.easing.1.3.js"></script>        
+        <script type = "text/javascript" src = "dependencies/jquery.pulse.min.js"></script>
         <script type = "text/javascript" src = "dependencies/webtoolkit.base64.js"></script>        
         <script type = "text/javascript" src = "dependencies/html2canvas.js"></script>
         <script type = "text/javascript" src = "dependencies/canvg.js"></script>
         <script type = "text/javascript" src = "dependencies/rgbcolor.js"></script>
         <script type = "text/javascript" src = "dependencies/StackBlur.js"></script>
         <script type = "text/javascript" src = "dependencies/FileSaver.js"></script>
-        <script type = "text/javascript" src = "dependencies/Blob.js"></script>
-        <script type = "text/javascript" src = "dependencies/canvas-toBlob.js"></script>
+        <script type = "text/javascript" src = "dependencies/paper-full.min.js"></script>
+        <script type = "text/javascript" src = "dependencies/opentip-jquery.js"></script>
+        <!-- // <script type = "text/javascript" src = "dependencies/Blob.js"></script>
+        // <script type = "text/javascript" src = "dependencies/canvas-toBlob.js"></script> -->
+        <script type = "text/javascript" src = "dependencies/Snap.svg-0.3.0/dist/snap.svg.js"></script>
+        <script type = "text/javascript" src = "dependencies/AvsAn.js"></script>
+        <script type = "text/javascript" src = "dependencies/titleCaps.js"></script>
+        <script type = "text/javascript" src = "dependencies/jQuery-mutex-master/mutex.js"></script>
+        
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+         <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                                    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+                               });
+        </script>
+
              
          <!-- Visualizations (tukey hsd plot and interaction plot are for analyzing) -->
         <script type = "text/javascript" src = "javascript/visualization.histogram.js"></script>
         <script type = "text/javascript" src = "javascript/visualization.boxplot.js"></script>
         <script type = "text/javascript" src = "javascript/visualization.scatterplot.js"></script>
         <script type = "text/javascript" src = "javascript/visualization.scatterplot.matrix.js"></script>
-        <script type = "text/javascript" src = "javascript/visualization.interaction.plot.js"></script>
-        <script type = "text/javascript" src = "javascript/visualization.tukey.hsd.plot.js"></script>
+        <script type = "text/javascript" src = "javascript/effectPlots.js"></script>
         
         <script type = "text/javascript" src = "javascript/events.mouse.js"></script>
         <script type = "text/javascript" src = "javascript/draw.js"></script>
         <script type = "text/javascript" src = "javascript/statistical-tests.js"></script>
         <script type = "text/javascript" src = "javascript/statistics-helper.js"></script>
-        <script type = "text/javascript" src = "javascript/report.js"></script>   
+        <script type = "text/javascript" src = "javascript/report.js"></script>  
+        <script type = "text/javascript" src = "javascript/decisionTree.js"></script> 
+        <script type = "text/javascript" src = "javascript/rendering.js"></script>
+        <script type = "text/javascript" src = "javascript/history.js"></script>
+        <script type = "text/javascript" src = "javascript/postHocComparisons.js"></script>   
+        <script type = "text/javascript" src = "javascript/over-testing.js"></script>           
+
+        <script type = "text/javascript" src = "javascript/callbacks.assumptions.transformation.js"></script>      
+        <script type = "text/javascript" src = "javascript/callbacks.significanceTests.js"></script>      
         
-        <!-- OpenCPU: dataset & io (incl. log file o/p), significance tests, correlation & regression, and assumptions & transformations -->
         <script type = "text/javascript" src = "javascript/ocpu.dataset.io.js"></script>        
-        <script type = "text/javascript" src = "javascript/ocpu.significance.tests.js"></script>        
+        <script type = "text/javascript" src = "javascript/ocpu.significance.tests.js"></script> 
+        <script type = "text/javascript" src = "javascript/ocpu.post.hoc.tests.js"></script>        
         <script type = "text/javascript" src = "javascript/ocpu.assumptions.transformations.js"></script>        
         <script type = "text/javascript" src = "javascript/ocpu.correlation.regression.js"></script>        
+        <script type = "text/javascript" src = "javascript/ocpu.factorial.ANOVA.js"></script>        
         
         <script type = "text/javascript" src = "javascript/utils.helper.js"></script>
         <script type = "text/javascript" src = "javascript/utils.math.js"></script>
@@ -51,10 +80,336 @@
         <script type = "text/javascript" src = "javascript/config.global.variables.js"></script>
         <script type = "text/javascript" src = "javascript/config.dataset.js"></script>
         <script type = "text/javascript" src = "javascript/config.effectsize.js"></script>
-        <script type = "text/javascript" src = "javascript/config.help.js"></script>           
-        
+        <script type = "text/javascript" src = "javascript/config.help.js"></script>       
+
+        <script type = "text/javascript" src = "javascript/helpTexts.js"></script>       
+        <script type = "text/javascript" src = "javascript/dimmer.js"></script>           
     </head>
     <body>   
+        <script type="text/javascript">            
+        
+            window.onload = function()
+            {    
+                initMouseEventHandlers();                
+                localStorage.setItem("index", parseInt(localStorage.getItem("index")) + parseInt(1));                
+
+                d3.select("#assumptionsPanel")
+                        .attr("style", "position: absolute; left: " + variablesPanelWidth + "px; top: 0px; height: " + assumptionsPanelHeight + "px; width: " + assumptionsPanelWidth + "px;");
+
+                d3.select("#plotPanel")
+                        .attr("style", "position: absolute; left: " + variablesPanelWidth + "px; top: " + assumptionsPanelHeight + "px; height: " + plotPanelHeight + "px; width: " + plotPanelWidth + "px;");
+
+                d3.select("#resultsPanel")
+                        .attr("style", "position: absolute; left: " + variablesPanelWidth + "px; top: " + (assumptionsPanelHeight + plotPanelHeight) + "px; height: " + resultsPanelHeight + "px; width: " + resultsPanelWidth + "px;");
+
+                d3.select("#buttonsPanel")
+                        .attr("style", "position: absolute; left: " + (variablesPanelWidth + resultsPanelWidth) + "px; top: " + (assumptionsPanelHeight + plotPanelHeight) + "px; height: " + buttonsPanelHeight + "px; width: " + buttonsPanelWidth + "px;");
+
+                d3.select("#reportButtonPanel")
+                        .attr("style", "position: absolute; left: " + (variablesPanelWidth + assumptionsPanelWidth) + "px; top: " + (sidePanelHeight - sideCanvasButtonHeight) + "px; height: " + sideCanvasButtonHeight + "px; width: " + sidePanelWidth + "px; overflow: hidden;");
+
+                d3.select("#modeButtonPanel")
+                        .attr("style", "position: absolute; left: " + (variablesPanelWidth + assumptionsPanelWidth) + "px; top: 0px; height: " + sideCanvasButtonHeight + "px; width: " + sidePanelWidth + "px; overflow: hidden;");
+
+                d3.select("#reportPanel")
+                        .attr("style", "position: absolute; left: " + width + "px; top: 0px; height: " + (sidePanelHeight) + "px; width: " + (width - sidePanelWidth) + "px; overflow: auto;");
+            
+                // Load SVG and start the loading animation
+                resetSVGCanvas();
+                renderSidePanel();
+                initiateLoadingDatasetAnimation();                               
+
+                var assumptionsCanvas = d3.select("#assumptionsCanvas");
+                variableTypesInDataset = sessionStorage.getItem(variableTypesInDataset)
+
+                if(sessionStorage.fileName == undefined && sessionStorage.isUploadedFile != "yes")
+                {
+                    window.location = "index.html"; // If file is not loaded, redirect to index.html
+                    return;
+                }
+                
+                // Load data from a given file                
+                if(sessionStorage.isUploadedFile === "yes")
+                {   
+                    variableNames = sessionStorage.getObject("variables");                 
+                    variableTypesInDataset = sessionStorage.getItem("variableTypesInDataset");
+                    dataset = sessionStorage.getObject("dataset");
+
+                    for(var i=0; i<variableNames.length; i++)        
+                        variablesFromOpenCPU[variableNames[i]] = sessionStorage.getItem(variableNames[i]) == undefined ? "?" : sessionStorage.getItem(variableNames[i]);        
+
+                    variablesDidLoad(); 
+
+                    //for each variable, get the data and the IQR
+                    for(var i=0; i<variableNames.length; i++)
+                    {      
+                        variables[variableNames[i]] = new Object();
+                        MIN[variableNames[i]] = new Object();
+                        MAX[variableNames[i]] = new Object();
+                        IQR[variableNames[i]] = new Object();
+                        CI[variableNames[i]] = new Object();
+
+                        getData(dataset, variableNames[i]);      
+                    } 
+
+                    computeNumberOfBins();
+                    computeCIForSDs();
+                    // initialiseNumberOfPartialTestsDone();
+                }
+                else
+                    loadFile();                                 
+            }   
+        </script>
+        
+        <!-- Define divs -->
+        <div class="leftPane">
+            <span class="leftPaneSectionHead">variables</span>
+            <div class="leftPaneSection" id="variableSection">
+                <!-- The template below is rendered by rendering.coffee -->
+                <!-- 
+                <label class="varLabel" id="varLabelTemplate">
+                    <input type="checkbox" class="variableCheckbox" name="VARIABLE NAME"/>
+                    <span class="variableName">VARIABLE NAME</span>
+                    <span class="variableRole">
+                        <span class="variableRoleDisplay">DV</span>
+                        <button id="variableRoleButton" class="panelItemButton variableRoleButton">DV</button>
+                    </span>
+                </label> 
+                 -->
+            </div>
+
+            <span class="leftPaneSectionHead">graphs</span>
+            <div class="leftPaneSection" id="graphSection">
+                <label>
+                    <input type="radio" class="graphRadio" name="graphType" value="Histogram"/>
+                    <div class="graphName">
+                        <img src="images/histogram.png"/>
+                        Examine data distribution
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" class="graphRadio" name="graphType" value="Boxplot"/>
+                    <div class="graphName">
+                        <img src="images/boxplot.png"/>
+                        Compare data
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" class="graphRadio" name="graphType" value="Scatterplot" disabled="disabled"/>
+                    <div class="graphName">
+                        <img src="images/scatterplot.png"/>
+                        Correlate two data
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" class="graphRadio" name="graphType" value="Scatterplot matrix"/>
+                    <div class="graphName">
+                        <img src="images/scatterplotMatrix.png"/>
+                        Correlate multiple data
+                    </div>
+                </label>
+            </div>
+
+            <span class="leftPaneSectionHead">design</span>
+            <div class="leftPaneSection" id="designSection">
+                <!-- BEGIN: Placeholders will be filled by rendering.coffee -->
+                <div id="designDescription">
+                    <span id="designName">DESIGN NAME</span> <br/>
+                    <span id="designDeterminer">determined by
+                        <span id="designDeterminerVariable" class="isVariable">VARIABLE NAME</span>
+                    </span>
+                </div>
+                <button id="designDeterminerButton" class="panelItemButton">x</button>
+                <!-- END: Placeholders will be filled by render.coffee -->
+            </div>
+
+            <div class="popupBox" id="variableRoleMenu">
+                <label class="variableRoleRadioLabel">
+                    <input type="radio" name="varRoleRadio" value="IV" class="variableRole"/>
+                    <span class="variableRoleRadioLabel">Independent variable</span>
+                </label>
+                <label class="variableRoleRadioLabel">
+                    <input type="radio" name="varRoleRadio" value="DV" class="variableRole"/>
+                    <span class="variableRoleRadioLabel">Dependent variable</span>
+                </label>
+                <label class="variableRoleRadioLabel">
+                    <input type="radio" name="varRoleRadio" value="ID" class="variableRole"/>
+                    <span class="variableRoleRadioLabel">Subject's ID</span>
+                </label>
+            </div>
+
+        </div>
+
+        <div class="rightPane">
+            <span class="rightPaneSectionHead">history</span>
+            <div class="rightPaneSection" id="historySection">
+                <table id="historyTable" style="width: 350px;">                    
+                </table>
+            </div>
+
+            <span class="rightPaneSectionHead">reports</span>
+            <div class="rightPaneSection" id="reportSection">
+                <!-- Reports are rendered here -->
+            </div>
+            <script type="text/javascript">
+                function openReport()
+                {
+                    var reportHTML = $(".report").html();
+                    var reportWindow = window.open();
+                    $(reportWindow.document.body).html(reportHTML);
+                }
+            </script>
+
+        </div>
+
+            <script>
+                function variablesDidLoad()
+                {                
+                    window.VisiStat.UI.leftPane.renderVariables(variablesFromOpenCPU);
+                    
+                    // enable/disable graph types (only values in the given array will be enabled)
+                    window.VisiStat.UI.leftPane.disableGraphs(["Histogram", "Boxplot", "Scatterplot", "Scatterplot matrix"]);                   
+
+                    // update experimental design
+                    var experimentalDesign = "between"; // Possible: "within", "between"
+                    var determinerColumnName = undefined; // Possible undefined (determined by row)
+                    window.VisiStat.UI.leftPane.updateExperimentalDesign(experimentalDesign, determinerColumnName);
+                    window.VisiStat.UI.leftPane.init();                    
+                }
+                
+                // register event handlers
+                function didRemoveDesignDeterminer() {
+                    console.log("Event: didRemoveDesignDeterminer")
+                    window.VisiStat.UI.leftPane.updateExperimentalDesign("between")
+                }
+                function variableInclusionDidChange(variableName, isIncluded) {
+                    // console.log("Event: variableInclusionDidChange(" + variableName + " " + isIncluded + ")")
+
+                    removeElementsByClassName("toolTips"); // i.e., if there are tooltips
+            
+                    //add to list of variables selected
+                    selectedVariables = addToArrayWithoutDuplicates(selectedVariables, variableName);
+
+                    removeElementsByClassName("displayDataTable");
+                    removeElementsByClassName("displayDataText");
+                  
+                    selectDefaultVisualisation(); // selects the appropriate visualization based on the variables selected (role, number of)
+                    plotVisualisation(); //checks which plot is selected and draws that plot
+                    setVisibilityOfVisualisations(); //manages the fill colors of vizualizations (only one at a time) [ToDo]
+                    
+                    hideResetButton();
+                }
+
+                function variableRoleShouldChange(variableName, currentRole, selectedVarRole){
+                    console.log("Event: variableRoleShouldChange(" + variableName + " from " + currentRole + " to " + selectedVarRole + ")")
+
+                    var graphChanged = true; 
+                    if (selectedVarRole == "ID" && graphChanged)
+                    {
+                        return confirm("Press OK to use " + variableName + " as the Subject ID. This will reset the current graph.")    
+                    }
+                    return true;
+                }
+                function variableRoleDidChange(variableName, prevRole, currentRole){
+                    console.log("Event: variableRoleDidChange(" + variableName + " from " + prevRole + " to " + currentRole + ")")
+
+                    if ((prevRole == "ID" || currentRole == "ID"))
+                    {
+                            console.log("reset graph")
+                            experimentalDesign = findExperimentalDesign()
+                            window.VisiStat.UI.leftPane.updateExperimentalDesign(experimentalDesign, variableName)
+                    }
+                    
+                }
+                function graphChoiceDidChange(graphName){
+                    console.log("Graph changed to " + graphName)
+                    selectedVisualisation = graphName;        
+                    setVisibilityOfVisualisations();        
+                    plotVisualisation();                    
+                    hideResetButton();
+                }
+                
+                /**
+                 * Event handler for history entry checkbox: click. Does history navigation and report generation. 
+                 * @param  {[type]}  RQ         [description]
+                 * @param  {Boolean} isIncluded [description]
+                 * @param  {[type]}  ID         [description]
+                 * @return {[type]}             [description]
+                 */
+                function historyEntryIsClicked(RQ, ID) 
+                {                       
+                    console.log("Event: historyEntryIsClicked(" + RQ + "," + ID + ")");                                                              
+                    ID = ID.split("_")[1];
+
+                    d3.selectAll(".selectedEntryIndicators").attr("style", "display: none; ");
+                    d3.select("#img_" + ID + ".selectedEntryIndicators").attr("style", "display: inline");
+
+                    global.flags.isTestWithoutTimeout = true;
+                    
+
+                    // Plot & perform test                        
+                    resetSVGCanvas();                                           
+                    selectedVariables = listOfVariableSelections[ID].clone(); // Get the list of variables that were selected                    
+                    selectedVisualisation = listOfVisualizationSelections[ID]; // Get the visualization that was selected                        
+
+                    selectDefaultVisualisation(); // selects the appropriate visualization based on the variables selected (role, number of)
+                    plotVisualisation(); //checks which plot is selected and draws that plot
+                    setVisibilityOfVisualisations(); //manages the fill colors of vizualizations (only one at a time) [ToDo]
+                    
+                    removeElementsByClassName("compareMean");
+                
+                    d3.selectAll(".IQRs, .medians, .TOPFringes, .BOTTOMFringes, .TOPFringeConnectors, .BOTTOMFringeConnectors, .outliers, .CIs, .CITopFringes, .CIBottomFringes").style("opacity", "0.35"); // Make some elements of the boxplot transparent
+                    selectMeansFromArray(variableLists[ID]); // Select means specified in this array                
+
+                    compareMeans(); // Perform the significance test                                          
+                }
+
+                /**
+                 * Event handler for history entry: click. Updates the variables, visualisation, and performs the statistical test. 
+                 * @param  {string} ID [ID of the button that was clicked]
+                 * @return {none]}    
+                 */
+                function reportCheckboxIsClicked(srcImage, ID)
+                {
+                    console.log("Event: reportCheckboxIsClicked()"); 
+
+                    var index = ID.split("_")[1]; // Get index
+                    var RQ = listOfResearchQuestions[index];                    
+
+                    if(d3.select("#checkbox_" + index).attr("src") == "images/checkOff.png") // Is checked?
+                    {
+                         // Generate report                        
+                        addEntryToReport(reportingTextsArray[RQ], index);                        
+
+                        d3.select("#checkbox_" + index).attr("src", "images/checkOn.png");
+                    }                   
+                    else if(d3.select("#checkbox_" + index).attr("src") == "images/checkOn.png") // Is un-checked?
+                    {
+                        // Remove report
+                        d3.select("#report_" + index).remove();
+
+                        d3.select("#checkbox_" + index).attr("src", "images/checkOff.png");
+                    }
+                }
+
+                window.VisiStat.UI.leftPane.registerEventHandler("didRemoveDesignDeterminer", didRemoveDesignDeterminer);
+                window.VisiStat.UI.leftPane.registerEventHandler("variableInclusionDidChange", variableInclusionDidChange);
+                window.VisiStat.UI.leftPane.registerEventHandler("variableRoleShouldChange", variableRoleShouldChange);
+                window.VisiStat.UI.leftPane.registerEventHandler("variableRoleDidChange", variableRoleDidChange);
+                window.VisiStat.UI.leftPane.registerEventHandler("graphChoiceDidChange", graphChoiceDidChange);               
+                
+            </script>            
+        </div>
+        <div id = "plotPanel"></div>    
+        <div id = "assumptionsPanel"></div>    
+        <div id = "resultsPanel"></div>
+        <div id = "buttonsPanel"></div>
+        
+        <div id = "historyPanel"></div>
+        <div id = "modeButtonPanel"></div>
+        <div id = "reportPanel" href=""></div>
+        <div id = "reportButtonPanel"></div> 
+
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
           <defs>
             <filter id="shadow" x="0" y="0" width="150%" height="150%">
@@ -62,7 +417,7 @@
               <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
               <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
             </filter>            
-            <filter id="Bevel" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
+            <filter id="OriginalBevel" filterUnits="objectBoundingBox" x="-10%" y="-10%" width="150%" height="150%">
               <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
               <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" specularExponent="10" result="specOut" lighting-color="white">
                 <fePointLight x="-5000" y="-10000" z="20000"/>
@@ -72,6 +427,9 @@
               <feOffset result="offOut" in="SourceAlpha" dx="2.5" dy="2.5" />
               <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
               <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+            </filter>
+            <filter id="Bevel" x="0" y="0">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0.05" />
             </filter>
             <filter id="buttonFilterNormal" filterUnits="objectBoundingBox" x="-0.1" y="-0.1" width="1.2" height="1.2">
                 <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
@@ -96,233 +454,25 @@
             <linearGradient id="buttonFillNormal" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="0" y2="1">
                     <stop stop-color="#f8f9f7" offset="0"/>
                     <stop stop-color="#b6b6b6" offset="1.0"/>
-                </linearGradient>
+            </linearGradient>
             <linearGradient id="buttonFillSelected" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="0" y2="1">
                     <stop stop-color="#627bf4" offset="0"/>
                     <stop stop-color="#6B8FD4" offset="1.0"/>
             </linearGradient>
+            <linearGradient id="buttonFillDisabled" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="0" y2="1">
+                    <stop stop-color="#616D7F" offset="0"/>
+                    <stop stop-color="#1C2624" offset="1.0"/>
+            </linearGradient>
+            <linearGradient id="sidePanelFadeout" gradientUnits="objectBoundingBox" x1="1" x2="1" y1="0" y2="1">
+                    <stop stop-color="#627bf4" offset="0"/>
+                    <stop stop-color="#ffffff" offset="1.0"/>
+            </linearGradient>
           </defs>
         </svg>
-
-        <script type="text/javascript">            
-        
-            window.onload = function()
-            {    
-                initMouseEventHandlers();
-                
-                localStorage.setItem("index", parseInt(localStorage.getItem("index")) + parseInt(1));
-                sessionStorage.plotWithNoInteraction = "false";
-
-                d3.select("#variablesPanel")
-                        .attr("style", "position: absolute; left: 0px; top: 0px; height: " + variablesPanelHeight + "px; width: " + variablesPanelWidth + "px; border-right-style: ridge; border-color: #b6b6b6;");
-
-                d3.select("#visualizationsPanel")
-                        .attr("style", "position: absolute; left: 0px; top: " + variablesPanelHeight + "px; height: " + visualizationsPanelHeight + "px; width: " + visualizationsPanelWidth + "px; border-right-style: ridge; border-color: #b6b6b6;");
-
-                d3.select("#assumptionsPanel")
-                        .attr("style", "position: absolute; left: " + variablesPanelWidth + "px; top: 0px; height: " + assumptionsPanelHeight + "px; width: " + assumptionsPanelWidth + "px;");
-
-                d3.select("#plotPanel")
-                        .attr("style", "position: absolute; left: " + variablesPanelWidth + "px; top: " + assumptionsPanelHeight + "px; height: " + plotPanelHeight + "px; width: " + plotPanelWidth + "px;");
-
-                d3.select("#resultsPanel")
-                        .attr("style", "position: absolute; left: " + variablesPanelWidth + "px; top: " + (assumptionsPanelHeight + plotPanelHeight) + "px; height: " + resultsPanelHeight + "px; width: " + resultsPanelWidth + "px;");
-
-                d3.select("#buttonsPanel")
-                        .attr("style", "position: absolute; left: " + (variablesPanelWidth + resultsPanelWidth) + "px; top: " + (assumptionsPanelHeight + plotPanelHeight) + "px; height: " + buttonsPanelHeight + "px; width: " + buttonsPanelWidth + "px;");
-
-                d3.select("#sidePanel")
-                        .attr("style", "position: absolute; left: " + (variablesPanelWidth + assumptionsPanelWidth) + "px; top: " + sideCanvasButtonHeight + "px; height: " + (sidePanelHeight - 2*sideCanvasButtonHeight) + "px; width: " + sidePanelWidth + "px; border-left-style: ridge; border-color: #b6b6b6; overflow: auto;");
-
-                d3.select("#reportButtonPanel")
-                        .attr("style", "position: absolute; left: " + (variablesPanelWidth + assumptionsPanelWidth) + "px; top: " + (sidePanelHeight - sideCanvasButtonHeight) + "px; height: " + sideCanvasButtonHeight + "px; width: " + sidePanelWidth + "px; border-left-style: ridge; border-color: #b6b6b6; overflow: hidden;");
-
-                d3.select("#modeButtonPanel")
-                        .attr("style", "position: absolute; left: " + (variablesPanelWidth + assumptionsPanelWidth) + "px; top: 0px; height: " + sideCanvasButtonHeight + "px; width: " + sidePanelWidth + "px; border-left-style: ridge; border-color: #b6b6b6; overflow: hidden;");
-
-                d3.select("#reportPanel")
-                        .attr("style", "position: absolute; left: " + width + "px; top: 0px; height: " + (sidePanelHeight) + "px; width: " + (width - sidePanelWidth) + "px; border-left-style: ridge; border-color: #b6b6b6; overflow: auto;");
-            
-                // Load SVG and start the loading animation
-                resetSVGCanvas();
-                renderSidePanel();
-                initiateLoadingDatasetAnimation();
-                
-                // Load data from a given file
-                loadFile(pathToFile); 
-                
-                // Populate visualisations
-                renderVisualisations();     
-            }            
-            
-            function renderVariableNames(variableNames)
-            {   
-                var variablePanel = d3.select("#variablesPanel");                
-
-                var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
-                var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                        
-                var variablePanelSVG = variablePanel.append("svg").attr("id", "variablePanelSVG");                
-                variablePanelSVG.attr("id","variablePanelSVG")
-                                .attr("height", variablePanel.style("height"))
-                                .attr("width", variablePanel.style("width"))
-                                .attr("left", variablePanel.style("left"))
-                                .attr("top", variablePanel.style("top"))
-                                .attr("fill", "url(#buttonFillNormal)");      
-                
-                for(var i=0; i<variableNames.length; i++)
-                {                
-                    variablePanelSVG.append("rect")
-                                    .attr("x", variableNameHolderPadding)
-                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))
-                                    .attr("height", variableNameHolderHeight)
-                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
-                                    .attr("rx", radius)
-                                    .attr("ry", radius)
-                                    .attr("fill", "url(#buttonFillNormal)")
-                                    .attr("filter","url(#Bevel)")
-                                    .attr("stroke", "black")
-                                    .attr("id", variableNames[i])
-                                    .attr("class", "variableNameHolderBack");
-                                                
-                    variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderPadding + (variableNameHolderWidth - variableTypeSelectionButtonWidth)/2)
-                                    .attr("y", variableNameHolderPadding + variableNameHolderHeight/2 + i*(variableNameHolderHeight + variableNameHolderPadding) + yAxisTickTextOffset)
-                                    .attr("fill", "black")
-                                    .attr("font-size", fontSizeVariablePanel + "px")
-                                    .attr("text-anchor", "middle")
-                                    .text(variableNames[i])
-                                    .attr("id", variableNames[i])
-                                    .attr("class", "variableNameHolderText");                    
-                    
-                    variablePanelSVG.append("image")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + 2*variableNameHolderPadding)
-                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + scaleForWindowSize(2))                                                   
-                                    .attr("height", variableNameHolderHeight)
-                                    .attr("width", (variableNameHolderHeight - variableNameHolderPadding/2)/1.75)
-                                    .attr("xlink:href", "images/toggle_up.png")
-                                    .attr("id", variableNames[i])
-                                    .attr("class", "variableTypeToggleButton");
- 
-                    variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 +  variableNameHolderPadding/4 + 2*variableNameHolderPadding)
-                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/4 + yAxisTickTextOffset/2)                                                   
-                                    .attr("text-anchor", "left")
-                                    .attr("font-size", fontSizeTicks/1.4)
-                                    .attr("fill", variableTypeTextColors["dependent"]["normal"])
-                                    .text("DEPENDENT")
-                                    .attr("id", variableNames[i])
-                                    .attr("class", "dependentVariableText");
-
-                    variablePanelSVG.append("text")
-                                    .attr("x", variableNameHolderWidth - variableTypeSelectionButtonWidth + (variableNameHolderHeight - variableNameHolderPadding/2)/2 + variableNameHolderPadding/4 + 2*variableNameHolderPadding)
-                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + 3*(variableNameHolderHeight)/4 + yAxisTickTextOffset)                                                   
-                                    .attr("text-anchor", "left")
-                                    .text("INDEPENDENT")
-                                    .attr("font-size", fontSizeTicks/1.4)
-                                    .attr("fill", variableTypeTextColors["independent"]["normal"])
-                                    .attr("id", variableNames[i])
-                                    .attr("class", "independentVariableText");
-
-                    variablePanelSVG.append("rect")
-                                    .attr("x", variableNameHolderPadding)
-                                    .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding))
-                                    .attr("height", variableNameHolderHeight)
-                                    .attr("width",  variableNameHolderWidth - variableTypeSelectionButtonWidth)     
-                                    .attr("rx", radius)
-                                    .attr("ry", radius)
-                                    .attr("fill", panelColors.normal)
-                                    .attr("id", variableNames[i])
-                                    .attr("opacity", "0.1")
-                                    .attr("class", "variableNameHolderFront");
-                }                    
-            }
-            
-            function renderVisualisations()
-            {
-                visualisationPanel = d3.select("#visualizationsPanel");
-
-                var visualisationPanelHeight = visualisationPanel.style("height");
-                var visualisationPanelWidth = visualisationPanel.style("width");
-            
-                var visualisationHolderHeight = removeAlphabetsFromString(visualisationPanelHeight)/2 - 2*variableNameHolderPadding;
-                var visualisationHolderWidth = removeAlphabetsFromString(visualisationPanelWidth)/2 - 2*variableNameHolderPadding;
-                
-                var visualisationPanelSVG = visualisationPanel.append("svg");                
-                visualisationPanelSVG.attr("id","visualisationPanelSVG")
-                                            .attr("height", visualisationPanelHeight)
-                                            .attr("width", visualisationPanelWidth)
-                                            .attr("left", visualisationPanel.style("left"))
-                                            .attr("top", visualisationPanel.style("top"))
-                                            .attr("fill", "url(#buttonFillNormal)");      
-                
-                var visualisations = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot-matrix"];
-                
-                var visualisationImageSize = 2*visualisationHolderHeight/3;
-                
-                for(var i=0; i<visualisations.length; i++)
-                {    
-                    var heightOffset = i > 1 ? (visualisationHolderHeight + variableNameHolderPadding) : 0;
-                    visualisationPanelSVG.append("rect")
-                                                    .attr("x", variableNameHolderPadding + (i%2)*(visualisationHolderWidth + variableNameHolderPadding))
-                                                    .attr("y", variableNameHolderPadding + heightOffset)
-                                                    .attr("height", visualisationHolderHeight)
-                                                    .attr("width",  visualisationHolderWidth)     
-                                                    .attr("rx", visualizationHolderRadius)
-                                                    .attr("ry", visualizationHolderRadius)
-                                                    .attr("id", visualisations[i])
-                                                    .attr("stroke", "black")
-                                                    .attr("fill", "url(#buttonFillNormal)")
-                                                    .attr("filter","url(#Bevel)")
-                                                    .attr("class", "visualisationHolderBack");
-                                                    
-                    visualisationPanelSVG.append("image")
-                                                    .attr("x", variableNameHolderPadding + visualisationHolderWidth/2 - visualisationImageSize/2 + (i%2)*(visualisationHolderWidth + variableNameHolderPadding))
-                                                    .attr("y", variableNameHolderPadding + visualisationHolderHeight/2 - visualisationImageSize/2 + heightOffset)
-                                                    .attr("xlink:href", "images/" + (i+1) + ".png")
-                                                    .attr("height", visualisationImageSize)
-                                                    .attr("width", visualisationImageSize)
-                                                    .attr("style", "opacity: 0.65;")
-                                                    .attr("id", visualisations[i])
-                                                    .attr("class", "visualisationHolderImage");
-                                                
-                    visualisationPanelSVG.append("text")
-                                                    .attr("x", variableNameHolderPadding + visualisationHolderWidth/2 + (i%2)*(visualisationHolderWidth + variableNameHolderPadding))
-                                                    .attr("y", variableNameHolderPadding + visualisationHolderHeight/2 + heightOffset)
-                                                    .attr("fill", "black")
-                                                    .attr("font-size", fontSizeVisualisationPanel/2 + "px")
-                                                    .attr("text-anchor", "middle")
-                                                    .text(visualisations[i])
-                                                    .attr("id", visualisations[i])
-                                                    .attr("class", "visualisationHolderText");
-
-                    visualisationPanelSVG.append("rect")
-                                                    .attr("x", variableNameHolderPadding + (i%2)*(visualisationHolderWidth + variableNameHolderPadding))
-                                                    .attr("y", variableNameHolderPadding + heightOffset)
-                                                    .attr("height", visualisationHolderHeight)
-                                                    .attr("width",  visualisationHolderWidth)     
-                                                    .attr("rx", visualizationHolderRadius)
-                                                    .attr("ry", visualizationHolderRadius)
-                                                    .attr("id", visualisations[i])
-                                                    .attr("fill", "url(#buttonFillNormal)")
-                                                    .attr("opacity", "0.1")
-                                                    .attr("class", "visualisationHolderFront");
-                } 
-            }  
-            
+        <script type="text/javascript">
+            // Adjust left pane height to fit the window size
+            $(".leftPane").css("height", getHeight() + "px")
+            $(".rightPane").css("height", getHeight() + "px")
         </script>
-        
-        <!-- Define divs -->
-        <div id = "variablesPanel"></div>
-        <div id = "visualizationsPanel"></div>
-        <div id = "plotPanel"></div>    
-        <div id = "assumptionsPanel"></div>    
-        <div id = "resultsPanel"></div>
-        <div id = "buttonsPanel"></div>
-        <!-- sidePanel is used for history and help -->
-        <div id = "sidePanel"></div>
-        <div id = "modeButtonPanel"></div>
-        <div id = "reportPanel" href=""></div>
-        <div id = "reportButtonPanel"></div>  
-
     </body>
 </html>   

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <link rel="stylesheet" href="../help.css">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+    <div class="helpcolumn">
+    
+<!-- DON'T EDIT ANYTHING ABOVE THIS LINE-->
+<div class="description">
+        
+<b>V statistics (also known as Z statistics)</b> is used in Wilcoxon signed-rank test.
+</div>    
+        
+<h2>Formula:</h2>
+<div class="formula">
+$ Z = {(W - 0.5 -N * (N+1) \div 4 ) } \div {\sqrt{ { ( N * (N + 1) * (2 * N + 1 ) ) }  \div 24} }  $
+</div>
+
+<h2>Legend:</h2>
+<ul>
+    <li>$N = $ Total number of pairs</li>
+    <li>$W = $ W is larger of $W^+$ or $W^-$</li>
+</ul>
+<h2>Procedure:</h2>
+<div class="description">
+Rank the differences without regard to the sign of the difference (i.e., rank order the absolute differences). Ignore all zero differences (i.e., pairs with equal members, x=y). Affix the original signs to the rank numbers. All pairs with equal absolute differences (ties) get the same rank: all are ranked with the mean of the rank numbers that would have been assigned if they would have been different.
+Sum all positve ranks (W+) and all negative ranks (W-) and determine the total number of pairs (N).      
+</div>    
+        
+        
+<!-- DON'T EDIT ANYTHING BELOW THIS LINE-->
+        </div>
+</body>
+</html>

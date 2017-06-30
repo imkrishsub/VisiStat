@@ -1,0 +1,8 @@
+@sizeOfDecisionNode = 'sizeOfDecisionNode';
+@width: 'plotPanelWidth';
+@height: 'plotPanelHeight';
+
+circle
+{
+	align: center;
+}

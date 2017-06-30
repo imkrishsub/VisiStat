@@ -1,11 +1,6 @@
 performMultipleRegression <- function(outcomeVariable, explanatoryVariables, dataset)
 {
-    fileType = substr(dataset, nchar(dataset) - 3 + 1, nchar(dataset));
-    
-    if(fileType == "txt")
-        table <- read.table(dataset, head=T);
-    if(fileType == "csv")
-        table <- read.csv(dataset, head=T);
+    table <- as.data.frame(dataset)
     
     explanatoryVariables = c(explanatoryVariables);
     print(explanatoryVariables);

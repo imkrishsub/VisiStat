@@ -104,6 +104,87 @@ function subsetDataByLevels(independentVariable)
     }
 }
 
+function subsetData2Levels(DV, IVs) // ToDo: do it for all DVs
+{
+    var levels = new Object();
+
+    for(var i=0; i<IVs.length; i++)
+    {
+        // For each IV
+
+        // Get levels 
+        levels[IVs[i]] = variables[IVs[i]]["dataset"].unique();
+    }
+
+    for(var i=0; i<IVs.length; i++)
+    {
+        for(var j=i+1; j<IVs.length; j++)
+        {
+            if(i != j)
+            {
+                for(var l1 = 0; l1<levels[IVs[i]].length; l1++)
+                {
+                    for(var l2 = 0; l2<levels[IVs[j]].length; l2++)
+                    {                     
+
+                        variables[DV][levels[IVs[i]][l1] + "-" + levels[IVs[j]][l2]] = new Array();
+                        for(var index = 0; index<variables[DV]["dataset"].length; index++)
+                        {
+                            if((variables[IVs[i]]["dataset"][index] == levels[IVs[i]][l1]) && (variables[IVs[j]]["dataset"][index] == levels[IVs[j]][l2]))
+                            {
+                                variables[DV][levels[IVs[i]][l1] + "-" + levels[IVs[j]][l2]].push(variables[DV]["dataset"][index]);
+                            }
+                        }
+                    }
+                }                
+            }
+        }
+    }
+}
+
+function subsetData3Levels(DV, IVs) // ToDo: do it for all DVs
+{
+    var levels = new Object();
+
+    for(var i=0; i<IVs.length; i++)
+    {
+        // For each IV
+
+        // Get levels 
+        levels[IVs[i]] = variables[IVs[i]]["dataset"].unique();
+    }
+
+    for(var i=0; i<IVs.length; i++)
+    {
+        for(var j=i+1; j<IVs.length; j++)
+        {
+            for(var k=j+1; k<IVs.length; k++)
+            {            
+                for(var l1 = 0; l1<levels[IVs[i]].length; l1++)
+                {
+                    for(var l2 = 0; l2<levels[IVs[j]].length; l2++)
+                    {
+                        for(var l3 = 0; l3<levels[IVs[k]].length; l3++)
+                        {   
+                            // console.log(levels[IVs[i]][l1] + "-" + levels[IVs[j]][l2] + "-" + levels[IVs[k]][l3]);
+
+                            variables[DV][levels[IVs[i]][l1] + "-" + levels[IVs[j]][l2] + "-" + levels[IVs[k]][l3]] = new Array();
+
+                            for(var index = 0; index<variables[DV]["dataset"].length; index++)
+                            {
+                                if((variables[IVs[i]]["dataset"][index] == levels[IVs[i]][l1]) && (variables[IVs[j]]["dataset"][index] == levels[IVs[j]][l2]) && (variables[IVs[k]]["dataset"][index] == levels[IVs[k]][l3]))
+                                {
+                                    variables[DV][levels[IVs[i]][l1] + "-" + levels[IVs[j]][l2] + "-" + levels[IVs[k]][l3]].push(variables[DV]["dataset"][index]);
+                                }
+                            }
+                        }
+                    }
+                }                
+            }
+        }
+    }
+}
+
 function splitThisLevelBy(independentVariableA, independentVariableB, dependentVariable)
 {
     var splitData = new Object();
@@ -181,127 +262,123 @@ Array.prototype.contains = function(v) {
 
 //returns the length of an object
 function getObjectLength(obj) {
-    var count = 0;
-
-    for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            ++count;
-    }
-
-    return count;
+    return Object.keys(obj).length;
 }
 
-//VARIABLES AND VISUALISATIONS
-//Restricts the available selection of visualisations based on the variables selected
-function restrictVisualisationSelection()
+// Selects the default visualisation for the given selection of variables
+
+function selectDefaultVisualisation()
 {
-    var variableList = sort(currentVariableSelection);    
-    
+    var variableList = sort(selectedVariables);   
+
     switch(variableList["independent"].length)
     {
-        case 0:
-                {
+        case 0:             
                     switch(variableList["dependent"].length)
                     {
-                        case 1:
-                                {                                
-                                    currentVisualisationSelection = "Histogram";                    
+                        case 0:                                    
+                                    selectedVisualisation = "";
+                                    break;                         
+
+                        case 1:                                
+                                    selectedVisualisation = "Histogram";                    
                                     break;
-                                }
-                        case 2:
-                                {
-                                    currentVisualisationSelection = "Scatterplot";
+
+                        case 2:                                
+                                    selectedVisualisation = "Scatterplot";
                                     break;
-                                }
+                                   
+                        case 3:                                
+                                    selectedVisualisation = "Scatterplot matrix";
+                                    break;
+                                   
                         default:
-                                {
-                                    currentVisualisationSelection = "Scatterplot-matrix";
-                                    break;
-                                }
-                    }
+                                    selectedVisualisation = undefined;                                    
+                    }                    
                     break;
-                }
-        case 1:
-                {
+                
+        case 1:                
                     switch(variableList["dependent"].length)
                     {
-                        case 0:
-                                {                                 
-                                    currentVisualisationSelection = "Histogram";
+                        case 0:                    
+                                    selectedVisualisation = "Histogram";
                                     break;
-                                }
-                        case 1:
-                                {                                 
-                                    currentVisualisationSelection = "Boxplot";
+                                   
+                        case 1:                               
+                                    selectedVisualisation = "Boxplot";
                                     break;
-                                }
+                                   
                         case 2:
-                                {
-                                    currentVisualisationSelection = "Scatterplot";
+                                    selectedVisualisation = "Scatterplot";
                                     break;
-                                }
-                                    
+                                                                       
                         default:
-                                {                                    
-                                    currentVisualisationSelection = "Scatterplot-matrix";
-                                }
+                                    selectedVisualisation = "Scatterplot matrix";                                    
                     }
                     break;
-                }  
+                
         case 2:
-                {
                     switch(variableList["dependent"].length)
                     {
                         case 0:
-                                {  
-                                    currentVisualisationSelection = "Scatterplot";
+                                    selectedVisualisation = "Scatterplot";
                                     break;
-                                }
-                        case 1:
-                                {                                 
-                                    currentVisualisationSelection = "Boxplot";
+
+                        case 1:                              
+                                    selectedVisualisation = "Boxplot";
                                     break;
-                                }
-                        default:
-                                {                                    
-                                    currentVisualisationSelection = "Scatterplot-matrix";
-                                }
+
+                        default:                                
+                                    selectedVisualisation = "Scatterplot matrix";
                     }
                     break;
-                }
+
+        case 3:                
+                    switch(variableList["dependent"].length)   
+                    {
+                        case 0:
+                                    selectedVisualisation = "Scatterplot matrix";
+                                    break;
+
+                        case 1:
+                                    selectedVisualisation = "DoSignificanceTest";
+                                    break;
+
+                        default:
+                                    selectedVisualisation = undefined;
+
+                    }
+                    break;
+        default:
+                    selectedVisualisation = undefined;
     }
+
+    if(selectedVariables.indexOf(participants) != -1)     
+        selectedVisualisation = undefined;
+    
+    if(selectedVisualisation == undefined || selectedVisualisation == "DoSignificanceTest")
+        window.VisiStat.UI.leftPane.disableGraphs(["Histogram", "Boxplot", "Scatterplot", "Scatterplot matrix"]);
+    else
+        window.VisiStat.UI.leftPane.selectGraph(selectedVisualisation, isSelected = true);
 }
 
-//Adds a given element to an array by maintain unique elements
-function setColorsForVariables(array, element)
+// Adds a given element to an array by maintain unique elements
+
+function addToArrayWithoutDuplicates(array, element)
 {   
-    var variable = d3.select("#" + element + ".variableNameHolderBack");
-    var variableText = d3.select("#" + element + ".variableNameHolderText");    
-    
     if(array.indexOf(element) == -1)
     {
-        array.push(element);
-        
-        variable.attr("fill", "url(#buttonFillSelected)")
-        variable.attr("filter", "none");
-        variable.attr("stroke", "none");
-        
-        variableText.attr("fill", "white");
+        array.push(element);    
     }    
     else
     {     
         array.splice(array.indexOf(element), 1);
-        
-        variable.attr("fill", "url(#buttonFillNormal)");  
-        variable.attr("filter", "url(#Bevel)");
-        variable.attr("stroke", "black");
-        
-        variableText.attr("fill", "black");
     }
+    
     return array;
 }
 
-function setColorsForVariablesWithArray(array)
+function addToArrayWithoutDuplicatesWithArray(array)
 {   
     for(var i=0; i<variableNames.length; i++)
     {
@@ -329,12 +406,10 @@ function setColorsForVariablesWithArray(array)
 }
 
 //Manages the fill colors for visualisation-holders
-function setColorsForVisualisations()
+function setVisibilityOfVisualisations()
 {
-    var variableList = sort(currentVariableSelection);
-    
-    var visualisations = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot-matrix"];
-    validateAll();
+    var variableList = sort(selectedVariables);    
+    var visualisations = ["Histogram", "Boxplot", "Scatterplot", "Scatterplot matrix"];    
     
     switch(variableList["independent"].length)
     {
@@ -343,15 +418,16 @@ function setColorsForVisualisations()
                     switch(variableList["dependent"].length)
                     {
                         case 0: 
-                                invalidate([visualisations[0], visualisations[1], visualisations[2],visualisations[3]]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations[0], visualisations[1], visualisations[2],visualisations[3]]);
                                 break;
                         case 1:
-                               invalidate([visualisations[2],visualisations[3]]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations[2],visualisations[3]]);
                                 break;
                         case 2:
+                                window.VisiStat.UI.leftPane.disableGraphs([]);
                                 break;
                         default:
-                                invalidate([visualisations]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations]);
                     }
                     
                     break;
@@ -361,15 +437,16 @@ function setColorsForVisualisations()
                     switch(variableList["dependent"].length)
                     {
                         case 0: 
-                                invalidate([visualisations[1],visualisations[2],visualisations[3]]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations[1],visualisations[2],visualisations[3]]);
                                 break;
                         case 1:
+                                window.VisiStat.UI.leftPane.disableGraphs([]);
                                 break;
                         case 2:
-                                invalidate([visualisations[0], visualisations[1]]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations[0], visualisations[1]]);
                                 break;
                         default:
-                                invalidate([visualisations[0], visualisations[1], visualisations[2]]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations[0], visualisations[1], visualisations[2]]);
                                 break;
                     }
                     
@@ -380,40 +457,18 @@ function setColorsForVisualisations()
                     switch(variableList["dependent"].length)
                     {
                         case 0: 
-                                invalidate([visualisations[0], visualisations[1]]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations[0], visualisations[1]]);
                                 break;
                         case 1:
-                                invalidate([visualisations[0]]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations[0]]);
                                 break;
                         default:
-                                invalidate([visualisations[0], visualisations[1], visualisations[2]]);
+                                window.VisiStat.UI.leftPane.disableGraphs([visualisations[0], visualisations[1], visualisations[2]]);
                                 break;
                     }
                     
                     break;
-                }
-                
-    }
-    var visualisationButtons = document.getElementsByClassName("visualisationHolderBack");
-    
-    for(var i=0; i<visualisationButtons.length; i++)
-    {      
-        if(visualisationButtons[i].getAttribute("id") == currentVisualisationSelection)
-        {
-            visualisationButtons[i].setAttribute("fill", "url(#buttonFillSelected)");
-            visualisationButtons[i].setAttribute("filter", "none");
-            visualisationButtons[i].setAttribute("stroke", "none");
-            
-            d3.select("#" + visualisationButtons[i].getAttribute("id") + ".visualisationHolderText").attr("fill", "white");
-        }
-        else
-        {
-            visualisationButtons[i].setAttribute("fill", "url(#buttonFillNormal)");
-            visualisationButtons[i].setAttribute("filter", "url(#Bevel)");
-            visualisationButtons[i].setAttribute("stroke", "black");
-            
-            d3.select("#" + visualisationButtons[i].getAttribute("id") + ".visualisationHolderText").attr("fill", "black");
-        }
+                }                
     }
 }
 
@@ -455,33 +510,29 @@ function removeNumbersFromString(string)
     return string.replace(/[0-9]/g, '');
 }
 
-//convert numbers to strings
-function convertIntegersToStrings(numbers)
+//  Convert the numbers in a given string to string (e.g,. "1" becomes "one")
+
+function convertNumbersInInvalidIDToStrings(invalidID)
 {
-    var strings = new Array();
+    var validID = "";
     
-    for(var i=0; i<numbers.length; i++)
-    {        
-        var string = "";
+    for(var i=0; i<invalidID.toString().length; i++)
+    {               
+        var validChar = isNaN(invalidID.toString().charAt(i)) ? invalidID.toString().charAt(i) : stringForNumber[invalidID.toString().charAt(i)]
         
-        for(var j=0; j<numbers[i].toString().length; j++)
-        {            
-            string = string + stringForNumber[numbers[i].toString().charAt(j)];
-        }
-        
-        strings.push(string);
+        validID = validID + validChar;        
     }
     
-    return strings;
+    return validID;
 }
 
 function allVariablesAreNumeric()
 {
     var yeah=true;
     
-    for(var i=0; i<currentVariableSelection.length; i++)
+    for(var i=0; i<selectedVariables.length; i++)
     {
-        if(isNaN(variables[currentVariableSelection[i]]["dataset"][0]))
+        if(isNaN(variables[selectedVariables[i]]["dataset"][0]))
         {
             yeah = false;
         }
@@ -489,60 +540,62 @@ function allVariablesAreNumeric()
     return yeah;
 }
 
-//PROCESSING DATASET
 function setVariableRoles()
 {    
-    for(var i=0; i<variableNames.length; i++)
-    {
-        variableRoles[variableNames[i]] = sessionStorage.getItem(variableNames[i]);
-    }
-    
-    for(var i=0; i<variableNames.length; i++)
-    {
-        if(variableRoles[variableNames[i]] == "independent")
-        {
-            var toggleButton = d3.select("#" + variableNames[i] + ".variableTypeToggleButton");
-            toggleButton.attr("xlink:href", "images/toggle_down.png");
-            
-            var independentVariableText = d3.select("#" + variableNames[i] + ".independentVariableText");
-            var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
+    var IVs = new Array();
+    var DVs = new Array();
 
-            independentVariableText.attr("fill", "#627bf4");
-            dependentVariableText.attr("fill", "#BEC9FC");
-            
+    for(var i=0; i<variableNames.length; i++)
+    {
+        variableRoles[variableNames[i]] = sessionStorage.getItem(variableNames[i]);        
+
+        if(variableRoles[variableNames[i]] == "IV")                    
+        {
+            IVs.push(variableNames[i]);
             subsetDataByLevels(variableNames[i]);
         }
-        else if(variableRoles[variableNames[i]] == "dependent")
+        else if(variableRoles[variableNames[i]] == "DV")
+            DVs.push(variableNames[i]);
+    }      
+
+    if(IVs.length == 2)
+    {
+        for(var i=0; i<DVs.length; i++)
+            subsetData2Levels(DVs[i], IVs);
+    }
+    if(IVs.length > 2)
+    {
+        // Select IVs 3 at a time
+        var IVSelections= new Array();
+
+        for(var i=0; i<IVs.length; i++)
         {
-            var toggleButton = d3.select("#" + variableNames[i] + ".variableTypeToggleButton");
-            toggleButton.attr("xlink:href", "images/toggle_up.png");
-            
-            var independentVariableText = d3.select("#" + variableNames[i] + ".independentVariableText");
-            var dependentVariableText = d3.select("#" + variableNames[i] + ".dependentVariableText");
-            
-            dependentVariableText.attr("fill", "#627bf4");
-            independentVariableText.attr("fill", "#BEC9FC");
+            for(var j=i+1; j<IVs.length; j++)
+            {
+                for(var k=j+1; k<IVs.length; k++)
+                {
+                    IVSelections.push([IVs[i], IVs[j], IVs[k]]);
+                }
+            }
         }
-        else if(variableRoles[variableNames[i]] == "participant")
+
+        for(var index=0; index<IVSelections.length; index++)
         {
-            d3.select("#" + variableNames[i] + ".variableTypeToggleButton").remove();
-            d3.select("#" + variableNames[i] + ".dependentVariableText").remove();
-            d3.select("#" + variableNames[i] + ".independentVariableText").remove();
-            
-            var variablePanelSVG = d3.select("#variablePanelSVG");
-            var variablePanel = d3.select("#variablesPanel");                
-            var variablePanelWidth = removeAlphabetsFromString(variablePanel.style("width"));
-            var variableNameHolderWidth = variablePanelWidth - 2*variableNameHolderPadding;                                     
-                                    
-            variablePanelSVG.append("text")
-                            .attr("x", variableNameHolderWidth + variableNameHolderPadding - variableTypeSelectionButtonWidth/2)
-                            .attr("y", variableNameHolderPadding + i*(variableNameHolderHeight + variableNameHolderPadding) + (variableNameHolderHeight)/2 + yAxisTickTextOffset/2)                                                   
-                            .attr("text-anchor", "middle")
-                            .attr("font-size", scaleForWindowSize(20))
-                            .attr("fill", "#627bf4")
-                            .text("SUBJECT")
-                            .attr("id", variableNames[i])
-                            .attr("class", "participantVariableText");
+            for(var i=0; i<DVs.length; i++)
+                subsetData3Levels(DVs[i], IVSelections[index]);
+
+            // Also subset the data for every two IV combinations
+
+            for(var i=0; i<DVs.length; i++)
+            {
+                for(var j=0; j<IVSelections[index].length; j++)
+                {
+                    for(var k=j+1; k<IVSelections[index].length; k++)
+                    {         
+                        subsetData2Levels(DVs[i], [IVSelections[index][j], IVSelections[index][k]]);
+                    }
+                }
+            }
         }
     }
 }
@@ -554,7 +607,7 @@ function setVariableTypes()
         if(variables[variableNames[i]]["dataset"].unique().length == 2)
             variableTypes[variableNames[i]] = "binary";
         else
-            variableTypes[variableNames[i]] = variableTypesInDataset[sessionStorage.fileName][i];
+            variableTypes[variableNames[i]] = variableTypesInDataset[i];
     }
     
     for(var i=0; i<variableNames.length; i++)
@@ -586,7 +639,7 @@ function findExperimentalDesign()
     
     for(var i=0; i<variableNames.length; i++)
     {
-        if(variableRoles[variableNames[i]] == "participant")
+        if(variableRoles[variableNames[i]] == "ID")
         {
             participantData = variables[variableNames[i]]["dataset"];
             participants = variableNames[i];
@@ -594,13 +647,9 @@ function findExperimentalDesign()
     }
     
     if(participantData.length > participantData.unique().length)
-    {
         return "within-groups";
-    }
     else
-    {
         return "between-groups";
-    }
 }
 
 function setThisVariableEvil(variable)
@@ -624,80 +673,88 @@ function getNumericVariables()
     return numericVariables;
 }
 
-//Returns a set of valid IDs (non-numeric)
-function getValidIds(labels)
-{
-    var validIds = true;
-    
-    for(var i=0; i<labels.length; i++)
+// Returns a set of valid IDs (non-numeric)
+function getValidIds(IDs)
+{    
+    for(var i=0; i<IDs.length; i++)
     {
-        if(isString(labels[i]) == false)
+        if(!isNaN(IDs[i])) // If it is a number
         {
-            validIds = false;
-            break;
-        }            
-    }    
-    if(!validIds)
-        return convertIntegersToStrings(labels);        
-    else
-        return labels;
-}
-
-function getValidId(label)
-{
-    var validId = true;
-    
-    if(isString(label) == false)
-    {
-        validId = false;    
-    }       
-    if(!validId)
-    {
-        var string = "";
-        
-        for(var j=0; j<label.toString().length; j++)
-        {            
-            string = string + stringForNumber[label.toString().charAt(j)];
+            IDIsValid = false;
+            IDs[i] = "ValidNow_" + IDs[i];
+        }   
+        if(!isNaN(IDs[i].toString().charAt(0))) // If the first character is a number
+        {
+            IDIsValid = false;
+            IDs[i] = "ValidNow_" + IDs[i];
         }
-        
-        return string;
-    }
-    else
-    {
-        return label;
-    }
+        IDs[i] = toValidId(IDs[i]);
+    }    
+    
+    return IDs;
 }
 
-//sorts the selected variables and returns the sorted object
+function getValidId(ID)
+{
+    var IDIsValid = true;
+        
+    if(!isNaN(ID)) // If it is a number
+    {
+        IDIsValid = false;
+        ID = "ValidNow_" + ID;
+    }            
+    else if(!isNaN(ID.toString().charAt(0))) // If the first character is a number
+    {
+        IDIsValid = false;
+        ID = "ValidNow_" + ID;
+    }  
+      
+    ID = toValidId(ID);
+    
+    return ID;
+}
+
+// Sorts the variables selected for comparison (in the box plot)
+
 function getSelectedVariables()
 {
     var means = document.getElementsByClassName("means");
+    
     var variableList = new Object();
     
     variableList["dependent"] = new Array();
     variableList["independent"] = new Array();
     variableList["independent-levels"] = new Array();    
     
-    //add the dependent variable
-    for(var i=0; i<currentVariableSelection.length; i++)
+    // Add DV
+    for(var i=0; i<selectedVariables.length; i++)
     {        
-        if(variableRoles[currentVariableSelection[i]] == "dependent")
-            variableList["dependent"].push(currentVariableSelection[i]);
-        else if(variableRoles[currentVariableSelection[i]] == "independent")
-            variableList["independent"].push(currentVariableSelection[i]);
+        if(variableRoles[selectedVariables[i]] == "DV")
+            variableList["dependent"].push(selectedVariables[i]);
+        else if(variableRoles[selectedVariables[i]] == "IV")
+            variableList["independent"].push(selectedVariables[i]);
     }    
     
-    //add the levels of the independent variable
+    // Add the levels of the independent variable
     if(variableList["independent"].length > 0)
     {
         for(var i=0; i<means.length; i++)
         {
+            // For each mean
             if((means[i].getAttribute("fill") == meanColors["click"]) || (means[i].getAttribute("fill") == "green") || ((means[i].getAttribute("fill") == "#008000")))
             {
-                if(stringForNumber.indexOf(means[i].getAttribute("id")) != -1)
-                    variableList["independent-levels"].push(stringForNumber.indexOf(means[i].getAttribute("id")));
-                else
-                    variableList["independent-levels"].push(means[i].getAttribute("id"));
+                // If the mean is selected
+
+                var ID = means[i].getAttribute("id");
+
+                if(ID.split("_")[0] == "ValidNow")
+                {
+                    // This was an invalid ID that was tampered with. Get the original ID
+
+                    ID = ID.slice(ID.indexOf("_")+1);
+                }                
+
+                variableList["independent-levels"].push(ID);                
             }
         }   
     }
@@ -734,7 +791,7 @@ function sort(list)
     
     for(var i=0; i<list.length; i++)
     {
-        if(variableRoles[list[i]] == "independent")
+        if(variableRoles[list[i]] == "IV")
         {
             variableList["independent"].push(list[i]);
         }
@@ -782,31 +839,38 @@ function scaleForWindowSize(value)
 //log the results of the statistical analysis to an object :)
 function logResult()
 {
-    if(sessionStorage.plotWithNoInteraction == "true")
+    d3.select("#plotCanvas").transition().duration(1000).attr("viewBox", "0 0 " + plotPanelWidth + " " + plotPanelHeight);
+
+    d3.select("#statisticalTestName.assumptionNodes").text(multiVariateTestResults["method"]);
+    
+    var fillColor = usedMultiVariateTestType == "proper" ? "green" : (usedMultiVariateTestType == "warning") ? "yellow" : "red";
+    var displayText = usedMultiVariateTestType == "error" ? "The appropriate test is unavailable in VisiStat. The chosen test should not be reported!" : (usedMultiVariateTestType == "warning") ? "This test does not have the best power for the given data. The appropriate test can be selected from the decision tree." : "The appropriate test has been chosen based on the assumptions";
+
+    if(getToolTip({"id": "statisticalTest", "className": "assumptionNodes"}) != -1)        
+        removeToolTip({"id": "statisticalTest", "className": "assumptionNodes"});
+
+    addToolTip("statisticalTest", "assumptionNodes", displayText);
+    d3.select("#statisticalTest.assumptionNodes").attr("fill", fillColor);
+
+    if(sessionStorage.getObject("variables.backup") != null)
+    {
+        variables = sessionStorage.getObject("variables.backup");
+        dataset = sessionStorage.getObject("dataset.backup");
+        MIN = sessionStorage.getObject("MIN.backup");
+        MAX = sessionStorage.getObject("MAX.backup");
+        IQR = sessionStorage.getObject("IQR.backup");
+        CI = sessionStorage.getObject("CI.backup");
+    }
+    
+    if(global.flags.isTestWithoutTimeout)
         return;
-    
-    listOfResearchQuestions.push(testResults["formula"]);
-    listOfVariableSelections.push((currentVariableSelection.clone()).clone());
-
-    console.dir(listOfVariableSelections);
-
-    listOfVisualizationSelections.push(currentVisualisationSelection);
-    listOfTestTypes.push(testResults["test-type"].slice(0));
-    listOfLevelsCompared.push(getSelectedVariables());
-
-    var levels = (getSelectedVariables())["independent-levels"];
-    variableLists.push(levels.slice(0));
-
-    // combineResearchQuestions();
-    
-    updateHistory(testResults["formula"]);
 
     logListTests.push(
         {
             time: new Date().getTime(), 
             dataset: sessionStorage.fileName,
-            formula: testResults["formula"].slice(0),
-            test: testResults["test-type"].slice(0)
+            formula: multiVariateTestResults["formula"].slice(0),
+            test: multiVariateTestResults["test-type"].slice(0)
         }
     );
 
@@ -814,7 +878,21 @@ function logResult()
     writeToFileTests(sessionStorage.logFileName + "_significance_tests");
     //writeToFile(String(new Date().getTime()));
 
-    log.push(testResults["method"] + ", " + testResults["formula"]);
+    log.push(multiVariateTestResults["method"] + ", " + multiVariateTestResults["formula"]);
+
+    if(listOfResearchQuestions.indexOf(multiVariateTestResults["formula"]) != -1)
+        return;
+    
+    listOfResearchQuestions.push(multiVariateTestResults["formula"]);
+    listOfVariableSelections.push((selectedVariables.clone()).clone());
+    listOfVisualizationSelections.push(selectedVisualisation);
+    listOfTestTypes.push(multiVariateTestResults["test-type"].slice(0));
+    listOfLevelsCompared.push(getSelectedVariables());
+
+    var levels = (getSelectedVariables())["independent-levels"];
+    variableLists.push(levels.slice(0));   
+    
+    updateHistory(multiVariateTestResults["formula"]);    
 }
 
 function printLogList()
@@ -858,6 +936,7 @@ Array.prototype.clone = function() {
     return this.slice(0);
 };
 
+
 function getAllIndependentVariables()
 {
     var IV = new Array();
@@ -888,4 +967,186 @@ function eliminateDuplicates(arr) {
   return out;
 }
 
+function getBoundingBoxForText(cx, cy, buttonText, canvas, padding)
+{    
+    if(typeof(padding) === 'undefined') padding = 10;
+
+    canvas.append("text")
+                .attr("x", cx)
+                .attr("y", cy)
+                .text(buttonText)
+                .attr("fill", "black")
+                .attr("font-size", fontSizes["button label"])
+                .attr("text-anchor", "middle")
+                .attr("id", "temporaryText");
+
+    var text = d3.select("#temporaryText");         
+    var bbox = text.node().getBBox();
+
+    removeElementById("temporaryText");
+
+    bbox.x -= padding;
+    bbox.y -= padding;
+    bbox.width += 2*padding;
+    bbox.height += 2*padding;
+
+    return bbox;
+}
+
+function setOpacityForElementsWithClassNames(classNames, opacity)
+{
+    for(var i=0; i<classNames.length; i++)
+    {
+        d3.selectAll("." + classNames[i]).transition().duration(1000).delay(500).attr("opacity", opacity);
+    }
+}
+
+function getNumberOfTicks(aHeight)
+{
+    return Math.round((30/(height - assumptionsPanelHeight)) * aHeight * 0.95);
+}
     
+function addToolTip(id, className, displayText, displaySubText, targetID, targetClassName, jointDirection, toolTipType)
+{
+    if(typeof(toolTipType) === "undefined") toolTipType = "dark";
+    if(typeof(jointDirection) === "undefined") jointDirection = "top left";
+    
+    displayText += (typeof(displaySubText) === "undefined") ? "" : "<br><span class='outlierTooltip'>" + displaySubText + "</span>";
+
+    var key = "#" + id;
+    
+    if(className != null)
+        key = key + "." + className;
+
+    // if(getToolTip({id: id, className: className}) != -1)
+    //     removeToolTip({id: id, className: className});
+
+    if(typeof(targetID) === "undefined")
+    {
+        toolTips[key] = new Opentip($(key), {style: "dark", tipJoint: jointDirection});    
+    }
+    else
+    {
+        toolTips[key] = new Opentip($(key), {style: "dark",  tipJoint: jointDirection, target: "#" + targetID + "." + targetClassName, fixed: true});
+    }
+
+    toolTips[key].setContent(displayText);
+}
+
+function getToolTip(element)
+{
+    var key = "#" + element.id;
+
+    if(element.className != null) 
+        key += "." + element.className;    
+
+    if(toolTips.hasOwnProperty(key))
+        return toolTips[key];
+    else
+        return -1;
+}
+
+function showToolTip(element)
+{    
+    var toolTip = getToolTip(element);    
+
+    if(toolTip != -1)
+        toolTip.show();
+}
+
+function hideToolTip(element)
+{
+    var toolTip = getToolTip(element);
+
+    if(toolTip != -1)
+        toolTip.hide();
+}
+
+function removeToolTip(element)
+{
+    var toolTip = getToolTip(element);    
+    var key = "#" + element.id;
+
+    if(element.className != null) 
+        key += "." + element.className;
+
+    if(toolTip != -1)
+    {
+        toolTip.deactivate();
+        delete toolTips.key;
+    }
+}
+
+/**
+ * Returns all possible distributions for 1 IV, 2 IV, or 3 IV
+ * @return {array} An array of distributions (unlabelled)
+ */
+function getAllDistributions()
+{
+    var distributions = {};
+    var variableList = sort(selectedVariables);
+
+    var DV = variableList["dependent"][0];
+    var IVs = variableList["independent"];
+
+    switch(IVs.length)
+    {
+        case 1:
+                    var levels = variables[IVs[0]]["dataset"].unique();
+
+                    for(var i=0; i<levels.length; i++)
+                        distributions[levels[i]] = variables[DV][levels[i]];
+
+                    break;
+        case 2:
+                    var levelsA = variables[IVs[0]]["dataset"].unique();
+                    var levelsB = variables[IVs[1]]["dataset"].unique();
+
+                    for(var i=0; i<levelsA.length; i++)
+                    {
+                        for(var j=0; j<levelsB.length; j++)
+                        {
+                            if(variables[DV].hasOwnProperty(levelsA[i] + "-" + levelsB[j]))
+                                distributions[levelsA[i] + "-" + levelsB[j]] = variables[DV][levelsA[i] + "-" + levelsB[j]];
+                            else                                
+                                distributions[levelsB[j] + "-" + levelsA[i]] = variables[DV][levelsB[j] + "-" + levelsA[i]];
+                        }
+                    }
+
+                    break;
+        case 3:
+                    var levelsA = variables[IVs[0]]["dataset"].unique();
+                    var levelsB = variables[IVs[1]]["dataset"].unique();
+                    var levelsC = variables[IVs[2]]["dataset"].unique();
+
+                    for(var i=0; i<levelsA.length; i++)
+                    {
+                        for(var j=0; j<levelsB.length; j++)
+                        {
+                            for(var k=0; k<levelsC.length; k++)
+                            {                                
+                                if(variables[DV].hasOwnProperty(levelsA[i] + "-" + levelsB[j] + "-" + levelsC[k]))
+                                    distributions[levelsA[i] + "-" + levelsB[j] + "-" + levelsC[k]] = variables[DV][levelsA[i] + "-" + levelsB[j] + "-" + levelsC[k]];
+                                if(variables[DV].hasOwnProperty(levelsA[i] + "-" + levelsC[k] + "-" + levelsB[j]))
+                                    distributions[levelsA[i] + "-" + levelsC[k] + "-" + levelsB[j]] = variables[DV][levelsA[i] + "-" + levelsC[k] + "-" + levelsB[j]];
+                                if(variables[DV].hasOwnProperty(levelsB[j] + "-" + levelsA[i] + "-" + levelsC[k]))
+                                    distributions[levelsB[j] + "-" + levelsA[i] + "-" + levelsC[k]] = variables[DV][levelsB[j] + "-" + levelsA[i] + "-" + levelsC[k]];
+                                if(variables[DV].hasOwnProperty(levelsB[j] + "-" + levelsC[k] + "-" + levelsA[i]))
+                                    distributions[levelsB[j] + "-" + levelsC[k] + "-" + levelsA[i]] = variables[DV][levelsB[j] + "-" + levelsC[k] + "-" + levelsA[i]];
+                                if(variables[DV].hasOwnProperty(levelsC[k] + "-" + levelsA[i] + "-" + levelsB[j]))
+                                    distributions[levelsC[k] + "-" + levelsA[i] + "-" + levelsB[j]] = variables[DV][levelsC[k] + "-" + levelsA[i] + "-" + levelsB[j]];
+                                if(variables[DV].hasOwnProperty(levelsC[k] + "-" + levelsB[j] + "-" + levelsA[i]))
+                                    distributions[levelsC[k] + "-" + levelsB[j] + "-" + levelsA[i]] = variables[DV][levelsC[k] + "-" + levelsB[j] + "-" + levelsA[i]];               
+                            }
+                        }
+                    }
+
+                    break;
+        default:
+                    console.log("Error: unhandled case");
+                    break
+
+    }
+
+    return distributions;
+}

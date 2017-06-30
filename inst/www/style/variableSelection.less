@@ -1,0 +1,320 @@
+// Next: 
+// • Fix when the variable role menu appear, it changes the width of the variable section
+// • Make view dynamic and control by Javascript to ease the integration
+// • Make the experimental design section works dynamically in code.
+
+@import "_colors.less";
+@import "_utilMixins.less";
+
+// === common elements ===
+.mxnPanelFont() {
+	font-size: 14px;
+	font-family: sans-serif;
+	color: @panelTextDefaultColor;
+	text-decoration: none;
+	text-align: left;
+	line-height: 40px;
+}
+
+@panelWidth: 245px;
+@panelItemPaddingLeft: 40px;
+@panelItemWidth: @panelWidth - @panelItemPaddingLeft;
+@panelItemHeight: 40px;
+
+.mxnPanelItemDisplay() {
+	width: @panelItemWidth;
+	height: @panelItemHeight;
+	padding-left: @panelItemPaddingLeft;
+	display: block;
+	cursor: pointer;
+}
+
+
+/* ================== Experimental design info ================== */
+
+#designSection {
+	vertical-align: middle;
+	display: block;
+}
+
+#designDescription {
+	.mxnPanelFont;
+	width: 190px;
+	padding-left: 25px;
+	line-height: normal;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+
+#designDeterminer{
+	font-size: 0.8em;
+	color: @panelTextLightColor;
+}
+
+#designDeterminerVariable {
+	font-size: 1em;
+	&.isVariable {
+		font-weight: 700;
+	}
+}
+
+#designConfigButton {
+	width: 30px;
+	display: inline-block;
+}
+
+/* ================== Variable selection ================== */
+input[type=checkbox].variableCheckbox {
+	display: none;
+}
+
+span.variableName {
+	.mxnPanelTransition;
+	.mxnPanelFont;
+	.mxnPanelItemDisplay;
+	position: relative;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background-position: 4% center;
+	background-repeat: no-repeat;
+	background-color: @panelBackgroundDefaultColor;
+
+	&:hover {
+		background-color: @panelBackgroundHoverColor;
+		color: @panelTextHoverColor;
+	}
+
+	input[type=checkbox].variableCheckbox:not(:checked) + & {
+		background-image: url(../images/checkOff.png);
+	}
+	
+	input[type=checkbox].variableCheckbox:hover + & {
+		background-color: @panelBackgroundHoverColor;
+	}
+	
+	input[type=checkbox].variableCheckbox:checked + & {
+		background-image: url(../images/checkOn.png);
+		background-color: @panelBackgroundActivatedColor;
+		color: @panelTextActivatedColor;	
+		font-weight:700;
+		letter-spacing:1px;
+	}
+	
+	input[type=checkbox].variableCheckbox:checked:hover + & {
+		background-color: @panelBackgroundHoverColor;
+	}
+}
+
+.panelItemButton {
+	.mxnRoundedCorner(10px);
+	.mxnPanelFont;
+	color: @panelButtonTextDefaultColor;  // override .mxnPanelFont
+	text-align: center; // overide .mxnPanelFont
+	line-height:30px;   // overide .mxnPanelFont
+	font-size: 1em;		// overide .mxnPanelFont
+	font-style: italic;
+	background-color: @panelButtonBackgroundDefaultColor;
+	width: 30px;
+	height: 30px;
+    border: 0px;
+    right: 10px;
+    padding: 0px;
+	cursor: pointer;
+	display: block;
+	float: right;
+	position: relative;
+	outline: none;
+
+	&:hover {
+		background: @panelButtonBackgroundHoverColor;
+		color: @panelButtonTextHoverColor;
+	}
+
+	span:hover + &,
+	div:hover + & {
+		background: @panelButtonBackgroundDefaultColor;
+		color: @panelButtonTextDefaultColor;
+	}
+
+}
+
+button.variableRoleButton {
+	top: -30px;
+	left: 0px;
+}
+
+
+span.variableRole {
+	.mxnRoundedCorner(15px);
+	.mxnPanelFont;
+	color: @panelTextLightColor;  // override .mxnPanelFont
+	text-align: center; // overide .mxnPanelFont
+	line-height:30px;   // overide .mxnPanelFont
+	font-style: italic;
+	width: 30px;
+	height: 30px;
+    border: 0px;
+    right: 10px;
+    padding: 0px
+	cursor: pointer;
+	display: block;
+	float: right;
+	position: relative;
+	outline: none;
+	top: -35px;
+	visibility: hidden;
+
+	input.variableCheckbox:checked ~ & {
+		visibility: visible;
+	}
+}
+
+
+/* ================== Variable role menu ================== */
+
+div.popupBox {
+	.mxnShadow(2px, 2px, 3px, 0px, @popupShadowColor);
+	.mxnRoundedCorner(3px);
+	.mxnPanelFont;
+	font-size: .80em;	// override  .mxnPanelFont
+	line-height: 20px; 	// override  .mxnPanelFont
+	display: none;
+	z-index: 2;
+	font-weight:lighter;
+	border: 3px;
+	padding: 10px;
+	letter-spacing: 0.2px; 
+	cursor: pointer;
+	border: 1px solid;
+	border-color: @popupBorderColor;
+	background-color: @panelBackgroundDefaultColor;
+	position: fixed;
+}
+
+input[type=radio].variableRole {
+	display: inline-block;
+}
+
+
+label.variableRoleRadioLabel {
+	display: block;
+}
+
+/* ================== Graph selection ================== */
+
+input[type=radio].graphRadio {
+	display: none;
+}
+
+div.graphName {
+	.mxnPanelItemDisplay;
+	.mxnPanelTransition;
+	.mxnPanelFont;
+	color: @panelTextDefaultColor; // override   .mxnPanelFont
+	white-space:nowrap;
+	background-color: @panelBackgroundDefaultColor;
+	background-position: 4% center;
+	background-repeat: no-repeat;
+
+	& > img {
+		vertical-align: middle;
+		opacity: 0.6;
+	}
+
+	&:hover {
+		background-color: @panelBackgroundHoverColor;
+		color: @panelTextHoverColor;
+
+		& > img {
+			opacity: 1.0;
+		}
+	}
+
+	input[type=radio].graphRadio + & {
+		background-image: url(../images/radioOff.png);
+	}
+
+	input[type=radio].graphRadio:hover + & {
+		background-image: url(../images/radioOffHover.png);
+		background-color: @panelBackgroundHoverColor;
+	}
+
+	input[type=radio].graphRadio:checked + & {
+		background-image: url(../images/radioOn.png);
+		background-color: @panelBackgroundActivatedColor;
+		font-weight:700;
+		letter-spacing:1px;
+		& > img {
+			opacity: 1.0;
+		}
+	}
+
+	input[type=radio].graphRadio:checked:hover + & {
+		background-color: @panelBackgroundHoverColor;
+	}
+
+	input[type=radio].graphRadio:disabled + & {
+		background-image: url(../images/radioDisabled.png);
+		color: @panelTextDisabledColor;
+		& > img {
+			opacity: 0.3;
+		}
+	}
+}
+
+
+/* ================== Left pane background and section ================== */
+
+div.leftPane {
+	.mxnShadow(2px, 0px, 5px, 0px, @panelShadowColor);
+	display: block;
+	width: 245px;
+	height: 100%;
+	max-height: 100%;
+	padding: 0px;
+	margin: 0px;
+	background: @panelBackgroundDefaultColor;
+	float: left;
+}
+
+div.leftPaneSection{
+	display: block;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	&#graphSection {
+		@minHeightGraphSection: 170px;
+		height: @minHeightGraphSection;
+		min-height: @minHeightGraphSection;
+	}
+
+	&#variableSection {
+		max-height: ~"calc(100% - 400px)";		// NOTE: 400px is the height of other elements on the left pane
+		min-height: 200px;
+	}
+}
+
+
+span.leftPaneSectionHead{
+	@sectionPaddingLeft: 15px;
+	display: block;
+	padding-left: @sectionPaddingLeft;
+	width: @panelWidth - @sectionPaddingLeft;
+	padding-top: 10px;
+	margin-top: 10px;
+	text-align: left;
+	font-family: sans-serif;
+	font-weight: 100;
+	font-variant: small-caps;
+	letter-spacing:1px;
+	color: @panelTextDefaultColor;
+}
+
+
+body {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}

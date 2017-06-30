@@ -5,22 +5,22 @@ var shortAxesOffset, shortTickLength, shortDataPointRadius, shortNumberOfGrooves
 
 function makeScatterplotMatrix()
 {
-    logListVisualizations.push(
+    logViz.push(
         {
             time: new Date().getTime(), 
             dataset: sessionStorage.fileName,
-            variables: currentVariableSelection.slice(0).join("|"),
+            variables: selectedVariables.slice(0).join("|"),
             visualization: "scatterplot_matrix"
     });
 
     writeToFileVisualizations(sessionStorage.logFileName + "_visualizations");
 
-    var variableList = sort(currentVariableSelection);
+    var variableList = sort(selectedVariables);
     
     removeElementsByClassName("regression");
     
     //any number of dependent variables -> should work
-    var numberOfVariables = currentVariableSelection.length;
+    var numberOfVariables = selectedVariables.length;
     
     // Scatterplot matrix
     shortAxesOffset = axesOffset/numberOfVariables;
@@ -31,8 +31,6 @@ function makeScatterplotMatrix()
     shortTickTextOffsetYAxis = tickTextOffsetYAxis/(numberOfVariables);
     shortYAxisTickTextOffset = yAxisTickTextOffset/numberOfVariables;
     shortFontSize = fontSize;
-
-    console.log("shortFontSize = " + shortFontSize);
     
     if(numberOfVariables == 3)
     {
@@ -55,7 +53,7 @@ function makeScatterplotMatrix()
             for(var j=0; j<numberOfVariables; j++)
             {
                 if(i != j)
-                    makeScatterPlotAt(LEFT + j*((plotWidth/numberOfVariables) + shortAxesOffset + shortTickTextOffsetYAxis), TOP + i*((plotHeight/numberOfVariables) + shortAxesOffset + shortTickTextOffsetXAxis), (plotWidth/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetYAxis), (plotHeight/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetXAxis), currentVariableSelection[j], currentVariableSelection[i]); 
+                    makeScatterPlotAt(LEFT + j*((plotWidth/numberOfVariables) + shortAxesOffset + shortTickTextOffsetYAxis), TOP + i*((plotHeight/numberOfVariables) + shortAxesOffset + shortTickTextOffsetXAxis), (plotWidth/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetYAxis), (plotHeight/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetXAxis), selectedVariables[j], selectedVariables[i]); 
                 else
                 {
                     canvas.append("text")
@@ -63,14 +61,14 @@ function makeScatterplotMatrix()
                             .attr("y", TOP + i*((plotHeight/numberOfVariables) + shortAxesOffset + shortTickTextOffsetXAxis) + ((plotHeight/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetXAxis))/2)
                             .attr("text-anchor", "middle")
                             .attr("fill","black")
-                            .text(currentVariableSelection[i]);
+                            .text(selectedVariables[i]);
                 }
             }
         }
         
         if(allVariablesAreNumeric())
         {
-            // drawButtonInSideBar("FIT MODEL FOR PREDICTION", "regression");
+            // drawButton("FIT MODEL FOR PREDICTION", "regression");
         }
         else
         {
@@ -81,19 +79,19 @@ function makeScatterplotMatrix()
 
 function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
 {
-    var variableList = sort(currentVariableSelection);
+    var variableList = sort(selectedVariables);
     
     //any number of dependent variables -> should work
     var explanatoryVariables = [];
-    for(var i=0; i<currentVariableSelection.length; i++)
+    for(var i=0; i<selectedVariables.length; i++)
     {
-        if(currentVariableSelection[i] != outcomeVariable)
+        if(selectedVariables[i] != outcomeVariable)
         {
-            explanatoryVariables.push(currentVariableSelection[i]);
+            explanatoryVariables.push(selectedVariables[i]);
         }
     }
     
-    var numberOfVariables = currentVariableSelection.length - 1;
+    var numberOfVariables = selectedVariables.length - 1;
     
     // Scatterplot matrix
     shortAxesOffset = axesOffset/numberOfVariables;
@@ -124,7 +122,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
     {        
         for(var i=0; i<numberOfVariables; i++)
         {
-            makeScatterPlotAt(LEFT + i*((plotWidth/numberOfVariables) + 2*shortAxesOffset + shortTickTextOffsetYAxis), TOP, (plotWidth/numberOfVariables) - (2*shortAxesOffset + shortTickTextOffsetYAxis), (plotHeight/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetXAxis), explanatoryVariables[i], outcomeVariable, "true", testResults["coefficients"][i], testResults["intercepts"][i]);             
+            makeScatterPlotAt(LEFT + i*((plotWidth/numberOfVariables) + 2*shortAxesOffset + shortTickTextOffsetYAxis), TOP, (plotWidth/numberOfVariables) - (2*shortAxesOffset + shortTickTextOffsetYAxis), (plotHeight/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetXAxis), explanatoryVariables[i], outcomeVariable, "true", multiVariateTestResults["coefficients"][i], multiVariateTestResults["intercepts"][i]);             
             
             if(i==0)
             {   
@@ -133,7 +131,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
                             .attr("y", (TOP + BOTTOM)/4)
                             .attr("text-anchor", "middle")
                             .attr("transform", "rotate (-90 " + (LEFT - axesOffset - labelOffset) + " " + ((TOP + BOTTOM)/4) + ")")
-                            .attr("font-size", 2*fontSizeLabels/3 + "px")
+                            .attr("font-size", 2*fontSizes["label"]/3 )
                             .text(outcomeVariable)
                             .attr("fill", "black");
                 
@@ -141,7 +139,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
                             .attr("x", LEFT +  i*((plotWidth/numberOfVariables) + 2*shortAxesOffset + shortTickTextOffsetYAxis) + ((plotWidth/numberOfVariables) - (2*shortAxesOffset + shortTickTextOffsetYAxis))/2)
                             .attr("y", TOP + (plotHeight/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetXAxis) + 2*axesOffset)
                             .attr("text-anchor", "middle")
-                            .attr("font-size", 2*fontSizeLabels/3 + "px")
+                            .attr("font-size", 2*fontSizes["label"]/3 )
                             .text(explanatoryVariables[i])
                             .attr("fill", "black");
             }
@@ -151,7 +149,7 @@ function makeScatterplotMatrixForMultipleRegression(outcomeVariable)
                             .attr("x", LEFT +  i*((plotWidth/numberOfVariables) + 2*shortAxesOffset + shortTickTextOffsetYAxis) + ((plotWidth/numberOfVariables) - (2*shortAxesOffset + shortTickTextOffsetYAxis))/2)
                             .attr("y", TOP + (plotHeight/numberOfVariables) - (shortAxesOffset + shortTickTextOffsetXAxis) + 2*axesOffset)
                             .attr("text-anchor", "middle")
-                            .attr("font-size", 2*fontSizeLabels/3 + "px")
+                            .attr("font-size", 2*fontSizes["label"]/3 )
                             .text(explanatoryVariables[i])
                             .attr("fill", "black");
             }    
@@ -301,7 +299,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
         canvas.append("text")
                     .attr("x", textPosition)
                     .attr("y", y + shortAxesOffset + shortTickLength + shortFontSize)     
-                    .attr("font-size", shortFontSize + "px")
+                    .attr("font-size", shortFontSize )
                     .text(axisText)
                     .attr("text-anchor", textAnchor)
                     .attr("id", "groove" + i)
@@ -343,7 +341,7 @@ function makeScatterPlotAt(x,y,shortWidth, shortHeight, variableX, variableY, no
                     .attr("x", x - shortAxesOffset - shortTickTextOffsetYAxis)
                     .attr("y", textPosition + shortTickLength + offset)  
                     .text(axisText)
-                    .attr("font-size", shortFontSize + "px")
+                    .attr("font-size", shortFontSize )
                     .attr("text-anchor", "end")
                     .attr("id", "groove" + i)
                     .attr("class", "yAxisGrooveText");

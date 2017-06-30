@@ -1,0 +1,146 @@
+@import "_colors.less";
+@import "_utilMixins.less";
+
+// === common elements ===
+.mxnPanelFont() {
+	font-size: 12px;
+	font-family: sans-serif;
+	color: @panelTextDefaultColor;
+	text-decoration: none;
+	text-align: left;
+	line-height: 40px;
+	text-overflow: ellipsis;
+}
+
+.mxnReportFont() {
+	font-size: 12px;
+	font-family: sans-serif;
+	color: @panelTextDefaultColor;
+	text-decoration: none;
+	text-align: left;
+	text-overflow: ellipsis;
+}
+
+@panelWidth: 350px;
+@panelItemLeft: 20px;
+@panelItemMarginRight: 50px;
+@panelItemWidth: @panelWidth - @panelItemLeft;
+@panelItemHeight: 40px;
+@eyeItemPadding: 5px;
+@eyeItemWidth: 40px;
+
+@width: 1024px;
+
+@leftColumnWidth: 40px; 
+@rightColumnWidth: 50px;
+@middleColumnWidth: @panelWidth - (@leftColumnWidth + @rightColumnWidth);
+
+div.entryName {
+	.mxnPanelTransition;
+	.mxnPanelFont;
+	position: relative;
+	white-space: nowrap;
+	overflow: hidden;	
+	padding: 0px;
+	width: 250px;
+	max-width: 250px;	
+	// background-position: 4% center;
+	// background-repeat: no-repeat;
+	&:hover {
+		color: @panelTextHoverColor;
+	}
+}
+
+td.left{
+	width: 50px; 
+	padding: 5px;
+	align: right;
+	vertical-align: middle;
+}
+td.middle{
+	width: 250px;
+	padding: 0px;
+	align: left;
+	cursor: pointer;
+}
+td.right{
+	width: 50px;
+	padding: 5px;
+	align: center;
+	cursor: pointer;
+}
+
+tr.historyEntry {
+	.mxnPanelTransition;
+	background-color: @panelBackgroundDefaultColor;
+	&:hover {
+		background-color: @panelBackgroundHoverColor;
+	}
+}
+
+table#historyTable {
+	border-spacing: 0px;
+}
+
+img.selectedEntryIndicators{ 
+	width: @eyeItemWidth;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+img.entryCheckbox{
+	cursor: pointer;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+div.rightPane {
+	.mxnShadow(-2px, 0px, 5px, 0px, @panelShadowColor);
+	display: block;
+	width: @panelWidth;
+	height: 100%;
+	max-height: 100%;
+	padding: 0px;
+	margin: 0px;
+	background: @panelBackgroundDefaultColor;
+	float: right;
+	left: @width - @panelWidth;
+}
+
+div.rightPaneSection{
+	display: block;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	&#historySection {
+		@minHeightGraphSection: 300px;
+		height: @minHeightGraphSection;
+		min-height: @minHeightGraphSection;
+	}
+
+	&#reportSection {
+		max-height: ~"calc(100% - 400px)";		// NOTE: 400px is the height of other elements on the right pane
+		min-height: 200px;		
+	}
+}
+
+span.rightPaneSectionHead{
+	@sectionPaddingLeft: 15px;
+	display: block;
+	padding-left: @sectionPaddingLeft;
+	width: @panelWidth - @sectionPaddingLeft;
+	padding-top: 10px;
+	margin-top: 10px;
+	text-align: left;
+	font-family: sans-serif;
+	font-weight: 100;
+	font-variant: small-caps;
+	letter-spacing:1px;
+	color: @panelTextDefaultColor;
+}
+
+div.reportText{
+	.mxnPanelFont;
+	.mxnPanelTransition;
+	padding: 10px;
+}

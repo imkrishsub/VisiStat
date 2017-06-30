@@ -1,0 +1,36 @@
+{
+    "name": "mutex",
+    "title": "jQuery Mutex",
+    "description": "jQuery mutex management plugin.",
+    "keywords": [
+        "mutex",
+        "concurrency",
+        "singleton"
+    ],
+    "version": "0.1.0",
+    "author": {
+        "name": "Christian Gribneau",
+        "url": "https://github.com/gribneau/jQuery-mutex"
+    },
+    "maintainers": [
+        {
+            "name": "Christian Gribneau",
+            "email": "christian.gribneau@biglive.com",
+            "url": "https://github.com/gribneau/jQuery-mutex"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/gribneau/jQuery-mutex/blob/master/MIT-LICENSE.txt"
+        }
+    ],
+    "bugs": "https://github.com/gribneau/jQuery-mutex/issues",
+    "homepage": "https://github.com/gribneau/jQuery-mutex",
+    "docs": "https://github.com/gribneau/jQuery-mutex",
+    "download": "http://github.com/gribneau/jQuery-mutex",
+    "dependencies": {
+        "jquery": ">=1.4"
+    }
+}
+

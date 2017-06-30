@@ -1,83 +1,100 @@
 var LEFT, RIGHT, TOP, BOTTOM, xStep;
 var yDiffForPlots;
 
-function makeHistogram()
-{      
-    // TODO: Need to constrain the selection to 3 variables
-    logListVisualizations.push(
-        {
-            time: new Date().getTime(), 
-            dataset: sessionStorage.fileName,
-            variables: currentVariableSelection.slice(0).join("|"),
-            visualization: "histogram"
-        }
-    );
+// Plot a histogram in the plot canvas
+
+function plotHistogram()
+{   
+    // ToDo: write a function to log visualisations better
+    logViz.push({
+        time: new Date().getTime(), 
+        dataset: sessionStorage.fileName,
+        variables: selectedVariables.slice(0).join("|"),
+        visualization: "histogram"
+    });
 
     writeToFileVisualizations(sessionStorage.logFileName + "_visualizations");
     
-    // boundaries
+    // Define the boundaries of the plot
+    
     LEFT = plotPanelWidth/2 - plotWidth/2;
     RIGHT = plotPanelWidth/2 + plotWidth/2;
-    
+
     TOP = plotPanelHeight/2 - plotHeight/2;
     BOTTOM = plotPanelHeight/2 + plotHeight/2;            
     
-    var canvas = d3.select("#plotCanvas");
+    var canvas = d3.select("#plotCanvas"); 
 
     var data = [];
     var mins = [];
     var maxs = [];
-    var varNames = [];
-    
+    var varNames = [];    
     var combinedData = [];
+
+    var histogramOfDVAcrossLevelsOfIV = false;
     
-    var altHistogram = false;
+    var variableList = sort(selectedVariables);
+    var DV = variableList["dependent"].length > 0 ? variableList["dependent"][0] : null; 
     
-    var variableList = sort(currentVariableSelection);
-    
-    if(currentVariableSelection.length > 1)
-    {
-        //if more than 2 variables are selected
-        switch(variableList["independent"].length)
+    if(variableList["independent"].length <= 1)
+    {        
+        switch(selectedVariables.length)
         {
-            case 0:
-                    {
-                        for(var i=0; i<variableList["dependent"].length; i++)
-                        {
-                            data[i] = variables[variableList["dependent"][i]]["dataset"];      
-                            varNames[i] = variableList["dependent"][i];      
-                            mins[i] = MIN[variableList["dependent"][i]]["dataset"];      
-                            maxs[i] = MAX[variableList["dependent"][i]]["dataset"];                                  
-                        }
-                        
+            case 1:
+                    {     
+                        data[0] = variables[selectedVariables[0]]["dataset"];      
+                        varNames[0] = selectedVariables[0];
+                        mins[0] = MIN[selectedVariables[0]]["dataset"];      
+                        maxs[0] = MAX[selectedVariables[0]]["dataset"];                                                                                   
+
+                        nBins = DV == null ? nBins : nBinsArray[DV]["dataset"];                        
                         break;                    
                     }
-            case 1:
+            case 2:
                     {
-                        altHistogram = true;
-                        for(var i=0; i<variableList["independent-levels"].length; i++)
+                        if(variableList["independent"].length == 1)
                         {
-                            data[i] = variables[variableList["dependent"][0]][variableList["independent-levels"][i]];
-                            varNames[i] = variableList["dependent"][0] + "[" + variableList["independent-levels"][i] + "]";
-                            mins[i] = MIN[variableList["dependent"][0]][variableList["independent-levels"][i]];
-                            maxs[i] = MAX[variableList["dependent"][0]][variableList["independent-levels"][i]];                            
+                            histogramOfDVAcrossLevelsOfIV = true;
+                            var t = 0;
+
+                            for(var i=0; i<variableList["independent-levels"].length; i++)
+                            {
+                                data[i] = variables[DV][variableList["independent-levels"][i]];
+                                varNames[i] = DV + "[" + variableList["independent-levels"][i] + "]";
+                                mins[i] = MIN[DV][variableList["independent-levels"][i]];
+                                maxs[i] = MAX[DV][variableList["independent-levels"][i]];                            
+
+                                if(nBinsArray[DV][variableList["independent-levels"][i]] > t)                                    
+                                    t = nBinsArray[DV][variableList["independent-levels"][i]];
+                            }    
+
+                            nBins = t;
+                            
                         }
+                        else
+                        {
+                            // both are DVs
+                            var t = 0;
+
+                            for(var i=0; i<selectedVariables.length; i++)
+                            {
+                                data[i] = variables[selectedVariables[i]]["dataset"];
+                                varNames[i] = selectedVariables[i];
+                                mins[i] = MIN[selectedVariables[i]]["dataset"];
+                                maxs[i] = MAX[selectedVariables[i]]["dataset"];
+
+                                if(nBinsArray[selectedVariables[i]]["dataset"] > t)
+                                    t = nBinsArray[selectedVariables[i]]["dataset"];
+                            }
+
+                            nBins = t;
+                            
+                        }
+                        
                         break;
-                    }
-            default:
-                    {
-                        //this shouldn't happen!
-                    }
+                    }            
         }
-    }
-    else
-    {
-        data[0] = variables[currentVariableSelection[0]]["dataset"];      
-        varNames[0] = currentVariableSelection[0];
-        mins[0] = MIN[currentVariableSelection[0]]["dataset"];      
-        maxs[0] = MAX[currentVariableSelection[0]]["dataset"];       
-    } 
-    
+    }    
     
     // combine the collected data
     for(var i=0; i<data.length; i++)
@@ -96,20 +113,17 @@ function makeHistogram()
     var labels;
     var levels = variableList["independent-levels"];//todo
     
-    if(altHistogram == true)    
-    {
+    if(histogramOfDVAcrossLevelsOfIV == true)    
         labels = levels;
-    }    
     else    
-    {        
-        labels = currentVariableSelection;
-    }
+        labels = selectedVariables;
     
-    var ids = getValidIds(labels);
+    var ids = getValidIds(labels);    
+    
     
     if(combinedData.unique().length < nBins)
     {
-        //bar chart        
+        // Bar chart        
         var uniqueData = combinedData.unique();
         
         var numberOfGroovesInXAxis = uniqueData.length;
@@ -118,7 +132,8 @@ function makeHistogram()
     
         var bins = new Object();
     
-        // Set all bin count to zero
+        // Init. counts of bins
+
         for(var i=0; i<labels.length; i++)
         {
             bins[labels[i]] = new Array();
@@ -129,6 +144,7 @@ function makeHistogram()
         }
     
         // Update counts
+
         for(var i=0; i<labels.length; i++)
         {
             for(var j=0; j<data[i].length; j++)
@@ -161,16 +177,15 @@ function makeHistogram()
         var binSlice = Array.max(binMaxs)/(nGroovesY-1);
     
         // Draw axes    
+
         canvas.append("text")
                 .attr("x", LEFT - axesOffset - 1.5*labelOffset)
                 .attr("y", (TOP + BOTTOM)/2)
                 .attr("text-anchor", "middle")
                 .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.5*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
-                .attr("font-size", fontSizeLabels + "px")
-                .text("Frequency")
+                .attr("font-size", fontSizes["label"] )
+                .text("Count")
                 .attr("fill", "black");
-    
-
                                     
         xStep = plotWidth/numberOfGroovesInXAxis;
         
@@ -180,18 +195,21 @@ function makeHistogram()
                     .attr("x2", RIGHT)
                     .attr("y2", BOTTOM + axesOffset) 
                     .attr("stroke", "black")
+                    .attr("stroke-width", strokeWidth["axis"])
                     .attr("id", "xAxis")
                     .attr("class", "axes");
     
-        //grooves
+        // X-grooves
+
         for(j=0; j<=numberOfGroovesInXAxis; j++)
         {
             canvas.append("line")
                         .attr("x1", LEFT + j*xStep)
                         .attr("y1", BOTTOM  + axesOffset)
                         .attr("x2", LEFT + j*xStep)
-                        .attr("y2", BOTTOM + 10 + axesOffset)
+                        .attr("y2", BOTTOM + tickLength + axesOffset)
                         .attr("id", "groove" + j)
+                        .attr("stroke-width", strokeWidth["tick"])
                         .attr("class", "xAxisGrooves");
     
             canvas.append("text")
@@ -199,11 +217,13 @@ function makeHistogram()
                         .attr("y", BOTTOM + tickTextOffsetXAxis + axesOffset)
                         .text(uniqueData[j])
                         .attr("text-anchor", "middle")
-                        .attr("font-size", fontSizeTicks + "px")
+                        .attr("font-size", fontSizes["tick"] )
                         .attr("id", "groove" + j)
                         .attr("class", "xAxisGrooveText");
         }
     
+        // Y-grooves
+
         var yStep;
     
         for(i=0; i<labels.length; i++)
@@ -216,31 +236,33 @@ function makeHistogram()
                     .attr("x2", LEFT - axesOffset)
                     .attr("y2", BOTTOM - i*yDiffForPlots)
                     .attr("stroke", "black")
+                    .attr("stroke-width", strokeWidth["axis"])
                     .attr("id", "yAxis")
                     .attr("class", "axes");
         
             for(j=0; j<nGroovesY; j++)
             {
                 canvas.append("line")
-                            .attr("x1", LEFT - 10 - axesOffset)
+                            .attr("x1", LEFT - tickLength - axesOffset)
                             .attr("y1", BOTTOM - j*yStep - i*yDiffForPlots)
                             .attr("x2", LEFT - axesOffset)
                             .attr("y2", BOTTOM - j*yStep - i*yDiffForPlots)
                             .attr("id", "groove" + j)
+                            .attr("stroke-width", strokeWidth["tick"])
                             .attr("class", "yAxisGrooves");
         
                 canvas.append("text")
                             .attr("x", LEFT - tickTextOffsetYAxis - axesOffset)
-                            .attr("y", BOTTOM - j*yStep + yAxisTickTextOffset - i*yDiffForPlots)                                        
+                            .attr("y", BOTTOM - j*yStep + parseFloat(fontSizes["tick"])/2 - i*yDiffForPlots)                                        
                             .text(Math.round(j*binSlice))
                             .attr("text-anchor", "end")
-                            .attr("font-size", fontSizeTicks + "px")
+                            .attr("font-size", fontSizes["tick"] )
                             .attr("id", "groove" + j)
                             .attr("class", "yAxisGrooveText");
             }
         }
     
-        //bars
+        // Bars
         for(i=0; i<labels.length; i++)
         {
             for(j=0; j<uniqueData.length+2; j++)
@@ -252,7 +274,7 @@ function makeHistogram()
                             .attr("y", BOTTOM - (bins[labels[i]][j]/Array.max(binMaxs))*individualPlotHeight - yAxisTickTextOffset - i*yDiffForPlots)
                             .attr("fill", "black")
                             .attr("text-anchor", "middle")
-                            .attr("font-size", binCountFontSize)
+                            .attr("font-size", fontSizes["bin text"] )
                             .attr("display", "none")
                             .text(bins[labels[i]][j])
                             .attr("id", ids[i] + j)
@@ -265,6 +287,7 @@ function makeHistogram()
                             .attr("height", (bins[labels[i]][j]/Array.max(binMaxs))*individualPlotHeight)
                             .attr("width", plotWidth/uniqueData.length)          
                             .attr("fill", colors[i])         
+                            .attr("stroke-width", strokeWidth["histogram.bar"])
                             .attr("id", ids[i] + j)
                             .attr("class", "bins");
             
@@ -330,8 +353,8 @@ function makeHistogram()
                 .attr("y", (TOP + BOTTOM)/2)
                 .attr("text-anchor", "middle")
                 .attr("transform", "rotate (-90 " + (LEFT - axesOffset - 1.25*labelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
-                .attr("font-size", fontSizeLabels + "px")
-                .text("Frequency")
+                .attr("font-size", fontSizes["label"] )
+                .text("Count")
                 .attr("fill", "black");
         
         canvas.append("line")
@@ -340,6 +363,7 @@ function makeHistogram()
                     .attr("x2", RIGHT)
                     .attr("y2", BOTTOM + axesOffset) 
                     .attr("stroke", "black")
+                    .attr("stroke-width", strokeWidth["axis"])
                     .attr("id", "xAxis")
                     .attr("class", "axes");  
         
@@ -354,6 +378,7 @@ function makeHistogram()
                         .attr("x2", LEFT + j*xStep)
                         .attr("y2", BOTTOM + 10 + axesOffset)
                         .attr("id", "groove" + j)
+                        .attr("stroke-width", strokeWidth["tick"])
                         .attr("class", "xAxisGrooves");
 
             canvas.append("text")
@@ -361,6 +386,7 @@ function makeHistogram()
                         .attr("y", BOTTOM + tickTextOffsetXAxis + axesOffset)
                         .text(dec2(min + j*slice))
                         .attr("text-anchor", "middle")
+                        .attr("font-size", fontSizes["tick"] )
                         .attr("id", "groove" + j)
                         .attr("class", "xAxisGrooveText");
         }
@@ -376,6 +402,7 @@ function makeHistogram()
                     .attr("x2", LEFT - axesOffset)
                     .attr("y2", BOTTOM - individualPlotHeight - i*yDiffForPlots)
                     .attr("stroke", "black")
+                    .attr("stroke-width", strokeWidth["axis"])
                     .attr("id", "yAxis")
                     .attr("class", "axes");
             
@@ -386,6 +413,7 @@ function makeHistogram()
                             .attr("y1", BOTTOM - j*yStep - i*yDiffForPlots)
                             .attr("x2", LEFT - axesOffset)
                             .attr("y2", BOTTOM - j*yStep -  i*yDiffForPlots)
+                            .attr("stroke-width", strokeWidth["tick"])
                             .attr("id", "groove" + j)
                             .attr("class", "yAxisGrooves");
         
@@ -394,6 +422,7 @@ function makeHistogram()
                             .attr("y", BOTTOM - j*yStep + yAxisTickTextOffset - i*yDiffForPlots)                                        
                             .text(Math.round(j*binSlice))
                             .attr("text-anchor", "end")
+                            .attr("font-size", fontSizes["tick"] )
                             .attr("id", "groove" + j)
                             .attr("class", "yAxisGrooveText");
             }
@@ -411,7 +440,7 @@ function makeHistogram()
                             .attr("y", BOTTOM - (bins[labels[i]][j]/Array.max(binMaxs))*individualPlotHeight - i*yDiffForPlots - yAxisTickTextOffset)
                             .attr("fill", "black")
                             .attr("text-anchor", "middle")
-                            .attr("font-size", binCountFontSize)
+                            .attr("font-size", fontSizes["tick"] )
                             .attr("display", "none")
                             .text(bins[labels[i]][j])
                             .attr("id", ids[i] + j)
@@ -423,7 +452,8 @@ function makeHistogram()
                             .attr("y", BOTTOM - (bins[labels[i]][j]/Array.max(binMaxs))*individualPlotHeight - i*yDiffForPlots)
                             .attr("height", (bins[labels[i]][j]/Array.max(binMaxs))*individualPlotHeight)
                             .attr("width", plotWidth/nBins)          
-                            .attr("fill", colors[i])         
+                            .attr("fill", colors[i])    
+                            .attr("stroke-width", strokeWidth["histogram.bar"])     
                             .attr("id", ids[i] + j)
                             .attr("class", "bins");
             }
@@ -431,9 +461,9 @@ function makeHistogram()
     }
 }
 
-function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, dependentVariable, level, distributionType)
+function plotHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, dependentVariable, level, distributionType)
 {
-    var variableList = sort(currentVariableSelection);
+    var variableList = sort(selectedVariables);
     
     var RIGHT = LEFT + histWidth;
     var BOTTOM = TOP + histHeight;
@@ -441,24 +471,45 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
     var data;
     var min;
     var max;
+
+    nBins = 10;
     
+    // get data
     if(variableList["independent"].length == 2)
     {        
-        var levels = level.split("-");
-        
+        var levels = level.split("-");        
         data = colourBoxPlotData[levels[0]][levels[1]];
     }
     else
     {   
         data = variables[dependentVariable][level];
+        nBins = nBinsArray[dependentVariable][level] > 15 ? 15 : nBinsArray[dependentVariable][level];
     }
+
     min = Array.min(data);
-    max = Array.max(data);;
+    max = Array.max(data);
+
+    var m, sd;
+    m = mean(data);
+    sd = getStandardDeviation(data);
+
+    var normalizedData = [];
+
+    for(var i=0; i<data.length; i++)
+    {
+        normalizedData[i] = ((data[i] - min)*(RIGHT - LEFT))/(max - min);        
+    }
+
+    var M = mean(normalizedData)
+    var SD = getStandardDeviation(normalizedData);
+
+    // console.log("min = " + min + ", max = " + max);
+    // console.log("actual mean = " + m + ", modified mean = " + M);
+    // console.log("actual SD = " + sd + ", modified SD = " + SD);
     
-    var shortAxesOffset = axesOffset*(histWidth/plotWidth);
-    
-    var id = level;       
-       
+    var shortAxesOffset = axesOffset*(histWidth/plotWidth);    
+    var shortLabelOffset = labelOffset*(histWidth/plotWidth);    
+    var id = level;              
     var numberOfGroovesInXAxis = 1; //make this into a dynamic variable    
     
     var slice = (max - min)/nBins;    
@@ -514,10 +565,20 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
                                     .attr("id", "yAxis")
                                     .attr("class", "densityCurve");
 
+    // Y-axis label
+    canvas.append("text")
+            .attr("x", LEFT - shortAxesOffset - shortLabelOffset)
+            .attr("y", (BOTTOM + TOP)/2)
+            .attr("text-anchor", "middle")
+            .attr("transform", "rotate (-90 " + (LEFT - shortAxesOffset - shortLabelOffset) + " " + ((TOP + BOTTOM)/2) + ")")
+            .attr("font-size", scaleForWindowSize(12) )
+            .attr("class", "densityCurve")
+            .text("Count");
+
                                 
     xStep = histWidth/numberOfGroovesInXAxis;
 
-    //grooves
+    // Draw grooves
 
     if(document.getElementsByClassName("means").length <= 4)
     {
@@ -529,6 +590,7 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
                         .attr("x2", LEFT + i*xStep)
                         .attr("y2", BOTTOM + 10 + shortAxesOffset)
                         .attr("id", "groove" + i)
+                        .attr("stroke", "black")
                         .attr("class", "densityCurve");
             
             var textAnchor = "end";
@@ -540,7 +602,7 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
                         .attr("y", BOTTOM + tickTextOffsetXAxis + shortAxesOffset)                    
                         .text(dec2(min + i*(max-min)))
                         .attr("text-anchor", textAnchor)
-                        .attr("font-size", scaleForWindowSize(12) + "px")
+                        .attr("font-size", scaleForWindowSize(12) )
                         .attr("id", "groove" + i)
                         .attr("class", "densityCurve");
         }
@@ -548,47 +610,46 @@ function makeHistogramWithDensityCurve(LEFT, TOP, histWidth, histHeight, depende
 
 
     xStep  = histWidth/nBins;
-    curveX.push(LEFT);
-    curveY.push(BOTTOM);
-    //bins
+    var fillColor = distributionType == "normal" ? "green" : "red";
+
     for(i=0; i<nBins; i++)
+    {           
+        canvas.append("rect")
+                    .attr("x", LEFT + i*xStep)
+                    .attr("y", BOTTOM - (bins[i]/maxBinSize)*histHeight)
+                    .attr("height", (bins[i]/maxBinSize)*histHeight)
+                    .attr("width", histWidth/nBins)          
+                    .attr("fill", fillColor)         
+                    .attr("class", "densityCurve");
+    }
+
+    // Plotting the normal curve
+
+    var denominator = (SD * Math.sqrt(2*Math.PI));
+    var bezierCurvePath = "M";
+
+    for(var x=LEFT; x<=RIGHT; x++)
     {
-        curveX.push(LEFT + i*xStep + xStep/2);
-        
-        curveY.push(BOTTOM - (bins[i]/maxBinSize)*histHeight);   
-    }  
-    
-    curveX.push(RIGHT);
-    curveY.push(BOTTOM);
-    
-    var xscale = d3.scale.linear()
-                .domain([d3.min(curveX), d3.max(curveX)])
-                .range([LEFT, RIGHT]); 
+        var y = (Math.exp((-Math.pow(((x - LEFT) - M), 2))/(2*Math.pow(SD, 2))))/denominator;    
 
-    var yscale = d3.scale.linear()
-        .domain([d3.min(curveY), d3.max(curveY)])
-        .range([TOP, BOTTOM]) //svg corner starts at top left
+        var X = x;
+        var Y = BOTTOM - ((y * (BOTTOM - TOP))/(1/denominator));
 
-    var line = d3.svg.line()
-        .x(function(d) {
-          //for each x value we map it to the pixel value
-          return xscale(d);
-        })
-        .y(function(d,i) {
-          //for each data point we perform our y function and then
-          //map that value to pixels
-          return yscale(curveY[i]);
-        })
-        .interpolate("basis");
+        if(x == LEFT)
+            bezierCurvePath += dec2(X) + "," + dec2(Y) + " L";
+        else if(x+1 > RIGHT)
+            bezierCurvePath += dec2(X) + "," + dec2(Y) ;
+        else
+            bezierCurvePath += dec2(X) + "," + dec2(Y) + " ";
+    }
 
-    var path = canvas.append("path")
-      .data([curveX])
-      .attr("d", line) //this calls the line function with this element's data
-      .style("fill", "none")
-      .style("stroke", densityCurveColors[distributionType])
-      .attr("stroke-width", "2px")
-      .attr("id", level)
-      .attr("class", "densityCurve");
+    canvas.append("path")
+            .attr("d", bezierCurvePath)
+            .attr("stroke", "black")
+            .attr("stroke-width", "2px")
+            .attr("stroke-dasharray", "5,5")
+            .attr("fill", "none")
+            .attr("class", "densityCurve");
 }
 
 function drawHistogramLegends(varNames)
@@ -614,7 +675,7 @@ function drawHistogramLegends(varNames)
                 .attr("y", 1.5*histLegendSize + scaleForWindowSize(10)*2)
                 .attr("text-anchor", "middle")
                 .attr("fill", "black")
-                .attr("font-size", fontSizeTicks + "px")
+                .attr("font-size", fontSizes["tick"] )
                 .text(varNames[i])
                 .attr("id", "legend" + i)
                 .attr("class", "text");
